@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="analizaR datos políticos" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+<meta name="github-repo" content="rstudio/bookdown-demo" />
+
+<meta name="author" content="Francisco Urdinez y Andrés Cruz" />
+
+<meta name="date" content="2017-12-21" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+
+<title>analizaR datos políticos</title>
+
+<link href="libs/tufte-css-2015.12.29/tufte.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li class="has-sub"><a href="index.html#prefacio"><span class="toc-section-number">1</span> Prefacio</a><ul>
+<li><a href="1-1-agradecimientos.html#agradecimientos"><span class="toc-section-number">1.1</span> Agradecimientos</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-introduccion.html#introduccion"><span class="toc-section-number">2</span> Introducción</a><ul>
+<li><a href="2-1-organizacion-del-libro.html#organizacion-del-libro"><span class="toc-section-number">2.1</span> Organización del libro</a></li>
+<li><a href="2-2-prerrequisitos.html#prerrequisitos"><span class="toc-section-number">2.2</span> Prerrequisitos</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-r-basico.html#r-basico"><span class="toc-section-number">3</span> R básico</a><ul>
+<li class="has-sub"><a href="3-1-instalacion.html#instalacion"><span class="toc-section-number">3.1</span> Instalación</a><ul>
+<li><a href="3-1-instalacion.html#r"><span class="toc-section-number">3.1.1</span> R</a></li>
+<li><a href="3-1-instalacion.html#rstudio"><span class="toc-section-number">3.1.2</span> RStudio</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-2-partes-de-rstudio.html#partes-de-rstudio"><span class="toc-section-number">3.2</span> Partes de RStudio</a><ul>
+<li><a href="3-2-partes-de-rstudio.html#consola"><span class="toc-section-number">3.2.1</span> Consola</a></li>
+<li><a href="3-2-partes-de-rstudio.html#script"><span class="toc-section-number">3.2.2</span> Script</a></li>
+<li><a href="3-2-partes-de-rstudio.html#objetos"><span class="toc-section-number">3.2.3</span> Objetos</a></li>
+<li><a href="3-2-partes-de-rstudio.html#archivos-graficos-paquetes-ayuda"><span class="toc-section-number">3.2.4</span> Archivos / gráficos / paquetes / ayuda</a></li>
+</ul></li>
+<li><a href="3-3-ejercicios.html#ejercicios"><span class="toc-section-number">3.3</span> Ejercicios</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-manejo.html#manejo"><span class="toc-section-number">4</span> Manejo</a><ul>
+<li><a href="4-1-nuestra-base-de-datos.html#nuestra-base-de-datos"><span class="toc-section-number">4.1</span> Nuestra base de datos</a></li>
+<li><a href="4-2-describir-base.html#describir-base"><span class="toc-section-number">4.2</span> Describir base</a></li>
+<li><a href="4-3-ordenar-la-base.html#ordenar-la-base"><span class="toc-section-number">4.3</span> Ordenar la base</a></li>
+<li><a href="4-4-seleccionar-columnas.html#seleccionar-columnas"><span class="toc-section-number">4.4</span> Seleccionar columnas</a></li>
+<li><a href="4-5-renombrar-columnas.html#renombrar-columnas"><span class="toc-section-number">4.5</span> Renombrar columnas</a></li>
+<li><a href="4-6-filtrar-observaciones.html#filtrar-observaciones"><span class="toc-section-number">4.6</span> Filtrar observaciones</a></li>
+<li><a href="4-7-crear-nuevas-variables.html#crear-nuevas-variables"><span class="toc-section-number">4.7</span> Crear nuevas variables</a></li>
+<li><a href="4-8-concatenar-comandos-las-pipes.html#concatenar-comandos-las-pipes"><span class="toc-section-number">4.8</span> Concatenar comandos: las pipes</a></li>
+<li><a href="4-9-ejercicios-1.html#ejercicios-1"><span class="toc-section-number">4.9</span> Ejercicios</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-modelos-binarios.html#modelos-binarios"><span class="toc-section-number">5</span> Modelos binarios</a><ul>
+<li><a href="5-modelos-binarios.html#pseudo-r2"><span class="toc-section-number">5.0.1</span> <span class="math inline">\(Pseudo-R^2\)</span></a></li>
+<li><a href="5-modelos-binarios.html#aic"><span class="toc-section-number">5.0.2</span> AIC</a></li>
+<li><a href="5-modelos-binarios.html#bic"><span class="toc-section-number">5.0.3</span> BIC</a></li>
+<li><a href="5-modelos-binarios.html#brier-score"><span class="toc-section-number">5.0.4</span> Brier Score</a></li>
+<li><a href="5-modelos-binarios.html#porcentaje-de-predicciones-correctas"><span class="toc-section-number">5.0.5</span> Porcentaje de predicciones correctas</a></li>
+<li><a href="5-modelos-binarios.html#roc-plot"><span class="toc-section-number">5.0.6</span> ROC plot</a></li>
+<li><a href="5-modelos-binarios.html#separation-plots"><span class="toc-section-number">5.0.7</span> Separation plots</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-modelos-de-supervivencia.html#modelos-de-supervivencia"><span class="toc-section-number">6</span> Modelos de supervivencia</a><ul>
+<li><a href="6-1-el-modelo-cox-de-riesgos-proporcionales.html#el-modelo-cox-de-riesgos-proporcionales"><span class="toc-section-number">6.1</span> El modelo Cox de riesgos proporcionales:</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="modelos-de-supervivencia" class="section level1">
+<h1><span class="header-section-number">Capítulo 6</span> Modelos de supervivencia</h1>
+<p>Hay una serie de preguntas recurrentes al análisis de datos políticos que aún no hemos cubierto. Muchas veces nos interesa saber por qué ciertos eventos duran lo que duran, o porqué algunas observaciones duran más que otras. ¿Por qué la paz es tan duradera entre algunos países mientras que otros guerrean con frecuencia? ¿Cuál es la probabilidad de que Turquía ingrese a la ingresar a la Unión Europea en 2018? ¿Por qué algunos legisladores permanecen en sus cargos por varios periodos consecutivos mientras que otros no logran reelegirse tan solo una vez? ¿Cuánto demora un sindicato en entrar en huelga durante una crisis económica?</p>
+<p>Todas estas preguntas tienen en común que la duración y el momento de ocurrencia de un evento son parte de la respuesta que buscamos. Necesitamos un modelo que nos permita llegar a esta respuesta. Janet Box-Steffensmeier, la principal referencia en Ciencia Política de este método, se refiere a ellos a “modelos de eventos históricos” aunque buena parte de la literatura los llama modelos de supervivencia o modelos de duración. Si bien en la Ciencia Política no son modelos tan utilizados como uno creería (en el fondo, casi todas las preguntas que nos hacemos pueden ser reformuladas en una pregunta sobre la duración del evento), las ciencias médicas han explorado estos métodos en profundidad, y muchas las referencias que uno encuentra en R sobre paquetes accesorios a estos modelos son de departamentos bioestadísticos y médicos. De allí que “modelos de supervivencia” sea el nombre más frecuentemente utilizado para estos modelos, ya que en medicina comenzó a utilizárselos para modelar qué variables afectaban la sobrevida de sus pacientes enfermos.</p>
+<p>Podemos tener dos tipos de bases de datos para estos problemas. Por un lado podemos tener una base en formato de panel en el que para un momento dado nuestra variable dependiente codifica si el evento ha ocurrido (=1) o no (=0). Así, por ejemplo, podemos tener una muestra de veinte países para cincuenta años (1965-2015) en los que nuestra variable de interés es si el país ha implementado una reforma constitucional. La variable independiente asumirá el valor 1 para el año 1994 en Argentina, pero será 0 para el resto de los años en este país. Por otro lado, podemos tener una base de datos transversal en la que cada observación aparece codificada apenas una vez. En este caso necesitamos, además de la variable que nos dirá si en el periodo de interés el evento ocurrió o no para cada observación (por ejemplo, Argentina debería ser codificada como “1”), una variable extra que codifique el tiempo de “supervivencia” de cada observación, es decir, cuánto tiempo pasó hasta que finalmente el evento sucedió. Para el caso de Argentina, esta variable codificará 29 (años), que es lo que demoró en implementarse una reforma constitucional desde 1965. La elección del año de partida, como podrá sospechar, es decisión del investigador, pero tiene un efecto enorme sobre nuestros resultados.</p>
+<p>Supongamos que nos hacemos la pregunta que se hizo David Altman: “¿Por qué algunos países demoran menos que otros en implementar instancias de democracia directa?”. Para ello tenemos una base de datos en formato de panel que parte del año 1900 y que llega a 2016 para 202 países (algunas observaciones, como la Unión Soviética se transforman en otras observaciones a partir de un determinado año en que dejan de existir). Al observar sus datos uno nota algo que probablemente también te suceda en tu base de datos. Para el año 2016 apenas un pequeño porcentaje de países había implementado este tipo de mecanismos (27% para ser más precisos) pero la base está censurada ya que a partir de ese año no sabemos que ha ocurrido con los países que aún no han implementado mecanismos de democracia directa. No todas las observaciones han “muerto” aún, ¿cómo saber cuándo lo harán? Ésta es una pregunta válida, que podremos responder con este tipo de modelos, ya que podemos calcular el tiempo que demorará cada uno de los países censurados en nuestra muestra (con la información que le damos al modelo, que siempre es incompleta).</p>
+<p>En nuestra base de datos tendremos, al menos, tres tipos de observaciones (ver figura x): (a) aquellas que, para el momento en que tenemos datos ya estaban en la muestra, aunque no siempre sabremos hace cuanto que “existen” (en la base de datos de Altman, por ejemplo, México ya existía como entidad política en 1900, cuando su base de datos parte. Sabemos que la Primera República Federal existió como entidad política desde octubre de 1824, por lo que México sería codificado como existente a partir de esa fecha). Lo que sí sabemos es que en 2012, por primera vez, México implementó una iniciativa de democracia directa, lo que define como positiva la ocurrencia del evento que nos interesa medir; (b) Algunas observaciones estarán desde el comienzo de la muestra, y existirán hasta el último momento sin haber registrado el evento de interés. Tal es el caso, en la muestra de Altman, de Argentina que ya en 1900 está registrado en la base, y hasta el último año de la muestra no había registrado instancias de democracia directa, lo que la transforma en una observación censurada; (c) Algunas observaciones pueden entrar “tarde” en la muestra. Por ejemplo, Eslovenia entra a la muestra de Altman en 1991, que es cuando se independiza de Yugoslavia.</p>
+<p>Figura x. (*) hay que hacer un equivalente propio a esta figura.. en el que el país 1 entre en t2 a la muestra y el país 4 en t5</p>
+<p>(insertar fórmulas a continuación)</p>
+<p>Los modelos de supervivencia se interpretan a partir de la probabilidad de que en un momento dado el evento de interés ocurra dado que no ha ocurrido aun. Esta probabilidad recibe el nombre de tasa de riesgo. Partimos sabiendo que tenemos una variable, que llamaremos <span class="math inline">\(T\)</span>, y que representa un valor aleatorio positivo y que tiene una distribución de probabilidades (correspondiente a la probabilidad del evento ocurrir en cada uno de los momentos posibles), que llamaremos <span class="math inline">\(f(t)\)</span>, y que se puede expresar de manera acumulada, como una densidad acumulada <span class="math inline">\(F(t)\)</span>. Como dijimos que <span class="math inline">\(T\)</span> es una variable aleatoria, podemos calcular su distribución que viene dada por la fórmula, en la que vemos que <span class="math inline">\(F(t)\)</span> viene dada por la probabilidad de que el tiempo de supervivencia <span class="math inline">\(T\)</span> sea menor o igual a un tiempo específico <span class="math inline">\(t\)</span>.</p>
+<p><span class="math inline">\(F(t)=\int\limits_0^t f(u)d(u)=Pr(T)\leq t)\)</span></p>
+<p>La función de supervivencia <span class="math inline">\(\hat S(t)\)</span>, que es un concepto clave en estos modelos, está relacionada a <span class="math inline">\(F(t)\)</span>, ya que</p>
+<p><span class="math inline">\(\hat S(t)= 1-F(t)=Pr(T\geq t)\)</span></p>
+<p>Es decir, la función de supervivencia es la probabilidad inversa de <span class="math inline">\(F(t)\)</span>, pues dice respecto a la probabilidad de que el tiempo de supervivencia <span class="math inline">\(T\)</span> sea mayor o igual un tiempo <span class="math inline">\(t\)</span> de interés. Para el ejemplo concreto de Altman, uno podría preguntarse cuál es la probabilidad de un país no implementar un mecanismo de democracia directa (lo que sería equivalente a “sobrevivir” a dicha implementación) siendo que ya ha sobrevivido a los mismos por 30 años. A medida que más y más países en la muestra van implementando iniciativas de democracia directa, la probabilidad de supervivencia va disminuyendo.</p>
+<p>Los coeficientes de los modelos de supervivencia se suelen interpretar como tasas de riesgo (o “hazard rates” en inglés), que es el cociente de la probabilidad de que el evento suceda y la función de supervivencia</p>
+<p><span class="math inline">\(h(t)=\frac{f(t)}{S(t)}\)</span></p>
+<p>Así, la tasa de riesgo indica la tasa a la que las observaciones “mueren” en nuestra muestra en el momento <span class="math inline">\(t\)</span>, considerando que la observación ha sobrevivido hasta el momento <span class="math inline">\(t\)</span>. Veremos más adelante como en el ejemplo de Altman podemos interpretar los coeficientes de nuestras regresiones como tasas de riesgo. En definitiva, la tasa de riesgo <span class="math inline">\(h(t)\)</span> es el riesgo de que el evento ocurra en un intervalo de tiempo determinado, que viene dado por</p>
+<p><span class="math inline">\(f(t)=\lim_{\bigtriangleup x \to 0} \frac {P(t+\bigtriangleup t &gt; T \geq t)}{\bigtriangleup t}\)</span></p> 
+</div>
+<p style="text-align: center;">
+<a href="5-modelos-binarios.html"><button class="btn btn-default">Previous</button></a>
+<a href="6-1-el-modelo-cox-de-riesgos-proporcionales.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+
+</body>
+<!-- </html> -->

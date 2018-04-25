@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="analizaR datos políticos" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+<meta name="github-repo" content="rstudio/bookdown-demo" />
+
+<meta name="author" content="Francisco Urdinez y Andrés Cruz" />
+
+<meta name="date" content="2017-12-21" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+
+<title>analizaR datos políticos</title>
+
+<link href="libs/tufte-css-2015.12.29/tufte.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li class="has-sub"><a href="index.html#prefacio"><span class="toc-section-number">1</span> Prefacio</a><ul>
+<li><a href="1-1-agradecimientos.html#agradecimientos"><span class="toc-section-number">1.1</span> Agradecimientos</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-introduccion.html#introduccion"><span class="toc-section-number">2</span> Introducción</a><ul>
+<li><a href="2-1-organizacion-del-libro.html#organizacion-del-libro"><span class="toc-section-number">2.1</span> Organización del libro</a></li>
+<li><a href="2-2-prerrequisitos.html#prerrequisitos"><span class="toc-section-number">2.2</span> Prerrequisitos</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-r-basico.html#r-basico"><span class="toc-section-number">3</span> R básico</a><ul>
+<li class="has-sub"><a href="3-1-instalacion.html#instalacion"><span class="toc-section-number">3.1</span> Instalación</a><ul>
+<li><a href="3-1-instalacion.html#r"><span class="toc-section-number">3.1.1</span> R</a></li>
+<li><a href="3-1-instalacion.html#rstudio"><span class="toc-section-number">3.1.2</span> RStudio</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-2-partes-de-rstudio.html#partes-de-rstudio"><span class="toc-section-number">3.2</span> Partes de RStudio</a><ul>
+<li><a href="3-2-partes-de-rstudio.html#consola"><span class="toc-section-number">3.2.1</span> Consola</a></li>
+<li><a href="3-2-partes-de-rstudio.html#script"><span class="toc-section-number">3.2.2</span> Script</a></li>
+<li><a href="3-2-partes-de-rstudio.html#objetos"><span class="toc-section-number">3.2.3</span> Objetos</a></li>
+<li><a href="3-2-partes-de-rstudio.html#archivos-graficos-paquetes-ayuda"><span class="toc-section-number">3.2.4</span> Archivos / gráficos / paquetes / ayuda</a></li>
+</ul></li>
+<li><a href="3-3-ejercicios.html#ejercicios"><span class="toc-section-number">3.3</span> Ejercicios</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-manejo.html#manejo"><span class="toc-section-number">4</span> Manejo</a><ul>
+<li><a href="4-1-nuestra-base-de-datos.html#nuestra-base-de-datos"><span class="toc-section-number">4.1</span> Nuestra base de datos</a></li>
+<li><a href="4-2-describir-base.html#describir-base"><span class="toc-section-number">4.2</span> Describir base</a></li>
+<li><a href="4-3-ordenar-la-base.html#ordenar-la-base"><span class="toc-section-number">4.3</span> Ordenar la base</a></li>
+<li><a href="4-4-seleccionar-columnas.html#seleccionar-columnas"><span class="toc-section-number">4.4</span> Seleccionar columnas</a></li>
+<li><a href="4-5-renombrar-columnas.html#renombrar-columnas"><span class="toc-section-number">4.5</span> Renombrar columnas</a></li>
+<li><a href="4-6-filtrar-observaciones.html#filtrar-observaciones"><span class="toc-section-number">4.6</span> Filtrar observaciones</a></li>
+<li><a href="4-7-crear-nuevas-variables.html#crear-nuevas-variables"><span class="toc-section-number">4.7</span> Crear nuevas variables</a></li>
+<li><a href="4-8-concatenar-comandos-las-pipes.html#concatenar-comandos-las-pipes"><span class="toc-section-number">4.8</span> Concatenar comandos: las pipes</a></li>
+<li><a href="4-9-ejercicios-1.html#ejercicios-1"><span class="toc-section-number">4.9</span> Ejercicios</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-modelos-binarios.html#modelos-binarios"><span class="toc-section-number">5</span> Modelos binarios</a><ul>
+<li><a href="5-modelos-binarios.html#pseudo-r2"><span class="toc-section-number">5.0.1</span> <span class="math inline">\(Pseudo-R^2\)</span></a></li>
+<li><a href="5-modelos-binarios.html#aic"><span class="toc-section-number">5.0.2</span> AIC</a></li>
+<li><a href="5-modelos-binarios.html#bic"><span class="toc-section-number">5.0.3</span> BIC</a></li>
+<li><a href="5-modelos-binarios.html#brier-score"><span class="toc-section-number">5.0.4</span> Brier Score</a></li>
+<li><a href="5-modelos-binarios.html#porcentaje-de-predicciones-correctas"><span class="toc-section-number">5.0.5</span> Porcentaje de predicciones correctas</a></li>
+<li><a href="5-modelos-binarios.html#roc-plot"><span class="toc-section-number">5.0.6</span> ROC plot</a></li>
+<li><a href="5-modelos-binarios.html#separation-plots"><span class="toc-section-number">5.0.7</span> Separation plots</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-modelos-de-supervivencia.html#modelos-de-supervivencia"><span class="toc-section-number">6</span> Modelos de supervivencia</a><ul>
+<li><a href="6-1-el-modelo-cox-de-riesgos-proporcionales.html#el-modelo-cox-de-riesgos-proporcionales"><span class="toc-section-number">6.1</span> El modelo Cox de riesgos proporcionales:</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="partes-de-rstudio" class="section level2">
+<h2><span class="header-section-number">3.2</span> Partes de RStudio</h2>
+<p>Si el lector consiguió descargar e instalar R y RStudio, bastará con ingresar a RStudio para comenzar a trabajar. Se pillará con una pantalla como esta (<em>pulir! mejor fuente, fondo blanco</em>):</p>
+<p><em>(F:creo que antes de largar habría que explicarle al lector como cambiar el idioma y ver ese tema del UTF8)</em></p>
+<p><img src="00-images/fig_3_1.png" width="120%"  /></p>
+<p>La pantalla de RStudio se divide en cuatro paneles. A continuación, vamos a explicar sus funciones. La idea en esta sección es familiarizar al lector con lo básico de R en el camino.</p>
+<div id="consola" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Consola</h3>
+<p>El panel inferior izquierdo de RStudio. Es nuestro espacio de comunicación directa con el computador, en el que le solicitamos, hablando R, realizar tareas específicas. Llamaremos <strong>comandos</strong> a estas solicitudes. Probemos correr un comando que realiza una operación aritmética básica:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Un truco importante de la consola es que con los botones de arriba y abajo es posible navegar en el historial de comandos recientes. Recomendamos al lector probar de realizar otros comandos con operaciones aritméticas y volver atrás con los botones de arriba y abajo.</p>
+<p><em>cambiar imagen de resumen</em></p>
+<p><img src="00-images/fig_3_2.png" width="80%"  /></p>
+<p>Por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">100</span>) <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">^</span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
+<pre><code>## [1] -14</code></pre>
+</div>
+<div id="script" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Script</h3>
+<p>El panel superior izquierdo de RStudio puede describirse como una suerte de “bitácora de comandos”. Aunque la consola puede ser útil para unos pocos comandos, análisis complejos requerirán que llevemos un registro de nuestros comandos.</p>
+<p>Para abrir un script nuevo, basta con presionar <code>Ctrl + Shift + N</code> o ir a File &gt; New File &gt; R Script (utilizar atajos de teclado suele ser una buena idea, y no solo por el factor hacker <em>A:footnote al anexo tips?</em> <em>F: Yo creo que puede ir a la Parte III</em>). La pantalla en blanco de un nuevo script es similar a un bloc de notas sin usar, con la particularidad de que cada línea debe pensarse como un comando. El lector debe notar que escribir un comando en el script y presionar <code>Enter</code> no consigue nada más que un salto de párrafo. Para correr el comando de una línea basta con presionar <code>Ctrl + Enter</code> (en el caso de Mac, <code>Cmd + Enter</code>) mientras se tiene el teclado en ella. ¡Es posible seleccionar múltiples líneas/comandos a la vez y correrlas de una pasada con <code>Ctrl + Enter</code>!</p>
+<p>Es fundamental el dejar comentarios explicativos en nuestros scripts. Esto no es solo relevante en el trabajo en grupo (el código ajeno puede ser inentendible sin una guía clara), sino que también denota atención por nuestros yo del futuro. En varias ocasiones nos ha tocado revisar código que escribimos hace un par de meses, no entender nada, y maldecir a nuestros yo del pasado por su poca consideración. A la hora de interpretar comandos, R reconoce que todo lo que siga a un numeral (# o <em>hashtag</em>, en estos días) es un comentario. Así, hay dos formas de dejar comentarios, como “comandos estériles” o como apéndices de comandos funcionales:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Este es un comando estéril. R sabe que es solo un comentario, por lo que no retorna nada.</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Este es un comando-apéndice. ¡R corre el comando hasta el gato y luego sabe que es un comentario!</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Para guardar un script, basta con presionar <code>Ctrl + S</code> o clickear File &gt; Save.</p>
+</div>
+<div id="objetos" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Objetos</h3>
+<p>El panel superior derecho de RStudio. Aunque tiene tres pestañas, la gran estrella es “Environment”, que sirve como registro para los objetos que vayamos creando a medida que trabajamos. Una de las características centrales de R es que permite almacenar objetos, para luego correr comandos en ellos. La forma tipo para crear un objeto es <code>nombre_del_objeto &lt;- contenido</code>. Por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">objeto_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<p>El lector notará que en la pestaña “Environment” aparece un nuevo objeto, objeto_1. Este contiene <em>el resultado</em> de 2 + 2. Es posible preguntarle a R qué contiene un objeto simplemente corriendo su nombre como si fuera un comando:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">objeto_<span class="dv">1</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Los objetos pueden insertarse en otros comandos, haciendo referencia a sus contenidos. Por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">objeto_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">10</span></code></pre></div>
+<pre><code>## [1] 14</code></pre>
+<p>También es posible reasignar a los objetos. ¡Si nos aburrimos de objeto_1 como un 4, podemos asignarle cualquier valor que queramos! Valores de caracter o no númericos se pueden asignar entre comillas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">objeto_<span class="dv">1</span> &lt;-<span class="st"> &quot;democracia&quot;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">objeto_<span class="dv">1</span> </code></pre></div>
+<pre><code>## [1] &quot;democracia&quot;</code></pre>
+<p>Borrar objetos es también muy simple. ¡Aunque suene como perder nuestro duro trabajo, tener un “Environment” limpio y fácil de leer a menudo lo vale!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(objeto_<span class="dv">1</span>)</code></pre></div>
+<div id="vectores" class="section level4">
+<h4><span class="header-section-number">3.2.3.1</span> Vectores</h4>
+<p>Hasta ahora hemos conocido los objetos más simples de R, que contienen un solo valor. Objetos un poco más complejos son los vectores, “lineas” de valores. Crear un vector es simple, basta con insertar sus componentes dentro de <code>c()</code>, separados por comas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vector_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">20</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vector_<span class="dv">1</span></code></pre></div>
+<pre><code>## [1] 15 10 20</code></pre>
+</div>
+<div id="funciones" class="section level4">
+<h4><span class="header-section-number">3.2.3.2</span> Funciones</h4>
+<p>Sin notarlo, hemos ya utilizado a través <code>sqrt()</code>, <code>log()</code> y <code>c()</code>una de las cualidades más importantes de R, las funciones. En términos muy básicos, una función es un procedimiento como el siguiente:</p>
+<p><img src="00-images/fig_3_3.png" width="80%"  /></p>
+<p><code>sqrt()</code> toma un valor numérico como input y devuelve su raíz cuadrada como output. <code>log()</code> toma el mismo input, pero devuelve su logaritmo común (o en base a 10). <code>c()</code> toma distintos valores únicos como input y devuelve un vector que los concatena.</p>
+<p>Es a propósito de los vectores que las funciones de R comienzan a brillar y a alejarse de las cualidades básicas de una calculadora (que, a grandes rasgos, es lo que hemos visto ahora de R, nada muy impresionante). Veamos algunas funciones que extraen información útil sobre nuestro vector. ¿Qué hace cada una?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(vector_<span class="dv">1</span>) <span class="co"># media</span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">median</span>(vector_<span class="dv">1</span>) <span class="co"># mediana</span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(vector_<span class="dv">1</span>) <span class="co"># desviación estándar</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(vector_<span class="dv">1</span>) <span class="co"># suma</span></code></pre></div>
+<pre><code>## [1] 45</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">min</span>(vector_<span class="dv">1</span>) <span class="co"># valor mínimo</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(vector_<span class="dv">1</span>) <span class="co"># valor máximo</span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(vector_<span class="dv">1</span>) <span class="co"># longitud (cantidad de valores)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(vector_<span class="dv">1</span>) <span class="co"># ...</span></code></pre></div>
+<pre><code>## [1] 10 15 20</code></pre>
+<p>El lector podría haber deducido que <code>sort()</code>, la última función del lote anterior, ordena al vector de menor a mayor. ¿Qué pasa si quisiéramos ordenarlo de mayor a menor? Esto nos permite introducir a los <em>argumentos</em>, partes de las funciones que nos permiten modificar su comportamiento. A continuación agregaremos el argumento <code>decreasing = TRUE</code> al comando anterior, consiguiendo nuestro objetivo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(vector_<span class="dv">1</span>, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] 20 15 10</code></pre>
+</div>
+</div>
+<div id="archivos-graficos-paquetes-ayuda" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Archivos / gráficos / paquetes / ayuda</h3>
+<p>En el panel inferior derecho de RStudio estas cuatro pestañas son las que se roban la película.</p>
+<div id="archivos" class="section level4">
+<h4><span class="header-section-number">3.2.4.1</span> Archivos</h4>
+<p>Esta pestaña es una ventana a nuestros archivos. Funcionando como un pequeño gestor, nos permite moverlos, renombrarlos, copiarlos, etcétera. A propósito de archivos, una de las grandes novedades recientes de R son los <em>RStudio Projects</em>, o proyectos de RStudio. Los desarrolladores de RStudio se dieron cuenta de que sus usuarios tenían scripts y otros archivos de R (de los que aprenderemos luego, como bases de datos) desperdigados a lo largo y ancho de sus discos duros, sin orden alguno. Por eso implementaron la filosofía de “un proyecto, una carpeta”. Es tan simple como suena: la idea es que cada proyecto en el que trabajemos sea autosuficiente, que incluya todo lo que necesitemos en una sola carpeta. Se pueden manejar los proyectos desde la esquina superior derecha de R. El lector debe ser cuidadoso y notar que crear o abrir un proyecto reiniciará su sesión de R, borrando todo el trabajo que no guarde.</p>
+<p><em>(F: creo que podemos expandir un poquito mas en la utilidad de los proyectos con un ejemplo, a mi me ha resultado muy grato el tema de los proyectos!)</em></p>
+<p><em>(screenshot de RStudio Projects)</em></p>
+</div>
+<div id="graficos" class="section level4">
+<h4><span class="header-section-number">3.2.4.2</span> Gráficos</h4>
+<p>Aquí aparecen los gráficos que realizamos con R. ¡En el capítulo <em>X</em> aprenderemos a crearlos!</p>
+</div>
+<div id="paquetes" class="section level4">
+<h4><span class="header-section-number">3.2.4.3</span> Paquetes</h4>
+<p>Una de las cualidades de R a la que más hincapié hemos dado es su versatilidad. Su código libre hace que muchos desarrolladores se sientan atraídos a aportar a la comunidad de R con nuevas funcionalidades. En general, realizan esto a través de paquetes, que los usuarios pueden instalar como apéndices adicionales a R. Los paquetes contienen nuevas funciones, bases de datos, etcétera. La pestaña de RStudio aquí reseñada nos permite acceder a nuestros paquetes instalados.</p>
+<p>Instalar un paquete es bastante simple, a través de la función <code>install.packages()</code>. A continuación vamos a instalar el paquete “tidyverse”, central en nuestros próximos análisis. El tidyverse es una recopilación que incluye algunos de los mejores paquetes modernos para análisis de datos en R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<p>Cada vez que el usuario abre una nueva sesión de R, este carga “como de fábrica”. No solo sin objetos, sino que solo con los paquetes básicos que permiten a R funcionar. Tenemos que cargar los paquetes extra que queramos usar, entonces. Es más o menos como cuando compramos un <em>smartphone</em> y descargamos las aplicaciones que más usaremos, para que se ajuste a nuestras necesidades cotidianas. La forma más común de hacer esto es a través de la función <code>library()</code>, como se ve a continuación:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<pre><code>## Loading tidyverse: ggplot2
+## Loading tidyverse: tibble
+## Loading tidyverse: tidyr
+## Loading tidyverse: readr
+## Loading tidyverse: purrr
+## Loading tidyverse: dplyr</code></pre>
+<pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
+<pre><code>## filter(): dplyr, stats
+## lag():    dplyr, stats</code></pre>
+<p>El lector puede ahorrarse el trabajo de instalar los paquetes utilizados en <em>AnalizaR Datos Políticos</em> en el futuro y hacerlo todo ahora, corriendo el siguiente súper comando. Ojo: ¡esto no lo salvará de cargar los paquetes en cada nueva sesión de R que inicie! Ojo 2: puede que esto le tome un tiempo considerable.</p>
+<p><em>paquetes a instalar</em> <em>F: excelente que vamos a ofrecer esto, puede haber un paquete llamado ADP que tenga todo?</em></p>
+</div>
+<div id="ayuda" class="section level4">
+<h4><span class="header-section-number">3.2.4.4</span> Ayuda</h4>
+<p>Buscar ayuda es central a la hora de programar (y no solo de programar…). Esta pestaña de RStudio abre los archivos de ayuda que necesitemos, permitiéndonos buscar en ellos. Las funciones tienen archivos de ayuda para sí solas. Por ejemplo, podemos acceder al archivo de ayuda de la función <code>sqrt()</code> a través del comando <code>help(sqrt)</code>. Los paquetes en su conjunto también tienen archivos de ayuda, más comprensivos. Por ejemplo, para ver los archivos de ayuda del tidyverse solo debemos recurrir al argumento “package”: <code>help(package = tidyverse)</code>. El lector debe notar que los archivos de ayuda de paquetes y funciones de paquetes solo están disponibles si el paquete ha sido cargado.</p>
+</div>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="3-1-instalacion.html"><button class="btn btn-default">Previous</button></a>
+<a href="3-3-ejercicios.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+
+</body>
+<!-- </html> -->

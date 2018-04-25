@@ -1,0 +1,2747 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={analizaR datos políticos},
+            pdfauthor={Francisco Urdinez y Andrés Cruz},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{analizaR datos políticos}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Francisco Urdinez y Andrés Cruz}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{2017-12-27}
+
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter*{Inicio}\label{inicio}
+\addcontentsline{toc}{chapter}{Inicio}
+
+\begin{center}\includegraphics[width=0.6\linewidth]{00-images/tapa} \end{center}
+
+\chapter{Prefacio}\label{prefacio}
+
+Este libro nació haciendo análisis de datos políticos. Es decir, es hijo
+de la praxis. Por ello su naturaleza es aplicada, y tiene su foco puesto
+en ser una caja de herramientas para el lector. AnalizaR datos políticos
+está pensado para ser un manual de referencia que podrá ser consultado
+tanto por un estudiante universitario viviendo en Bogotá, como por un
+consultor político viviendo en México DF o un o funcionário público en
+Brasilia, todos con la necesidad de transformar sus bases de datos en
+conclusiones sustantivas y fácilmente interpretables.
+
+Trabajando juntos en la cátedra de Análisis Cuantitativo de Datos II del
+Instituto de Ciencia Política de la Universidad Católica de Chile
+encontramos que ni aquí, ni en otras universidades de la región, había
+material didáctico y aplicado hecho en casa para enseñar a nuestros
+alumnos de ciencia política cómo extraer conclusiones a partir de datos
+duros. Todo el material utilizado en nuestra cátedra era publicado en
+inglés, por politólogos anglosajones trabajando en universidades
+anglosajonas. Por ello analizaR datos políticos tiene como público
+imaginario al politólogo latinoamericano, ya sea alumno de pregrado o
+posgrado, o ya en el mercado. Hemos querido que nuestro libro esté
+disponible en español y portugués, y esto lo hace extensible a otras
+universidades de realidades similares fuera de América Latina, como en
+los países lusófonos de África y en la región ibérica.
+
+Las universidades latinoamericanas han hecho grandes esfuerzos en que
+sus alumnos de politología se alfabeticen en herramientas estadísticas y
+de análisis de datos, algo que hasta hace diez años era algo poco
+frecuente. Hoy las cinco mejores universidades de la región, según el
+ranking de Times Higher Eductaion, tienen cursos de análisis
+cuantitativo de datos en sus programas de ciencia política. Algunos
+departamentos, como el Departamento de Ciencia Política de la
+Universidad de São Paulo, que co-organiza la escuela de verano de IPSA
+en métodos, o el Instituto de Ciencia Política de la Universidad
+Católica de Chile, que organiza su escuela de verano en métodos mixtos,
+han hecho esfuerzos por exponer a sus alumnos a profesores
+norteamericanos y europeos, quienes cuentan con muchas décadas de
+tradición cuantitativa en sus programas. Entendemos que, hoy por hoy,
+ningún politólogo puede salir al mercado laboral sin saber utilizar con
+holgura software de análisis cuantitativo, y es a esa demanda a la que
+apuntamos aquí.
+
+Ahora mismo, R es probablemente la mejor opción que el mercado provee
+para análisis estadístico de datos. Esto puede ser sorpresivo para un
+lector recién salido de una máquina del tiempo: hace diez años, o tal
+vez menos, R era simplemente mirado como la alternativa gratis a los
+programas comerciales de verdad, que sí podían realizar análisis
+cuantitativo serio. Sin embargo, esto ha cambiado drásticamente en los
+últimos años. La Figura \ref{fig:pref-gtrends} muestra las tendencias de
+búsqueda en Google en América Latina para los programas más comúnmente
+utilizados en ciencia. R ha pasado a ocupar un lugar en el mercado que
+hace 15 años le correspondía a SPSS, y los programas de nicho -como
+Stata y Minitab- son cada vez menos buscados. La tendencia sugiere que R
+será cada vez más popular en la ciencia latinoamericana, siguiendo una
+tendencia global.
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{00-images/pref-gtrends} 
+
+}
+
+\caption{Elaborada por los autores usando el paquete ggplot2 de R, y datos extraídos de Google Trends. Los datos corresponden a promedios anuales para países latinoamericanos en el sector 'ciencia'}\label{fig:pref-gtrends}
+\end{figure}
+
+El modelo de software libre en el que se basa R ---con licencias de
+derechos de autor permisivas, que ponen prácticamente todas las
+herramientas en forma gratuita a disposición del público, tanto para su
+uso como para su reformulación--- finalmente rindió frutos. Una activa
+comunidad de desarrolladores se ha anclado en R, añadiéndole nuevas
+funcionalidades que lo han dotado de elegancia, simplicidad y
+flexibilidad. R ya no solo brilla en la generación de modelos
+estadísticos, sino que hoy es hogar de un vasto universo de herramientas
+que permite al usuario importar, ordenar, transformar, visualizar,
+modelar y comunicar los datos que le interesen, sin tener que cambiar de
+herramienta. Es esta la novedad tecnológica que queremos acercar al
+lector interesado en el análisis político, con la esperanza de que
+contribuya a optimizar el proceso entre la pregunta que le quita el
+sueño (y/o le promete el pan) y su solución. Esto sin desconocer, claro
+está, que el beneficio inicial de R, el que estaba incluso cuando nadie
+quisiera usarlo si no era a regañadientes, permanece. Sabemos que el
+lector ---y tal vez su casa de estudios--- agradecerá la amable
+coincidencia de que el mejor software disponible en términos de calidad
+es también el mejor para su bolsillo.
+
+\section{Agradecimientos}\label{agradecimientos}
+
+Por ahora nadie.
+
+\chapter{Introducción}\label{introduccion}
+
+El análisis cuantitativo de datos es una de las tantas herramientas que
+los investigadores tenemos para abordar las preguntas que nos interesan,
+ya sea en el mundo profesional o en la academia (o ``por amor al arte''
+en muy encendidas noches de viernes, por qué no). Es por esto que
+\emph{AnalizaR datos políticos} tiene un fuerte énfasis en ejemplos
+politológicos aplicados. Utilizar ejemplos de texto trillados e
+idealizados sobre autitos o islas imaginarias sería una falta de respeto
+para el lector, a quien sabemos ávido por ocupar las herramientas de
+este libro en las preguntas de investigación política que le parecen
+importantes. Por el contrario, queremos mostrar el potencial de dichas
+herramientas metiendo las manos en la masa, con datos de verdad,
+investigaciones que colegas ya han realizado y dificultades particulares
+de llevar el análisis de datos a preguntas políticas.
+
+\section{Organización del libro}\label{organizacion-del-libro}
+
+El libro está organizado en tres secciones temáticas. Dentro de las
+secciones, cada capítulo se esfuerza por resolver problemas puntuales,
+balanceando teoría y práctica en R.
+
+ La sección I está dedicada al manejo de datos. Lo ideal es que el
+lector consiga algo más que mirar una base de datos con cara de no
+entender nada. Introduciremos R desde su instalación y aprenderemos a
+sacarle el jugo para obtener datos, conocerlos en profundidad,
+transformarlos de acuerdo a las preguntas que nos interesan y
+representarlos gráficamente en formas tanto funcionales como atractivas.
+
+ En la sección II está el corazón del libro. Veremos cómo responder a
+preguntas políticas desde una perspectiva estadística ---siempre podemos
+contestar desde la perspectiva de lo que nos dijo nuestra abuelita,
+aunque esto suela ser menos serio---. En general, la sección trata
+modelos estadísticos, que intentan explicar y predecir la variación de
+ciertas variables (dependientes) de acuerdo a cómo varían otras
+variables (independientes). Exploraremos distintos tipos de modelos de
+acuerdo a las distintas formas de variables dependientes que se
+encuentran comúnmente en la arena de lo político. Revisaremos cómo
+interpretar resultados y presentarlos en forma clara y atractiva, cómo
+elegir entre modelos competidores y cómo comprobar simplemente algunos
+de los supuestos estadísticos necesarios para que los modelos funcionen.
+Debemos notar que este no es un libro de econometría, claro está, por lo
+que para cada modelo haremos referencia a trabajos más avanzados en
+términos teóricos, con el fin de que el lector pueda profundizar por su
+cuenta si cree que debe utilizar algún modelo en específico para
+responder a sus preguntas de interés.
+
+ Por último, en la sección III dejaremos el mundo ideal y nos
+adentraremos en la resolución de problemas. Ya sea porque un colega nos
+prestó su base de datos y se vé más bien como una obra de arte
+surrealista, o simplemente porque la dificultad de los problemas a los
+que nos enfrentamos deja corto lo que aprendimos al principio del libro,
+aquí presentaremos un popurrí de herramientas para que el lector integre
+en su flujo de trabajo cotidiano. Estas han sido seleccionadas desde
+nuestra experiencia y son cuáles creemos las más requeridas en la
+práctica del análisis de datos políticos.
+
+\section{Prerrequisitos}\label{prerrequisitos}
+
+Este libro está pensado para alumnos que más que brillantes son
+motivados: el análisis cuantitativo de datos exige sobre todo tenacidad
+y curiosidad. Es altamente deseable que el lector tenga nociones básicas
+de matemática, probabilidad y/o estadística universitaria antes de leer
+este libro, aun cuando nos esforzamos por mantenerlo lo más simple que
+pudimos en dichas materias. En términos de hardware, prácticamente
+cualquier computador moderno con acceso a internet será suficiente, pues
+las herramientas que utilizaremos son más bien livianas. Todo el
+software que utilizaremos es gratuito.
+
+\part{Manejo de datos}\label{part-manejo-de-datos}
+
+\chapter{R básico}\label{rbas}
+
+\section{Instalación}\label{instalacion}
+
+\subsection{R}\label{r}
+
+R (R Core Team, 2017) es un lenguaje de programación especialmente
+desarrollado para realizar análisis estadístico. Una de sus principales
+características, como se ha dejado a entrever en el prefacio, es que es
+de \emph{código libre}: aparte de ser gratis, esto significa que las
+licencias que protegen legalmente a R son muy permisivas. Al amparo de
+esas licencias, miles de desarrolladores alrededor del mundo han añadido
+su granito de arena a la usabilidad y atractivo de R. ¡En \emph{analizaR
+datos políticos} le sacaremos el jugo a esa diversidad!
+
+Instalar R es fácil, independiente de si el usuario utiliza Windows, Mac
+o Linux. Basta con ingresar a \url{https://cran.r-project.org/} y seguir
+las instrucciones de descarga a instalación.
+
+\subsection{RStudio}\label{rstudio}
+
+Como dijimos, R es un lenguaje de programación. En términos informales,
+es una forma ordenada de pedirle al computador que realice ciertas
+operaciones. Esto significa que es posible usar R exclusivamente desde
+una consola o terminal -las pantallas negras de los hackers de las
+películas. Aunque esto tiene algunos atractivos -entre ellos, parecer
+hacker-, en general queremos interfaces más amigables. Ahí es cuando
+entra al ruedo RStudio, el programa de facto para utilizar R. Una vez
+esté instalado, todos nuestros análisis ocurrirán dentro de RStudio,
+que, para más remate, es también de código libre. Para instalar RStudio,
+es necesario ya haber instalado R. Como para este, la descarga e
+instalación es accesible en Windows, Mac y Linux. El link es
+\url{https://www.rstudio.com/products/rstudio/download/\#download}
+
+Instale ambos R y RStudio, que nosotros lo esperamos aquí.
+
+Será bueno que nos acompañe a lo largo del capítulo con el programa
+abierto en su computador, nada mejor que aprender juntos.
+
+\section{Partes de RStudio}\label{partes-de-rstudio}
+
+Si el lector consiguió descargar e instalar R y RStudio, bastará con
+ingresar a RStudio para comenzar a trabajar. Se pillará con una pantalla
+como esta (\emph{pulir! mejor fuente, fondo blanco}):
+
+\emph{(F:creo que antes de largar habría que explicarle al lector como
+cambiar el idioma y ver ese tema del UTF8)}
+
+\begin{center}\includegraphics[width=11.53in]{00-images/rbas-rstudio} \end{center}
+
+La pantalla de RStudio se divide en cuatro paneles. A continuación,
+vamos a explicar sus funciones. La idea en esta sección es familiarizar
+al lector con lo básico de R en el camino.
+
+\subsection{Consola}\label{consola}
+
+El panel inferior izquierdo de RStudio. Es nuestro espacio de
+comunicación directa con el computador, en el que le solicitamos,
+hablando R, realizar tareas específicas. Llamaremos \textbf{comandos} a
+estas solicitudes. Probemos correr un comando que realiza una operación
+aritmética básica:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2}
+\NormalTok{## [1] 4}
+\end{Highlighting}
+\end{Shaded}
+
+Un truco importante de la consola es que con los botones de arriba y
+abajo es posible navegar en el historial de comandos recientes.
+Recomendamos al lector probar de realizar otros comandos con operaciones
+aritméticas y volver atrás con los botones de arriba y abajo.
+
+\emph{cambiar imagen de resumen}
+
+\begin{center}\includegraphics[width=3.76in]{00-images/rbas-basiccalc} \end{center}
+
+Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqrt}\NormalTok{(}\DecValTok{100}\NormalTok{) }\OperatorTok{-}\StringTok{ }\DecValTok{2}\OperatorTok{^}\DecValTok{3} \OperatorTok{*}\StringTok{ }\DecValTok{3}
+\NormalTok{## [1] -14}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Script}\label{script}
+
+El panel superior izquierdo de RStudio puede describirse como una suerte
+de ``bitácora de comandos''. Aunque la consola puede ser útil para unos
+pocos comandos, análisis complejos requerirán que llevemos un registro
+de nuestros comandos.
+
+Para abrir un script nuevo, basta con presionar
+\texttt{Ctrl\ +\ Shift\ +\ N} o ir a File \textgreater{} New File
+\textgreater{} R Script (utilizar atajos de teclado suele ser una buena
+idea, y no solo por el factor hacker \emph{A:footnote al anexo tips?}
+\emph{F: Yo creo que puede ir a la Parte III}). La pantalla en blanco de
+un nuevo script es similar a un bloc de notas sin usar, con la
+particularidad de que cada línea debe pensarse como un comando. El
+lector debe notar que escribir un comando en el script y presionar
+\texttt{Enter} no consigue nada más que un salto de párrafo. Para correr
+el comando de una línea basta con presionar \texttt{Ctrl\ +\ Enter} (en
+el caso de Mac, \texttt{Cmd\ +\ Enter}) mientras se tiene el teclado en
+ella. ¡Es posible seleccionar múltiples líneas/comandos a la vez y
+correrlas de una pasada con \texttt{Ctrl\ +\ Enter}!
+
+Es fundamental el dejar comentarios explicativos en nuestros scripts.
+Esto no es solo relevante en el trabajo en grupo (el código ajeno puede
+ser inentendible sin una guía clara), sino que también denota atención
+por nuestros yo del futuro. En varias ocasiones nos ha tocado revisar
+código que escribimos hace un par de meses, no entender nada, y maldecir
+a nuestros yo del pasado por su poca consideración. A la hora de
+interpretar comandos, R reconoce que todo lo que siga a un numeral (\# o
+\emph{hashtag}, en estos días) es un comentario. Así, hay dos formas de
+dejar comentarios, como ``comandos estériles'' o como apéndices de
+comandos funcionales:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Este es un comando estéril. R sabe que es solo un comentario, por lo que no retorna nada.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2} \CommentTok{# Este es un comando-apéndice. ¡R corre el comando hasta el gato y luego sabe que es un comentario!}
+\NormalTok{## [1] 4}
+\end{Highlighting}
+\end{Shaded}
+
+Para guardar un script, basta con presionar \texttt{Ctrl\ +\ S} o
+clickear File \textgreater{} Save.
+
+\subsection{Objetos}\label{objetos}
+
+El panel superior derecho de RStudio. Aunque tiene tres pestañas, la
+gran estrella es ``Environment'', que sirve como registro para los
+objetos que vayamos creando a medida que trabajamos. Una de las
+características centrales de R es que permite almacenar objetos, para
+luego correr comandos en ellos. La forma tipo para crear un objeto es
+\texttt{nombre\_del\_objeto\ \textless{}-\ contenido}. Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{objeto_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+El lector notará que en la pestaña ``Environment'' aparece un nuevo
+objeto, objeto\_1. Este contiene \emph{el resultado} de 2 + 2. Es
+posible preguntarle a R qué contiene un objeto simplemente corriendo su
+nombre como si fuera un comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{objeto_}\DecValTok{1}
+\NormalTok{## [1] 4}
+\end{Highlighting}
+\end{Shaded}
+
+Los objetos pueden insertarse en otros comandos, haciendo referencia a
+sus contenidos. Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{objeto_}\DecValTok{1} \OperatorTok{+}\StringTok{ }\DecValTok{10}
+\NormalTok{## [1] 14}
+\end{Highlighting}
+\end{Shaded}
+
+También es posible reasignar a los objetos. ¡Si nos aburrimos de
+objeto\_1 como un 4, podemos asignarle cualquier valor que queramos!
+Valores de caracter o no númericos se pueden asignar entre comillas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{objeto_}\DecValTok{1}\NormalTok{ <-}\StringTok{ "democracia"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{objeto_}\DecValTok{1} 
+\NormalTok{## [1] "democracia"}
+\end{Highlighting}
+\end{Shaded}
+
+Borrar objetos es también muy simple. ¡Aunque suene como perder nuestro
+duro trabajo, tener un ``Environment'' limpio y fácil de leer a menudo
+lo vale!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rm}\NormalTok{(objeto_}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Vectores}\label{vectores}
+
+Hasta ahora hemos conocido los objetos más simples de R, que contienen
+un solo valor. Objetos un poco más complejos son los vectores,
+``lineas'' de valores. Crear un vector es simple, basta con insertar sus
+componentes dentro de \texttt{c()}, separados por comas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vector_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vector_}\DecValTok{1}
+\NormalTok{## [1] 15 10 20}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Funciones}\label{funciones}
+
+Sin notarlo, hemos ya utilizado a través \texttt{sqrt()}, \texttt{log()}
+y \texttt{c()}una de las cualidades más importantes de R, las funciones.
+En términos muy básicos, una función es un procedimiento como el
+siguiente:
+
+\begin{center}\includegraphics[width=8.54in]{00-images/rbas-funs} \end{center}
+
+\texttt{sqrt()} toma un valor numérico como input y devuelve su raíz
+cuadrada como output. \texttt{log()} toma el mismo input, pero devuelve
+su logaritmo común (o en base a 10). \texttt{c()} toma distintos valores
+únicos como input y devuelve un vector que los concatena.
+
+Es a propósito de los vectores que las funciones de R comienzan a
+brillar y a alejarse de las cualidades básicas de una calculadora (que,
+a grandes rasgos, es lo que hemos visto ahora de R, nada muy
+impresionante). Veamos algunas funciones que extraen información útil
+sobre nuestro vector. ¿Qué hace cada una?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(vector_}\DecValTok{1}\NormalTok{) }\CommentTok{# media}
+\NormalTok{## [1] 15}
+\KeywordTok{median}\NormalTok{(vector_}\DecValTok{1}\NormalTok{) }\CommentTok{# mediana}
+\NormalTok{## [1] 15}
+\KeywordTok{sd}\NormalTok{(vector_}\DecValTok{1}\NormalTok{) }\CommentTok{# desviación estándar}
+\NormalTok{## [1] 5}
+\KeywordTok{sum}\NormalTok{(vector_}\DecValTok{1}\NormalTok{) }\CommentTok{# suma}
+\NormalTok{## [1] 45}
+\KeywordTok{min}\NormalTok{(vector_}\DecValTok{1}\NormalTok{) }\CommentTok{# valor mínimo}
+\NormalTok{## [1] 10}
+\KeywordTok{max}\NormalTok{(vector_}\DecValTok{1}\NormalTok{) }\CommentTok{# valor máximo}
+\NormalTok{## [1] 20}
+\KeywordTok{length}\NormalTok{(vector_}\DecValTok{1}\NormalTok{) }\CommentTok{# longitud (cantidad de valores)}
+\NormalTok{## [1] 3}
+\KeywordTok{sort}\NormalTok{(vector_}\DecValTok{1}\NormalTok{) }\CommentTok{# ...}
+\NormalTok{## [1] 10 15 20}
+\end{Highlighting}
+\end{Shaded}
+
+El lector podría haber deducido que \texttt{sort()}, la última función
+del lote anterior, ordena al vector de menor a mayor. ¿Qué pasa si
+quisiéramos ordenarlo de mayor a menor? Esto nos permite introducir a
+los \emph{argumentos}, partes de las funciones que nos permiten
+modificar su comportamiento. A continuación agregaremos el argumento
+\texttt{decreasing\ =\ TRUE} al comando anterior, consiguiendo nuestro
+objetivo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(vector_}\DecValTok{1}\NormalTok{, }\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{## [1] 20 15 10}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Archivos / gráficos / paquetes /
+ayuda}\label{archivos-graficos-paquetes-ayuda}
+
+En el panel inferior derecho de RStudio estas cuatro pestañas son las
+que se roban la película.
+
+\subsubsection{Archivos}\label{archivos}
+
+Esta pestaña es una ventana a nuestros archivos. Funcionando como un
+pequeño gestor, nos permite moverlos, renombrarlos, copiarlos, etcétera.
+A propósito de archivos, una de las grandes novedades recientes de R son
+los \emph{RStudio Projects}, o proyectos de RStudio. Los desarrolladores
+de RStudio se dieron cuenta de que sus usuarios tenían scripts y otros
+archivos de R (de los que aprenderemos luego, como bases de datos)
+desperdigados a lo largo y ancho de sus discos duros, sin orden alguno.
+Por eso implementaron la filosofía de ``un proyecto, una carpeta''. Es
+tan simple como suena: la idea es que cada proyecto en el que trabajemos
+sea autosuficiente, que incluya todo lo que necesitemos en una sola
+carpeta. Se pueden manejar los proyectos desde la esquina superior
+derecha de R. El lector debe ser cuidadoso y notar que crear o abrir un
+proyecto reiniciará su sesión de R, borrando todo el trabajo que no
+guarde.
+
+\emph{(F: creo que podemos expandir un poquito mas en la utilidad de los
+proyectos con un ejemplo, a mi me ha resultado muy grato el tema de los
+proyectos!)}
+
+\emph{(screenshot de RStudio Projects)}
+
+\subsubsection{Gráficos}\label{graficos}
+
+Aquí aparecen los gráficos que realizamos con R. ¡En el capítulo
+\emph{X} aprenderemos a crearlos!
+
+\subsubsection{Paquetes}\label{paquetes}
+
+Una de las cualidades de R a la que más hincapié hemos dado es su
+versatilidad. Su código libre hace que muchos desarrolladores se sientan
+atraídos a aportar a la comunidad de R con nuevas funcionalidades. En
+general, realizan esto a través de paquetes, que los usuarios pueden
+instalar como apéndices adicionales a R. Los paquetes contienen nuevas
+funciones, bases de datos, etcétera. La pestaña de RStudio aquí reseñada
+nos permite acceder a nuestros paquetes instalados.
+
+Instalar un paquete es bastante simple, a través de la función
+\texttt{install.packages()}. A continuación vamos a instalar el paquete
+``tidyverse'', central en nuestros próximos análisis. El tidyverse es
+una recopilación que incluye algunos de los mejores paquetes modernos
+para análisis de datos en R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Cada vez que el usuario abre una nueva sesión de R, este carga ``como de
+fábrica''. No solo sin objetos, sino que solo con los paquetes básicos
+que permiten a R funcionar. Tenemos que cargar los paquetes extra que
+queramos usar, entonces. Es más o menos como cuando compramos un
+\emph{smartphone} y descargamos las aplicaciones que más usaremos, para
+que se ajuste a nuestras necesidades cotidianas. La forma más común de
+hacer esto es a través de la función \texttt{library()}, como se ve a
+continuación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\NormalTok{## Loading tidyverse: ggplot2}
+\NormalTok{## Loading tidyverse: tibble}
+\NormalTok{## Loading tidyverse: tidyr}
+\NormalTok{## Loading tidyverse: readr}
+\NormalTok{## Loading tidyverse: purrr}
+\NormalTok{## Loading tidyverse: dplyr}
+\NormalTok{## Conflicts with tidy packages ----------------------------------------------}
+\NormalTok{## filter(): dplyr, stats}
+\NormalTok{## lag():    dplyr, stats}
+\end{Highlighting}
+\end{Shaded}
+
+El lector puede ahorrarse el trabajo de instalar los paquetes utilizados
+en \emph{AnalizaR Datos Políticos} en el futuro y hacerlo todo ahora,
+corriendo el siguiente súper comando. Ojo: ¡esto no lo salvará de cargar
+los paquetes en cada nueva sesión de R que inicie! Ojo 2: puede que esto
+le tome un tiempo considerable.
+
+\emph{paquetes a instalar} \emph{F: excelente que vamos a ofrecer esto,
+puede haber un paquete llamado ADP que tenga todo?}
+
+\subsubsection{Ayuda}\label{ayuda}
+
+Buscar ayuda es central a la hora de programar (y no solo de
+programar\ldots{}). Esta pestaña de RStudio abre los archivos de ayuda
+que necesitemos, permitiéndonos buscar en ellos. Las funciones tienen
+archivos de ayuda para sí solas. Por ejemplo, podemos acceder al archivo
+de ayuda de la función \texttt{sqrt()} a través del comando
+\texttt{help(sqrt)}. Los paquetes en su conjunto también tienen archivos
+de ayuda, más comprensivos. Por ejemplo, para ver los archivos de ayuda
+del tidyverse solo debemos recurrir al argumento ``package'':
+\texttt{help(package\ =\ tidyverse)}. El lector debe notar que los
+archivos de ayuda de paquetes y funciones de paquetes solo están
+disponibles si el paquete ha sido cargado.
+
+\section{Ejercicios}\label{ejercicios}
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Qué significa ``correr'' un comando desde un script? ¿Cómo se hace?
+\item
+  ¿Cuál es la media de los dígitos del hit de Rafaella Carrà, 0 3 0 3 4
+  5 6? ¿Y la mediana? Por último, órdenelos de mayor a menor.
+\item
+  Busque ayuda para el paquete ``googledrive''. Recomendado:
+  maravillarse con la variedad de los paquetes de R.
+\end{itemize}
+
+\chapter{Manejo}\label{manejo}
+
+\textbf{F: EN GENERAL YO METERIA MAS SUB-SUBTITULOS, CASI UNO POR
+FUNCION. POR EJ, UNO PARA ARRANGE (4.3.1), OTRO PARA SELECT
+(4.4.1)\ldots{} O AL LADO DEL TITULO PONDRIA LA FUNCION: 4.4.
+SELECCIONAR COLUMNAS CON }`SELECT'*****
+
+Cuando hablamos de análisis de datos, casi siempre nos referimos a
+análisis de \emph{bases de datos}. Aunque hay varios formatos de bases
+de datos disponibles, en ciencias sociales generalmente usamos y creamos
+\emph{bases de datos tabulares}, que son las que este libro tratará. Muy
+probablemente el lector estará familiarizado con la estructura básica de
+este tipo de bases, gracias a las planillas de Microsoft Excel, Google
+Spreadsheets y/o LibreOffice Calc. La primera fila suele ser un
+\textbf{header} o encabezado, que indica qué datos registran las celdas
+de esa columna. En general, queremos que nuestras bases de datos
+tabulares tengan una estructura \emph{tidy}, como la siguiente:
+
+\includegraphics{http://garrettgman.github.io/images/tidy-4.png}
+(traducir!)
+
+La idea de una base \emph{tidy} es simple: cada columna es una variable,
+cada fila una observación (de acuerdo a la unidad de análisis) y, por lo
+tanto, cada celda es una observación. \emph{(explicar que este nombre lo
+tomamos del dios Wickham y que es una idea tan simple que mucha gente no
+la va a entender. Quien solo ha trabajado con Stata o Excel nunca vio
+datos no-tidy)}
+
+\section{Nuestra base de datos}\label{nuestra-base-de-datos}
+
+Para este capítulo usaremos una sección de la base de datos de
+\emph{Quality of Government}(QoG,
+2017){[}\url{https://qog.pol.gu.se}{]}, un proyecto que registra
+diversos datos de países. Sus primeras observaciones son las siguientes:
+
+\begin{tabular}{l|r|r|r|r|r|l}
+\hline
+cname & wdi\_gdppppcon2011 & wdi\_pop & ti\_cpi & lp\_muslim80 & fh\_ipolity2 & region\\
+\hline
+Afghanistan & 5.8e+10 & 3.1e+07 & 8 & 99.3 & 2.0 & Southern Asia\\
+\hline
+Albania & 2.9e+10 & 2.9e+06 & 31 & 20.5 & 8.1 & Southern Europe\\
+\hline
+Algeria & 5.1e+11 & 3.8e+07 & 36 & 99.1 & 4.2 & Northern Africa\\
+\hline
+Angola & 1.5e+11 & 2.3e+07 & 23 & 0.0 & 3.2 & Middle Africa\\
+\hline
+Australia & 9.9e+11 & 2.3e+07 & 81 & 0.2 & 10.0 & Australia and New Zealand\\
+\hline
+Austria & 3.7e+11 & 8.5e+06 & 69 & 0.6 & 10.0 & Western Europe\\
+\hline
+\end{tabular}
+
+Las variables son las siguientes:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.16\columnwidth}\raggedright\strut
+variable\strut
+\end{minipage} & \begin{minipage}[b]{0.78\columnwidth}\raggedright\strut
+descripción\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+cname\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright\strut
+Nombre del país\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+wdi\_gdppppcon2011\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright\strut
+GDP PPP, en dólares del 2011, según los datos de WDI (p.~635 del
+codebook)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+wdi\_pop\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright\strut
+Población, según los datos de WDI (p.~665)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+ti\_cpi\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright\strut
+Índice de Percepción de la Corrupción de TI. Va de 0 a 100, con 0 lo más
+corrupto (p.~560)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+lp\_muslim80\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright\strut
+Porcentaje de población de religión musulmana, para 1980, según LP
+(p.~447)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+fh\_ipolity2\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright\strut
+Nivel de democracia según FH. Va de 0 a 10, con 0 como menos democrático
+(p.~291)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+region\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright\strut
+Región del país, según WDI (añadida a la base)\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Para comenzar a trabajar carguemos el paquete \texttt{tidyverse}, uno de
+los centrales del libro, que nos dará funciones útiles para trabajar con
+nuestra base datos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora carguemos la base de datos a nuestro ambiente de trabajo en R.
+Vamos a llamarla ``qog\_mod'' (QoG modificada). El archivo está en
+formato .csv, por lo que utilizaremos la función del tidyverse
+\texttt{read\_csv()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{qog_mod <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"00-datos/04_qog_mod.csv"}\NormalTok{)}
+\NormalTok{## Parsed with column specification:}
+\NormalTok{## cols(}
+\NormalTok{##   cname = col_character(),}
+\NormalTok{##   wdi_gdppppcon2011 = col_double(),}
+\NormalTok{##   wdi_pop = col_integer(),}
+\NormalTok{##   ti_cpi = col_double(),}
+\NormalTok{##   lp_muslim80 = col_double(),}
+\NormalTok{##   fh_ipolity2 = col_double(),}
+\NormalTok{##   region = col_character()}
+\NormalTok{## )}
+\end{Highlighting}
+\end{Shaded}
+
+(hay que decidir cómo se va a hacer esto: desde carpeta local, url,
+paquete, etc.) \emph{(F:opino que creemos un url del libro y usemos los
+html, en el paquete ADP solo pondria funciones)}
+
+\section{Describir la base}\label{describir-la-base}
+
+(aquí podría ir \texttt{describe\_all()} u otra función de descripción
+de la base, habría que decidir si esto tiene sentido en términos
+pedagógicos; otra opción es hacer otro capítulo con
+\texttt{group\_by()}, \texttt{tabyl()}, \texttt{crosstab()}, etc; me
+inclino por esta última opción)
+
+Para aproximarnos a nuestra base recién cargada tenemos varias opciones.
+Podemos, como antes, simplemente usar su nombre como un comando para un
+resumen rápido:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{qog_mod}
+\NormalTok{## # A tibble: 139 x 7}
+\NormalTok{##          cname wdi_gdppppcon2011   wdi_pop ti_cpi lp_muslim80 fh_ipolity2}
+\NormalTok{##          <chr>             <dbl>     <int>  <dbl>       <dbl>       <dbl>}
+\NormalTok{##  1 Afghanistan           5.8e+10  30682500      8        99.3        2.02}
+\NormalTok{##  2     Albania           2.9e+10   2897366     31        20.5        8.08}
+\NormalTok{##  3     Algeria           5.1e+11  38186136     36        99.1        4.25}
+\NormalTok{##  4      Angola           1.5e+11  23448202     23         0.0        3.25}
+\NormalTok{##  5   Australia           9.9e+11  23125868     81         0.2       10.00}
+\NormalTok{##  6     Austria           3.7e+11   8479375     69         0.6       10.00}
+\NormalTok{##  7     Bahamas           8.5e+09    377841     71         0.0       10.00}
+\NormalTok{##  8     Bahrain           5.7e+10   1349427     48        95.0        0.83}
+\NormalTok{##  9  Bangladesh           4.5e+11 157157392     27        85.9        6.42}
+\NormalTok{## 10    Barbados           4.3e+09    282503     75         0.2       10.00}
+\NormalTok{## # ... with 129 more rows, and 1 more variables: region <chr>}
+\end{Highlighting}
+\end{Shaded}
+
+También podemos utilizar la función \texttt{glimpse()} para tener un
+resumen desde otra perspectiva:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glimpse}\NormalTok{(qog_mod)}
+\NormalTok{## Observations: 139}
+\NormalTok{## Variables: 7}
+\NormalTok{## $ cname             <chr> "Afghanistan", "Albania", "Algeria", "Angola...}
+\NormalTok{## $ wdi_gdppppcon2011 <dbl> 5.8e+10, 2.9e+10, 5.1e+11, 1.5e+11, 9.9e+11,...}
+\NormalTok{## $ wdi_pop           <int> 30682500, 2897366, 38186136, 23448202, 23125...}
+\NormalTok{## $ ti_cpi            <dbl> 8, 31, 36, 23, 81, 69, 71, 48, 27, 75, 75, 6...}
+\NormalTok{## $ lp_muslim80       <dbl> 99.3, 20.5, 99.1, 0.0, 0.2, 0.6, 0.0, 95.0, ...}
+\NormalTok{## $ fh_ipolity2       <dbl> 2.02, 8.08, 4.25, 3.25, 10.00, 10.00, 10.00,...}
+\NormalTok{## $ region            <chr> "Southern Asia", "Southern Europe", "Norther...}
+\end{Highlighting}
+\end{Shaded}
+
+Una alternativa que nos permite ver la base completa es la función
+\texttt{View()}, análoga a clickear nuestro objeto en la pestaña
+``Environment'' de Rstudio:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{View}\NormalTok{(qog_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{\texorpdfstring{Ordenar la base con
+\texttt{arrange()}}{Ordenar la base con arrange()}}\label{ordenar-la-base-con-arrange}
+
+Una de las operaciones más comunes con bases de datos es ordenarlas de
+acuerdo a alguna de las variables. Esto nos puede dar insights
+(¿traducción?) inmediatos sobre nuestras observaciones. Por ejemplo,
+ordenemos la base de acuerdo a población:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{arrange}\NormalTok{(qog_mod, wdi_pop)}
+\NormalTok{## # A tibble: 139 x 7}
+\NormalTok{##                    cname wdi_gdppppcon2011 wdi_pop ti_cpi lp_muslim80}
+\NormalTok{##                    <chr>             <dbl>   <int>  <dbl>       <dbl>}
+\NormalTok{##  1              Dominica           7.2e+08   72005     58         0.0}
+\NormalTok{##  2            Seychelles           2.2e+09   89900     54         0.3}
+\NormalTok{##  3                 Tonga           5.1e+08  105139     31         0.0}
+\NormalTok{##  4              Kiribati           1.8e+08  108544     31         0.0}
+\NormalTok{##  5              St Lucia           1.9e+09  182305     71         0.0}
+\NormalTok{##  6 Sao Tome and Principe           5.4e+08  182386     42         0.0}
+\NormalTok{##  7                 Samoa           1.0e+09  190390     52         0.0}
+\NormalTok{##  8              Barbados           4.3e+09  282503     75         0.2}
+\NormalTok{##  9               Iceland           1.3e+10  323764     78         0.0}
+\NormalTok{## 10               Bahamas           8.5e+09  377841     71         0.0}
+\NormalTok{## # ... with 129 more rows, and 2 more variables: fh_ipolity2 <dbl>,}
+\NormalTok{## #   region <chr>}
+\end{Highlighting}
+\end{Shaded}
+
+El lector debe notar cómo el primer argumento, ``qog\_mod'', toma la
+base de datos y los siguientes enuncian \textbf{cómo} ordenarla, en este
+caso, por ``wdi\_pop'', la variable de población.
+
+Debe notar también cómo el comando anterior no crea ningún objeto, solo
+muestra los resultados en la consola. Para crear uno tenemos que seguir
+la fórmula típica de asignación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{qog_mod_ordenada <-}\StringTok{ }\KeywordTok{arrange}\NormalTok{(qog_mod, wdi_pop)}
+\end{Highlighting}
+\end{Shaded}
+
+Podemos realizar ambas operaciones, mostrar los resultados y crear el
+objeto, rodeando este último comando con paréntesis:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{( qog_mod_ordenada <-}\StringTok{ }\KeywordTok{arrange}\NormalTok{(qog_mod, wdi_pop) )}
+\NormalTok{## # A tibble: 139 x 7}
+\NormalTok{##                    cname wdi_gdppppcon2011 wdi_pop ti_cpi lp_muslim80}
+\NormalTok{##                    <chr>             <dbl>   <int>  <dbl>       <dbl>}
+\NormalTok{##  1              Dominica           7.2e+08   72005     58         0.0}
+\NormalTok{##  2            Seychelles           2.2e+09   89900     54         0.3}
+\NormalTok{##  3                 Tonga           5.1e+08  105139     31         0.0}
+\NormalTok{##  4              Kiribati           1.8e+08  108544     31         0.0}
+\NormalTok{##  5              St Lucia           1.9e+09  182305     71         0.0}
+\NormalTok{##  6 Sao Tome and Principe           5.4e+08  182386     42         0.0}
+\NormalTok{##  7                 Samoa           1.0e+09  190390     52         0.0}
+\NormalTok{##  8              Barbados           4.3e+09  282503     75         0.2}
+\NormalTok{##  9               Iceland           1.3e+10  323764     78         0.0}
+\NormalTok{## 10               Bahamas           8.5e+09  377841     71         0.0}
+\NormalTok{## # ... with 129 more rows, and 2 more variables: fh_ipolity2 <dbl>,}
+\NormalTok{## #   region <chr>}
+\end{Highlighting}
+\end{Shaded}
+
+La operación para ordenar realizada antes iba de menor a mayor, en
+términos de población. Si queremos el orden inverso (decreciente), basta
+con añadir un signo menos (-) antes de la variable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{arrange}\NormalTok{(qog_mod, }\OperatorTok{-}\NormalTok{wdi_pop)}
+\NormalTok{## # A tibble: 139 x 7}
+\NormalTok{##               cname wdi_gdppppcon2011    wdi_pop ti_cpi lp_muslim80}
+\NormalTok{##               <chr>             <dbl>      <int>  <dbl>       <dbl>}
+\NormalTok{##  1            China           1.6e+13 1357379968     40         2.4}
+\NormalTok{##  2            India           6.6e+12 1279498880     36        11.6}
+\NormalTok{##  3    United States           1.6e+13  316497536     73         0.8}
+\NormalTok{##  4        Indonesia           2.4e+12  251268272     32        43.4}
+\NormalTok{##  5           Brazil           3.1e+12  204259376     42         0.1}
+\NormalTok{##  6 Pakistan (1971-)           8.1e+11  181192640     28        96.8}
+\NormalTok{##  7          Nigeria           9.4e+11  172816512     25        45.0}
+\NormalTok{##  8       Bangladesh           4.5e+11  157157392     27        85.9}
+\NormalTok{##  9            Japan           4.5e+12  127338624     74         0.0}
+\NormalTok{## 10           Mexico           2.0e+12  123740112     34         0.0}
+\NormalTok{## # ... with 129 more rows, and 2 more variables: fh_ipolity2 <dbl>,}
+\NormalTok{## #   region <chr>}
+\end{Highlighting}
+\end{Shaded}
+
+¡Con eso tenemos los países con mayor población en el mundo! ¿Qué pasa
+si queremos los países con mayor población \textbf{dentro de cada
+región}? Tendríamos que realizar un ordenamiento en dos pasos: primero
+por región y luego por población. Con \texttt{arrange()} esto es simple:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{arrange}\NormalTok{(qog_mod, region, }\OperatorTok{-}\NormalTok{wdi_pop)}
+\NormalTok{## # A tibble: 139 x 7}
+\NormalTok{##                  cname wdi_gdppppcon2011  wdi_pop ti_cpi lp_muslim80}
+\NormalTok{##                  <chr>             <dbl>    <int>  <dbl>       <dbl>}
+\NormalTok{##  1           Australia           9.9e+11 23125868     81         0.2}
+\NormalTok{##  2         New Zealand           1.5e+11  4442100     91         0.0}
+\NormalTok{##  3                Cuba           2.3e+11 11362505     46         0.0}
+\NormalTok{##  4               Haiti           1.7e+10 10431249     19         0.0}
+\NormalTok{##  5  Dominican Republic           1.2e+11 10281408     29         0.0}
+\NormalTok{##  6             Jamaica           2.3e+10  2714734     38         0.1}
+\NormalTok{##  7 Trinidad and Tobago           4.1e+10  1348240     38         6.5}
+\NormalTok{##  8             Bahamas           8.5e+09   377841     71         0.0}
+\NormalTok{##  9            Barbados           4.3e+09   282503     75         0.2}
+\NormalTok{## 10            St Lucia           1.9e+09   182305     71         0.0}
+\NormalTok{## # ... with 129 more rows, and 2 more variables: fh_ipolity2 <dbl>,}
+\NormalTok{## #   region <chr>}
+\end{Highlighting}
+\end{Shaded}
+
+A propósito del resultado anterior, el lector puede deducir que cuando
+\texttt{arrange()} ordena variables categóricas (en vez de numéricas) lo
+hace alfabéticamente. Añadir un signo menos (-) antes de la variable
+hará que el orden sea al revés en términos del alfabeto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{arrange}\NormalTok{(qog_mod, }\KeywordTok{desc}\NormalTok{(region), }\OperatorTok{-}\NormalTok{wdi_pop) }\CommentTok{# no sé por qué - no funciona, ARREGLAR}
+\NormalTok{## # A tibble: 139 x 7}
+\NormalTok{##                   cname wdi_gdppppcon2011  wdi_pop ti_cpi lp_muslim80}
+\NormalTok{##                   <chr>             <dbl>    <int>  <dbl>       <dbl>}
+\NormalTok{##  1       France (1963-)           2.5e+12 65925496     71         3.0}
+\NormalTok{##  2          Netherlands           7.6e+11 16804432     83         1.0}
+\NormalTok{##  3              Belgium           4.5e+11 11182817     75         1.1}
+\NormalTok{##  4              Austria           3.7e+11  8479375     69         0.6}
+\NormalTok{##  5          Switzerland           4.4e+11  8089346     85         0.3}
+\NormalTok{##  6           Luxembourg           4.9e+10   543360     80         0.0}
+\NormalTok{##  7               Turkey           1.4e+12 75010200     50        99.2}
+\NormalTok{##  8                 Iraq           5.1e+11 33781384     16        95.8}
+\NormalTok{##  9         Saudi Arabia           1.5e+12 30201052     46        98.8}
+\NormalTok{## 10 United Arab Emirates           5.6e+11  9039978     69        94.9}
+\NormalTok{## # ... with 129 more rows, and 2 more variables: fh_ipolity2 <dbl>,}
+\NormalTok{## #   region <chr>}
+\end{Highlighting}
+\end{Shaded}
+
+\section{\texorpdfstring{Seleccionar columnas de la base con
+\texttt{select()}}{Seleccionar columnas de la base con select()}}\label{seleccionar-columnas-de-la-base-con-select}
+
+A veces queremos trabajar solo con algunas variables de una base de
+datos. Para esto existe la función \texttt{select()}. Pensemos que
+queremos solo el nombre de cada país (cname) y su porcentaje de
+población musulmana para 1980:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{select}\NormalTok{(qog_mod, cname, lp_muslim80)}
+\NormalTok{## # A tibble: 139 x 2}
+\NormalTok{##          cname lp_muslim80}
+\NormalTok{##          <chr>       <dbl>}
+\NormalTok{##  1 Afghanistan        99.3}
+\NormalTok{##  2     Albania        20.5}
+\NormalTok{##  3     Algeria        99.1}
+\NormalTok{##  4      Angola         0.0}
+\NormalTok{##  5   Australia         0.2}
+\NormalTok{##  6     Austria         0.6}
+\NormalTok{##  7     Bahamas         0.0}
+\NormalTok{##  8     Bahrain        95.0}
+\NormalTok{##  9  Bangladesh        85.9}
+\NormalTok{## 10    Barbados         0.2}
+\NormalTok{## # ... with 129 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Al igual que para \texttt{arrange()}, aquí el primer argumento designa
+la base a modificar y los demás cómo se debería hacer eso -en este caso,
+qué variables deben ser seleccionadas.
+
+Añadir un signo menos (-) aquí indica qué variables \emph{no}
+seleccionar. Por ejemplo, quitemos el porcentaje de población musulmana
+para 1980 de la base:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{select}\NormalTok{(qog_mod, }\OperatorTok{-}\NormalTok{lp_muslim80)}
+\NormalTok{## # A tibble: 139 x 6}
+\NormalTok{##          cname wdi_gdppppcon2011   wdi_pop ti_cpi fh_ipolity2}
+\NormalTok{##          <chr>             <dbl>     <int>  <dbl>       <dbl>}
+\NormalTok{##  1 Afghanistan           5.8e+10  30682500      8        2.02}
+\NormalTok{##  2     Albania           2.9e+10   2897366     31        8.08}
+\NormalTok{##  3     Algeria           5.1e+11  38186136     36        4.25}
+\NormalTok{##  4      Angola           1.5e+11  23448202     23        3.25}
+\NormalTok{##  5   Australia           9.9e+11  23125868     81       10.00}
+\NormalTok{##  6     Austria           3.7e+11   8479375     69       10.00}
+\NormalTok{##  7     Bahamas           8.5e+09    377841     71       10.00}
+\NormalTok{##  8     Bahrain           5.7e+10   1349427     48        0.83}
+\NormalTok{##  9  Bangladesh           4.5e+11 157157392     27        6.42}
+\NormalTok{## 10    Barbados           4.3e+09    282503     75       10.00}
+\NormalTok{## # ... with 129 more rows, and 1 more variables: region <chr>}
+\end{Highlighting}
+\end{Shaded}
+
+Aparte de seleccionar variables específicas, \texttt{select()} es capaz
+de entender referencias a intervalos de variables. Por ejemplo, podemos
+querer las cuatro primeras variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{select}\NormalTok{(qog_mod, cname}\OperatorTok{:}\NormalTok{ti_cpi)}
+\NormalTok{## # A tibble: 139 x 4}
+\NormalTok{##          cname wdi_gdppppcon2011   wdi_pop ti_cpi}
+\NormalTok{##          <chr>             <dbl>     <int>  <dbl>}
+\NormalTok{##  1 Afghanistan           5.8e+10  30682500      8}
+\NormalTok{##  2     Albania           2.9e+10   2897366     31}
+\NormalTok{##  3     Algeria           5.1e+11  38186136     36}
+\NormalTok{##  4      Angola           1.5e+11  23448202     23}
+\NormalTok{##  5   Australia           9.9e+11  23125868     81}
+\NormalTok{##  6     Austria           3.7e+11   8479375     69}
+\NormalTok{##  7     Bahamas           8.5e+09    377841     71}
+\NormalTok{##  8     Bahrain           5.7e+10   1349427     48}
+\NormalTok{##  9  Bangladesh           4.5e+11 157157392     27}
+\NormalTok{## 10    Barbados           4.3e+09    282503     75}
+\NormalTok{## # ... with 129 more rows}
+\KeywordTok{select}\NormalTok{(qog_mod, }\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{) }\CommentTok{# lo mismo, aunque no recomendado}
+\NormalTok{## # A tibble: 139 x 4}
+\NormalTok{##          cname wdi_gdppppcon2011   wdi_pop ti_cpi}
+\NormalTok{##          <chr>             <dbl>     <int>  <dbl>}
+\NormalTok{##  1 Afghanistan           5.8e+10  30682500      8}
+\NormalTok{##  2     Albania           2.9e+10   2897366     31}
+\NormalTok{##  3     Algeria           5.1e+11  38186136     36}
+\NormalTok{##  4      Angola           1.5e+11  23448202     23}
+\NormalTok{##  5   Australia           9.9e+11  23125868     81}
+\NormalTok{##  6     Austria           3.7e+11   8479375     69}
+\NormalTok{##  7     Bahamas           8.5e+09    377841     71}
+\NormalTok{##  8     Bahrain           5.7e+10   1349427     48}
+\NormalTok{##  9  Bangladesh           4.5e+11 157157392     27}
+\NormalTok{## 10    Barbados           4.3e+09    282503     75}
+\NormalTok{## # ... with 129 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Otra herramienta para complejizar nuestra selección se encuentra en las
+funciones de ayuda. Entre ellas, \texttt{starts\_with} es de particular
+utilidad, permitiendo seleccionar variables que empiecen con cierto
+patrón. Por ejemplo, podríamos querer, a partir del nombre del país,
+todas las variables que provengan de los World Development Indicators
+(WDI) del Banco Mundial:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{select}\NormalTok{(qog_mod, cname, }\KeywordTok{starts_with}\NormalTok{(}\StringTok{"wdi_"}\NormalTok{))}
+\NormalTok{## # A tibble: 139 x 3}
+\NormalTok{##          cname wdi_gdppppcon2011   wdi_pop}
+\NormalTok{##          <chr>             <dbl>     <int>}
+\NormalTok{##  1 Afghanistan           5.8e+10  30682500}
+\NormalTok{##  2     Albania           2.9e+10   2897366}
+\NormalTok{##  3     Algeria           5.1e+11  38186136}
+\NormalTok{##  4      Angola           1.5e+11  23448202}
+\NormalTok{##  5   Australia           9.9e+11  23125868}
+\NormalTok{##  6     Austria           3.7e+11   8479375}
+\NormalTok{##  7     Bahamas           8.5e+09    377841}
+\NormalTok{##  8     Bahrain           5.7e+10   1349427}
+\NormalTok{##  9  Bangladesh           4.5e+11 157157392}
+\NormalTok{## 10    Barbados           4.3e+09    282503}
+\NormalTok{## # ... with 129 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Otra función de ayuda útil es \texttt{everything()}, que se lee como
+``todas las demás variables''. Es especialmente útil para cambiar el
+orden de las variables en una bases de datos. Por ejemplo, pasemos
+región al segundo lugar entre las variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{select}\NormalTok{(qog_mod, cname, region, }\KeywordTok{everything}\NormalTok{())}
+\NormalTok{## # A tibble: 139 x 7}
+\NormalTok{##          cname                    region wdi_gdppppcon2011   wdi_pop}
+\NormalTok{##          <chr>                     <chr>             <dbl>     <int>}
+\NormalTok{##  1 Afghanistan             Southern Asia           5.8e+10  30682500}
+\NormalTok{##  2     Albania           Southern Europe           2.9e+10   2897366}
+\NormalTok{##  3     Algeria           Northern Africa           5.1e+11  38186136}
+\NormalTok{##  4      Angola             Middle Africa           1.5e+11  23448202}
+\NormalTok{##  5   Australia Australia and New Zealand           9.9e+11  23125868}
+\NormalTok{##  6     Austria            Western Europe           3.7e+11   8479375}
+\NormalTok{##  7     Bahamas                 Caribbean           8.5e+09    377841}
+\NormalTok{##  8     Bahrain              Western Asia           5.7e+10   1349427}
+\NormalTok{##  9  Bangladesh             Southern Asia           4.5e+11 157157392}
+\NormalTok{## 10    Barbados                 Caribbean           4.3e+09    282503}
+\NormalTok{## # ... with 129 more rows, and 3 more variables: ti_cpi <dbl>,}
+\NormalTok{## #   lp_muslim80 <dbl>, fh_ipolity2 <dbl>}
+\end{Highlighting}
+\end{Shaded}
+
+\section{\texorpdfstring{Renombrar columnas de la base con
+\texttt{rename()}}{Renombrar columnas de la base con rename()}}\label{renombrar-columnas-de-la-base-con-rename}
+
+La notación para el GDP es un poco confusa. ¿Y si queremos cambiar el
+nombre de la variable? Aprovechemos también de cambiar el nombre de la
+variable de identificación por país.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rename}\NormalTok{(qog_mod, }\DataTypeTok{wdi_gdp =}\NormalTok{ wdi_gdppppcon2011, }\DataTypeTok{country_name =}\NormalTok{ cname)}
+\NormalTok{## # A tibble: 139 x 7}
+\NormalTok{##    country_name wdi_gdp   wdi_pop ti_cpi lp_muslim80 fh_ipolity2}
+\NormalTok{##           <chr>   <dbl>     <int>  <dbl>       <dbl>       <dbl>}
+\NormalTok{##  1  Afghanistan 5.8e+10  30682500      8        99.3        2.02}
+\NormalTok{##  2      Albania 2.9e+10   2897366     31        20.5        8.08}
+\NormalTok{##  3      Algeria 5.1e+11  38186136     36        99.1        4.25}
+\NormalTok{##  4       Angola 1.5e+11  23448202     23         0.0        3.25}
+\NormalTok{##  5    Australia 9.9e+11  23125868     81         0.2       10.00}
+\NormalTok{##  6      Austria 3.7e+11   8479375     69         0.6       10.00}
+\NormalTok{##  7      Bahamas 8.5e+09    377841     71         0.0       10.00}
+\NormalTok{##  8      Bahrain 5.7e+10   1349427     48        95.0        0.83}
+\NormalTok{##  9   Bangladesh 4.5e+11 157157392     27        85.9        6.42}
+\NormalTok{## 10     Barbados 4.3e+09    282503     75         0.2       10.00}
+\NormalTok{## # ... with 129 more rows, and 1 more variables: region <chr>}
+\end{Highlighting}
+\end{Shaded}
+
+\section{\texorpdfstring{Filtrar observaciones de la base con
+\texttt{filter()}}{Filtrar observaciones de la base con filter()}}\label{filtrar-observaciones-de-la-base-con-filter}
+
+Es muy común el querer filtrar nuestras observaciones de acuerdo a algún
+tipo de criterio lógico. Para esto R cuenta con operadores lógicos. Los
+más comunes son los siguientes:
+
+\begin{longtable}[]{@{}cl@{}}
+\toprule
+operador & descripción\tabularnewline
+\midrule
+\endhead
+== & es igual a\tabularnewline
+!= & es distinto a\tabularnewline
+\textgreater{} & es mayor a\tabularnewline
+\textless{} & es menor a\tabularnewline
+\textgreater{}= & es mayor o igual a\tabularnewline
+\textless{}= & es menor o igual a\tabularnewline
+\& & y (intersección)\tabularnewline
+&\tabularnewline
+\bottomrule
+\end{longtable}
+
+Por ejemplo, podríamos querer solo los países (observaciones)
+sudamericanos. Hacer esto con \texttt{filter()} es simple, con la ayuda
+de operadores lógicos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{filter}\NormalTok{(qog_mod, region }\OperatorTok{==}\StringTok{ "South America"}\NormalTok{)}
+\NormalTok{## # A tibble: 11 x 7}
+\NormalTok{##        cname wdi_gdppppcon2011   wdi_pop ti_cpi lp_muslim80 fh_ipolity2}
+\NormalTok{##        <chr>             <dbl>     <int>  <dbl>       <dbl>       <dbl>}
+\NormalTok{##  1   Bolivia           6.3e+10  10399931     34         0.0         7.6}
+\NormalTok{##  2    Brazil           3.1e+12 204259376     42         0.1         8.7}
+\NormalTok{##  3     Chile           3.8e+11  17575832     71         0.0        10.0}
+\NormalTok{##  4  Colombia           5.8e+11  47342364     36         0.2         7.2}
+\NormalTok{##  5   Ecuador           1.7e+11  15661312     35         0.0         7.1}
+\NormalTok{##  6    Guyana           5.1e+09    761033     27         9.0         7.8}
+\NormalTok{##  7  Paraguay           5.3e+10   6465669     24         0.0         8.1}
+\NormalTok{##  8      Peru           3.5e+11  30565460     38         0.0         8.5}
+\NormalTok{##  9  Suriname           8.4e+09    533450     36        13.0         7.9}
+\NormalTok{## 10   Uruguay           6.6e+10   3407969     73         0.0        10.0}
+\NormalTok{## 11 Venezuela           5.4e+11  30276044     20         0.0         5.2}
+\NormalTok{## # ... with 1 more variables: region <chr>}
+\end{Highlighting}
+\end{Shaded}
+
+¿Qué pasa si queremos solo las filas de países sudamericanos con más de
+10 millones de habitantes (nos quedamos con 8 de 12)?
+
+¿Cuáles son los filtros que aplican los siguientes comandos?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{filter}\NormalTok{(qog_mod, fh_ipolity2 }\OperatorTok{>}\StringTok{ }\DecValTok{9}\NormalTok{)}
+\NormalTok{## # A tibble: 39 x 7}
+\NormalTok{##             cname wdi_gdppppcon2011  wdi_pop ti_cpi lp_muslim80}
+\NormalTok{##             <chr>             <dbl>    <int>  <dbl>       <dbl>}
+\NormalTok{##  1      Australia           9.9e+11 23125868     81         0.2}
+\NormalTok{##  2        Austria           3.7e+11  8479375     69         0.6}
+\NormalTok{##  3        Bahamas           8.5e+09   377841     71         0.0}
+\NormalTok{##  4       Barbados           4.3e+09   282503     75         0.2}
+\NormalTok{##  5        Belgium           4.5e+11 11182817     75         1.1}
+\NormalTok{##  6         Canada           1.5e+12 35158304     81         0.6}
+\NormalTok{##  7     Cape Verde           3.1e+09   507258     58         0.0}
+\NormalTok{##  8          Chile           3.8e+11 17575832     71         0.0}
+\NormalTok{##  9     Costa Rica           6.5e+10  4706433     53         0.0}
+\NormalTok{## 10 Cyprus (1975-)           2.6e+10  1141652     63        18.5}
+\NormalTok{## # ... with 29 more rows, and 2 more variables: fh_ipolity2 <dbl>,}
+\NormalTok{## #   region <chr>}
+
+\KeywordTok{filter}\NormalTok{(qog_mod, wdi_pop }\OperatorTok{>}\StringTok{ }\FloatTok{10e7}\NormalTok{)}
+\NormalTok{## # A tibble: 10 x 7}
+\NormalTok{##               cname wdi_gdppppcon2011    wdi_pop ti_cpi lp_muslim80}
+\NormalTok{##               <chr>             <dbl>      <int>  <dbl>       <dbl>}
+\NormalTok{##  1       Bangladesh           4.5e+11  157157392     27        85.9}
+\NormalTok{##  2           Brazil           3.1e+12  204259376     42         0.1}
+\NormalTok{##  3            China           1.6e+13 1357379968     40         2.4}
+\NormalTok{##  4            India           6.6e+12 1279498880     36        11.6}
+\NormalTok{##  5        Indonesia           2.4e+12  251268272     32        43.4}
+\NormalTok{##  6            Japan           4.5e+12  127338624     74         0.0}
+\NormalTok{##  7           Mexico           2.0e+12  123740112     34         0.0}
+\NormalTok{##  8          Nigeria           9.4e+11  172816512     25        45.0}
+\NormalTok{##  9 Pakistan (1971-)           8.1e+11  181192640     28        96.8}
+\NormalTok{## 10    United States           1.6e+13  316497536     73         0.8}
+\NormalTok{## # ... with 2 more variables: fh_ipolity2 <dbl>, region <chr>}
+
+\KeywordTok{filter}\NormalTok{(qog_mod, cname }\OperatorTok{!=}\StringTok{ "Albania"}\NormalTok{)}
+\NormalTok{## # A tibble: 138 x 7}
+\NormalTok{##          cname wdi_gdppppcon2011   wdi_pop ti_cpi lp_muslim80 fh_ipolity2}
+\NormalTok{##          <chr>             <dbl>     <int>  <dbl>       <dbl>       <dbl>}
+\NormalTok{##  1 Afghanistan           5.8e+10  30682500      8        99.3        2.02}
+\NormalTok{##  2     Algeria           5.1e+11  38186136     36        99.1        4.25}
+\NormalTok{##  3      Angola           1.5e+11  23448202     23         0.0        3.25}
+\NormalTok{##  4   Australia           9.9e+11  23125868     81         0.2       10.00}
+\NormalTok{##  5     Austria           3.7e+11   8479375     69         0.6       10.00}
+\NormalTok{##  6     Bahamas           8.5e+09    377841     71         0.0       10.00}
+\NormalTok{##  7     Bahrain           5.7e+10   1349427     48        95.0        0.83}
+\NormalTok{##  8  Bangladesh           4.5e+11 157157392     27        85.9        6.42}
+\NormalTok{##  9    Barbados           4.3e+09    282503     75         0.2       10.00}
+\NormalTok{## 10     Belgium           4.5e+11  11182817     75         1.1        9.50}
+\NormalTok{## # ... with 128 more rows, and 1 more variables: region <chr>}
+
+\KeywordTok{filter}\NormalTok{(qog_mod, lp_muslim80 }\OperatorTok{>=}\StringTok{ }\DecValTok{95}\NormalTok{)}
+\NormalTok{## # A tibble: 15 x 7}
+\NormalTok{##               cname wdi_gdppppcon2011   wdi_pop ti_cpi lp_muslim80}
+\NormalTok{##               <chr>             <dbl>     <int>  <dbl>       <dbl>}
+\NormalTok{##  1      Afghanistan           5.8e+10  30682500      8          99}
+\NormalTok{##  2          Algeria           5.1e+11  38186136     36          99}
+\NormalTok{##  3          Bahrain           5.7e+10   1349427     48          95}
+\NormalTok{##  4             Iran           1.2e+12  77152448     25          98}
+\NormalTok{##  5             Iraq           5.1e+11  33781384     16          96}
+\NormalTok{##  6           Kuwait           2.7e+11   3593689     43          95}
+\NormalTok{##  7            Libya           1.2e+11   6265987     15          98}
+\NormalTok{##  8         Maldives           4.5e+09    393000     25         100}
+\NormalTok{##  9       Mauritania           1.4e+10   3872684     30          99}
+\NormalTok{## 10          Morocco           2.4e+11  33452686     37          99}
+\NormalTok{## 11             Oman           1.5e+11   3906912     47          99}
+\NormalTok{## 12 Pakistan (1971-)           8.1e+11 181192640     28          97}
+\NormalTok{## 13     Saudi Arabia           1.5e+12  30201052     46          99}
+\NormalTok{## 14          Tunisia           1.2e+11  10886500     41          99}
+\NormalTok{## 15           Turkey           1.4e+12  75010200     50          99}
+\NormalTok{## # ... with 2 more variables: fh_ipolity2 <dbl>, region <chr>}
+
+\KeywordTok{filter}\NormalTok{(qog_mod, region }\OperatorTok{==}\StringTok{ "South America"} \OperatorTok{&}\StringTok{ }\NormalTok{wdi_pop }\OperatorTok{>}\StringTok{ }\FloatTok{10e6}\NormalTok{)}
+\NormalTok{## # A tibble: 7 x 7}
+\NormalTok{##       cname wdi_gdppppcon2011   wdi_pop ti_cpi lp_muslim80 fh_ipolity2}
+\NormalTok{##       <chr>             <dbl>     <int>  <dbl>       <dbl>       <dbl>}
+\NormalTok{## 1   Bolivia           6.3e+10  10399931     34         0.0         7.6}
+\NormalTok{## 2    Brazil           3.1e+12 204259376     42         0.1         8.7}
+\NormalTok{## 3     Chile           3.8e+11  17575832     71         0.0        10.0}
+\NormalTok{## 4  Colombia           5.8e+11  47342364     36         0.2         7.2}
+\NormalTok{## 5   Ecuador           1.7e+11  15661312     35         0.0         7.1}
+\NormalTok{## 6      Peru           3.5e+11  30565460     38         0.0         8.5}
+\NormalTok{## 7 Venezuela           5.4e+11  30276044     20         0.0         5.2}
+\NormalTok{## # ... with 1 more variables: region <chr>}
+
+\KeywordTok{filter}\NormalTok{(qog_mod, region }\OperatorTok{==}\StringTok{ "South America"} \OperatorTok{|}\StringTok{ }\NormalTok{region }\OperatorTok{==}\StringTok{ "South-Eastern Asia"}\NormalTok{)}
+\NormalTok{## # A tibble: 19 x 7}
+\NormalTok{##               cname wdi_gdppppcon2011   wdi_pop ti_cpi lp_muslim80}
+\NormalTok{##               <chr>             <dbl>     <int>  <dbl>       <dbl>}
+\NormalTok{##  1          Bolivia           6.3e+10  10399931     34         0.0}
+\NormalTok{##  2           Brazil           3.1e+12 204259376     42         0.1}
+\NormalTok{##  3         Cambodia           4.5e+10  15078564     20         2.4}
+\NormalTok{##  4            Chile           3.8e+11  17575832     71         0.0}
+\NormalTok{##  5         Colombia           5.8e+11  47342364     36         0.2}
+\NormalTok{##  6          Ecuador           1.7e+11  15661312     35         0.0}
+\NormalTok{##  7           Guyana           5.1e+09    761033     27         9.0}
+\NormalTok{##  8        Indonesia           2.4e+12 251268272     32        43.4}
+\NormalTok{##  9             Laos           3.2e+10   6579985     26         1.0}
+\NormalTok{## 10 Malaysia (1966-)           6.9e+11  29465372     50        49.4}
+\NormalTok{## 11         Paraguay           5.3e+10   6465669     24         0.0}
+\NormalTok{## 12             Peru           3.5e+11  30565460     38         0.0}
+\NormalTok{## 13      Philippines           6.2e+11  97571680     36         4.3}
+\NormalTok{## 14        Singapore           4.2e+11   5399200     86        17.4}
+\NormalTok{## 15          Vietnam           4.6e+11  89708896     31         1.0}
+\NormalTok{## 16         Suriname           8.4e+09    533450     36        13.0}
+\NormalTok{## 17         Thailand           1.0e+12  67451424     35         3.9}
+\NormalTok{## 18          Uruguay           6.6e+10   3407969     73         0.0}
+\NormalTok{## 19        Venezuela           5.4e+11  30276044     20         0.0}
+\NormalTok{## # ... with 2 more variables: fh_ipolity2 <dbl>, region <chr>}
+\end{Highlighting}
+\end{Shaded}
+
+\section{\texorpdfstring{Crear nuevas variables en la base con
+\texttt{mutate()}}{Crear nuevas variables en la base con mutate()}}\label{crear-nuevas-variables-en-la-base-con-mutate}
+
+Muchas veces queremos crear nuevas variables, a partir de las que ya
+tenemos. Por ejemplo, podríamos querer el GDP per capita, en vez del
+absoluto. Tenemos los ingredientes para calcularlo: el GDP absoluto y la
+población. Creemos una nueva variable, entonces:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mutate}\NormalTok{(qog_mod, }\DataTypeTok{gdp_ppp_per_capita =}\NormalTok{ wdi_gdppppcon2011}\OperatorTok{/}\NormalTok{wdi_pop)}
+\NormalTok{## # A tibble: 139 x 8}
+\NormalTok{##          cname wdi_gdppppcon2011   wdi_pop ti_cpi lp_muslim80 fh_ipolity2}
+\NormalTok{##          <chr>             <dbl>     <int>  <dbl>       <dbl>       <dbl>}
+\NormalTok{##  1 Afghanistan           5.8e+10  30682500      8        99.3        2.02}
+\NormalTok{##  2     Albania           2.9e+10   2897366     31        20.5        8.08}
+\NormalTok{##  3     Algeria           5.1e+11  38186136     36        99.1        4.25}
+\NormalTok{##  4      Angola           1.5e+11  23448202     23         0.0        3.25}
+\NormalTok{##  5   Australia           9.9e+11  23125868     81         0.2       10.00}
+\NormalTok{##  6     Austria           3.7e+11   8479375     69         0.6       10.00}
+\NormalTok{##  7     Bahamas           8.5e+09    377841     71         0.0       10.00}
+\NormalTok{##  8     Bahrain           5.7e+10   1349427     48        95.0        0.83}
+\NormalTok{##  9  Bangladesh           4.5e+11 157157392     27        85.9        6.42}
+\NormalTok{## 10    Barbados           4.3e+09    282503     75         0.2       10.00}
+\NormalTok{## # ... with 129 more rows, and 2 more variables: region <chr>,}
+\NormalTok{## #   gdp_ppp_per_capita <dbl>}
+\end{Highlighting}
+\end{Shaded}
+
+Otra nueva variable que podría interesarnos es el número de musulmanes
+por país. Con la proporción de musulmanes y la población total del país
+podemos hacer una buena estimación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mutate}\NormalTok{(qog_mod, }\DataTypeTok{n_muslim =}\NormalTok{ wdi_pop }\OperatorTok{*}\StringTok{ }\NormalTok{lp_muslim80)}
+\NormalTok{## # A tibble: 139 x 8}
+\NormalTok{##          cname wdi_gdppppcon2011   wdi_pop ti_cpi lp_muslim80 fh_ipolity2}
+\NormalTok{##          <chr>             <dbl>     <int>  <dbl>       <dbl>       <dbl>}
+\NormalTok{##  1 Afghanistan           5.8e+10  30682500      8        99.3        2.02}
+\NormalTok{##  2     Albania           2.9e+10   2897366     31        20.5        8.08}
+\NormalTok{##  3     Algeria           5.1e+11  38186136     36        99.1        4.25}
+\NormalTok{##  4      Angola           1.5e+11  23448202     23         0.0        3.25}
+\NormalTok{##  5   Australia           9.9e+11  23125868     81         0.2       10.00}
+\NormalTok{##  6     Austria           3.7e+11   8479375     69         0.6       10.00}
+\NormalTok{##  7     Bahamas           8.5e+09    377841     71         0.0       10.00}
+\NormalTok{##  8     Bahrain           5.7e+10   1349427     48        95.0        0.83}
+\NormalTok{##  9  Bangladesh           4.5e+11 157157392     27        85.9        6.42}
+\NormalTok{## 10    Barbados           4.3e+09    282503     75         0.2       10.00}
+\NormalTok{## # ... with 129 more rows, and 2 more variables: region <chr>,}
+\NormalTok{## #   n_muslim <dbl>}
+\end{Highlighting}
+\end{Shaded}
+
+¡Es posible crear más de una variable con el mismo comando! Creemos las
+dos de antes, a la vez:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mutate}\NormalTok{(qog_mod, }
+       \DataTypeTok{gdp_ppp_per_capita =}\NormalTok{ wdi_gdppppcon2011}\OperatorTok{/}\NormalTok{wdi_pop,}
+       \DataTypeTok{n_muslim           =}\NormalTok{ wdi_pop }\OperatorTok{*}\StringTok{ }\NormalTok{lp_muslim80)}
+\NormalTok{## # A tibble: 139 x 9}
+\NormalTok{##          cname wdi_gdppppcon2011   wdi_pop ti_cpi lp_muslim80 fh_ipolity2}
+\NormalTok{##          <chr>             <dbl>     <int>  <dbl>       <dbl>       <dbl>}
+\NormalTok{##  1 Afghanistan           5.8e+10  30682500      8        99.3        2.02}
+\NormalTok{##  2     Albania           2.9e+10   2897366     31        20.5        8.08}
+\NormalTok{##  3     Algeria           5.1e+11  38186136     36        99.1        4.25}
+\NormalTok{##  4      Angola           1.5e+11  23448202     23         0.0        3.25}
+\NormalTok{##  5   Australia           9.9e+11  23125868     81         0.2       10.00}
+\NormalTok{##  6     Austria           3.7e+11   8479375     69         0.6       10.00}
+\NormalTok{##  7     Bahamas           8.5e+09    377841     71         0.0       10.00}
+\NormalTok{##  8     Bahrain           5.7e+10   1349427     48        95.0        0.83}
+\NormalTok{##  9  Bangladesh           4.5e+11 157157392     27        85.9        6.42}
+\NormalTok{## 10    Barbados           4.3e+09    282503     75         0.2       10.00}
+\NormalTok{## # ... with 129 more rows, and 3 more variables: region <chr>,}
+\NormalTok{## #   gdp_ppp_per_capita <dbl>, n_muslim <dbl>}
+\end{Highlighting}
+\end{Shaded}
+
+\section{\texorpdfstring{Concatenar comandos: las pipes
+(\texttt{\%\textgreater{}\%})}{Concatenar comandos: las pipes (\%\textgreater{}\%)}}\label{concatenar-comandos-las-pipes}
+
+A menudo no queremos hacer una sola de las operaciones con bases de
+datos reseñadas antes, sino que una seguidilla de estas. Si quisiéramos
+crear una nueva base a través de, por ejemplo, (1) seleccionar las
+variables de país, población y GDP, (2) crear la variable de GDP per
+capita, y (3) ordenar los países de mayor a menor según GDP per capita,
+nuestro procedimiento en R sería algo como esto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{qog_mod_seguidilla_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{select}\NormalTok{(qog_mod, cname, wdi_pop, wdi_gdppppcon2011)}
+\NormalTok{qog_mod_seguidilla_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(qog_mod_seguidilla_}\DecValTok{1}\NormalTok{, }
+                               \DataTypeTok{gdp_ppp_per_capita =}\NormalTok{ wdi_gdppppcon2011}\OperatorTok{/}\NormalTok{wdi_pop)}
+\NormalTok{qog_mod_seguidilla_}\DecValTok{3}\NormalTok{ <-}\StringTok{ }\KeywordTok{arrange}\NormalTok{(qog_mod_seguidilla_}\DecValTok{2}\NormalTok{, }\OperatorTok{-}\NormalTok{gdp_ppp_per_capita)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{qog_mod_seguidilla_}\DecValTok{3}
+\NormalTok{## # A tibble: 139 x 4}
+\NormalTok{##                   cname   wdi_pop wdi_gdppppcon2011 gdp_ppp_per_capita}
+\NormalTok{##                   <chr>     <int>             <dbl>              <dbl>}
+\NormalTok{##  1                Qatar   2101288           2.8e+11             133395}
+\NormalTok{##  2           Luxembourg    543360           4.9e+10              89889}
+\NormalTok{##  3            Singapore   5399200           4.2e+11              77721}
+\NormalTok{##  4               Kuwait   3593689           2.7e+11              74181}
+\NormalTok{##  5               Norway   5079623           3.2e+11              63322}
+\NormalTok{##  6 United Arab Emirates   9039978           5.6e+11              62056}
+\NormalTok{##  7          Switzerland   8089346           4.4e+11              54912}
+\NormalTok{##  8        United States 316497536           1.6e+13              51282}
+\NormalTok{##  9         Saudi Arabia  30201052           1.5e+12              48963}
+\NormalTok{## 10              Ireland   4598294           2.1e+11              46182}
+\NormalTok{## # ... with 129 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+El lector notará que esto es bastante complicado y nos deja con dos
+\textbf{objetos intermedios} que no nos interesan,
+``qog\_mod\_seguidilla\_1'' y ``qog\_mod\_seguidilla\_2''.
+
+La solución del paquete tidyverse que estamos utilizando son \textbf{las
+pipes}. El lector notará que en las tres funciones de nuestra seguidilla
+anterior (select, mutate y arrange) el primer argumento es la base de
+datos a tratar. En vez de crear objetos intermedios podemos ``chutear''
+la base de datos a través de nuestros comandos con pipes, omitiendo los
+primeros argumentos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{qog_mod_seguidilla <-}\StringTok{ }\NormalTok{qog_mod }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(cname, wdi_pop, wdi_gdppppcon2011) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{gdp_ppp_per_capita =}\NormalTok{ wdi_gdppppcon2011}\OperatorTok{/}\NormalTok{wdi_pop) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\OperatorTok{-}\NormalTok{gdp_ppp_per_capita)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{qog_mod_seguidilla}
+\NormalTok{## # A tibble: 139 x 4}
+\NormalTok{##                   cname   wdi_pop wdi_gdppppcon2011 gdp_ppp_per_capita}
+\NormalTok{##                   <chr>     <int>             <dbl>              <dbl>}
+\NormalTok{##  1                Qatar   2101288           2.8e+11             133395}
+\NormalTok{##  2           Luxembourg    543360           4.9e+10              89889}
+\NormalTok{##  3            Singapore   5399200           4.2e+11              77721}
+\NormalTok{##  4               Kuwait   3593689           2.7e+11              74181}
+\NormalTok{##  5               Norway   5079623           3.2e+11              63322}
+\NormalTok{##  6 United Arab Emirates   9039978           5.6e+11              62056}
+\NormalTok{##  7          Switzerland   8089346           4.4e+11              54912}
+\NormalTok{##  8        United States 316497536           1.6e+13              51282}
+\NormalTok{##  9         Saudi Arabia  30201052           1.5e+12              48963}
+\NormalTok{## 10              Ireland   4598294           2.1e+11              46182}
+\NormalTok{## # ... with 129 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Las pipes pueden leerse como ``pero luego''. Nuestra seguidilla
+anterior, entonces, se leería de la siguiente forma:
+
+\begin{quote}
+qog\_mod\_seguilla es igual a qog\_mod; pero luego seleccionamos las
+variables cname, wdi\_pop, wdi\_gdppppcon2011; pero luego creamos la
+variable gdp\_ppp\_per\_capita; pero luego ordenamos la base en forma
+decreciente según gdp\_ppp\_per\_capita.
+\end{quote}
+
+\section{Ejercicios}\label{ejercicios-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Cree una base nueva, llamada qog\_mod\_2, con una nueva variable
+  llamada ``porc\_muslim'', que sea el porcentaje de población musulmana
+  del país.
+\item
+  Cree una base nueva, llamada qog\_mod\_3, que incluya solo países
+  latinoamericanos, China y Sudáfrica.
+\item
+  Cree una base nueva, llamada qog\_mod\_4, que incluya solo países con
+  población mayor a la media de población entre todos los países. Debe
+  contener solo las variables de nombre del país, región y población (en
+  ese orden). Ordene la base según población, de mayor a menor. ¡Use
+  pipes!
+\end{itemize}
+
+\part{Modelos}\label{part-modelos}
+
+\chapter{Modelos binarios}\label{bin}
+
+\begin{books}
+\textbf{Lectura de referencia:}
+
+\begin{itemize}
+\tightlist
+\item
+  Box-Steffensmeier, J. M., Brady, H. E., \& Collier, D. (Eds.). (2008).
+  \emph{The Oxford Handbook of Political Methodology} (Vol. 10). Oxford
+  Handbooks of Political Science. Oxford: Oxford University Press. Cap.
+  22 -- Discrete Choice Methods.
+\item
+  Agresti, A. (2007). \emph{An Introduction to Categorical Data
+  Analysis}, 2nd Ed. Hoboken: Wiley. Cap. 3, 4 y 5 -- Generalized Linear
+  Models; Logistic Regression; Building and Applying Logistic Regression
+  Models.
+\item
+  Greenhill, B., Ward, M. D., \& Sacks, A. (2011). The separation plot:
+  A new visual method for evaluating the fit of binary models.
+  \emph{American Journal of Political Science}, 55(4), 991-1002.
+\end{itemize}
+\end{books}
+
+En el capítulo anterior vimos cómo hacer regresiones linarias en R de
+una manera simple y cubriendo los paquetes más útiles a nuestro alcance.
+En este capítulo veremos cómo hacer los mismos para variables
+dependientes dicotómicas. Al igual que en los capítulos previos, no
+cubriremos aspectos sustanciales a la teoría por tras de cada modelo, ni
+desglosaremos en detalle las fórmulas. Para ello dejamos tres
+referencias que van a ayudarte a acompañar lo que describimos si nunca
+has leído al respecto.
+
+\section{Conceptos principales}\label{conceptos-principales}
+
+Los modelos para variables dependientes dicotómicas (aquellas que asumen
+una de dos posibilidades, comúnmente 0 y 1) son utilizados para estimar
+la probabilidad de ocurrencia de un evento. Es importante remarcar que
+en inglés existen dos conceptos diferentes que en español y portugués se
+traducen como una única palabra: \emph{probability} y \emph{likelihood}
+se traducen como probabilidad en diccionarios comúnes (haz la búsqueda
+así nos crees), si bien la distinción entre ambos es vital para
+comprender como funcionan los modelos dicotómicos estimados por Máxima
+Verosimilitud (\emph{Maximum Likelihood} en inglés). Aunque no vamos a
+ahondar en su distinción, es importante comprender que una probabilidad
+se estima a partir de una ``población'' de la cual conocemos sus
+``parámetros'', mientras que la verosimilitud recorre el camino inverso,
+es decir, estima los valores de los parámetros para los cuales el
+resultado observado mejor se ajusta a ellos (ver Figura
+\ref{fig:bin-realmuestra}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=11.56in]{00-images/bin-realmuestra} 
+
+}
+
+\caption{El camino de doble vía de probabilidad y verosimilitud}\label{fig:bin-realmuestra}
+\end{figure}
+
+Cuando tenemos una variable dependiente dicotómica que queremos modelar,
+asumimos que la misma tiene una distribución de Bernoulli con una
+probabilidad que desconocemos. Así, estimamos por medio de Máxima
+Verosimilitud nuestra probabilidad, hasta ahora desconocida, dada una
+determinada combinación linear de variables independientes de nuestra
+elección (ver Figura \ref{fig:bin-bernou}). Un muy buen ejercicio para
+comprender como se estima un parámetro cuya distribución es binomial por
+medio de Máxima Verosimilitud es ofrecida por {[}RPubs{]}
+(\url{https://rpubs.com/felixmay/MLE}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=6.75in]{00-images/bin-bernou} 
+
+}
+
+\caption{Bernoulli}\label{fig:bin-bernou}
+\end{figure}
+
+La Ciencia Política ha hecho extensivo el uso de modelos Logit, por
+sobre los modelos Probit, en buena medida debido a que los primeros
+permiten el cálculo de razones de oportunidades (\emph{odds ratios}).
+Casi todos los manuales econométricos discuten las diferencias y
+similitudes entre ambos, las cuales son muchas a los fines prácticos de
+estimar un modelo. Por ello, siendo que son métodos que derivan en
+resultados muy similares, sólo utilizaremos Logit en este capítulo.
+Ambos métodos utilizan funciones de enlace (\emph{link functions})
+diferentes y Logit lleva su nombre debido a que su función está dada por
+el logaritmo natural de las razones de oportunidad (``log
+odds''-\textgreater{}logit!).
+
+\[ ln(odds) = ln(\frac {p}{1 - p})
+  \label{eq:bin-logodds} \]
+
+Despejando los términos podemos calcular, de tal forma que obtenemos.
+
+\[ logit^{-1}(\alpha) =  \frac {1}{1+e^{-\alpha}} = \frac {e^\alpha}{1+e^\alpha}
+  \label{eq:bin-invdespejada} \]
+
+Donde es la combinación linear de las variables independientes y sus
+coeficientes. La inversa del Logit nos dará la probabilidad de la
+variable dependiente ser igual a ``1'' dada una cierta combinación de
+valores para nuestras variables independientes. Asi,
+
+\begin{figure}
+
+{\centering \includegraphics[width=10.43in]{00-images/bin-invlogit} 
+
+}
+
+\caption{Inversa del logit}\label{fig:bin-invlogit}
+\end{figure}
+
+Si profundizas en manuales de econometría, notarás que la función es
+indefinida en 0 y en 1, es decir, la probabilidad se aproxima
+infinitamente al límite sin nunca tocarlo.
+
+\textbf{{[}falta un buen parrafo para cerrar esta seccion{]}}
+
+\section{Aplicación en R}\label{aplicacion-en-r}
+
+Los modelos probabilísticos han ganado enorme preeminencia en la Ciencia
+Política en los últimos años y es probable que estés buscando una guía
+aplicada para saber qué hacer y qué no hacer cuando tiene una variable
+dependiente dicotómica. Para ello vamos a ilustrar un paso a paso en R
+utilizando como ejemplo la base de datos del libro {[}``Democracies and
+Dictatorships in Latin America: Emergence, Survival, and Fall'' de Scott
+Mainwaring y Aníbal Perez-Liñan (2013){]}
+(\url{https://kellogg.nd.edu/democracies-and-dictatorships-latin-america-emergence-survival-and-fall}).
+A lo largo del libro los autores analizan cuales variables ayudan a
+explicar por qué ocurrieron quiebres democráticos en América Latina
+durante todo el siglo XX y comienzos del XXI . En el capítulo 4, los
+autores se preguntan qué factores explican la supervivencia de los
+regímenes políticos. Si bien prueban varios modelos, algunos logísticos
+y otros de supervivencia (que están desarrollados en el Capítulo 10), a
+los fines prácticos haremos un ejemplo muy sencillo para que nos
+acompañes desde tu computador en el paso a paso. Suponiendo que la
+variable dependiente asume el valor ``1'' si el país sufre un quiebre de
+su régimen político democrático y ``0'' si no, ¿qué efecto tiene sobre
+la probabilidad de un quiebre de este tipo ocurrir que un país
+latinoamericano de mayores poderes constitucionales al poder ejecutivo?
+Como argumentan los autores, se puede medir estos poderes por medio del
+índice creado por {[}Shugart y Carey{]}
+(\url{http://www.cambridge.org/gb/academic/subjects/politics-international-relations/comparative-politics/presidents-and-assemblies-constitutional-design-and-electoral-dynamics?format=PB\&isbn=9780521429900})
+de poder presidencial (1992) que los autores incluyen en su base de
+datos. Así,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos_mp <-}\StringTok{ }\KeywordTok{read_stata}\NormalTok{(}\StringTok{"00-datos/Cap 7_base_mainwaring_perez.dta"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modelo_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(breakdown }\OperatorTok{~}\StringTok{ }\NormalTok{shugart, }
+                \DataTypeTok{data   =}\NormalTok{ datos_mp,}
+                \DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{(}\StringTok{"logit"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(modelo_}\DecValTok{1}\NormalTok{)}
+\NormalTok{## }
+\NormalTok{## Call:}
+\NormalTok{## glm(formula = breakdown ~ shugart, family = binomial("logit"), }
+\NormalTok{##     data = datos_mp)}
+\NormalTok{## }
+\NormalTok{## Deviance Residuals: }
+\NormalTok{##    Min      1Q  Median      3Q     Max  }
+\NormalTok{## -0.727  -0.295  -0.269  -0.223   2.792  }
+\NormalTok{## }
+\NormalTok{## Coefficients:}
+\NormalTok{##             Estimate Std. Error z value Pr(>|z|)   }
+\NormalTok{## (Intercept)  -0.2393     0.9638   -0.25   0.8039   }
+\NormalTok{##  [ reached getOption("max.print") -- omitted 1 row ]}
+\NormalTok{## ---}
+\NormalTok{## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1}
+\NormalTok{## }
+\NormalTok{## (Dispersion parameter for binomial family taken to be 1)}
+\NormalTok{## }
+\NormalTok{##     Null deviance: 217.84  on 643  degrees of freedom}
+\NormalTok{## Residual deviance: 209.56  on 642  degrees of freedom}
+\NormalTok{##   (1572 observations deleted due to missingness)}
+\NormalTok{## AIC: 213.6}
+\NormalTok{## }
+\NormalTok{## Number of Fisher Scoring iterations: 6}
+\end{Highlighting}
+\end{Shaded}
+
+El coeficiente para la variable \emph{shugart} está negativamente
+asociado a la probabilidad de ocurrencia de un quiebre de régimen, y es
+estadísticamente significativo (p=0.0026). Ahora bien, a diferencia de
+los modelos por MCO del capítulo anterior, donde podíamos interpretar
+directamente el efecto de la variable independiente sobre la dependiente
+a partir de los coeficientes de la regresión, para el caso de
+regresiones logísticas esto no es tan sencillo. Si partimos de que la
+función de enlace de logit es el logaritmo de las razones de
+oportunidades, tenemos que
+
+\[ln(\frac {p}{1 - p}) = \beta_{0} + \beta_{1}x_{1}
+  \label{eq:bin-funenlace}\]
+
+Despejando \(ln\), tenemos que
+
+\[(\frac {p}{1 - p}) = e^{\beta_{0}+\beta_{1}x_{1}}
+  \label{eq:bin-lndespejado} \]
+
+Y despejando los términos nuevamente tenemos que
+
+\[\hat{p} = \frac {e^{\beta_{0}+\beta_{1}x_{1}}}{1 + e^{\beta_{0}+\beta_{1}x_{1}}}
+  \label{eq:bin-términosdespejados}\]
+
+Lo que queremos, entonces, es transformar los coeficientes tal y como
+los reporta \texttt{R} en una probabilidad asociada a que la variable
+dependiente asuma el valor ``1''. Sabemos que la variable independiente
+(\emph{shugart}) es un índice que a mayor valor, mayor concentración de
+poder del ejecutivo \emph{vis a vis} el legislativo, por lo tanto el
+coeficiente de la regresión nos indica que a menor concentración de
+poder del ejecutivo, mayor la probabilidad de un quiebre de régimen. La
+muestra del libro cubre 20 países latinoamericanos entre 1900 y 2010, y
+el índice oscila de un mínimo de 5 (Haití, para varios años) a un máximo
+de 25 (Brasil en 1945) (ver Figura \ref{fig:bin-shugarthist} ¿Cómo puedo
+saber en qué magnitud se afecta la probabilidad de un quiebre
+democrático si el nivel de concentración de poder del ejecutivo pasa de
+un puntaje de 5 (mínimo) a uno de 25 (máximo) cuando no controlamos por
+nada más en la regresión?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{attach}\NormalTok{(datos_mp)}
+\KeywordTok{qplot}\NormalTok{(shugart, }\DataTypeTok{geom=}\StringTok{"histogram"}\NormalTok{) }
+\NormalTok{## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.}
+\NormalTok{## Warning: Removed 1054 rows containing non-finite values (stat_bin).}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{adp-bookdown_files/figure-latex/bin-shugarthist-1} 
+
+}
+
+\caption{Histograma Shugart}\label{fig:bin-shugarthist}
+\end{figure}
+
+Para ello podemos reemplazar los valores de nuestra última fórmula, en
+la que hemos aislado en el lado izquierdo de la fórmula a \(\hat {p}\).
+Primero debemos calcular cuál es la probabilidad de sufrir un quiebre de
+régimen en un nivel de Shugart de 5 y en un nivel 25, respectivamente,
+para luego calcular la diferencia. Así tenemos que
+
+\[\hat{p} = \frac {e^{(0+(-0.019*5))}}{1 + e^{(0+(-0.019*5))}}
+  \label{eq:bin-formreemp}\]
+
+Notarás que el valor correspondiente al intercepto es igual a 0 pues ese
+coeficiente no ha resultado estadísticamente significativo. Sabemos que
+para un índice de Shugart y Carey de 5, luego de hacer el cálculo en la
+fórmula arriba, la probabilidad es igual a 0.47 o 47\%. Si repetimos el
+proceso para un valor de Shugart de 25 la probabilidad cae a 38\%. Con
+las probabilidades podemos calcular oportunidades, que son simplemente
+\(\frac {p}{1-p}\). De esta manera, la oportunidad (\emph{odd} en
+inglés) para un valor 5 del índice de Shugart y Carey es de 0.90
+mientras que para un índice de Shugart y Carey de 25 es de 0.62. La
+utilidad de las oportunidades es que permite calcular razones de
+probabilidades (\emph{odds ratios}). ¿Cuál es la gracia de calcular una
+razón de probabilidades? Veamos. Si calculo la probabilidad de un cambio
+en el índice de Shugart y Carey de 23 a 24, la magnitud será diferente a
+si calculamos un cambio en la probabilidad si el índice pasa de 12 a 13,
+por ejemplo. Es decir, los efectos de la variable independiente sobre la
+probabilidad de la variable dependiente ocurrir no son lineares
+(recuerde la función en ``S'' de la Figura \ref{fig:bin-invlogit}). Por
+el contrario, las razones de probabilidades tienen la propiedad de poder
+reflejar cambios independientemente de la curvatura de la función, es
+decir, son cambios ``constantes''. Así, podemos expresar el efecto de la
+variable sin tener que especificar un valor determinado para ella.
+Siendo que los modelos Probit y Logit generan resultados muy similares,
+y debido a que los modelos Logit permiten el cálculo de razones de
+probabilidad, la que la literatura de Ciencia Política se ha inclinado
+hacia esta opción. Veamos cómo sería el cálculo de razones de
+probabilidad siguiendo el ejemplo que acabamos de crear con la base de
+datos de Mainwaring y Perez-Liñan. Dijimos que la oportunidad está dada
+por \(\frac {p}{1 - p}\). Una razón de oportunidades se expresaría,
+entonces, como \(\frac {\frac {p_1}{1-p_1}}{\frac {p_2}{1-p_2}}\).
+Supongamos que Chile en el año 1992 tenía un índice de Shugart de 15, y
+que en el año 1993 ese índice subió a 16 (éstos no son valores reales).
+
+\[ Pr(quiebre democr\'atico){_{Chile,1992}} = \frac {e^{(0+(-0.019*15))}}{1 + e^{((0+(-0.019*15))}} = 0.42\]
+\[ Pr(quiebre democr\'atico){_{Chile,1993}} = \frac {e^{(0+(-0.019*16))}}{1 + e^{(0+(-0.019*16))}} = 0.43\]
+
+La probabilidad difiere poco y cae en un 2.4\% lo que parece ser un
+efecto pequeño. La razón de oportunidades se calcula como el cociente de
+ambas oportunidades, así:
+
+\[\frac {0.42}{0.43}=0.97\]
+
+De esta manera, toda razón de oportunidades mayor a 1 expresa un cambio
+positivo, mientras que todo valor menor a 1 (entre 0 y 1) representa un
+cambio negativo en las probabilidades estimadas. Si hiciéramos el mismo
+ejercicio para otros valores del índice de Shugart y Carey, por ejemplo,
+un cambio de 3 a 4 o de 23 a 24, el cociente de las oportunidades daría
+0.97.
+
+\textbf{SERIA BUENO CREAR UN BLOCK CON UN LAPIZ EN VEZ DE UN LIBRO, PARA
+USAR EN COSAS ASÍ, COLOR GRIS}
+
+\begin{books}
+Ahora, haz el cálculo para el valor real de Chile en 1992 y 1993 como
+práctica, te esperamos.
+\end{books}
+
+\texttt{R} ofrece paquetes para que este análisis sea fácil de hacerse.
+Podemos visualizar fácilmente los cocientes de oportunidades utilizando
+el paquete \texttt{sjPlot}. Podemos calcular probabilidades predichas, y
+además podemos hacer tests para saber la capacidad explicativa de
+nuestros modelos. Utilizando la misma base de datos haremos un ejemplo
+de una rutina típica, que puedes recrear en casa utilizando tus propios
+datos. Los pasos a seguir son (a) estimar los modelos, (b) crear tablas
+formateadas para pegar en nuestros procesadores de texto, (c) crear
+figuras para visualizar la magnitud de los coeficientes por medio de
+cociente de oportunidades, (d) visualizar probabilidades predichas para
+variables de interés, (e) calcular capacidad explicativa de los modelos
+(porcentaje correctamente predicho, AIC, BIC, curvas ROC, \emph{Brier
+scores} o \emph{separation plots}, que explicaremos a continuación).
+Cuando uno trabaja con una variable dependiente binaria, y lo que quiere
+es rodar algunos modelos logísticos para incorporar a su trabajo,
+primero es recomendable utilizar Pacman. \texttt{pacman} es un paquete
+de R que hace mucho más fácil trabajar con otros paquetes, pues permite
+cargar todos al mismo tiempo. Comencemos por cargarlo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{require}\NormalTok{(}\StringTok{"pacman"}\NormalTok{))}
+    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"pacman"}\NormalTok{); }\KeywordTok{library}\NormalTok{(pacman)  }
+\NormalTok{## Loading required package: pacman}
+\end{Highlighting}
+\end{Shaded}
+
+Para que sea simple utilizar la función \texttt{pacman}, recomendamos
+añadir \texttt{library(pacman)} a
+\href{http://www.statmethods.net/interface/customizing.html}{su archivo
+de .Rprofile}, para que se cargue automáticamente cada vez que abra R
+Studio. De esta manera no habrá que ejecutarlo cada vez que abra R
+Studio. La principal gracia de \texttt{pacman} es su función
+\texttt{p\_load}, que nos permite cargar varios paquetes en un solo
+comando y, si nos los tenemos instalados, lo hace por nosotros (en el
+siguiente paso la utilizaremos). Si no tienes instalados los siguientes
+paquetes, \texttt{p\_load} los instalará por ti. Si nos has acompañado
+desde los capítulos anteriores, este paso te resultará familiar.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{p_load}\NormalTok{(haven,    }\CommentTok{# parte del tidyverse, para cargar bases de datos en formatos foráneos}
+\NormalTok{       verification,}
+\NormalTok{       janitor,  }\CommentTok{# nos da la función tabyl(), para hacer tablas tidy}
+\NormalTok{       sjPlot,}
+\NormalTok{       stargazer, }\CommentTok{# nos ayuda a hacer tablas de modelos de regresión}
+\NormalTok{       tidyverse,}
+\NormalTok{       pscl,}
+\NormalTok{       separationplot}
+\NormalTok{       )}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Estimar los modelos}\label{estimar-los-modelos}
+
+¿Recuerde el \texttt{ADP}? Una de las funciones que hemos facilitado es
+la de creación de tablas editables para artículos académicos utilizando
+la función \texttt{stargazer}. Si utilizas nuestro paquete te ahorrarás
+muchos pasos que son engorrosos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(stargazer)}
+\KeywordTok{source}\NormalTok{(}\StringTok{"00-funs/ADP.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Por medio de \texttt{stargazer} podemos exportar nuestras tablas
+formateadas en html para poder incorporarlas en nuestros artículos
+directamente. Para ejemplificar este paso lo que haremos es agregar al
+modelo 1 dos modelos más: El modelo 2 tendrá como variables
+independientes al índice de Shugart y Carey más la variable \emph{age}
+que mide en años la edad del régimen político. qplot(age,
+geom=``histogram'')
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modelo_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(breakdown }\OperatorTok{~}\StringTok{ }\NormalTok{shugart}\OperatorTok{+}\NormalTok{age, }
+                \DataTypeTok{data   =}\NormalTok{ datos_mp,}
+                \DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{(}\StringTok{"logit"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(modelo_}\DecValTok{2}\NormalTok{)}
+\NormalTok{## }
+\NormalTok{## Call:}
+\NormalTok{## glm(formula = breakdown ~ shugart + age, family = binomial("logit"), }
+\NormalTok{##     data = datos_mp)}
+\NormalTok{## }
+\NormalTok{## Deviance Residuals: }
+\NormalTok{##    Min      1Q  Median      3Q     Max  }
+\NormalTok{## -0.734  -0.302  -0.266  -0.218   2.828  }
+\NormalTok{## }
+\NormalTok{## Coefficients:}
+\NormalTok{##             Estimate Std. Error z value Pr(>|z|)   }
+\NormalTok{## (Intercept) -0.22220    0.96764   -0.23   0.8184   }
+\NormalTok{##  [ reached getOption("max.print") -- omitted 2 rows ]}
+\NormalTok{## ---}
+\NormalTok{## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1}
+\NormalTok{## }
+\NormalTok{## (Dispersion parameter for binomial family taken to be 1)}
+\NormalTok{## }
+\NormalTok{##     Null deviance: 217.84  on 643  degrees of freedom}
+\NormalTok{## Residual deviance: 209.52  on 641  degrees of freedom}
+\NormalTok{##   (1572 observations deleted due to missingness)}
+\NormalTok{## AIC: 215.5}
+\NormalTok{## }
+\NormalTok{## Number of Fisher Scoring iterations: 6}
+\end{Highlighting}
+\end{Shaded}
+
+El modelo 3 agrega a las dos variables del modelo 2 una tercer variable
+llamada \emph{fh} que corresponde al
+\href{https://freedomhouse.org/report/methodology-freedom-world-2017}{Freedom
+House score} de democracia.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qplot}\NormalTok{(fh, }\DataTypeTok{geom=}\StringTok{"histogram"}\NormalTok{) }
+\NormalTok{## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.}
+\NormalTok{## Warning: Removed 1436 rows containing non-finite values (stat_bin).}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{adp-bookdown_files/figure-latex/fhhist-1} 
+
+}
+
+\caption{Histograma FH}\label{fig:fhhist}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modelo_}\DecValTok{3}\NormalTok{ <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(breakdown }\OperatorTok{~}\StringTok{ }\NormalTok{shugart}\OperatorTok{+}\NormalTok{age}\OperatorTok{+}\NormalTok{fh, }
+                \DataTypeTok{data   =}\NormalTok{ datos_mp,}
+                \DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{(}\StringTok{"logit"}\NormalTok{))}
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(modelo_}\DecValTok{3}\NormalTok{)}
+\NormalTok{## }
+\NormalTok{## Call:}
+\NormalTok{## glm(formula = breakdown ~ shugart + age + fh, family = binomial("logit"), }
+\NormalTok{##     data = datos_mp)}
+\NormalTok{## }
+\NormalTok{## Deviance Residuals: }
+\NormalTok{##     Min       1Q   Median       3Q      Max  }
+\NormalTok{## -1.7864  -0.0008  -0.0001   0.0000   1.8940  }
+\NormalTok{## }
+\NormalTok{## Coefficients:}
+\NormalTok{##             Estimate Std. Error z value Pr(>|z|)  }
+\NormalTok{## (Intercept)   15.360      6.584    2.33    0.020 *}
+\NormalTok{##  [ reached getOption("max.print") -- omitted 3 rows ]}
+\NormalTok{## ---}
+\NormalTok{## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1}
+\NormalTok{## }
+\NormalTok{## (Dispersion parameter for binomial family taken to be 1)}
+\NormalTok{## }
+\NormalTok{##     Null deviance: 71.271  on 421  degrees of freedom}
+\NormalTok{## Residual deviance: 12.113  on 418  degrees of freedom}
+\NormalTok{##   (1794 observations deleted due to missingness)}
+\NormalTok{## AIC: 20.11}
+\NormalTok{## }
+\NormalTok{## Number of Fisher Scoring iterations: 12}
+\end{Highlighting}
+\end{Shaded}
+
+Una vez creados los tres modelos de interés, los agrupamos en una lista
+por medio de la función \texttt{list}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mp_modelos <-}\StringTok{ }\KeywordTok{list}\NormalTok{(modelo_}\DecValTok{1}\NormalTok{, }
+\NormalTok{                   modelo_}\DecValTok{2}\NormalTok{,}
+\NormalTok{                   modelo_}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Para exportar la tabla a html demos definir la opción \textbf{type} y un
+nombre para el archivo html en la opción \textbf{out}. Así el comando
+sería
+
+stargazer\_easy\_binary(mp\_modelos, type = ``html'', \# OJO out =
+``output/tabla\_mp\_modelos.htm'', \# OJO report = ``vct*``, title
+=''Modelos 1-3 en base a Mainwaring y Perez Liñan (2013)``, align =
+TRUE, dep.var.labels = c(''Quiebre de régimen``), covariate.labels =c
+(''Indice de Shugart \& Carey (1992)``,''Edad del régimen``,''Freedom
+House``), no.space = TRUE)
+
+A simple vista observamos que \emph{shugart} deja de ser
+estadísticamente significativa cuando controlamos por \emph{fh} y,
+además, ésta pasa a ser la única variable estadísticamente significativa
+en el tercer modelo. Vemos como el número de observaciones cae
+significativamente al incluir la variable \emph{fh} lo que hace difícil
+comparar los modelos. Entonces al obtener una tabla como la que acabamos
+de crear tenemos dos desafíos: comparar los modelos para saber cuál
+tiene mejor ajuste, y saber si la magnitud de los efectos es substantiva
+desde un punto de vista científico (por ejemplo, si la variable
+\emph{fh} resulta estadísticamente significativa pero la probabilidad de
+un quiebre de régimen cae en 0.03\% si un país pasa del peor score de
+\emph{fh} al mejor, entonces diríamos que, a pesar de estadísticamente
+significativa, nuestra variable carece de significancia substantiva).
+Jane Miller hace mucho énfasis en su {[}libro{]}
+(\url{http://www.press.uchicago.edu/ucp/books/book/chicago/C/bo15506942.html})
+respecto a la diferencia entre significancia estadística y significancia
+substantiva: no por ser una variable significativa estadísticamente la
+magnitud del efecto será el esperado. Para explorar las magnitudes de
+los coeficientes vamos a concentrarnos en el tercer modelo. Una tabla
+individual, podrán anticipar, se haría así:
+
+stargazer\_easy\_binary(modelo\_3, type = ``text'', report = ``vct*``,
+title =''Modelo 3 en base Mainwaring y Perez Liñan (2013)``, )
+
+Comencemos reemplazando los coeficientes en la tabla por cocientes de
+oportunidades. Noten cómo el procedimiento es muy similar al de
+reemplazar errores estándar:
+
+stargazer\_easy\_binary(modelo\_3, type = ``text'', report = ``vct*``,
+title =''Modelo 3 en base Mainwaring y Perez Liñan (2013), odds
+ratios``, coef = list(exp(modelo\_3\$coefficients)))
+
+\section{Visualización de resultados}\label{visualizacion-de-resultados}
+
+Podemos representar visualmente lo anterior con la función
+\texttt{sjp.glm()} del paquete \texttt{sjPlot}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sjp.glm}\NormalTok{(modelo_}\DecValTok{3}\NormalTok{, }
+        \DataTypeTok{show.ci     =}\NormalTok{ T)}
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+
+\NormalTok{## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred}
+\NormalTok{## Warning in sjp.glm(modelo_3, show.ci = T): Exp. coefficients and/or}
+\NormalTok{## exp. confidence intervals may be out of printable bounds. Consider using}
+\NormalTok{## `axis.lim` argument!}
+\NormalTok{## Warning: Removed 1 rows containing missing values (geom_errorbar).}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{adp-bookdown_files/figure-latex/bin-m3or-1} 
+
+}
+
+\caption{Odds ratios del Modelo 3, en base a Mainwaring y Pérez Liñán (2013)}\label{fig:bin-m3or}
+\end{figure}
+
+Esta figura es mucho más intuitiva de leerse que los coeficientes de las
+tablas. En muchas ocasiones es preferible utilizar este tipo de figuras
+a tablas. La {[}tendencia{]}
+(\url{https://www.princeton.edu/~jkastell/Tables2Graphs/graphs.pdf}) en
+la disciplina es a la de prescindir de tablas cuando estas no sean
+esenciales. La ciencia política no prestó demasiada atención a la
+presentación de resultados por medio de figuras hasta hace unas dos
+décadas, y hoy en día con software como R es muy simple de hacer. Un
+precursor en la disciplina fue {[}Edward Tufte{]}
+(\url{http://pages.mtu.edu/~hcking/Tufte_hKing.pdf}). Con el argumento
+\texttt{type\ =\ "slope"} en \texttt{sjp.glm()} podemos apreciar cómo es
+la relación entre cada variable independiente y la variable dependiente,
+cuando las demás variables independientes están en 0.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sjp.glm}\NormalTok{(modelo_}\DecValTok{3}\NormalTok{,}
+        \DataTypeTok{type        =} \StringTok{"slope"}\NormalTok{,}
+        \DataTypeTok{show.ci     =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{adp-bookdown_files/figure-latex/bin-m3prpr-cero-1} 
+
+}
+
+\caption{Probabilidades predichas (con el resto de las variables en 0) del Modelo 3, en base a Mainwaring y Pérez Liñán (2013)}\label{fig:bin-m3prpr-cero}
+\end{figure}
+
+Con el argumento \texttt{type\ =\ "pred"} en \texttt{sjp.glm()} podemos
+apreciar cómo es la relación entre cada variable independiente y la
+variable dependiente, cuando las demás variables independientes están en
+sus medias
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sjp.glm}\NormalTok{(modelo_}\DecValTok{3}\NormalTok{, }
+        \DataTypeTok{type        =} \StringTok{"pred"}\NormalTok{,}
+        \DataTypeTok{show.ci     =} \OtherTok{TRUE}\NormalTok{,}
+        \DataTypeTok{vars        =} \StringTok{"fh"}\NormalTok{,}
+        \DataTypeTok{title       =} \StringTok{"Modelo 3 en base Mainwaring y Perez Liñan (2013), pr. predichas con otras variables en sus medias"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{adp-bookdown_files/figure-latex/bin-m3prpr-medias-1} 
+
+}
+
+\caption{Probabilidades predichas (con el resto de las variables en sus medias) del Modelo 3, en base a Mainwaring y Pérez Liñán (2013)}\label{fig:bin-m3prpr-medias}
+\end{figure}
+
+Con el argumento \texttt{type\ =\ "eff"} en \texttt{sjp.glm()} podemos
+calcular efectos marginales de cada variable independiente en relación a
+la variable dependiente, dejando las demás variables independientes
+están en sus medias. El efecto marginal es el incremento previsto de la
+variable dependiente asociada al aumento de una unidad en una de las
+variables independientes, manteniendo las otras constantes. En la
+regresión lineal, es solo el parámetro beta. En la regresión logística,
+depende del valor de la variable independiente.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sjp.glm}\NormalTok{(modelo_}\DecValTok{3}\NormalTok{, }
+        \DataTypeTok{type        =} \StringTok{"eff"}\NormalTok{,}
+        \DataTypeTok{show.ci     =} \OtherTok{TRUE}\NormalTok{,}
+        \DataTypeTok{title       =} \StringTok{"Modelo 3 en base Mainwaring y Perez Liñan (2013), efectos marginales"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{adp-bookdown_files/figure-latex/bin-m3efsmarg-1} 
+
+}
+
+\caption{Efectos marginales del Modelo 3, en base a Mainwaring y Pérez Liñán (2013)}\label{fig:bin-m3efsmarg}
+\end{figure}
+
+\section{Ajuste de los modelos}\label{ajuste-de-los-modelos}
+
+Una vez que uno ha analizado la significancia substantiva de los modelos
+por medio de figuras analizando las probabilidades predichas y los
+efectos marginales, podemos explorar el ajuste de los modelos. Así como
+en MCO podemos usar el \(R^2\) y el \emph{Mean Root Square Error}
+,existe una serie de estadísticas diseñadas para saber cuál de los
+modelos logísticos tiene mejor fit.
+
+stargazer\_easy\_binary(mp\_modelos, type = ``text'', report = ``vct*``,
+title =''Modelos 1-3 en base Mainwaring y Perez Liñan (2013)" )
+
+El \emph{wrapper} que hemos creado ya nos provee de varios indicadores
+de ajuste, que también podemos calcular por separado:
+
+\section{Bondad de ajuste}\label{bondad-de-ajuste}
+
+\subsection{\texorpdfstring{\(Pseudo-R^2\)}{Pseudo-R\^{}2}}\label{pseudo-r2}
+
+Para entender como e interpreta el Pseudo-\(R^2\) (normalmente se usa el
+de McFadden) es importante compreender como se diferencia de um \(R^2\)
+por MCO (usar este link para R2 em el cap de OLS
+\url{http://setosa.io/ev/ordinary-least-squares-regression/}). La
+fórmula, en este caso es
+\(Pseudo-R^2= 1-\frac {ln \hat{L}(Modelo completo)}{ln \hat{L}(Modelo sólo con intercepto)}\)
+Donde \(\hat{L}\) es la verosimilitud estimada por el modelo.
+Básicamente, lo que la fórmula está haciendo es comparar el modelo con
+todas nuestras covariables al modelo que apenas tiene el intercepto,
+para ver cuanto mejora la capacidad explicativa del mismo. Como \(L\)
+está entre 0 y 1, su log es menor o igual a 0. Así, cuanto menor la
+razón, mayor la diferencia entre el modelo elegido y el modelo con
+apenas el intercepto.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pR2}\NormalTok{(modelo_}\DecValTok{1}\NormalTok{)[[}\StringTok{"McFadden"}\NormalTok{]]}
+\NormalTok{## [1] 0.43}
+\KeywordTok{pR2}\NormalTok{(modelo_}\DecValTok{2}\NormalTok{)[[}\StringTok{"McFadden"}\NormalTok{]]}
+\NormalTok{## [1] 0.43}
+\KeywordTok{pR2}\NormalTok{(modelo_}\DecValTok{3}\NormalTok{)[[}\StringTok{"McFadden"}\NormalTok{]]}
+\NormalTok{## [1] 0.97}
+\end{Highlighting}
+\end{Shaded}
+
+También se podría implementar un \(Pseudo-R^2\) ajustado, es decir, una
+versión que penalice por cantidad de covaraibles. Siendo que \(c\) es
+cantidad de covariables, tenemos que
+\(Pseudo-R^2= 1-\frac {ln \hat{L}(Modelo completo)-c}{ln \hat{L}(Modelo sólo con intercepto)}\)
+
+\subsection{AIC}\label{aic}
+
+El Akaike Information Criterion (AIC) también usa información de
+\(ln(\hat {L})\) como el \(Pseudo-R^2\). El AIC lo que hace es medir la
+``distancia'' que existe entre los verdaderos parámetros y los
+estimadores del modelo, por medio de la distancia de Kullback-Leibler.
+Por ello, cuanto menor esta distancia, mejor el modelo. Es muy útil a la
+hora de comparar diferentes modelos. Se calcula como
+\(AIC = 2p-2ln(\hat {L})\) Donde \(p\) es la cantidad de regresores
+incluyendo al intercepto, y \(\hat{L}\) es la verosimilitud estimada por
+el modelo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{AIC}\NormalTok{(modelo_}\DecValTok{1}\NormalTok{)}
+\NormalTok{## [1] 214}
+\KeywordTok{AIC}\NormalTok{(modelo_}\DecValTok{2}\NormalTok{)}
+\NormalTok{## [1] 216}
+\KeywordTok{AIC}\NormalTok{(modelo_}\DecValTok{3}\NormalTok{)}
+\NormalTok{## [1] 20}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{BIC}\label{bic}
+
+BIC (Bayesian information criterion) al igual que AIC es un criterio de
+comparación de modelos según su ajuste. A los fines prácticos, y para no
+entrar en las diferencias entre AIC y BIC, es importante saber que BIC
+penaliza de manera más rigurosa que AIC la complejidad del modelo,
+siendo que su fórmula es \(BIC=ln(n)p-2ln(\hat {L})\) donde agrega a la
+formula \(n\) que es el número de observaciones en la muestra.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{BIC}\NormalTok{(modelo_}\DecValTok{1}\NormalTok{)}
+\NormalTok{## [1] 222}
+\KeywordTok{BIC}\NormalTok{(modelo_}\DecValTok{2}\NormalTok{)}
+\NormalTok{## [1] 229}
+\KeywordTok{BIC}\NormalTok{(modelo_}\DecValTok{3}\NormalTok{)}
+\NormalTok{## [1] 36}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Brier Score}\label{brier-score}
+
+Ésta es otra medida de ajuste. Cuanto más próximo el score de Brier a 0,
+mejor el ajuste del modelo. En general uno no utiliza todas (AIC, BIC,
+Brier, etc) sino que elige dos o tres que sean de su agrado. El Brier se
+utiliza poco en ciencia política, pero es bastante común en
+epidemiología. Creemos que situaciones en que se quiere ``castigar''
+mucho las predicciones erróneas, ésta es una alternativa ideal ya que su
+fórmula viene dada por \(B=frac\{1}{N} \sum(\hat{p} - x)^2\) Donde \(N\)
+es el número de observaciones, \(\hat{p}\) es la probabilidad predicha
+para cada observación, y \(x\) es el valor real de la observación en
+nuestra base de datos. El score es el promedio para todas las
+observaciones de la muestra. ¿Cuál de los tres modelos tiene menor
+score?
+
+brier\_score(modelo\_1) brier\_score(modelo\_2) brier\_score(modelo\_3)
+
+\subsection{Porcentaje de predicciones
+correctas}\label{porcentaje-de-predicciones-correctas}
+
+Para entender el porcentaje de predicciones correctas en un modelo es
+importante tener en claro que un modelo produce cuatro combinaciones
+posibles:
+
+\begin{center}\includegraphics[width=11.86in]{00-images/bin-porcpred} \end{center}
+
+Toda observación será clasificada como ``correcta'' si corresponde a la
+casilla superior izquierda (verdadero positivo) o a la inferior derecha
+(verdadero negativo). El porcentaje de observaciones que pertenecen a
+estas dos casillas determina el porcentaje de predicciones correctas en
+el modelo. Como criterio estándar, si la probabilidad estimada para una
+observación es mayor o igual a 50\% se estima que es una probabilidad
+positiva, y si es menor a 50\% será una probabilidad negativa.
+
+corr\_pred\_binary(modelo\_1, type = ``prop'')
+corr\_pred\_binary(modelo\_2, type = ``prop'')
+corr\_pred\_binary(modelo\_3, type = ``prop'')
+
+\subsection{ROC plot}\label{roc-plot}
+
+Las curvas de ROC tienen la ventaja de no definir un límite arbitrario a
+partir del cual se decide si la observación ha sido correcta o
+incorrectamente clasificada. Su desventaja es que es una figura extra
+que deberemos incluir en nuestro artículo (¿quizás pensemos en un
+apéndice?). Para interpretar estas figuras, lo que nos interesa es el
+área debajo de la curva. A mayor el área bajo la curva, mejor el ajuste
+del modelo. Si quieren leer más al respecto, el área conforma un score
+que se denomina AUC score (que viene de ``Area Under the Curve''). Vamos
+a construirlo con la función \texttt{roc.plot()} del paquete
+\texttt{verification}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{roc.plot}\NormalTok{(}\DataTypeTok{x    =}\NormalTok{ modelo_}\DecValTok{1}\OperatorTok{$}\NormalTok{y, }\CommentTok{# tienen el mismo x!}
+         \DataTypeTok{pred =} \KeywordTok{cbind}\NormalTok{(}\KeywordTok{predict.glm}\NormalTok{(modelo_}\DecValTok{1}\NormalTok{, }\DataTypeTok{type=}\StringTok{"response"}\NormalTok{),}
+                      \KeywordTok{predict.glm}\NormalTok{(modelo_}\DecValTok{2}\NormalTok{, }\DataTypeTok{type=}\StringTok{"response"}\NormalTok{),}
+                      \KeywordTok{predict.glm}\NormalTok{(modelo_}\DecValTok{3}\NormalTok{, }\DataTypeTok{type=}\StringTok{"response"}\NormalTok{)),}
+         \DataTypeTok{threshold =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{, }\FloatTok{0.1}\NormalTok{),}\DataTypeTok{legend =}\NormalTok{ T, }\DataTypeTok{show.thres =}\NormalTok{ F,}
+         \DataTypeTok{xlab=}\StringTok{"Ratio de falsas alarmas"}\NormalTok{, }
+         \DataTypeTok{ylab=}\StringTok{"Ratio de aciertos"}\NormalTok{,}
+         \DataTypeTok{leg.text =} \KeywordTok{c}\NormalTok{(}\StringTok{"Modelo 1"}\NormalTok{,}\StringTok{"Modelo 2"}\NormalTok{, }\StringTok{"Modelo 3"}\NormalTok{), }
+         \DataTypeTok{main=}\StringTok{"ROC plot - Modelos 1-3 en base a Mainwaring y Perez Liñan (2013)"}\NormalTok{)}
+\NormalTok{## Warning in cbind(predict.glm(modelo_1, type = "response"),}
+\NormalTok{## predict.glm(modelo_2, : number of rows of result is not a multiple of}
+\NormalTok{## vector length (arg 3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{adp-bookdown_files/figure-latex/bin-rocplot-1} 
+
+}
+
+\caption{Roc Plot de nuestros modelos.}\label{fig:bin-rocplot}
+\end{figure}
+
+En el eje vertical tenemos la \emph{sensibilidad} del modelo mientras
+que en el eje horizontal tenemos (1-\emph{especificidad}) del modelo. La
+sensibilidad es la razón entre los verdaderos positivos (o sea, aquellas
+observaciones predichas como ``1'', que realmente eran ``1'' en la base
+de datos), y la suma de los verdaderos postivos más los falsos negativos
+(aquellos preichos como ``0'' que en verdad eran ``1''). La
+especificidad es la razón entre los verdaderos negativos (aquellas
+observaciones predichas como ``0'' que eran ``0'' en la base de datos) y
+la suma de los falsos positivos (aquellas observaciones predichas como
+``1'' que en verdad eran ``0'') sumado a los verdaderos negativos.
+
+\subsection{Separation plots}\label{separation-plots}
+
+Nótese cómo ocupamos el argumento \texttt{type\ =\ "bands"}, en tanto
+nuestro n es muy alto.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{separationplot}\NormalTok{(}\DataTypeTok{pred    =} \KeywordTok{predict.glm}\NormalTok{(modelo_}\DecValTok{1}\NormalTok{, }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{),}
+               \DataTypeTok{actual  =} \KeywordTok{as.vector}\NormalTok{(modelo_}\DecValTok{1}\OperatorTok{$}\NormalTok{y),}
+               \DataTypeTok{type    =} \StringTok{"bands"}\NormalTok{,}
+               \DataTypeTok{newplot =}\NormalTok{ F, }
+               \DataTypeTok{heading =} \StringTok{"Separation plot - Modelo 1 en base a Mainwaring y Perez Liñan (2013)"}\NormalTok{)}
+
+\KeywordTok{separationplot}\NormalTok{(}\DataTypeTok{pred    =} \KeywordTok{predict.glm}\NormalTok{(modelo_}\DecValTok{3}\NormalTok{, }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{),}
+               \DataTypeTok{actual  =} \KeywordTok{as.vector}\NormalTok{(modelo_}\DecValTok{3}\OperatorTok{$}\NormalTok{y),}
+               \DataTypeTok{type    =} \StringTok{"bands"}\NormalTok{,}
+               \DataTypeTok{newplot =}\NormalTok{ F, }
+               \DataTypeTok{heading =} \StringTok{"Separation plot - Modelo 3 en base a a Mainwaring y Perez Liñan (2013)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{adp-bookdown_files/figure-latex/bin-sepplots-1} \includegraphics{adp-bookdown_files/figure-latex/bin-sepplots-2} 
+
+}
+
+\caption{Separation plots de nuestros modelos.}\label{fig:bin-sepplots}
+\end{figure}
+
+\chapter{Modelos de supervivencia}\label{surv}
+
+Hay una serie de preguntas recurrentes al análisis de datos políticos
+que aún no hemos cubierto. Muchas veces nos interesa saber por qué
+ciertos eventos duran lo que duran, o porqué algunas observaciones duran
+más que otras. ¿Por qué la paz es tan duradera entre algunos países
+mientras que otros guerrean con frecuencia? ¿Cuál es la probabilidad de
+que Turquía ingrese a la ingresar a la Unión Europea en 2018? ¿Por qué
+algunos legisladores permanecen en sus cargos por varios periodos
+consecutivos mientras que otros no logran reelegirse tan solo una vez?
+¿Cuánto demora un sindicato en entrar en huelga durante una crisis
+económica?
+
+Todas estas preguntas tienen en común que la duración y el momento de
+ocurrencia de un evento son parte de la respuesta que buscamos.
+Necesitamos un modelo que nos permita llegar a esta respuesta. Janet
+Box-Steffensmeier, la principal referencia en Ciencia Política de este
+método, se refiere a ellos a ``modelos de eventos históricos'' aunque
+buena parte de la literatura los llama modelos de supervivencia o
+modelos de duración. Si bien en la Ciencia Política no son modelos tan
+utilizados como uno creería (en el fondo, casi todas las preguntas que
+nos hacemos pueden ser reformuladas en una pregunta sobre la duración
+del evento), las ciencias médicas han explorado estos métodos en
+profundidad, y muchas las referencias que uno encuentra en R sobre
+paquetes accesorios a estos modelos son de departamentos bioestadísticos
+y médicos. De allí que ``modelos de supervivencia'' sea el nombre más
+frecuentemente utilizado para estos modelos, ya que en medicina comenzó
+a utilizárselos para modelar qué variables afectaban la sobrevida de sus
+pacientes enfermos.
+
+Podemos tener dos tipos de bases de datos para estos problemas. Por un
+lado podemos tener una base en formato de panel en el que para un
+momento dado nuestra variable dependiente codifica si el evento ha
+ocurrido (=1) o no (=0). Así, por ejemplo, podemos tener una muestra de
+veinte países para cincuenta años (1965-2015) en los que nuestra
+variable de interés es si el país ha implementado una reforma
+constitucional. La variable independiente asumirá el valor 1 para el año
+1994 en Argentina, pero será 0 para el resto de los años en este país.
+Por otro lado, podemos tener una base de datos transversal en la que
+cada observación aparece codificada apenas una vez. En este caso
+necesitamos, además de la variable que nos dirá si en el periodo de
+interés el evento ocurrió o no para cada observación (por ejemplo,
+Argentina debería ser codificada como ``1''), una variable extra que
+codifique el tiempo de ``supervivencia'' de cada observación, es decir,
+cuánto tiempo pasó hasta que finalmente el evento sucedió. Para el caso
+de Argentina, esta variable codificará 29 (años), que es lo que demoró
+en implementarse una reforma constitucional desde 1965. La elección del
+año de partida, como podrá sospechar, es decisión del investigador, pero
+tiene un efecto enorme sobre nuestros resultados.
+
+Supongamos que nos hacemos la pregunta que se hizo David Altman: ``¿Por
+qué algunos países demoran menos que otros en implementar instancias de
+democracia directa?''. Para ello tenemos una base de datos en formato de
+panel que parte del año 1900 y que llega a 2016 para 202 países (algunas
+observaciones, como la Unión Soviética se transforman en otras
+observaciones a partir de un determinado año en que dejan de existir).
+Al observar sus datos uno nota algo que probablemente también te suceda
+en tu base de datos. Para el año 2016 apenas un pequeño porcentaje de
+países había implementado este tipo de mecanismos (27\% para ser más
+precisos) pero la base está censurada ya que a partir de ese año no
+sabemos que ha ocurrido con los países que aún no han implementado
+mecanismos de democracia directa. No todas las observaciones han
+``muerto'' aún, ¿cómo saber cuándo lo harán? Ésta es una pregunta
+válida, que podremos responder con este tipo de modelos, ya que podemos
+calcular el tiempo que demorará cada uno de los países censurados en
+nuestra muestra (con la información que le damos al modelo, que siempre
+es incompleta).
+
+En nuestra base de datos tendremos, al menos, tres tipos de
+observaciones (ver figura x): (a) aquellas que, para el momento en que
+tenemos datos ya estaban en la muestra, aunque no siempre sabremos hace
+cuanto que ``existen'' (en la base de datos de Altman, por ejemplo,
+México ya existía como entidad política en 1900, cuando su base de datos
+parte. Sabemos que la Primera República Federal existió como entidad
+política desde octubre de 1824, por lo que México sería codificado como
+existente a partir de esa fecha). Lo que sí sabemos es que en 2012, por
+primera vez, México implementó una iniciativa de democracia directa, lo
+que define como positiva la ocurrencia del evento que nos interesa
+medir; (b) Algunas observaciones estarán desde el comienzo de la
+muestra, y existirán hasta el último momento sin haber registrado el
+evento de interés. Tal es el caso, en la muestra de Altman, de Argentina
+que ya en 1900 está registrado en la base, y hasta el último año de la
+muestra no había registrado instancias de democracia directa, lo que la
+transforma en una observación censurada; (c) Algunas observaciones
+pueden entrar ``tarde'' en la muestra. Por ejemplo, Eslovenia entra a la
+muestra de Altman en 1991, que es cuando se independiza de Yugoslavia.
+
+Figura x. (*) hay que hacer un equivalente propio a esta figura.. en el
+que el país 1 entre en t2 a la muestra y el país 4 en t5
+
+(insertar fórmulas a continuación)
+
+Los modelos de supervivencia se interpretan a partir de la probabilidad
+de que en un momento dado el evento de interés ocurra dado que no ha
+ocurrido aun. Esta probabilidad recibe el nombre de tasa de riesgo.
+Partimos sabiendo que tenemos una variable, que llamaremos \(T\), y que
+representa un valor aleatorio positivo y que tiene una distribución de
+probabilidades (correspondiente a la probabilidad del evento ocurrir en
+cada uno de los momentos posibles), que llamaremos \(f(t)\), y que se
+puede expresar de manera acumulada, como una densidad acumulada
+\(F(t)\). Como dijimos que \(T\) es una variable aleatoria, podemos
+calcular su distribución que viene dada por la fórmula, en la que vemos
+que \(F(t)\) viene dada por la probabilidad de que el tiempo de
+supervivencia \(T\) sea menor o igual a un tiempo específico \(t\).
+
+\(F(t)=\int\limits_0^t f(u)d(u)=Pr(T)\leq t)\)
+
+La función de supervivencia \(\hat S(t)\), que es un concepto clave en
+estos modelos, está relacionada a \(F(t)\), ya que
+
+\(\hat S(t)= 1-F(t)=Pr(T\geq t)\)
+
+Es decir, la función de supervivencia es la probabilidad inversa de
+\(F(t)\), pues dice respecto a la probabilidad de que el tiempo de
+supervivencia \(T\) sea mayor o igual un tiempo \(t\) de interés. Para
+el ejemplo concreto de Altman, uno podría preguntarse cuál es la
+probabilidad de un país no implementar un mecanismo de democracia
+directa (lo que sería equivalente a ``sobrevivir'' a dicha
+implementación) siendo que ya ha sobrevivido a los mismos por 30 años. A
+medida que más y más países en la muestra van implementando iniciativas
+de democracia directa, la probabilidad de supervivencia va disminuyendo.
+
+Los coeficientes de los modelos de supervivencia se suelen interpretar
+como tasas de riesgo (o ``hazard rates'' en inglés), que es el cociente
+de la probabilidad de que el evento suceda y la función de supervivencia
+
+\(h(t)=\frac{f(t)}{S(t)}\)
+
+Así, la tasa de riesgo indica la tasa a la que las observaciones
+``mueren'' en nuestra muestra en el momento \(t\), considerando que la
+observación ha sobrevivido hasta el momento \(t\). Veremos más adelante
+como en el ejemplo de Altman podemos interpretar los coeficientes de
+nuestras regresiones como tasas de riesgo. En definitiva, la tasa de
+riesgo \(h(t)\) es el riesgo de que el evento ocurra en un intervalo de
+tiempo determinado, que viene dado por
+
+\(f(t)=\lim_{\bigtriangleup x \to 0} \frac {P(t+\bigtriangleup t > T \geq t)}{\bigtriangleup t}\)
+
+\section{El modelo Cox de riesgos
+proporcionales:}\label{el-modelo-cox-de-riesgos-proporcionales}
+
+Hay dos tipos de modelos de supervivencia, los llamados modelos
+paramétricos y los llamados semi-parametricos. Los primeros son aquellos
+que hacen supuestos sobre las características de la población a la que
+la muestra pertenece. En este caso, los supuestos son sobre el
+``baseline hazard'', es decir, sobre el riesgo de que el evento ocurra
+cuando todas nuestras variables independientes son iguales a cero. El
+tipo de modelo de surpervivencia más común para esta categoría es el
+modelo de Weibull. Por otro lado, los modelos semi-parametricos no hacen
+ningún tipo de asunciones sobre la función de base, ya que ésta es
+estimada a partir de los datos. El ejemplo más famoso de ésta
+especificación es la del modelo de Cox.
+
+El Oxford Handbook sobre metodología política dedica un capítulo entero
+a discutir modelos de supervivencia, y en él se toma una posición fuerte
+en favor de los modelos semi-parametricos. Por un lado, como no se hacen
+presupustos sobre la función del riesgo de base, su estimación es mucho
+más precisa. En una estimación paramétrica, elegir un ``baseline
+hazard'' equivocado siginificará que todo nuestro trabajo analítico
+estará sesgado. La decisión de la forma que adopta la curva de base en
+un modelo de Weibull debería estar orientado por razones teóricas de
+cuál es el efecto de nuestra variable independiente sobre la
+probabilidad de supervivencia de la observación (ver figura x). Sin
+embargo, no siempre hay tales presupuestos. Elegir una especificación
+por Cox nos ahorra de tomar una decisión tan costosa.
+
+Figura x. diferentes riesgos de base en el modelo de Weibull (dibujar
+manualmente)
+
+Una segunda ventaja de los modelos semi-parametricos sobre los
+paramétricos tiene que ver con el presupuesto de riesgos proporcionales.
+Ambos, modelos paramétricos y semi-parametricos asumen que los riesgos
+entre dos individuos cualquiera de la muestra se mantienen constantes a
+lo largo de todo su periodo de supervivencia. Es decir, se asume que la
+curva de riesgo de cada individuo sigue la misma curva en el tiempo.
+Ésta es una asunción cara para trabajos en ciencia política, en los que
+las observaciones cambian en el tiempo y se diferencian unas de otras.
+Piénsense en el trabajo de Altman, por ejemplo. Uno puede teorizar que
+la probabilidad de una iniciativa de democracia directa suceder en el
+tiempo estará afectada por el nivel de solidez de sus instituciones
+democráticas, que podemos medir con algún tipo de variable estándar como
+los 21 puntos de Polity IV o la más reciente medición de V-Dem. Podemos,
+entonces, esperar que, a mayor solidez institucional, mayor probabilidad
+de implementar mecanismos de democracia directa. Sin embargo los valores
+de estas variables no solo difieren ente países, sino que a lo largo del
+tiempo estas variables cambian mucho para un mismo país. Piénsese en
+Colombia, por ejemplo, que en la variable de V-Dem ``v2x\_polyarchy''
+sufrió avances y retrocesos entre 1900 y 2016. Cada vez que el valor de
+esta variable cambia, necesariamente cambia la tasa de riesgo de
+democracia directa para Colombia, rompiendo el presupuesto de
+proporcionalidad de los riesgos (ver figura x).
+
+Figura x. evolución en el tiempo de la variable de V-Dem
+``v2x\_polyarchy'' para Colombia (hacer en R)
+
+La ventaja del modelo de Cox sobre sus contrapartes paramétricas es que
+existen tests para saber si alguna variable de nuestro modelo rompe el
+presupuesto de proporcionalidad de los riesgos, y de esa forma podremos
+corregirlo generando interacciones entre estas variables y variables
+temporales. De esta forma, permitimos que en nuestro modelo haya dos
+tipos de coeficientes: coeficientes constantes en el tiempo, y
+coeficientes cambiantes en el tiempo. Por ejemplo, podemos imaginar que
+ante un aumento brusco en la calidad de las instituciones democráticas
+de un país la tasa de riesgo de implementar democracia directa se
+dispare, pero que dicho efecto de desvanezca en el lapso de cuatro o
+cinco años. La recomendación dada por el Oxford Handbook para una buena
+implementación de modelos de supervivencia es la siguiente. Primero,
+dada las ventajas de los modelos semi-paramétricos sobre los
+paramétricos, se recomienda el uso de Cox sobre Weibull u otro modelo
+paramétrico. Una vez que hemos definido nuestra variable dependiente (el
+evento), el tiempo de ``nacimiento'' y de ``muerte'' de cada
+observación, podemos especificar nuestro modelo. Los coeficientes, se
+recomienda, deben ser interpretados en tasas de riesgo (hazard rates),
+lo que exige exponenciar los coeficientes brutos. Una vez que tenemos el
+modelo que creemos correcto, en función de nuestras intuiciones
+teóricas, es necesario testear que ninguno de los coeficientes viole el
+presupuesto de proporcionalidad de los riesgos. Para ello ejecutamos un
+test de Grambsch y Therneau, o mediante el análisis de los residuos de
+Schoenfeld. Una vez identificados los coeficientes problemáticos,
+permitimos que estos interactúen con el logaritmo natural de la variable
+que mide la duración del evento. De esta forma, permitimos que haya
+coeficientes cuyo efecto se desvanece o se potencia con el tiempo. Una
+vez corregidos los coeficientes problemáticos, podemos si, proceder a
+interpretar nuestro modelo y la función de supervivencia del modelo.
+
+Código en R
+
+\chapter*{Créditos}\label{creditos}
+\addcontentsline{toc}{chapter}{Créditos}
+
+\begin{longtable}[]{@{}cl@{}}
+\toprule
+Recurso & Crédito\tabularnewline
+\midrule
+\endhead
+& Book by UNiCORN from the Noun Project\tabularnewline
+\bottomrule
+\end{longtable}
+
+\bibliography{packages,book}
+
+
+\end{document}

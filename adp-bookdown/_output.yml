@@ -1,0 +1,19 @@
+bookdown::gitbook:
+  css: style.css
+  search: yes
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><b><a href="./index.html">analizaR datos políticos</a></b></li>
+    sharing: no
+    fontsettings:
+      family: serif
+    
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default
