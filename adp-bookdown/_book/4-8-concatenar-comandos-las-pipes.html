@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="analizaR datos políticos" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+<meta name="github-repo" content="rstudio/bookdown-demo" />
+
+<meta name="author" content="Francisco Urdinez y Andrés Cruz" />
+
+<meta name="date" content="2017-12-21" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+
+<title>analizaR datos políticos</title>
+
+<link href="libs/tufte-css-2015.12.29/tufte.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li class="has-sub"><a href="index.html#prefacio"><span class="toc-section-number">1</span> Prefacio</a><ul>
+<li><a href="1-1-agradecimientos.html#agradecimientos"><span class="toc-section-number">1.1</span> Agradecimientos</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-introduccion.html#introduccion"><span class="toc-section-number">2</span> Introducción</a><ul>
+<li><a href="2-1-organizacion-del-libro.html#organizacion-del-libro"><span class="toc-section-number">2.1</span> Organización del libro</a></li>
+<li><a href="2-2-prerrequisitos.html#prerrequisitos"><span class="toc-section-number">2.2</span> Prerrequisitos</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-r-basico.html#r-basico"><span class="toc-section-number">3</span> R básico</a><ul>
+<li class="has-sub"><a href="3-1-instalacion.html#instalacion"><span class="toc-section-number">3.1</span> Instalación</a><ul>
+<li><a href="3-1-instalacion.html#r"><span class="toc-section-number">3.1.1</span> R</a></li>
+<li><a href="3-1-instalacion.html#rstudio"><span class="toc-section-number">3.1.2</span> RStudio</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-2-partes-de-rstudio.html#partes-de-rstudio"><span class="toc-section-number">3.2</span> Partes de RStudio</a><ul>
+<li><a href="3-2-partes-de-rstudio.html#consola"><span class="toc-section-number">3.2.1</span> Consola</a></li>
+<li><a href="3-2-partes-de-rstudio.html#script"><span class="toc-section-number">3.2.2</span> Script</a></li>
+<li><a href="3-2-partes-de-rstudio.html#objetos"><span class="toc-section-number">3.2.3</span> Objetos</a></li>
+<li><a href="3-2-partes-de-rstudio.html#archivos-graficos-paquetes-ayuda"><span class="toc-section-number">3.2.4</span> Archivos / gráficos / paquetes / ayuda</a></li>
+</ul></li>
+<li><a href="3-3-ejercicios.html#ejercicios"><span class="toc-section-number">3.3</span> Ejercicios</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-manejo.html#manejo"><span class="toc-section-number">4</span> Manejo</a><ul>
+<li><a href="4-1-nuestra-base-de-datos.html#nuestra-base-de-datos"><span class="toc-section-number">4.1</span> Nuestra base de datos</a></li>
+<li><a href="4-2-describir-base.html#describir-base"><span class="toc-section-number">4.2</span> Describir base</a></li>
+<li><a href="4-3-ordenar-la-base.html#ordenar-la-base"><span class="toc-section-number">4.3</span> Ordenar la base</a></li>
+<li><a href="4-4-seleccionar-columnas.html#seleccionar-columnas"><span class="toc-section-number">4.4</span> Seleccionar columnas</a></li>
+<li><a href="4-5-renombrar-columnas.html#renombrar-columnas"><span class="toc-section-number">4.5</span> Renombrar columnas</a></li>
+<li><a href="4-6-filtrar-observaciones.html#filtrar-observaciones"><span class="toc-section-number">4.6</span> Filtrar observaciones</a></li>
+<li><a href="4-7-crear-nuevas-variables.html#crear-nuevas-variables"><span class="toc-section-number">4.7</span> Crear nuevas variables</a></li>
+<li><a href="4-8-concatenar-comandos-las-pipes.html#concatenar-comandos-las-pipes"><span class="toc-section-number">4.8</span> Concatenar comandos: las pipes</a></li>
+<li><a href="4-9-ejercicios-1.html#ejercicios-1"><span class="toc-section-number">4.9</span> Ejercicios</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-modelos-binarios.html#modelos-binarios"><span class="toc-section-number">5</span> Modelos binarios</a><ul>
+<li><a href="5-modelos-binarios.html#pseudo-r2"><span class="toc-section-number">5.0.1</span> <span class="math inline">\(Pseudo-R^2\)</span></a></li>
+<li><a href="5-modelos-binarios.html#aic"><span class="toc-section-number">5.0.2</span> AIC</a></li>
+<li><a href="5-modelos-binarios.html#bic"><span class="toc-section-number">5.0.3</span> BIC</a></li>
+<li><a href="5-modelos-binarios.html#brier-score"><span class="toc-section-number">5.0.4</span> Brier Score</a></li>
+<li><a href="5-modelos-binarios.html#porcentaje-de-predicciones-correctas"><span class="toc-section-number">5.0.5</span> Porcentaje de predicciones correctas</a></li>
+<li><a href="5-modelos-binarios.html#roc-plot"><span class="toc-section-number">5.0.6</span> ROC plot</a></li>
+<li><a href="5-modelos-binarios.html#separation-plots"><span class="toc-section-number">5.0.7</span> Separation plots</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-modelos-de-supervivencia.html#modelos-de-supervivencia"><span class="toc-section-number">6</span> Modelos de supervivencia</a><ul>
+<li><a href="6-1-el-modelo-cox-de-riesgos-proporcionales.html#el-modelo-cox-de-riesgos-proporcionales"><span class="toc-section-number">6.1</span> El modelo Cox de riesgos proporcionales:</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="concatenar-comandos-las-pipes" class="section level2">
+<h2><span class="header-section-number">4.8</span> Concatenar comandos: las pipes</h2>
+<p>A menudo no queremos hacer una sola de las operaciones con bases de datos reseñadas antes, sino que una seguidilla de estas. Si quisiéramos crear una nueva base a través de, por ejemplo, (1) seleccionar las variables de país, población y GDP, (2) crear la variable de GDP per capita, y (3) ordenar los países de mayor a menor según GDP per capita, nuestro procedimiento en R sería algo como esto:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qog_mod_seguidilla_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">select</span>(qog_mod, cname, wdi_pop, wdi_gdppppcon2011)
+qog_mod_seguidilla_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">mutate</span>(qog_mod_seguidilla_<span class="dv">1</span>, 
+                               <span class="dt">gdp_ppp_per_capita =</span> wdi_gdppppcon2011<span class="op">/</span>wdi_pop)
+qog_mod_seguidilla_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">arrange</span>(qog_mod_seguidilla_<span class="dv">2</span>, <span class="op">-</span>gdp_ppp_per_capita)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qog_mod_seguidilla_<span class="dv">3</span></code></pre></div>
+<pre><code>## # A tibble: 139 x 4
+##                   cname   wdi_pop wdi_gdppppcon2011 gdp_ppp_per_capita
+##                   &lt;chr&gt;     &lt;int&gt;             &lt;dbl&gt;              &lt;dbl&gt;
+##  1                Qatar   2101288      2.803021e+11          133395.36
+##  2           Luxembourg    543360      4.884228e+10           89889.36
+##  3            Singapore   5399200      4.196306e+11           77720.89
+##  4               Kuwait   3593689      2.665846e+11           74181.33
+##  5               Norway   5079623      3.216514e+11           63321.91
+##  6 United Arab Emirates   9039978      5.609863e+11           62056.15
+##  7          Switzerland   8089346      4.442016e+11           54911.93
+##  8        United States 316497536      1.623049e+13           51281.58
+##  9         Saudi Arabia  30201052      1.478748e+12           48963.45
+## 10              Ireland   4598294      2.123570e+11           46181.70
+## # ... with 129 more rows</code></pre>
+<p>El lector notará que esto es bastante complicado y nos deja con dos <strong>objetos intermedios</strong> que no nos interesan, “qog_mod_seguidilla_1” y “qog_mod_seguidilla_2”.</p>
+<p>La solución del paquete tidyverse que estamos utilizando son <strong>las pipes</strong>. El lector notará que en las tres funciones de nuestra seguidilla anterior (select, mutate y arrange) el primer argumento es la base de datos a tratar. En vez de crear objetos intermedios podemos “chutear” la base de datos a través de nuestros comandos con pipes, omitiendo los primeros argumentos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qog_mod_seguidilla &lt;-<span class="st"> </span>qog_mod <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(cname, wdi_pop, wdi_gdppppcon2011) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gdp_ppp_per_capita =</span> wdi_gdppppcon2011<span class="op">/</span>wdi_pop) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>gdp_ppp_per_capita)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qog_mod_seguidilla</code></pre></div>
+<pre><code>## # A tibble: 139 x 4
+##                   cname   wdi_pop wdi_gdppppcon2011 gdp_ppp_per_capita
+##                   &lt;chr&gt;     &lt;int&gt;             &lt;dbl&gt;              &lt;dbl&gt;
+##  1                Qatar   2101288      2.803021e+11          133395.36
+##  2           Luxembourg    543360      4.884228e+10           89889.36
+##  3            Singapore   5399200      4.196306e+11           77720.89
+##  4               Kuwait   3593689      2.665846e+11           74181.33
+##  5               Norway   5079623      3.216514e+11           63321.91
+##  6 United Arab Emirates   9039978      5.609863e+11           62056.15
+##  7          Switzerland   8089346      4.442016e+11           54911.93
+##  8        United States 316497536      1.623049e+13           51281.58
+##  9         Saudi Arabia  30201052      1.478748e+12           48963.45
+## 10              Ireland   4598294      2.123570e+11           46181.70
+## # ... with 129 more rows</code></pre>
+<p>Las pipes pueden leerse como “pero luego”. Nuestra seguidilla anterior, entonces, se leería de la siguiente forma:</p>
+<blockquote>
+<p>qog_mod_seguilla es igual a qog_mod; pero luego seleccionamos las variables cname, wdi_pop, wdi_gdppppcon2011; pero luego creamos la variable gdp_ppp_per_capita; pero luego ordenamos la base en forma decreciente según gdp_ppp_per_capita.</p>
+</blockquote>
+</div>
+<p style="text-align: center;">
+<a href="4-7-crear-nuevas-variables.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-9-ejercicios-1.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+
+</body>
+<!-- </html> -->

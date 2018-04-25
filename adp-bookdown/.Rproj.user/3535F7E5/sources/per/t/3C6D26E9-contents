@@ -1,0 +1,69 @@
+library(tidyverse)
+library(survival)
+library(haven)
+
+#nota antes de empezar: hay peque?as diferencias entre Stata y R
+https://stackoverflow.com/questions/33966004/cox-proportional-hazard-model-in-r-vs-stata
+
+
+#definir variables
+data<-read_dta("C:/Users/user/Desktop/Data_CH3.dta")
+attach(data)
+data$end_date <- data$`_t`
+data$start_date <- data$`_t0`
+time<-enters
+event<-cic_dummy
+
+
+#summary
+summary(event)
+#apenas un 6% de las observaciones aplic? mecanismos de democracia directa
+
+summary(time)
+#en promedio, cada pa?s est? en la muestra por 73 a?os
+
+
+#Figura 1.3: curva de supervivencia de Kaplan-Meier
+  #opcion A
+library(rms)
+figura1_3<-npsurv(Surv(start_date, end_date, cic_dummy)~dem_positive, type = "kaplan-meier", conf.type = "log", data=data)
+summary(figura1_3)
+survplot(figura1_3, main=expression(paste("title")),  xlab="Time", ylab="Survival Probabiliy",  col=1:2)
+
+  #opcion B
+library(survminer)
+ggsurvplot(figura1_3, risk.table=T, data=data)
+
+#Cox proportional hazard models
+
+#Model 1
+
+x1<-cbind(dem_positive, dem_negative, memory, v2x_polyarchy, capabilities_geo_ide, occur_geo_ide)
+cox_m1 <- coxph(Surv(start_date, end_date, cic_dummy) ~ x1, data = data, robust = TRUE, method="breslow")
+summary(cox_m1)
+
+#Model 2
+x2<-cbind(x1, c_pos_capabilities, c_pos_occurrences)
+cox_m2<-coxph(Surv(start_date, end_date, cic_dummy)~ x2, method="breslow", data=data )
+summary(cox_m2)
+
+#Model 3
+x3<-cbind(x2, c_pos_memory)
+cox_m3<-coxph(Surv(start_date, end_date, cic_dummy)~ x3, method="breslow", data=data  )
+summary(cox_m3)
+
+#Model 4
+x4<-cbind(x3, log_pop)
+cox_m4<-coxph(Surv(start_date, end_date, cic_dummy)~ x4, method="breslow", data=data  )
+summary(cox_m4)
+
+#Model 5
+x5<-cbind(x4, c_gbr)
+cox_m5<-coxph(Surv(start_date, end_date, cic_dummy)~ x5, method="breslow", data=data  )
+summary(cox_m5)
+
+#Tabla 1.2
+
+library(stargazer)
+stargazer(cox_m1, cox_m2, cox_m3, cox_m4, cox_m5, type = "text")
+

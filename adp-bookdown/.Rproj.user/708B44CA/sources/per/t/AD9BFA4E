@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1513940514634.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "528749326",
+    "id" : "AD9BFA4E",
+    "lastKnownWriteTime" : 1513944816,
+    "last_content_update" : 1513944816156,
+    "path" : "~/Dropbox/Proyecto de libro/adp-bookdown/04-manejo.Rmd",
+    "project_path" : "04-manejo.Rmd",
+    "properties" : {
+        "cursorPosition" : "130,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

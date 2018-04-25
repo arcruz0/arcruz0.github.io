@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="analizaR datos políticos" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+<meta name="github-repo" content="rstudio/bookdown-demo" />
+
+<meta name="author" content="Francisco Urdinez y Andrés Cruz" />
+
+<meta name="date" content="2017-12-21" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+
+<title>analizaR datos políticos</title>
+
+<link href="libs/tufte-css-2015.12.29/tufte.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li class="has-sub"><a href="index.html#prefacio"><span class="toc-section-number">1</span> Prefacio</a><ul>
+<li><a href="1-1-agradecimientos.html#agradecimientos"><span class="toc-section-number">1.1</span> Agradecimientos</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-introduccion.html#introduccion"><span class="toc-section-number">2</span> Introducción</a><ul>
+<li><a href="2-1-organizacion-del-libro.html#organizacion-del-libro"><span class="toc-section-number">2.1</span> Organización del libro</a></li>
+<li><a href="2-2-prerrequisitos.html#prerrequisitos"><span class="toc-section-number">2.2</span> Prerrequisitos</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-r-basico.html#r-basico"><span class="toc-section-number">3</span> R básico</a><ul>
+<li class="has-sub"><a href="3-1-instalacion.html#instalacion"><span class="toc-section-number">3.1</span> Instalación</a><ul>
+<li><a href="3-1-instalacion.html#r"><span class="toc-section-number">3.1.1</span> R</a></li>
+<li><a href="3-1-instalacion.html#rstudio"><span class="toc-section-number">3.1.2</span> RStudio</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-2-partes-de-rstudio.html#partes-de-rstudio"><span class="toc-section-number">3.2</span> Partes de RStudio</a><ul>
+<li><a href="3-2-partes-de-rstudio.html#consola"><span class="toc-section-number">3.2.1</span> Consola</a></li>
+<li><a href="3-2-partes-de-rstudio.html#script"><span class="toc-section-number">3.2.2</span> Script</a></li>
+<li><a href="3-2-partes-de-rstudio.html#objetos"><span class="toc-section-number">3.2.3</span> Objetos</a></li>
+<li><a href="3-2-partes-de-rstudio.html#archivos-graficos-paquetes-ayuda"><span class="toc-section-number">3.2.4</span> Archivos / gráficos / paquetes / ayuda</a></li>
+</ul></li>
+<li><a href="3-3-ejercicios.html#ejercicios"><span class="toc-section-number">3.3</span> Ejercicios</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-manejo.html#manejo"><span class="toc-section-number">4</span> Manejo</a><ul>
+<li><a href="4-1-nuestra-base-de-datos.html#nuestra-base-de-datos"><span class="toc-section-number">4.1</span> Nuestra base de datos</a></li>
+<li><a href="4-2-describir-base.html#describir-base"><span class="toc-section-number">4.2</span> Describir base</a></li>
+<li><a href="4-3-ordenar-la-base.html#ordenar-la-base"><span class="toc-section-number">4.3</span> Ordenar la base</a></li>
+<li><a href="4-4-seleccionar-columnas.html#seleccionar-columnas"><span class="toc-section-number">4.4</span> Seleccionar columnas</a></li>
+<li><a href="4-5-renombrar-columnas.html#renombrar-columnas"><span class="toc-section-number">4.5</span> Renombrar columnas</a></li>
+<li><a href="4-6-filtrar-observaciones.html#filtrar-observaciones"><span class="toc-section-number">4.6</span> Filtrar observaciones</a></li>
+<li><a href="4-7-crear-nuevas-variables.html#crear-nuevas-variables"><span class="toc-section-number">4.7</span> Crear nuevas variables</a></li>
+<li><a href="4-8-concatenar-comandos-las-pipes.html#concatenar-comandos-las-pipes"><span class="toc-section-number">4.8</span> Concatenar comandos: las pipes</a></li>
+<li><a href="4-9-ejercicios-1.html#ejercicios-1"><span class="toc-section-number">4.9</span> Ejercicios</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-modelos-binarios.html#modelos-binarios"><span class="toc-section-number">5</span> Modelos binarios</a><ul>
+<li><a href="5-modelos-binarios.html#pseudo-r2"><span class="toc-section-number">5.0.1</span> <span class="math inline">\(Pseudo-R^2\)</span></a></li>
+<li><a href="5-modelos-binarios.html#aic"><span class="toc-section-number">5.0.2</span> AIC</a></li>
+<li><a href="5-modelos-binarios.html#bic"><span class="toc-section-number">5.0.3</span> BIC</a></li>
+<li><a href="5-modelos-binarios.html#brier-score"><span class="toc-section-number">5.0.4</span> Brier Score</a></li>
+<li><a href="5-modelos-binarios.html#porcentaje-de-predicciones-correctas"><span class="toc-section-number">5.0.5</span> Porcentaje de predicciones correctas</a></li>
+<li><a href="5-modelos-binarios.html#roc-plot"><span class="toc-section-number">5.0.6</span> ROC plot</a></li>
+<li><a href="5-modelos-binarios.html#separation-plots"><span class="toc-section-number">5.0.7</span> Separation plots</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-modelos-de-supervivencia.html#modelos-de-supervivencia"><span class="toc-section-number">6</span> Modelos de supervivencia</a><ul>
+<li><a href="6-1-el-modelo-cox-de-riesgos-proporcionales.html#el-modelo-cox-de-riesgos-proporcionales"><span class="toc-section-number">6.1</span> El modelo Cox de riesgos proporcionales:</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="nuestra-base-de-datos" class="section level2">
+<h2><span class="header-section-number">4.1</span> Nuestra base de datos</h2>
+<p>Para este capítulo usaremos una sección de la base de datos de <em>Quality of Government</em>(QoG, 2017)[<a href="https://qog.pol.gu.se" class="uri">https://qog.pol.gu.se</a>], un proyecto que registra diversos datos de países. Sus primeras observaciones son las siguientes:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">cname</th>
+<th align="right">wdi_gdppppcon2011</th>
+<th align="right">wdi_pop</th>
+<th align="right">ti_cpi</th>
+<th align="right">lp_muslim80</th>
+<th align="right">fh_ipolity2</th>
+<th align="left">region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="right">57566228480</td>
+<td align="right">30682500</td>
+<td align="right">8</td>
+<td align="right">99.3</td>
+<td align="right">2.018881</td>
+<td align="left">Southern Asia</td>
+</tr>
+<tr class="even">
+<td align="left">Albania</td>
+<td align="right">28715335680</td>
+<td align="right">2897366</td>
+<td align="right">31</td>
+<td align="right">20.5</td>
+<td align="right">8.083333</td>
+<td align="left">Southern Europe</td>
+</tr>
+<tr class="odd">
+<td align="left">Algeria</td>
+<td align="right">507901640704</td>
+<td align="right">38186136</td>
+<td align="right">36</td>
+<td align="right">99.1</td>
+<td align="right">4.250000</td>
+<td align="left">Northern Africa</td>
+</tr>
+<tr class="even">
+<td align="left">Angola</td>
+<td align="right">152477499392</td>
+<td align="right">23448202</td>
+<td align="right">23</td>
+<td align="right">0.0</td>
+<td align="right">3.250000</td>
+<td align="left">Middle Africa</td>
+</tr>
+<tr class="odd">
+<td align="left">Australia</td>
+<td align="right">990474338304</td>
+<td align="right">23125868</td>
+<td align="right">81</td>
+<td align="right">0.2</td>
+<td align="right">10.000000</td>
+<td align="left">Australia and New Zealand</td>
+</tr>
+<tr class="even">
+<td align="left">Austria</td>
+<td align="right">373413642240</td>
+<td align="right">8479375</td>
+<td align="right">69</td>
+<td align="right">0.6</td>
+<td align="right">10.000000</td>
+<td align="left">Western Europe</td>
+</tr>
+</tbody>
+</table>
+<p>Las variables son las siguientes:</p>
+<table>
+<colgroup>
+<col width="17%" />
+<col width="82%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>variable</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cname</td>
+<td>Nombre del país</td>
+</tr>
+<tr class="even">
+<td>wdi_gdppppcon2011</td>
+<td>GDP PPP, en dólares del 2011, según los datos de WDI (p. 635 del codebook)</td>
+</tr>
+<tr class="odd">
+<td>wdi_pop</td>
+<td>Población, según los datos de WDI (p. 665)</td>
+</tr>
+<tr class="even">
+<td>ti_cpi</td>
+<td>Índice de Percepción de la Corrupción de TI. Va de 0 a 100, con 0 lo más corrupto (p. 560)</td>
+</tr>
+<tr class="odd">
+<td>lp_muslim80</td>
+<td>Porcentaje de población de religión musulmana, para 1980, según LP (p. 447)</td>
+</tr>
+<tr class="even">
+<td>fh_ipolity2</td>
+<td>Nivel de democracia según FH. Va de 0 a 10, con 0 como menos democrático (p. 291)</td>
+</tr>
+<tr class="odd">
+<td>region</td>
+<td>Región del país, según WDI (añadida a la base)</td>
+</tr>
+</tbody>
+</table>
+<p>Para comenzar a trabajar carguemos el paquete <code>tidyverse</code>, uno de los centrales del libro, que nos dará funciones útiles para trabajar con nuestra base datos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<p>Ahora carguemos la base de datos a nuestro ambiente de trabajo en R. Vamos a llamarla “qog_mod” (QoG modificada). El archivo está en formato .csv, por lo que utilizaremos la función del tidyverse <code>read_csv()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qog_mod &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;00-datos/04_qog_mod.csv&quot;</span>)</code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   cname = col_character(),
+##   wdi_gdppppcon2011 = col_double(),
+##   wdi_pop = col_integer(),
+##   ti_cpi = col_double(),
+##   lp_muslim80 = col_double(),
+##   fh_ipolity2 = col_double(),
+##   region = col_character()
+## )</code></pre>
+<p>(hay que decidir cómo se va a hacer esto: desde carpeta local, url, paquete, etc.) <em>(F:opino que creemos un url del libro y usemos los html, en el paquete ADP solo pondria funciones)</em></p>
+</div>
+<p style="text-align: center;">
+<a href="4-manejo.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-2-describir-base.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+
+</body>
+<!-- </html> -->

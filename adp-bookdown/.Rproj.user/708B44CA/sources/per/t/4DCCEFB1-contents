@@ -1,0 +1,10 @@
+book_filename: "adp-bookdown"
+before_chapter_script: "_before.R"
+delete_merged_file: true
+language:
+  label:
+    fig: 'Figura '
+    tab: 'Tabla '
+    eq: 'Fórmula '
+  ui:
+    chapter_name: "Capítulo "

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1513940550314.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1756743078",
+    "id" : "2C256282",
+    "lastKnownWriteTime" : 1513941252,
+    "last_content_update" : 1513988799972,
+    "path" : "~/Dropbox/Proyecto de libro/adp-bookdown/03-rbasico.Rmd",
+    "project_path" : "03-rbasico.Rmd",
+    "properties" : {
+        "cursorPosition" : "37,20",
+        "scrollLine" : "31"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

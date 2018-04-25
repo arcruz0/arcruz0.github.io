@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1513931799843.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1252315416",
+    "id" : "93258561",
+    "lastKnownWriteTime" : 1513940259,
+    "last_content_update" : 1513940259990,
+    "path" : "~/Dropbox/Proyecto de libro/adp-bookdown/01-prefacio.Rmd",
+    "project_path" : "01-prefacio.Rmd",
+    "properties" : {
+        "cursorPosition" : "14,634",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
