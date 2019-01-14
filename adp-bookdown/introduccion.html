@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>analizaR datos políticos</title>
+  <title>AnalizaR datos políticos</title>
   <meta name="description" content="Proyecto de libro">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
-  <meta property="og:title" content="analizaR datos políticos" />
+  <meta property="og:title" content="AnalizaR datos políticos" />
   <meta property="og:type" content="book" />
   
   
@@ -17,15 +17,14 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="analizaR datos políticos" />
+  <meta name="twitter:title" content="AnalizaR datos políticos" />
   
   <meta name="twitter:description" content="Proyecto de libro" />
   
 
-<meta name="author" content="Francisco Urdinez y Andrés Cruz">
+<meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (editores)">
 
 
-<meta name="date" content="2017-12-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,44 +46,76 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -103,7 +134,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><b><a href="./index.html">analizaR datos políticos</a></b></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Inicio</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Tabla de contenidos</a></li>
 <li class="chapter" data-level="1" data-path="prefacio.html"><a href="prefacio.html"><i class="fa fa-check"></i><b>1</b> Prefacio</a><ul>
 <li class="chapter" data-level="1.1" data-path="prefacio.html"><a href="prefacio.html#agradecimientos"><i class="fa fa-check"></i><b>1.1</b> Agradecimientos</a></li>
 </ul></li>
@@ -111,7 +142,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1" data-path="introduccion.html"><a href="introduccion.html#organizacion-del-libro"><i class="fa fa-check"></i><b>2.1</b> Organización del libro</a></li>
 <li class="chapter" data-level="2.2" data-path="introduccion.html"><a href="introduccion.html#prerrequisitos"><i class="fa fa-check"></i><b>2.2</b> Prerrequisitos</a></li>
 </ul></li>
-<li class="part"><span><b>I Manejo de datos</b></span></li>
+<li class="part"><span><b>I Introducción a R</b></span></li>
 <li class="chapter" data-level="3" data-path="rbas.html"><a href="rbas.html"><i class="fa fa-check"></i><b>3</b> R básico</a><ul>
 <li class="chapter" data-level="3.1" data-path="rbas.html"><a href="rbas.html#instalacion"><i class="fa fa-check"></i><b>3.1</b> Instalación</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="rbas.html"><a href="rbas.html#r"><i class="fa fa-check"></i><b>3.1.1</b> R</a></li>
@@ -125,38 +156,157 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="rbas.html"><a href="rbas.html#ejercicios"><i class="fa fa-check"></i><b>3.3</b> Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="manejo.html"><a href="manejo.html"><i class="fa fa-check"></i><b>4</b> Manejo</a><ul>
-<li class="chapter" data-level="4.1" data-path="manejo.html"><a href="manejo.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>4.1</b> Nuestra base de datos</a></li>
-<li class="chapter" data-level="4.2" data-path="manejo.html"><a href="manejo.html#describir-la-base"><i class="fa fa-check"></i><b>4.2</b> Describir la base</a></li>
-<li class="chapter" data-level="4.3" data-path="manejo.html"><a href="manejo.html#ordenar-la-base-con-arrange"><i class="fa fa-check"></i><b>4.3</b> Ordenar la base con <code>arrange()</code></a></li>
-<li class="chapter" data-level="4.4" data-path="manejo.html"><a href="manejo.html#seleccionar-columnas-de-la-base-con-select"><i class="fa fa-check"></i><b>4.4</b> Seleccionar columnas de la base con <code>select()</code></a></li>
-<li class="chapter" data-level="4.5" data-path="manejo.html"><a href="manejo.html#renombrar-columnas-de-la-base-con-rename"><i class="fa fa-check"></i><b>4.5</b> Renombrar columnas de la base con <code>rename()</code></a></li>
-<li class="chapter" data-level="4.6" data-path="manejo.html"><a href="manejo.html#filtrar-observaciones-de-la-base-con-filter"><i class="fa fa-check"></i><b>4.6</b> Filtrar observaciones de la base con <code>filter()</code></a></li>
-<li class="chapter" data-level="4.7" data-path="manejo.html"><a href="manejo.html#crear-nuevas-variables-en-la-base-con-mutate"><i class="fa fa-check"></i><b>4.7</b> Crear nuevas variables en la base con <code>mutate()</code></a></li>
-<li class="chapter" data-level="4.8" data-path="manejo.html"><a href="manejo.html#concatenar-comandos-las-pipes"><i class="fa fa-check"></i><b>4.8</b> Concatenar comandos: las pipes (<code>%&gt;%</code>)</a></li>
-<li class="chapter" data-level="4.9" data-path="manejo.html"><a href="manejo.html#ejercicios-1"><i class="fa fa-check"></i><b>4.9</b> Ejercicios</a></li>
+<li class="chapter" data-level="4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html"><i class="fa fa-check"></i><b>4</b> Manejo de datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>4.1</b> Nuestra base de datos</a></li>
+<li class="chapter" data-level="4.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#describir-la-base"><i class="fa fa-check"></i><b>4.2</b> Describir la base</a></li>
+<li class="chapter" data-level="4.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ordenar-la-base-con-arrange"><i class="fa fa-check"></i><b>4.3</b> Ordenar la base con <code>arrange()</code></a></li>
+<li class="chapter" data-level="4.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#seleccionar-columnas-de-la-base-con-select"><i class="fa fa-check"></i><b>4.4</b> Seleccionar columnas de la base con <code>select()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#renombrar-columnas-de-la-base-con-rename"><i class="fa fa-check"></i><b>4.5</b> Renombrar columnas de la base con <code>rename()</code></a></li>
+<li class="chapter" data-level="4.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#filtrar-observaciones-de-la-base-con-filter"><i class="fa fa-check"></i><b>4.6</b> Filtrar observaciones de la base con <code>filter()</code></a></li>
+<li class="chapter" data-level="4.7" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#crear-nuevas-variables-en-la-base-con-mutate"><i class="fa fa-check"></i><b>4.7</b> Crear nuevas variables en la base con <code>mutate()</code></a></li>
+<li class="chapter" data-level="4.8" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#concatenar-comandos-las-pipes"><i class="fa fa-check"></i><b>4.8</b> Concatenar comandos: las pipes (<code>%&gt;%</code>)</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="5.1" data-path="dataviz.html"><a href="dataviz.html#por-que-quiero-visualizar-mis-datos"><i class="fa fa-check"></i><b>5.1</b> ¿Por qué quiero visualizar mis datos?</a></li>
+<li class="chapter" data-level="5.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>5.2</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-multiverso-ggplotidiano"><i class="fa fa-check"></i><b>5.2.1</b> Las capas del multiverso ggplotidiano</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="dataviz.html"><a href="dataviz.html#elecciones-locales-y-visualizacion-de-datos"><i class="fa fa-check"></i><b>5.3</b> Elecciones locales y visualización de datos</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="dataviz.html"><a href="dataviz.html#grafico-de-barras"><i class="fa fa-check"></i><b>5.3.1</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="5.3.2" data-path="dataviz.html"><a href="dataviz.html#boxplot"><i class="fa fa-check"></i><b>5.3.2</b> Boxplot</a></li>
+<li class="chapter" data-level="5.3.3" data-path="dataviz.html"><a href="dataviz.html#relacion-entre-variables"><i class="fa fa-check"></i><b>5.3.3</b> Relación entre variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="dataviz.html"><a href="dataviz.html#para-seguir-aprendiendo"><i class="fa fa-check"></i><b>5.4</b> Para seguir aprendiendo</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="dataviz.html"><a href="dataviz.html#otros-paquetes"><i class="fa fa-check"></i><b>5.4.1</b> Otros paquetes:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="carga-flujo.html"><a href="carga-flujo.html"><i class="fa fa-check"></i><b>6</b> Carga de bases y flujo de trabajo</a></li>
 <li class="part"><span><b>II Modelos</b></span></li>
-<li class="chapter" data-level="5" data-path="bin.html"><a href="bin.html"><i class="fa fa-check"></i><b>5</b> Modelos binarios</a><ul>
-<li class="chapter" data-level="5.1" data-path="bin.html"><a href="bin.html#conceptos-principales"><i class="fa fa-check"></i><b>5.1</b> Conceptos principales</a></li>
-<li class="chapter" data-level="5.2" data-path="bin.html"><a href="bin.html#aplicacion-en-r"><i class="fa fa-check"></i><b>5.2</b> Aplicación en R</a></li>
-<li class="chapter" data-level="5.3" data-path="bin.html"><a href="bin.html#estimar-los-modelos"><i class="fa fa-check"></i><b>5.3</b> Estimar los modelos</a></li>
-<li class="chapter" data-level="5.4" data-path="bin.html"><a href="bin.html#visualizacion-de-resultados"><i class="fa fa-check"></i><b>5.4</b> Visualización de resultados</a></li>
-<li class="chapter" data-level="5.5" data-path="bin.html"><a href="bin.html#ajuste-de-los-modelos"><i class="fa fa-check"></i><b>5.5</b> Ajuste de los modelos</a></li>
-<li class="chapter" data-level="5.6" data-path="bin.html"><a href="bin.html#bondad-de-ajuste"><i class="fa fa-check"></i><b>5.6</b> Bondad de ajuste</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="bin.html"><a href="bin.html#pseudo-r2"><i class="fa fa-check"></i><b>5.6.1</b> <span class="math inline">\(Pseudo-R^2\)</span></a></li>
-<li class="chapter" data-level="5.6.2" data-path="bin.html"><a href="bin.html#aic"><i class="fa fa-check"></i><b>5.6.2</b> AIC</a></li>
-<li class="chapter" data-level="5.6.3" data-path="bin.html"><a href="bin.html#bic"><i class="fa fa-check"></i><b>5.6.3</b> BIC</a></li>
-<li class="chapter" data-level="5.6.4" data-path="bin.html"><a href="bin.html#brier-score"><i class="fa fa-check"></i><b>5.6.4</b> Brier Score</a></li>
-<li class="chapter" data-level="5.6.5" data-path="bin.html"><a href="bin.html#porcentaje-de-predicciones-correctas"><i class="fa fa-check"></i><b>5.6.5</b> Porcentaje de predicciones correctas</a></li>
-<li class="chapter" data-level="5.6.6" data-path="bin.html"><a href="bin.html#roc-plot"><i class="fa fa-check"></i><b>5.6.6</b> ROC plot</a></li>
-<li class="chapter" data-level="5.6.7" data-path="bin.html"><a href="bin.html#separation-plots"><i class="fa fa-check"></i><b>5.6.7</b> Separation plots</a></li>
+<li class="chapter" data-level="7" data-path="stats.html"><a href="stats.html"><i class="fa fa-check"></i><b>7</b> Estadística inferencial básica</a></li>
+<li class="chapter" data-level="8" data-path="lineal.html"><a href="lineal.html"><i class="fa fa-check"></i><b>8</b> Modelos lineales</a><ul>
+<li class="chapter" data-level="8.1" data-path="lineal.html"><a href="lineal.html#introduccion-1"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
+<li class="chapter" data-level="8.2" data-path="lineal.html"><a href="lineal.html#aplicacion-en-r"><i class="fa fa-check"></i><b>8.2</b> Aplicación en R</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos"><i class="fa fa-check"></i><b>8.2.1</b> Estadísticos Descriptivos</a></li>
+<li class="chapter" data-level="8.2.2" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos-y-distribucion-de-las-variables-del-modelo"><i class="fa fa-check"></i><b>8.2.2</b> Estadísticos descriptivos y distribución de las variables del modelo</a></li>
+<li class="chapter" data-level="8.2.3" data-path="lineal.html"><a href="lineal.html#matriz-de-correlacion-de-variables-independientes"><i class="fa fa-check"></i><b>8.2.3</b> Matriz de correlación de variables independientes</a></li>
+<li class="chapter" data-level="8.2.4" data-path="lineal.html"><a href="lineal.html#distribucion-de-las-variables-de-interes"><i class="fa fa-check"></i><b>8.2.4</b> Distribución de las variables de interés</a></li>
+<li class="chapter" data-level="8.2.5" data-path="lineal.html"><a href="lineal.html#relacion-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>8.2.5</b> Relación entre la variable dependiente e independiente</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="lineal.html"><a href="lineal.html#modelo-bivariado-regresion-lineal-simple"><i class="fa fa-check"></i><b>8.3</b> Modelo bivariado: regresión lineal simple</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="lineal.html"><a href="lineal.html#estimando-un-modelo-lineal-en-r"><i class="fa fa-check"></i><b>8.3.1</b> Estimando un modelo lineal en R</a></li>
+<li class="chapter" data-level="8.3.2" data-path="lineal.html"><a href="lineal.html#representacion-grafica."><i class="fa fa-check"></i><b>8.3.2</b> Representación gráfica.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="lineal.html"><a href="lineal.html#modelo-multivariado-regresion-multiple"><i class="fa fa-check"></i><b>8.4</b> Modelo multivariado: regresión múltiple</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="lineal.html"><a href="lineal.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>8.4.1</b> Ajuste del modelo</a></li>
+<li class="chapter" data-level="8.4.2" data-path="lineal.html"><a href="lineal.html#inferencia-en-modelos-lineales-multiples"><i class="fa fa-check"></i><b>8.4.2</b> Inferencia en modelos lineales múltiples</a></li>
+<li class="chapter" data-level="8.4.3" data-path="lineal.html"><a href="lineal.html#supuestos-de-ols"><i class="fa fa-check"></i><b>8.4.3</b> Supuestos de OLS</a></li>
+<li class="chapter" data-level="8.4.4" data-path="lineal.html"><a href="lineal.html#errores-estandares-robustos"><i class="fa fa-check"></i><b>8.4.4</b> Errores estándares robustos</a></li>
+<li class="chapter" data-level="8.4.5" data-path="lineal.html"><a href="lineal.html#un-caso-especial-de-heterocedasticidad-la-varianza-del-error-asociada-a-clusters"><i class="fa fa-check"></i><b>8.4.5</b> Un caso especial de Heterocedasticidad: la varianza del error asociada a clusters</a></li>
+<li class="chapter" data-level="8.4.6" data-path="lineal.html"><a href="lineal.html#un-supuesto-adicional-para-poder-realizar-inferencia"><i class="fa fa-check"></i><b>8.4.6</b> Un supuesto adicional para poder realizar <strong>inferencia</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="lineal.html"><a href="lineal.html#seleccion-de-casos"><i class="fa fa-check"></i><b>8.5</b> Selección de casos</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="lineal.html"><a href="lineal.html#que-casos-seleccionar"><i class="fa fa-check"></i><b>8.5.1</b> ¿Qué casos seleccionar?</a></li>
+<li class="chapter" data-level="8.5.2" data-path="lineal.html"><a href="lineal.html#casos-tipicos"><i class="fa fa-check"></i><b>8.5.2</b> Casos Típicos</a></li>
+<li class="chapter" data-level="8.5.3" data-path="lineal.html"><a href="lineal.html#casos-desviados"><i class="fa fa-check"></i><b>8.5.3</b> Casos desviados</a></li>
+<li class="chapter" data-level="8.5.4" data-path="lineal.html"><a href="lineal.html#casos-influyentes"><i class="fa fa-check"></i><b>8.5.4</b> Casos Influyentes</a></li>
+<li class="chapter" data-level="8.5.5" data-path="lineal.html"><a href="lineal.html#casos-extremos"><i class="fa fa-check"></i><b>8.5.5</b> Casos extremos</a></li>
+<li class="chapter" data-level="8.5.6" data-path="lineal.html"><a href="lineal.html#casos-mas-similares"><i class="fa fa-check"></i><b>8.5.6</b> Casos más similares</a></li>
+<li class="chapter" data-level="8.5.7" data-path="lineal.html"><a href="lineal.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>8.5.7</b> Casos más diferentes</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="lineal.html"><a href="lineal.html#la-relevancia-de-combinar-metodos"><i class="fa fa-check"></i><b>8.6</b> La relevancia de combinar métodos</a></li>
+<li class="chapter" data-level="8.7" data-path="lineal.html"><a href="lineal.html#referencias"><i class="fa fa-check"></i><b>8.7</b> Referencias</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>9</b> Modelos binarios</a><ul>
+<li class="chapter" data-level="9.1" data-path="logit.html"><a href="logit.html#nociones-basicas"><i class="fa fa-check"></i><b>9.1</b> Nociones básicas</a></li>
+<li class="chapter" data-level="9.2" data-path="logit.html"><a href="logit.html#aplicacion-en-r-1"><i class="fa fa-check"></i><b>9.2</b> Aplicación en R</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="logit.html"><a href="logit.html#estimar-los-modelos"><i class="fa fa-check"></i><b>9.2.1</b> Estimar los modelos</a></li>
+<li class="chapter" data-level="9.2.2" data-path="logit.html"><a href="logit.html#crear-tablas"><i class="fa fa-check"></i><b>9.2.2</b> Crear tablas</a></li>
+<li class="chapter" data-level="9.2.3" data-path="logit.html"><a href="logit.html#visualizacion-de-resultados"><i class="fa fa-check"></i><b>9.2.3</b> Visualización de resultados</a></li>
+<li class="chapter" data-level="9.2.4" data-path="logit.html"><a href="logit.html#ajuste-de-los-modelos"><i class="fa fa-check"></i><b>9.2.4</b> Ajuste de los modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="logit.html"><a href="logit.html#proximos-pasos"><i class="fa fa-check"></i><b>9.3</b> Próximos pasos</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>10</b> Modelos de supervivencia</a><ul>
+<li class="chapter" data-level="10.1" data-path="surv.html"><a href="surv.html#nociones-basicas-1"><i class="fa fa-check"></i><b>10.1</b> Nociones básicas</a></li>
+<li class="chapter" data-level="10.2" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>10.2</b> El modelo Cox de riesgos proporcionales</a></li>
+<li class="chapter" data-level="10.3" data-path="surv.html"><a href="surv.html#aplicacion-en-r-2"><i class="fa fa-check"></i><b>10.3</b> Aplicación en R</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="surv.html"><a href="surv.html#replicar-la-tabla-1.2-de-altman-e-interpretar-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>10.3.1</b> Replicar la tabla 1.2 de Altman e interpretar sus coeficientes como Hazard Ratios.</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>6</b> Modelos de supervivencia</a><ul>
-<li class="chapter" data-level="6.1" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>6.1</b> El modelo Cox de riesgos proporcionales:</a></li>
+<li class="part"><span><b>III Aplicaciones</b></span></li>
+<li class="chapter" data-level="11" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i><b>11</b> Manejo avanzado de datos políticos</a><ul>
+<li class="chapter" data-level="11.1" data-path="manejo-av.html"><a href="manejo-av.html#introduccion-2"><i class="fa fa-check"></i><b>11.1</b> Introducción</a></li>
+<li class="chapter" data-level="11.2" data-path="manejo-av.html"><a href="manejo-av.html#como-aprovechar-countrycode"><i class="fa fa-check"></i><b>11.2</b> ¿Cómo aprovechar ´countrycode´?</a></li>
+<li class="chapter" data-level="11.3" data-path="manejo-av.html"><a href="manejo-av.html#como-imputar-datos"><i class="fa fa-check"></i><b>11.3</b> ¿Cómo imputar datos?</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="creditos.html"><a href="creditos.html"><i class="fa fa-check"></i>Créditos</a></li>
+<li class="chapter" data-level="12" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>12</b> Creación de índices con Análisis de Componentes Principales (PCA)</a><ul>
+<li class="chapter" data-level="12.1" data-path="pca.html"><a href="pca.html#conceptos-importantes"><i class="fa fa-check"></i><b>12.1</b> Conceptos importantes</a></li>
+<li class="chapter" data-level="12.2" data-path="pca.html"><a href="pca.html#aplicacion-en-r-3"><i class="fa fa-check"></i><b>12.2</b> Aplicación en R</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>13</b> Mínería de datos</a></li>
+<li class="chapter" data-level="14" data-path="redes.html"><a href="redes.html"><i class="fa fa-check"></i><b>14</b> Análisis de redes</a><ul>
+<li class="chapter" data-level="14.1" data-path="redes.html"><a href="redes.html#introduccion-3"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
+<li class="chapter" data-level="14.2" data-path="redes.html"><a href="redes.html#conceptos-basicos-de-redes"><i class="fa fa-check"></i><b>14.2</b> Conceptos básicos de redes</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="redes.html"><a href="redes.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>14.2.1</b> Nodos y enlaces</a></li>
+<li class="chapter" data-level="14.2.2" data-path="redes.html"><a href="redes.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>14.2.2</b> Matriz de adyacencia</a></li>
+<li class="chapter" data-level="14.2.3" data-path="redes.html"><a href="redes.html#pesos-y-direccion"><i class="fa fa-check"></i><b>14.2.3</b> Pesos y dirección</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="redes.html"><a href="redes.html#generar-una-base-de-datos-de-redes"><i class="fa fa-check"></i><b>14.3</b> Generar una base de datos de redes</a></li>
+<li class="chapter" data-level="14.4" data-path="redes.html"><a href="redes.html#disposicion-de-los-puntos-en-el-espacio"><i class="fa fa-check"></i><b>14.4</b> Disposición de los puntos en el espacio</a></li>
+<li class="chapter" data-level="14.5" data-path="redes.html"><a href="redes.html#calcular-medidas-de-centralidad-basicas"><i class="fa fa-check"></i><b>14.5</b> Calcular medidas de centralidad básicas</a></li>
+<li class="chapter" data-level="14.6" data-path="redes.html"><a href="redes.html#detectar-comunidades-en-las-redes"><i class="fa fa-check"></i><b>14.6</b> Detectar comunidades en las redes</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>15</b> Análisis cuantitativo de textos</a><ul>
+<li class="chapter" data-level="15.1" data-path="qta.html"><a href="qta.html#introduccion-4"><i class="fa fa-check"></i><b>15.1</b> Introducción</a></li>
+<li class="chapter" data-level="15.2" data-path="qta.html"><a href="qta.html#bases-de-datos"><i class="fa fa-check"></i><b>15.2</b> Bases de datos</a></li>
+<li class="chapter" data-level="15.3" data-path="qta.html"><a href="qta.html#calculo-de-frecuencias"><i class="fa fa-check"></i><b>15.3</b> Cálculo de frecuencias</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-de-las-cuentas-de-los-diputados"><i class="fa fa-check"></i><b>15.3.1</b> 10 hashtags mas usados de las cuentas de los diputados</a></li>
+<li class="chapter" data-level="15.3.2" data-path="qta.html"><a href="qta.html#frecuencias-por-genero-cantidad-de-hashtags-usados-por-los-diputados-en-total"><i class="fa fa-check"></i><b>15.3.2</b> Frecuencias por género: cantidad de hashtags usados por los diputados en total</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="qta.html"><a href="qta.html#wordcloud-de-hashtags"><i class="fa fa-check"></i><b>15.4</b> Wordcloud de hashtags</a></li>
+<li class="chapter" data-level="15.5" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-por-genero"><i class="fa fa-check"></i><b>15.5</b> Hashtags más usados por género</a><ul>
+<li class="chapter" data-level="15.5.1" data-path="qta.html"><a href="qta.html#entre-las-diputadas"><i class="fa fa-check"></i><b>15.5.1</b> Entre las diputadas</a></li>
+<li class="chapter" data-level="15.5.2" data-path="qta.html"><a href="qta.html#entre-las-diputadas-1"><i class="fa fa-check"></i><b>15.5.2</b> Entre las diputadas</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-caracteristicas-del-diputado"><i class="fa fa-check"></i><b>15.6</b> Hashtags de género por características del diputado</a><ul>
+<li class="chapter" data-level="15.6.1" data-path="qta.html"><a href="qta.html#por-el-genero-del-diputado"><i class="fa fa-check"></i><b>15.6.1</b> Por el género del diputado</a></li>
+<li class="chapter" data-level="15.6.2" data-path="qta.html"><a href="qta.html#por-la-coalicion-de-los-diputados"><i class="fa fa-check"></i><b>15.6.2</b> Por la coalición de los diputados</a></li>
+</ul></li>
+<li class="chapter" data-level="15.7" data-path="qta.html"><a href="qta.html#variacion-temporal-del-uso-de-estos-hashtags"><i class="fa fa-check"></i><b>15.7</b> Variación temporal del uso de estos hashtags</a><ul>
+<li class="chapter" data-level="15.7.1" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-olafeminista"><i class="fa fa-check"></i><b>15.7.1</b> Frecuencia semanal de #olafeminista</a></li>
+<li class="chapter" data-level="15.7.2" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-tres-hashtags-de-genero"><i class="fa fa-check"></i><b>15.7.2</b> Frecuencia semanal de tres hashtags de género</a></li>
+<li class="chapter" data-level="15.7.3" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-de-genero-por-semana"><i class="fa fa-check"></i><b>15.7.3</b> Grafiquemos los hashtags de género por semana</a></li>
+<li class="chapter" data-level="15.7.4" data-path="qta.html"><a href="qta.html#ponderamos-en-relacion-al-total-de-hashtags-por-semana"><i class="fa fa-check"></i><b>15.7.4</b> Ponderamos en relación al total de hashtags por semana</a></li>
+<li class="chapter" data-level="15.7.5" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-interesantes-ponderados-por-el-total-semanal"><i class="fa fa-check"></i><b>15.7.5</b> Grafiquemos los hashtags interesantes ponderados por el total semanal</a></li>
+<li class="chapter" data-level="15.7.6" data-path="qta.html"><a href="qta.html#diputadas"><i class="fa fa-check"></i><b>15.7.6</b> Diputadas</a></li>
+</ul></li>
+<li class="chapter" data-level="15.8" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-semana-a-nivel-de-diputados-ponderados-por-semana"><i class="fa fa-check"></i><b>15.8</b> Hashtags de género por semana a nivel de diputados (ponderados por semana)</a></li>
+<li class="chapter" data-level="15.9" data-path="qta.html"><a href="qta.html#comentarios-finales"><i class="fa fa-check"></i><b>15.9</b> Comentarios finales</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>16</b> Generación de mapas</a><ul>
+<li class="chapter" data-level="16.1" data-path="mapas.html"><a href="mapas.html#datos-espaciales"><i class="fa fa-check"></i><b>16.1</b> Datos Espaciales</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="mapas.html"><a href="mapas.html#que-son"><i class="fa fa-check"></i><b>16.1.1</b> ¿Qué son?</a></li>
+<li class="chapter" data-level="16.1.2" data-path="mapas.html"><a href="mapas.html#estructura-de-los-datos-espaciales"><i class="fa fa-check"></i><b>16.1.2</b> Estructura de los Datos Espaciales</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="mapas.html"><a href="mapas.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>16.2</b> Datos Espaciales en R</a></li>
+<li class="chapter" data-level="16.3" data-path="mapas.html"><a href="mapas.html#special-features-en-r"><i class="fa fa-check"></i><b>16.3</b> Special Features en R</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="mapas.html"><a href="mapas.html#estructura"><i class="fa fa-check"></i><b>16.3.1</b> Estructura</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="mapas.html"><a href="mapas.html#manejo-de-datos-espaciales"><i class="fa fa-check"></i><b>16.4</b> Manejo de Datos Espaciales</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="mapas.html"><a href="mapas.html#modificaciones"><i class="fa fa-check"></i><b>16.4.1</b> Modificaciones</a></li>
+<li class="chapter" data-level="16.4.2" data-path="mapas.html"><a href="mapas.html#crear-nuevos-shapefiles-con-st_write"><i class="fa fa-check"></i><b>16.4.2</b> .4 Crear nuevos shapefiles con <code>st_write</code></a></li>
+<li class="chapter" data-level="16.4.3" data-path="mapas.html"><a href="mapas.html#incorporar-datos-de-otras-bases-con-merge"><i class="fa fa-check"></i><b>16.4.3</b> Incorporar datos de otras bases con <code>merge</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="mapas.html"><a href="mapas.html#mapear-en-r"><i class="fa fa-check"></i><b>16.5</b> Mapear en R</a></li>
+<li class="chapter" data-level="16.6" data-path="mapas.html"><a href="mapas.html#mapeando-variables"><i class="fa fa-check"></i><b>16.6</b> Mapeando variables</a><ul>
+<li class="chapter" data-level="16.6.1" data-path="mapas.html"><a href="mapas.html#mapas-animados-con-gganimate"><i class="fa fa-check"></i><b>16.6.1</b> Mapas animados con gganimate</a></li>
+</ul></li>
+<li class="chapter" data-level="16.7" data-path="mapas.html"><a href="mapas.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>16.7</b> Inferencia a partir de Datos Espaciales</a><ul>
+<li class="chapter" data-level="16.7.1" data-path="mapas.html"><a href="mapas.html#indicadores-locales-de-asociacion-espacial-lisa"><i class="fa fa-check"></i><b>16.7.1</b> Indicadores locales de asociación espacial (LISA)</a></li>
+<li class="chapter" data-level="16.7.2" data-path="mapas.html"><a href="mapas.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>16.7.2</b> Matriz de Pesos Espaciales</a></li>
+<li class="chapter" data-level="16.7.3" data-path="mapas.html"><a href="mapas.html#morans-i"><i class="fa fa-check"></i><b>16.7.3</b> Moran’s I</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -166,7 +316,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">analizaR datos políticos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR datos políticos</a>
           </h1>
         </div>
 
@@ -176,13 +326,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="introduccion" class="section level1">
 <h1><span class="header-section-number">Capítulo 2</span> Introducción</h1>
-<p>El análisis cuantitativo de datos es una de las tantas herramientas que los investigadores tenemos para abordar las preguntas que nos interesan, ya sea en el mundo profesional o en la academia (o “por amor al arte” en muy encendidas noches de viernes, por qué no). Es por esto que <em>AnalizaR datos políticos</em> tiene un fuerte énfasis en ejemplos politológicos aplicados. Utilizar ejemplos de texto trillados e idealizados sobre autitos o islas imaginarias sería una falta de respeto para el lector, a quien sabemos ávido por ocupar las herramientas de este libro en las preguntas de investigación política que le parecen importantes. Por el contrario, queremos mostrar el potencial de dichas herramientas metiendo las manos en la masa, con datos de verdad, investigaciones que colegas ya han realizado y dificultades particulares de llevar el análisis de datos a preguntas políticas.</p>
+<p>A: MENCIONAR R4DS, incluyendo la versión en español (Riva Quiroga) / portugués.</p>
+<p>El análisis cuantitativo de datos es una de las tantas herramientas que los investigadores tenemos para abordar las preguntas que nos interesan, ya sea en el mundo profesional o en la academia (o “por amor al arte” en muy encendidas noches de viernes, por qué no). Es por esto que <em>AnalizaR Datos Políticos</em> tiene un fuerte énfasis en ejemplos politológicos aplicados. Utilizar ejemplos de texto trillados e idealizados sobre autitos o islas imaginarias sería una falta de respeto para el lector, a quien sabemos ávido por ocupar las herramientas de este libro en las preguntas de investigación política que le parecen importantes. Por el contrario, queremos mostrar el potencial de dichas herramientas metiendo las manos en la masa, con datos de verdad, investigaciones que colegas ya han realizado y dificultades particulares de llevar el análisis de datos a preguntas políticas.</p>
 <div id="organizacion-del-libro" class="section level2">
 <h2><span class="header-section-number">2.1</span> Organización del libro</h2>
-<p>El libro está organizado en tres secciones temáticas. Dentro de las secciones, cada capítulo se esfuerza por resolver problemas puntuales, balanceando teoría y práctica en R.</p>
-<p><descripción de los capítulos de la sección I> La sección I está dedicada al manejo de datos. Lo ideal es que el lector consiga algo más que mirar una base de datos con cara de no entender nada. Introduciremos R desde su instalación y aprenderemos a sacarle el jugo para obtener datos, conocerlos en profundidad, transformarlos de acuerdo a las preguntas que nos interesan y representarlos gráficamente en formas tanto funcionales como atractivas.</p>
-<p><descripción de los capítulos de la sección II> En la sección II está el corazón del libro. Veremos cómo responder a preguntas políticas desde una perspectiva estadística —siempre podemos contestar desde la perspectiva de lo que nos dijo nuestra abuelita, aunque esto suela ser menos serio—. En general, la sección trata modelos estadísticos, que intentan explicar y predecir la variación de ciertas variables (dependientes) de acuerdo a cómo varían otras variables (independientes). Exploraremos distintos tipos de modelos de acuerdo a las distintas formas de variables dependientes que se encuentran comúnmente en la arena de lo político. Revisaremos cómo interpretar resultados y presentarlos en forma clara y atractiva, cómo elegir entre modelos competidores y cómo comprobar simplemente algunos de los supuestos estadísticos necesarios para que los modelos funcionen. Debemos notar que este no es un libro de econometría, claro está, por lo que para cada modelo haremos referencia a trabajos más avanzados en términos teóricos, con el fin de que el lector pueda profundizar por su cuenta si cree que debe utilizar algún modelo en específico para responder a sus preguntas de interés.</p>
-<p><descripción de los capítulos de la sección III> Por último, en la sección III dejaremos el mundo ideal y nos adentraremos en la resolución de problemas. Ya sea porque un colega nos prestó su base de datos y se vé más bien como una obra de arte surrealista, o simplemente porque la dificultad de los problemas a los que nos enfrentamos deja corto lo que aprendimos al principio del libro, aquí presentaremos un popurrí de herramientas para que el lector integre en su flujo de trabajo cotidiano. Estas han sido seleccionadas desde nuestra experiencia y son cuáles creemos las más requeridas en la práctica del análisis de datos políticos.</p>
+<p>El libro está organizado en tres secciones temáticas. Dentro de las secciones, cada capítulo se esfuerza por resolver problemas puntuales, balanceando teoría y práctica en <code>R</code>.</p>
+<p><descripción de los capítulos de la sección I>
+La sección I está dedicada al manejo de datos. Lo ideal es que el lector consiga algo más que mirar una base de datos con cara de no entender nada. Introduciremos <code>R</code> desde su instalación y aprenderemos a sacarle el jugo para obtener datos, conocerlos en profundidad, transformarlos de acuerdo a las preguntas que nos interesan y representarlos gráficamente en formas tanto funcionales como atractivas.</p>
+<p><descripción de los capítulos de la sección II>
+En la sección II está el corazón del libro. Veremos cómo responder a preguntas políticas desde una perspectiva estadística —siempre podemos contestar desde la perspectiva de lo que nos dijo nuestra abuelita, aunque esto suela ser menos serio—. En general, la sección trata modelos estadísticos, que intentan explicar y predecir la variación de ciertas variables (dependientes) de acuerdo a cómo varían otras variables (independientes). Exploraremos distintos tipos de modelos de acuerdo a las distintas formas de variables dependientes que se encuentran comúnmente en la arena de lo político. Revisaremos cómo interpretar resultados y presentarlos en forma clara y atractiva, cómo elegir entre modelos competidores y cómo comprobar simplemente algunos de los supuestos estadísticos necesarios para que los modelos funcionen. Debemos notar que este no es un libro de econometría, claro está, por lo que para cada modelo haremos referencia a trabajos más avanzados en términos teóricos, con el fin de que el lector pueda profundizar por su cuenta si cree que debe utilizar algún modelo en específico para responder a sus preguntas de interés.</p>
+<p><descripción de los capítulos de la sección III>
+Por último, en la sección III dejaremos el mundo ideal y nos adentraremos en la resolución de problemas. Ya sea porque un colega nos prestó su base de datos y se vé más bien como una obra de arte surrealista, o simplemente porque la dificultad de los problemas a los que nos enfrentamos deja corto lo que aprendimos al principio del libro, aquí presentaremos un popurrí de herramientas para que el lector integre en su flujo de trabajo cotidiano. Estas han sido seleccionadas desde nuestra experiencia y son cuáles creemos las más requeridas en la práctica del análisis de datos políticos.</p>
 </div>
 <div id="prerrequisitos" class="section level2">
 <h2><span class="header-section-number">2.2</span> Prerrequisitos</h2>
@@ -222,7 +376,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["adp-bookdown.pdf"],
 "toc": {
 "collapse": "section"
 }
@@ -235,9 +389,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

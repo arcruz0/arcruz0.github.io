@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>analizaR datos políticos</title>
+  <meta name="description" content="Proyecto de libro">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="analizaR datos políticos" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Proyecto de libro" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="analizaR datos políticos" />
+  
+  <meta name="twitter:description" content="Proyecto de libro" />
+  
+
+<meta name="author" content="Francisco Urdinez y Andrés Cruz">
+
+
+<meta name="date" content="2018-11-09">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="prev" href="por-que-quiero-visualizar-mis-datos.html">
+<link rel="next" href="para-seguir-aprendiendo.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><b><a href="./index.html">analizaR datos políticos</a></b></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Inicio</a></li>
+<li class="chapter" data-level="1" data-path="prefacio.html"><a href="prefacio.html"><i class="fa fa-check"></i><b>1</b> Prefacio</a><ul>
+<li class="chapter" data-level="1.1" data-path="agradecimientos.html"><a href="agradecimientos.html"><i class="fa fa-check"></i><b>1.1</b> Agradecimientos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>2</b> Introducción</a><ul>
+<li class="chapter" data-level="2.1" data-path="organizacion-del-libro.html"><a href="organizacion-del-libro.html"><i class="fa fa-check"></i><b>2.1</b> Organización del libro</a></li>
+<li class="chapter" data-level="2.2" data-path="prerrequisitos.html"><a href="prerrequisitos.html"><i class="fa fa-check"></i><b>2.2</b> Prerrequisitos</a></li>
+</ul></li>
+<li class="part"><span><b>I Manejo de datos</b></span></li>
+<li class="chapter" data-level="3" data-path="rbas.html"><a href="rbas.html"><i class="fa fa-check"></i><b>3</b> R básico</a><ul>
+<li class="chapter" data-level="3.1" data-path="instalacion.html"><a href="instalacion.html"><i class="fa fa-check"></i><b>3.1</b> Instalación</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="instalacion.html"><a href="instalacion.html#r"><i class="fa fa-check"></i><b>3.1.1</b> R</a></li>
+<li class="chapter" data-level="3.1.2" data-path="instalacion.html"><a href="instalacion.html#rstudio"><i class="fa fa-check"></i><b>3.1.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="partes-de-rstudio.html"><a href="partes-de-rstudio.html"><i class="fa fa-check"></i><b>3.2</b> Partes de RStudio</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="partes-de-rstudio.html"><a href="partes-de-rstudio.html#consola"><i class="fa fa-check"></i><b>3.2.1</b> Consola</a></li>
+<li class="chapter" data-level="3.2.2" data-path="partes-de-rstudio.html"><a href="partes-de-rstudio.html#script"><i class="fa fa-check"></i><b>3.2.2</b> Script</a></li>
+<li class="chapter" data-level="3.2.3" data-path="partes-de-rstudio.html"><a href="partes-de-rstudio.html#objetos"><i class="fa fa-check"></i><b>3.2.3</b> Objetos</a></li>
+<li class="chapter" data-level="3.2.4" data-path="partes-de-rstudio.html"><a href="partes-de-rstudio.html#archivos-graficos-paquetes-ayuda"><i class="fa fa-check"></i><b>3.2.4</b> Archivos / gráficos / paquetes / ayuda</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ejercicios.html"><a href="ejercicios.html"><i class="fa fa-check"></i><b>3.3</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manejo.html"><a href="manejo.html"><i class="fa fa-check"></i><b>4</b> Manejo</a><ul>
+<li class="chapter" data-level="4.1" data-path="nuestra-base-de-datos.html"><a href="nuestra-base-de-datos.html"><i class="fa fa-check"></i><b>4.1</b> Nuestra base de datos</a></li>
+<li class="chapter" data-level="4.2" data-path="describir-la-base.html"><a href="describir-la-base.html"><i class="fa fa-check"></i><b>4.2</b> Describir la base</a></li>
+<li class="chapter" data-level="4.3" data-path="ordenar-la-base-con-arrange.html"><a href="ordenar-la-base-con-arrange.html"><i class="fa fa-check"></i><b>4.3</b> Ordenar la base con <code>arrange()</code></a></li>
+<li class="chapter" data-level="4.4" data-path="seleccionar-columnas-de-la-base-con-select.html"><a href="seleccionar-columnas-de-la-base-con-select.html"><i class="fa fa-check"></i><b>4.4</b> Seleccionar columnas de la base con <code>select()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="renombrar-columnas-de-la-base-con-rename.html"><a href="renombrar-columnas-de-la-base-con-rename.html"><i class="fa fa-check"></i><b>4.5</b> Renombrar columnas de la base con <code>rename()</code></a></li>
+<li class="chapter" data-level="4.6" data-path="filtrar-observaciones-de-la-base-con-filter.html"><a href="filtrar-observaciones-de-la-base-con-filter.html"><i class="fa fa-check"></i><b>4.6</b> Filtrar observaciones de la base con <code>filter()</code></a></li>
+<li class="chapter" data-level="4.7" data-path="crear-nuevas-variables-en-la-base-con-mutate.html"><a href="crear-nuevas-variables-en-la-base-con-mutate.html"><i class="fa fa-check"></i><b>4.7</b> Crear nuevas variables en la base con <code>mutate()</code></a></li>
+<li class="chapter" data-level="4.8" data-path="concatenar-comandos-las-pipes.html"><a href="concatenar-comandos-las-pipes.html"><i class="fa fa-check"></i><b>4.8</b> Concatenar comandos: las pipes (<code>%&gt;%</code>)</a></li>
+<li class="chapter" data-level="4.9" data-path="ejercicios-1.html"><a href="ejercicios-1.html"><i class="fa fa-check"></i><b>4.9</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Dataviz</a><ul>
+<li class="chapter" data-level="5.1" data-path="por-que-quiero-visualizar-mis-datos.html"><a href="por-que-quiero-visualizar-mis-datos.html"><i class="fa fa-check"></i><b>5.1</b> ¿Por qué quiero visualizar mis datos?</a></li>
+<li class="chapter" data-level="5.2" data-path="primeros-pasos.html"><a href="primeros-pasos.html"><i class="fa fa-check"></i><b>5.2</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#las-capas-del-multiverso-ggplotidiano"><i class="fa fa-check"></i><b>5.2.1</b> Las capas del multiverso ggplotidiano</a></li>
+<li class="chapter" data-level="5.2.2" data-path="primeros-pasos.html"><a href="primeros-pasos.html#grafico-de-barras"><i class="fa fa-check"></i><b>5.2.2</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="5.2.3" data-path="primeros-pasos.html"><a href="primeros-pasos.html#boxplot"><i class="fa fa-check"></i><b>5.2.3</b> Boxplot</a></li>
+<li class="chapter" data-level="5.2.4" data-path="primeros-pasos.html"><a href="primeros-pasos.html#relacion-entre-variables"><i class="fa fa-check"></i><b>5.2.4</b> Relación entre variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="para-seguir-aprendiendo.html"><a href="para-seguir-aprendiendo.html"><i class="fa fa-check"></i><b>5.3</b> Para seguir aprendiendo</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="para-seguir-aprendiendo.html"><a href="para-seguir-aprendiendo.html#otros-paquetes"><i class="fa fa-check"></i><b>5.3.1</b> Otros paquetes:</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Modelos</b></span></li>
+<li class="chapter" data-level="6" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>6</b> Modelos binarios</a></li>
+<li class="chapter" data-level="7" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>7</b> Modelos de supervivencia</a><ul>
+<li class="chapter" data-level="7.1" data-path="el-modelo-cox-de-riesgos-proporcionales.html"><a href="el-modelo-cox-de-riesgos-proporcionales.html"><i class="fa fa-check"></i><b>7.1</b> El modelo Cox de riesgos proporcionales:</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="creditos.html"><a href="creditos.html"><i class="fa fa-check"></i>Créditos</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">analizaR datos políticos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="primeros-pasos" class="section level2">
+<h2><span class="header-section-number">5.2</span> Primeros pasos</h2>
+<p>Ahora que entendemos el proceso previo a la construcción del gráfico, tenemos que familiarizarnos con <code>ggplot2</code>. <a href="https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf">A Layered Grammar of Graphics</a> de Hadley Wickham, explica de forma detallada el funcionamiento de esta nueva “gramática” para hacer gráficos. Si dominas inglés, te recomiendo que leas de primera fuente cómo se pensó este paquete y cómo entender el uso de las capas en la construcción de los gráficos.</p>
+<p>A pesar de que el uso de <code>ggplot2</code> se expandió rápidamente, dentro de la comunidad de R hay constantes discusiones sobre la enseñanza de <code>ggplot2</code> como primera opción, por sobre los gráficos de R base. Por ejemplo, <a href="http://varianceexplained.org/r/why-I-use-ggplot2/">David Robinson</a> en su blog tiene diferentes entradas sobre este tema, donde él expone de forma contundente las ventajas de <code>ggplot2</code> por sobre las otras opciones. Si recién estás empezando a familiarizarte con R, empezar con <code>ggplo2</code> te brindará herramientas muy poderosas y la curva de aprendizaje no es tan elevada como lo requeriría R base.</p>
+<p>Algunas de las ventajas que menciona David Robinson en “Why I use ggplot2” son:</p>
+<ul>
+<li>¡Leyendas! R base requiere de más conocimientos de los usuarios para poder hacer leyendas en los gráficos. Nuestro amigo <code>ggplot2</code> las hace automáticamente.</li>
+<li>¡Faceting! Suena extrañísimo, pero no encontré una traducción que le hiciera justicia. Básicamente, podemos crear subgráficos con terceras o cuartas variables que nos permita entender mejor el comportamiento de nuestros datos.</li>
+<li>Trabaja en conjunto con el <code>tidyverse</code>. Eso quiere decir que podemos hacer más por menos. Al final del capítulo entenderán a lo que me refiero. Hay atajos para todo.</li>
+<li>Estéticamente, es mejor. Ni hablar de las miles de opciones de paletas cromáticas, temas, fuentes, etc. Si no te gusta, existe una forma de cambiarlo.</li>
+</ul>
+<p>Teniendo esto en consideración, comencemos con lo práctico.</p>
+<div id="las-capas-del-multiverso-ggplotidiano" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Las capas del multiverso ggplotidiano</h3>
+<p>Pero, entremos al tema que nos interesa: ¿Cómo funciona <code>ggplot2</code>? Este paquete viene incluido en el <code>tidyverse</code>, por lo que no es necesario cargarlo de forma separada. Además, usaremos las herramientas de ambos paquetes durante todo el capítulo. Cargamos el paquete:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<p>La intuición detrás de<code>ggplot2</code> es muy simple. La construcción de los datos se hace en base a capas que contienen cierto tipo de información.</p>
+<div id="datos" class="section level4">
+<h4><span class="header-section-number">5.2.1.1</span> Datos</h4>
+<p>La primera capa son los datos que utilizaremos. Para hacer esto un poco más demostrativo, cargaremos los datos que usaremos a través de todo el capítulo.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">datos_municipales &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;00-datos/dataviz_data_municipal_v3.rds&quot;</span>)</a></code></pre></div>
+<p>Estos datos corresponden a información sobre las municipalidades chilenas. Algunos son del <a href="http://www.servel.cl">Servicio Electoral</a> y otros del <a href="http://datos.sinim.gov.cl/datos_municipales.php">Sistema Nacional de Información Municipal</a> de Chile. En la primera, encontramos los resultados de las elecciones locales, regionales y nacionales del país; y en la segunda, encontramos características económicas, sociales y demográficas de los municipios chilenos. En este caso, contamos con los datos electorales comunales desde 1992 al 2012, y datos descriptivos como la población, los ingresos totales de la municipalidad, el gasto en asistencia social y el porcentaje de personas en situación de pobreza según el total comunal de la Encuesta de Caracterización Socioeconómica Nacional, CASEN.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">str</span>(datos_municipales)</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="co">## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    1742 obs. of  6 variables:</span></a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="co">##  $ year    : Factor w/ 6 levels &quot;1992&quot;,&quot;1996&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="co">##  $ zona    : Factor w/ 5 levels &quot;Norte Chico&quot;,..: 2 3 3 3 3 3 3 3 3 3 ...</span></a>
+<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="co">##  $ comuna  : chr  &quot;Iquique&quot; &quot;Dalcahue&quot; &quot;Fresia&quot; &quot;Futaleufu&quot; ...</span></a>
+<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="co">##  $ genero  : Factor w/ 2 levels &quot;0&quot;,&quot;1&quot;: 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb45-7" data-line-number="7"><span class="co">##  $ ingresos: int  NA NA NA NA NA NA NA NA NA NA ...</span></a>
+<a class="sourceLine" id="cb45-8" data-line-number="8"><span class="co">##  $ casen   : num  NA NA NA NA NA NA NA NA NA NA ...</span></a></code></pre></div>
+<p>Al mirar la base, encontramos que hay datos continuos (numéricos) y categóricos (factores). Saber qué tipo de variable manejamos es base para el siguiente paso.</p>
+</div>
+<div id="estetica" class="section level4">
+<h4><span class="header-section-number">5.2.1.2</span> Estética</h4>
+<p>La segunda capa corresponde al mapeo de las variables dentro del espacio. En este paso, utilizamos <code>mapping = aes()</code>, el cual contendrá la variable que tendremos en nuestro eje x y nuestro eje y. Para <code>aes()</code> hay muchas más opciones que iremos viendo dentro del capítulo, algunas de ellas son <code>fill</code>, <code>color</code>, <code>shape</code>, y <code>alpha</code>. Todas estas opciones son un conjunto de signos que nos permitirán traducir de mejor manera lo que queremos decir a través de nuestro gráfico. Normalmente, a estas opciones se le llaman <em>aesthetics</em> o <code>aes()</code>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales, </a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> casen))</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-55-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>El resultado muestra un cuadro vacío. Eso es porque no lo hemos dicho qué objeto geométrico es el que usaremos.</p>
+</div>
+<div id="objeto-geometrico" class="section level4">
+<h4><span class="header-section-number">5.2.1.3</span> Objeto geométrico</h4>
+<p>Suena extraño, pero cuando hablamos de objeto geométrico o <code>geom</code>, estamos hablando del tipo de gráfico que queremos hacer, si un gráfico de línea, uno de barra, un histograma o un gráfico de densidad, o de puntos, o si queremos hacer un boxplot. Esta es la tercera capa. En este caso, como tenemos los datos de la encuesta CASEN, haremos un boxplot para ver cómo se distribuyen los municipios de nuestra muestra.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales, </a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> casen)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-56-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Lo primero que notamos es la ausencia de datos para tres periodos. Lamentablemente, en el SINIM no hay datos anteriores al 2002, por eso no hay registros para esos años. Por ese motivo, parece una buena idea filtrar y dejar solo los años que tengan datos sobre la encuesta CASEN. Además de eso, nuestro gráfico no nos dice mucho sobre el porcentaje de pobreza y su distribución. Considerando la geografía chilena, sería una buena idea que vieramos la distribución por zona.</p>
+</div>
+<div id="faceting" class="section level4">
+<h4><span class="header-section-number">5.2.1.4</span> Faceting</h4>
+<p>Ahora ocuparemos nuestras habilidades para hacer dos cosas: primero, ocuparemos <code>filter</code> para dejar sólo los años que nos interesan. Segundo, dividiremos los resultados por zona usando <code>facet_wrap</code>, la que corresponde a la cuarta capa que podemos usar para armar un gráfico con <code>ggplot</code>. No siempre es necesaria, pero siempre es útil mostrar lo que puede lograr. Cuando utilizamos esta capa, lo que buscamos es organizar las geometrías que estamos utilizando a través de una variable categórica. En este caso, zona. Pero el <em>faceting</em> como acción es mucho más que esto. <code>facet_wrap</code> y <code>facet_grid</code> pueden tomar una serie de argumentos, donde el primero es el más importante. La sintaxis que usamos en este caso es la usada para fórmulas en R, y denotamos el primer argumento con el signo “~”. Con <code>nrow</code> y <code>ncol</code> podemos especificar cómo queremos ordenar nuestro gráfico.</p>
+<p>Finalmente, agregamos dos líneas de código, una para filtrar y otra para subdividir nuestra información. Esto es lo que logramos:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> casen)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-57-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Tanto con <code>facet_wrap</code> como con <code>facet_grid</code> podemos usar más de un argumento, pero los resultados son distintos. <code>facet_grid</code> no sólo ordena las geometrías, sino que es capaz de cruzarlas creando gráficos con dos o más dimensiones utilizando variables categóricas. Observen el siguiente ejemplo:</p>
+<p><code>facet_wrap</code></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</a>
+<a class="sourceLine" id="cb49-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> casen)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(zona <span class="op">~</span><span class="st"> </span>genero)</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-58-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><code>facet_grid</code></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> casen)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_grid</span>(zona <span class="op">~</span><span class="st"> </span>genero)</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-59-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Este gráfico nos muestra que, por zona, el porcentaje de pobreza ha variado considerablemente desde el 2004 al 2012 y que, hay una alta variabilidad intraregional. Además, nos muestra cómo <code>ggplot</code> entrega resultados de calidad sin mayores complejidades. La función <code>facet_wrap</code> es una capa opcional dentro de las múltiples capas de “A Layered Grammar of Graphics”, pero las otras tres deben estar presentes para cualquier tipo de resultado.</p>
+</div>
+<div id="transformaciones" class="section level4">
+<h4><span class="header-section-number">5.2.1.5</span> Transformaciones</h4>
+<p>Otra capa que puedes utilizar es una capa que te permitirá hacer transformaciones de escala en tus variables. Normalmente aparecerá con el nombre <code>scale_x_discrete</code>, la cual va variando dependiendo de la estética que estemos utilizando dentro de nuestro mapeo. Así, podremos encontrarnos con <code>scale_fill_continuos</code> o <code>scale_y_log10</code>. Por ejemplo, podemos ver cómo se distribuye el ingreso de las municipalidades según el porcentaje de pobreza de nuestra muestra. Normalmente esto lo haríamos de la siguiente manera:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</a>
+<a class="sourceLine" id="cb51-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> casen, <span class="dt">y =</span> ingresos)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>() </a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-60-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Teóricamente, cuando ocupamos una variable que tiene relación con dinero, le aplicamos una transformación logarítmica. Pero ¿cómo se traduce eso en nuestra imagen?</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</a>
+<a class="sourceLine" id="cb52-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> casen, <span class="dt">y =</span> ingresos)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb52-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-61-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Esto es de lo que hablamos cuando hablamos de escalas.</p>
+</div>
+<div id="sistema-de-coordenadas" class="section level4">
+<h4><span class="header-section-number">5.2.1.6</span> Sistema de coordenadas</h4>
+<p>Normalmente, trabajaremos con un eje x y un eje y. Existen funciones en <code>ggplot2</code> como <code>coord_flip</code> que nos permitirá cambiar el sentido de nuestro gráfico. Pero también usamos este tipo de capa cuando trabajamos con datos geográficos o cuando, por ejemplo, queremos hacer un gráfico de torta. Aunque, normalmente, <a href="https://www.datapine.com/blog/common-data-visualization-mistakes/">no queremos hacer gráficos de torta</a>. Entre más utilices <code>ggplot2</code>, más aprenderás de cada una de las opciones.</p>
+</div>
+<div id="temas" class="section level4">
+<h4><span class="header-section-number">5.2.1.7</span> Temas</h4>
+<p>Cuando mapeamos los datos, usamos opciones estéticas. Cuando queremos cambiar cómo luce el gráfico, cambiamos el tema. Esto se puede hacer a través de <code>theme</code>, el cual te permite modificar cuestiones que no se relacionan con el contenido del grafico. Por ejemplo, los colores del fondo o el tipo de letras de los ejes. También puedes cambiar dónde se ubicará la leyenda o la ubicación del título. También, puedes cambiar el título, el nombre de los ejes, agregar anotaciones, etc. Solo necesitas conocer <code>labs</code>, <code>annotate</code> y <code>ggtitle</code>.</p>
+<p>Ahora, a aplicar todo lo que <em>al parecer</em> entendemos.</p>
+<p>##3. Elecciones locales y visualización de datos</p>
+<p>Como habíamos mencionado, lo principal es entender que la visualización nos sirve para explorar nuestros datos y contestar preguntas sustantivas de nuestra investigación. Muchas veces las medias, desviaciones estándar u otro tipo de parámetro no nos dice mucho. Esos mismos datos podemos expresarlos a través de la visualización. Por ejemplo, un boxplot puede ser útil para representar la distribución de los datos que tenemos y ver sus posibles outliers, mientras que un gráfico de barras nos ayudará a ver la frecuencia de nuestros datos categóricos, y un gráfico de línea nos sirve para entender cambios en el tiempo. Y esos son sólo algunos ejemplos dentro de una variada gama de posibilidades.</p>
+<p>En esta tercera parte, aprenderemos a visualizar diferentes tipos de gráficos con los datos de reelección municipal en Chile. En resumen, en Chile la divisón político-administrativa más pequeña es la comuna o municipio que cada cuatro años escoge a sus autoridades locales: un alcalde y un concejo municipal. Desde 1992 al 2000, los alcaldes fueron electos de forma indirecta, y desde el 2004 en adelante empiezan a ser electos directamente por la ciudadanía.
+Ya que conocemos nuestros datos, podemos empezar por lo más simple. Una buena idea, por ejemplo, es ver la cantidad de mujeres electas como alcaldesas versus el número de hombres electos. Para eso, podemos usar un gráfico de barras. Como bien vimos en el ítem anterior, para armar cualquier tipo de gráfico necesitamos conocer la o las variables que queremos usar y cuál geometría o <code>geom</code> nos permite representar lo que queremos conocer. En este caso, usaremos <code>geom_bar</code> para ver cuántos hombres y cuántas mujeres han sido electos desde 1992.</p>
+</div>
+</div>
+<div id="grafico-de-barras" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Gráfico de barras</h3>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">plot_a &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos_municipales, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> genero))</a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb53-3" data-line-number="3">plot_a <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-62-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Como vemos, armar un gráfico de barras es muy simple. Podemos ver que, desde 1992, han sido electos más de 1500 hombres como alcaldes, una cifra que supera largamente a las menos 250 mujeres que han sido electas para el mismo cargo en la misma cantidad de tiempo.</p>
+<p>Pero, quizás, esto no se mantiene por zona: ¿Qué pasa cuando subdividimos el gráfico para ver qué pasa por zona geográfica?</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">plot_a <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-63-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Uno de los problemas con este gráfico, es que no tiene en consideración el número de comunas por cada zona. Mientras que en el norte de Chile hay, en general, pocas comunas, en la zona central podemos encontrar que sólo la Región Metropolitana cuenta con más de 52. Sin considerar las otras cinco regiones que componen la zona. Quizás, sería más prudente si vemos la proporción de mujeres y hombres electos por zona.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">plot_a <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> ..prop..)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-64-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Las geometrías <code>geom_bar</code> o <code>geom_col</code>, <code>geom_density</code> y <code>geom_histogram</code> no suelen llevar el eje y explicitado en las estéticas, ya que son un conteo sobre el eje x. Al especificar <code>y = ..prop..</code> como estética dentro del objeto geométrico, estamos ordenando el cálculo de la proporción, no la cuenta. Normalmente, usaremos <code>aes()</code> en conjunto con los datos en <code>ggplot()</code>, pero dependiendo de la preferencia que tengas, es posible usarlo también con los <code>geom</code>. Esto último es más común cuando ocupamos más de una base de datos o cuando queremos hacer algún tipo de transformación.</p>
+<p>A pesar de lograr la transformación, como apreciamos en las etiquetas del eje y, no conseguimos lo que queríamos. No es un error de nosotros, sino que es una característica de la función <code>geom_bar</code>. Cuando hacemos un gráfico de barras, la función cuenta la frecuencia de cada característica en la base de datos. Así, por ejemplo, en el Norte Chico han sido electos 101 hombres desde 1992 versus 20 mujeres. En el Norte Grande, han sido electos 89 hombres versus 13 mujeres, y así. Pero cuando calculamos la proporción, la función no la calcula en base a la suma de ambos por zona, sino en base a sí misma. Suena complejo, pero no lo es. En este caso, ve que hay 89 hombres electos en el Norte Grande y la función dice “en el Norte Grande los 89 hombres corresponden al 100% de hombres, y las 13 mujeres corresponden al 100% de mujeres”, cuando lo que queremos saber qué porcentaje del total de alcaldes son hombres y qué porcentaje son mujeres.</p>
+<p>Para eso utilizamos <code>group = 1</code>.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">plot_a <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> ..prop.., <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-65-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>¡Ahora sí lo logramos! Vemos que no hay grandes diferencias, siendo el “Norte Chico” el que cuenta con más mujeres en la alcaldía en relación a los hombres. A pesar de esto, no hay grandes diferencias de zona a zona y parece que se replicaran los resultados que vimos en nuestro primer gráfico de barras. Ahora, podríamos arreglar temas estéticos del gráfico. Por ejemplo, ponerle título, la fuente de los datos y especificar qué es 0 y qué es 1.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">plot_a <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> ..prop.., <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Proporción de mujeres y hombres electos alcaldes (1992-2012)</span><span class="ch">\n</span><span class="st">Por zonas económicas de Chile&quot;</span>, </a>
+<a class="sourceLine" id="cb57-5" data-line-number="5">       <span class="dt">x =</span> <span class="st">&quot;Género&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proporción&quot;, </span></a>
+<a class="sourceLine" id="cb57-6" data-line-number="6"><span class="st">       caption = &quot;</span>Fuente<span class="op">:</span><span class="st"> </span>base de elaboración propia con datos del SERVEL y <span class="kw">SINIM</span> (<span class="dv">2018</span>)<span class="st">&quot;) </span></a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-66-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Ahora, sólo nos falta agregar las etiquetas del eje x. Eso lo podemos hacer fácilemente con <code>scale_x_discrete</code>. Tienes que tener en consideración qué estética de <code>aes()</code> modificarás, ya que eso cambiará el <code>scale</code> que necesites. Si estuviéramos viendo las etiquetas de <code>fill</code>, tendríamos que usar <code>scale_fill_discrete</code>, por ejemplo. También tienes que tener en consideración qué tipo de variable estás usando. Que <code>scale_x_dicrete</code> tenga “discrete” al final no es una decisión aleatoria. Como comprenderás, depende totalmente del tipo de variable que estemos manejando.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">plot_a <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> ..prop.., <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Hombres&quot;</span>, <span class="st">&quot;Mujeres&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb58-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Proporción de mujeres y hombres electos alcaldes (1992-2012)</span><span class="ch">\n</span><span class="st">Por zonas económicas de Chile&quot;</span>, </a>
+<a class="sourceLine" id="cb58-6" data-line-number="6">       <span class="dt">x =</span> <span class="st">&quot;Género&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proporción&quot;, </span></a>
+<a class="sourceLine" id="cb58-7" data-line-number="7"><span class="st">       caption = &quot;</span>Fuente<span class="op">:</span><span class="st"> </span>base de elaboración propia con datos del SERVEL y <span class="kw">SINIM</span> (<span class="dv">2018</span>)<span class="st">&quot;) </span></a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-67-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Con <code>labels</code> podemos cambiar las etiquetas. Ten en consideración el número de <code>breaks</code> de tu variable categórica para que calcen a la perfección y no te sobre (o te falte) alguna categoría.</p>
+<p>Ejercicio:</p>
+<ul>
+<li><code>geom_bar</code> suele ser un poco inflexible. Puedes obtener los mismos resultados y con mayor plasticidad utilizando <code>geom_col</code>.</li>
+<li>Sería interesante cambiar el color de las barras para que éstas expresen la categoría género. Una opción es hacerlo a través de la estética <code>fill</code> al mapear los datos en <code>aes()</code>.</li>
+<li>Para ver los cambios anuales de estas cifras, cambia “zona” por “year” <code>facet_wrap</code> ¿qué tendencia ves?</li>
+</ul>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">plot_a <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> ..prop.., <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Hombres&quot;</span>, <span class="st">&quot;Mujeres&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Proporción de mujeres y hombres electos alcaldes (1992-2012)</span><span class="ch">\n</span><span class="st">Por zonas económicas de Chile&quot;</span>, </a>
+<a class="sourceLine" id="cb59-6" data-line-number="6">       <span class="dt">x =</span> <span class="st">&quot;Género&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proporción&quot;, </span></a>
+<a class="sourceLine" id="cb59-7" data-line-number="7"><span class="st">       caption = &quot;</span>Fuente<span class="op">:</span><span class="st"> </span>base de elaboración propia con datos del SERVEL y <span class="kw">SINIM</span> (<span class="dv">2018</span>)<span class="st">&quot;)</span></a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-68-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>###Gráfico de Línea</p>
+<p>En el gráfico final de la sección anterior, vimos que si bien la elección de mujeres alcaldesas en Chile ha aumentado, este no parece ser significativo: en el 2012, sólo un 13% de los alcaldes electos eran mujeres. Quizás esto puede deberse a que los cambios socioeconómicos no han repercutido en la percepción sobre los roles de género en la sociedad. Tal vez, mirar los datos económicos de ingresos municipales o de porcentaje de pobreza según la CASEN nos ayuden a entender por qué no ha aumentado sustantivamente la elección de mujeres en las elecciones municipales. Para esto podemos usar <code>geom_line</code>, el objeto geométrico que nos permitirá ver la evolución en el tiempo de nuestro objeto de estudio. La intuición sería hacer la figura de esta manera:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">plot_b &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales, </a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">                 <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> ingresos)) </a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4">plot_b <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb60-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-69-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>El problema es que no nos entrega el resultado esperado. La intuición es correcta, pero nosotros tenemos que ayudar a <code>geom_line</code> con ciertas especificaciones. <code>geom_line</code> agrupa las observaciones para crear el gráfico de línea. En este caso, las agrupa por lo que cree tiene más sentido: el año. Por esta razón, tenemos que especificar cuál es la variable que agrupa toda la información y como sabemos, la información que tenemos está agrupada por municipio. Cuando agregamos esta información como <code>geom_lines(aes(group = comuna))</code>, el resultado cambia y se asemeja a lo que buscábamos:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">plot_b <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb61-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">group =</span> comuna))</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-70-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Dos problemas que surgen a simple vista:</p>
+<ol style="list-style-type: decimal">
+<li>No tenemos datos anteriores al 2004.</li>
+<li>Considerando que son 345 comunas, parece imposible tenerlas todas en un solo gráfico.</li>
+</ol>
+<p>Estos dos problemas se pueden solucionar fácilmente. Primero, queremos eliminar los periodos anteriores al 2004. Para hacer esto, tenemos dos posible soluciones:</p>
+<p>La primera solución es simplemente hacer un subset de la variable con <code>filter</code>, combinando las herramientas del <code>tidyverse</code> y las de <code>ggplot</code>. En este caso, seleccionamos solo los años que utilizaremos para la construcción del gráfico, dejando afuera 1992, 1996 y 2000. Para seleccionar más de un nivel en una variable, utilizamos <code>%in%</code>. Finalmente, tenemos el resultado deseado:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> ingresos)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> comuna))</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-71-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Ahora, podemos separar el gráfico como lo habíamos hecho anteriormente. Se puede hacer por zona o por región, pensando en cuál resultado te interesa más. Ya que hemos visto diferentes resultados por zonas, sería interesante ver el ingreso de la misma manera.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">plot_b <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> comuna)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-72-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Como son pocos años, no podemos ver mucha variabilidad y a primera vista, parece que los ingresos de todos los municipios han incrementado considerablemente. Quizás, podemos seguir mejorando nuestro gráfico. Probablemente, no estés muy familiarizado con la notación científica y te sientes más cómodo leyendo números más grandes. Quizás sabes que es mejor trabajar todo tipo de variable monetaria con su transformación logarítmica, como nos han enseñado en diferentes cursos de métodologías. Puede, también, que quieras agregar otro tipo de información a este gráfico, como por ejemplo, las medias.</p>
+<p>¿Qué te parece el siguiente gráfico?</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">medias &lt;-<span class="st"> </span>datos_municipales <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(zona) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(ingresos, <span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb64-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb64-5" data-line-number="5">plot_b <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb64-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&quot;gray70&quot;</span>, <span class="kw">aes</span>(<span class="dt">group =</span> comuna)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb64-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), <span class="dt">data =</span> medias, <span class="dt">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb64-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb64-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></a>
+<a class="sourceLine" id="cb64-10" data-line-number="10"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb64-11" data-line-number="11"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Ingresos municipales en años electorales (2004-2012)&quot;</span>,</a>
+<a class="sourceLine" id="cb64-12" data-line-number="12">       <span class="dt">y =</span> <span class="st">&quot;Ingresos&quot;</span>,</a>
+<a class="sourceLine" id="cb64-13" data-line-number="13">       <span class="dt">x =</span> <span class="st">&quot;Años&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb64-14" data-line-number="14"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;lines&quot;</span>))</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-73-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>¿Qué especificamos?</p>
+<ol style="list-style-type: decimal">
+<li>Primero, creamos una base de datos (“medias”) que contiene los promedios de ingresos por cada zona. Esto lo hicimos utilizando <code>group_by</code> y <code>summarise</code> del <code>tidyverse</code>.</li>
+</ol>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">datos_municipales <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(zona) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(ingresos, <span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb65-4" data-line-number="4"><span class="co">## # A tibble: 5 x 2</span></a>
+<a class="sourceLine" id="cb65-5" data-line-number="5"><span class="co">##   zona             mean</span></a>
+<a class="sourceLine" id="cb65-6" data-line-number="6"><span class="co">##   &lt;fct&gt;           &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb65-7" data-line-number="7"><span class="co">## 1 Norte Chico  4816249.</span></a>
+<a class="sourceLine" id="cb65-8" data-line-number="8"><span class="co">## 2 Norte Grande 7167984.</span></a>
+<a class="sourceLine" id="cb65-9" data-line-number="9"><span class="co">## 3 Zona Austral 2609648.</span></a>
+<a class="sourceLine" id="cb65-10" data-line-number="10"><span class="co">## 4 Zona Central 7302625.</span></a>
+<a class="sourceLine" id="cb65-11" data-line-number="11"><span class="co">## 5 Zona Sur     3219110.</span></a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Especificamos el color de <code>geom_line</code>.</p></li>
+<li><p>Agregamos a nuestro código <code>geom_hline</code>. Este objeto geométrico, como <code>geom_vline</code> o <code>geom_abline</code>, nos sirven para agregar líneas con información. En este caso, lo usé para agregar el promedio de ingresos de cada zona. Especificamos la variable que contiene los promedios <code>yintercept = mean</code>, de la base <code>medias</code>, y además, especificamos el color con <code>color = &quot;dodgerblue3&quot;</code>.</p></li>
+<li><p>Usamos <code>scale_x_discrete</code> para especificar la expansión de los paneles. Si antes se veía un espacio gris sin información, lo sacaremos. Esto es estético.</p></li>
+<li><p>Utilizamos <code>scale_y_log10</code> para escalar nuestros datos. Como los presentábamos, no lográbamos ver más allá de aquellos municipios con un altísimo ingreso, mientras que las demás comunas quedaban apiladas en el fondo del panel. Esta es una transformación logarítmica que normalmente se hace cuando trabajamos modelos lineales que contienen datos monetarios. Además, cambiamos las etiquetas del eje y: ya no aparece la notación científica. Esto se hace con un paquete llamado <code>scales</code>. Aquí llamamos directamente la función con <code>scales::dollar</code>.</p></li>
+<li><p>Agregamos el título y los nombres del eje x y eje y con <code>labs</code>.</p></li>
+<li><p>Especificamos información del tema. Sin él, los años entre un panel y otro chocarían. Para eso, especificamos con <code>panel.spacing = unit(2, &quot;lines&quot;)</code> en la capa <code>theme</code>.</p></li>
+</ol>
+<p>Ejercicio:</p>
+<ul>
+<li>Para entender cómo funciona cada una de las especificaciones, puedes ir borrando y agregando por separado cada uno de estos detalles. Algunos tienen más sentido que otros, ¿qué modificarías?</li>
+</ul>
+</div>
+<div id="boxplot" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> Boxplot</h3>
+<p>Ya vimos que los ingresos de los municipios crecieron entre el 2004 y el 2012. Cuando observamos el gráfico sin la transformación funcional, notamos que habían algunas comunas que tenían ingresos muy por sobre el resto y sobresalían dentro de sus zonas. La intuición nos dice que posiblemente sean <em>outliers</em>. Podríamos ver esto más claramente con un boxplot, el cual nos sirve para graficar diferentes datos descriptivos de nuestras variables como son la mediana, el mínimo y el máximo. En este caso, lo utilizaremos para ver si nuestra intuición era acertada o no.</p>
+<p>Filtramos los datos como lo hicimos con el gráfico anterior. En nuestro eje x pondremos las zonas de Chile y en el eje y los ingresos. Además, ocuparemos otro tipo de estética: <code>color</code>, la cual usaremos para identificar de mejor manera cada zona. Propiedades estéticas como <code>fill</code>, <code>color</code>, <code>size</code>, cambian al ser utilizadas con variables discretas o continuas.</p>
+<p>Este es el resultado que trabajaremos:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">plot_c &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">                   </span><span class="kw">filter</span>(year <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</a>
+<a class="sourceLine" id="cb66-3" data-line-number="3">                 <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> zona, <span class="dt">y =</span> ingresos, <span class="dt">color =</span> zona)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb66-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb66-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year, <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb66-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb66-7" data-line-number="7">plot_c</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-75-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Uno de los problemas que podríamos tener con este gráfico, es que no nos permite observar bien los outliers, ya que la expansión del eje y es muy pequeña. Para solucionar esto podemos usar <code>coord_flip</code>, una función que nos permite dar vuelta los ejes de nuestro gráfico:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">plot_c <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">  </span><span class="kw">coord_flip</span>() </a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-76-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Ahora ya podemos observar mejor algunos de los <em>outliers</em> presentes. Quizás, después de ver estos resultados, nos gustaría identificar qué comunas son las que reciben más ingresos totales. Para eso podemos usar otra estética, <code>label</code> dentro de <code>geom_text</code>. Para nombrar sólo los outliers, tenemos que hacer un subset de los datos.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">plot_c <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ingresos <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000000</span>),</a>
+<a class="sourceLine" id="cb68-4" data-line-number="4">            <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> comuna))</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-77-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Lamentablemente, las etiquetas están por encima de los puntos y, en algunos casos, se pierden cuando estos están muy juntos. Una de las soluciones es con el paquete <code>ggrepel</code> que tiene el elemento geométrico <code>geom_text</code> “mejorado” para que las etiquetas no choquen entre sí. También, cambiaremos el color de las letras para que sea posible leerlas sin mayor dificultad. Como ven, este <code>color</code> va afuera de la estética de <code>geom_text_repel</code>, ya que definimos el color para todo el objeto. Cuando va dentro de <code>aes()</code>, el color se modifica según la candidad de, por ejemplo, ingresos o por el tipo de, por ejemplo, zona.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">library</span>(ggrepel)</a>
+<a class="sourceLine" id="cb69-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb69-3" data-line-number="3">plot_c <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb69-6" data-line-number="6"><span class="st">                    </span><span class="kw">filter</span>(ingresos <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000000</span>),</a>
+<a class="sourceLine" id="cb69-7" data-line-number="7">                  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> comuna), <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-78-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>El corte puede ser en los $50.000.000 o en números más grandes o más pequeños. Depende completamente de lo que queremos observar. Además, con <code>geom_text</code> o <code>geom_text_repel</code> no solo puedes modificar el color, sino también el el tipo de fuente de la letra, o si debe estar en negrita, cursiva o subrayada. Para ver más opciones, debes ingresar <code>?geom_text</code> o llamar a <code>help(&quot;geom_text&quot;)</code>.</p>
+<p>También podríamos agregar otro tipo de información o cambiar cómo está presentado lo que ya tenemos.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">plot_c <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="dt">data =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="st">                    </span><span class="kw">filter</span>(ingresos <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000000</span>), </a>
+<a class="sourceLine" id="cb70-5" data-line-number="5">                  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> comuna), </a>
+<a class="sourceLine" id="cb70-6" data-line-number="6">                  <span class="dt">color   =</span> <span class="st">&quot;black&quot;</span>, </a>
+<a class="sourceLine" id="cb70-7" data-line-number="7">                  <span class="dt">size    =</span> <span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb70-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></a>
+<a class="sourceLine" id="cb70-9" data-line-number="9"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Ingresos de las municipalidades según zona (2004-2012)&quot;</span>,</a>
+<a class="sourceLine" id="cb70-10" data-line-number="10">       <span class="dt">x =</span> <span class="st">&quot;Ingresos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Zona&quot;</span>, </a>
+<a class="sourceLine" id="cb70-11" data-line-number="11">       <span class="dt">caption =</span> <span class="st">&quot;Fuente: Elaboración propia en base a datos del SINIM (2018)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb70-12" data-line-number="12"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> F)</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-79-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>Otras especificaciones:</p>
+<ol style="list-style-type: decimal">
+<li><p>Agregamos los nombres para los ejes y para el gráfico, además de la fuente de los datos.</p></li>
+<li><p>Cambiamos el tamaño de la letra. Esto era importante por la cantidad de comunas que están por sobre los $50.000.000 en ingresos.</p></li>
+<li><p>Nuevamente, cambiamos las etiquetas del eje y con <code>scales::dollar</code>.</p></li>
+<li><p>Por último, con <code>guides</code> y especificando el <code>aes()</code> que buscamos afectar, escribimos el código <code>color = F</code> para eliminar la leyenda, ya que era información que se repetía dentro del gráfico que realizamos.</p></li>
+</ol>
+<p>Te invito a jugar con <code>geom_text</code>: cambia los colores, el tamaño, la fuente, etc. También, te insto a instalar paquetes que te permitirán personalizar aun más tus gráficos: <code>ggthemes</code> de <a href="https://github.com/jrnold/ggthemes">jrnorl</a> tiene temas para gráficos de programas y revistas conocidas como Excel o The Economist. Por otro lado, <code>hrbrthemes</code> de <a href="https://github.com/hrbrmstr/hrbrthemes">hrbrmstr</a> ha elaborado algunos temas minimalistas y elegantes que harán que todos los gráficos que hagas luzcan mejor. Si tienes algo por los colores, puedes mirar el paquete <code>wespalette</code> de <a href="https://github.com/karthik/wesanderson">karthik</a> una paleta cromática basada en las películas de Wes Anderson o crear tus propias paletas según imágenes con <code>colorfindr</code>. Puedes averiguar más sobre este último en el siguiente <a href="https://github.com/zumbov2/colorfindr">vínculo</a>.</p>
+<p>###Histograma</p>
+<p>Según lo que pudimos observar en nuestro boxplot, muchas comunas –especialmente de la zona central–, están muy por encima de los ingresos medianos por zona. Podríamos ver la distribución de estos datos a través de un histograma. Hacer un histograma es muy fácil, y como lo había mencionado anteriormente, <code>geom_histogram</code> no lleva el eje y de forma explícita ya que cuenta la frecuencia de un evento dentro de cierto intervalo.</p>
+<p>Cuando creamos el histograma según nuestra intuición, este es el resultado:</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales, </a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ingresos)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_histogram</span>()</a>
+<a class="sourceLine" id="cb71-4" data-line-number="4"><span class="co">## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb71-5" data-line-number="5"><span class="co">## Warning: Removed 738 rows containing non-finite values (stat_bin).</span></a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-80-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Como podemos observar, el gráfico nos tira un “Warning” que nos indica que hay “738 filas que contienen valores no-finitos”. Esta advertencia se ha repetido constantemente durante el capítulo, y no quiere decir nada más que “Hay valores 0 o desconocidos dentro de esta variable” y, como sabemos, los primeros periodos no cuentan con información. Así que tranquilo, si filtráramos los datos con <code>filter(!is.na(ingresos))</code> lo más seguro es que la advertencia desaparecería.</p>
+<p>También, la consola nos dice este mensaje: <em><code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code></em>. Simplemente, nos dice que es posible modificar el número de intervalos.</p>
+<p>Lo siguiente que haré será modificar el eje x. Nunca se me ha dado bien leer los números con la notación científica. Por otro lado, probaremos cambiando el número de intervalos con <code>bins</code>.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales, </a>
+<a class="sourceLine" id="cb72-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ingresos)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) </a>
+<a class="sourceLine" id="cb72-5" data-line-number="5"><span class="co">## Warning: Removed 738 rows containing non-finite values (stat_bin).</span></a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-81-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>¿Qué pasa cuando ponemos <code>bins = 15</code> intervalos?</p>
+<p>Lo que haremos a continuación es hacer un subset de los datos. Teniendo en consideración el número de outliers que nos encontramos, eliminaremos los municipios que tienen ingresos mayores a los $50.000.000. También podemos ver la frecuencia por zona. Al igual que cuando ocupamos <code>color</code> con <code>geom_boxplot</code>, ocuparemos <code>fill</code> con <code>geom_histogram</code>.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ingresos <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000000</span>), </a>
+<a class="sourceLine" id="cb73-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ingresos, <span class="dt">fill =</span> zona)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb73-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></a>
+<a class="sourceLine" id="cb73-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Número de municipalidades según sus ingresos anuales (2004-2012)&quot;</span>,</a>
+<a class="sourceLine" id="cb73-6" data-line-number="6">       <span class="dt">x =</span> <span class="st">&quot;Ingresos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Número de municipios&quot;</span>, </a>
+<a class="sourceLine" id="cb73-7" data-line-number="7">       <span class="dt">caption =</span> <span class="st">&quot;Fuente: Elaboración propia en base a datos del SINIM (2018)&quot;</span>)</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-82-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>Ejercicio:</p>
+<ul>
+<li>La construcción de un gráfico de densidad es muy similar a la de un histograma, solo debes usar <code>geom_density</code>. Teniendo los datos y la intuición, no debería ser complejo llegar a estos mismos resultados. Consejo: no solo uses <code>fill</code> para cambiar los colores, tambien usa <code>color</code>.</li>
+</ul>
+</div>
+<div id="relacion-entre-variables" class="section level3">
+<h3><span class="header-section-number">5.2.4</span> Relación entre variables</h3>
+<p>Probablemente una de tus mayores preocupaciones es si las dos variables que estás estudiando se relacionan de algún modo. Con <code>ggplot</code> esto es muy simple de comprobar. En este caso, tenemos dos variables continuas: el porcentaje de pobreza de la CASEN y los ingresos municipales. Según la teoría, debería existir un tipo de relación: a mayor ingreso municipal, menor debería ser el porcentaje de pobreza en la comuna. Creamos nuestros datos:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">plot_f &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales, </a>
+<a class="sourceLine" id="cb74-2" data-line-number="2">                 <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> casen, <span class="dt">y =</span> <span class="kw">log</span>(ingresos)))</a></code></pre></div>
+<p>Para este tipo de gráfico, utilizamos <code>geom_smooth</code>. Con este objeto, puedes modificar la forma en que se relacionan las variables a través de <code>method</code>. Incluso puedes poner tu propia fórmula. Por defecto, viene especificada una relación lineal entre las variables, así que no es necesario escribirlo.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">plot_f <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>) </a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-84-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Se ve un poco vacío, ¿no? Normalmente, ocuparemos <code>geom_smooth</code> con otra figura geométrica <code>geom_point</code>, para indicar la posición de las comunas dentro del espacio. Ocuparemos <code>alpha</code> para que veamos la sobreposición de los puntos. Sin ser muchos, no hay problemas en ver cómo se distribuyen.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">plot_f <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb76-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>) </a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-85-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Ahora podríamos hacer dos especificaciones. Primero, pondremos el título y el nombre de los ejes. Segundo, en <code>geom_x_continuous</code> especificaremos donde tiene que empezar y terminar nuestro gráfico. Esto ya lo habíamos usado con <code>geom_line</code>.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">plot_f <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb77-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb77-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Relación entre ingresos y porcentaje de pobreza CASEN, Chile (2004-2012)&quot;</span>, </a>
+<a class="sourceLine" id="cb77-6" data-line-number="6">       <span class="dt">x =</span> <span class="st">&quot;Porcentaje de Pobreza CASEN&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Ingresos&quot;</span>, </a>
+<a class="sourceLine" id="cb77-7" data-line-number="7">       <span class="dt">caption =</span> <span class="st">&quot;Fuente: Elaboración propia en base a datos del SINIM (2018)&quot;</span>) </a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-86-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Claramente, hay una correlación negativa entre ambas variables. Era lo que esperábamos. Ahora, podemos calcular la correlación entre ambas para estar más seguros de los resultados obtenidos:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">cor</span>(datos_municipales<span class="op">$</span>casen, datos_municipales<span class="op">$</span>ingresos, </a>
+<a class="sourceLine" id="cb78-2" data-line-number="2">    <span class="dt">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span>)</a>
+<a class="sourceLine" id="cb78-3" data-line-number="3"><span class="co">## [1] -0.27</span></a></code></pre></div>
+<p>La correlación entre ambas variables es de -0.27. Sería interesante agregar esta información al gráfico. Esto lo podemos realizar con <code>annotate</code>. Sólo tenemos que especificar el tipo de objeto geométrico que queremos generar. En este caso, lo que queremos crear es texto <code>text</code>, pero podría ser un cuadro resaltando un punto específico en el gráfico <code>rect</code> o una línea <code>segment</code>. Especificamos donde lo ubicaremos y, finalmente, anotamos lo que queremos anotar.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">plot_f <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb79-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb79-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Relación entre ingresos y porcentaje de pobreza CASEN, Chile (2004-2012)&quot;</span>, </a>
+<a class="sourceLine" id="cb79-6" data-line-number="6">       <span class="dt">x =</span> <span class="st">&quot;Porcentaje de Pobreza CASEN&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Ingresos&quot;</span>, </a>
+<a class="sourceLine" id="cb79-7" data-line-number="7">       <span class="dt">caption =</span> <span class="st">&quot;Fuente: Elaboración propia en base a datos del SINIM (2018)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb79-8" data-line-number="8"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">50</span>, <span class="dt">y =</span> <span class="dv">15</span>, <span class="dt">label =</span> <span class="st">&quot;Correlación:</span><span class="ch">\n</span><span class="st">-0.27&quot;</span>)</a></code></pre></div>
+<p><img src="adp-bookdown_files/figure-html/unnamed-chunk-88-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="por-que-quiero-visualizar-mis-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="para-seguir-aprendiendo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
