@@ -105,13 +105,13 @@ El libro se alimenta del avance enorme que se ha hecho en los últimos años a p
    <td style="text-align:left;"> Introducción </td>
    <td style="text-align:left;">  </td>
   </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
+  <tr grouplength="4"><td colspan="3" style="text-align:center"><strong>I. Introducción a R</strong></td></tr>
+<tr>
+   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 2 </td>
    <td style="text-align:left;"> R Básico </td>
    <td style="text-align:left;"> Andrés Cruz </td>
   </tr>
-  <tr grouplength="4"><td colspan="3" style="text-align:center"><strong>I. Introducción a R</strong></td></tr>
-<tr>
+  <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 3 </td>
    <td style="text-align:left;"> Manejo de datos </td>
    <td style="text-align:left;"> Andrés Cruz </td>
@@ -126,13 +126,13 @@ El libro se alimenta del avance enorme que se ha hecho en los últimos años a p
    <td style="text-align:left;"> Carga de bases </td>
    <td style="text-align:left;"> Soledad Araya y Andrés Cruz </td>
   </tr>
-  <tr>
+  <tr grouplength="3"><td colspan="3" style="text-align:center"><strong>II. Modelos</strong></td></tr>
+<tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 6 </td>
    <td style="text-align:left;"> Modelos lineales </td>
    <td style="text-align:left;"> Inés Fynn y Lihuen Nocetto </td>
   </tr>
-  <tr grouplength="3"><td colspan="3" style="text-align:center"><strong>II. Modelos</strong></td></tr>
-<tr>
+  <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 7 </td>
    <td style="text-align:left;"> Modelos binarios </td>
    <td style="text-align:left;"> Francisco Urdinez </td>
@@ -142,13 +142,13 @@ El libro se alimenta del avance enorme que se ha hecho en los últimos años a p
    <td style="text-align:left;"> Modelos de supervivencia </td>
    <td style="text-align:left;"> Francisco Urdinez </td>
   </tr>
-  <tr>
+  <tr grouplength="7"><td colspan="3" style="text-align:center"><strong>III. Aplicaciones</strong></td></tr>
+<tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 9 </td>
    <td style="text-align:left;"> Manejo avanzado de datos políticos </td>
    <td style="text-align:left;"> Andrés Cruz y Francisco Urdinez </td>
   </tr>
-  <tr grouplength="6"><td colspan="3" style="text-align:center"><strong>III. Aplicaciones</strong></td></tr>
-<tr>
+  <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 10 </td>
    <td style="text-align:left;"> Creación de índices con PCA </td>
    <td style="text-align:left;"> Caterina Labrín y Francisco Urdinez </td>

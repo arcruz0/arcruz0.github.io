@@ -110,7 +110,7 @@ Para ver la estructura de los objetos de tipo `sf` cargamos nuestra base de dato
 
 
 ```
-## Reading layer `shp_brasil' from data source `/home/andres/Dropbox/Proyecto de libro/adp-bookdown/00-datos/shp_brasil' using driver `ESRI Shapefile'
+## Reading layer `shp_brasil' from data source `/home/andres/google-drive/github/libroadp/00-datos/shp_brasil' using driver `ESRI Shapefile'
 ## Simple feature collection with 28 features and 1 field
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
