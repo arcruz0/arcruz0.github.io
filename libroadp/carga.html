@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 5 Carga de bases | AnalizaR Datos Políticos</title>
+  <meta name="description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  <meta name="generator" content="bookdown  and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 5 Carga de bases | AnalizaR Datos Políticos" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 5 Carga de bases | AnalizaR Datos Políticos" />
+  
+  <meta name="twitter:description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  
+
+<meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (editores)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="prev" href="dataviz.html">
+<link rel="next" href="lineal.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+<script>
+% https://stackoverflow.com/a/4425214/8242291
+var links = document.links;
+
+for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+
+}
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><b><a href="./index.html"><img style="float: left; margin-right: 5px;" src="favicon.ico"></img>AnalizaR datos políticos</a></b></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#inicio"><i class="fa fa-check"></i><b>1.1</b> Inicio</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#como-contribuir"><i class="fa fa-check"></i><b>1.2</b> ¿Cómo contribuir?</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#sobre-los-autores-y-autoras"><i class="fa fa-check"></i><b>1.2.1</b> Sobre los autores y autoras</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#prefacio"><i class="fa fa-check"></i><b>1.3</b> Prefacio</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i><b>1.3.1</b> Agradecimientos</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#que-esperar-del-libro"><i class="fa fa-check"></i><b>1.4</b> Qué esperar del libro</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#estructura-del-libro"><i class="fa fa-check"></i><b>1.5</b> Estructura del libro</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#prerrequisitos"><i class="fa fa-check"></i><b>1.6</b> Prerrequisitos</a></li>
+</ul></li>
+<li class="part"><span><b>I Introducción a R</b></span></li>
+<li class="chapter" data-level="2" data-path="rbas.html"><a href="rbas.html"><i class="fa fa-check"></i><b>2</b> R básico</a><ul>
+<li class="chapter" data-level="2.1" data-path="rbas.html"><a href="rbas.html#instalacion"><i class="fa fa-check"></i><b>2.1</b> Instalación</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="rbas.html"><a href="rbas.html#r"><i class="fa fa-check"></i><b>2.1.1</b> R</a></li>
+<li class="chapter" data-level="2.1.2" data-path="rbas.html"><a href="rbas.html#rstudio"><i class="fa fa-check"></i><b>2.1.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="rbas.html"><a href="rbas.html#partes-de-rstudio"><i class="fa fa-check"></i><b>2.2</b> Partes de RStudio</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="rbas.html"><a href="rbas.html#consola"><i class="fa fa-check"></i><b>2.2.1</b> Consola</a></li>
+<li class="chapter" data-level="2.2.2" data-path="rbas.html"><a href="rbas.html#script"><i class="fa fa-check"></i><b>2.2.2</b> Script</a></li>
+<li class="chapter" data-level="2.2.3" data-path="rbas.html"><a href="rbas.html#objetos"><i class="fa fa-check"></i><b>2.2.3</b> Objetos</a></li>
+<li class="chapter" data-level="2.2.4" data-path="rbas.html"><a href="rbas.html#archivos-graficos-paquetes-ayuda"><i class="fa fa-check"></i><b>2.2.4</b> Archivos / gráficos / paquetes / ayuda</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html"><i class="fa fa-check"></i><b>3</b> Manejo de datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#introduccion-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>3.1.1</b> Nuestra base de datos</a></li>
+<li class="chapter" data-level="3.1.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#describir-la-base"><i class="fa fa-check"></i><b>3.1.2</b> Describir la base</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-en-bases"><i class="fa fa-check"></i><b>3.2</b> Operaciones en bases</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ordenar-una-base"><i class="fa fa-check"></i><b>3.2.1</b> Ordenar una base</a></li>
+<li class="chapter" data-level="3.2.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#seleccionar-columnas"><i class="fa fa-check"></i><b>3.2.2</b> Seleccionar columnas</a></li>
+<li class="chapter" data-level="3.2.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#renombrar-columnas"><i class="fa fa-check"></i><b>3.2.3</b> Renombrar columnas</a></li>
+<li class="chapter" data-level="3.2.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#filtrar-observaciones"><i class="fa fa-check"></i><b>3.2.4</b> Filtrar observaciones</a></li>
+<li class="chapter" data-level="3.2.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#crear-nuevas-variables"><i class="fa fa-check"></i><b>3.2.5</b> Crear nuevas variables</a></li>
+<li class="chapter" data-level="3.2.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#concatenar-comandos"><i class="fa fa-check"></i><b>3.2.6</b> Concatenar comandos</a></li>
+<li class="chapter" data-level="3.2.7" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-agrupadas"><i class="fa fa-check"></i><b>3.2.7</b> Operaciones agrupadas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#reformatear-bases"><i class="fa fa-check"></i><b>3.3</b> Reformatear bases</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#por-que-quiero-visualizar-mis-datos"><i class="fa fa-check"></i><b>4.1</b> ¿Por qué quiero visualizar mis datos?</a></li>
+<li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>4.2</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-multiverso-ggplotidiano"><i class="fa fa-check"></i><b>4.2.1</b> Las capas del multiverso ggplotidiano</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#elecciones-locales-y-visualizacion-de-datos"><i class="fa fa-check"></i><b>4.3</b> Elecciones locales y visualización de datos</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="dataviz.html"><a href="dataviz.html#grafico-de-barras"><i class="fa fa-check"></i><b>4.3.1</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dataviz.html"><a href="dataviz.html#grafico-de-linea"><i class="fa fa-check"></i><b>4.3.2</b> Gráfico de Línea</a></li>
+<li class="chapter" data-level="4.3.3" data-path="dataviz.html"><a href="dataviz.html#boxplot"><i class="fa fa-check"></i><b>4.3.3</b> Boxplot</a></li>
+<li class="chapter" data-level="4.3.4" data-path="dataviz.html"><a href="dataviz.html#histograma"><i class="fa fa-check"></i><b>4.3.4</b> Histograma</a></li>
+<li class="chapter" data-level="4.3.5" data-path="dataviz.html"><a href="dataviz.html#relacion-entre-variables"><i class="fa fa-check"></i><b>4.3.5</b> Relación entre variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#para-seguir-aprendiendo"><i class="fa fa-check"></i><b>4.4</b> Para seguir aprendiendo</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="dataviz.html"><a href="dataviz.html#otros-paquetes"><i class="fa fa-check"></i><b>4.4.1</b> Otros paquetes:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="carga.html"><a href="carga.html"><i class="fa fa-check"></i><b>5</b> Carga de bases</a><ul>
+<li class="chapter" data-level="5.1" data-path="carga.html"><a href="carga.html#carga-intro"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
+<li class="chapter" data-level="5.2" data-path="carga.html"><a href="carga.html#carga-formatos"><i class="fa fa-check"></i><b>5.2</b> Distintos formatos de bases</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="carga.html"><a href="carga.html#archivos-separados-por-delimitadores-.csv-y-.tsv"><i class="fa fa-check"></i><b>5.2.1</b> Archivos separados por delimitadores (.csv y .tsv)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="carga.html"><a href="carga.html#carga-r"><i class="fa fa-check"></i><b>5.2.2</b> Archivos creados con R (.Rdata y .rds)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="carga.html"><a href="carga.html#carga-etiquetas"><i class="fa fa-check"></i><b>5.2.3</b> Datos con etiquetas (Stata o SPSS)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="carga.html"><a href="carga.html#carga-excel"><i class="fa fa-check"></i><b>5.2.4</b> Archivos de Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="carga.html"><a href="carga.html#multiples-bases-de-datos-a-la-vez"><i class="fa fa-check"></i><b>5.3</b> Múltiples bases de datos a la vez</a></li>
+<li class="chapter" data-level="5.4" data-path="carga.html"><a href="carga.html#carga-grandes"><i class="fa fa-check"></i><b>5.4</b> Bases de datos tabulares grandes</a></li>
+</ul></li>
+<li class="part"><span><b>II Modelos</b></span></li>
+<li class="chapter" data-level="6" data-path="lineal.html"><a href="lineal.html"><i class="fa fa-check"></i><b>6</b> Modelos lineales</a><ul>
+<li class="chapter" data-level="6.1" data-path="lineal.html"><a href="lineal.html#introduccion-2"><i class="fa fa-check"></i><b>6.1</b> Introducción</a></li>
+<li class="chapter" data-level="6.2" data-path="lineal.html"><a href="lineal.html#aplicacion-en-r"><i class="fa fa-check"></i><b>6.2</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos"><i class="fa fa-check"></i><b>6.2.1</b> Estadísticos Descriptivos</a></li>
+<li class="chapter" data-level="6.2.2" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos-y-distribucion-de-las-variables-del-modelo"><i class="fa fa-check"></i><b>6.2.2</b> Estadísticos descriptivos y distribución de las variables del modelo</a></li>
+<li class="chapter" data-level="6.2.3" data-path="lineal.html"><a href="lineal.html#matriz-de-correlacion-de-variables-independientes"><i class="fa fa-check"></i><b>6.2.3</b> Matriz de correlación de variables independientes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="lineal.html"><a href="lineal.html#distribucion-de-las-variables-de-interes"><i class="fa fa-check"></i><b>6.2.4</b> Distribución de las variables de interés</a></li>
+<li class="chapter" data-level="6.2.5" data-path="lineal.html"><a href="lineal.html#relacion-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>6.2.5</b> Relación entre la variable dependiente e independiente</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="lineal.html"><a href="lineal.html#modelo-bivariado-regresion-lineal-simple"><i class="fa fa-check"></i><b>6.3</b> Modelo bivariado: regresión lineal simple</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="lineal.html"><a href="lineal.html#estimando-un-modelo-lineal-en-r"><i class="fa fa-check"></i><b>6.3.1</b> Estimando un modelo lineal en <code>R</code></a></li>
+<li class="chapter" data-level="6.3.2" data-path="lineal.html"><a href="lineal.html#representacion-grafica"><i class="fa fa-check"></i><b>6.3.2</b> Representación gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="lineal.html"><a href="lineal.html#modelo-multivariado-regresion-multiple"><i class="fa fa-check"></i><b>6.4</b> Modelo multivariado: regresión múltiple</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="lineal.html"><a href="lineal.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>6.4.1</b> Ajuste del modelo</a></li>
+<li class="chapter" data-level="6.4.2" data-path="lineal.html"><a href="lineal.html#inferencia-en-modelos-lineales-multiples"><i class="fa fa-check"></i><b>6.4.2</b> Inferencia en modelos lineales múltiples</a></li>
+<li class="chapter" data-level="6.4.3" data-path="lineal.html"><a href="lineal.html#supuestos-de-ols"><i class="fa fa-check"></i><b>6.4.3</b> Supuestos de OLS</a></li>
+<li class="chapter" data-level="6.4.4" data-path="lineal.html"><a href="lineal.html#errores-estandares-robustos"><i class="fa fa-check"></i><b>6.4.4</b> Errores estándares robustos</a></li>
+<li class="chapter" data-level="6.4.5" data-path="lineal.html"><a href="lineal.html#un-caso-especial-de-heterocedasticidad-la-varianza-del-error-asociada-a-clusters"><i class="fa fa-check"></i><b>6.4.5</b> Un caso especial de Heterocedasticidad: la varianza del error asociada a clusters</a></li>
+<li class="chapter" data-level="6.4.6" data-path="lineal.html"><a href="lineal.html#un-supuesto-adicional-para-poder-realizar-inferencia"><i class="fa fa-check"></i><b>6.4.6</b> Un supuesto adicional para poder realizar <strong>inferencia</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>7</b> Modelos logísticos</a><ul>
+<li class="chapter" data-level="7.1" data-path="logit.html"><a href="logit.html#nociones-basicas"><i class="fa fa-check"></i><b>7.1</b> Nociones básicas</a></li>
+<li class="chapter" data-level="7.2" data-path="logit.html"><a href="logit.html#aplicacion-en-r-1"><i class="fa fa-check"></i><b>7.2</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="7.2.1" data-path="logit.html"><a href="logit.html#estimar-los-modelos"><i class="fa fa-check"></i><b>7.2.1</b> Estimar los modelos</a></li>
+<li class="chapter" data-level="7.2.2" data-path="logit.html"><a href="logit.html#crear-tablas"><i class="fa fa-check"></i><b>7.2.2</b> Crear tablas</a></li>
+<li class="chapter" data-level="7.2.3" data-path="logit.html"><a href="logit.html#visualizacion-de-resultados"><i class="fa fa-check"></i><b>7.2.3</b> Visualización de resultados</a></li>
+<li class="chapter" data-level="7.2.4" data-path="logit.html"><a href="logit.html#ajuste-de-los-modelos"><i class="fa fa-check"></i><b>7.2.4</b> Ajuste de los modelos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>8</b> Modelos de supervivencia</a><ul>
+<li class="chapter" data-level="8.1" data-path="surv.html"><a href="surv.html#nociones-basicas-1"><i class="fa fa-check"></i><b>8.1</b> Nociones básicas</a></li>
+<li class="chapter" data-level="8.2" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>8.2</b> El modelo Cox de riesgos proporcionales</a></li>
+<li class="chapter" data-level="8.3" data-path="surv.html"><a href="surv.html#aplicacion-en-r-2"><i class="fa fa-check"></i><b>8.3</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="8.3.1" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretacion-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>8.3.1</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Aplicaciones</b></span></li>
+<li class="chapter" data-level="9" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i><b>9</b> Manejo avanzado de datos políticos</a><ul>
+<li class="chapter" data-level="9.1" data-path="manejo-av.html"><a href="manejo-av.html#introduccion-3"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="manejo-av.html"><a href="manejo-av.html#como-aprovechar-countrycode"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo aprovechar <code>countrycode</code>?</a></li>
+<li class="chapter" data-level="9.3" data-path="manejo-av.html"><a href="manejo-av.html#como-imputar-datos-faltantes"><i class="fa fa-check"></i><b>9.3</b> ¿Cómo imputar datos faltantes?</a></li>
+<li class="chapter" data-level="9.4" data-path="manejo-av.html"><a href="manejo-av.html#imputar-datos-usando-amelia"><i class="fa fa-check"></i><b>9.4</b> Imputar datos usando Amelia</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="manejo-av.html"><a href="manejo-av.html#diagnosticos"><i class="fa fa-check"></i><b>9.4.1</b> Diagnosticos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="manejo-av.html"><a href="manejo-av.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>9.5</b> Regresiones luego de imputar datos</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>10</b> Creación de índices con PCA</a><ul>
+<li class="chapter" data-level="10.1" data-path="pca.html"><a href="pca.html#aplicacion-en-r-3"><i class="fa fa-check"></i><b>10.1</b> Aplicación en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="casos.html"><a href="casos.html"><i class="fa fa-check"></i><b>11</b> Selección de casos a partir de regresiones</a><ul>
+<li class="chapter" data-level="11.1" data-path="casos.html"><a href="casos.html#que-casos-de-estudio-debo-seleccionar-para-testear-mi-hipotesis"><i class="fa fa-check"></i><b>11.1</b> ¿Qué casos de estudio debo seleccionar para testear mi hipótesis?</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="casos.html"><a href="casos.html#casos-tipicos"><i class="fa fa-check"></i><b>11.1.1</b> Casos Típicos</a></li>
+<li class="chapter" data-level="11.1.2" data-path="casos.html"><a href="casos.html#casos-desviados"><i class="fa fa-check"></i><b>11.1.2</b> Casos desviados</a></li>
+<li class="chapter" data-level="11.1.3" data-path="casos.html"><a href="casos.html#casos-influyentes"><i class="fa fa-check"></i><b>11.1.3</b> Casos Influyentes</a></li>
+<li class="chapter" data-level="11.1.4" data-path="casos.html"><a href="casos.html#casos-extremos"><i class="fa fa-check"></i><b>11.1.4</b> Casos extremos</a></li>
+<li class="chapter" data-level="11.1.5" data-path="casos.html"><a href="casos.html#casos-mas-similares"><i class="fa fa-check"></i><b>11.1.5</b> Casos más similares</a></li>
+<li class="chapter" data-level="11.1.6" data-path="casos.html"><a href="casos.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>11.1.6</b> Casos más diferentes</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="casos.html"><a href="casos.html#la-relevancia-de-combinar-metodos"><i class="fa fa-check"></i><b>11.2</b> La relevancia de combinar métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Mínería de datos</a></li>
+<li class="chapter" data-level="13" data-path="redes.html"><a href="redes.html"><i class="fa fa-check"></i><b>13</b> Análisis de redes</a><ul>
+<li class="chapter" data-level="13.1" data-path="redes.html"><a href="redes.html#introduccion-4"><i class="fa fa-check"></i><b>13.1</b> Introducción</a></li>
+<li class="chapter" data-level="13.2" data-path="redes.html"><a href="redes.html#conceptos-iniciales"><i class="fa fa-check"></i><b>13.2</b> Conceptos iniciales</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="redes.html"><a href="redes.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>13.2.1</b> Nodos y enlaces</a></li>
+<li class="chapter" data-level="13.2.2" data-path="redes.html"><a href="redes.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>13.2.2</b> Matriz de adyacencia</a></li>
+<li class="chapter" data-level="13.2.3" data-path="redes.html"><a href="redes.html#pesos-y-direccion"><i class="fa fa-check"></i><b>13.2.3</b> Pesos y dirección</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="redes.html"><a href="redes.html#bases-de-datos-de-redes"><i class="fa fa-check"></i><b>13.3</b> Bases de datos de redes</a></li>
+<li class="chapter" data-level="13.4" data-path="redes.html"><a href="redes.html#disposicion-grafica"><i class="fa fa-check"></i><b>13.4</b> Disposición gráfica</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="redes.html"><a href="redes.html#color-y-forma-en-la-representacion-visual"><i class="fa fa-check"></i><b>13.4.1</b> Color y forma en la representación visual</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="redes.html"><a href="redes.html#analisis-basico-de-redes"><i class="fa fa-check"></i><b>13.5</b> Análisis básico de redes</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="redes.html"><a href="redes.html#medidas-de-centralidad"><i class="fa fa-check"></i><b>13.5.1</b> Medidas de centralidad</a></li>
+<li class="chapter" data-level="13.5.2" data-path="redes.html"><a href="redes.html#comunidades-en-las-redes"><i class="fa fa-check"></i><b>13.5.2</b> Comunidades en las redes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>14</b> Análisis cuantitativo de texto</a><ul>
+<li class="chapter" data-level="14.1" data-path="qta.html"><a href="qta.html#introduccion-5"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
+<li class="chapter" data-level="14.2" data-path="qta.html"><a href="qta.html#exploracion-de-la-bases-de-datos"><i class="fa fa-check"></i><b>14.2</b> Exploración de la bases de datos</a></li>
+<li class="chapter" data-level="14.3" data-path="qta.html"><a href="qta.html#calculo-de-frecuencias"><i class="fa fa-check"></i><b>14.3</b> Cálculo de frecuencias</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="qta.html"><a href="qta.html#cuales-son-los-diez-hashtags-mas-usados-de-las-cuentas-de-los-diputados"><i class="fa fa-check"></i><b>14.3.1</b> ¿Cuáles son los diez hashtags más usados de las cuentas de los diputados?</a></li>
+<li class="chapter" data-level="14.3.2" data-path="qta.html"><a href="qta.html#frecuencias-por-genero-cantidad-de-hashtags-usados-por-los-diputados-en-total"><i class="fa fa-check"></i><b>14.3.2</b> Frecuencias por género: cantidad de hashtags usados por los diputados en total</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="qta.html"><a href="qta.html#wordcloud-de-hashtags"><i class="fa fa-check"></i><b>14.4</b> Wordcloud de hashtags</a></li>
+<li class="chapter" data-level="14.5" data-path="qta.html"><a href="qta.html#graficar-los-hashtags-mas-utilizados-por-grupos-de-interes"><i class="fa fa-check"></i><b>14.5</b> Graficar los hashtags más utilizados por grupos de interés</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-las-diputadas"><i class="fa fa-check"></i><b>14.5.1</b> Hashtags más usados entre las diputadas</a></li>
+<li class="chapter" data-level="14.5.2" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-los-diputados"><i class="fa fa-check"></i><b>14.5.2</b> Hashtags más usados entre los diputados</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-caracteristicas-del-diputado"><i class="fa fa-check"></i><b>14.6</b> Hashtags de género por características del diputado</a><ul>
+<li class="chapter" data-level="14.6.1" data-path="qta.html"><a href="qta.html#por-el-genero-del-diputado"><i class="fa fa-check"></i><b>14.6.1</b> Por el género del diputado</a></li>
+<li class="chapter" data-level="14.6.2" data-path="qta.html"><a href="qta.html#por-la-coalicion-de-los-diputados"><i class="fa fa-check"></i><b>14.6.2</b> Por la coalición de los diputados</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="qta.html"><a href="qta.html#variacion-temporal-del-uso-de-estos-hashtags"><i class="fa fa-check"></i><b>14.7</b> Variación temporal del uso de estos hashtags</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-olafeminista"><i class="fa fa-check"></i><b>14.7.1</b> Frecuencia semanal de #olafeminista</a></li>
+<li class="chapter" data-level="14.7.2" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-tres-hashtags-de-genero"><i class="fa fa-check"></i><b>14.7.2</b> Frecuencia semanal de tres hashtags de género</a></li>
+<li class="chapter" data-level="14.7.3" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-de-genero-por-semana"><i class="fa fa-check"></i><b>14.7.3</b> Grafiquemos los hashtags de género por semana</a></li>
+<li class="chapter" data-level="14.7.4" data-path="qta.html"><a href="qta.html#ponderamos-en-relacion-al-total-de-hashtags-por-semana"><i class="fa fa-check"></i><b>14.7.4</b> Ponderamos en relación al total de hashtags por semana</a></li>
+<li class="chapter" data-level="14.7.5" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-interesantes-ponderados-por-el-total-semanal"><i class="fa fa-check"></i><b>14.7.5</b> Grafiquemos los hashtags interesantes ponderados por el total semanal</a></li>
+<li class="chapter" data-level="14.7.6" data-path="qta.html"><a href="qta.html#diputadas"><i class="fa fa-check"></i><b>14.7.6</b> Diputadas</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-semana-a-nivel-de-diputados-ponderados-por-semana"><i class="fa fa-check"></i><b>14.8</b> Hashtags de género por semana a nivel de diputados (ponderados por semana)</a></li>
+<li class="chapter" data-level="14.9" data-path="qta.html"><a href="qta.html#comentarios-finales"><i class="fa fa-check"></i><b>14.9</b> Comentarios finales</a></li>
+<li class="chapter" data-level="14.10" data-path="qta.html"><a href="qta.html#anexo-problemas-que-se-presentan-cuando-analizas-discursos-debates-o-leyes"><i class="fa fa-check"></i><b>14.10</b> Anexo: Problemas que se presentan cuando analizas discursos, debates o leyes</a></li>
+<li class="chapter" data-level="14.11" data-path="qta.html"><a href="qta.html#tidy-text"><i class="fa fa-check"></i><b>14.11</b> <code>Tidy text</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>15</b> Generación de mapas</a><ul>
+<li class="chapter" data-level="15.1" data-path="mapas.html"><a href="mapas.html#datos-espaciales"><i class="fa fa-check"></i><b>15.1</b> Datos Espaciales</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="mapas.html"><a href="mapas.html#que-son"><i class="fa fa-check"></i><b>15.1.1</b> ¿Qué son?</a></li>
+<li class="chapter" data-level="15.1.2" data-path="mapas.html"><a href="mapas.html#estructura-de-los-datos-espaciales"><i class="fa fa-check"></i><b>15.1.2</b> Estructura de los Datos Espaciales</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="mapas.html"><a href="mapas.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>15.2</b> Datos Espaciales en R</a></li>
+<li class="chapter" data-level="15.3" data-path="mapas.html"><a href="mapas.html#special-features-en-r"><i class="fa fa-check"></i><b>15.3</b> Special Features en R</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="mapas.html"><a href="mapas.html#estructura"><i class="fa fa-check"></i><b>15.3.1</b> Estructura</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="mapas.html"><a href="mapas.html#manejo-de-datos-espaciales"><i class="fa fa-check"></i><b>15.4</b> Manejo de Datos Espaciales</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="mapas.html"><a href="mapas.html#modificaciones"><i class="fa fa-check"></i><b>15.4.1</b> Modificaciones</a></li>
+<li class="chapter" data-level="15.4.2" data-path="mapas.html"><a href="mapas.html#crear-nuevos-shapefiles-con-st_write"><i class="fa fa-check"></i><b>15.4.2</b> Crear nuevos shapefiles con <code>st_write</code></a></li>
+<li class="chapter" data-level="15.4.3" data-path="mapas.html"><a href="mapas.html#incorporar-datos-de-otras-bases-con-merge"><i class="fa fa-check"></i><b>15.4.3</b> Incorporar datos de otras bases con <code>merge</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="mapas.html"><a href="mapas.html#mapear-en-r"><i class="fa fa-check"></i><b>15.5</b> Mapear en R</a></li>
+<li class="chapter" data-level="15.6" data-path="mapas.html"><a href="mapas.html#mapeando-variables"><i class="fa fa-check"></i><b>15.6</b> Mapeando variables</a><ul>
+<li class="chapter" data-level="15.6.1" data-path="mapas.html"><a href="mapas.html#mapas-animados-con-gganimate"><i class="fa fa-check"></i><b>15.6.1</b> Mapas animados con <code>gganimate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.7" data-path="mapas.html"><a href="mapas.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>15.7</b> Inferencia a partir de Datos Espaciales</a><ul>
+<li class="chapter" data-level="15.7.1" data-path="mapas.html"><a href="mapas.html#indicadores-locales-de-asociacion-espacial-lisa"><i class="fa fa-check"></i><b>15.7.1</b> Indicadores locales de asociación espacial (LISA)</a></li>
+<li class="chapter" data-level="15.7.2" data-path="mapas.html"><a href="mapas.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>15.7.2</b> Matriz de Pesos Espaciales</a></li>
+<li class="chapter" data-level="15.7.3" data-path="mapas.html"><a href="mapas.html#morans-i"><i class="fa fa-check"></i><b>15.7.3</b> Moran’s I</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="carga" class="section level1">
+<h1><span class="header-section-number">Capítulo 5</span> Carga de bases</h1>
+<p><em>Por Soledad Araya y Andrés Cruz</em></p>
+<div id="carga-intro" class="section level2">
+<h2><span class="header-section-number">5.1</span> Introducción</h2>
+<p>Cargar bases de datos no es siempre una tarea fácil. Quienes crean bases de datos utilizan distintos formatos de archivo, tratando de optimizar diferentes parámetros (usabilidad por usuarios de ofimática, tamaño, etcétera). A veces, la información que necesitas está distribuida en múltiples bases de datos pequeñas. En otros casos, el problema es la magnitud de los datos, con bases de datos que, utilizando los métodos usuales de carga, atentan contra la integridad de tu computador personal. Las siguientes tres subsecciones esperan guiarte en la resolución de estos desafíos.</p>
+<p>A diferencia de los otros capítulos del libro, en este se requiere que descargues las bases de datos directamente en tu computador, sin usar nuestro paquete asociado. ¡La idea es que aprendas a cargar datos en el mundo real! Comienza creando una carpeta en tu computador, que será la carpeta del proyecto. Nosotros llamaremos a nuestra carpeta del proyecto, muy originalmente, <code>carga-bases</code>. Luego, descarga desde <a href="https://arcruz0.github.io/adp-bookdown/00-archivos/datos_carga_adp.zip">este link</a> el archivo .zip con las bases de datos para el capítulo, y guárdalo en la carpeta que creaste antes. En Windows, por ejemplo, esto debería verse parecido a la siguiente imagen:</p>
+<div class="figure" style="text-align: center"><span id="fig:carpeta-1"></span>
+<img src="00-images/carga/carpeta_1.png" alt="Carpeta con archivo .zip" width="65%" />
+<p class="caption">
+Figura 5.1: Carpeta con archivo .zip
+</p>
+</div>
+<p>Luego, debes descomprimir el contenido del archivo .zip. La forma exacta de hacer esto dependerá de tu sistema y sus programas, pero suele ser algo similar a <code>Click Derecho &gt; Descomprimir aquí</code>. Deberías tener ahora una subcarpeta llamada “datos”:</p>
+<div class="figure" style="text-align: center"><span id="fig:carpeta-2"></span>
+<img src="00-images/carga/carpeta_2.png" alt="Carpeta con subcarpeta ya descomprimida" width="65%" />
+<p class="caption">
+Figura 5.2: Carpeta con subcarpeta ya descomprimida
+</p>
+</div>
+<p>Revisa esta nueva subcarpeta. Están las bases de datos a utilizar en este capítulo. Como verás, aprenderemos a cargar y utilizar múltiples formatos comunes:</p>
+<div class="figure" style="text-align: center"><span id="fig:carpeta-3"></span>
+<img src="00-images/carga/carpeta_3.png" alt="Subcarpeta con archivos de datos" width="65%" />
+<p class="caption">
+Figura 5.3: Subcarpeta con archivos de datos
+</p>
+</div>
+<p>¡Casi terminamos! Como se justifica y explicamos en mayor detalle en el Capítulo <a href="manejo-de-datos.html#manejo-de-datos">3</a>, haremos uso de <em>RStudio Projects</em> para ordenar nuestro trabajo. A continuación, crea un proyecto de RStudio haciendo click en la parte superior derecha de RStudio, “Project…”, y luego “New Project”. Seleccionando “Existing Directory” en la siguiente ventana podrás vincular al proyecto la carpeta que creaste antes (en nuestro caso, <code>carga-base</code>):</p>
+<div class="figure" style="text-align: center"><span id="fig:rstudio-projects"></span>
+<img src="00-images/carga/rstudio_projects.png" alt="Crear nuevo proyecto de RStudio en carpeta existente." width="60%" />
+<p class="caption">
+Figura 5.4: Crear nuevo proyecto de RStudio en carpeta existente.
+</p>
+</div>
+<p>¡Perfecto, ahora deberías tener tu nuevo proyecto para comenzar a trabajar ordenadamente, con los datos del capítulo!</p>
+</div>
+<div id="carga-formatos" class="section level2">
+<h2><span class="header-section-number">5.2</span> Distintos formatos de bases</h2>
+<p>En esta subsección aprenderás a cargar distintos formatos de bases de datos en <code>R</code>: separados por delimitadores, creados en R, creados con etiquetas en Stata o SPSS, y nativos de Excel.</p>
+<div id="archivos-separados-por-delimitadores-.csv-y-.tsv" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Archivos separados por delimitadores (.csv y .tsv)</h3>
+<p>Un archivo de texto plano (o <em>flat file dataset</em> en inglés) es un archivo formado sólo por texto o caracteres. Es un formato soportado por distintos programas, y muy fácil de trabajar. La única diferencia es en el tipo de separador que utilizan: (1) en el caso de .csv, el separador es una coma (,) y (2) en el caso de .tsv es separado por una tabulación (o topes) que se expresan con <code>&lt;TAB&gt;</code> o <code>\t</code>. Por su masividad, es importante saber cómo tratar estos archivos dependiendo de sus características.</p>
+<div id="r-base" class="section level4">
+<h4><span class="header-section-number">5.2.1.1</span> R base</h4>
+<p>R base tiene funciones para leer este tipo de archivos. Quizás, más de alguna vez te has encontrado con <code>read.table</code> o <code>read.csv</code>, que es una función específica para leer archivos csv del paquete integrado <code>utils</code> de R. El primero debería ser suficiente para abrir cualquiera de estos archivos. Solo hay que tener especial preocupación con las características de cada uno. Como habíamos mencionado, las separaciones de estos archivos suelen ser diferentes, y esta función nos da la posibilidad de especificar el tipo de separación (“,”, “;”, “|” o &quot;) con el argumento <code>sep =</code>.</p>
+<p>Sin embargo, existen mejores opciones para cargar este tipo de bases de datos. Si bien <code>read.table()</code> puede resultar amigable cuando estás recién empezando, cuando necesitas trabajar con archivos mucho más grandes y pesados, no es suficiente. Una segunda desventaja de <code>read.table()</code> es que, normalmente, no suele funcionar adecuadamente con archivos que tienen caracteres especiales, ¡una gran desventaja para nosotros los hispanohablantes!</p>
+<p>Para esos casos, tenemos diferentes alternativas que presentaremos a continuación.</p>
+</div>
+<div id="carga-readr" class="section level4">
+<h4><span class="header-section-number">5.2.1.2</span> <code>readr</code></h4>
+<p>El paquete <code>readr</code> es el encargado de introducir una serie de funciones para leer distintos tipos de archivos. A primera vista, la diferencia entre las funciones de <code>utils</code> y las de <code>readr</code> es un guión bajo. Aun así, las funciones de <code>readr</code> suelen trabajar mejor con bases grandes, y su velocidad es mucho mayor al momento de leerlas. <code>readr</code> al igual que muchos de los paquetes ya presentados, es parte de los paquetes del núcleo de <code>tidyverse</code>. Así que puedes decidir si llamarlo por sí solo, o con las herramientas de su universo.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="co">## ── Attaching packages ──── tidyverse 1.2.1 ──</span>
+<span class="co">## ✔ ggplot2 3.1.0       ✔ purrr   0.3.1  </span>
+<span class="co">## ✔ tibble  2.0.1       ✔ dplyr   0.8.0.1</span>
+<span class="co">## ✔ tidyr   0.8.3       ✔ stringr 1.4.0  </span>
+<span class="co">## ✔ readr   1.3.1       ✔ forcats 0.4.0</span>
+<span class="co">## ── Conflicts ─────── tidyverse_conflicts() ──</span>
+<span class="co">## ✖ dplyr::filter() masks stats::filter()</span>
+<span class="co">## ✖ dplyr::lag()    masks stats::lag()</span>
+<span class="co"># library(readr) # ¡esto también funcionaría, pero no cargaría lo demás!</span></code></pre>
+<p>Comencemos presentando una de las fuentes de datos que ocuparemos en este capítulo, proveniente del proyecto <a href="(https://www.desiguales.org/)">Desiguales</a> del PNUD, que buscó mapear las complejidades de la desigualdad en Chile ayudándose de una encuesta aplicada el año 2016. Utilizaremos una pequeña subsección de su base de datos, que contiene información para 300 encuestados y encuestadas a lo largo de 20 variables. Como pudiste revisar antes, contamos con la base de datos en seis formatos diferentes para el desarrollo de este capítulo:</p>
+<div class="figure" style="text-align: center"><span id="fig:carpeta-3-2"></span>
+<img src="00-images/carga/carpeta_3.png" alt="Subcarpeta con archivos de datos" width="65%" />
+<p class="caption">
+Figura 5.5: Subcarpeta con archivos de datos
+</p>
+</div>
+<p>¿Cómo cargar la base en formato .csv, entonces? Como sospecharás, comenzamos con la base más simple de cargar. Gracias a la función <code>read_csv()</code> de <code>readr</code>, solo necesitaremos poner la ruta del archivo dentro de nuestro proyecto:</p>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double()
+## )
+## See spec(...) for full column specifications.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_desiguales_csv &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;datos/desiguales.csv&quot;</span>)</code></pre>
+Comenzamos el nombre del objeto con “df” como abreviatura de <em>dataframe</em>. Para confirmar que nuestro archivo está en el ambiente como objeto, ocuparemos <code>ls()</code>. Con esta función puedes ver la lista de objetos que has creado o cargado. También puedes revisar esto en el panel de <code>Environment</code> de RStudio.
+<div class="figure" style="text-align: center"><span id="fig:solapa-env"></span>
+<img src="00-images/carga/environment.png" alt="Solapa de Environment, arriba a la derecha" width="60%" />
+<p class="caption">
+Figura 5.6: Solapa de Environment, arriba a la derecha
+</p>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()
+<span class="co">## [1] &quot;df_desiguales_csv&quot;</span></code></pre>
+<p>Ahora que confirmamos que nuestro archivo cargó, necesitamos saber si es o no un objeto de clase <em>dataframe</em>. Como ya han visto en capítulos anteriores, en <code>R</code> podemos utilizar diferentes tipos de objetos (por ejemplo, vectores). Que no son siempre dataframes. Por eso es necesario revisar si lo que cargamos es o no el objeto que deseábamos. Para esto, ocuparemos la función <code>class()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(df_desiguales_csv)
+<span class="co">## [1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot;</span></code></pre>
+<p>Esta vez, comprobamos con <code>class()</code> que este archivo está en formato <em>dataframe</em> y <em>tibble</em>. Como seguiremos utilizando las herramientas propias del <code>tidyverse</code>, nos es útil trabajar con este formato.</p>
+<p>Es ideal conocer un poco más de la función para capear posibles obstáculos cuando cargas bases de datos en este formato. Para empezar, puede que tu archivo esté separado por otro tipo de separador. Esto lo puedes definir con <code>delim =</code> que cumple la misma función que <code>sep =</code> en <code>read.table</code>. También, cuando manejas archivos con algún tipo de digitación diferentes, resulta útil conocer <code>locale</code> para especificar separador de decimales y miles.</p>
+<p>Una segunda acotación: Probablemente al escribir<code>read_csv</code> en <code>R</code> vieron que también apareció sugerida la función <code>read_csv2()</code>. La única diferencia es el caracter con el que estamos delimitando nuestros datos: <code>read_csv2()</code> tiene como delimitador por defecto “;”, mientras que en <code>read_csv()</code> es “,”. Para archivos .tsv, está la función <code>read_tsv()</code>, función que no viene por defecto en el paquete <code>utils</code>.</p>
+<p>Las funciones más comunes para explorar las bases de datos son <code>head()</code>, <code>str()</code>, <code>summary()</code> y <code>dim()</code>. También la función <code>glimpse()</code> del paquete <code>dplyr</code>.</p>
+<p>Exploremos brevemente los datos que estamos manejando con <code>glimpse</code>. Las herramientas del paquete <code>dplyr</code> deberían estar disponibles ya, dado que ya cargaste el <code>tidyverse</code> antes. Ocuparemos <code>glimpse</code> para ver una breve panorámica de las primeras 10 columnas de nuestros datos:</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_desiguales_csv <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glimpse</span>()
+<span class="co">## Observations: 300</span>
+<span class="co">## Variables: 10</span>
+<span class="co">## $ id        &lt;dbl&gt; 34, 36, 70, 75, 99, 121, 122, 128, 160, 163, 166, 172,…</span>
+<span class="co">## $ sexo      &lt;dbl&gt; 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 1, 2, 2, 1, 2, …</span>
+<span class="co">## $ zona      &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, …</span>
+<span class="co">## $ macrozona &lt;dbl&gt; 4, 4, 2, 2, 4, 2, 2, 4, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, …</span>
+<span class="co">## $ region    &lt;dbl&gt; 13, 13, 7, 7, 13, 7, 7, 13, 7, 7, 7, 5, 7, 13, 13, 13,…</span>
+<span class="co">## $ edad      &lt;dbl&gt; 63, 52, 73, 78, 22, 51, 18, 21, 57, 41, 55, 64, 26, 70…</span>
+<span class="co">## $ p1_anyo   &lt;dbl&gt; 1952, 1963, 1943, 1938, 1993, 1964, 1997, 1995, 1958, …</span>
+<span class="co">## $ p1_mes    &lt;dbl&gt; 8, 7, 2, 2, 12, 11, 10, 1, 12, 4, 10, 12, 12, 10, 10, …</span>
+<span class="co">## $ p2        &lt;dbl&gt; 1, 1, 4, 7, 8, 1, 5, 5, 3, 3, 7, 4, 5, 1, 5, 1, 1, 5, …</span>
+<span class="co">## $ p3        &lt;dbl&gt; 2, 3, 2, 3, 3, 2, 3, 3, 2, 2, 3, 1, 1, 1, 3, 1, 2, 3, …</span></code></pre>
+<p>¡Todo se ve bien! Sigamos explorando otras formas de cargar datos a R.</p>
+</div>
+</div>
+<div id="carga-r" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Archivos creados con R (.Rdata y .rds)</h3>
+<p>Ahora centraremos nuestra atención en los archivos creados con R, que tienen por extensión .Rdata (.Rda también es válido) o .rds. Estos formatos de archivo permiten almacenar <em>cualquier</em> objeto de R, ya sea un vector, <em>dataframe</em>, matriz, lista, etcétera. Tras leer el archivo, R cargará el objeto tal como fue guardado. De esta forma, los archivos en este formato destacan por (a) su flexibilidad a la hora de qué almacenan, no estando limitados a bases de datos, y (b) su compatibilidad perfecta con R: por ejemplo, podrás estar seguro de que cada variable en una base de datos .rds será cargada en el formato que corresponde (los vectores numéricos como numéricos, los factores como factores, y así<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>).</p>
+<p>La diferencia entre un archivo .Rdata (o .Rda) y uno .rds es simple, pero importante: mientras que el primero puede contener cualquier número de objetos, el segundo está limitado a un objeto. A continuación aprenderás a cargar archivos creados con R, en cualquiera de estos dos formatos.</p>
+<div id="carga-rdata" class="section level4">
+<h4><span class="header-section-number">5.2.2.1</span> Archivos .Rdata (uno o más objetos)</h4>
+<p>Los archivos .Rdata, crucialmente, pueden contener más de un objeto. Aunque esto suena conveniente, incluye una limitante: al cargar los objetos, estos automáticamente adoptarán el nombre con el que fueron creados. A modo de ejemplo, en el archivo .Rdata para la base de Desiguales hemos guardado dos objetos: el <em>dataframe</em> que vimos antes (ahora llamado <code>df_desiguales_rdata</code>) y un vector numérico con las edades de las personas encuestadas (llamado <code>vector_edades</code>). Para cargar el archivo basta con utilizar la función <code>load()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;datos/desiguales.Rdata&quot;</span>)</code></pre>
+<p>Como habíamos visto, puedes revisar con el comando <code>ls()</code> si los objetos se cargaron correctamente en la sesión de R. Si los dos objetos se cargaron apropiadamente, ambos deberían aparecer nombrados, sumándose al anterior dataframe originado desde un archivo .csv.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()
+<span class="co">## [1] &quot;df_desiguales_csv&quot;   &quot;df_desiguales_rdata&quot; &quot;vector_edades&quot;</span></code></pre>
+</div>
+<div id="archivos-.rds-solo-un-objeto" class="section level4">
+<h4><span class="header-section-number">5.2.2.2</span> Archivos .rds (solo un objeto)</h4>
+<p>Los archivos .rds están limitados a almacenar un solo objeto. Aunque suene menos prometedor que la flexibilidad de .Rdata, este formato destaca por su modularidad, ayudando a mantener el orden en tus archivos. Otra cualidad positiva de .rds es que la sintaxis para cargarlos es familiar, muy similar a la que ya usaste antes para cargar el archivo .csv. ¡Ahora sí puedes nombrar el objeto al crearlo! El comando es el siguiente, usando la función <code>read_rds()</code> (que cargamos antes con <code>library(tidyverse)</code>):</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_desiguales_rds &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;datos/desiguales.rds&quot;</span>)</code></pre>
+<p>Nuevamente, puedes utilizar el comando <code>ls()</code> o RStudio para asegurarte de que el objeto se creó sin problemas en la sesión:</p>
+<pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">ls</span>()
+ <span class="co">## [1] &quot;df_desiguales_csv&quot;   &quot;df_desiguales_rdata&quot; &quot;df_desiguales_rds&quot;  </span>
+ <span class="co">## [4] &quot;vector_edades&quot;</span></code></pre>
+<p>¡Todo bien! Con la función <code>class()</code>, por cierto, puedes comprobar que el nuevo objeto <code>df_desiguales_rds</code> es, en efecto, un dataframe (¡y un tibble!).</p>
+<pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">class</span>(df_desiguales_rds)
+ <span class="co">## [1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot;</span></code></pre>
+</div>
+</div>
+<div id="carga-etiquetas" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> Datos con etiquetas (Stata o SPSS)</h3>
+<p>Los datos con etiquetas son comunes en las ciencias sociales, ampliamente utilizados en los archivos de SPSS (.sav) y Stata (.dta). La idea principal es relativamente simple: en el archivo se guarda información explicativa adicional a los valores de la base de datos. Por ejemplo, la variable <code>p2</code> de la base de Desiguales, correspondiente a la segunda pregunta de la encuesta, podría tener asignada una etiqueta que describa la pregunta (“Estado civil”) o la registre explícitamente (“Independiente de si usted tiene o no tiene pareja actualmente, ¿podría decirme cuál es su estado conyugal o civil actual?”). Llamaremos a este tipo de etiquetas <em>etiquetas de variable</em>.</p>
+<p>Por otro lado, las etiquetas también pueden registrar información sobre los valores de las variables. Por ejemplo, en la misma pregunta <code>p2</code>, las siguientes respuestas eran posibles entre los y las encuestadas:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Valor</th>
+<th>Etiqueta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Casado(a) por primera vez</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Casado(a) por segunda vez o más</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Casado(a) legalmente, pero separado de hecho</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Divorciado</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Soltero(a), nunca se ha casado</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Soltero(a), pero con un matrimonio legalmente anulado</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Viudo(a)</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Conviviente o pareja</td>
+</tr>
+<tr class="odd">
+<td>88</td>
+<td>No Sabe</td>
+</tr>
+<tr class="even">
+<td>99</td>
+<td>No Responde</td>
+</tr>
+</tbody>
+</table>
+<p>Una base de datos puede registrar simplemente los valores numéricos que registraron los y las encuestadoras, guardando en etiquetas la información explicativa. De esta forma, aunque la base de datos solo registra un “4” en la variable <code>p2</code> para una encuestada, la etiqueta ayuda a identificar que identificó su estado civil como divorciada. Llamaremos a este tipo de etiquetas <em>etiquetas de valores</em>.</p>
+<p>A continuación, aprenderás a cargar bases de datos con etiquetas a R, provenientes de SPSS (.sav) o Stata (.dta). Esto te permitirá informar tu análisis por medios de las etiquetas, tanto de variables como de valores. Para esto necesitarás el paquete <code>haven</code>. Si es que ya instalaste el <code>tidyverse</code>, entonces tienes acceso a <code>haven</code>. Sin embargo, <code>library(tidyverse)</code> no bastará para cargarlo, debes hacerlo aparte<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)</code></pre>
+<p>Los comandos para cargar datos con etiquetas son similares a los que utilizaste anteriormente para cargar archivos .csv y .rds. Mientras que para SPSS la función es <code>read_spss()</code>, para Stata es <code>read_stata()</code>. Carguemos inmediatamente ambas bases:</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_desiguales_spss &lt;-<span class="st"> </span><span class="kw">read_spss</span>(<span class="st">&quot;datos/desiguales.sav&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_desiguales_stata &lt;-<span class="st"> </span><span class="kw">read_stata</span>(<span class="st">&quot;datos/desiguales.dta&quot;</span>)</code></pre>
+<p>Puedes, nuevamente, revisar que se crearon los objetos utilizando <code>ls()</code> o el panel “Environment” de RStudio. Además, puedes chequear que, en efecto, son <em>dataframes</em> y tibbles:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()
+<span class="co">## [1] &quot;df_desiguales_csv&quot;   &quot;df_desiguales_rdata&quot; &quot;df_desiguales_rds&quot;  </span>
+<span class="co">## [4] &quot;df_desiguales_spss&quot;  &quot;df_desiguales_stata&quot; &quot;vector_edades&quot;</span>
+<span class="kw">class</span>(df_desiguales_spss)
+<span class="co">## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span>
+<span class="kw">class</span>(df_desiguales_stata)
+<span class="co">## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></code></pre>
+<p>Las bases de datos con etiquetas se distinguen de otras no en la clase de objeto, sino que en sus variables. Utilizando herramientas que aprendiste en el <a href="">capítulo de manejo de datos</a>, puedes explorar las diez primeras variables de cualquiera de las bases (ambas darán el mismo resultado, por lo que de ahora en adelante nos centraremos en la proveniente de SPSS).</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_desiguales_spss <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glimpse</span>()
+<span class="co">## Observations: 300</span>
+<span class="co">## Variables: 10</span>
+<span class="co">## $ id        &lt;dbl&gt; 34, 36, 70, 75, 99, 121, 122, 128, 160, 163, 166, 172,…</span>
+<span class="co">## $ sexo      &lt;dbl+lbl&gt; 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 1, 2, 2, 1,…</span>
+<span class="co">## $ zona      &lt;dbl+lbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2,…</span>
+<span class="co">## $ macrozona &lt;dbl+lbl&gt; 4, 4, 2, 2, 4, 2, 2, 4, 2, 2, 2, 2, 2, 4, 4, 4, 4,…</span>
+<span class="co">## $ region    &lt;dbl+lbl&gt; 13, 13, 7, 7, 13, 7, 7, 13, 7, 7, 7, 5, 7, 13, 13,…</span>
+<span class="co">## $ edad      &lt;dbl&gt; 63, 52, 73, 78, 22, 51, 18, 21, 57, 41, 55, 64, 26, 70…</span>
+<span class="co">## $ p1_anyo   &lt;dbl+lbl&gt; 1952, 1963, 1943, 1938, 1993, 1964, 1997, 1995, 19…</span>
+<span class="co">## $ p1_mes    &lt;dbl+lbl&gt; 8, 7, 2, 2, 12, 11, 10, 1, 12, 4, 10, 12, 12, 10, …</span>
+<span class="co">## $ p2        &lt;dbl+lbl&gt; 1, 1, 4, 7, 8, 1, 5, 5, 3, 3, 7, 4, 5, 1, 5, 1, 1,…</span>
+<span class="co">## $ p3        &lt;dbl+lbl&gt; 2, 3, 2, 3, 3, 2, 3, 3, 2, 2, 3, 1, 1, 1, 3, 1, 2,…</span></code></pre>
+<p>Como puedes notar, la mayoría de las variables no son solo vectores numéricos (“dbl” o “double”<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>), sino que también incluyen etiquetas (+ “lbl” o “label”, etiqueta en inglés). Ocupando el comando <code>head()</code>, obtengamos los seis primeros valores y más información de nuestra variable etiquetada <code>p2</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df_desiguales_stata<span class="op">$</span>p2)
+<span class="co">## &lt;Labelled double&gt;: P2 - Â¿podria decirme cual es su estado conyugal o civil actual?</span>
+<span class="co">## [1] 1 1 4 7 8 1</span>
+<span class="co">## </span>
+<span class="co">## Labels:</span>
+<span class="co">##  value                                        label</span>
+<span class="co">##      1                    Casado(a) por primera vez</span>
+<span class="co">##      2             Casado(a) por segunda vez o mÃ¡s</span>
+<span class="co">##      3 Casado(a) legalmente, pero separado de hecho</span>
+<span class="co">##      4                                   Divorciado</span>
+<span class="co">##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 6 rows ]</span></code></pre>
+<p>Analicemos brevemente el resultado que reporta la consola. En primer lugar, se muestra nuevamente que la variable en cuestión es un vector numérico con etiqueta (“<Labelled double>”). Luego, tras dos puntos, se registra la <em>etiqueta de variable</em>: “P2 - ¿podria decirme cual es su estado conyugal o civil actual?”. A continuación se encuentran los seis primeros valores de la variable, como se requirió a través de <code>head()</code>. Por último se hallan las <em>etiquetas de valores</em>, que entregan información sobre qué significa cada número en el contexto de la variable.</p>
+<p>De esta forma, obtuvimos toda la información que registran las etiquetas para esta base. Con los comandos que viste anteriormente puedes tener claridad de qué significa cada valor en tu base de datos etiquetados. Para terminar, nota que R, con la ayuda de <code>haven</code>, también mostrará las etiquetas en otros casos, cuando sea conveniente. Por ejemplo, a continuación veamos un resumen simple de las dos primeras variables de la base de datos. ¡Nota lo fácil que es de leer!</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_desiguales_stata <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(region, p2)
+<span class="co">## # A tibble: 300 x 2</span>
+<span class="co">##                          region                                          p2</span>
+<span class="co">##                       &lt;dbl+lbl&gt;                                   &lt;dbl+lbl&gt;</span>
+<span class="co">##  1 13 [Metropolitana de Santia… 1 [Casado(a) por primera vez]              </span>
+<span class="co">##  2 13 [Metropolitana de Santia… 1 [Casado(a) por primera vez]              </span>
+<span class="co">##  3  7 [Del Maule]               4 [Divorciado]                             </span>
+<span class="co">##  4  7 [Del Maule]               7 [Viudo(a)]                               </span>
+<span class="co">##  5 13 [Metropolitana de Santia… 8 [Conviviente o pareja]                   </span>
+<span class="co">##  6  7 [Del Maule]               1 [Casado(a) por primera vez]              </span>
+<span class="co">##  7  7 [Del Maule]               5 [Soltero(a), nunca se ha casado]         </span>
+<span class="co">##  8 13 [Metropolitana de Santia… 5 [Soltero(a), nunca se ha casado]         </span>
+<span class="co">##  9  7 [Del Maule]               3 [Casado(a) legalmente, pero separado de …</span>
+<span class="co">## 10  7 [Del Maule]               3 [Casado(a) legalmente, pero separado de …</span>
+<span class="co">## # … with 290 more rows</span></code></pre>
+</div>
+<div id="carga-excel" class="section level3">
+<h3><span class="header-section-number">5.2.4</span> Archivos de Excel</h3>
+<p>Si bien la mayoría del tiempo utilizaremos bases de datos que vienen en los formatos anteriores, tenemos que tener en consideración que no todas las instituciones presentan su información así. Muchas veces tendrás que enfrentarte a formatos que generan dolores de cabeza. Por ejemplo, Excel. En Chile, muchas organizaciones gubernamentales aún trabajan con Excel y el problema en sí no es el formato, sino la estructura usual de las bases.</p>
+<p>La mayoría del tiempo nos enfrentaremos a algo así:</p>
+<div class="figure" style="text-align: center"><span id="fig:ejemplo-excel-1"></span>
+<img src="00-images/carga/ejemplo_sinim.png" alt="Base de datos del Sistema Nacional de Información Municipal (SINIM)" width="75%" />
+<p class="caption">
+Figura 5.7: Base de datos del Sistema Nacional de Información Municipal (SINIM)
+</p>
+</div>
+<p>O así:</p>
+<div class="figure" style="text-align: center"><span id="fig:ejemplo-excel-2"></span>
+<img src="00-images/carga/ejemplo_cead.png" alt="Base de datos del Centro de Estudios y Análisis del Delito (CEAD)" width="75%" />
+<p class="caption">
+Figura 5.8: Base de datos del Centro de Estudios y Análisis del Delito (CEAD)
+</p>
+</div>
+<p>Es en ese momento donde empiezan los problemas.</p>
+<p>Para empezar, carguemos uno de los paquetes más usados para leer archivos de Excel (.xls o .xlsx) es <code>readxl</code>, un paquete del <code>tidyverse</code><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)</code></pre>
+<p>Para el siguiente ejemplo, ocuparemos la base de datos del <a href="http://cead.spd.gov.cl/estadisticas-delictuales/">Centro de Estudias y Análisis del Delito (CEAD)</a>. Esta base es la que, por defecto, se puede bajar desde su página web.</p>
+<p>Para cargar el archivo, ocuparemos <code>read_excel()</code> de <code>readxl</code>. Sólo es necesario poner la ruta de acceso al archivo .xls o .xlsx:</p>
+<pre><code>## New names:
+## * `` -&gt; `..3`
+## * `` -&gt; `..4`
+## * `` -&gt; `..5`
+## * `` -&gt; `..6`
+## * `` -&gt; `..7`</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_cead_excel &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;datos/cead.xls&quot;</span>)</code></pre>
+<p>Primero, revisamos que los datos se hayan cargado de forma correcta en el Environment con <code>ls()</code>. Luego, ocuparemos <code>glimpse</code> para tener un “vistazo” de las primeras observaciones en nuestra base de datos:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()
+<span class="co">## [1] &quot;df_cead_excel&quot;       &quot;df_desiguales_csv&quot;   &quot;df_desiguales_rdata&quot;</span>
+<span class="co">## [4] &quot;df_desiguales_rds&quot;   &quot;df_desiguales_spss&quot;  &quot;df_desiguales_stata&quot;</span>
+<span class="co">## [7] &quot;vector_edades&quot;</span>
+df_cead_excel <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glimpse</span>()
+<span class="co">## Observations: 79</span>
+<span class="co">## Variables: 7</span>
+<span class="co">## $ Medida     &lt;chr&gt; &quot;Tipo de Datos&quot;, NA, &quot;Unidad Territorial&quot;, &quot;Regiones&quot;…</span>
+<span class="co">## $ Frecuencia &lt;chr&gt; &quot;Casos Policiales&quot;, NA, NA, &quot;Región Metropolitana&quot;, &quot;…</span>
+<span class="co">## $ `..3`      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
+<span class="co">## $ `..4`      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
+<span class="co">## $ `..5`      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
+<span class="co">## $ `..6`      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
+<span class="co">## $ `..7`      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></code></pre>
+<p>Algo no se ve bien.</p>
+<p>Si miramos nuevamente la imagen de la base de datos del CEAD, nos daremos cuenta qué está ocurriendo. Para empezar, el archivo Excel tiene en sus filas iniciales información de la base, pero estas no son observaciones.</p>
+<div class="figure" style="text-align: center"><span id="fig:ejemplo-excel-3"></span>
+<img src="00-images/carga/ejemplo_cead.png" alt="Base de datos del Sistema Nacional de Información Municipal SINIM." width="75%" />
+<p class="caption">
+Figura 5.9: Base de datos del Sistema Nacional de Información Municipal SINIM.
+</p>
+</div>
+<p>Para solucionar esto, es necesario utilizar <code>skip =</code>. Este argumento nos ayudará a saltarnos las filas que no nos interesan, en este caso, 18:</p>
+<pre><code>## New names:
+## * `` -&gt; `..1`</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_cead_excel_v2 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;datos/cead.xls&quot;</span>, <span class="dt">skip =</span> <span class="dv">18</span>)</code></pre>
+<p>Otra forma de hacer lo mismo, es delimitar la información que queremos cargar a través del rango. Así, demarcamos el rango con <code>range</code> y obtendremos sólo la información dentro del rectángulo que especifiquemos. El rango lo delimitamos con la letra de la columna y el número de fila del archivo .xls o .xlsx.</p>
+<pre><code>## New names:
+## * `` -&gt; `..1`</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_cead_excel_v3 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;datos/cead.xls&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;A20:G81&quot;</span>)</code></pre>
+<p>Verificamos que se haya cargado correctamente con <code>ls()</code> y luego vemos el tipo de archivo con <code>class()</code>. Para efectos del capítulo, ocuparemos sólo la última versión del archivo .xls cargado (df_cead_excel_v3).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()
+<span class="co">## [1] &quot;df_cead_excel&quot;       &quot;df_cead_excel_v2&quot;    &quot;df_cead_excel_v3&quot;   </span>
+<span class="co">## [4] &quot;df_desiguales_csv&quot;   &quot;df_desiguales_rdata&quot; &quot;df_desiguales_rds&quot;  </span>
+<span class="co">## [7] &quot;df_desiguales_spss&quot;  &quot;df_desiguales_stata&quot; &quot;vector_edades&quot;</span>
+<span class="kw">class</span>(df_cead_excel_v3)
+<span class="co">## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></code></pre>
+<p>Como puedes observar, es muy fácil cargar este tipo de archivos después de practicar un poco. Por ahora, eso es lo que necesitas saber para cargar archivos .xls o .xlsx. Puede que tengas que lidiar con problemas de digitación, con nombres de variables imposibles o con errores de tipeo que pueden causar más de un problema cuando trabajas con <code>skip</code> (¿Por qué hay tantas variables si solo eran 15 columnas? ¡Alguien metió mal el dedo!). Pero ya manejas herramientas del <code>tidyverse</code>que te pueden ayudar con eso.</p>
+<p>Trataremos de hacer algunos cambios básicos a la base del CEAD:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(df_cead_excel_v3)
+<span class="co">## [1] &quot;..1&quot;  &quot;2013&quot; &quot;2014&quot; &quot;2015&quot; &quot;2016&quot; &quot;2017&quot; &quot;2018&quot;</span></code></pre>
+<p>El primer problema es el nombre de la columna que indica el municipio. El segundo problema es que, al menos que queramos tener una base de datos <em>ancha</em>, ¡No nos sirve tener los años como columnas! Para el primer problema ocupamos <code>rename</code> y para el segundo <code>gather</code>. De esta forma, nos quedamos con una base <em>larga</em>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_cead_excel_v2 &lt;-<span class="st"> </span>df_cead_excel_v3 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">county =</span> <span class="st">&quot;..1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> year, <span class="dt">value =</span> n_crime, <span class="op">-</span>county)</code></pre>
+<p>Otro tipo de problema al usar archivos de Excel es que la información puede estar dividida en distintas hojas. Como verás, <code>read_excel()</code> se hace cargo de esto de una manera muy simple. Para demostrar esto, utilizaremos la base del <a href="http://datos.sinim.gov.cl/index.php">Sistema Nacional de Información Municipal SINIM</a>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_sinim_excel &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;datos/sinim.xls&quot;</span>, 
+                             <span class="dt">sheet =</span> <span class="dv">2</span>, <span class="dt">skip =</span> <span class="dv">2</span>, <span class="dt">na =</span> <span class="st">&quot;No Recepcionado&quot;</span>)</code></pre>
+<p>Con el argumento <code>sheet =</code> seleccionamos la hoja que queremos cargar a <code>R</code>. Podemos cargarla tanto con el número de la posición como con el nombre de la hoja. Como ya vimos, con <code>skip</code> seleccionamos el número de filas que nos saltaremos al cargar la base, y con <code>na</code> damos a entender qué otra frase, palabra o situación queremos catalogar como NA aparte de las celdas en blanco.</p>
+<p>Una de las tareas principales cuando trabajas con Excel es la limpieza de la base de datos. Lamentablemente, estos dos ejemplos son muy comunes, y para lidiar con algunos de estos problemas está <code>janitor</code>.</p>
+<p>Normalmente, los nombres de las variables en Excel suelen venir de forma detallada y/o descriptiva: pueden tener espacios, caracteres especiales y mayúsculas que dificultan trabajar fácilmente con las variables de interés. Por ejemplo, los nombres de las columnas en esta base de datos tienen tienen todo lo mencionado:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(df_sinim_excel)
+<span class="co">## [1] &quot;CODIGO&quot;                        &quot;MUNICIPIO&quot;                    </span>
+<span class="co">## [3] &quot;INGRESOS MUNICIPALES ($) 2017&quot; &quot;INGRESOS MUNICIPALES ($) 2016&quot;</span></code></pre>
+<p>¿Se imaginan tener que escribir esos nombres cada vez que queramos hacer algún tipo de análisis?</p>
+<p>Para eso tenemos la función <code>clean_names()</code> del paquete <code>janitor</code>. Este es un paquete creado para facilitar la limpieza de datos y, sin ser un paquete del <code>tidyverse</code>, puede usarse sin problemas con los pipes. Y, para nuestra suerte, está optimizado para funcionar con <code>readr</code> y <code>readxl</code>.</p>
+<p>La función <code>clean_names()</code> funciona de manera simple, luego de haber instalado <code>janitor</code> (con <code>install.packages(&quot;janitor&quot;)</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_sinim_excel_v2 &lt;-<span class="st"> </span>df_sinim_excel <span class="op">%&gt;%</span><span class="st"> </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</code></pre>
+<p>Ahora, revisemos nuevamente los nombres de las variables:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(df_sinim_excel_v2)
+<span class="co">## [1] &quot;codigo&quot;                    &quot;municipio&quot;                </span>
+<span class="co">## [3] &quot;ingresos_municipales_2017&quot; &quot;ingresos_municipales_2016&quot;</span></code></pre>
+<p>¡Esto se ve mucho mejor!</p>
+<p>Esta función hace más simple y amigable el trabajo en R, independiente de tu nivel de conocimiento y lo que busques hacer. Trabajar con los nombres de las variables puede ser un dolor de cabeza, y esta herramienta te evitará trabajar demás y así concentrarte en lo sustantivo de tu análisis (que, definitivamente, no debería ser el nombre de las columnas).</p>
+<p>Con estas herramientas que te hemos entregado, deberías estar más que preparado para enfrentarte al terrible mundo de trabajar con Excel.</p>
+</div>
+</div>
+<div id="multiples-bases-de-datos-a-la-vez" class="section level2">
+<h2><span class="header-section-number">5.3</span> Múltiples bases de datos a la vez</h2>
+<p><strong>PENDIENTE</strong></p>
+</div>
+<div id="carga-grandes" class="section level2">
+<h2><span class="header-section-number">5.4</span> Bases de datos tabulares grandes</h2>
+<p>Las bases de datos grandes cada vez se encuentran más al alcance de los y las cientistas sociales, de la mano de los avances en los procesadores y la velocidad de las conexiones a internet. Sin embargo, las herramientas usuales de manejo de datos tabulares a menudo no funcionan correctamente en bases de datos grandes, y es necesario buscar alternativas. Qué tan complejo es lidiar con el tamaño de una base de datos depende de múltiples factores (la naturaleza de los datos y las características del computador, por ejemplo), pero, en general, podemos aventurar que una base de datos tabular de más 1 GB de tamaño le dará problemas a <code>R</code> en un computador personal regular. ¿Qué hacer para lidiar con este tipo de base de datos?</p>
+<p>A continuación trabajarás con la base de Desiguales en formato .csv, como lo hiciste en la subsección <a href="carga.html#carga-formatos">5.2</a> de este capítulo. Asumiremos que se podría tratar de una “base de datos grandes”, aunque sus escuálidos 15 KB de tamaño digan lo contrario. Por cierto, si quieres probar a hacer los siguientes análisis con bases de datos grandes reales de interés politológico, puedes encontrar varias para descargar en el <a href="https://atlas.media.mit.edu/es/">Observatorio de Complejidad Económica</a>, que registran comercio bilateral por distintas categorías productivas<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>.</p>
+<p>¿Cómo lidiar con una base de datos grande, entonces? Una primera alternativa a evaluar es si se necesita hacer uso de la base completa en el análisis, o si esta se puede hacer más pequeña antes. Para comenzar un análisis exploratorio que ayude a clarificar esto, recomendamos utilizar el argumento <code>n_max =</code> en <code>read_csv()</code> y sus funciones hermanas (por ejemplo, <code>read_tsv()</code>). De la siguiente forma podemos solo leer las primeras cien observaciones de la base de datos en cuestión, haciendo el proceso computacional ostensiblemente menos costoso:</p>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double()
+## )
+## See spec(...) for full column specifications.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_desiguales_grande_<span class="dv">100</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;datos/desiguales.csv&quot;</span>, <span class="dt">n_max =</span> <span class="dv">100</span>)</code></pre>
+<p>Seguramente tu sistema podrá manejar con facilidad esta nueva base de datos reducida. Ahora bien, ¿qué pasa si, tras revisar los datos, te das cuenta de que solo necesitas un par de variables para tu análisis? Recortar la base de datos te permitirá hacer un uso más eficiente de tus recursos computacionales. Nota que ahora el argumento <code>n_max =</code> no servirá, pues esta recorta filas en vez de columnas. Por ejemplo, supongamos que de la base de Desiguales (“grande” en nuestro ejemplo) solo necesitas las variables <code>edad</code> y <code>p2</code>. Con la ayuda de una función de asistencia de nuestro paquete <code>paqueteadp</code> (<code>cols_only_chr()</code>), puedes hacer que <code>read_rds()</code> cargue la base solo con dichas variables, obviando todas las demás y el costo computacional que ellas significan:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(paqueteadp)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_desiguales_grande_2vars &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;datos/desiguales.csv&quot;</span>,
+                                       <span class="dt">col_types =</span> <span class="kw">cols_only_chr</span>(<span class="kw">c</span>(<span class="st">&quot;edad&quot;</span>, <span class="st">&quot;p2&quot;</span>)))</code></pre>
+<p>Ahora la nueva base <code>df_desiguales_grande_2vars</code> tendrá todas las observaciones, pero solo se habrán cargado las dos variables requeridas, como puedes chequear con un resumen simple:</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_desiguales_grande_2vars
+<span class="co">## # A tibble: 300 x 2</span>
+<span class="co">##     edad    p2</span>
+<span class="co">##    &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">##  1    63     1</span>
+<span class="co">##  2    52     1</span>
+<span class="co">##  3    73     4</span>
+<span class="co">##  4    78     7</span>
+<span class="co">##  5    22     8</span>
+<span class="co">##  6    51     1</span>
+<span class="co">##  7    18     5</span>
+<span class="co">##  8    21     5</span>
+<span class="co">##  9    57     3</span>
+<span class="co">## 10    41     3</span>
+<span class="co">## # … with 290 more rows</span></code></pre>
+<p>¿Qué pasa si las variables a cargar son varias, y se hace tedioso añadir todos los nombres “a mano”? Supongamos que solo quieres las primeras 15 variables de la base para tu análisis. Los siguientes comandos solucionarán el problema, obteniendo primero los nombres de las variables (<code>names()</code>) a partir de tu base de análisis preliminar, <code>df_desiguales_grande_100</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">nombres_variables &lt;-<span class="st"> </span>df_desiguales_grande_<span class="dv">100</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">     </span><span class="kw">select</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">     </span><span class="kw">names</span>()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_desiguales_grande_20vars &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;datos/desiguales.csv&quot;</span>,
+                                        <span class="dt">col_types =</span> <span class="kw">cols_only_chr</span>(nombres_variables))</code></pre>
+<p>Ahora bien, es posible que algunos análisis no puedan prescindir de variables, o incluso que después de procedimientos como el anteriormente presentado las bases de datos sigan siendo demasiado pesadas. En estos casos, el ecosistema de <code>R</code> también provee de alternativas, que presentaremos brevemente a continuación.</p>
+<p>Una primera opción es la función <code>fread()</code> del paquete <code>data.table</code>. Esta función, optimizada para obtener velocidad, es casi siempre más rápida que <code>read_csv()</code> y asociados, aunque no tiene el mismo rango de opciones ni facilidad de uso de estas. Una vez que <code>data.table</code> esté instalado en nuestro sistema –es decir, después de <code>install.packages(&quot;data.table&quot;)</code>–, el siguiente comando nos permitirá cargar la base de datos:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
+df_desiguales_grande_fread &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;00-datos/carga/desiguales.csv&quot;</span>)</code></pre>
+<p>Nota que, aunque el objeto creado es un <em>dataframe</em>, también es de un tipo especial llamado <code>data.table</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(df_desiguales_grande_fread)
+<span class="co">## [1] &quot;data.table&quot; &quot;data.frame&quot;</span></code></pre>
+<p>El paquete <code>data.table</code> tiene diversas funciones para lidiar con este tipo de objetos, que suelen ser más eficientes computacionalmente que las usuales –aunque, a menudo, menos intuitivas y legibles. Si es que quieres aprender más sobre <code>data.table</code>, puedes revisar las múltiples <a href="https://cran.r-project.org/web/packages/data.table/index.html">viñetas</a> disponibles en la página del paquete, en inglés.</p>
+<p>Por último, si incluso <code>data.table</code> no es lo suficientemente eficiente como para lidiar con tus datos, tenemos otra opción para presentarte. El paquete <code>ff</code>, con más de diez años de existencia, provee una solución interesante al problema de las bases de datos grandes: en vez de cargarlas en la memoria RAM, como hacen <code>R</code> y los paquetes que hemos visto, ocupa directamente el disco duro (que usualmente tiene mucho más espacio disponible). Aunque esto haga que la mayoría de las operaciones tradicionales de <code>R</code> no funcionen, <code>ff</code> abre la puerta al uso de bases gigantes: el paquete aporta toda una nueva familia de funciones de análisis <em>ad hoc</em>, inspiradas en las de <code>R</code>.</p>
+<p>Puedes encontrar más información en inglés sobre <code>ff</code>, si lo requieres para un proyecto, en su <a href="http://ff.r-forge.r-project.org/">sitio web</a> y su <a href="https://cran.r-project.org/web/packages/ff/ff.pdf">archivo de ayuda</a> oficial de R. Si primero quieres comprobar cómo funciona el cargar tu base con este paquete, puedes utilizar el siguiente comando<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> –asumiendo que el paquete está instalado, con <code>install.packages(&quot;ff&quot;)</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ff)
+df_desiguales_grande_ff &lt;-<span class="st"> </span><span class="kw">read.csv.ffdf</span>(<span class="dt">file =</span> <span class="st">&quot;00-datos/carga/desiguales.csv&quot;</span>)</code></pre>
+<div class="books">
+<p>
+<strong>Ejercicios antes de continuar al próximo capítulo</strong> - Desde la página web de <a href="http://www.latinobarometro.org/latContents.jsp">Latinobarómetro</a> baja la edición de 2017 en formato SPSS (.sav) e impórtala a <code>R</code>. ¡Cuidado con las etiquetas!
+</p>
+<ul>
+<li>
+Ahora, repetí el proceso bajando la base en formato de Stata (.dta).
+</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>Esto no es necesariamente cierto en un archivo .csv, por ejemplo, que no contiene esta información almacenada. Lo que R debe hacer para dicho formato –y otros –es inferir el tipo de archivo.<a href="carga.html#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Aunque <code>haven</code> es parte del <code>tidyverse</code>, no es miembro del “núcleo” de este. El núcleo del <code>tidyverse</code> incluye unos pocos paquetes, los más utilizados. El resto de los paquetes, como <code>haven</code>, deben cargarse (pero no instalarse) por separado.<a href="carga.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>Esta es una forma de llamar a los números reales en computación<a href="carga.html#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>Al igual que <code>haven</code>, <code>readxl</code> es parte del <code>tidyverse</code>, pero no es miembro del “núcleo” de este. Por lo tanto, es necesario cargarlo por separado<a href="carga.html#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>Estas se encuentran en formato .tsv, por lo que deberás alterar ligeramente la sintaxis siguiente, como viste en la subsección para archivos .csv/.tsv (<a href="carga.html#carga-formatos">5.2</a>).<a href="carga.html#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>Es importante aquí la inclusión del argumento <code>file =</code>, pues este no es el primer argumento que recibe la función en cuestión.<a href="carga.html#fnref7" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dataviz.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lineal.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/arcruz0/libroadp/edit/master/carga.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

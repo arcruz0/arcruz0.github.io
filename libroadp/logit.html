@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 7 Modelos logísticos | AnalizaR Datos Políticos</title>
+  <meta name="description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  <meta name="generator" content="bookdown  and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 7 Modelos logísticos | AnalizaR Datos Políticos" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 7 Modelos logísticos | AnalizaR Datos Políticos" />
+  
+  <meta name="twitter:description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  
+
+<meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (editores)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="prev" href="lineal.html">
+<link rel="next" href="surv.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+<script>
+% https://stackoverflow.com/a/4425214/8242291
+var links = document.links;
+
+for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+
+}
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><b><a href="./index.html"><img style="float: left; margin-right: 5px;" src="favicon.ico"></img>AnalizaR datos políticos</a></b></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#inicio"><i class="fa fa-check"></i><b>1.1</b> Inicio</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#como-contribuir"><i class="fa fa-check"></i><b>1.2</b> ¿Cómo contribuir?</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#sobre-los-autores-y-autoras"><i class="fa fa-check"></i><b>1.2.1</b> Sobre los autores y autoras</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#prefacio"><i class="fa fa-check"></i><b>1.3</b> Prefacio</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i><b>1.3.1</b> Agradecimientos</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#que-esperar-del-libro"><i class="fa fa-check"></i><b>1.4</b> Qué esperar del libro</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#estructura-del-libro"><i class="fa fa-check"></i><b>1.5</b> Estructura del libro</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#prerrequisitos"><i class="fa fa-check"></i><b>1.6</b> Prerrequisitos</a></li>
+</ul></li>
+<li class="part"><span><b>I Introducción a R</b></span></li>
+<li class="chapter" data-level="2" data-path="rbas.html"><a href="rbas.html"><i class="fa fa-check"></i><b>2</b> R básico</a><ul>
+<li class="chapter" data-level="2.1" data-path="rbas.html"><a href="rbas.html#instalacion"><i class="fa fa-check"></i><b>2.1</b> Instalación</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="rbas.html"><a href="rbas.html#r"><i class="fa fa-check"></i><b>2.1.1</b> R</a></li>
+<li class="chapter" data-level="2.1.2" data-path="rbas.html"><a href="rbas.html#rstudio"><i class="fa fa-check"></i><b>2.1.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="rbas.html"><a href="rbas.html#partes-de-rstudio"><i class="fa fa-check"></i><b>2.2</b> Partes de RStudio</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="rbas.html"><a href="rbas.html#consola"><i class="fa fa-check"></i><b>2.2.1</b> Consola</a></li>
+<li class="chapter" data-level="2.2.2" data-path="rbas.html"><a href="rbas.html#script"><i class="fa fa-check"></i><b>2.2.2</b> Script</a></li>
+<li class="chapter" data-level="2.2.3" data-path="rbas.html"><a href="rbas.html#objetos"><i class="fa fa-check"></i><b>2.2.3</b> Objetos</a></li>
+<li class="chapter" data-level="2.2.4" data-path="rbas.html"><a href="rbas.html#archivos-graficos-paquetes-ayuda"><i class="fa fa-check"></i><b>2.2.4</b> Archivos / gráficos / paquetes / ayuda</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html"><i class="fa fa-check"></i><b>3</b> Manejo de datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#introduccion-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>3.1.1</b> Nuestra base de datos</a></li>
+<li class="chapter" data-level="3.1.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#describir-la-base"><i class="fa fa-check"></i><b>3.1.2</b> Describir la base</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-en-bases"><i class="fa fa-check"></i><b>3.2</b> Operaciones en bases</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ordenar-una-base"><i class="fa fa-check"></i><b>3.2.1</b> Ordenar una base</a></li>
+<li class="chapter" data-level="3.2.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#seleccionar-columnas"><i class="fa fa-check"></i><b>3.2.2</b> Seleccionar columnas</a></li>
+<li class="chapter" data-level="3.2.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#renombrar-columnas"><i class="fa fa-check"></i><b>3.2.3</b> Renombrar columnas</a></li>
+<li class="chapter" data-level="3.2.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#filtrar-observaciones"><i class="fa fa-check"></i><b>3.2.4</b> Filtrar observaciones</a></li>
+<li class="chapter" data-level="3.2.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#crear-nuevas-variables"><i class="fa fa-check"></i><b>3.2.5</b> Crear nuevas variables</a></li>
+<li class="chapter" data-level="3.2.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#concatenar-comandos"><i class="fa fa-check"></i><b>3.2.6</b> Concatenar comandos</a></li>
+<li class="chapter" data-level="3.2.7" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-agrupadas"><i class="fa fa-check"></i><b>3.2.7</b> Operaciones agrupadas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#reformatear-bases"><i class="fa fa-check"></i><b>3.3</b> Reformatear bases</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#por-que-quiero-visualizar-mis-datos"><i class="fa fa-check"></i><b>4.1</b> ¿Por qué quiero visualizar mis datos?</a></li>
+<li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>4.2</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-multiverso-ggplotidiano"><i class="fa fa-check"></i><b>4.2.1</b> Las capas del multiverso ggplotidiano</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#elecciones-locales-y-visualizacion-de-datos"><i class="fa fa-check"></i><b>4.3</b> Elecciones locales y visualización de datos</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="dataviz.html"><a href="dataviz.html#grafico-de-barras"><i class="fa fa-check"></i><b>4.3.1</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dataviz.html"><a href="dataviz.html#grafico-de-linea"><i class="fa fa-check"></i><b>4.3.2</b> Gráfico de Línea</a></li>
+<li class="chapter" data-level="4.3.3" data-path="dataviz.html"><a href="dataviz.html#boxplot"><i class="fa fa-check"></i><b>4.3.3</b> Boxplot</a></li>
+<li class="chapter" data-level="4.3.4" data-path="dataviz.html"><a href="dataviz.html#histograma"><i class="fa fa-check"></i><b>4.3.4</b> Histograma</a></li>
+<li class="chapter" data-level="4.3.5" data-path="dataviz.html"><a href="dataviz.html#relacion-entre-variables"><i class="fa fa-check"></i><b>4.3.5</b> Relación entre variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#para-seguir-aprendiendo"><i class="fa fa-check"></i><b>4.4</b> Para seguir aprendiendo</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="dataviz.html"><a href="dataviz.html#otros-paquetes"><i class="fa fa-check"></i><b>4.4.1</b> Otros paquetes:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="carga.html"><a href="carga.html"><i class="fa fa-check"></i><b>5</b> Carga de bases</a><ul>
+<li class="chapter" data-level="5.1" data-path="carga.html"><a href="carga.html#carga-intro"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
+<li class="chapter" data-level="5.2" data-path="carga.html"><a href="carga.html#carga-formatos"><i class="fa fa-check"></i><b>5.2</b> Distintos formatos de bases</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="carga.html"><a href="carga.html#archivos-separados-por-delimitadores-.csv-y-.tsv"><i class="fa fa-check"></i><b>5.2.1</b> Archivos separados por delimitadores (.csv y .tsv)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="carga.html"><a href="carga.html#carga-r"><i class="fa fa-check"></i><b>5.2.2</b> Archivos creados con R (.Rdata y .rds)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="carga.html"><a href="carga.html#carga-etiquetas"><i class="fa fa-check"></i><b>5.2.3</b> Datos con etiquetas (Stata o SPSS)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="carga.html"><a href="carga.html#carga-excel"><i class="fa fa-check"></i><b>5.2.4</b> Archivos de Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="carga.html"><a href="carga.html#multiples-bases-de-datos-a-la-vez"><i class="fa fa-check"></i><b>5.3</b> Múltiples bases de datos a la vez</a></li>
+<li class="chapter" data-level="5.4" data-path="carga.html"><a href="carga.html#carga-grandes"><i class="fa fa-check"></i><b>5.4</b> Bases de datos tabulares grandes</a></li>
+</ul></li>
+<li class="part"><span><b>II Modelos</b></span></li>
+<li class="chapter" data-level="6" data-path="lineal.html"><a href="lineal.html"><i class="fa fa-check"></i><b>6</b> Modelos lineales</a><ul>
+<li class="chapter" data-level="6.1" data-path="lineal.html"><a href="lineal.html#introduccion-2"><i class="fa fa-check"></i><b>6.1</b> Introducción</a></li>
+<li class="chapter" data-level="6.2" data-path="lineal.html"><a href="lineal.html#aplicacion-en-r"><i class="fa fa-check"></i><b>6.2</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos"><i class="fa fa-check"></i><b>6.2.1</b> Estadísticos Descriptivos</a></li>
+<li class="chapter" data-level="6.2.2" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos-y-distribucion-de-las-variables-del-modelo"><i class="fa fa-check"></i><b>6.2.2</b> Estadísticos descriptivos y distribución de las variables del modelo</a></li>
+<li class="chapter" data-level="6.2.3" data-path="lineal.html"><a href="lineal.html#matriz-de-correlacion-de-variables-independientes"><i class="fa fa-check"></i><b>6.2.3</b> Matriz de correlación de variables independientes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="lineal.html"><a href="lineal.html#distribucion-de-las-variables-de-interes"><i class="fa fa-check"></i><b>6.2.4</b> Distribución de las variables de interés</a></li>
+<li class="chapter" data-level="6.2.5" data-path="lineal.html"><a href="lineal.html#relacion-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>6.2.5</b> Relación entre la variable dependiente e independiente</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="lineal.html"><a href="lineal.html#modelo-bivariado-regresion-lineal-simple"><i class="fa fa-check"></i><b>6.3</b> Modelo bivariado: regresión lineal simple</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="lineal.html"><a href="lineal.html#estimando-un-modelo-lineal-en-r"><i class="fa fa-check"></i><b>6.3.1</b> Estimando un modelo lineal en <code>R</code></a></li>
+<li class="chapter" data-level="6.3.2" data-path="lineal.html"><a href="lineal.html#representacion-grafica"><i class="fa fa-check"></i><b>6.3.2</b> Representación gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="lineal.html"><a href="lineal.html#modelo-multivariado-regresion-multiple"><i class="fa fa-check"></i><b>6.4</b> Modelo multivariado: regresión múltiple</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="lineal.html"><a href="lineal.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>6.4.1</b> Ajuste del modelo</a></li>
+<li class="chapter" data-level="6.4.2" data-path="lineal.html"><a href="lineal.html#inferencia-en-modelos-lineales-multiples"><i class="fa fa-check"></i><b>6.4.2</b> Inferencia en modelos lineales múltiples</a></li>
+<li class="chapter" data-level="6.4.3" data-path="lineal.html"><a href="lineal.html#supuestos-de-ols"><i class="fa fa-check"></i><b>6.4.3</b> Supuestos de OLS</a></li>
+<li class="chapter" data-level="6.4.4" data-path="lineal.html"><a href="lineal.html#errores-estandares-robustos"><i class="fa fa-check"></i><b>6.4.4</b> Errores estándares robustos</a></li>
+<li class="chapter" data-level="6.4.5" data-path="lineal.html"><a href="lineal.html#un-caso-especial-de-heterocedasticidad-la-varianza-del-error-asociada-a-clusters"><i class="fa fa-check"></i><b>6.4.5</b> Un caso especial de Heterocedasticidad: la varianza del error asociada a clusters</a></li>
+<li class="chapter" data-level="6.4.6" data-path="lineal.html"><a href="lineal.html#un-supuesto-adicional-para-poder-realizar-inferencia"><i class="fa fa-check"></i><b>6.4.6</b> Un supuesto adicional para poder realizar <strong>inferencia</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>7</b> Modelos logísticos</a><ul>
+<li class="chapter" data-level="7.1" data-path="logit.html"><a href="logit.html#nociones-basicas"><i class="fa fa-check"></i><b>7.1</b> Nociones básicas</a></li>
+<li class="chapter" data-level="7.2" data-path="logit.html"><a href="logit.html#aplicacion-en-r-1"><i class="fa fa-check"></i><b>7.2</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="7.2.1" data-path="logit.html"><a href="logit.html#estimar-los-modelos"><i class="fa fa-check"></i><b>7.2.1</b> Estimar los modelos</a></li>
+<li class="chapter" data-level="7.2.2" data-path="logit.html"><a href="logit.html#crear-tablas"><i class="fa fa-check"></i><b>7.2.2</b> Crear tablas</a></li>
+<li class="chapter" data-level="7.2.3" data-path="logit.html"><a href="logit.html#visualizacion-de-resultados"><i class="fa fa-check"></i><b>7.2.3</b> Visualización de resultados</a></li>
+<li class="chapter" data-level="7.2.4" data-path="logit.html"><a href="logit.html#ajuste-de-los-modelos"><i class="fa fa-check"></i><b>7.2.4</b> Ajuste de los modelos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>8</b> Modelos de supervivencia</a><ul>
+<li class="chapter" data-level="8.1" data-path="surv.html"><a href="surv.html#nociones-basicas-1"><i class="fa fa-check"></i><b>8.1</b> Nociones básicas</a></li>
+<li class="chapter" data-level="8.2" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>8.2</b> El modelo Cox de riesgos proporcionales</a></li>
+<li class="chapter" data-level="8.3" data-path="surv.html"><a href="surv.html#aplicacion-en-r-2"><i class="fa fa-check"></i><b>8.3</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="8.3.1" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretacion-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>8.3.1</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Aplicaciones</b></span></li>
+<li class="chapter" data-level="9" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i><b>9</b> Manejo avanzado de datos políticos</a><ul>
+<li class="chapter" data-level="9.1" data-path="manejo-av.html"><a href="manejo-av.html#introduccion-3"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="manejo-av.html"><a href="manejo-av.html#como-aprovechar-countrycode"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo aprovechar <code>countrycode</code>?</a></li>
+<li class="chapter" data-level="9.3" data-path="manejo-av.html"><a href="manejo-av.html#como-imputar-datos-faltantes"><i class="fa fa-check"></i><b>9.3</b> ¿Cómo imputar datos faltantes?</a></li>
+<li class="chapter" data-level="9.4" data-path="manejo-av.html"><a href="manejo-av.html#imputar-datos-usando-amelia"><i class="fa fa-check"></i><b>9.4</b> Imputar datos usando Amelia</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="manejo-av.html"><a href="manejo-av.html#diagnosticos"><i class="fa fa-check"></i><b>9.4.1</b> Diagnosticos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="manejo-av.html"><a href="manejo-av.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>9.5</b> Regresiones luego de imputar datos</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>10</b> Creación de índices con PCA</a><ul>
+<li class="chapter" data-level="10.1" data-path="pca.html"><a href="pca.html#aplicacion-en-r-3"><i class="fa fa-check"></i><b>10.1</b> Aplicación en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="casos.html"><a href="casos.html"><i class="fa fa-check"></i><b>11</b> Selección de casos a partir de regresiones</a><ul>
+<li class="chapter" data-level="11.1" data-path="casos.html"><a href="casos.html#que-casos-de-estudio-debo-seleccionar-para-testear-mi-hipotesis"><i class="fa fa-check"></i><b>11.1</b> ¿Qué casos de estudio debo seleccionar para testear mi hipótesis?</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="casos.html"><a href="casos.html#casos-tipicos"><i class="fa fa-check"></i><b>11.1.1</b> Casos Típicos</a></li>
+<li class="chapter" data-level="11.1.2" data-path="casos.html"><a href="casos.html#casos-desviados"><i class="fa fa-check"></i><b>11.1.2</b> Casos desviados</a></li>
+<li class="chapter" data-level="11.1.3" data-path="casos.html"><a href="casos.html#casos-influyentes"><i class="fa fa-check"></i><b>11.1.3</b> Casos Influyentes</a></li>
+<li class="chapter" data-level="11.1.4" data-path="casos.html"><a href="casos.html#casos-extremos"><i class="fa fa-check"></i><b>11.1.4</b> Casos extremos</a></li>
+<li class="chapter" data-level="11.1.5" data-path="casos.html"><a href="casos.html#casos-mas-similares"><i class="fa fa-check"></i><b>11.1.5</b> Casos más similares</a></li>
+<li class="chapter" data-level="11.1.6" data-path="casos.html"><a href="casos.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>11.1.6</b> Casos más diferentes</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="casos.html"><a href="casos.html#la-relevancia-de-combinar-metodos"><i class="fa fa-check"></i><b>11.2</b> La relevancia de combinar métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Mínería de datos</a></li>
+<li class="chapter" data-level="13" data-path="redes.html"><a href="redes.html"><i class="fa fa-check"></i><b>13</b> Análisis de redes</a><ul>
+<li class="chapter" data-level="13.1" data-path="redes.html"><a href="redes.html#introduccion-4"><i class="fa fa-check"></i><b>13.1</b> Introducción</a></li>
+<li class="chapter" data-level="13.2" data-path="redes.html"><a href="redes.html#conceptos-iniciales"><i class="fa fa-check"></i><b>13.2</b> Conceptos iniciales</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="redes.html"><a href="redes.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>13.2.1</b> Nodos y enlaces</a></li>
+<li class="chapter" data-level="13.2.2" data-path="redes.html"><a href="redes.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>13.2.2</b> Matriz de adyacencia</a></li>
+<li class="chapter" data-level="13.2.3" data-path="redes.html"><a href="redes.html#pesos-y-direccion"><i class="fa fa-check"></i><b>13.2.3</b> Pesos y dirección</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="redes.html"><a href="redes.html#bases-de-datos-de-redes"><i class="fa fa-check"></i><b>13.3</b> Bases de datos de redes</a></li>
+<li class="chapter" data-level="13.4" data-path="redes.html"><a href="redes.html#disposicion-grafica"><i class="fa fa-check"></i><b>13.4</b> Disposición gráfica</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="redes.html"><a href="redes.html#color-y-forma-en-la-representacion-visual"><i class="fa fa-check"></i><b>13.4.1</b> Color y forma en la representación visual</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="redes.html"><a href="redes.html#analisis-basico-de-redes"><i class="fa fa-check"></i><b>13.5</b> Análisis básico de redes</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="redes.html"><a href="redes.html#medidas-de-centralidad"><i class="fa fa-check"></i><b>13.5.1</b> Medidas de centralidad</a></li>
+<li class="chapter" data-level="13.5.2" data-path="redes.html"><a href="redes.html#comunidades-en-las-redes"><i class="fa fa-check"></i><b>13.5.2</b> Comunidades en las redes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>14</b> Análisis cuantitativo de texto</a><ul>
+<li class="chapter" data-level="14.1" data-path="qta.html"><a href="qta.html#introduccion-5"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
+<li class="chapter" data-level="14.2" data-path="qta.html"><a href="qta.html#exploracion-de-la-bases-de-datos"><i class="fa fa-check"></i><b>14.2</b> Exploración de la bases de datos</a></li>
+<li class="chapter" data-level="14.3" data-path="qta.html"><a href="qta.html#calculo-de-frecuencias"><i class="fa fa-check"></i><b>14.3</b> Cálculo de frecuencias</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="qta.html"><a href="qta.html#cuales-son-los-diez-hashtags-mas-usados-de-las-cuentas-de-los-diputados"><i class="fa fa-check"></i><b>14.3.1</b> ¿Cuáles son los diez hashtags más usados de las cuentas de los diputados?</a></li>
+<li class="chapter" data-level="14.3.2" data-path="qta.html"><a href="qta.html#frecuencias-por-genero-cantidad-de-hashtags-usados-por-los-diputados-en-total"><i class="fa fa-check"></i><b>14.3.2</b> Frecuencias por género: cantidad de hashtags usados por los diputados en total</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="qta.html"><a href="qta.html#wordcloud-de-hashtags"><i class="fa fa-check"></i><b>14.4</b> Wordcloud de hashtags</a></li>
+<li class="chapter" data-level="14.5" data-path="qta.html"><a href="qta.html#graficar-los-hashtags-mas-utilizados-por-grupos-de-interes"><i class="fa fa-check"></i><b>14.5</b> Graficar los hashtags más utilizados por grupos de interés</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-las-diputadas"><i class="fa fa-check"></i><b>14.5.1</b> Hashtags más usados entre las diputadas</a></li>
+<li class="chapter" data-level="14.5.2" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-los-diputados"><i class="fa fa-check"></i><b>14.5.2</b> Hashtags más usados entre los diputados</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-caracteristicas-del-diputado"><i class="fa fa-check"></i><b>14.6</b> Hashtags de género por características del diputado</a><ul>
+<li class="chapter" data-level="14.6.1" data-path="qta.html"><a href="qta.html#por-el-genero-del-diputado"><i class="fa fa-check"></i><b>14.6.1</b> Por el género del diputado</a></li>
+<li class="chapter" data-level="14.6.2" data-path="qta.html"><a href="qta.html#por-la-coalicion-de-los-diputados"><i class="fa fa-check"></i><b>14.6.2</b> Por la coalición de los diputados</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="qta.html"><a href="qta.html#variacion-temporal-del-uso-de-estos-hashtags"><i class="fa fa-check"></i><b>14.7</b> Variación temporal del uso de estos hashtags</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-olafeminista"><i class="fa fa-check"></i><b>14.7.1</b> Frecuencia semanal de #olafeminista</a></li>
+<li class="chapter" data-level="14.7.2" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-tres-hashtags-de-genero"><i class="fa fa-check"></i><b>14.7.2</b> Frecuencia semanal de tres hashtags de género</a></li>
+<li class="chapter" data-level="14.7.3" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-de-genero-por-semana"><i class="fa fa-check"></i><b>14.7.3</b> Grafiquemos los hashtags de género por semana</a></li>
+<li class="chapter" data-level="14.7.4" data-path="qta.html"><a href="qta.html#ponderamos-en-relacion-al-total-de-hashtags-por-semana"><i class="fa fa-check"></i><b>14.7.4</b> Ponderamos en relación al total de hashtags por semana</a></li>
+<li class="chapter" data-level="14.7.5" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-interesantes-ponderados-por-el-total-semanal"><i class="fa fa-check"></i><b>14.7.5</b> Grafiquemos los hashtags interesantes ponderados por el total semanal</a></li>
+<li class="chapter" data-level="14.7.6" data-path="qta.html"><a href="qta.html#diputadas"><i class="fa fa-check"></i><b>14.7.6</b> Diputadas</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-semana-a-nivel-de-diputados-ponderados-por-semana"><i class="fa fa-check"></i><b>14.8</b> Hashtags de género por semana a nivel de diputados (ponderados por semana)</a></li>
+<li class="chapter" data-level="14.9" data-path="qta.html"><a href="qta.html#comentarios-finales"><i class="fa fa-check"></i><b>14.9</b> Comentarios finales</a></li>
+<li class="chapter" data-level="14.10" data-path="qta.html"><a href="qta.html#anexo-problemas-que-se-presentan-cuando-analizas-discursos-debates-o-leyes"><i class="fa fa-check"></i><b>14.10</b> Anexo: Problemas que se presentan cuando analizas discursos, debates o leyes</a></li>
+<li class="chapter" data-level="14.11" data-path="qta.html"><a href="qta.html#tidy-text"><i class="fa fa-check"></i><b>14.11</b> <code>Tidy text</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>15</b> Generación de mapas</a><ul>
+<li class="chapter" data-level="15.1" data-path="mapas.html"><a href="mapas.html#datos-espaciales"><i class="fa fa-check"></i><b>15.1</b> Datos Espaciales</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="mapas.html"><a href="mapas.html#que-son"><i class="fa fa-check"></i><b>15.1.1</b> ¿Qué son?</a></li>
+<li class="chapter" data-level="15.1.2" data-path="mapas.html"><a href="mapas.html#estructura-de-los-datos-espaciales"><i class="fa fa-check"></i><b>15.1.2</b> Estructura de los Datos Espaciales</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="mapas.html"><a href="mapas.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>15.2</b> Datos Espaciales en R</a></li>
+<li class="chapter" data-level="15.3" data-path="mapas.html"><a href="mapas.html#special-features-en-r"><i class="fa fa-check"></i><b>15.3</b> Special Features en R</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="mapas.html"><a href="mapas.html#estructura"><i class="fa fa-check"></i><b>15.3.1</b> Estructura</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="mapas.html"><a href="mapas.html#manejo-de-datos-espaciales"><i class="fa fa-check"></i><b>15.4</b> Manejo de Datos Espaciales</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="mapas.html"><a href="mapas.html#modificaciones"><i class="fa fa-check"></i><b>15.4.1</b> Modificaciones</a></li>
+<li class="chapter" data-level="15.4.2" data-path="mapas.html"><a href="mapas.html#crear-nuevos-shapefiles-con-st_write"><i class="fa fa-check"></i><b>15.4.2</b> Crear nuevos shapefiles con <code>st_write</code></a></li>
+<li class="chapter" data-level="15.4.3" data-path="mapas.html"><a href="mapas.html#incorporar-datos-de-otras-bases-con-merge"><i class="fa fa-check"></i><b>15.4.3</b> Incorporar datos de otras bases con <code>merge</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="mapas.html"><a href="mapas.html#mapear-en-r"><i class="fa fa-check"></i><b>15.5</b> Mapear en R</a></li>
+<li class="chapter" data-level="15.6" data-path="mapas.html"><a href="mapas.html#mapeando-variables"><i class="fa fa-check"></i><b>15.6</b> Mapeando variables</a><ul>
+<li class="chapter" data-level="15.6.1" data-path="mapas.html"><a href="mapas.html#mapas-animados-con-gganimate"><i class="fa fa-check"></i><b>15.6.1</b> Mapas animados con <code>gganimate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.7" data-path="mapas.html"><a href="mapas.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>15.7</b> Inferencia a partir de Datos Espaciales</a><ul>
+<li class="chapter" data-level="15.7.1" data-path="mapas.html"><a href="mapas.html#indicadores-locales-de-asociacion-espacial-lisa"><i class="fa fa-check"></i><b>15.7.1</b> Indicadores locales de asociación espacial (LISA)</a></li>
+<li class="chapter" data-level="15.7.2" data-path="mapas.html"><a href="mapas.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>15.7.2</b> Matriz de Pesos Espaciales</a></li>
+<li class="chapter" data-level="15.7.3" data-path="mapas.html"><a href="mapas.html#morans-i"><i class="fa fa-check"></i><b>15.7.3</b> Moran’s I</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="logit" class="section level1">
+<h1><span class="header-section-number">Capítulo 7</span> Modelos logísticos</h1>
+<p><em>Por Francisco Urdinez</em></p>
+<hr />
+<p><strong>Lecturas de referencia</strong></p>
+<ul>
+<li><p>Box-Steffensmeier, J. M., Brady, H. E., &amp; Collier, D. (Eds.). (2008). <em>The Oxford Handbook of Political Methodology</em> (Vol. 10). Oxford Handbooks of Political Science. Oxford: Oxford University Press. Cap. 22 – Discrete Choice Methods.</p></li>
+<li><p>Agresti, A. (2007). <em>An Introduction to Categorical Data Analysis</em>, 2nd Ed. Hoboken: Wiley. Cap. 3, 4 y 5 – Generalized Linear Models; Logistic Regression; Building and Applying Logistic Regression Models.</p></li>
+<li><p>Greenhill, B., Ward, M. D., &amp; Sacks, A. (2011). The separation plot: A new visual method for evaluating the fit of binary models. <em>American Journal of Political Science</em>, 55(4), 991-1002.</p></li>
+</ul>
+<hr />
+<p>En el capítulo anterior vimos cómo hacer regresiones lineares cuando tenemos variables dependientes contínuas de una manera simple y cubriendo los paquetes más útiles a nuestro alcance. En este capítulo veremos cómo hacer lo mismo cuando tenemos variables dependientes dicotómicas (también llamadas binarias, o <em>dummy</em>), aquellas que asumen una de dos posibilidades, comunmente ‘0’ y ‘1’. Al igual que en los capítulos previos, no cubriremos aspectos sustanciales de la teoría por tras de cada modelo, ni desglosaremos en detalle las fórmulas. Para ello sugerimos referencias que van a ayudarte a acompañar lo que describimos, si es que nunca has leído al respecto.</p>
+<div id="nociones-basicas" class="section level2">
+<h2><span class="header-section-number">7.1</span> Nociones básicas</h2>
+<p>Los modelos para variables dependientes dicotómicas son utilizados para estimar la probabilidad de ocurrencia de un evento. En nuestra base de datos codificamos como ‘1’ los casos en que el evento sucede, y ‘0’ cuando no. Por ejemplo, si mi variable es “países con Acuerdos de Libre Comercio con Estados Unidos”, Chile será codificada con un ‘1’, Argentina con un ‘0’. Estos modelos estiman probabilidades, es decir, cual es la probabilidad de que se observe un ‘1’ dada ciertas caracteristicas de las observaciónes en nuestra muestra. Toda la discusión respecto a cómo estimar una probabilidad de una muestra es muy intersante, y puedes leerla en los capítulos 3, 4 y 5 de Agresti (2007). Es importante remarcar que en inglés existen dos conceptos diferentes que en español y portugués se traducen como una única palabra: <em>probability</em> y <em>likelihood</em> se traducen como probabilidad en diccionarios comúnes (¡haz la búsqueda si no nos crees!) a pesar de que la distinción entre ambos es vital para comprender como funcionan los modelos dicotómicos estimados por Máxima Verosimilitud (<em>Maximum Likelihood</em> en inglés). Aunque no vamos a ahondar en su distinción, es importante comprender que una probabilidad se estima a partir de una “población” de la cual conocemos sus “parámetros”, mientras que la verosimilitud recorre el camino inverso, es decir, estima los valores de los parámetros para los cuales el resultado observado mejor se ajusta a ellos (ver Figura <a href="logit.html#fig:bin-realmuestra">7.1</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:bin-realmuestra"></span>
+<img src="00-images/bin-realmuestra.png" alt="El camino de doble vía de probabilidad y verosimilitud" width="416" />
+<p class="caption">
+Figura 7.1: El camino de doble vía de probabilidad y verosimilitud
+</p>
+</div>
+<p>Cuando tenemos una variable dependiente dicotómica que queremos modelar, se asume que la misma tiene una distribución de Bernoulli con una probabilidad de <span class="math inline">\(Y=1\)</span> que desconocemos. Así, estimamos por medio de Máxima Verosimilitud nuestra probabilidad desconocida, dada una determinada combinación linear de variables independientes de nuestra elección (ver Figura <a href="logit.html#fig:bin-bernou">7.2</a>). Un muy buen ejercicio para comprender como se estima un parámetro cuya distribución es binomial por medio de Máxima Verosimilitud es ofrecida por <a href="https://rpubs.com/felixmay/MLE">RPubs</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:bin-bernou"></span>
+<img src="00-images/bin-bernou.png" alt="Distribución de Bernoulli" width="243" />
+<p class="caption">
+Figura 7.2: Distribución de Bernoulli
+</p>
+</div>
+<p>Los modelos logísticos han crecido enormemente en popularidad en Ciencia Política. Google Scholar reporta, de la búsqueda de “logit”+“political science” un total de 17100 referencias publicadas entre 2008 y 2018. La década previa (1998-2007) reporta 8900 artículos, y la anterior (1988-1997), 2100. Claro que la literatura en español y portugués es mucho más escasa. desde 1988 a 2018 hay 1060 resultados para la combinación “logit”+“ciencia política” y 355 para “logit”+“ciência política”. La Ciencia Política ha hecho extensivo el uso de modelos Logit, por sobre los modelos Probit, en buena medida debido a que los primeros permiten el cálculo de razones de oportunidades (<em>odds ratios</em>). Casi todos los manuales econométricos discuten las diferencias y similitudes entre ambos, aunque a los fines prácticos de estimar un modelo, ambos son muy similares y reportan coeficientes casi idénticos. Por ello, siendo que son métodos que llevan a resultados muy similares, sólo utilizaremos Logit en este capítulo.
+Los modelos Logit y Probit se diferencian es en su función de enlace (en la literatura recomendada se denominan <em>link functions</em>). Logit lleva su nombre debido a que su función está dada por el logaritmo natural de las razones de oportunidad (“log odds” <span class="math inline">\(\rightarrow\)</span> logit!).</p>
+<p><span class="math display">\[ ln(odds) = ln(\frac {p}{1 - p})\]</span></p>
+<p>Despejando los términos podemos calcular la inversa de su función, de tal forma que tendremos</p>
+<p><span class="math display">\[ logit^{-1}(\alpha) =  \frac {1}{1+e^{-\alpha}} = \frac {e^\alpha}{1+e^\alpha}\]</span></p>
+<p>Donde <span class="math inline">\(\alpha\)</span> es la combinación linear de las variables independientes y sus coeficientes. La inversa del Logit nos dará la probabilidad de la variable dependiente ser igual a ‘1’ dada una cierta combinación de valores para nuestras variables independientes.</p>
+<div class="figure" style="text-align: center"><span id="fig:bin-invlogit"></span>
+<img src="00-images/bin-invlogit.png" alt="Inversa de la función logit" width="376" />
+<p class="caption">
+Figura 7.3: Inversa de la función logit
+</p>
+</div>
+<p>Si profundizas en los textos recomendados, notarás que la función es indefinida en 0 y en 1, es decir, que la probabilidad se aproxima infinitamente al límite sin nunca tocarlo. Si modelaramos las probabilidades por medio de Mínimos Cuadrados Ordinarios, obtendríamos probabilidades mayores a 100% y menores a 0%, lo que es conceptualmente imposible. La función en forma de sigmoide de logit impide que esto suceda. Lo que estaremos estimando es la probabilidad de que, dada una cierta combinación de atributos (variables independientes y controles), cierta observación asuma que la variable dependiente sea igual a 1. Dicha probabilidad puede ser comparada al valor real que la variable dependiente ha asumido. Por eso mismo, muchos manuales se refieren a los modelos logit como modelo de “clasificación”, pues lo que estimamos es la probabilidad de cada observación ser clasificada como <span class="math inline">\(Y=1\)</span>.</p>
+</div>
+<div id="aplicacion-en-r-1" class="section level2">
+<h2><span class="header-section-number">7.2</span> Aplicación en <code>R</code></h2>
+<p>Como mencioné antes, los modelos probabilísticos han ganado enorme preeminencia en la Ciencia Política en los últimos años, y por ello es probable que estés buscando una guía aplicada para saber qué hacer y qué no hacer cuando tengas una variable dependiente dicotómica. Vamos a ilustrar un paso a paso en <code>R</code> utilizando como ejemplo la base de datos del libro <a href="https://kellogg.nd.edu/democracies-and-dictatorships-latin-america-emergence-survival-and-fall">“Democracies and Dictatorships in Latin America: Emergence, Survival, and Fall” (2013)</a> de <a href="https://scholar.google.com/citations?user=TnO95soAAAAJ&amp;hl=en">Scott Mainwaring</a> y <a href="https://scholar.google.com/citations?user=UwryKbkAAAAJ&amp;hl=en">Aníbal Perez-Liñan</a>. A lo largo del libro los autores analizan cuales variables independientes ayudan a explicar por qué ocurrieron quiebres democráticos en América Latina durante todo el siglo XX y comienzos del XXI. En el capítulo 4, los autores se preguntan qué factores explican la supervivencia de los regímenes políticos. Si bien prueban varios modelos complejos, algunos logísticos y otros de supervivencia (desarrollados en este libro en el capítulo siguiente), haremos un ejemplo muy sencillo para que nos acompañes desde tu computador en el paso a paso. Para cargar la base de datos del capítulo, usa nuestro paquete…(<strong>cargar paquete</strong>)</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#</span></code></pre>
+<p>Suponiendo que la variable dependiente asume el valor ‘1’ si el país sufre el quiebre de su régimen político democrático y ‘0’ si no, ¿qué efecto tiene sobre la probabilidad de un quiebre democrático que en la constitución nacional se le otorguen grandes poderes constitucionales al poder ejecutivo? Y si esos poderes son pequeños, ¿la probabilidad de un quiebre democrático es mayor o menor? Como argumentan los autores, se puede medir estos poderes por medio de un índice creado por <a href="http://www.cambridge.org/gb/academic/subjects/politics-international-relations/comparative-politics/presidents-and-assemblies-constitutional-design-and-electoral-dynamics?format=PB&amp;isbn=9780521429900">Shugart y Carey</a> (1992) de poder presidencial que los autores incluyen en su base de datos (en el capítulo 13 explicamos cómo crear índices).</p>
+<p>Luego, cargamos la base de datos, llamada <code>quiebres_dem_la</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(paqueteadp)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(quiebres_dem_la)</code></pre>
+<p>Ahora la base se ha cargado en nuestra sesión de R:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()
+<span class="co">## [1] &quot;quiebres_dem_la&quot;</span></code></pre>
+<p>Queremos ver, primeramente, cuantos países han sufrido un quiebre democrático en la muestra. ¿Recuerdas lo que se explicó en el capítulo 4? Comenzamos cargando el <code>tidyverse</code>. El país con más quiebres democráticos es Perú con 6, seguido de Argentina y Panamá con 5 cada uno.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+quiebres_dem_la <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(breakdown <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(country)
+<span class="co">## # A tibble: 18 x 2</span>
+<span class="co">##    country                n</span>
+<span class="co">##    &lt;chr&gt;              &lt;int&gt;</span>
+<span class="co">##  1 Argentina              5</span>
+<span class="co">##  2 Bolivia                2</span>
+<span class="co">##  3 Brazil                 1</span>
+<span class="co">##  4 Chile                  3</span>
+<span class="co">##  5 Colombia               1</span>
+<span class="co">##  6 Costa Rica             3</span>
+<span class="co">##  7 Cuba                   1</span>
+<span class="co">##  8 Dominican Republic     1</span>
+<span class="co">##  9 Ecuador                4</span>
+<span class="co">## 10 Guatemala              2</span>
+<span class="co">## 11 Haiti                  1</span>
+<span class="co">## 12 Honduras               4</span>
+<span class="co">## 13 Mexico                 1</span>
+<span class="co">## 14 Nicaragua              1</span>
+<span class="co">## 15 Panama                 5</span>
+<span class="co">## 16 Peru                   6</span>
+<span class="co">## 17 Uruguay                3</span>
+<span class="co">## 18 Venezuela              2</span></code></pre>
+<p>El primer modelo que vamos a probar usa la variable dependiente de quiebre democrático (<code>breakdown</code>) siendo predicha por el índice de <a href="http://www.cambridge.org/gb/academic/subjects/politics-international-relations/comparative-politics/presidents-and-assemblies-constitutional-design-and-electoral-dynamics?format=PB&amp;isbn=9780521429900">Shugart y Carey</a> de poderes del ejecutivo (<code>shugart</code>). La función <code>glm</code> exige que definamos nuestros datos, y el modelo, pues con la misma función para Generalized Linear Models podría usar Probit, Poisson y otras <a href="https://www.rdocumentation.org/packages/stats/versions/3.5.1/topics/family">funciones menos comúnes</a> en Ciencia Política.</p>
+<pre class="sourceCode r"><code class="sourceCode r">modelo_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(breakdown <span class="op">~</span><span class="st"> </span>shugart, 
+                <span class="dt">data   =</span> quiebres_dem_la,
+                <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="st">&quot;logit&quot;</span>))</code></pre>
+<p>Como vimos en capítulos anteriores, la función <code>summary</code> nos permite ver de forma rápida los resultados de un modelo de regresión:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(modelo_<span class="dv">1</span>)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = breakdown ~ shugart, family = binomial(&quot;logit&quot;), </span>
+<span class="co">##     data = quiebres_dem_la)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##    Min      1Q  Median      3Q     Max  </span>
+<span class="co">## -0.727  -0.295  -0.269  -0.223   2.792  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##             Estimate Std. Error z value Pr(&gt;|z|)   </span>
+<span class="co">## (Intercept)  -0.2393     0.9638   -0.25   0.8039   </span>
+<span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 1 row ]</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 217.84  on 643  degrees of freedom</span>
+<span class="co">## Residual deviance: 209.56  on 642  degrees of freedom</span>
+<span class="co">##   (1572 observations deleted due to missingness)</span>
+<span class="co">## AIC: 213.6</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 6</span></code></pre>
+<p>El coeficiente para la variable <code>shugart</code> está negativamente asociado a la probabilidad de ocurrencia de un quiebre de régimen <code>(-0.191)</code>, y es estadísticamente significativo <code>(p=0.00312)</code>. Ahora bien, a diferencia de los modelos por Mínimo Cuadrados del capítulo anterior, donde podíamos interpretar directamente el efecto de la variable independiente sobre la dependiente a partir de los coeficientes de la regresión, en el caso de regresiones logísticas esto no es tan sencillo. Debemos transformar los coeficientes en probabilidades u oportunidades. Si partimos de que la función de enlace de logit es el logaritmo de las razones de oportunidades, tenemos que:
+<span class="math display">\[ln(\frac {p}{1 - p}) = \beta_{0} + \beta_{1}x_{1}\]</span></p>
+<p>Despejando <span class="math inline">\(ln\)</span>, tenemos que:
+<span class="math display">\[(\frac {p}{1 - p}) = e^{\beta_{0}+\beta_{1}x_{1}}\]</span></p>
+<p>Y despejando los términos nuevamente tenemos que:
+<span class="math display">\[\hat{p} = \frac {e^{\beta_{0}+\beta_{1}x_{1}}}{1 + e^{\beta_{0}+\beta_{1}x_{1}}}\]</span></p>
+<p>Lo que queremos, entonces, es transformar los coeficientes tal y como los reporta <code>R</code> en una probabilidad asociada a que la variable dependiente asuma el valor ‘1’. Sabemos que la variable independiente <code>shugart</code> es un índice que a mayor valor, mayor concentración de poder del ejecutivo <em>vis a vis</em> el legislativo, por lo tanto el coeficiente de la regresión nos indica que a menor concentración de poder del ejecutivo, mayor la probabilidad de un quiebre de régimen. Esto resultará intuitivo a todo aquel que esté familiarizado con la literatura. La muestra del libro cubre 20 países latinoamericanos entre 1900 y 2010, y el índice oscila entre un mínimo de 5 (para Haití, en varios años) y un máximo de 25 (Brasil en 1945) (ver Figura <a href="logit.html#fig:bin-shugarthist">7.4</a>. Cuando anteponemos un (-) a la variable dentro de la función <code>arrange</code>, la ordenamos de mayor a menor.</p>
+<pre class="sourceCode r"><code class="sourceCode r">quiebres_dem_la <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(country, year, shugart)<span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(shugart)
+<span class="co">## # A tibble: 2,216 x 3</span>
+<span class="co">##    country  year shugart</span>
+<span class="co">##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">##  1 Haiti    1987       5</span>
+<span class="co">##  2 Haiti    1988       5</span>
+<span class="co">##  3 Haiti    1989       5</span>
+<span class="co">##  4 Haiti    1990       5</span>
+<span class="co">##  5 Haiti    1991       5</span>
+<span class="co">##  6 Haiti    1992       5</span>
+<span class="co">##  7 Haiti    1993       5</span>
+<span class="co">##  8 Haiti    1994       5</span>
+<span class="co">##  9 Haiti    1995       5</span>
+<span class="co">## 10 Haiti    1996       5</span>
+<span class="co">## # … with 2,206 more rows</span>
+quiebres_dem_la <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(country,year, shugart)<span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="op">-</span>shugart)
+<span class="co">## # A tibble: 2,216 x 3</span>
+<span class="co">##    country  year shugart</span>
+<span class="co">##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">##  1 Brazil   1945      25</span>
+<span class="co">##  2 Chile    1981      24</span>
+<span class="co">##  3 Chile    1982      24</span>
+<span class="co">##  4 Chile    1983      24</span>
+<span class="co">##  5 Chile    1984      24</span>
+<span class="co">##  6 Chile    1985      24</span>
+<span class="co">##  7 Chile    1986      24</span>
+<span class="co">##  8 Chile    1987      24</span>
+<span class="co">##  9 Chile    1988      24</span>
+<span class="co">## 10 Haiti    1950      24</span>
+<span class="co">## # … with 2,206 more rows</span></code></pre>
+<p>Podemos ver la distribución de la variable por medio de un histograma. Casi todas las observaciones tienen valores de 16 en el índice, y asume una distribución normal.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(quiebres_dem_la, <span class="kw">aes</span>(shugart)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:bin-shugarthist"></span>
+<img src="logit_files/figure-html/bin-shugarthist-1.png" alt="Histograma del índice de Shugart &amp; Carey" width="480" />
+<p class="caption">
+Figura 7.4: Histograma del índice de Shugart &amp; Carey
+</p>
+</div>
+<p>¿Cómo puedo saber en qué magnitud se afecta la probabilidad de un quiebre democrático si el nivel de concentración de poder del ejecutivo pasa de un puntaje de 5 (mínimo) a uno de 25 (máximo) cuando no controlamos por nada más en la regresión? Para ello podemos reemplazar los valores de nuestra última fórmula, en la que hemos aislado en el lado izquierdo de la fórmula a <span class="math inline">\(\hat {p}\)</span>. Primero debemos calcular cuál es la probabilidad de sufrir un quiebre de régimen en un nivel de <code>shugart</code> de 5 y en un nivel 25, respectivamente, para luego calcular la diferencia. Así tenemos que
+<span class="math display">\[\hat{p} = \frac {e^{(0+(-0.019*5))}}{1 + e^{(0+(-0.019*5))}}\]</span></p>
+<p>Notarás que el valor correspondiente al intercepto es igual a 0 pues ese coeficiente no ha resultado estadísticamente significativo. Sabemos que para un índice de Shugart y Carey de 5, luego de hacer el cálculo en la fórmula arriba, la probabilidad es igual a 0.47 o 47%. Te recomiendo que te detengas en la lectura y hagas el cálculo de la función en lápiz y papel. Si repetimos el proceso para un valor de <code>shugart</code> de 25, la probabilidad cae a 38%. Con las probabilidades podemos calcular oportunidades, que son simplemente <span class="math inline">\(\frac {p}{1-p}\)</span>. De esta manera, la oportunidad (<em>odd</em> en inglés) para un valor 5 del índice de Shugart y Carey es de 0.90 mientras que para un índice de Shugart y Carey de 25 es de 0.62.
+<span class="math display">\[oportunidad_1 = \frac {0.47}{1 - 0.47}\]</span>
+<span class="math display">\[oportunidad_2 = \frac {0.38}{1 - 0.38}\]</span></p>
+<p>La utilidad de las oportunidades es que permite calcular razones de probabilidades (<em>odds ratios</em>) ¿Cuál es la gracia de calcular una razón de probabilidades? Veamos. Cuando calculo la probabilidad de un cambio en el índice de Shugart y Carey de 23 a 24, la magnitud será diferente a si calculamos un cambio en la probabilidad si el índice pasa de 12 a 13, por ejemplo. Si no me crees, puedes probarlo. Esto se debe a que los efectos de la variable independiente sobre la probabilidad de que la variable dependiente sea <code>=1</code> no son lineares (recuerde la función en “S” de la Figura <a href="logit.html#fig:bin-invlogit">7.3</a>). Sin embargo, las razones de probabilidades tienen la útil propiedad de poder reflejar cambios independientemente de la curvatura de la función, es decir, son cambios “constantes”. Así, podemos expresar el efecto de la variable sin tener que especificar un valor determinado para ella. Por ello, verás en muchos artículos los coeficientes expresados como <em>odds ratios</em>.
+Veamos cómo sería el cálculo de razones de probabilidad siguiendo el ejemplo que acabamos de crear con la base de datos de Mainwaring y Perez-Liñan. Dijimos que la oportunidad está dada por <span class="math inline">\(\frac {p}{1 - p}\)</span>. Una razón de oportunidades se expresaría, entonces, como <span class="math inline">\(\frac {\frac {p_1}{1-p_1}}{\frac {p_2}{1-p_2}}\)</span>.</p>
+<p>Supongamos que en un país el año 1992 tenía un índice de Shugart de 15, y que en el año 1993 ese índice subió a 16. ¿Cuánto cambia la probabilidad de un quiebre democrático?</p>
+<p><span class="math display">\[ Pr(quiebredemocratico){_{país,1992}} = \frac {e^{(0+(-0.019*15))}}{1 + e^{((0+(-0.019*15))}} = 0.42\]</span>
+<span class="math display">\[ Pr(quiebre democratico){_{país,1993}} = \frac {e^{(0+(-0.019*16))}}{1 + e^{(0+(-0.019*16))}} = 0.43\]</span></p>
+<p>La probabilidad difiere poco y cae en un 2.4% lo que parece ser un efecto pequeño. La razón de oportunidades se calcula como el cociente de ambas oportunidades, así tenemos que:</p>
+<p><span class="math display">\[\frac {0.42}{0.43}=0.97\]</span></p>
+<p>De esta manera, toda razón de oportunidades mayor a 1 expresa un cambio positivo, mientras que todo valor menor a 1 (entre 0 y 1) representa un cambio negativo en las probabilidades estimadas. Si hiciéramos el mismo ejercicio para otros valores del índice de Shugart y Carey, por ejemplo, un cambio de 3 a 4 o de 23 a 24, el cociente de las oportunidades daría 0.97.</p>
+<div class="books">
+<p>Ahora, haz el cálculo para el valor real de Chile en 1992 y 1993 como práctica, te esperamos.</p>
+</div>
+<p><code>R</code> ofrece paquetes para que este análisis sea fácil de hacerse. Podemos visualizar fácilmente las razones de oportunidades utilizando el paquete <code>sjPlot</code>. Podemos calcular probabilidades predichas, y además podemos hacer tests para saber la capacidad explicativa de nuestros modelos. Utilizando la misma base de datos haremos un ejemplo de una rutina típica, que puedes reproducir en tu computador utilizando tus propios datos.</p>
+<p>Los pasos a seguir son (a) estimar los modelos, (b) crear tablas formateadas para incluir en nuestros procesadores de texto, (c) crear figuras para visualizar la magnitud de los coeficientes por medio de cociente de oportunidades, (d) visualizar probabilidades predichas para variables de interés, y (e) calcular capacidad explicativa de los modelos (porcentaje correctamente predicho, AIC, BIC, curvas ROC, <em>Brier scores</em> o <em>separation plots</em>, que explicaremos a continuación).</p>
+<div id="estimar-los-modelos" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Estimar los modelos</h3>
+<p>Para ejemplificar este paso lo que haremos es agregar al modelo 1 dos modelos más: El modelo 2 tendrá como variables independientes al índice de Shugart y Carey más la variable <code>age</code> que mide en años la edad del régimen político.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(quiebres_dem_la, <span class="kw">aes</span>(age)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre>
+<p><img src="logit_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">modelo_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(breakdown <span class="op">~</span><span class="st"> </span>shugart <span class="op">+</span><span class="st"> </span>age, 
+                <span class="dt">data   =</span> quiebres_dem_la,
+                <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="st">&quot;logit&quot;</span>))</code></pre>
+<p>Luego de ejecutar la regresión, con <code>summary</code> vemos los coeficientes:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(modelo_<span class="dv">2</span>)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = breakdown ~ shugart + age, family = binomial(&quot;logit&quot;), </span>
+<span class="co">##     data = quiebres_dem_la)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##    Min      1Q  Median      3Q     Max  </span>
+<span class="co">## -0.734  -0.302  -0.266  -0.218   2.828  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##             Estimate Std. Error z value Pr(&gt;|z|)   </span>
+<span class="co">## (Intercept) -0.22220    0.96764   -0.23   0.8184   </span>
+<span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 2 rows ]</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 217.84  on 643  degrees of freedom</span>
+<span class="co">## Residual deviance: 209.52  on 641  degrees of freedom</span>
+<span class="co">##   (1572 observations deleted due to missingness)</span>
+<span class="co">## AIC: 215.5</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 6</span></code></pre>
+<p>El modelo 3 agrega a las dos variables del modelo 2 una tercer variable llamada <code>fh</code> que corresponde al <a href="https://freedomhouse.org/report/methodology-freedom-world-2017">Freedom House score</a> de democracia. Cuanto mayor el score, mejor el funcionamiento de la democracia de un país.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(quiebres_dem_la, <span class="kw">aes</span>(fh)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:fhhist"></span>
+<img src="logit_files/figure-html/fhhist-1.png" alt="Histograma del índice de democrácia de FH" width="480" />
+<p class="caption">
+Figura 7.5: Histograma del índice de democrácia de FH
+</p>
+</div>
+<p>Quizás también querramos ver por medio de una matriz de correlación como estan relacionadas nuestras variables independientes antes de incluirlas en el modelo. Para ello, podemos usar el paquete <code>GGally</code> que permite crear matrices de correlación con <code>ggplot2</code>. Vemos que la correlación entre <code>age</code>, <code>fh</code> y <code>shugart</code> es muy baja.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
+correlacion &lt;-<span class="st"> </span>quiebres_dem_la <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(age, fh, shugart)
+
+<span class="kw">ggcorr</span>(correlacion, <span class="dt">label =</span> T)</code></pre>
+<p><img src="logit_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;" />
+El modelo 3 entonces se verá de la siguiente manera:</p>
+<pre class="sourceCode r"><code class="sourceCode r">modelo_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(breakdown <span class="op">~</span><span class="st"> </span>shugart <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>fh, 
+                <span class="dt">data   =</span> quiebres_dem_la,
+                <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="st">&quot;logit&quot;</span>))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(modelo_<span class="dv">3</span>)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = breakdown ~ shugart + age + fh, family = binomial(&quot;logit&quot;), </span>
+<span class="co">##     data = quiebres_dem_la)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##     Min       1Q   Median       3Q      Max  </span>
+<span class="co">## -1.7864  -0.0008  -0.0001   0.0000   1.8940  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##             Estimate Std. Error z value Pr(&gt;|z|)  </span>
+<span class="co">## (Intercept)   15.360      6.584    2.33    0.020 *</span>
+<span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 3 rows ]</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 71.271  on 421  degrees of freedom</span>
+<span class="co">## Residual deviance: 12.113  on 418  degrees of freedom</span>
+<span class="co">##   (1794 observations deleted due to missingness)</span>
+<span class="co">## AIC: 20.11</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 12</span></code></pre>
+<p>Ahora la variable <code>shugart</code> ha dejado de ser estadisticamente significativa pero lo son <code>fh</code> y el intercepto.</p>
+</div>
+<div id="crear-tablas" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> Crear tablas</h3>
+<p>¿Recuerde el <code>ADP</code>? Una de las funciones que hemos facilitado es la de creación de tablas editables para artículos académicos utilizando la función <code>texreg</code>. Si utilizas nuestro paquete te ahorrarás muchos pasos que son engorrosos. Basicamente la función contiene tres paquetes, uno para exportar tablas a html (<code>htmlreg</code>), uno para exportar tablas a <span class="math inline">\(\LaTeX\)</span>, y un tercero para verlas en <code>RStudio</code> (llamado <code>screenreg</code>).</p>
+<p>Por medio de <code>htmlreg</code> podemos exportar nuestras tablas formateadas en html para poder incorporarlas en nuestros artículos directamente.
+Una vez que estimamos los modelos de interés, los agrupamos en una lista por medio de la función <code>list</code>. Esto ahorra trabajo, pues en vez de tener que escribir el nombre de los tres modelos, simplemente nos referiremos al conjunto <code>mp_modelos</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(texreg)
+<span class="co">## Version:  1.36.23</span>
+<span class="co">## Date:     2017-03-03</span>
+<span class="co">## Author:   Philip Leifeld (University of Glasgow)</span>
+<span class="co">## </span>
+<span class="co">## Please cite the JSS article in your publications -- see citation(&quot;texreg&quot;).</span>
+<span class="co">## </span>
+<span class="co">## Attaching package: &#39;texreg&#39;</span>
+<span class="co">## The following object is masked from &#39;package:tidyr&#39;:</span>
+<span class="co">## </span>
+<span class="co">##     extract</span>
+mp_modelos &lt;-<span class="st"> </span><span class="kw">list</span>(modelo_<span class="dv">1</span>, 
+                   modelo_<span class="dv">2</span>,
+                   modelo_<span class="dv">3</span>)</code></pre>
+<p>Para exportar la tabla a html debemos definir la opción <code>file</code> y un nombre para el archivo html. Yo la he llamado “tabla_1”. También voy a usar dos opciones de la función para mejorar aún más la tabla. La primera es <code>custom.model.names</code> que me permite ponerle nombres a los modelos y la segunda es <code>custom.coef.names</code> que me permite ponerle nombre a los coeficientes. Así el comando sería:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">htmlreg</span>(mp_modelos,
+          <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>, <span class="st">&quot;Modelo 3&quot;</span>),
+          <span class="dt">custom.coef.names =</span> <span class="kw">c</span>(<span class="st">&quot;Intercepto&quot;</span>, <span class="st">&quot;Indice de Shugart &amp; Carey&quot;</span>, <span class="st">&quot;Edad del régimen&quot;</span>, <span class="st">&quot;Ind. Freedom House&quot;</span>),
+          <span class="dt">file=</span><span class="st">&quot;tabla_1.html&quot;</span>)</code></pre>
+<p>Esta línea de comando crea un archivo de html en la carpeta de su proyecto. Si haces clic derecho sobre el archivo, puedes abrirlo en Word o cualquier procesador de textos. También podemos incluir una versión en pantalla usando <code>screenreg</code>. En este caso, veamos como se ve sin la opción <code>custom.coef.names</code>. A este comando uno puede usarlo en sus proyectos de trabajo, y una vez que se decide por la mejor tabla, la exporta con <code>htmlreg</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screenreg</span>(mp_modelos,
+          <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>, <span class="st">&quot;Modelo 3&quot;</span>)
+          )
+<span class="co">## </span>
+<span class="co">## ================================================</span>
+<span class="co">##                 Modelo 1    Modelo 2    Modelo 3</span>
+<span class="co">## ------------------------------------------------</span>
+<span class="co">## (Intercept)       -0.24       -0.22      15.36 *</span>
+<span class="co">##                   (0.96)      (0.97)     (6.58) </span>
+<span class="co">## shugart           -0.19 **    -0.19 **   -0.22  </span>
+<span class="co">##                   (0.06)      (0.07)     (0.17) </span>
+<span class="co">## age                           -0.00       0.17  </span>
+<span class="co">##                               (0.02)     (0.11) </span>
+<span class="co">## fh                                       -3.75 *</span>
+<span class="co">##                                          (1.51) </span>
+<span class="co">## ------------------------------------------------</span>
+<span class="co">## AIC              213.56      215.52      20.11  </span>
+<span class="co">## BIC              222.50      228.92      36.29  </span>
+<span class="co">## Log Likelihood  -104.78     -104.76      -6.06  </span>
+<span class="co">## Deviance         209.56      209.52      12.11  </span>
+<span class="co">## Num. obs.        644         644        422     </span>
+<span class="co">## ================================================</span>
+<span class="co">## *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</span></code></pre>
+<p>Observemos como <code>shugart</code> deja de ser estadísticamente significativa cuando controlamos por <code>fh</code> que, además, pasa a ser la única variable estadísticamente significativa del tercer modelo.También vemos como el número de observaciones cae significativamente al incluir la variable <code>fh</code> lo que hace difícil comparar los modelos. La función <code>skim</code> nos será muy útil para ver <em>missing values</em>. Las tres variables tienen niveles de missing muy altos, para <code>fh</code> de casi <span class="math inline">\(2/3\)</span> del total de observaciones.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(skimr)
+vars_modelo_<span class="dv">3</span> &lt;-<span class="st"> </span>quiebres_dem_la <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(age, fh, shugart)
+
+<span class="kw">skim</span>(vars_modelo_<span class="dv">3</span>)
+<span class="co">## Skim summary statistics</span>
+<span class="co">##  n obs: 2216 </span>
+<span class="co">##  n variables: 3 </span>
+<span class="co">## </span>
+<span class="co">## ── Variable type:numeric ────────────────────</span>
+<span class="co">##  variable missing complete    n  mean    sd p0 p25 p50 p75 p100     hist</span>
+<span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 3 rows ]</span></code></pre>
+<p>Jane Miller pone mucho énfasis en su libro <a href="http://www.press.uchicago.edu/ucp/books/book/chicago/C/bo15506942.html">The Chicago Guide to Writing about Multivariate Analysis (2013)</a>, respecto a la diferencia entre significancia estadística y significancia substantiva a la hora de interpretar regresiones: no por ser una variable estadísticamente significativa la magnitud del efecto será el esperado, ni tampoco significa que el hallazgo es relevante cientificamente. Para explorar las magnitudes de los coeficientes vamos a concentrarnos en el tercer modelo.</p>
+<p>Además, aprovecho aquí para mostrarte como puedes cambiar los coeficientes que obtienes directamente de la regresión logística, que son <em>log odds</em>, y reemplazarlos por <em>odds ratios</em>. Para ello, puedes ayudarte de los argumentos <code>override.coef</code>, <code>override.se</code> y <code>override.pvalues</code> de <code>screenreg()</code>. Los odds ratios, como vimos antes, son simplemente los coeficientes exponenciados. Calcular errores estándar y valores-p, en tanto, es un poco más complejo: necesitamos acceder a la matriz varianza-covarianza del modelo. Por suerte esto ya lo hizo <a href="https://www.andrewheiss.com/blog/2016/04/25/convert-logistic-regression-standard-errors-to-odds-ratios-with-r/">Andrew Heiss</a> en R, a quien agradecemos por compartir la función. Nosotros adaptamos levemente sus funciones, que podrás ingresar fácilmente en tus análisis siempre y cuando hayas cargado el paquete del libro, <code>paqueteadp</code> (como hicimos antes).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screenreg</span>(modelo_<span class="dv">3</span>, 
+          <span class="dt">custom.model.names =</span> <span class="st">&quot;Modelo 3&quot;</span>,
+          <span class="dt">override.coef    =</span> <span class="kw">exp</span>(<span class="kw">coef</span>(modelo_<span class="dv">3</span>)), 
+          <span class="co"># las siguientes funciones de ayuda, odds_*, están en el paquete del libro</span>
+          <span class="dt">override.se      =</span> <span class="kw">odds_se</span>(modelo_<span class="dv">3</span>),
+          <span class="dt">override.pvalues =</span> <span class="kw">odds_pvalues</span>(modelo_<span class="dv">3</span>),
+          <span class="co"># adicionalmente, omitiremos el coeficiente</span>
+          <span class="dt">omit.coef =</span> <span class="st">&quot;Inter&quot;</span> )
+<span class="co">## </span>
+<span class="co">## ==========================</span>
+<span class="co">##                 Modelo 3  </span>
+<span class="co">## --------------------------</span>
+<span class="co">## shugart           0.80 ***</span>
+<span class="co">##                  (0.13)   </span>
+<span class="co">## age               1.18 ***</span>
+<span class="co">##                  (0.13)   </span>
+<span class="co">## fh                0.02    </span>
+<span class="co">##                  (0.04)   </span>
+<span class="co">## --------------------------</span>
+<span class="co">## AIC              20.11    </span>
+<span class="co">## BIC              36.29    </span>
+<span class="co">## Log Likelihood   -6.06    </span>
+<span class="co">## Deviance         12.11    </span>
+<span class="co">## Num. obs.       422       </span>
+<span class="co">## ==========================</span>
+<span class="co">## *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</span></code></pre>
+<p>Al obtener una tabla como la que acabamos de crear tenemos dos desafíos que abordaremos en los proximos subtitulos: primero, saber si la magnitud de los efectos es substantiva desde un punto de vista científico. Por ejemplo, si la variable <code>fh</code> resulta estadísticamente significativa pero la probabilidad de un quiebre de régimen cae en 0.03% si un país pasa del peor score de <code>fh</code> al mejor, entonces diríamos que, a pesar de estadísticamente significativa, nuestra variable carece de significancia substantiva. Segundo, comparar los modelos para saber cuál tiene mejor ajuste, es decir, cual tiene mejor capacidad explicativa. A diferencia de OLS no contamos con <span class="math inline">\(R^2\)</span>, por lo que se recurre a otras medidas. Veamos!</p>
+</div>
+<div id="visualizacion-de-resultados" class="section level3">
+<h3><span class="header-section-number">7.2.3</span> Visualización de resultados</h3>
+<p>Podemos representar visualmente la última tabla con la función <code>plot_model()</code> del paquete <code>sjPlot</code>. Una figura es mucho más intuitiva que una tabla. La figura <a href="logit.html#fig:bin-m2pr">7.6</a> muestra la probabilidad predicha de un quiebre democrático para para cada valor de poderes presidenciales.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sjPlot)
+
+<span class="kw">plot_model</span>(modelo_<span class="dv">2</span>, 
+           <span class="dt">type        =</span> <span class="st">&quot;pred&quot;</span>,
+           <span class="dt">show.ci     =</span> <span class="ot">TRUE</span>,
+           <span class="dt">terms =</span> <span class="st">&quot;shugart&quot;</span>,
+           <span class="dt">title =</span> <span class="st">&quot;Probabilidad predicha para Shugart (poderes presidenciales)&quot;</span>)</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:bin-m2pr"></span>
+<img src="logit_files/figure-html/bin-m2pr-1.png" alt="Modelo 2 en base Mainwaring y Perez Liñan (2013), prob. predicha de Shugart con otras variables en sus medias" width="480" />
+<p class="caption">
+Figura 7.6: Modelo 2 en base Mainwaring y Perez Liñan (2013), prob. predicha de Shugart con otras variables en sus medias
+</p>
+</div>
+<p>También podemos graficar los coeficientes como <em>odds ratios</em>: En azul obtenemos coeficientes positivos, en rojo coeficientes negativos (recuerde que odds ratios menores a 1 son negativos). El coeficiente se expresa como su valor promedio y su intérvalo de confianza del 95%. Si el coeficiente es estadisticamente significativo, su intérvalo de confianza no tocará la línea en 1. Si, por el contrario no son significativos, el efecto cruzará la línea. Aquellos coeficientes cuyo efecto es significativo, además, son señalados con un * (esto se logra con la opcion <code>show.p = T</code>). Quizás te preguntes por qué la variable <code>shugart</code> no tiene intérvalo de confianza. En realidad, lo que sucede es que la escala es mucho menor para esta variable que para <code>fh</code>. Al estar la escala en base a <code>fh</code> no se nota el intérvalo para <code>shugart</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot_model(modelo_3, show.ci = T, show.p = T)</span></code></pre>
+<p>Es cada vez más frecuente encontrar este tipo de figuras en vez de tablas y personalmente pienso que son preferibles. Un precursor en la disciplina en el uso de figuras y gráficos informativos fue <a href="http://pages.mtu.edu/~hcking/Tufte_hKing.pdf">Edward Tufte</a>. La ciencia política, sin embargo, no prestó demasiada atención a la presentación de resultados por medio de figuras hasta hace unas dos décadas, pero hoy la <a href="https://www.princeton.edu/~jkastell/Tables2Graphs/graphs.pdf">tendencia</a> en la disciplina es a prescindir de tablas cuando estas no sean esenciales. Paquetes como <code>sjPlot</code> han facilitado esta tarea.</p>
+<p>Con el argumento <code>type = &quot;pred&quot;</code> en <code>plot_model()</code> podemos apreciar cómo es la relación entre cada variable independiente y la probabilidad de que la variable dependiente ocurra, cuando las demás variables independientes están en sus medias (en este caso <code>fh</code>con <code>age</code>y <code>shugart</code>en valores medios). Vemos que la relación entre la probabilidad de ocurrencia de un quiebre democrático y el score de calidad institucional de Freedom House, es negativa. Cuando un país tiene un score de Freedom House de 2.5 (recuerdo, con las otras variables independientes en sus medias), la probabilidad de un quiebre oscila entre 58 y 100% con un intérvalo de confianza de 95%. Cuando el score es de 7.5, la probabilidad de un quiebre es casi nula. Las probabilidades altas de ocurrencia de un quiebre se registran en scores de Freedom House menores a 3.5, aproximadamente. Para cada valor de <code>fh</code>, además, vemos una nuve de puntos, que representa la cantidad de observaciones en cada valor. Así, sabemos que en el caso de <code>fh</code> la mayoría de las observaciones están entre los valores 6 y 10, que es donde el efecto es menor en mangnitud. Caer a un <code>fh</code> menor a 5 dispara las probabilidades de quiebre democrático.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot_model(modelo_3, </span>
+<span class="co">#         type        = &quot;pred&quot;,</span>
+<span class="co">#         show.ci     = TRUE,</span>
+<span class="co">#         terms        = &quot;fh&quot;,</span>
+<span class="co">#         title       = &quot;Modelo 3 en base Mainwaring y Perez Liñan (2013), pr. predichas con otras variables en sus medias&quot;)</span></code></pre>
+</div>
+<div id="ajuste-de-los-modelos" class="section level3">
+<h3><span class="header-section-number">7.2.4</span> Ajuste de los modelos</h3>
+<p>Una vez que uno ha analizado la significancia substantiva de los modelos por medio de figuras, graficando las probabilidades predichas y los efectos marginales, podemos explorar el ajuste de los modelos. Así como en MCO se usa <span class="math inline">\(R^2\)</span> y el <em>Mean Root Square Error</em> ,existe una serie de estadísticas diseñadas para saber cuál de los modelos logísticos tiene mejor ajuste.</p>
+<div id="pseudo-r2" class="section level4">
+<h4><span class="header-section-number">7.2.4.1</span> Pseudo-<span class="math inline">\(R^2\)</span></h4>
+<p>Para entender como se interpreta el Pseudo-<span class="math inline">\(R^2\)</span> (normalmente se usa el de McFadden) es importante compreender como se diferencia de un <span class="math inline">\(R^2\)</span> de regresión lineal (puedes usar <a href="http://setosa.io/ev/ordinary-least-squares-regression/">este link</a> para acompañar su interpretación en el el capítulo de OLS). La fórmula, en este caso es
+<span class="math inline">\(psR^2= 1-\frac {ln \hat{L}(Modelo completo)}{ln \hat{L}(Modelo sólo con intercepto)}\)</span>
+Donde <span class="math inline">\(\hat{L}\)</span> es la verosimilitud estimada por el modelo. Básicamente, lo que la fórmula está haciendo es comparar el modelo con todas nuestras covariables al modelo que apenas tiene el intercepto, para ver cuanto mejora la capacidad explicativa del mismo si incluimos variables independientes. Como <span class="math inline">\(L\)</span> está entre 0 y 1, su log es menor o igual a 0. Así, cuanto menor la razón, mayor la diferencia entre el modelo elegido y el modelo con apenas el intercepto. La función es tomada del paquete <code>pscl</code>. El modelo 1 y 2 tienen casi la misma capacidad explcativa, pese a que se ha incorporado una variable más en el segundo modelo. En cambio, al agregar <code>fh</code> al Modelo 3, nuestro Pseudo-<span class="math inline">\(R^2\)</span> se dispara a 0.96.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pscl)
+<span class="kw">pR2</span>(modelo_<span class="dv">1</span>)[[<span class="st">&quot;McFadden&quot;</span>]]
+<span class="co">## [1] 0.43</span>
+<span class="kw">pR2</span>(modelo_<span class="dv">2</span>)[[<span class="st">&quot;McFadden&quot;</span>]]
+<span class="co">## [1] 0.43</span>
+<span class="kw">pR2</span>(modelo_<span class="dv">3</span>)[[<span class="st">&quot;McFadden&quot;</span>]]
+<span class="co">## [1] 0.97</span></code></pre>
+<p>También se podría implementar un <span class="math inline">\(psR^2\)</span> ajustado, es decir, una versión que penalice por cantidad de covaraibles. Al igual que en el <span class="math inline">\(R^2\)</span> ajustado, incorporamos a la fórmula el término <span class="math inline">\(c\)</span>, que es cantidad de covariables, y así tenemos que
+<span class="math inline">\(Pseudo-R^2= 1-\frac {ln \hat{L}(Modelo completo)-c}{ln \hat{L}(Modelo sólo con intercepto)}\)</span>
+Si bien el <span class="math inline">\(R^2\)</span> siempre aumenta al adicionar covariables al modelo, si utilizamos medidas ajustadas, estaremos teniendo en cuenta este aspecto.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DescTools)
+<span class="kw">PseudoR2</span>(modelo_<span class="dv">1</span>, <span class="kw">c</span>(<span class="st">&quot;McFadden&quot;</span>))
+<span class="co">## McFadden </span>
+<span class="co">##     0.43</span>
+<span class="kw">PseudoR2</span>(modelo_<span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;McFadden&quot;</span>))
+<span class="co">## McFadden </span>
+<span class="co">##     0.43</span>
+<span class="kw">PseudoR2</span>(modelo_<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;McFadden&quot;</span>))
+<span class="co">## McFadden </span>
+<span class="co">##     0.97</span></code></pre>
+</div>
+<div id="aic" class="section level4">
+<h4><span class="header-section-number">7.2.4.2</span> AIC</h4>
+<p>Muchas veces las tablas con modelos de regresión logística reportan AIC (Akaike Information Criterion). Estos permiten comparar entre modelos diferentes para una misma muestra, y decidir cual tienen mejor ajuste. El AIC,como el <span class="math inline">\(Pseudo-R^2\)</span>, usa información de <span class="math inline">\(ln(\hat {L})\)</span>. El AIC lo que hace es medir la “distancia” que existe entre los verdaderos parámetros y los estimadores del modelo, por medio de una distancia matemática llamada divergencia de Kullback-Leibler. Cuanto menor sea esta distancia, mejor el modelo. Es muy útil a la hora de comparar diferentes modelos y se calcula como
+<span class="math inline">\(AIC = 2p-2ln(\hat {L})\)</span>
+Donde <span class="math inline">\(p\)</span> es la cantidad de regresores incluyendo al intercepto, y <span class="math inline">\(\hat{L}\)</span> es la verosimilitud estimada por el modelo. De los tres modelos, claramente el que mejor ajuste posee bajo este criterio es el tercero.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(modelo_<span class="dv">1</span>)
+<span class="co">## [1] 214</span>
+<span class="kw">AIC</span>(modelo_<span class="dv">2</span>)
+<span class="co">## [1] 216</span>
+<span class="kw">AIC</span>(modelo_<span class="dv">3</span>)
+<span class="co">## [1] 20</span></code></pre>
+</div>
+<div id="bic" class="section level4">
+<h4><span class="header-section-number">7.2.4.3</span> BIC</h4>
+<p>El BIC (Bayesian information criterion), al igual que AIC, es un criterio de comparación de modelos según su ajuste. A los fines prácticos, y para no entrar en las diferencias entre AIC y BIC, es importante saber que BIC penaliza de manera más rigurosa que AIC la complejidad del modelo, siendo que su fórmula es
+<span class="math inline">\(BIC=ln(n)p-2ln(\hat {L})\)</span>
+donde agrega a la formula <span class="math inline">\(n\)</span> que es el número de observaciones en la muestra. Los resultados son similares a los que obtubimos mediante AIC, es decir que el mejor ajuste lo muestra el tercer modelo.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BIC</span>(modelo_<span class="dv">1</span>)
+<span class="co">## [1] 222</span>
+<span class="kw">BIC</span>(modelo_<span class="dv">2</span>)
+<span class="co">## [1] 229</span>
+<span class="kw">BIC</span>(modelo_<span class="dv">3</span>)
+<span class="co">## [1] 36</span></code></pre>
+<p>Se recomienda usar AIC o BIC pero no es necesario reportar ambos en una tabla con varios modelos.</p>
+</div>
+<div id="porcentaje-de-predicciones-correctas" class="section level4">
+<h4><span class="header-section-number">7.2.4.4</span> Porcentaje de predicciones correctas</h4>
+<p>Para entender el porcentaje de predicciones correctas en un modelo es importante tener en claro que un modelo produce cuatro combinaciones posibles:</p>
+<div class="figure" style="text-align: center"><span id="fig:bin-porcpred"></span>
+<img src="00-images/bin-porcpred.png" alt="Tabla de clasificación a partir de la cual se calcula el porcentaje de predicciones correctas" width="60%" />
+<p class="caption">
+Figura 7.7: Tabla de clasificación a partir de la cual se calcula el porcentaje de predicciones correctas
+</p>
+</div>
+<p>Toda observación será clasificada como “correcta” si corresponde a la casilla superior izquierda (verdadero positivo) o a la inferior derecha (verdadero negativo). El porcentaje de observaciones que pertenecen a estas dos casillas determina el porcentaje de predicciones correctas en el modelo. Como criterio estándar, si la probabilidad estimada para una observación es mayor o igual a 50% se estima que es una probabilidad positiva, y si es menor a 50% será una probabilidad negativa.</p>
+<p>Para poder calcular las predicciones correctas necesitamos hacer varios pasos, pero si usas los comandos que te damos a continuación, vas a poder hacerlo con tu propia base de datos cuando trabajes solo. Primero que nada necesitamos usar el paquete <code>broom</code>, que transforma los modelos que tenemos guardados (modelos 1, 2 y 3) en bases de datos en formato <code>tidy</code> como vimos en el Capítulo <a href="lineal.html#lineal">6</a>. Voy a calcular los valores predichos del modelo 3 como ejemplo que puede repetirse para los otros modelos. Lo primero que necesitamos son los valores predichos, es decir, la probabilidad asignada a cada obervación de que <code>Y=1</code>. En el tidy que obtenemos usando <code>broom</code> esta variable se llama <code>.fitted</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)
+
+pred_modelo_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">augment</span>(modelo_<span class="dv">3</span>, <span class="dt">type.predict =</span> <span class="st">&quot;response&quot;</span>)
+pred_modelo_<span class="dv">3</span>
+<span class="co">## # A tibble: 422 x 11</span>
+<span class="co">##    .rownames breakdown shugart   age    fh   .fitted   .resid .std.resid</span>
+<span class="co">##    &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">##  1 75                0      19     1     8  8.47e- 9 -1.30e-4   -1.30e-4</span>
+<span class="co">##  2 76                0      19     2     8 10.00e- 9 -1.41e-4   -1.41e-4</span>
+<span class="co">##  3 77                1      19     3     3  6.19e- 1  9.79e-1    1.31e+0</span>
+<span class="co">##  4 85                0      19     1    10  4.70e-12 -3.07e-6   -3.07e-6</span>
+<span class="co">##  5 86                0      19     2    10  5.55e-12 -3.33e-6   -3.33e-6</span>
+<span class="co">##  6 87                0      19     3    11  1.55e-13 -5.56e-7   -5.56e-7</span>
+<span class="co">##  7 88                0      19     4    11  1.83e-13 -6.04e-7   -6.04e-7</span>
+<span class="co">##  8 89                0      19     5    11  2.16e-13 -6.57e-7   -6.57e-7</span>
+<span class="co">##  9 90                0      19     6    11  2.55e-13 -7.14e-7   -7.14e-7</span>
+<span class="co">## 10 91                0      19     7    10  1.28e-11 -5.05e-6   -5.05e-6</span>
+<span class="co">## # … with 412 more rows, and 3 more variables: .hat &lt;dbl&gt;, .sigma &lt;dbl&gt;,</span>
+<span class="co">## #   .cooksd &lt;dbl&gt;</span></code></pre>
+<p>La función <code>dplyr</code> nos permite transformar nuestra nueva base obtenida por medio de <code>broom</code>. Una de las funciones básicas de <code>dplyr</code> es <code>select</code>, que nos permite escoger variables por sus nombres. Necesitamos identificar los valores predichos y la variable dependiente (en este caso <code>breakdown</code>) para poder comparar la probabilidad asignada por el modelo con el valor real de la varible. La función <code>mutate</code> de <code>dplyr</code> nos permitirá crear una variable binaria para saber si el modelo ha predicho correctamente cada observación. El punto de corte es de 0.5, es decir, si la probabilidad estimada es igual o superior a 0.5 la se considera que el modelo predijo la ocurrencia del evento, y si es menor a ese valor se considera que predijo la no ocurrencia del evento. Trabajar con valores arbitrarios de corte tiene desventajas, que veremos a continuación que son resueltas por los ROC. Al fin creamos una variable que llamamos <code>pcp</code> (porcentaje correctamente predicho) que refleja la proporcion de verdaderos positivos y verdaderos negativos estimados por el modelo 3. El resultado muestra que de las 422 observaciones del modelo 3, 99.5% han sido correctamente predichas.</p>
+<pre class="sourceCode r"><code class="sourceCode r">pred_modelo_<span class="dv">3</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(.rownames, breakdown, .fitted) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predicho_binario =</span> <span class="kw">if_else</span>(.fitted <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>),
+                      <span class="dt">predicho_correcto =</span> <span class="kw">if_else</span>(breakdown <span class="op">==</span><span class="st"> </span>predicho_binario, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">pcp =</span> <span class="kw">mean</span>(predicho_correcto))
+<span class="co">## # A tibble: 1 x 1</span>
+<span class="co">##     pcp</span>
+<span class="co">##   &lt;dbl&gt;</span>
+<span class="co">## 1 0.995</span></code></pre>
+</div>
+<div id="brier-score" class="section level4">
+<h4><span class="header-section-number">7.2.4.5</span> Brier Score</h4>
+<p>Ésta es otra medida de ajuste, menos frecuente en Ciencia Política. Cuanto más próximo el score de Brier está de 0, mejor el ajuste del modelo. En general uno no utiliza todas las medidas que estamos repasando (AIC, BIC, Brier, etc.) sino que elige dos o tres que sean de su agrado. Creo que situaciones en que se quiere “castigar” mucho las predicciones erróneas, ésta es una alternativa ideal ya que su fórmula viene dada por <span class="math display">\[BS = \frac {1}{N} \sum(\hat{p}-x)^2\]</span>, donde <span class="math inline">\(N\)</span> es el número de observaciones, <span class="math inline">\(\hat{p}\)</span> es la probabilidad predicha para cada observación, y <span class="math inline">\(x\)</span> es el valor real de la observación en nuestra base de datos. El score es el promedio para todas las observaciones de la muestra. ¿Cuál de los tres modelos tiene menor score?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BrierScore</span>(modelo_<span class="dv">1</span>)
+<span class="co">## [1] 0.038</span>
+<span class="kw">BrierScore</span>(modelo_<span class="dv">2</span>)
+<span class="co">## [1] 0.038</span>
+<span class="kw">BrierScore</span>(modelo_<span class="dv">3</span>)
+<span class="co">## [1] 0.0048</span></code></pre>
+</div>
+<div id="roc-plot" class="section level4">
+<h4><span class="header-section-number">7.2.4.6</span> ROC plot</h4>
+<p>Las curvas de ROC tienen la ventaja de no definir un límite arbitrario a partir del cual se decide si la observación ha sido correcta o incorrectamente clasificada. Su desventaja es que es una figura extra que deberás incluir en tu artículo, que quizás puedas incluir en el apéndice. Para interpretar estas figuras, lo que nos interesa es el área debajo de la curva diagonal que cruza la figura. A mayor el área bajo la curva, mejor el ajuste del modelo. Si quieren leer más al respecto, el área conforma un score que se denomina AUC score (que viene de <em>Area Under the Curve</em>). Vamos a construirlo con la función <code>geom_roc()</code> del paquete <code>plotROC</code>. Lo que haré primero es crear una base de datos con los resultados de los tres modelos de regresión. A la base la llamaré <code>pred_modelos</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(plotROC)
+
+pred_modelos &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(<span class="kw">augment</span>(modelo_<span class="dv">1</span>, <span class="dt">response.type =</span> <span class="st">&quot;pred&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                            </span><span class="kw">mutate</span>(<span class="dt">modelo =</span> <span class="st">&quot;Modelo 1&quot;</span>),
+                          <span class="kw">augment</span>(modelo_<span class="dv">2</span>, <span class="dt">response.type =</span> <span class="st">&quot;pred&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                            </span><span class="kw">mutate</span>(<span class="dt">modelo =</span> <span class="st">&quot;Modelo 2&quot;</span>),
+                          <span class="kw">augment</span>(modelo_<span class="dv">3</span>, <span class="dt">response.type =</span> <span class="st">&quot;pred&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                            </span><span class="kw">mutate</span>(<span class="dt">modelo =</span> <span class="st">&quot;Modelo 3&quot;</span>))</code></pre>
+<p>Una vez creada la base con la información de los tres modelos, procedo a crear la figura usando <code>gglpot</code>, como vimos en el <strong>CAP XXX</strong>. En el eje vertical tenemos la <em>sensibilidad</em> del modelo mientras que en el eje horizontal tenemos (1-<em>especificidad</em>) del modelo. La sensibilidad es la razón entre los verdaderos positivos (o sea, aquellas observaciones predichas como “1”, que realmente eran “1” en la base de datos), y la suma de los verdaderos postivos más los falsos negativos (aquellos preichos como “0” que en verdad eran “1”). La especificidad es la razón entre los verdaderos negativos (aquellas observaciones predichas como “0” que eran “0” en la base de datos) y la suma de los falsos positivos (aquellas observaciones predichas como “1” que en verdad eran “0”) sumado a los verdaderos negativos.</p>
+<pre class="sourceCode r"><code class="sourceCode r">
+roc &lt;-<span class="st"> </span><span class="kw">ggplot</span>(pred_modelos, <span class="kw">aes</span>(<span class="dt">d =</span> breakdown, <span class="dt">m =</span> .fitted, <span class="dt">color =</span> modelo)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_roc</span>(<span class="dt">n.cuts =</span> <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> <span class="dv">1</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;1 - Especificidad&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Sensibilidad&quot;</span>)
+  
+roc</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:bin-rocplot"></span>
+<img src="logit_files/figure-html/bin-rocplot-1.png" alt="Roc Plot de nuestros modelos." width="480" />
+<p class="caption">
+Figura 7.8: Roc Plot de nuestros modelos.
+</p>
+</div>
+<p>Para poder ver el AUC, utilizamos la función <code>calc_auc</code> sobre el objeto que hemos llamado <code>roc</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">calc_auc</span>(roc)
+<span class="co">##   PANEL group  AUC</span>
+<span class="co">## 1     1     1 0.64</span>
+<span class="co">## 2     1     2 0.64</span>
+<span class="co">##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 1 rows ]</span></code></pre>
+</div>
+<div id="separation-plots" class="section level4">
+<h4><span class="header-section-number">7.2.4.7</span> Separation plots</h4>
+<p>El <em>separation plot</em> fue propuesto por <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-5907.2011.00525.x">tres politólogos en este paper publicado en 2011</a> y remite a la idea que mencionamos al inicio del capítulo de que los modelos logísiticos son modelos de clasificación, y retoma la utilidad tanto de los porcentajes correctamente predichos como de los ROC. Los <em>separation plots</em> son figuras que permiten ver la información de una tabla de clasificación, pero donde podemos identificar qué observaciones son las peor predichas.</p>
+<p>Una crítica que puede hacersele a esta linda herramienta visual es que cuanto mayor es el número de observaciones en nuestra muestra, más dificil se vuelve interpretar la figura ya que la gracia del <em>separation plot</em> es que cada observación es incluida en la figura en la forma de una línea vertical, que será amarilla si la observación asume <code>breakdown=0</code> y roja si <code>breakdown=1</code>. Nótese cómo ocupamos el argumento <code>type = &quot;line&quot;</code> en las opciones, para que cada observación sea incluida como línea. Si las observaciones fueran más de 1000, por decir un número no arbitrario, sería recomendable usar el arguemnto <code>type = &quot;band&quot;</code>, que facilita la lectura para modelos con muestras muy grandes. ¿Cómo interpretamos la figura? Si el modelo predijiera perfectamente nuestra variable dependiente, todas las observaciones en amarillo estarían del lado izquierdo, y todas las rojas del lado derecho, ya que en el eje horizontal de la figura tenemos la probabilidad predicha para cada obervación.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(separationplot)
+<span class="kw">separationplot</span>(<span class="dt">pred    =</span> <span class="kw">predict.glm</span>(modelo_<span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>),
+               <span class="dt">actual  =</span> <span class="kw">as.vector</span>(modelo_<span class="dv">1</span><span class="op">$</span>y),
+               <span class="dt">type    =</span> <span class="st">&quot;line&quot;</span>,
+               <span class="dt">show.expected =</span> T,
+               <span class="dt">newplot =</span> F, 
+               <span class="dt">line    =</span> F,
+               <span class="dt">heading =</span> <span class="st">&quot;Separation plot - Modelo 1 en base a Mainwaring y Perez Liñan (2013)&quot;</span>)
+
+<span class="kw">separationplot</span>(<span class="dt">pred    =</span> <span class="kw">predict.glm</span>(modelo_<span class="dv">3</span>, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>),
+               <span class="dt">actual  =</span> <span class="kw">as.vector</span>(modelo_<span class="dv">3</span><span class="op">$</span>y),
+               <span class="dt">type    =</span> <span class="st">&quot;line&quot;</span>,
+               <span class="dt">show.expected =</span> T,
+               <span class="dt">newplot =</span> F, 
+               <span class="dt">line    =</span> F,
+               <span class="dt">heading =</span> <span class="st">&quot;Separation plot - Modelo 3 en base a a Mainwaring y Perez Liñan (2013)&quot;</span>)</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:bin-sepplots"></span>
+<img src="logit_files/figure-html/bin-sepplots-1.png" alt="Separation plots del modelo 1 y 3." width="480" /><img src="logit_files/figure-html/bin-sepplots-2.png" alt="Separation plots del modelo 1 y 3." width="480" />
+<p class="caption">
+Figura 7.9: Separation plots del modelo 1 y 3.
+</p>
+</div>
+<p>El triangulo negro que vemos debajo de la figura es el punto a partir del cual las obsevaciones en rojo deberían comenzar si estuviesen perfectamente clasificadas de las amarillas. Si te fijas en el <em>separation plot</em> del modelo 1, verás que hay líneas rojas del lado izquierdo de la figura. Estas son observaciones para los cuales <code>breakdown=1</code> y sin embargo se les ha estimado una probabilidad de quiebre democrático muy baja. El modelo 1, apenas con una variable dependiente (<code>shugart</code>) predice bastante mal la realidad de quiebres democráticos en América Latina. Notarás que el modelo 3 ha clasificado mucho mejor que el modelo 1 a las observaciones. De hecho, el modelo 3, apenas con 3 variables independientes, ha podido clasificar la variable dependiente casi perfectamente.</p>
+<div class ='books'>
+
+<p><strong>Ejercicios antes de continuar al próximo capítulo</strong></p>
+<ul>
+<li><p>Con lo aprendido en el Capítulo <a href="dataviz.html#dataviz">4</a>, de visualización de datos, mejora las figuras, agregando nombres a los ejes y título.</p></li>
+<li><p>Agrega dos variables independientes al modelo que hemos repasado en el capítulo e interprete los coeficientes como <em>odds ratios</em>.</p></li>
+<li><p>Grafique estos coeficientes usando <code>sjPlot</code>.</p></li>
+<li><p>Diagnostique el ajuste del modelo con un ROC y un <em>Separation Plot</em>.</p></li>
+</ul>
+</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lineal.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="surv.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/arcruz0/libroadp/edit/master/logit.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

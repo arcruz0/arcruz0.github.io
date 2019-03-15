@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 11 Selección de casos a partir de regresiones | AnalizaR Datos Políticos</title>
+  <meta name="description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  <meta name="generator" content="bookdown  and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 11 Selección de casos a partir de regresiones | AnalizaR Datos Políticos" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 11 Selección de casos a partir de regresiones | AnalizaR Datos Políticos" />
+  
+  <meta name="twitter:description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  
+
+<meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (editores)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="prev" href="pca.html">
+<link rel="next" href="web-mining.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+<script>
+% https://stackoverflow.com/a/4425214/8242291
+var links = document.links;
+
+for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+
+}
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><b><a href="./index.html"><img style="float: left; margin-right: 5px;" src="favicon.ico"></img>AnalizaR datos políticos</a></b></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#inicio"><i class="fa fa-check"></i><b>1.1</b> Inicio</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#como-contribuir"><i class="fa fa-check"></i><b>1.2</b> ¿Cómo contribuir?</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#sobre-los-autores-y-autoras"><i class="fa fa-check"></i><b>1.2.1</b> Sobre los autores y autoras</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#prefacio"><i class="fa fa-check"></i><b>1.3</b> Prefacio</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i><b>1.3.1</b> Agradecimientos</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#que-esperar-del-libro"><i class="fa fa-check"></i><b>1.4</b> Qué esperar del libro</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#estructura-del-libro"><i class="fa fa-check"></i><b>1.5</b> Estructura del libro</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#prerrequisitos"><i class="fa fa-check"></i><b>1.6</b> Prerrequisitos</a></li>
+</ul></li>
+<li class="part"><span><b>I Introducción a R</b></span></li>
+<li class="chapter" data-level="2" data-path="rbas.html"><a href="rbas.html"><i class="fa fa-check"></i><b>2</b> R básico</a><ul>
+<li class="chapter" data-level="2.1" data-path="rbas.html"><a href="rbas.html#instalacion"><i class="fa fa-check"></i><b>2.1</b> Instalación</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="rbas.html"><a href="rbas.html#r"><i class="fa fa-check"></i><b>2.1.1</b> R</a></li>
+<li class="chapter" data-level="2.1.2" data-path="rbas.html"><a href="rbas.html#rstudio"><i class="fa fa-check"></i><b>2.1.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="rbas.html"><a href="rbas.html#partes-de-rstudio"><i class="fa fa-check"></i><b>2.2</b> Partes de RStudio</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="rbas.html"><a href="rbas.html#consola"><i class="fa fa-check"></i><b>2.2.1</b> Consola</a></li>
+<li class="chapter" data-level="2.2.2" data-path="rbas.html"><a href="rbas.html#script"><i class="fa fa-check"></i><b>2.2.2</b> Script</a></li>
+<li class="chapter" data-level="2.2.3" data-path="rbas.html"><a href="rbas.html#objetos"><i class="fa fa-check"></i><b>2.2.3</b> Objetos</a></li>
+<li class="chapter" data-level="2.2.4" data-path="rbas.html"><a href="rbas.html#archivos-graficos-paquetes-ayuda"><i class="fa fa-check"></i><b>2.2.4</b> Archivos / gráficos / paquetes / ayuda</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html"><i class="fa fa-check"></i><b>3</b> Manejo de datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#introduccion-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>3.1.1</b> Nuestra base de datos</a></li>
+<li class="chapter" data-level="3.1.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#describir-la-base"><i class="fa fa-check"></i><b>3.1.2</b> Describir la base</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-en-bases"><i class="fa fa-check"></i><b>3.2</b> Operaciones en bases</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ordenar-una-base"><i class="fa fa-check"></i><b>3.2.1</b> Ordenar una base</a></li>
+<li class="chapter" data-level="3.2.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#seleccionar-columnas"><i class="fa fa-check"></i><b>3.2.2</b> Seleccionar columnas</a></li>
+<li class="chapter" data-level="3.2.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#renombrar-columnas"><i class="fa fa-check"></i><b>3.2.3</b> Renombrar columnas</a></li>
+<li class="chapter" data-level="3.2.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#filtrar-observaciones"><i class="fa fa-check"></i><b>3.2.4</b> Filtrar observaciones</a></li>
+<li class="chapter" data-level="3.2.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#crear-nuevas-variables"><i class="fa fa-check"></i><b>3.2.5</b> Crear nuevas variables</a></li>
+<li class="chapter" data-level="3.2.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#concatenar-comandos"><i class="fa fa-check"></i><b>3.2.6</b> Concatenar comandos</a></li>
+<li class="chapter" data-level="3.2.7" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-agrupadas"><i class="fa fa-check"></i><b>3.2.7</b> Operaciones agrupadas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#reformatear-bases"><i class="fa fa-check"></i><b>3.3</b> Reformatear bases</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#por-que-quiero-visualizar-mis-datos"><i class="fa fa-check"></i><b>4.1</b> ¿Por qué quiero visualizar mis datos?</a></li>
+<li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>4.2</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-multiverso-ggplotidiano"><i class="fa fa-check"></i><b>4.2.1</b> Las capas del multiverso ggplotidiano</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#elecciones-locales-y-visualizacion-de-datos"><i class="fa fa-check"></i><b>4.3</b> Elecciones locales y visualización de datos</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="dataviz.html"><a href="dataviz.html#grafico-de-barras"><i class="fa fa-check"></i><b>4.3.1</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dataviz.html"><a href="dataviz.html#grafico-de-linea"><i class="fa fa-check"></i><b>4.3.2</b> Gráfico de Línea</a></li>
+<li class="chapter" data-level="4.3.3" data-path="dataviz.html"><a href="dataviz.html#boxplot"><i class="fa fa-check"></i><b>4.3.3</b> Boxplot</a></li>
+<li class="chapter" data-level="4.3.4" data-path="dataviz.html"><a href="dataviz.html#histograma"><i class="fa fa-check"></i><b>4.3.4</b> Histograma</a></li>
+<li class="chapter" data-level="4.3.5" data-path="dataviz.html"><a href="dataviz.html#relacion-entre-variables"><i class="fa fa-check"></i><b>4.3.5</b> Relación entre variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#para-seguir-aprendiendo"><i class="fa fa-check"></i><b>4.4</b> Para seguir aprendiendo</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="dataviz.html"><a href="dataviz.html#otros-paquetes"><i class="fa fa-check"></i><b>4.4.1</b> Otros paquetes:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="carga.html"><a href="carga.html"><i class="fa fa-check"></i><b>5</b> Carga de bases</a><ul>
+<li class="chapter" data-level="5.1" data-path="carga.html"><a href="carga.html#carga-intro"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
+<li class="chapter" data-level="5.2" data-path="carga.html"><a href="carga.html#carga-formatos"><i class="fa fa-check"></i><b>5.2</b> Distintos formatos de bases</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="carga.html"><a href="carga.html#archivos-separados-por-delimitadores-.csv-y-.tsv"><i class="fa fa-check"></i><b>5.2.1</b> Archivos separados por delimitadores (.csv y .tsv)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="carga.html"><a href="carga.html#carga-r"><i class="fa fa-check"></i><b>5.2.2</b> Archivos creados con R (.Rdata y .rds)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="carga.html"><a href="carga.html#carga-etiquetas"><i class="fa fa-check"></i><b>5.2.3</b> Datos con etiquetas (Stata o SPSS)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="carga.html"><a href="carga.html#carga-excel"><i class="fa fa-check"></i><b>5.2.4</b> Archivos de Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="carga.html"><a href="carga.html#multiples-bases-de-datos-a-la-vez"><i class="fa fa-check"></i><b>5.3</b> Múltiples bases de datos a la vez</a></li>
+<li class="chapter" data-level="5.4" data-path="carga.html"><a href="carga.html#carga-grandes"><i class="fa fa-check"></i><b>5.4</b> Bases de datos tabulares grandes</a></li>
+</ul></li>
+<li class="part"><span><b>II Modelos</b></span></li>
+<li class="chapter" data-level="6" data-path="lineal.html"><a href="lineal.html"><i class="fa fa-check"></i><b>6</b> Modelos lineales</a><ul>
+<li class="chapter" data-level="6.1" data-path="lineal.html"><a href="lineal.html#introduccion-2"><i class="fa fa-check"></i><b>6.1</b> Introducción</a></li>
+<li class="chapter" data-level="6.2" data-path="lineal.html"><a href="lineal.html#aplicacion-en-r"><i class="fa fa-check"></i><b>6.2</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos"><i class="fa fa-check"></i><b>6.2.1</b> Estadísticos Descriptivos</a></li>
+<li class="chapter" data-level="6.2.2" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos-y-distribucion-de-las-variables-del-modelo"><i class="fa fa-check"></i><b>6.2.2</b> Estadísticos descriptivos y distribución de las variables del modelo</a></li>
+<li class="chapter" data-level="6.2.3" data-path="lineal.html"><a href="lineal.html#matriz-de-correlacion-de-variables-independientes"><i class="fa fa-check"></i><b>6.2.3</b> Matriz de correlación de variables independientes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="lineal.html"><a href="lineal.html#distribucion-de-las-variables-de-interes"><i class="fa fa-check"></i><b>6.2.4</b> Distribución de las variables de interés</a></li>
+<li class="chapter" data-level="6.2.5" data-path="lineal.html"><a href="lineal.html#relacion-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>6.2.5</b> Relación entre la variable dependiente e independiente</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="lineal.html"><a href="lineal.html#modelo-bivariado-regresion-lineal-simple"><i class="fa fa-check"></i><b>6.3</b> Modelo bivariado: regresión lineal simple</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="lineal.html"><a href="lineal.html#estimando-un-modelo-lineal-en-r"><i class="fa fa-check"></i><b>6.3.1</b> Estimando un modelo lineal en <code>R</code></a></li>
+<li class="chapter" data-level="6.3.2" data-path="lineal.html"><a href="lineal.html#representacion-grafica"><i class="fa fa-check"></i><b>6.3.2</b> Representación gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="lineal.html"><a href="lineal.html#modelo-multivariado-regresion-multiple"><i class="fa fa-check"></i><b>6.4</b> Modelo multivariado: regresión múltiple</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="lineal.html"><a href="lineal.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>6.4.1</b> Ajuste del modelo</a></li>
+<li class="chapter" data-level="6.4.2" data-path="lineal.html"><a href="lineal.html#inferencia-en-modelos-lineales-multiples"><i class="fa fa-check"></i><b>6.4.2</b> Inferencia en modelos lineales múltiples</a></li>
+<li class="chapter" data-level="6.4.3" data-path="lineal.html"><a href="lineal.html#supuestos-de-ols"><i class="fa fa-check"></i><b>6.4.3</b> Supuestos de OLS</a></li>
+<li class="chapter" data-level="6.4.4" data-path="lineal.html"><a href="lineal.html#errores-estandares-robustos"><i class="fa fa-check"></i><b>6.4.4</b> Errores estándares robustos</a></li>
+<li class="chapter" data-level="6.4.5" data-path="lineal.html"><a href="lineal.html#un-caso-especial-de-heterocedasticidad-la-varianza-del-error-asociada-a-clusters"><i class="fa fa-check"></i><b>6.4.5</b> Un caso especial de Heterocedasticidad: la varianza del error asociada a clusters</a></li>
+<li class="chapter" data-level="6.4.6" data-path="lineal.html"><a href="lineal.html#un-supuesto-adicional-para-poder-realizar-inferencia"><i class="fa fa-check"></i><b>6.4.6</b> Un supuesto adicional para poder realizar <strong>inferencia</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>7</b> Modelos logísticos</a><ul>
+<li class="chapter" data-level="7.1" data-path="logit.html"><a href="logit.html#nociones-basicas"><i class="fa fa-check"></i><b>7.1</b> Nociones básicas</a></li>
+<li class="chapter" data-level="7.2" data-path="logit.html"><a href="logit.html#aplicacion-en-r-1"><i class="fa fa-check"></i><b>7.2</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="7.2.1" data-path="logit.html"><a href="logit.html#estimar-los-modelos"><i class="fa fa-check"></i><b>7.2.1</b> Estimar los modelos</a></li>
+<li class="chapter" data-level="7.2.2" data-path="logit.html"><a href="logit.html#crear-tablas"><i class="fa fa-check"></i><b>7.2.2</b> Crear tablas</a></li>
+<li class="chapter" data-level="7.2.3" data-path="logit.html"><a href="logit.html#visualizacion-de-resultados"><i class="fa fa-check"></i><b>7.2.3</b> Visualización de resultados</a></li>
+<li class="chapter" data-level="7.2.4" data-path="logit.html"><a href="logit.html#ajuste-de-los-modelos"><i class="fa fa-check"></i><b>7.2.4</b> Ajuste de los modelos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>8</b> Modelos de supervivencia</a><ul>
+<li class="chapter" data-level="8.1" data-path="surv.html"><a href="surv.html#nociones-basicas-1"><i class="fa fa-check"></i><b>8.1</b> Nociones básicas</a></li>
+<li class="chapter" data-level="8.2" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>8.2</b> El modelo Cox de riesgos proporcionales</a></li>
+<li class="chapter" data-level="8.3" data-path="surv.html"><a href="surv.html#aplicacion-en-r-2"><i class="fa fa-check"></i><b>8.3</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="8.3.1" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretacion-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>8.3.1</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Aplicaciones</b></span></li>
+<li class="chapter" data-level="9" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i><b>9</b> Manejo avanzado de datos políticos</a><ul>
+<li class="chapter" data-level="9.1" data-path="manejo-av.html"><a href="manejo-av.html#introduccion-3"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="manejo-av.html"><a href="manejo-av.html#como-aprovechar-countrycode"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo aprovechar <code>countrycode</code>?</a></li>
+<li class="chapter" data-level="9.3" data-path="manejo-av.html"><a href="manejo-av.html#como-imputar-datos-faltantes"><i class="fa fa-check"></i><b>9.3</b> ¿Cómo imputar datos faltantes?</a></li>
+<li class="chapter" data-level="9.4" data-path="manejo-av.html"><a href="manejo-av.html#imputar-datos-usando-amelia"><i class="fa fa-check"></i><b>9.4</b> Imputar datos usando Amelia</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="manejo-av.html"><a href="manejo-av.html#diagnosticos"><i class="fa fa-check"></i><b>9.4.1</b> Diagnosticos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="manejo-av.html"><a href="manejo-av.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>9.5</b> Regresiones luego de imputar datos</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>10</b> Creación de índices con PCA</a><ul>
+<li class="chapter" data-level="10.1" data-path="pca.html"><a href="pca.html#aplicacion-en-r-3"><i class="fa fa-check"></i><b>10.1</b> Aplicación en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="casos.html"><a href="casos.html"><i class="fa fa-check"></i><b>11</b> Selección de casos a partir de regresiones</a><ul>
+<li class="chapter" data-level="11.1" data-path="casos.html"><a href="casos.html#que-casos-de-estudio-debo-seleccionar-para-testear-mi-hipotesis"><i class="fa fa-check"></i><b>11.1</b> ¿Qué casos de estudio debo seleccionar para testear mi hipótesis?</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="casos.html"><a href="casos.html#casos-tipicos"><i class="fa fa-check"></i><b>11.1.1</b> Casos Típicos</a></li>
+<li class="chapter" data-level="11.1.2" data-path="casos.html"><a href="casos.html#casos-desviados"><i class="fa fa-check"></i><b>11.1.2</b> Casos desviados</a></li>
+<li class="chapter" data-level="11.1.3" data-path="casos.html"><a href="casos.html#casos-influyentes"><i class="fa fa-check"></i><b>11.1.3</b> Casos Influyentes</a></li>
+<li class="chapter" data-level="11.1.4" data-path="casos.html"><a href="casos.html#casos-extremos"><i class="fa fa-check"></i><b>11.1.4</b> Casos extremos</a></li>
+<li class="chapter" data-level="11.1.5" data-path="casos.html"><a href="casos.html#casos-mas-similares"><i class="fa fa-check"></i><b>11.1.5</b> Casos más similares</a></li>
+<li class="chapter" data-level="11.1.6" data-path="casos.html"><a href="casos.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>11.1.6</b> Casos más diferentes</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="casos.html"><a href="casos.html#la-relevancia-de-combinar-metodos"><i class="fa fa-check"></i><b>11.2</b> La relevancia de combinar métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Mínería de datos</a></li>
+<li class="chapter" data-level="13" data-path="redes.html"><a href="redes.html"><i class="fa fa-check"></i><b>13</b> Análisis de redes</a><ul>
+<li class="chapter" data-level="13.1" data-path="redes.html"><a href="redes.html#introduccion-4"><i class="fa fa-check"></i><b>13.1</b> Introducción</a></li>
+<li class="chapter" data-level="13.2" data-path="redes.html"><a href="redes.html#conceptos-iniciales"><i class="fa fa-check"></i><b>13.2</b> Conceptos iniciales</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="redes.html"><a href="redes.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>13.2.1</b> Nodos y enlaces</a></li>
+<li class="chapter" data-level="13.2.2" data-path="redes.html"><a href="redes.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>13.2.2</b> Matriz de adyacencia</a></li>
+<li class="chapter" data-level="13.2.3" data-path="redes.html"><a href="redes.html#pesos-y-direccion"><i class="fa fa-check"></i><b>13.2.3</b> Pesos y dirección</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="redes.html"><a href="redes.html#bases-de-datos-de-redes"><i class="fa fa-check"></i><b>13.3</b> Bases de datos de redes</a></li>
+<li class="chapter" data-level="13.4" data-path="redes.html"><a href="redes.html#disposicion-grafica"><i class="fa fa-check"></i><b>13.4</b> Disposición gráfica</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="redes.html"><a href="redes.html#color-y-forma-en-la-representacion-visual"><i class="fa fa-check"></i><b>13.4.1</b> Color y forma en la representación visual</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="redes.html"><a href="redes.html#analisis-basico-de-redes"><i class="fa fa-check"></i><b>13.5</b> Análisis básico de redes</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="redes.html"><a href="redes.html#medidas-de-centralidad"><i class="fa fa-check"></i><b>13.5.1</b> Medidas de centralidad</a></li>
+<li class="chapter" data-level="13.5.2" data-path="redes.html"><a href="redes.html#comunidades-en-las-redes"><i class="fa fa-check"></i><b>13.5.2</b> Comunidades en las redes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>14</b> Análisis cuantitativo de texto</a><ul>
+<li class="chapter" data-level="14.1" data-path="qta.html"><a href="qta.html#introduccion-5"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
+<li class="chapter" data-level="14.2" data-path="qta.html"><a href="qta.html#exploracion-de-la-bases-de-datos"><i class="fa fa-check"></i><b>14.2</b> Exploración de la bases de datos</a></li>
+<li class="chapter" data-level="14.3" data-path="qta.html"><a href="qta.html#calculo-de-frecuencias"><i class="fa fa-check"></i><b>14.3</b> Cálculo de frecuencias</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="qta.html"><a href="qta.html#cuales-son-los-diez-hashtags-mas-usados-de-las-cuentas-de-los-diputados"><i class="fa fa-check"></i><b>14.3.1</b> ¿Cuáles son los diez hashtags más usados de las cuentas de los diputados?</a></li>
+<li class="chapter" data-level="14.3.2" data-path="qta.html"><a href="qta.html#frecuencias-por-genero-cantidad-de-hashtags-usados-por-los-diputados-en-total"><i class="fa fa-check"></i><b>14.3.2</b> Frecuencias por género: cantidad de hashtags usados por los diputados en total</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="qta.html"><a href="qta.html#wordcloud-de-hashtags"><i class="fa fa-check"></i><b>14.4</b> Wordcloud de hashtags</a></li>
+<li class="chapter" data-level="14.5" data-path="qta.html"><a href="qta.html#graficar-los-hashtags-mas-utilizados-por-grupos-de-interes"><i class="fa fa-check"></i><b>14.5</b> Graficar los hashtags más utilizados por grupos de interés</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-las-diputadas"><i class="fa fa-check"></i><b>14.5.1</b> Hashtags más usados entre las diputadas</a></li>
+<li class="chapter" data-level="14.5.2" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-los-diputados"><i class="fa fa-check"></i><b>14.5.2</b> Hashtags más usados entre los diputados</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-caracteristicas-del-diputado"><i class="fa fa-check"></i><b>14.6</b> Hashtags de género por características del diputado</a><ul>
+<li class="chapter" data-level="14.6.1" data-path="qta.html"><a href="qta.html#por-el-genero-del-diputado"><i class="fa fa-check"></i><b>14.6.1</b> Por el género del diputado</a></li>
+<li class="chapter" data-level="14.6.2" data-path="qta.html"><a href="qta.html#por-la-coalicion-de-los-diputados"><i class="fa fa-check"></i><b>14.6.2</b> Por la coalición de los diputados</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="qta.html"><a href="qta.html#variacion-temporal-del-uso-de-estos-hashtags"><i class="fa fa-check"></i><b>14.7</b> Variación temporal del uso de estos hashtags</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-olafeminista"><i class="fa fa-check"></i><b>14.7.1</b> Frecuencia semanal de #olafeminista</a></li>
+<li class="chapter" data-level="14.7.2" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-tres-hashtags-de-genero"><i class="fa fa-check"></i><b>14.7.2</b> Frecuencia semanal de tres hashtags de género</a></li>
+<li class="chapter" data-level="14.7.3" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-de-genero-por-semana"><i class="fa fa-check"></i><b>14.7.3</b> Grafiquemos los hashtags de género por semana</a></li>
+<li class="chapter" data-level="14.7.4" data-path="qta.html"><a href="qta.html#ponderamos-en-relacion-al-total-de-hashtags-por-semana"><i class="fa fa-check"></i><b>14.7.4</b> Ponderamos en relación al total de hashtags por semana</a></li>
+<li class="chapter" data-level="14.7.5" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-interesantes-ponderados-por-el-total-semanal"><i class="fa fa-check"></i><b>14.7.5</b> Grafiquemos los hashtags interesantes ponderados por el total semanal</a></li>
+<li class="chapter" data-level="14.7.6" data-path="qta.html"><a href="qta.html#diputadas"><i class="fa fa-check"></i><b>14.7.6</b> Diputadas</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-semana-a-nivel-de-diputados-ponderados-por-semana"><i class="fa fa-check"></i><b>14.8</b> Hashtags de género por semana a nivel de diputados (ponderados por semana)</a></li>
+<li class="chapter" data-level="14.9" data-path="qta.html"><a href="qta.html#comentarios-finales"><i class="fa fa-check"></i><b>14.9</b> Comentarios finales</a></li>
+<li class="chapter" data-level="14.10" data-path="qta.html"><a href="qta.html#anexo-problemas-que-se-presentan-cuando-analizas-discursos-debates-o-leyes"><i class="fa fa-check"></i><b>14.10</b> Anexo: Problemas que se presentan cuando analizas discursos, debates o leyes</a></li>
+<li class="chapter" data-level="14.11" data-path="qta.html"><a href="qta.html#tidy-text"><i class="fa fa-check"></i><b>14.11</b> <code>Tidy text</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>15</b> Generación de mapas</a><ul>
+<li class="chapter" data-level="15.1" data-path="mapas.html"><a href="mapas.html#datos-espaciales"><i class="fa fa-check"></i><b>15.1</b> Datos Espaciales</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="mapas.html"><a href="mapas.html#que-son"><i class="fa fa-check"></i><b>15.1.1</b> ¿Qué son?</a></li>
+<li class="chapter" data-level="15.1.2" data-path="mapas.html"><a href="mapas.html#estructura-de-los-datos-espaciales"><i class="fa fa-check"></i><b>15.1.2</b> Estructura de los Datos Espaciales</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="mapas.html"><a href="mapas.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>15.2</b> Datos Espaciales en R</a></li>
+<li class="chapter" data-level="15.3" data-path="mapas.html"><a href="mapas.html#special-features-en-r"><i class="fa fa-check"></i><b>15.3</b> Special Features en R</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="mapas.html"><a href="mapas.html#estructura"><i class="fa fa-check"></i><b>15.3.1</b> Estructura</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="mapas.html"><a href="mapas.html#manejo-de-datos-espaciales"><i class="fa fa-check"></i><b>15.4</b> Manejo de Datos Espaciales</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="mapas.html"><a href="mapas.html#modificaciones"><i class="fa fa-check"></i><b>15.4.1</b> Modificaciones</a></li>
+<li class="chapter" data-level="15.4.2" data-path="mapas.html"><a href="mapas.html#crear-nuevos-shapefiles-con-st_write"><i class="fa fa-check"></i><b>15.4.2</b> Crear nuevos shapefiles con <code>st_write</code></a></li>
+<li class="chapter" data-level="15.4.3" data-path="mapas.html"><a href="mapas.html#incorporar-datos-de-otras-bases-con-merge"><i class="fa fa-check"></i><b>15.4.3</b> Incorporar datos de otras bases con <code>merge</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="mapas.html"><a href="mapas.html#mapear-en-r"><i class="fa fa-check"></i><b>15.5</b> Mapear en R</a></li>
+<li class="chapter" data-level="15.6" data-path="mapas.html"><a href="mapas.html#mapeando-variables"><i class="fa fa-check"></i><b>15.6</b> Mapeando variables</a><ul>
+<li class="chapter" data-level="15.6.1" data-path="mapas.html"><a href="mapas.html#mapas-animados-con-gganimate"><i class="fa fa-check"></i><b>15.6.1</b> Mapas animados con <code>gganimate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.7" data-path="mapas.html"><a href="mapas.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>15.7</b> Inferencia a partir de Datos Espaciales</a><ul>
+<li class="chapter" data-level="15.7.1" data-path="mapas.html"><a href="mapas.html#indicadores-locales-de-asociacion-espacial-lisa"><i class="fa fa-check"></i><b>15.7.1</b> Indicadores locales de asociación espacial (LISA)</a></li>
+<li class="chapter" data-level="15.7.2" data-path="mapas.html"><a href="mapas.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>15.7.2</b> Matriz de Pesos Espaciales</a></li>
+<li class="chapter" data-level="15.7.3" data-path="mapas.html"><a href="mapas.html#morans-i"><i class="fa fa-check"></i><b>15.7.3</b> Moran’s I</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="casos" class="section level1">
+<h1><span class="header-section-number">Capítulo 11</span> Selección de casos a partir de regresiones</h1>
+<p><em>Por Inés Fynn y Lihuen Nocetto</em></p>
+<hr />
+<p><strong>Lecturas de referencia</strong></p>
+<ul>
+<li><p>Seawright, J., &amp; Gerring, J. (2008). Case selection techniques in case study research: A menu of qualitative and quantitative options. <em>Political Research Quarterly, 61</em>(2), 294-308.</p></li>
+<li><p>Gerring, J. (2008). Case selection for case‐study analysis: qualitative and quantitative techniques. In <em>The Oxford handbook of political methodology</em>. Oxford University Press.</p></li>
+<li><p>Lieberman, E. S. (2005). Nested analysis as a mixed-method strategy for comparative research. <em>American Political Science Review, 99</em>(3), 435-452.</p></li>
+<li><p>Seawright, J. (2016). <em>Multi-method social science: Combining qualitative and quantitative tools</em>. Cambridge University Press.</p></li>
+</ul>
+<hr />
+<p>Este capítulo te dará herramientas para que a partir de lo que vimos en el capítulo de modelos lineales, puedas usar las regresiones para seleccionar casos de estudio mediante un diseño de métodos mixtos. Cuando estamos trabajando con datos observacionales (y no experimentales), las regresiones MCO no pueden, por sí mismas, responder preguntas de inferencia causal. Es decir, si bien nos permiten dilucidar si es que existe algún tipo de relación entre nuestra variable independiente y dependiente, la investigación quedará incompleta si no logramos evidenciar, con otro tipo de métodos, cómo es que se conectan causalmente estas variables. Un libro excelente para consultar y aprender más sobre este tema es <a href="https://www.cambridge.org/core/books/multimethod-social-science/286C2742878FBCC6225E2F10D6095A0C"><em>Multi-method social science: Combining qualitative and quantitative tools</em></a> de <a href="https://www.polisci.northwestern.edu/people/core-faculty/jason-seawright.html">Jason Seawright</a>.</p>
+<p>La selección de métodos para hacer una investigación está guiada por la pregunta que queremos responder. Por ejemplo, si el interés está en entender cuáles son los determinantes de desigualdad en los países de América Latina y el Caribe, vamos a emplear un análisis estadístico de <em>n-grande</em> que nos permita analizar la mayor cantidad de países posible. De este modo, hemos encontrado en las secciones anteriores que, en promedio, el gasto en educación tiene un efecto positivo sobre los niveles de desigualdad. Sin embargo, el hallazgo de que mayor gasto en educación genere mayores niveles de desigualdad resulta un tanto inquietante y contraintuitivo. Además, un hallazgo como este podría tener implicancias importantes para la elaboración de políticas públicas y consecuencias para la vida real de las personas.</p>
+<p>Por tanto, para avanzar en nuestra investigación sería aconsejable intentar responder, por ejemplo, ¿Por qué la educación afecta positivamente los niveles de desigualdad? Es decir, cuál es el <em>mecanismo causal</em> que explica que en los países de América Latina y el Caribe mayor gasto en educación genere mayores niveles de desigualdad. Para responder preguntas de este tipo muchas veces recurrimos a los métodos cualitativos (como por ejemplo, el estudio de casos en profundidad y análisis de <em>process tracing</em>) que nos permitan comprender cuáles son los procesos que explican por qué y cómo se da una relación causal. De este modo, lo que pretendemos hacer es <em>integrar</em> (Seawright, 2016) dos métodos de investigación, donde un método plantea la pregunta de investigación (el análisis estadístico), mientras que otro la pretende responder (estudio de caso). Otra alternativa para fortalecer nuestra investigación podría ser la <em>triangulación</em>: abordar la misma pregunta de investigación pero a partir de distintos métodos que, en su conjunto, nos permitirán una explicación más compleja y completa del fenómeno que pretendemos explicar.</p>
+<p>Más allá del camino que se tome (integración o triangulación), el objetivo es combinar métodos distintos para ofrecer una explicación más compleja al fenómeno que nos interesa estudiar. A la combinación de métodos la conocemos como “métodos mixtos” donde justamente el objetivo es abordar un mismo fenómeno a partir de distinas metodologías que permitan capturar distintos ángulos o dimensiones. Si bien existen infinitas formas de combinar métodos, algunos métodos son más compatibles entre sí que otros y, de hecho, algunas combianciones pueden llevarnos a mayor confusión que claridad (Lieberman, 2005).</p>
+<p>En esta sección veremos una combinación de métodos que Lieberman (2005) ha denominado <em>nested analysis</em> y no es otra cosa que la combinación de análisis estadístico de una muestra grande con el estudio en profundidad de uno o más casos contenido en dicha muestra. En definitiva, lo que haremos será seleccionar casos (en este caso países) a partir de la estimación de nuestro modelo. Luego de haber estimado el modelo, el primer paso para seleccionar casos de estudio es calcular los residuos y los valores predichos por el modelo para cada una de nuestras observaciones. Esto porque, para seleccionar nuestros casos de estudio, vamos a estar comparando lo que nuestro modelo predijo contra los valores reales (de la muestra) de cada uno de esos casos: la diferencia entre estos dos valores (los predichos y los reales) son los residuos.</p>
+<p>Para extraer del modelo los residuos y los valores predichos utilizamos el comando <code>augment</code> del paquete <code>broom</code>. Lo que hace este comando es crear una nueva base de datos que le agrega variables sobre el modelo a la base original (para cada caso): valores predichos, errores estándar, el residuo y el residuo estandarizado, entre otros estadísticos. Usaremos para el ejemplo el modelo 2 que estimamos en el Capítulo <a href="lineal.html#lineal">6</a> con los datos de Huber et al (2006).</p>
+<p>Residuos y valores predichos:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="co">## ── Attaching packages ──── tidyverse 1.2.1 ──</span>
+<span class="co">## ✔ ggplot2 3.1.0       ✔ purrr   0.3.1  </span>
+<span class="co">## ✔ tibble  2.0.1       ✔ dplyr   0.8.0.1</span>
+<span class="co">## ✔ tidyr   0.8.3       ✔ stringr 1.4.0  </span>
+<span class="co">## ✔ readr   1.3.1       ✔ forcats 0.4.0</span>
+<span class="co">## ── Conflicts ─────── tidyverse_conflicts() ──</span>
+<span class="co">## ✖ dplyr::filter() masks stats::filter()</span>
+<span class="co">## ✖ dplyr::lag()    masks stats::lag()</span>
+<span class="kw">library</span>(paqueteadp)
+<span class="kw">data</span>(<span class="st">&quot;bienestar_la&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">bienestar_la_sinna &lt;-<span class="st"> </span>bienestar_la <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">drop_na</span>(gini_slc, cseduc, fdiingdp, cshlth, csssw, pop014wdi, s_dualism, 
+          ethnicdicot, rgdpch, demrss, legbal, repressauthor)
+
+modelo_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(gini_slc <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>cseduc <span class="op">+</span><span class="st"> </span>fdiingdp <span class="op">+</span><span class="st"> </span>cshlth <span class="op">+</span><span class="st"> </span>csssw <span class="op">+</span><span class="st"> </span>pop014wdi <span class="op">+</span>
+<span class="st">                 </span>s_dualism <span class="op">+</span><span class="st"> </span>ethnicdicot <span class="op">+</span><span class="st"> </span>rgdpch <span class="op">+</span><span class="st">  </span>demrss <span class="op">+</span><span class="st"> </span>legbal <span class="op">+</span>
+<span class="st">                 </span>repressauthor,
+               <span class="dt">data =</span> bienestar_la_sinna)
+
+modelo_aug &lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw">augment</span>(modelo_<span class="dv">2</span>, <span class="dt">data =</span> bienestar_la_sinna)
+modelo_aug
+<span class="co">## # A tibble: 167 x 21</span>
+<span class="co">##    country id     year pop014wdi gini_slc s_dualism rgdpch fdiingdp</span>
+<span class="co">##    &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">##  1 Argent… ARG    1982      30.8     40.2      9.50  7711.    0.269</span>
+<span class="co">##  2 Argent… ARG    1983      30.9     40.4      8.36  7907.    0.178</span>
+<span class="co">##  3 Argent… ARG    1990      30.7     43.1      7.72  6823.    1.30 </span>
+<span class="co">##  4 Argent… ARG    1991      30.4     44        6.42  7392.    1.29 </span>
+<span class="co">##  5 Argent… ARG    1992      30.1     43        5.59  7986.    1.94 </span>
+<span class="co">##  6 Argent… ARG    1993      29.8     42        4.99  8411.    1.18 </span>
+<span class="co">##  7 Argent… ARG    1994      29.4     43        5.01  8764.    1.41 </span>
+<span class="co">##  8 Argent… ARG    1995      29.1     46        5.19  8578.    2.17 </span>
+<span class="co">##  9 Argent… ARG    1996      28.9     46        5.28  8905.    2.55 </span>
+<span class="co">## 10 Argent… ARG    1997      28.6     46        4.87  9425.    3.13 </span>
+<span class="co">## # … with 157 more rows, and 13 more variables: ethnicdicot &lt;dbl&gt;,</span>
+<span class="co">## #   demrss &lt;dbl&gt;, cseduc &lt;dbl&gt;, cshlth &lt;dbl&gt;, csssw &lt;dbl&gt;, legbal &lt;dbl&gt;,</span>
+<span class="co">## #   repressauthor &lt;dbl&gt;, .fitted &lt;dbl&gt;, .resid &lt;dbl&gt;, .std.resid &lt;dbl&gt;,</span>
+<span class="co">## #   .hat &lt;dbl&gt;, .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;</span></code></pre>
+<div id="que-casos-de-estudio-debo-seleccionar-para-testear-mi-hipotesis" class="section level2">
+<h2><span class="header-section-number">11.1</span> ¿Qué casos de estudio debo seleccionar para testear mi hipótesis?</h2>
+<p>Los casos seleccionados para un estudio en profundidad se eligen de una población, y las razones de esta selección dependen de la forma en que están situados dentro de esa población. En este sentido, de acuerdo a Gerring (2006), un estudio de caso no puede existir aislado del análisis de un n relativamente grande de casos cruzados. El mejor caso de estudio dependerá de cuál es el objetivo para el cual se está seleccionando el caso. De este modo, la selección de casos debe ser intencional y no aleatoria (Gerring, 2006). A continuación se detallan distintos objetivos para los que se seleccionan casos y su implementación en <code>R</code> a partir del modelo estadístico sobre los determinantes de la desigualdad en América Latina y el Caribe.</p>
+<div id="casos-tipicos" class="section level3">
+<h3><span class="header-section-number">11.1.1</span> Casos Típicos</h3>
+<p>Uno de los objetivos de la selección de casos radica en ilustrar la relación encontrada y profundizar sobre los mecanismos que vinculan la variable independiente con la dependiente. Si este es nuestro objetivo, entonces querremos seleccionar casos que sean ejemplos típicos de la relación que encontramos con el análisis estadístico. Por tanto, lo que buscamos es encontrar aquellos casos con residual más pequeño. Es decir, los casos que nuestro modelo predijo mejor: <em>on the line cases</em> (casos que están sobre la línea de regresión).</p>
+<p>Para esto, graficaremos a partir de la base de datos creada con el comando <code>augment</code> los valores predichos sobre los residuos (los cuales transformaremos a valor absoluto porque, por construcción, siempre hay residuos negativos). Además, para identificar los casos, le pediremos al <code>ggplot</code>que agregue las etiquetas de los dos (<code>top_n(-2, .resid_abs)</code>) países (<code>mapping=aes(label=country)</code>) con menores residuos. La línea horizontal (<code>geom_hline(aes(yintercept = 0))</code>) la incorporamos al gráfico para visualizar donde el residuo es nulo (allí se encontrarán los casos que el modelo predijo perfectamente: los más típicos).</p>
+<pre class="sourceCode r"><code class="sourceCode r">ggplot2<span class="op">::</span><span class="kw">qplot</span>(<span class="dt">data =</span> modelo_aug, <span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>,
+      <span class="dt">main =</span> <span class="st">&quot;Casos típicos&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> . <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">              </span><span class="kw">mutate</span>(<span class="dt">.resid_abs =</span> <span class="kw">abs</span>(.resid)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">              </span><span class="kw">top_n</span>(<span class="op">-</span><span class="dv">4</span>, .resid_abs),
+            <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> country))</code></pre>
+<p><img src="casos_files/figure-html/unnamed-chunk-4-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>De acuerdo a lo graficado, Brasil, Honduras y Uruguay son dos casos típicos del modelo estimado sobre los determinantes de la desigualdad en América Latina y el Caribe. Es decir, son casos que a partir de las variables del Modelo 2 podríamos explicar muy bien sus niveles de desigualdad, sean estos altos (Brasil, Honduras) o bajos (Uruguay).</p>
+</div>
+<div id="casos-desviados" class="section level3">
+<h3><span class="header-section-number">11.1.2</span> Casos desviados</h3>
+<p>Los casos desviados son aquellos que, dado nuestro modelo, presentan un comportamiento no esperado; son desviados pues no pueden ser bien explicados por el modelo general. En definitiva son “anomalías teóricas” (Gerring, 2006: 106). Por lo general seleccionamos este tipo de casos para explorar nuevas hipótesis y que, eventualmente pueden arrojar luz sobre variables omitidas del modelo estadístico. La selección de casos desviados funciona de manera opuesta a la selección de casos típicos: en lugar de seleccionar aquellos con menor residual, se seleccionan los casos cuyo valor predicho difiere más del valor real (mayor residual).</p>
+<pre class="sourceCode r"><code class="sourceCode r">ggplot2<span class="op">::</span><span class="kw">qplot</span>(<span class="dt">data =</span> modelo_aug, <span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>,
+      <span class="dt">main =</span> <span class="st">&quot;Casos desviados&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> . <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">              </span><span class="kw">mutate</span>(<span class="dt">.resid_abs =</span> <span class="kw">abs</span>(.resid)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">              </span><span class="kw">top_n</span>(<span class="dv">4</span>, .resid_abs),
+            <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> country))</code></pre>
+<p><img src="casos_files/figure-html/unnamed-chunk-5-1.png" width="480" style="display: block; margin: auto;" />
+Jamaica (varios años) aparece como un país muy mal explicado por nuestro modelo. Es un país que presenta valores relativamente bajos de desigualdad, y las variables del modelo no dan cuenta de estos valores. Hay un año particularmente interesante, que es el de 1993, en el que el score de gini es de 35.7, un valor que la ubica entre las más equitativas de la muestra. En un barrio de países de los más <a href="https://www.businessinsider.com/most-unequal-countries-in-the-world-2011-10#35-philippines-gini-458-5">desiguales del mundo</a> estaríamos necesitando incororar alguna variable a nuestro modelo para lograr explicar el caso jamaiquino.</p>
+</div>
+<div id="casos-influyentes" class="section level3">
+<h3><span class="header-section-number">11.1.3</span> Casos Influyentes</h3>
+<p>Los casos influyentes son aquellos casos que muestran valores extremos pero que tienen mucho peso sobre la relación encontrada por el modelo. Es decir, son casos que influyen en la pendiente de regresión que observamos (recuerda que la pendiente está dada por el coeficiente de regresión <span class="math inline">\(\beta_i\)</span>). Se trata de casos que, al igual que los casos desviados, también son inusuales aunque de un modo distinto. Cuando selecciono un caso influyente es para confirmar el modelo, mientras que la selección de casos desviados se utiliza para explorar hipótesis alternativas (Gerring, 2006). Para identificar los casos infulyentes podemos tomar dos caminos:</p>
+<ol style="list-style-type: decimal">
+<li>Por un lado, se pueden utilizar los <strong>dfbetas</strong> que son estadísticos que indican cuánto el coeficiente de regresión <span class="math inline">\(\beta_i\)</span> cambia en unidades de desviación estándar si la <em>i-ésima</em> observación fuera eliminada. Por tanto, tendremos un <em>dfbeta</em> para cada observación que indica cuánto cambiaría el <span class="math inline">\(\beta_i\)</span> de la variable <em>cseduc</em> (gasto en educación), si ese caso no estuviera presente. Por tanto, cuánto más varíe la pendiente (<span class="math inline">\(\beta_i\)</span>) con la ausencia del caso, más influyente será dicho caso.</li>
+</ol>
+<p>De este modo, lo que queremos es seleccionar los casos que generan mayores cambios en desviación estándar del <span class="math inline">\(\beta_i\)</span> si fuesen eliminados. Así, los casos influyentes pueden ser utilizados para confirmar la teoría, aunque si su eliminación anula la relación encontrada (si al quitar el caso <span class="math inline">\(\beta_i\)</span> deja de ser significativo), es también útil para explorar nuevas hipótesis o identificar variables que hayan sido omitidas en el modelo.</p>
+<pre class="sourceCode r"><code class="sourceCode r">modelo_aug <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dfb_cseduc =</span> <span class="kw">as.tibble</span>(<span class="kw">dfbetas</span>(modelo_<span class="dv">2</span>))<span class="op">$</span>cseduc) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>dfb_cseduc) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(country, dfb_cseduc)
+<span class="co">## Warning: `as.tibble()` is deprecated, use `as_tibble()` (but mind the new semantics).</span>
+<span class="co">## This warning is displayed once per session.</span>
+<span class="co">## # A tibble: 3 x 2</span>
+<span class="co">##   country   dfb_cseduc</span>
+<span class="co">##   &lt;chr&gt;          &lt;dbl&gt;</span>
+<span class="co">## 1 Barbados       0.483</span>
+<span class="co">## 2 Jamaica        0.298</span>
+<span class="co">## 3 Venezuela      0.241</span></code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Utilizando la <strong>distancia de Cook</strong> que se basa en una lógica muy similar a los <em>dfbetas</em>. La distancia de Cook considera los valores que asume cada observación en la variable independiente y dependiente para calcular cuánto varían los coeficientes cuando en ausencia de cada caso. En definitiva, esta distancia lo que nos indica es qué tanto influye cada caso en la regresión en su conjunto: a mayor distancia de Cook, mayor es la contribuión del caso a las inferencias del modelo. Es decir, los casos con gran distancia de Cook son centrales para mantener las conclusiones analíticas (esto sobre todo con muestras relativamente pequeñas, con muestras muy grandes es menos probable que existan casos con tal poder de influencia). Es por esto que seleccionar estos casos para un estudio en profundidad puede ser relevante: si en el estudio cualitativo de un caso influyente no podemos confirmar nuestra teoría, es poco probable que lo podamos confirmar en otros casos.</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">ggplot2<span class="op">::</span><span class="kw">qplot</span>(<span class="dt">data =</span> modelo_aug, <span class="dt">x =</span> .fitted, <span class="dt">y =</span> .cooksd, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>,
+      <span class="dt">main =</span> <span class="st">&quot;Casos influyentes&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> . <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">              </span><span class="kw">top_n</span>(<span class="dv">3</span>, .cooksd),
+            <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> country))</code></pre>
+<p><img src="casos_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" />
+Nuevamente Jamaica se destaca como un país que debemos observar.</p>
+</div>
+<div id="casos-extremos" class="section level3">
+<h3><span class="header-section-number">11.1.4</span> Casos extremos</h3>
+<p>La selección de casos extremos supone identificar observaciones que se ubiquen lejos de la media de la distribución de la variable independiente o dependiente (que tenga valores extremos). El interés está en la “rareza” del valor que asume ese caso en la variable. Es importante destacar que un caso extremos puede coincidir tanto con un caso típico como con uno desviado (Gerring, 2006). El estudio en profundidad de casos extremos es más bien exploratorio: es una forma de evaluar y buscar causas posibles de <span class="math inline">\(y\)</span> o efectos posibles de <span class="math inline">\(x\)</span>. Esta técnica se recomienda para cuando no hay demasiada teoría elaborada y, por tanto, la investigación está concentrada en la construcción teórica.</p>
+<p>Un trabajo clásico de selección de casos extremos en la variable dependiente es el de <a href="https://en.wikipedia.org/wiki/States_and_Social_Revolutions">Theda Skocpol (1979)</a> sobre revoluciones sociales, donde la teoría se desarrolla en base a tres casos que presentan el valor más extremo de revolución (de hecho son los únicos casos que presentan dicho valor de acuerdo a Skocpol).</p>
+<div id="casos-extremos-en-la-variable-independiente-x" class="section level4">
+<h4><span class="header-section-number">11.1.4.1</span> Casos extremos en la variable independiente: <span class="math inline">\(x\)</span></h4>
+<p>Veamos como se comporta nuestra variable independiente:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bienestar_la_sinna, <span class="kw">aes</span>(<span class="dt">x =</span> cseduc)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>,<span class="dt">color=</span><span class="st">&quot;white&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">paste</span>(
+          <span class="st">&quot;Distribución de la Variable Independiente: Gasto en Educación&quot;),subtitle = paste(&quot;</span>% de PBI destinado a la Educación&quot;),
+        <span class="dt">caption =</span> <span class="kw">paste</span> (<span class="st">&quot;Fuente: Huber et al (2012))&quot;</span>
+      ),
+        <span class="dt">x =</span> <span class="st">&quot;Gasto en Educación&quot;,</span>
+<span class="st">        y = &quot;</span>Frecuencia<span class="st">&quot;</span>
+<span class="st">)</span></code></pre>
+<p><img src="casos_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" />
+Para seleccionar casos extremos en la variable independiente, a partir del modelo estadístico estimado, simplemente calculamos las diferencias - en valor absoluto - entre el valor de cada caso y la media muestral del gasto en educación. Luego, se seleccionan los tres casos que muestran mayor diferencia entre la media muestral y su valor de la variable independiente.
+Primero, calculamos la media para tener la referencia.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(modelo_aug<span class="op">$</span>cseduc, <span class="dt">na.rm =</span> T)
+<span class="co">## [1] 4</span>
+
+modelo_aug <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dif_cseduc =</span> <span class="kw">abs</span>(cseduc <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(cseduc, <span class="dt">na.rm =</span> T))) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">top_n</span>(<span class="dv">3</span>, dif_cseduc) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>dif_cseduc) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(country, year, cseduc, dif_cseduc)
+<span class="co">## # A tibble: 3 x 4</span>
+<span class="co">##   country   year cseduc dif_cseduc</span>
+<span class="co">##   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">## 1 Barbados  1981    0.8       3.16</span>
+<span class="co">## 2 Honduras  2001    6.8       2.84</span>
+<span class="co">## 3 Uruguay   1984    1.4       2.56</span></code></pre>
+<p>Graficamos los resultados para una mejor visualización:</p>
+<pre class="sourceCode r"><code class="sourceCode r">modelo_aug<span class="op">$</span>dif_cseduc =<span class="st"> </span><span class="kw">abs</span>(modelo_aug<span class="op">$</span>cseduc <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(modelo_aug<span class="op">$</span>cseduc, <span class="dt">na.rm =</span> T))
+
+ggplot2<span class="op">::</span><span class="kw">qplot</span>(<span class="dt">data =</span> modelo_aug, <span class="dt">x =</span> .fitted, <span class="dt">y =</span> dif_cseduc, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>,
+      <span class="dt">main =</span> <span class="st">&quot;Casos extremos en Gasto en Educación&quot;) +</span>
+<span class="st">  geom_text(data = . %&gt;% </span>
+<span class="st">              top_n(3, dif_cseduc),</span>
+<span class="st">            mapping = aes(label = country))</span></code></pre>
+<p><img src="casos_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;" />
+Barbados se destaca por ser extremo pues está muy por debajo de la media amostral. Honduras, por el contrario, esta muy por encima. Sería interesante comparar ambos. Al ver que el tercer país es Uruguay, que tiene valores bajos comparados a la media, surge una duda que seguramente nos hará mejorar el modelo: ¿acaso no deberíamos controlar por el tamaño de la economía, medido por su PBI? Esta duda podría llevaros a un nuevo modelo, donde las significancias estadísticas podrían cambiar.</p>
+</div>
+<div id="casos-extremos-en-la-variable-dependiente-y" class="section level4">
+<h4><span class="header-section-number">11.1.4.2</span> Casos extremos en la variable dependiente: <span class="math inline">\(y\)</span></h4>
+<p>La selección de casos extremos en la variable dependiente se realiza del mismo modo que con los casos extremos en <span class="math inline">\(x\)</span>. Solo que ahora calculamos las diferencias - en valor absoluto - entre el valor de cada caso en la variable dependiente y la media muestral (Índice de Gini en el ejemplo). Luego, se seleccionan los tres casos que muestran mayor diferencia entre la media muestral y su valor de la variable dependiente.
+Primero, calculamos la media para tener la referencia.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(modelo_aug<span class="op">$</span>gini_slc, <span class="dt">na.rm =</span> T)
+<span class="co">## [1] 50</span>
+
+modelo_aug <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dif_gini =</span> <span class="kw">abs</span>(gini_slc <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(gini_slc, <span class="dt">na.rm =</span> T))) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">top_n</span>(<span class="dv">2</span>, dif_gini) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>dif_gini) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(country, gini_slc, dif_gini)
+<span class="co">## # A tibble: 2 x 3</span>
+<span class="co">##   country  gini_slc dif_gini</span>
+<span class="co">##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">## 1 Barbados     28.9     21.4</span>
+<span class="co">## 2 Jamaica      66       15.7</span></code></pre>
+<p>Podemos también graficarlo para una mejor visualización:</p>
+<pre class="sourceCode r"><code class="sourceCode r">modelo_aug<span class="op">$</span>dif_gini =<span class="st"> </span><span class="kw">abs</span>(modelo_aug<span class="op">$</span>gini_slc <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(modelo_aug<span class="op">$</span>gini_slc, <span class="dt">na.rm =</span> T))
+
+ggplot2<span class="op">::</span><span class="kw">qplot</span>(<span class="dt">data =</span> modelo_aug, <span class="dt">x =</span> .fitted, <span class="dt">y =</span> dif_gini, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>,
+      <span class="dt">main =</span> <span class="st">&quot;Casos extremos en Índice de Gini&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> . <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">              </span><span class="kw">top_n</span>(<span class="dv">2</span>, dif_gini),
+            <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> country))</code></pre>
+<p><img src="casos_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;" />
+Nuevamente Barbados y Jamaica aparecen como casos atípicos en la variable dependiente. Ambas tienen en común que fueron colonias caribeñas del Imperio Británico, quizás podríamos incluir ese control para todos los países con este legado y ver como se ajusta el nuevo modelo. De haber grandes cambios en los valores predichos, podríamos explorar mediante evidencia cualitativa el rol que tuvieron las instituciones coloniales del Imperio Británico sobre la desigualdad de estas colonias.</p>
+</div>
+</div>
+<div id="casos-mas-similares" class="section level3">
+<h3><span class="header-section-number">11.1.5</span> Casos más similares</h3>
+<p>La selección de casos similares supone identificar <em>dos</em> casos que son similares en todas las variables salvo en las variables de interés. Cuando estamos en una etapa exploratoria de nuestra investigación y no tenemos una teoría (no tenemos identificada una variable independiente en particular), se buscan un par de casos que sean iguales en sus variables independientes pero que difieran en la variable de resultado (dependiente). De este modo, el objetivo será identificar uno o más factores que difieran entre los casos y que puedan explicar la divergencia en el resultado. Esta estrategia es la del método de semejanza (o concordancia) de <a href="https://es.wikipedia.org/wiki/M%C3%A9todos_de_Mill">Stuart Mill</a>.</p>
+<p>Sin embargo, cuando ya tenemos una teoría sobre cómo se vincula una determinada variable independiente con la variable dependiente, la seleción de casos similares se enfoca en identificar dos casos que sean similares en todos los controles pero diferentes en la variable independiente de interés. Aquí, el interés estará en confirmar el argumento y profundizar en los mecanismos causales que conectan la variable independiente con la dependiente.</p>
+<p>Para seleccionar casos similares, se recomienda utilizar alguna técnica de <em>matching</em> (Gerring, 2006: 134). En simples palabras, esta técnica supone justamente juntar pares (en su versión más básica) de observaciones que sean lo más similares posible en todas las variables de control pero que difieran en la variable independiente de interés. Para simplificar el análisis, la variable independiente suele ser dicotómica (0 y 1) emulando una situación experimental donde hay una tratamiento (1) y un placebo o control (0). De este modo, el objetivo es “matchear” (la menor distancia posible entre los valores de las variables de control) pares donde una observación pertenece al grupo del tratamiento y la otra al grupo de control.</p>
+<p>Cómo encontrar pares que coincidan en todas las variables de control es, por lo general, bastante exigente, se suele utilizar un procedimiento denominado como matching en base al puntaje de propensión (<em>propensity score</em>). Este procedimiento supone encontrar pares de observaciones que tengan probabilidades estimadas similares de estar en el grupo de tratamiento (tener valor 1 en la variable independiente de interés), condicionadas en las variables de control.</p>
+<p>Para implementar esta selección de casos en nuestra investigación vamos a crear una variable dummy de tratamiento (para la variable de gasto en educación), donde 0 es gasto menor a la media muestral de gasto y 1 gasto mayor a la media.</p>
+<pre class="sourceCode r"><code class="sourceCode r">media &lt;-<span class="st"> </span><span class="kw">mean</span>(bienestar_la_sinna<span class="op">$</span>cseduc)
+bienestar_la_sinna<span class="op">$</span>tratamiento &lt;-<span class="st"> </span><span class="kw">ifelse</span>(bienestar_la_sinna<span class="op">$</span>cseduc <span class="op">&gt;</span><span class="st"> </span>media, <span class="dv">1</span>, <span class="dv">0</span>)</code></pre>
+<p>Ahora que tenemos la variable de tratamiento, podemos calcular los puntajes de propensión. Es decir, la probabilidad de estar en el grupo de tratamiento (gasto en educación mayor a la media muestral), condicionado en las variables de control del modelo. Este cálculo se hace a partir de un modelo logit (ver <strong>Capítulo ##</strong>), ya que nuestra variable dependiente es una variable dicotómica.</p>
+<pre class="sourceCode r"><code class="sourceCode r">propensityscore &lt;-<span class="st"> </span><span class="kw">glm</span>(tratamiento <span class="op">~</span><span class="st"> </span>s_dualism <span class="op">+</span><span class="st"> </span>fdiingdp <span class="op">+</span><span class="st"> </span>rgdpch <span class="op">+</span><span class="st"> </span>pop014wdi <span class="op">+</span>
+<span class="st">                         </span>ethnicdicot <span class="op">+</span><span class="st"> </span>demrss <span class="op">+</span><span class="st"> </span>demrss <span class="op">*</span><span class="st"> </span>csssw <span class="op">+</span><span class="st"> </span>cshlth <span class="op">+</span><span class="st"> </span>csssw <span class="op">+</span>
+<span class="st">                         </span>legbal <span class="op">+</span><span class="st"> </span>repressauthor, 
+                       <span class="dt">data      =</span> bienestar_la_sinna, 
+                       <span class="dt">family    =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> logit), 
+                       <span class="dt">na.action =</span> na.exclude)</code></pre>
+<p>Al igual que como hicimos con el modelo general de los determinantes de la desigualdad, crearemos una base de datos con el comando <code>augment</code> para guardar algunos estadísticos que nos serán útiles para seleccionar los casos.</p>
+<pre class="sourceCode r"><code class="sourceCode r">propensity_scores&lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw">augment</span>(propensityscore, <span class="dt">data =</span> bienestar_la_sinna,
+                                   <span class="dt">type.predict =</span> <span class="st">&quot;response&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">propensity_scores =</span> .fitted, country, tratamiento, year, gini_slc)</code></pre>
+<p>Ahora, identificaremos los casos con menores puntajes de propensión tanto para el grupo de tratamiento (alto gasto en educación) como para el grupo de control (bajo gasto en educación), para decidir la selección de casos. Cabe destacar que esto también puede hacerse para altos puntajes de propensión, o para cualquier puntaje de propensión, lo importante es que tengan puntajes similares o “cercanos” (igual probabilidad de recibir el tratamiento).</p>
+<p>Casos con bajo puntaje de propensión, en el grupo de países con gasto en educación mayor a la media muestral:</p>
+<pre class="sourceCode r"><code class="sourceCode r">propensity_scores <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(tratamiento <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(propensity_scores) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(country, year, propensity_scores) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)
+<span class="co">## # A tibble: 2 x 3</span>
+<span class="co">##   country  year propensity_scores</span>
+<span class="co">##   &lt;chr&gt;   &lt;dbl&gt;             &lt;dbl&gt;</span>
+<span class="co">## 1 Brazil   1984            0.0815</span>
+<span class="co">## 2 Mexico   2000            0.159</span></code></pre>
+<p>Por otra parte, veamos cuáles son los casos con bajo puntaje de propensión pero entre aquellos países con gasto en educación menor a la media muestral:</p>
+<pre class="sourceCode r"><code class="sourceCode r">propensity_scores <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(tratamiento <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(propensity_scores) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(country, year, propensity_scores) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)
+<span class="co">## # A tibble: 2 x 3</span>
+<span class="co">##   country    year propensity_scores</span>
+<span class="co">##   &lt;chr&gt;     &lt;dbl&gt;             &lt;dbl&gt;</span>
+<span class="co">## 1 Paraguay   1994           0.00309</span>
+<span class="co">## 2 Argentina  1982           0.00673</span></code></pre>
+<p>De acuerdo a los resultados obtenidos, tanto Brasil como México podrían ser seleccionados para ser comparados con Paraguay o Argentina para realizar estudios de casos más similares en profundidad. Por proximidad geográfica, podríamos elegir Brazil y Argentina, e intentar así dilucidad de qué manera el gasto sobre educación ha repercutido sobre la equidad de renta en ambos países.</p>
+</div>
+<div id="casos-mas-diferentes" class="section level3">
+<h3><span class="header-section-number">11.1.6</span> Casos más diferentes</h3>
+<p>El procedimiento de selección de casos más diferentes supone una lógica opuesta a la de casos más similares. Aquí se buscan casos que sean en realidad distintos en las variables de control, pero que sean similares en el valor asumido por la variable independiente de interés y la variable dependiente. En definitiva, lo que buscamos son distintos puntajes de propensión pero coincidencia en la variable independiente y dependiente.</p>
+<p>Cabe destacar que este tipo de selección de casos es útil cuando se asume “causalidad única” (Gerring, 2006: 143). Es decir, cuando la variable dependiente es causada por una única variable (o cuando nos interesa explicar el efecto de un sólo factor). Si el interés es indagar sobre la combinación de distintos factores causales, este procedimiento de selección de casos no resulta el más indicado. Para seleccionar casos “más diferentes” también utilizaremos los puntajes de propensión, pero ahora nos interesa seleccionar en base a iguales resultados en la variable dependiente, así como en la variable independiente y con puntajes de propensión muy distintos.</p>
+<p>Veamos, entonces, cuáles son los casos donde hay coincidencia en la variable independiente de interés y en la de resultado pero con diferente puntaje de propensión.Primero creamos una variable dummy para el gini mayor y menor a la media. Luego, identificamos los casos tratados con menor puntaje de propensión (baja probabilidad de tener gasto mayor a la media) para valores de gini mayores a la media muestral y valores de gasto en educación también mayor a la media muestral:</p>
+<pre class="sourceCode r"><code class="sourceCode r">propensity_scores<span class="op">$</span>gini &lt;-<span class="st"> </span><span class="kw">ifelse</span>(propensity_scores<span class="op">$</span>gini_slc <span class="op">&gt;</span><span class="st"> </span>(<span class="kw">mean</span>(propensity_scores<span class="op">$</span>gini_slc, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)), <span class="dv">1</span>, <span class="dv">0</span>)
+
+propensity_scores <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(gini <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>tratamiento<span class="op">==</span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(propensity_scores) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(country, year, propensity_scores) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)
+<span class="co">## # A tibble: 2 x 3</span>
+<span class="co">##   country   year propensity_scores</span>
+<span class="co">##   &lt;chr&gt;    &lt;dbl&gt;             &lt;dbl&gt;</span>
+<span class="co">## 1 Paraguay  1999           0.00953</span>
+<span class="co">## 2 Paraguay  1997           0.0221</span></code></pre>
+<p>A continuación, hacemos lo mismo pero para los puntajes de propensión más altos (es decir, donde la probabilidad de recibir el tratamiento - tener gasto en educación mayor a la media - es muy elevada). Es decir, identificamos los casos con mayor puntaje de propensión para valores de gini mayores a la media muestral y gasto en educación mayor a la media muestral:</p>
+<pre class="sourceCode r"><code class="sourceCode r">propensity_scores <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(gini <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>tratamiento<span class="op">==</span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>propensity_scores) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(country, year, propensity_scores) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)
+<span class="co">## # A tibble: 2 x 3</span>
+<span class="co">##   country   year propensity_scores</span>
+<span class="co">##   &lt;chr&gt;    &lt;dbl&gt;             &lt;dbl&gt;</span>
+<span class="co">## 1 Honduras  1994             0.983</span>
+<span class="co">## 2 Honduras  1996             0.969</span></code></pre>
+<p>Nuestros resultados indican que, Paraguay podría ser seleccionados para ser comparado con Honduras para realizar estudios de casos “más diferentes” en profundidad. Ambos tienen bajos niveles de gasto en educación como porcentaje del PBI, y ambos son altamente desiguales.</p>
+</div>
+</div>
+<div id="la-relevancia-de-combinar-metodos" class="section level2">
+<h2><span class="header-section-number">11.2</span> La relevancia de combinar métodos</h2>
+<p>Para finalizar, consideramos importante insistir sobre la relevancia de combinar métodos al momento de responder una pregunta de investigación. Si bien cuáles serán los métodos apropiados dependerán de cuál es la pregunta, una respuesta a un fenómeno requiere tanto de la identificación de una relación entre dos (o más) variables, y una explicación que detalle cómo estas dos variables se vinculan y por qué se genera el efecto identificado. Para abordar estas dos dimensiones resulta necesario combinar distintas estrategias empíricas, para explotar las respectivas virtudes y complementar sus debilidades.</p>
+<p>En el caso concreto que nos ocupa, la estimación por MCO permite identificar relaciones promedio entre dos variables en un gran número de casos y para varios años, algo que la investigación cualitativa no puede realizar. Sin embargo, MCO no puede responder sobre el por qué o el cómo de estas relaciones y, para eso, es necesaria una investigación cualitativa que profundice en los procesos y actores que “producen” estas relaciones. Claro que el proceso también puede ser el inverso: identificar primero una relación entre dos variables a partir de estudios en profundidad de casos y, luego, testear la relación encontrada en otros casos en un estudio cuantitativo de <em>n-grande</em> para evaluar la generalización del hallazgo. En todo caso, la combinación de métodos - ya sea por triangulación o por integración (Seawright, 2016) -, es aconsejable para ofrecer explicaciones más complejas y acabadas de los fenómenos que nos interesa estudiar.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="pca.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="web-mining.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/arcruz0/libroadp/edit/master/casos.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

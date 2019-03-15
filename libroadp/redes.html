@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 13 Análisis de redes | AnalizaR Datos Políticos</title>
+  <meta name="description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  <meta name="generator" content="bookdown  and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 13 Análisis de redes | AnalizaR Datos Políticos" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 13 Análisis de redes | AnalizaR Datos Políticos" />
+  
+  <meta name="twitter:description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  
+
+<meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (editores)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="prev" href="web-mining.html">
+<link rel="next" href="qta.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+<script>
+% https://stackoverflow.com/a/4425214/8242291
+var links = document.links;
+
+for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+
+}
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><b><a href="./index.html"><img style="float: left; margin-right: 5px;" src="favicon.ico"></img>AnalizaR datos políticos</a></b></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#inicio"><i class="fa fa-check"></i><b>1.1</b> Inicio</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#como-contribuir"><i class="fa fa-check"></i><b>1.2</b> ¿Cómo contribuir?</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#sobre-los-autores-y-autoras"><i class="fa fa-check"></i><b>1.2.1</b> Sobre los autores y autoras</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#prefacio"><i class="fa fa-check"></i><b>1.3</b> Prefacio</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i><b>1.3.1</b> Agradecimientos</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#que-esperar-del-libro"><i class="fa fa-check"></i><b>1.4</b> Qué esperar del libro</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#estructura-del-libro"><i class="fa fa-check"></i><b>1.5</b> Estructura del libro</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#prerrequisitos"><i class="fa fa-check"></i><b>1.6</b> Prerrequisitos</a></li>
+</ul></li>
+<li class="part"><span><b>I Introducción a R</b></span></li>
+<li class="chapter" data-level="2" data-path="rbas.html"><a href="rbas.html"><i class="fa fa-check"></i><b>2</b> R básico</a><ul>
+<li class="chapter" data-level="2.1" data-path="rbas.html"><a href="rbas.html#instalacion"><i class="fa fa-check"></i><b>2.1</b> Instalación</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="rbas.html"><a href="rbas.html#r"><i class="fa fa-check"></i><b>2.1.1</b> R</a></li>
+<li class="chapter" data-level="2.1.2" data-path="rbas.html"><a href="rbas.html#rstudio"><i class="fa fa-check"></i><b>2.1.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="rbas.html"><a href="rbas.html#partes-de-rstudio"><i class="fa fa-check"></i><b>2.2</b> Partes de RStudio</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="rbas.html"><a href="rbas.html#consola"><i class="fa fa-check"></i><b>2.2.1</b> Consola</a></li>
+<li class="chapter" data-level="2.2.2" data-path="rbas.html"><a href="rbas.html#script"><i class="fa fa-check"></i><b>2.2.2</b> Script</a></li>
+<li class="chapter" data-level="2.2.3" data-path="rbas.html"><a href="rbas.html#objetos"><i class="fa fa-check"></i><b>2.2.3</b> Objetos</a></li>
+<li class="chapter" data-level="2.2.4" data-path="rbas.html"><a href="rbas.html#archivos-graficos-paquetes-ayuda"><i class="fa fa-check"></i><b>2.2.4</b> Archivos / gráficos / paquetes / ayuda</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html"><i class="fa fa-check"></i><b>3</b> Manejo de datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#introduccion-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>3.1.1</b> Nuestra base de datos</a></li>
+<li class="chapter" data-level="3.1.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#describir-la-base"><i class="fa fa-check"></i><b>3.1.2</b> Describir la base</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-en-bases"><i class="fa fa-check"></i><b>3.2</b> Operaciones en bases</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ordenar-una-base"><i class="fa fa-check"></i><b>3.2.1</b> Ordenar una base</a></li>
+<li class="chapter" data-level="3.2.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#seleccionar-columnas"><i class="fa fa-check"></i><b>3.2.2</b> Seleccionar columnas</a></li>
+<li class="chapter" data-level="3.2.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#renombrar-columnas"><i class="fa fa-check"></i><b>3.2.3</b> Renombrar columnas</a></li>
+<li class="chapter" data-level="3.2.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#filtrar-observaciones"><i class="fa fa-check"></i><b>3.2.4</b> Filtrar observaciones</a></li>
+<li class="chapter" data-level="3.2.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#crear-nuevas-variables"><i class="fa fa-check"></i><b>3.2.5</b> Crear nuevas variables</a></li>
+<li class="chapter" data-level="3.2.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#concatenar-comandos"><i class="fa fa-check"></i><b>3.2.6</b> Concatenar comandos</a></li>
+<li class="chapter" data-level="3.2.7" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-agrupadas"><i class="fa fa-check"></i><b>3.2.7</b> Operaciones agrupadas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#reformatear-bases"><i class="fa fa-check"></i><b>3.3</b> Reformatear bases</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#por-que-quiero-visualizar-mis-datos"><i class="fa fa-check"></i><b>4.1</b> ¿Por qué quiero visualizar mis datos?</a></li>
+<li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>4.2</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-multiverso-ggplotidiano"><i class="fa fa-check"></i><b>4.2.1</b> Las capas del multiverso ggplotidiano</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#elecciones-locales-y-visualizacion-de-datos"><i class="fa fa-check"></i><b>4.3</b> Elecciones locales y visualización de datos</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="dataviz.html"><a href="dataviz.html#grafico-de-barras"><i class="fa fa-check"></i><b>4.3.1</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dataviz.html"><a href="dataviz.html#grafico-de-linea"><i class="fa fa-check"></i><b>4.3.2</b> Gráfico de Línea</a></li>
+<li class="chapter" data-level="4.3.3" data-path="dataviz.html"><a href="dataviz.html#boxplot"><i class="fa fa-check"></i><b>4.3.3</b> Boxplot</a></li>
+<li class="chapter" data-level="4.3.4" data-path="dataviz.html"><a href="dataviz.html#histograma"><i class="fa fa-check"></i><b>4.3.4</b> Histograma</a></li>
+<li class="chapter" data-level="4.3.5" data-path="dataviz.html"><a href="dataviz.html#relacion-entre-variables"><i class="fa fa-check"></i><b>4.3.5</b> Relación entre variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#para-seguir-aprendiendo"><i class="fa fa-check"></i><b>4.4</b> Para seguir aprendiendo</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="dataviz.html"><a href="dataviz.html#otros-paquetes"><i class="fa fa-check"></i><b>4.4.1</b> Otros paquetes:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="carga.html"><a href="carga.html"><i class="fa fa-check"></i><b>5</b> Carga de bases</a><ul>
+<li class="chapter" data-level="5.1" data-path="carga.html"><a href="carga.html#carga-intro"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
+<li class="chapter" data-level="5.2" data-path="carga.html"><a href="carga.html#carga-formatos"><i class="fa fa-check"></i><b>5.2</b> Distintos formatos de bases</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="carga.html"><a href="carga.html#archivos-separados-por-delimitadores-.csv-y-.tsv"><i class="fa fa-check"></i><b>5.2.1</b> Archivos separados por delimitadores (.csv y .tsv)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="carga.html"><a href="carga.html#carga-r"><i class="fa fa-check"></i><b>5.2.2</b> Archivos creados con R (.Rdata y .rds)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="carga.html"><a href="carga.html#carga-etiquetas"><i class="fa fa-check"></i><b>5.2.3</b> Datos con etiquetas (Stata o SPSS)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="carga.html"><a href="carga.html#carga-excel"><i class="fa fa-check"></i><b>5.2.4</b> Archivos de Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="carga.html"><a href="carga.html#multiples-bases-de-datos-a-la-vez"><i class="fa fa-check"></i><b>5.3</b> Múltiples bases de datos a la vez</a></li>
+<li class="chapter" data-level="5.4" data-path="carga.html"><a href="carga.html#carga-grandes"><i class="fa fa-check"></i><b>5.4</b> Bases de datos tabulares grandes</a></li>
+</ul></li>
+<li class="part"><span><b>II Modelos</b></span></li>
+<li class="chapter" data-level="6" data-path="lineal.html"><a href="lineal.html"><i class="fa fa-check"></i><b>6</b> Modelos lineales</a><ul>
+<li class="chapter" data-level="6.1" data-path="lineal.html"><a href="lineal.html#introduccion-2"><i class="fa fa-check"></i><b>6.1</b> Introducción</a></li>
+<li class="chapter" data-level="6.2" data-path="lineal.html"><a href="lineal.html#aplicacion-en-r"><i class="fa fa-check"></i><b>6.2</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos"><i class="fa fa-check"></i><b>6.2.1</b> Estadísticos Descriptivos</a></li>
+<li class="chapter" data-level="6.2.2" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos-y-distribucion-de-las-variables-del-modelo"><i class="fa fa-check"></i><b>6.2.2</b> Estadísticos descriptivos y distribución de las variables del modelo</a></li>
+<li class="chapter" data-level="6.2.3" data-path="lineal.html"><a href="lineal.html#matriz-de-correlacion-de-variables-independientes"><i class="fa fa-check"></i><b>6.2.3</b> Matriz de correlación de variables independientes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="lineal.html"><a href="lineal.html#distribucion-de-las-variables-de-interes"><i class="fa fa-check"></i><b>6.2.4</b> Distribución de las variables de interés</a></li>
+<li class="chapter" data-level="6.2.5" data-path="lineal.html"><a href="lineal.html#relacion-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>6.2.5</b> Relación entre la variable dependiente e independiente</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="lineal.html"><a href="lineal.html#modelo-bivariado-regresion-lineal-simple"><i class="fa fa-check"></i><b>6.3</b> Modelo bivariado: regresión lineal simple</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="lineal.html"><a href="lineal.html#estimando-un-modelo-lineal-en-r"><i class="fa fa-check"></i><b>6.3.1</b> Estimando un modelo lineal en <code>R</code></a></li>
+<li class="chapter" data-level="6.3.2" data-path="lineal.html"><a href="lineal.html#representacion-grafica"><i class="fa fa-check"></i><b>6.3.2</b> Representación gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="lineal.html"><a href="lineal.html#modelo-multivariado-regresion-multiple"><i class="fa fa-check"></i><b>6.4</b> Modelo multivariado: regresión múltiple</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="lineal.html"><a href="lineal.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>6.4.1</b> Ajuste del modelo</a></li>
+<li class="chapter" data-level="6.4.2" data-path="lineal.html"><a href="lineal.html#inferencia-en-modelos-lineales-multiples"><i class="fa fa-check"></i><b>6.4.2</b> Inferencia en modelos lineales múltiples</a></li>
+<li class="chapter" data-level="6.4.3" data-path="lineal.html"><a href="lineal.html#supuestos-de-ols"><i class="fa fa-check"></i><b>6.4.3</b> Supuestos de OLS</a></li>
+<li class="chapter" data-level="6.4.4" data-path="lineal.html"><a href="lineal.html#errores-estandares-robustos"><i class="fa fa-check"></i><b>6.4.4</b> Errores estándares robustos</a></li>
+<li class="chapter" data-level="6.4.5" data-path="lineal.html"><a href="lineal.html#un-caso-especial-de-heterocedasticidad-la-varianza-del-error-asociada-a-clusters"><i class="fa fa-check"></i><b>6.4.5</b> Un caso especial de Heterocedasticidad: la varianza del error asociada a clusters</a></li>
+<li class="chapter" data-level="6.4.6" data-path="lineal.html"><a href="lineal.html#un-supuesto-adicional-para-poder-realizar-inferencia"><i class="fa fa-check"></i><b>6.4.6</b> Un supuesto adicional para poder realizar <strong>inferencia</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>7</b> Modelos logísticos</a><ul>
+<li class="chapter" data-level="7.1" data-path="logit.html"><a href="logit.html#nociones-basicas"><i class="fa fa-check"></i><b>7.1</b> Nociones básicas</a></li>
+<li class="chapter" data-level="7.2" data-path="logit.html"><a href="logit.html#aplicacion-en-r-1"><i class="fa fa-check"></i><b>7.2</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="7.2.1" data-path="logit.html"><a href="logit.html#estimar-los-modelos"><i class="fa fa-check"></i><b>7.2.1</b> Estimar los modelos</a></li>
+<li class="chapter" data-level="7.2.2" data-path="logit.html"><a href="logit.html#crear-tablas"><i class="fa fa-check"></i><b>7.2.2</b> Crear tablas</a></li>
+<li class="chapter" data-level="7.2.3" data-path="logit.html"><a href="logit.html#visualizacion-de-resultados"><i class="fa fa-check"></i><b>7.2.3</b> Visualización de resultados</a></li>
+<li class="chapter" data-level="7.2.4" data-path="logit.html"><a href="logit.html#ajuste-de-los-modelos"><i class="fa fa-check"></i><b>7.2.4</b> Ajuste de los modelos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>8</b> Modelos de supervivencia</a><ul>
+<li class="chapter" data-level="8.1" data-path="surv.html"><a href="surv.html#nociones-basicas-1"><i class="fa fa-check"></i><b>8.1</b> Nociones básicas</a></li>
+<li class="chapter" data-level="8.2" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>8.2</b> El modelo Cox de riesgos proporcionales</a></li>
+<li class="chapter" data-level="8.3" data-path="surv.html"><a href="surv.html#aplicacion-en-r-2"><i class="fa fa-check"></i><b>8.3</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="8.3.1" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretacion-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>8.3.1</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Aplicaciones</b></span></li>
+<li class="chapter" data-level="9" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i><b>9</b> Manejo avanzado de datos políticos</a><ul>
+<li class="chapter" data-level="9.1" data-path="manejo-av.html"><a href="manejo-av.html#introduccion-3"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="manejo-av.html"><a href="manejo-av.html#como-aprovechar-countrycode"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo aprovechar <code>countrycode</code>?</a></li>
+<li class="chapter" data-level="9.3" data-path="manejo-av.html"><a href="manejo-av.html#como-imputar-datos-faltantes"><i class="fa fa-check"></i><b>9.3</b> ¿Cómo imputar datos faltantes?</a></li>
+<li class="chapter" data-level="9.4" data-path="manejo-av.html"><a href="manejo-av.html#imputar-datos-usando-amelia"><i class="fa fa-check"></i><b>9.4</b> Imputar datos usando Amelia</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="manejo-av.html"><a href="manejo-av.html#diagnosticos"><i class="fa fa-check"></i><b>9.4.1</b> Diagnosticos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="manejo-av.html"><a href="manejo-av.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>9.5</b> Regresiones luego de imputar datos</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>10</b> Creación de índices con PCA</a><ul>
+<li class="chapter" data-level="10.1" data-path="pca.html"><a href="pca.html#aplicacion-en-r-3"><i class="fa fa-check"></i><b>10.1</b> Aplicación en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="casos.html"><a href="casos.html"><i class="fa fa-check"></i><b>11</b> Selección de casos a partir de regresiones</a><ul>
+<li class="chapter" data-level="11.1" data-path="casos.html"><a href="casos.html#que-casos-de-estudio-debo-seleccionar-para-testear-mi-hipotesis"><i class="fa fa-check"></i><b>11.1</b> ¿Qué casos de estudio debo seleccionar para testear mi hipótesis?</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="casos.html"><a href="casos.html#casos-tipicos"><i class="fa fa-check"></i><b>11.1.1</b> Casos Típicos</a></li>
+<li class="chapter" data-level="11.1.2" data-path="casos.html"><a href="casos.html#casos-desviados"><i class="fa fa-check"></i><b>11.1.2</b> Casos desviados</a></li>
+<li class="chapter" data-level="11.1.3" data-path="casos.html"><a href="casos.html#casos-influyentes"><i class="fa fa-check"></i><b>11.1.3</b> Casos Influyentes</a></li>
+<li class="chapter" data-level="11.1.4" data-path="casos.html"><a href="casos.html#casos-extremos"><i class="fa fa-check"></i><b>11.1.4</b> Casos extremos</a></li>
+<li class="chapter" data-level="11.1.5" data-path="casos.html"><a href="casos.html#casos-mas-similares"><i class="fa fa-check"></i><b>11.1.5</b> Casos más similares</a></li>
+<li class="chapter" data-level="11.1.6" data-path="casos.html"><a href="casos.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>11.1.6</b> Casos más diferentes</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="casos.html"><a href="casos.html#la-relevancia-de-combinar-metodos"><i class="fa fa-check"></i><b>11.2</b> La relevancia de combinar métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Mínería de datos</a></li>
+<li class="chapter" data-level="13" data-path="redes.html"><a href="redes.html"><i class="fa fa-check"></i><b>13</b> Análisis de redes</a><ul>
+<li class="chapter" data-level="13.1" data-path="redes.html"><a href="redes.html#introduccion-4"><i class="fa fa-check"></i><b>13.1</b> Introducción</a></li>
+<li class="chapter" data-level="13.2" data-path="redes.html"><a href="redes.html#conceptos-iniciales"><i class="fa fa-check"></i><b>13.2</b> Conceptos iniciales</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="redes.html"><a href="redes.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>13.2.1</b> Nodos y enlaces</a></li>
+<li class="chapter" data-level="13.2.2" data-path="redes.html"><a href="redes.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>13.2.2</b> Matriz de adyacencia</a></li>
+<li class="chapter" data-level="13.2.3" data-path="redes.html"><a href="redes.html#pesos-y-direccion"><i class="fa fa-check"></i><b>13.2.3</b> Pesos y dirección</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="redes.html"><a href="redes.html#bases-de-datos-de-redes"><i class="fa fa-check"></i><b>13.3</b> Bases de datos de redes</a></li>
+<li class="chapter" data-level="13.4" data-path="redes.html"><a href="redes.html#disposicion-grafica"><i class="fa fa-check"></i><b>13.4</b> Disposición gráfica</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="redes.html"><a href="redes.html#color-y-forma-en-la-representacion-visual"><i class="fa fa-check"></i><b>13.4.1</b> Color y forma en la representación visual</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="redes.html"><a href="redes.html#analisis-basico-de-redes"><i class="fa fa-check"></i><b>13.5</b> Análisis básico de redes</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="redes.html"><a href="redes.html#medidas-de-centralidad"><i class="fa fa-check"></i><b>13.5.1</b> Medidas de centralidad</a></li>
+<li class="chapter" data-level="13.5.2" data-path="redes.html"><a href="redes.html#comunidades-en-las-redes"><i class="fa fa-check"></i><b>13.5.2</b> Comunidades en las redes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>14</b> Análisis cuantitativo de texto</a><ul>
+<li class="chapter" data-level="14.1" data-path="qta.html"><a href="qta.html#introduccion-5"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
+<li class="chapter" data-level="14.2" data-path="qta.html"><a href="qta.html#exploracion-de-la-bases-de-datos"><i class="fa fa-check"></i><b>14.2</b> Exploración de la bases de datos</a></li>
+<li class="chapter" data-level="14.3" data-path="qta.html"><a href="qta.html#calculo-de-frecuencias"><i class="fa fa-check"></i><b>14.3</b> Cálculo de frecuencias</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="qta.html"><a href="qta.html#cuales-son-los-diez-hashtags-mas-usados-de-las-cuentas-de-los-diputados"><i class="fa fa-check"></i><b>14.3.1</b> ¿Cuáles son los diez hashtags más usados de las cuentas de los diputados?</a></li>
+<li class="chapter" data-level="14.3.2" data-path="qta.html"><a href="qta.html#frecuencias-por-genero-cantidad-de-hashtags-usados-por-los-diputados-en-total"><i class="fa fa-check"></i><b>14.3.2</b> Frecuencias por género: cantidad de hashtags usados por los diputados en total</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="qta.html"><a href="qta.html#wordcloud-de-hashtags"><i class="fa fa-check"></i><b>14.4</b> Wordcloud de hashtags</a></li>
+<li class="chapter" data-level="14.5" data-path="qta.html"><a href="qta.html#graficar-los-hashtags-mas-utilizados-por-grupos-de-interes"><i class="fa fa-check"></i><b>14.5</b> Graficar los hashtags más utilizados por grupos de interés</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-las-diputadas"><i class="fa fa-check"></i><b>14.5.1</b> Hashtags más usados entre las diputadas</a></li>
+<li class="chapter" data-level="14.5.2" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-los-diputados"><i class="fa fa-check"></i><b>14.5.2</b> Hashtags más usados entre los diputados</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-caracteristicas-del-diputado"><i class="fa fa-check"></i><b>14.6</b> Hashtags de género por características del diputado</a><ul>
+<li class="chapter" data-level="14.6.1" data-path="qta.html"><a href="qta.html#por-el-genero-del-diputado"><i class="fa fa-check"></i><b>14.6.1</b> Por el género del diputado</a></li>
+<li class="chapter" data-level="14.6.2" data-path="qta.html"><a href="qta.html#por-la-coalicion-de-los-diputados"><i class="fa fa-check"></i><b>14.6.2</b> Por la coalición de los diputados</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="qta.html"><a href="qta.html#variacion-temporal-del-uso-de-estos-hashtags"><i class="fa fa-check"></i><b>14.7</b> Variación temporal del uso de estos hashtags</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-olafeminista"><i class="fa fa-check"></i><b>14.7.1</b> Frecuencia semanal de #olafeminista</a></li>
+<li class="chapter" data-level="14.7.2" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-tres-hashtags-de-genero"><i class="fa fa-check"></i><b>14.7.2</b> Frecuencia semanal de tres hashtags de género</a></li>
+<li class="chapter" data-level="14.7.3" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-de-genero-por-semana"><i class="fa fa-check"></i><b>14.7.3</b> Grafiquemos los hashtags de género por semana</a></li>
+<li class="chapter" data-level="14.7.4" data-path="qta.html"><a href="qta.html#ponderamos-en-relacion-al-total-de-hashtags-por-semana"><i class="fa fa-check"></i><b>14.7.4</b> Ponderamos en relación al total de hashtags por semana</a></li>
+<li class="chapter" data-level="14.7.5" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-interesantes-ponderados-por-el-total-semanal"><i class="fa fa-check"></i><b>14.7.5</b> Grafiquemos los hashtags interesantes ponderados por el total semanal</a></li>
+<li class="chapter" data-level="14.7.6" data-path="qta.html"><a href="qta.html#diputadas"><i class="fa fa-check"></i><b>14.7.6</b> Diputadas</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-semana-a-nivel-de-diputados-ponderados-por-semana"><i class="fa fa-check"></i><b>14.8</b> Hashtags de género por semana a nivel de diputados (ponderados por semana)</a></li>
+<li class="chapter" data-level="14.9" data-path="qta.html"><a href="qta.html#comentarios-finales"><i class="fa fa-check"></i><b>14.9</b> Comentarios finales</a></li>
+<li class="chapter" data-level="14.10" data-path="qta.html"><a href="qta.html#anexo-problemas-que-se-presentan-cuando-analizas-discursos-debates-o-leyes"><i class="fa fa-check"></i><b>14.10</b> Anexo: Problemas que se presentan cuando analizas discursos, debates o leyes</a></li>
+<li class="chapter" data-level="14.11" data-path="qta.html"><a href="qta.html#tidy-text"><i class="fa fa-check"></i><b>14.11</b> <code>Tidy text</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>15</b> Generación de mapas</a><ul>
+<li class="chapter" data-level="15.1" data-path="mapas.html"><a href="mapas.html#datos-espaciales"><i class="fa fa-check"></i><b>15.1</b> Datos Espaciales</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="mapas.html"><a href="mapas.html#que-son"><i class="fa fa-check"></i><b>15.1.1</b> ¿Qué son?</a></li>
+<li class="chapter" data-level="15.1.2" data-path="mapas.html"><a href="mapas.html#estructura-de-los-datos-espaciales"><i class="fa fa-check"></i><b>15.1.2</b> Estructura de los Datos Espaciales</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="mapas.html"><a href="mapas.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>15.2</b> Datos Espaciales en R</a></li>
+<li class="chapter" data-level="15.3" data-path="mapas.html"><a href="mapas.html#special-features-en-r"><i class="fa fa-check"></i><b>15.3</b> Special Features en R</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="mapas.html"><a href="mapas.html#estructura"><i class="fa fa-check"></i><b>15.3.1</b> Estructura</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="mapas.html"><a href="mapas.html#manejo-de-datos-espaciales"><i class="fa fa-check"></i><b>15.4</b> Manejo de Datos Espaciales</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="mapas.html"><a href="mapas.html#modificaciones"><i class="fa fa-check"></i><b>15.4.1</b> Modificaciones</a></li>
+<li class="chapter" data-level="15.4.2" data-path="mapas.html"><a href="mapas.html#crear-nuevos-shapefiles-con-st_write"><i class="fa fa-check"></i><b>15.4.2</b> Crear nuevos shapefiles con <code>st_write</code></a></li>
+<li class="chapter" data-level="15.4.3" data-path="mapas.html"><a href="mapas.html#incorporar-datos-de-otras-bases-con-merge"><i class="fa fa-check"></i><b>15.4.3</b> Incorporar datos de otras bases con <code>merge</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="mapas.html"><a href="mapas.html#mapear-en-r"><i class="fa fa-check"></i><b>15.5</b> Mapear en R</a></li>
+<li class="chapter" data-level="15.6" data-path="mapas.html"><a href="mapas.html#mapeando-variables"><i class="fa fa-check"></i><b>15.6</b> Mapeando variables</a><ul>
+<li class="chapter" data-level="15.6.1" data-path="mapas.html"><a href="mapas.html#mapas-animados-con-gganimate"><i class="fa fa-check"></i><b>15.6.1</b> Mapas animados con <code>gganimate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.7" data-path="mapas.html"><a href="mapas.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>15.7</b> Inferencia a partir de Datos Espaciales</a><ul>
+<li class="chapter" data-level="15.7.1" data-path="mapas.html"><a href="mapas.html#indicadores-locales-de-asociacion-espacial-lisa"><i class="fa fa-check"></i><b>15.7.1</b> Indicadores locales de asociación espacial (LISA)</a></li>
+<li class="chapter" data-level="15.7.2" data-path="mapas.html"><a href="mapas.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>15.7.2</b> Matriz de Pesos Espaciales</a></li>
+<li class="chapter" data-level="15.7.3" data-path="mapas.html"><a href="mapas.html#morans-i"><i class="fa fa-check"></i><b>15.7.3</b> Moran’s I</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="redes" class="section level1">
+<h1><span class="header-section-number">Capítulo 13</span> Análisis de redes</h1>
+<p><em>Por Andrés Cruz</em></p>
+<hr />
+<p><strong>Lecturas de referencia</strong></p>
+<ul>
+<li><p>Newman, M. (2018). <em>Networks: An Introduction</em> (2a ed). New York, NY: Oxford University Press.</p></li>
+<li><p>Scott, J. (2013). <em>Social Network Analysis</em> (3a ed). London: Sage Publications.</p></li>
+</ul>
+<hr />
+<div id="introduccion-4" class="section level2">
+<h2><span class="header-section-number">13.1</span> Introducción</h2>
+<p>No es exagerado decir que en política todo está conectado con todo. Por ejemplo, fíjate en el caso de las y los legisladores. Las conexiones son evidentes: partidos, coaliciones, comisiones, familias, colegios… Para comprender mejor estas enmarañadas relaciones, una de las herramientas que está en el cinturón de herramientas de los politólogos es la del análisis de redes. Las redes son capaces de reconocer que todo está conectado con todo, y dar pistas sobre la lógica detrás de esas conexiones. No solo permiten visualizar de forma atractiva dichas conexiones, sino que también calcular distintas mediciones interesantes sobre los actores en cuestión y los vínculos que los unen. En este capítulo aprenderás las bases del análisis de redes con <code>R</code>, principalmente utilizando los paquetes <code>tidygraph</code> y <code>ggraph</code>, que se aproximan al análisis de redes desde los preceptos del <code>tidyverse</code>.</p>
+</div>
+<div id="conceptos-iniciales" class="section level2">
+<h2><span class="header-section-number">13.2</span> Conceptos iniciales</h2>
+<div id="nodos-y-enlaces" class="section level3">
+<h3><span class="header-section-number">13.2.1</span> Nodos y enlaces</h3>
+<p>Dos conceptos son básicos para comenzar a expresar una situación como una red. En primer lugar, los <em>nodos</em> (a veces llamados <em>actores</em>) son las unidades de análisis principales: queremos entender cómo se relacionan entre sí. En el ejemplo anterior, las y los legisladores serían los nodos de la red. Segundo, los <em>enlaces</em> (a veces llamadas <em>conexiones</em> o <em>vínculos</em>) muestran cómo los nodos están conectados unos con otros. Entre las y los legisladores, una forma de enlace posible es “haber propuesto una ley juntos”, también llamado co-presentación (<em>co-sponsorship</em>).</p>
+<p>Una red no es más que una serie de nodos conectados a través de enlaces, como se puede apreciar en la Figura <a href="redes.html#fig:ej-redes">13.1</a>. En términos del ejemplo anterior, podemos imaginar que dicha red grafica conecta a las legisladoras A, B, C, D (los nodos) según su co-presentación de proyectos w, x, y, z (los enlaces). Así, la red muestra que la legisladora B ha presentado al menos un proyecto de ley con todas las demás legisladores de la red, mientras que la legisladora D solo lo ha hecho con B. Por su lado, las legisladoras A y C tienen dos enlaces de co-presentación cada una, formando una tríada A-B-C.</p>
+<div class="figure" style="text-align: center"><span id="fig:ej-redes"></span>
+<img src="redes_files/figure-html/ej-redes-1.png" alt="Esquema de red de co-sponsorship entre cuatro legisladoras" width="288" />
+<p class="caption">
+Figura 13.1: Esquema de red de co-sponsorship entre cuatro legisladoras
+</p>
+</div>
+</div>
+<div id="matriz-de-adyacencia" class="section level3">
+<h3><span class="header-section-number">13.2.2</span> Matriz de adyacencia</h3>
+<p>Aparte de una descripción visual, como la de la Figura <a href="redes.html#fig:ej-redes">13.1</a>, es también posible representar las redes como <em>matrices de adyacencia</em>. La Tabla <a href="redes.html#tab:matriz-ady1">13.1</a> muestra la misma red que hemos visualizado anteriormente, esta vez en formato matriz. Los <code>1</code> indican que existe un enlace entre ambos nodos (de co-presentación, en nuestro ejemplo), mientras que los <code>0</code> indican lo contrario. Nota cómo la diagonal de la matriz está llenada solo por unos: esta es una convención útil para distintos cálculos matemáticos. Adicionalmente, este tipo de matriz para una red básica es simétrica: si sabemos que el nodo A está enlazado con el nodo B, automáticamente sabemos que el nodo B está enlazado con el A.</p>
+<table class="table table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:matriz-ady1">Tabla 13.1: </span>Matriz de adyacencia
+</caption>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+D
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="pesos-y-direccion" class="section level3">
+<h3><span class="header-section-number">13.2.3</span> Pesos y dirección</h3>
+<p>Una red tan básica como la vista hasta ahora puede complejizarse bastante más, de acuerdo a la naturaleza de los datos. Dos complejizaciones típicas refieren a los enlaces: añadir pesos y dirección. Para comenzar con los pesos, en nuestro ejemplo los legisladores están conectados si es que <em>alguna vez</em> han presentado un proyecto de ley en conjunto. Sin embargo, a menudo es de interés no solo conocer la existencia de una conexión entre dos actores, sino que también la fuerza de esta: no es lo mismo que dos legisladores hayan aceptado con reticencia presentar un proyecto juntos en una ocasión, a que hayan presentado múltiples proyectos de ley en conjunto. Volvamos a la matriz de adyacencia, esta vez incluyendo pesos. En este nuevo ejemplo, de la Tabla <a href="redes.html#tab:matriz-ady2">13.2</a>, las legisladoras A y B han presentado 9 proyectos de ley juntas. Nota cómo, por convención, la diagonal de la matriz sigue llena de unos.</p>
+<table class="table table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:matriz-ady2">Tabla 13.2: </span>Matriz de adyacencia, red con pesos.
+</caption>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+D
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>La segunda forma de añadir información adicional a los enlaces es registrando su dirección. En algunas legislaturas los proyectos de ley tienen un autor o autora principal (sponsor), a quien el resto de los legisladores se suman (co-sponsors). En estos casos, la red de co-sponsorship naturalmente tendrá dirección: un legislador “auspiciará” a otro firmando en su proyecto de ley, sin que esta relación sea necesariamente recíproca. Es posible incluir esta información en la red, tal como realiza <a href="http://jhfowler.ucsd.edu/cosponsorship.htm">Fowler (2006)</a> para el Congreso de Estados Unidos. Una matriz de adyacencia con direcciones (y pesos) podría verse como la de la Tabla <a href="redes.html#tab:matriz-ady3">13.3</a>. Nota que ahora la matriz no es simétrica, pues existe más información sobre la relación de co-sponsorship entre las legisladoras A y B: mientras que la legisladora A auspició siete proyectos de la legisladora B, esta solo reciprocó en dos proyectos de ley<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>.</p>
+<table class="table table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:matriz-ady3">Tabla 13.3: </span>Matriz de adyacencia, red con pesos y direcciones.
+</caption>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+D
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="bases-de-datos-de-redes" class="section level2">
+<h2><span class="header-section-number">13.3</span> Bases de datos de redes</h2>
+<p>Siguiendo con el espíritu del ejemplo anterior, en este capítulo trabajaremos con datos de co-sponsorship de leyes en el Senado argentino. Utilizaremos los datos de <a href="https://onlinelibrary.wiley.com/doi/abs/10.3162/036298009787500358">Alemán et al. (2009)</a>, en específico para el año 1983, justo después del regreso de la democracia. Comencemos cargando la base de datos con la ayuda de nuestro paquete <code>paqueteadp</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(paqueteadp)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(leyes_argentina)</code></pre>
+<p>Podemos revisar que nuestra base se cargó adecuadamente con <code>ls()</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre>
+<pre><code>## [1] &quot;leyes_argentina&quot;</code></pre>
+<p>Para pasar esta base de datos a un formato de redes utilizaremos el paquete <code>tidygraph</code>. Nuestro objetivo será el siguiente: crear dos bases de datos, una con información sobre los nodos de la red (legisladores/as) y otra con información sobre los vínculos entre esos nodos (firmas en común). Nota que el procedimiento exacto para crear estas bases dependerá de la estructura original de tus datos.</p>
+<p>Comencemos explorando nuestra base inicial:</p>
+<pre class="sourceCode r"><code class="sourceCode r">leyes_argentina
+<span class="co">## # A tibble: 665 x 7</span>
+<span class="co">##    id_proyecto n_firmantes id_leg nombre_leg provincia_leg partido_leg</span>
+<span class="co">##    &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt;      </span>
+<span class="co">##  1 0001-S-84             2     25 JOSE H MA… JUJUY         JUSTICIALI…</span>
+<span class="co">##  2 0001-S-84             2      4 ALFREDO L… JUJUY         JUSTICIALI…</span>
+<span class="co">##  3 0002-S-84             2     34 OLIJELA D… TUCUMAN       JUSTICIALI…</span>
+<span class="co">##  4 0002-S-84             2      3 RAMON A A… TUCUMAN       JUSTICIALI…</span>
+<span class="co">##  5 0003-S-84             2      3 RAMON A A… TUCUMAN       JUSTICIALI…</span>
+<span class="co">##  6 0003-S-84             2     34 OLIJELA D… TUCUMAN       JUSTICIALI…</span>
+<span class="co">##  7 0004-S-84             1     37 LUIS SALIM S DEL ESTERO  JUSTICIALI…</span>
+<span class="co">##  8 0006-S-84             2     38 LIBARDO N… LA RIOJA      JUSTICIALI…</span>
+<span class="co">##  9 0006-S-84             2     29 EDUARDO M… LA RIOJA      JUSTICIALI…</span>
+<span class="co">## 10 0007-S-84             2     38 LIBARDO N… LA RIOJA      JUSTICIALI…</span>
+<span class="co">## # … with 655 more rows, and 1 more variable: bloque_leg &lt;chr&gt;</span></code></pre>
+<p>Como puedes notar, esta es una base de formato “long”, donde cada firma es una fila. De esta forma, podemos inmediatamente saber que hubo 665 firmas en proyectos durante el año 1983. ¿En cuántos proyectos se distribuyeron esas firmas? Hagamos una tabla de frecuencia para la variable <code>id_proyecto</code>, utilizando la función <code>count()</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">leyes_argentina <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">count</span>(id_proyecto)
+<span class="co">## # A tibble: 248 x 2</span>
+<span class="co">##    id_proyecto     n</span>
+<span class="co">##    &lt;chr&gt;       &lt;int&gt;</span>
+<span class="co">##  1 0001-S-84       2</span>
+<span class="co">##  2 0002-S-84       2</span>
+<span class="co">##  3 0003-S-84       2</span>
+<span class="co">##  4 0004-S-84       1</span>
+<span class="co">##  5 0006-S-84       2</span>
+<span class="co">##  6 0007-S-84       2</span>
+<span class="co">##  7 0009-S-84       6</span>
+<span class="co">##  8 0010-S-84       3</span>
+<span class="co">##  9 0011-S-84       5</span>
+<span class="co">## 10 0012-S-84       9</span>
+<span class="co">## # … with 238 more rows</span></code></pre>
+<p>Sabemos entonces que hubo 248 proyectos de ley. ¿Cuántos legisladores/as firmaron en proyectos?</p>
+<pre class="sourceCode r"><code class="sourceCode r">leyes_argentina <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">count</span>(id_leg)
+<span class="co">## # A tibble: 46 x 2</span>
+<span class="co">##    id_leg     n</span>
+<span class="co">##     &lt;dbl&gt; &lt;int&gt;</span>
+<span class="co">##  1      1    13</span>
+<span class="co">##  2      2    21</span>
+<span class="co">##  3      3    24</span>
+<span class="co">##  4      4    18</span>
+<span class="co">##  5      5    23</span>
+<span class="co">##  6      6    19</span>
+<span class="co">##  7      7    26</span>
+<span class="co">##  8      8    21</span>
+<span class="co">##  9      9    15</span>
+<span class="co">## 10     10    10</span>
+<span class="co">## # … with 36 more rows</span></code></pre>
+<p>Nota que la variable <code>id_leg</code> asigna un número correlativo, entre 1 y 46, para cada senador/a. Entonces, hasta ahora sabemos que 46 senadores/as firmaron en proyectos, sumando 665 firmas en 248 proyectos de ley distintos. Pero volvamos a nuestro objetivo inicial para comenzar con el análisis de redes: necesitamos crear una base de datos de nodos y otra de enlaces.</p>
+<p>Nuestra base de datos de nodos tendrá, entonces, información de los legisladores/as, totalizando 46 observaciones. Otras variables en la base que nos entregan información sobre los legisladores/as son <code>nombre_leg</code>, <code>provincia_leg</code>, <code>partido_leg</code> y <code>bloque_leg</code>, por lo que estas deberían estar presentes en nuestra base de datos de nodos. Construyámosla:</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_nodos &lt;-<span class="st"> </span>leyes_argentina <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(id_leg) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">nombre_leg    =</span> <span class="kw">unique</span>(nombre_leg),
+            <span class="dt">provincia_leg =</span> <span class="kw">unique</span>(provincia_leg),
+            <span class="dt">partido_leg   =</span> <span class="kw">unique</span>(partido_leg),
+            <span class="dt">bloque_leg    =</span> <span class="kw">unique</span>(bloque_leg))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_nodos
+<span class="co">## # A tibble: 46 x 5</span>
+<span class="co">##    id_leg nombre_leg               provincia_leg partido_leg   bloque_leg  </span>
+<span class="co">##     &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;       </span>
+<span class="co">##  1      1 RAMON A ALMENDRA         SANTA CRUZ    JUSTICIALISTA JUSTICIALIS…</span>
+<span class="co">##  2      2 JULIO AMOEDO             CATAMARCA     JUSTICIALISTA JUSTICIALIS…</span>
+<span class="co">##  3      3 RAMON A ARAUJO           TUCUMAN       JUSTICIALISTA JUSTICIALIS…</span>
+<span class="co">##  4      4 ALFREDO L BENITEZ        JUJUY         JUSTICIALISTA JUSTICIALIS…</span>
+<span class="co">##  5      5 ANTONIO TOMAS BERHONGAR… LA PAMPA      UCR           UCR         </span>
+<span class="co">##  6      6 DEOLINDO FELIPE BITTEL   CHACO         JUSTICIALISTA JUSTICIALIS…</span>
+<span class="co">##  7      7 LUIS BRASESCO            ENTRE RIOS    UCR           UCR         </span>
+<span class="co">##  8      8 HORACIO F BRAVO HERRERA  SALTA         JUSTICIALISTA JUSTICIALIS…</span>
+<span class="co">##  9      9 ORALDO N BRITOS          SAN LUIS      JUSTICIALISTA JUSTICIALIS…</span>
+<span class="co">## 10     10 JORGE A CASTRO           S DEL ESTERO  JUSTICIALISTA JUSTICIALIS…</span>
+<span class="co">## # … with 36 more rows</span></code></pre>
+<p>¡Nuestra base de datos de nodos está lista! Ahora necesitamos crear la base de datos de enlaces, que una a los legisladores/as de acuerdo a su co-sponsorship. Para los propósitos de este ejercicio realizaremos una base binaria, como la del primer ejemplo del capítulo: dos legisladores/as estarán conectados (<code>1</code>) si es que alguna vez en 1983 presentaron un proyecto en conjunto.</p>
+<p>Siguiendo el espíritu de las pipes, que revisamos en el Capítulo <a href="manejo-de-datos.html#manejo-de-datos">3</a>, realizaremos una operación compleja con una sola concatenación de comandos –¡revisa muy bien los comentarios del código!–. Como vimos, nuestro objetivo será crear los pares de diputados que están conectados por, a lo menos, un proyecto en común.</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_enlaces &lt;-<span class="st"> </span>leyes_argentina <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># Seleccionemos solo las variables de proyecto y legislador</span>
+<span class="st">  </span><span class="kw">select</span>(id_proyecto, id_leg) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># Ahora unamos la base consigo misma, para crear todas las combinaciones</span>
+<span class="st">  </span><span class="co">## de pares de legisladores/as por proyecto </span>
+<span class="st">  </span><span class="kw">left_join</span>(., ., <span class="dt">by =</span> <span class="st">&quot;id_proyecto&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># Eliminemos los pares de un legislador/a consigo mismo</span>
+<span class="st">  </span><span class="kw">filter</span>(id_leg.x <span class="op">!=</span><span class="st"> </span>id_leg.y) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># Quedémonos con lo pares únicos (aquí el orden no importa).</span>
+<span class="st">  </span><span class="co">## En la variable id_leg_1 quedará el legislador/a con id menor.</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id_leg_1 =</span> <span class="kw">pmin</span>(id_leg.x, id_leg.y), 
+         <span class="dt">id_leg_2 =</span> <span class="kw">pmax</span>(id_leg.x, id_leg.y)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(id_leg_<span class="dv">1</span>, id_leg_<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># Ordenemos la base según las ids</span>
+<span class="st">  </span><span class="kw">arrange</span>(id_leg_<span class="dv">1</span>, id_leg_<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># Creemos una variable solo con 1, que explicitan la conexión entre</span>
+<span class="st">  </span><span class="co">## el par de legisladores/as</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">d_firma_conjunta =</span> 1L)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_enlaces
+<span class="co">## # A tibble: 509 x 3</span>
+<span class="co">##    id_leg_1 id_leg_2 d_firma_conjunta</span>
+<span class="co">##       &lt;dbl&gt;    &lt;dbl&gt;            &lt;int&gt;</span>
+<span class="co">##  1        1        2                1</span>
+<span class="co">##  2        1        3                1</span>
+<span class="co">##  3        1        4                1</span>
+<span class="co">##  4        1        5                1</span>
+<span class="co">##  5        1        6                1</span>
+<span class="co">##  6        1        8                1</span>
+<span class="co">##  7        1        9                1</span>
+<span class="co">##  8        1       10                1</span>
+<span class="co">##  9        1       12                1</span>
+<span class="co">## 10        1       16                1</span>
+<span class="co">## # … with 499 more rows</span></code></pre>
+<p>Existen 509 vínculos entre legisladores/as en nuestra red. Nota que aquí solo hemos obtenido los pares que están conectados: nuestra base no contiene información sobre los pares sin conexión. Luego, <code>tidygraph</code> asumirá, correctamente, que los pares no explicitados en la base de enlaces se encuentran desconectados.</p>
+<p>Ahora solo nos queda crear el objeto <code>tbl_graph</code>, propio del paquete <code>tidygraph</code>. Este simplemente contiene nuestras dos bases de datos:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidygraph)
+red_cosp_arg &lt;-<span class="st"> </span><span class="kw">tbl_graph</span>(<span class="dt">nodes =</span> df_nodos,
+                          <span class="dt">edges =</span> df_enlaces,
+                          <span class="dt">directed =</span> F <span class="co"># ¡nuestra base no tiene dirección!</span>
+                          )</code></pre>
+<p>Nota que, para que <code>tbl_graph</code> funcione correctamente en este caso, las id de identifación de cada nodo deben ser correlativas, abarcando desde 1 hasta el total de nodos. Como es el caso en nuestro ejemplo, podemos seguir adelante.</p>
+</div>
+<div id="disposicion-grafica" class="section level2">
+<h2><span class="header-section-number">13.4</span> Disposición gráfica</h2>
+<p>Ahora tenemos una red de legisladores que se dispone de la siguiente forma:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggraph)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">100</span>); layout_red &lt;-<span class="st"> </span><span class="kw">create_layout</span>(red_cosp_arg, <span class="st">&quot;fr&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggraph</span>(layout_red) <span class="op">+</span>
+<span class="st">  </span><span class="co"># Añadir los enlaces:</span>
+<span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="dt">color =</span> <span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="co"># Añadir los nodos (con color según bloque):</span>
+<span class="st">  </span><span class="kw">geom_node_point</span>(<span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="co"># Utilizar fondo blanco y tema vacío:</span>
+<span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span>
+<span class="st">  </span><span class="co"># Añadir una etiqueta más legible</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Bloque legislativo&quot;</span>)</code></pre>
+<p><img src="redes_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div id="color-y-forma-en-la-representacion-visual" class="section level3">
+<h3><span class="header-section-number">13.4.1</span> Color y forma en la representación visual</h3>
+</div>
+</div>
+<div id="analisis-basico-de-redes" class="section level2">
+<h2><span class="header-section-number">13.5</span> Análisis básico de redes</h2>
+<div id="medidas-de-centralidad" class="section level3">
+<h3><span class="header-section-number">13.5.1</span> Medidas de centralidad</h3>
+<p><strong>PENDIENTE</strong></p>
+</div>
+<div id="comunidades-en-las-redes" class="section level3">
+<h3><span class="header-section-number">13.5.2</span> Comunidades en las redes</h3>
+<p><strong>PENDIENTE</strong></p>
+<p>Referencias</p>
+<ul>
+<li><p>Alemán, E., Calvo, E., Jones, M. P., &amp; Kaplan, N. (2009). Comparing Cosponsorship and Roll‐Call Ideal Points. <em>Legislative Studies Quarterly, 34</em>(1), 87-116.</p></li>
+<li><p>Fowler, J. H. (2006). Connecting the Congress: A study of cosponsorship networks. <em>Political Analysis, 14</em>(4), 456-487.</p></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="8">
+<li id="fn8"><p>Nota que esta tercera red, como está descrita en nuestro ejemplo, no registra cuando dos legisladores apoyan en conjunto un proyecto de otro legislador distinto. En este sentido, solo mide apoyos <em>directos</em> entre pares de legisladores.<a href="redes.html#fnref8" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="web-mining.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="qta.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/arcruz0/libroadp/edit/master/redes.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
