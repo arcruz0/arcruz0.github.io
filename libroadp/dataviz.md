@@ -1,5 +1,4 @@
 
-
 # Visualización de datos {#dataviz}
 
 *Por Soledad Araya*
@@ -144,7 +143,7 @@ ggplot(data    = municipios_chile,
        mapping = aes(x = year, y = casen))
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" />
 
 El resultado muestra un cuadro vacío. Eso es porque no lo hemos dicho qué objeto geométrico es el que usaremos.
 
@@ -159,7 +158,7 @@ ggplot(data    = municipios_chile,
   geom_boxplot()
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" />
 
 Lo primero que notamos es la ausencia de datos para tres periodos. Lamentablemente, en el SINIM no hay datos anteriores al 2002, por lo que no hay registros para esos años. Por este motivo, parece una buena idea filtrar y dejar solo los años que tengan datos sobre la encuesta CASEN. Además de eso, nuestro gráfico no nos dice mucho sobre el porcentaje de pobreza y su distribución. Considerando la geografía chilena, sería una buena idea que vieramos la distribución por zona.  
 
@@ -177,7 +176,7 @@ ggplot(data    = municipios_chile %>% filter(year == c(2004, 2008, 2012)),
   facet_wrap(~ zona, nrow = 1)
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" />
 
 Tanto con `facet_wrap` como con `facet_grid` podemos usar más de un argumento, pero los resultados son distintos. `facet_grid` no sólo ordena las geometrías, sino que es capaz de cruzarlas creando gráficos con dos o más dimensiones utilizando variables categóricas. Observen el siguiente ejemplo:
 
@@ -190,7 +189,7 @@ ggplot(data    = municipios_chile %>% filter(year == c(2004, 2008, 2012)),
   facet_wrap(zona ~ genero)
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;" />
 
 `facet_grid`
 
@@ -201,7 +200,7 @@ ggplot(data    = municipios_chile %>% filter(year == c(2004, 2008, 2012)),
   facet_grid(zona ~ genero)
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;" />
 
 Este gráfico nos muestra que, por zona, el porcentaje de pobreza ha variado considerablemente desde el 2004 al 2012 y que hay una alta variabilidad intraregional. Además, nos muestra cómo `ggplot` entrega resultados de calidad sin mayores complejidades. La función `facet_wrap` es una capa opcional dentro de las múltiples capas de "A Layered Grammar of Graphics", pero es importante recordar que las otras tres capas deben estar presentes para cualquier tipo de resultado. 
 
@@ -216,7 +215,7 @@ ggplot(data    = municipios_chile %>% filter(year == c(2004, 2008, 2012)),
   geom_point() 
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-13-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;" />
 
 Teóricamente, cuando ocupamos una variable que tiene relación con dinero, le aplicamos una transformación logarítmica. Pero ¿cómo se traduce eso en nuestra imagen?
 
@@ -228,7 +227,7 @@ ggplot(data    = municipios_chile %>% filter(year == c(2004, 2008, 2012)),
   scale_y_log10()
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-13-1.png" width="480" style="display: block; margin: auto;" />
 
 Esto es de lo que hablamos cuando hablamos de escalas.
 
@@ -259,7 +258,7 @@ plot_a <- ggplot(municipios_chile, mapping = aes(x = genero))
 plot_a + geom_bar()
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;" />
 
 Como vemos, armar un gráfico de barras es muy simple. Podemos ver que, desde el 2004, han sido electos más de 800 hombres como alcaldes, una cifra que supera largamente al número de mujeres que han sido electas para el mismo cargo en la misma cantidad de tiempo. 
 
@@ -272,7 +271,7 @@ plot_a +
   facet_wrap(~year, nrow = 1)
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-16-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;" />
 
 Como podemos ver, el número de alcaldesas parece aumentar. Aunque es un aumento mucho menor al esperado. Esta parece ser una problemática sustantiva al momento de hacer un análisis de gobiernos locales en Chile. 
 
@@ -287,7 +286,7 @@ plot_a +
   facet_wrap(~zona, nrow = 1)
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-16-1.png" width="480" style="display: block; margin: auto;" />
 
 Pero, ¿por qué ocupamos `group = 1`?
 
@@ -307,7 +306,7 @@ plot_a +
        caption = "Fuente: base de elaboración propia con datos del SERVEL y SINIM (2018)") 
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" />
 
 Ahora, sólo nos falta agregar las etiquetas del eje x. Eso lo podemos hacer fácilemente con `scale_x_discrete`. Tienes que tener en consideración qué estética de `aes()` modificarás, ya que eso cambiará el `scale` que necesites. Si estuviéramos viendo las etiquetas de `fill`, tendríamos que usar `scale_fill_discrete`, por ejemplo. También tienes que tener en consideración qué tipo de variable estás usando. Que `scale_x_dicrete` tenga "discrete" al final no es una decisión aleatoria. Como comprenderás, depende totalmente del tipo de variable que estemos manejando.
 
@@ -322,7 +321,7 @@ plot_a +
        caption = "Fuente: base de elaboración propia con datos del SERVEL y SINIM (2018)") 
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-19-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" />
 
 Con `labels` podemos cambiar las etiquetas. Ten en consideración el número de `breaks` de tu variable categórica para que calcen a la perfección y no te sobre (o te falte) alguna categoría.
 
@@ -339,7 +338,7 @@ plot_b +
   geom_line()
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-20-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-19-1.png" width="480" style="display: block; margin: auto;" />
 
 El problema es que no nos entrega el resultado esperado. La intuición es correcta, pero nosotros tenemos que ayudar a `geom_line` con ciertas especificaciones. `geom_line` agrupa las observaciones para crear el gráfico de línea. En este caso, las agrupa por lo que cree tiene más sentido: el año. Por esta razón, tenemos que especificar cuál es la variable que agrupa toda la información y, como sabemos, la información que tenemos está agrupada por municipio. Cuando agregamos esta información como `geom_lines(aes(group = comuna))`, el resultado cambia y se asemeja a lo que buscábamos:
 
@@ -349,7 +348,7 @@ plot_b +
   geom_line(mapping = aes(group = comuna))
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-21-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-20-1.png" width="480" style="display: block; margin: auto;" />
 
 Uno de los problemas que surge a primera vista es que, considerando que Chile tiene 345 comunas, parece imposible tenerlas todas en un solo gráfico.
 
@@ -362,7 +361,7 @@ plot_b +
   facet_wrap(~zona, nrow = 1)
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-22-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-21-1.png" width="480" style="display: block; margin: auto;" />
 
 Como son pocos los años que tenemos en la muestra, no podemos ver mucha variabilidad y a primera vista, parece que los ingresos de todos los municipios han incrementado considerablemente. Quizás, podemos seguir mejorando nuestro gráfico. Probablemente, no estés muy familiarizado con la notación científica y te sientes más cómodo leyendo números más grandes. Quizás sabes que es mejor trabajar todo tipo de variable monetaria con su transformación logarítmica, como nos han enseñado en diferentes cursos de métodología. Puede, también, que quieras agregar otro tipo de información a este gráfico, como por ejemplo, las medias.
 
@@ -386,7 +385,7 @@ plot_b +
   theme(panel.spacing = unit(2, "lines"))
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-23-1.png" width="960" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-22-1.png" width="960" style="display: block; margin: auto;" />
 
 ¿Qué especificamos?
 
@@ -438,7 +437,7 @@ plot_c <- ggplot(data    = municipios_chile %>%
 plot_c
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-25-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-24-1.png" width="480" style="display: block; margin: auto;" />
 
 Uno de los problemas que podríamos tener con este gráfico, es que no nos permite observar bien los outliers, ya que la expansión del eje y es muy pequeña. Para solucionar esto podemos usar `coord_flip`, una función que nos permite dar vuelta los ejes de nuestro gráfico:
 
@@ -448,7 +447,7 @@ plot_c +
   coord_flip() 
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-26-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-25-1.png" width="480" style="display: block; margin: auto;" />
 
 Ahora ya podemos observar mejor algunos de los *outliers* presentes. Quizás, después de ver estos resultados, nos gustaría identificar qué comunas son las que reciben más ingresos totales. Para eso podemos usar otra estética, `label` dentro de `geom_text`. Para nombrar sólo los outliers, tenemos que hacer un subset de los datos.
 
@@ -460,7 +459,7 @@ plot_c +
             mapping = aes(label = comuna))
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-26-1.png" width="480" style="display: block; margin: auto;" />
 
 Lamentablemente, las etiquetas están por encima de los puntos y, en algunos casos, se pierden cuando estos están muy juntos. Una de las soluciones es con el paquete `ggrepel` que tiene el elemento geométrico `geom_text` "mejorado" para que las etiquetas no choquen entre sí. También, cambiaremos el color de las letras para que sea posible leerlas sin mayor dificultad. Como ven, este `color` va afuera de la estética de `geom_text_repel`, ya que definimos el color para todo el objeto. Cuando va dentro de `aes()`, el color se modifica según la candidad de, por ejemplo, ingresos o por el tipo de, por ejemplo, zona.
 
@@ -475,7 +474,7 @@ plot_c +
                   mapping = aes(label = comuna), color = "black")
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-28-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" />
 
 El corte puede ser en los $50.000.000 o en números más grandes o más pequeños. Depende completamente de lo que queremos observar. Además, con `geom_text` o `geom_text_repel` no solo puedes modificar el color, sino también el el tipo de fuente de la letra, o si debe estar en negrita, cursiva o subrayada. Para ver más opciones, debes ingresar `?geom_text` o llamar a `help("geom_text")`.
 
@@ -497,7 +496,7 @@ plot_c +
   guides(color = F)
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-29-1.png" width="960" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-28-1.png" width="960" style="display: block; margin: auto;" />
 
 Otras especificaciones:
 
@@ -526,7 +525,7 @@ ggplot(data    = municipios_chile,
 ## Warning: Removed 7 rows containing non-finite values (stat_bin).
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-30-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-29-1.png" width="480" style="display: block; margin: auto;" />
 
 Como podemos observar, el gráfico nos tira un "Warning" que nos indica que hay "738 filas que contienen valores no-finitos". Esta advertencia se ha repetido constantemente durante el capítulo, y no quiere decir nada más que "Hay valores 0 o desconocidos dentro de esta variable" y se debe, como sabemos, a que los primeros periodos no cuentan con información. Así que tranquilo, si filtráramos los datos con `filter(!is.na(ingresos))` lo más seguro es que la advertencia desaparezca. 
 
@@ -543,7 +542,7 @@ ggplot(data    = municipios_chile,
 ## Warning: Removed 7 rows containing non-finite values (stat_bin).
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-31-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-30-1.png" width="480" style="display: block; margin: auto;" />
 
 ¿Qué pasa cuando ponemos `bins = 15` intervalos? 
 
@@ -560,7 +559,7 @@ ggplot(data    = municipios_chile %>% filter(ingresos < 50000000),
        caption = "Fuente: Elaboración propia en base a datos del SINIM (2018)")
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-32-1.png" width="960" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-31-1.png" width="960" style="display: block; margin: auto;" />
 
 ### Relación entre variables
 
@@ -580,7 +579,7 @@ plot_f +
   geom_smooth(method = "lm", color = "dodgerblue3") 
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-34-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-33-1.png" width="480" style="display: block; margin: auto;" />
 
 Se ve un poco vacío, ¿no? Normalmente, ocuparemos `geom_smooth` con otra figura geométrica `geom_point`, para indicar la posición de las comunas dentro del espacio. Ocuparemos `alpha` para que veamos la sobreposición de los puntos. Sin ser muchos, no hay problemas en ver cómo se distribuyen.
 
@@ -591,7 +590,7 @@ plot_f +
   geom_smooth(method = "lm", color = "dodgerblue3") 
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-35-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-34-1.png" width="480" style="display: block; margin: auto;" />
 
 Ahora podríamos hacer dos especificaciones. Primero, pondremos el título y el nombre de los ejes. Segundo, en `geom_x_continuous` especificaremos donde tiene que empezar y terminar nuestro gráfico. Esto ya lo habíamos usado con `geom_line`.
 
@@ -606,7 +605,7 @@ plot_f +
        caption = "Fuente: Elaboración propia en base a datos del SINIM (2018)") 
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-36-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-35-1.png" width="480" style="display: block; margin: auto;" />
 
 Claramente, hay una correlación negativa entre ambas variables. Era lo que esperábamos. Ahora, podemos calcular la correlación entre ambas para estar más seguros de los resultados obtenidos:
 
@@ -631,7 +630,7 @@ plot_f +
   annotate("text", x = 50, y = 15, label = "Correlación:\n-0.27")
 ```
 
-<img src="dataviz_files/figure-html/unnamed-chunk-38-1.png" width="480" style="display: block; margin: auto;" />
+<img src="dataviz_files/figure-html/unnamed-chunk-37-1.png" width="480" style="display: block; margin: auto;" />
 
 ## Para seguir aprendiendo
 
@@ -661,8 +660,9 @@ Si estudias redes y conoces el funcionamiento de `ggplot2`, este paquete puede c
 
 
 <div class="books">
-<p><strong>Ejercicios antes de continuar al próximo capítulo</strong> - Ya sabes como hacer gráficos y, por básico que parezca, ahora cuentas con muchas herramientas para seguir trabajando. Pero hay algunas cosas que se quedaron en el tintero:</p>
+<p><strong>Ejercicios antes de continuar al próximo capítulo</strong></p>
 <ul>
+<li><p>Ya sabes como hacer gráficos y, por básico que parezca, ahora cuentas con muchas herramientas para seguir trabajando. Pero hay algunas cosas que se quedaron en el tintero:</p></li>
 <li><p>Ya vimos cómo hacer un histograma, aun así, los gráficos de densidad suelen ser más usados para ver la distribución de una variable. Utilizando las mismas variables, haz un gráfico de densidad con <code>geom_density()</code>.</p></li>
 <li><p>Muchas veces los gráficos de barras suelen presentarse con la frecuencia o proporción dentro de la barra. Esto también lo podemos hacer con <code>ggplot2</code>. Usando <code>geom_bar()</code> y <code>geom_text()</code>, anota el número de alcaldes y alcaldesas por zona geográfica. Una pequeña ayuda: hay que hacer cálculos con <code>tidyverse</code> antes de agregar esa información al plot.</p></li>
 <li><p>Escogiendo un sólo año, haz un gráfico de línea con <code>geom_smooth()</code> que indique la relación de ingresos y el porcentaje de pobreza. Ahora, con <code>annotate</code> harás un recuadro que encerrará a las comunas con mayor porcentaje de pobreza y, sobre él, anotarás a las comunas que corresponden.</p></li>

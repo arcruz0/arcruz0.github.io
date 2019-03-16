@@ -462,7 +462,7 @@ Figura 4.4: Portada de ‘Beautiful Evidence’.
 <p>La segunda capa corresponde al mapeo de las variables dentro del espacio. En este paso, utilizamos <code>mapping = aes()</code>, el cual contendrá la variable que tendremos en nuestro eje x y nuestro eje y. Para <code>aes()</code> hay muchas más opciones que iremos viendo dentro del capítulo: algunas de ellas son, por ejemplo, <code>fill</code>, <code>color</code>, <code>shape</code>, y <code>alpha</code>. Todas estas opciones son un conjunto de signos que nos permitirán traducir de mejor manera lo que queremos decir a través de nuestro gráfico. Normalmente, a estas opciones se le llaman <em>aesthetics</em> o <code>aes()</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data    =</span> municipios_chile, 
        <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> casen))</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>El resultado muestra un cuadro vacío. Eso es porque no lo hemos dicho qué objeto geométrico es el que usaremos.</p>
 </div>
 <div id="objeto-geometrico" class="section level4">
@@ -471,7 +471,7 @@ Figura 4.4: Portada de ‘Beautiful Evidence’.
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data    =</span> municipios_chile, 
        <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> casen)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Lo primero que notamos es la ausencia de datos para tres periodos. Lamentablemente, en el SINIM no hay datos anteriores al 2002, por lo que no hay registros para esos años. Por este motivo, parece una buena idea filtrar y dejar solo los años que tengan datos sobre la encuesta CASEN. Además de eso, nuestro gráfico no nos dice mucho sobre el porcentaje de pobreza y su distribución. Considerando la geografía chilena, sería una buena idea que vieramos la distribución por zona.</p>
 </div>
 <div id="faceting" class="section level4">
@@ -482,20 +482,20 @@ Figura 4.4: Portada de ‘Beautiful Evidence’.
        <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> casen)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>)</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Tanto con <code>facet_wrap</code> como con <code>facet_grid</code> podemos usar más de un argumento, pero los resultados son distintos. <code>facet_grid</code> no sólo ordena las geometrías, sino que es capaz de cruzarlas creando gráficos con dos o más dimensiones utilizando variables categóricas. Observen el siguiente ejemplo:</p>
 <p><code>facet_wrap</code></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data    =</span> municipios_chile <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),
        <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> casen)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(zona <span class="op">~</span><span class="st"> </span>genero)</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p><code>facet_grid</code></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data    =</span> municipios_chile <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),
        <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> casen)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(zona <span class="op">~</span><span class="st"> </span>genero)</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Este gráfico nos muestra que, por zona, el porcentaje de pobreza ha variado considerablemente desde el 2004 al 2012 y que hay una alta variabilidad intraregional. Además, nos muestra cómo <code>ggplot</code> entrega resultados de calidad sin mayores complejidades. La función <code>facet_wrap</code> es una capa opcional dentro de las múltiples capas de “A Layered Grammar of Graphics”, pero es importante recordar que las otras tres capas deben estar presentes para cualquier tipo de resultado.</p>
 </div>
 <div id="transformaciones" class="section level4">
@@ -504,13 +504,13 @@ Figura 4.4: Portada de ‘Beautiful Evidence’.
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data    =</span> municipios_chile <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),
        <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> casen, <span class="dt">y =</span> ingresos)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() </code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-13-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Teóricamente, cuando ocupamos una variable que tiene relación con dinero, le aplicamos una transformación logarítmica. Pero ¿cómo se traduce eso en nuestra imagen?</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data    =</span> municipios_chile <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),
        <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> casen, <span class="dt">y =</span> ingresos)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_y_log10</span>()</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-13-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Esto es de lo que hablamos cuando hablamos de escalas.</p>
 </div>
 <div id="sistema-de-coordenadas" class="section level4">
@@ -534,20 +534,20 @@ Figura 4.4: Portada de ‘Beautiful Evidence’.
 <pre class="sourceCode r"><code class="sourceCode r">plot_a &lt;-<span class="st"> </span><span class="kw">ggplot</span>(municipios_chile, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> genero))
 
 plot_a <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Como vemos, armar un gráfico de barras es muy simple. Podemos ver que, desde el 2004, han sido electos más de 800 hombres como alcaldes, una cifra que supera largamente al número de mujeres que han sido electas para el mismo cargo en la misma cantidad de tiempo.</p>
 <p>Pero, quizás, esta cifra ha variado en el tiempo y no lo podemos ver en un gráfico de este tipo. Esta parece ser una buena razón para usar <code>facet_wrap</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">plot_a <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year, <span class="dt">nrow =</span> <span class="dv">1</span>)</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-16-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Como podemos ver, el número de alcaldesas parece aumentar. Aunque es un aumento mucho menor al esperado. Esta parece ser una problemática sustantiva al momento de hacer un análisis de gobiernos locales en Chile.</p>
 <p>Las geometrías <code>geom_bar</code> o <code>geom_col</code>, <code>geom_density</code> y <code>geom_histogram</code> no suelen llevar el eje y explicitado en las estéticas, ya que son un conteo sobre el eje x. Aun así, uno puede modificar el eje y en estas geometrías aplicando algún tipo de transformación. Por ejemplo, al especificar <code>y = ..prop..</code> como estética dentro del objeto geométrico, estamos ordenando el cálculo de la proporción, no la cuenta. Normalmente, usaremos <code>aes()</code> en conjunto con los datos en <code>ggplot()</code>, pero dependiendo de la preferencia que tengas, es posible usarlo también con los <code>geom</code>. Esto último es más común cuando ocupamos más de una base de datos o cuando queremos hacer algún tipo de transformación.</p>
 <p>Por ejemplo, nos podria interesar el número de autoridades locales por zona geográfica. Para eso, nos sería útil usar la proporción, ya que cada zona geográfica está compuesta por una diferente cantidad de comunas. De esta forma, comparar la situación entre zonas sería más simple.</p>
 <pre class="sourceCode r"><code class="sourceCode r">plot_a <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> ..prop.., <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>)</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-16-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Pero, ¿por qué ocupamos <code>group = 1</code>?</p>
 <p>Cuando queremos calcular la proporción con <code>y = ..prop..</code>, tenemos que tener un cuidado especial si estamos usando <code>facet_wrap</code>. Esta función no la calcula en base a la suma de ambos géneros por zona, sino en base a sí misma. Por ejemplo, esta función registra que hay 89 hombres electos y 13 mujeres electas en el Norte Grande y concluye que “en el Norte Grande los 89 hombres corresponden al 100% de hombres electos, y las 13 mujeres corresponden al 100% de mujeres electas”. Claramente, eso no es lo que queremos lograr representar en este grafico. Por esa razón, utilizamos <code>group = 1</code>. Intenta ver el resultado sin <code>group = 1</code> para ver qué resulta.</p>
 <p>¡Ahora sí lo logramos! Vemos que no hay grandes diferencias, siendo el “Norte Chico” el que cuenta con más mujeres en la alcaldía en relación a los hombres, algo que podría resultar hasta contraintuitivo. A pesar de esto, no hay grandes diferencias de zona a zona y parece que se replicaran los resultados que vimos en nuestro primer gráfico de barras.</p>
@@ -558,7 +558,7 @@ plot_a <span class="op">+</span><span class="st"> </span><span class="kw">geom_b
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Proporción de mujeres y hombres electos alcaldes (2004-2012)</span><span class="ch">\n</span><span class="st">Por zonas económicas de Chile&quot;</span>, 
        <span class="dt">x =</span> <span class="st">&quot;Género&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proporción&quot;, </span>
 <span class="st">       caption = &quot;</span>Fuente<span class="op">:</span><span class="st"> </span>base de elaboración propia con datos del SERVEL y <span class="kw">SINIM</span> (<span class="dv">2018</span>)<span class="st">&quot;) </span></code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Ahora, sólo nos falta agregar las etiquetas del eje x. Eso lo podemos hacer fácilemente con <code>scale_x_discrete</code>. Tienes que tener en consideración qué estética de <code>aes()</code> modificarás, ya que eso cambiará el <code>scale</code> que necesites. Si estuviéramos viendo las etiquetas de <code>fill</code>, tendríamos que usar <code>scale_fill_discrete</code>, por ejemplo. También tienes que tener en consideración qué tipo de variable estás usando. Que <code>scale_x_dicrete</code> tenga “discrete” al final no es una decisión aleatoria. Como comprenderás, depende totalmente del tipo de variable que estemos manejando.</p>
 <pre class="sourceCode r"><code class="sourceCode r">plot_a <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> ..prop.., <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span>
@@ -567,7 +567,7 @@ plot_a <span class="op">+</span><span class="st"> </span><span class="kw">geom_b
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Proporción de mujeres y hombres electos alcaldes (1992-2012)</span><span class="ch">\n</span><span class="st">Por zonas económicas de Chile&quot;</span>, 
        <span class="dt">x =</span> <span class="st">&quot;Género&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proporción&quot;, </span>
 <span class="st">       caption = &quot;</span>Fuente<span class="op">:</span><span class="st"> </span>base de elaboración propia con datos del SERVEL y <span class="kw">SINIM</span> (<span class="dv">2018</span>)<span class="st">&quot;) </span></code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-19-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Con <code>labels</code> podemos cambiar las etiquetas. Ten en consideración el número de <code>breaks</code> de tu variable categórica para que calcen a la perfección y no te sobre (o te falte) alguna categoría.</p>
 </div>
 <div id="grafico-de-linea" class="section level3">
@@ -578,17 +578,17 @@ plot_a <span class="op">+</span><span class="st"> </span><span class="kw">geom_b
 
 plot_b <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>()</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-20-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-19-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>El problema es que no nos entrega el resultado esperado. La intuición es correcta, pero nosotros tenemos que ayudar a <code>geom_line</code> con ciertas especificaciones. <code>geom_line</code> agrupa las observaciones para crear el gráfico de línea. En este caso, las agrupa por lo que cree tiene más sentido: el año. Por esta razón, tenemos que especificar cuál es la variable que agrupa toda la información y, como sabemos, la información que tenemos está agrupada por municipio. Cuando agregamos esta información como <code>geom_lines(aes(group = comuna))</code>, el resultado cambia y se asemeja a lo que buscábamos:</p>
 <pre class="sourceCode r"><code class="sourceCode r">plot_b <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">group =</span> comuna))</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-21-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-20-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Uno de los problemas que surge a primera vista es que, considerando que Chile tiene 345 comunas, parece imposible tenerlas todas en un solo gráfico.</p>
 <p>Ahora, podemos separar el gráfico como lo habíamos hecho anteriormente. Se puede hacer por zona o por región, pensando en cuál resultado te interesa más. Ya que hemos visto diferentes resultados por zonas, sería interesante ver el ingreso de la misma manera.</p>
 <pre class="sourceCode r"><code class="sourceCode r">plot_b <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> comuna)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>)</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-22-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-21-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Como son pocos los años que tenemos en la muestra, no podemos ver mucha variabilidad y a primera vista, parece que los ingresos de todos los municipios han incrementado considerablemente. Quizás, podemos seguir mejorando nuestro gráfico. Probablemente, no estés muy familiarizado con la notación científica y te sientes más cómodo leyendo números más grandes. Quizás sabes que es mejor trabajar todo tipo de variable monetaria con su transformación logarítmica, como nos han enseñado en diferentes cursos de métodología. Puede, también, que quieras agregar otro tipo de información a este gráfico, como por ejemplo, las medias.</p>
 <p>¿Qué te parece el siguiente gráfico?</p>
 <pre class="sourceCode r"><code class="sourceCode r">medias &lt;-<span class="st"> </span>municipios_chile <span class="op">%&gt;%</span><span class="st"> </span>
@@ -605,7 +605,7 @@ plot_b <span class="op">+</span><span class="st"> </span>
        <span class="dt">y =</span> <span class="st">&quot;Ingresos&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Años&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;lines&quot;</span>))</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-23-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-22-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>¿Qué especificamos?</p>
 <ol style="list-style-type: decimal">
 <li>Primero, creamos una base de datos (“medias”) que contiene los promedios de ingresos por cada zona. Esto lo hicimos utilizando <code>group_by</code> y <code>summarise</code> del <code>tidyverse</code>.</li>
@@ -642,17 +642,17 @@ plot_b <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year, <span class="dt">ncol =</span> <span class="dv">1</span>)
 
 plot_c</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-25-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-24-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Uno de los problemas que podríamos tener con este gráfico, es que no nos permite observar bien los outliers, ya que la expansión del eje y es muy pequeña. Para solucionar esto podemos usar <code>coord_flip</code>, una función que nos permite dar vuelta los ejes de nuestro gráfico:</p>
 <pre class="sourceCode r"><code class="sourceCode r">plot_c <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">coord_flip</span>() </code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-26-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-25-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Ahora ya podemos observar mejor algunos de los <em>outliers</em> presentes. Quizás, después de ver estos resultados, nos gustaría identificar qué comunas son las que reciben más ingresos totales. Para eso podemos usar otra estética, <code>label</code> dentro de <code>geom_text</code>. Para nombrar sólo los outliers, tenemos que hacer un subset de los datos.</p>
 <pre class="sourceCode r"><code class="sourceCode r">plot_c <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data    =</span> municipios_chile <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ingresos <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000000</span>),
             <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> comuna))</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-26-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Lamentablemente, las etiquetas están por encima de los puntos y, en algunos casos, se pierden cuando estos están muy juntos. Una de las soluciones es con el paquete <code>ggrepel</code> que tiene el elemento geométrico <code>geom_text</code> “mejorado” para que las etiquetas no choquen entre sí. También, cambiaremos el color de las letras para que sea posible leerlas sin mayor dificultad. Como ven, este <code>color</code> va afuera de la estética de <code>geom_text_repel</code>, ya que definimos el color para todo el objeto. Cuando va dentro de <code>aes()</code>, el color se modifica según la candidad de, por ejemplo, ingresos o por el tipo de, por ejemplo, zona.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggrepel)
 
@@ -661,7 +661,7 @@ plot_c <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="dt">data    =</span> municipios_chile <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">                    </span><span class="kw">filter</span>(ingresos <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000000</span>),
                   <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> comuna), <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-28-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>El corte puede ser en los $50.000.000 o en números más grandes o más pequeños. Depende completamente de lo que queremos observar. Además, con <code>geom_text</code> o <code>geom_text_repel</code> no solo puedes modificar el color, sino también el el tipo de fuente de la letra, o si debe estar en negrita, cursiva o subrayada. Para ver más opciones, debes ingresar <code>?geom_text</code> o llamar a <code>help(&quot;geom_text&quot;)</code>.</p>
 <p>También podríamos agregar otro tipo de información o cambiar cómo está presentado lo que ya tenemos.</p>
 <pre class="sourceCode r"><code class="sourceCode r">plot_c <span class="op">+</span><span class="st"> </span>
@@ -676,7 +676,7 @@ plot_c <span class="op">+</span><span class="st"> </span>
        <span class="dt">x =</span> <span class="st">&quot;Ingresos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Zona&quot;</span>, 
        <span class="dt">caption =</span> <span class="st">&quot;Fuente: Elaboración propia en base a datos del SINIM (2018)&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> F)</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-29-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-28-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>Otras especificaciones:</p>
 <ol style="list-style-type: decimal">
 <li><p>Agregamos la información descriptiva del gráfico.</p></li>
@@ -695,7 +695,7 @@ plot_c <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()
 <span class="co">## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span>
 <span class="co">## Warning: Removed 7 rows containing non-finite values (stat_bin).</span></code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-30-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-29-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Como podemos observar, el gráfico nos tira un “Warning” que nos indica que hay “738 filas que contienen valores no-finitos”. Esta advertencia se ha repetido constantemente durante el capítulo, y no quiere decir nada más que “Hay valores 0 o desconocidos dentro de esta variable” y se debe, como sabemos, a que los primeros periodos no cuentan con información. Así que tranquilo, si filtráramos los datos con <code>filter(!is.na(ingresos))</code> lo más seguro es que la advertencia desaparezca.</p>
 <p>También, la consola nos dice este mensaje: <em><code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code></em>. Simplemente, nos dice que es posible modificar el número de intervalos.</p>
 <p>Lo siguiente que haré será modificar el eje x. Nunca se me ha dado bien leer los números con la notación científica. Por otro lado, probaremos cambiando el número de intervalos con <code>bins</code>.</p>
@@ -704,7 +704,7 @@ plot_c <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) 
 <span class="co">## Warning: Removed 7 rows containing non-finite values (stat_bin).</span></code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-31-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-30-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>¿Qué pasa cuando ponemos <code>bins = 15</code> intervalos?</p>
 <p>Lo que haremos a continuación es hacer un subset de los datos. Teniendo en consideración el número de outliers que nos encontramos, eliminaremos los municipios que tienen ingresos mayores a los $50.000.000. También podemos ver la frecuencia por zona. Al igual que cuando ocupamos <code>color</code> con <code>geom_boxplot</code>, ocuparemos <code>fill</code> con <code>geom_histogram</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data    =</span> municipios_chile <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ingresos <span class="op">&lt;</span><span class="st"> </span><span class="dv">50000000</span>), 
@@ -714,7 +714,7 @@ plot_c <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Número de municipalidades según sus ingresos anuales (2004-2012)&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Ingresos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Número de municipios&quot;</span>, 
        <span class="dt">caption =</span> <span class="st">&quot;Fuente: Elaboración propia en base a datos del SINIM (2018)&quot;</span>)</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-32-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-31-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="relacion-entre-variables" class="section level3">
 <h3><span class="header-section-number">4.3.5</span> Relación entre variables</h3>
@@ -724,12 +724,12 @@ plot_c <span class="op">+</span><span class="st"> </span>
 <p>Para este tipo de gráfico, utilizamos <code>geom_smooth</code>. Con este objeto, puedes modificar la forma en que se relacionan las variables a través de <code>method</code>. Incluso puedes poner tu propia fórmula. Por defecto, viene especificada una relación lineal entre las variables, así que no es necesario escribirlo.</p>
 <pre class="sourceCode r"><code class="sourceCode r">plot_f <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>) </code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-34-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-33-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Se ve un poco vacío, ¿no? Normalmente, ocuparemos <code>geom_smooth</code> con otra figura geométrica <code>geom_point</code>, para indicar la posición de las comunas dentro del espacio. Ocuparemos <code>alpha</code> para que veamos la sobreposición de los puntos. Sin ser muchos, no hay problemas en ver cómo se distribuyen.</p>
 <pre class="sourceCode r"><code class="sourceCode r">plot_f <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>) </code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-35-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-34-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Ahora podríamos hacer dos especificaciones. Primero, pondremos el título y el nombre de los ejes. Segundo, en <code>geom_x_continuous</code> especificaremos donde tiene que empezar y terminar nuestro gráfico. Esto ya lo habíamos usado con <code>geom_line</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">plot_f <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span>
@@ -738,7 +738,7 @@ plot_c <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Relación entre ingresos y porcentaje de pobreza CASEN, Chile (2004-2012)&quot;</span>, 
        <span class="dt">x =</span> <span class="st">&quot;Porcentaje de Pobreza CASEN&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Ingresos&quot;</span>, 
        <span class="dt">caption =</span> <span class="st">&quot;Fuente: Elaboración propia en base a datos del SINIM (2018)&quot;</span>) </code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-36-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-35-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Claramente, hay una correlación negativa entre ambas variables. Era lo que esperábamos. Ahora, podemos calcular la correlación entre ambas para estar más seguros de los resultados obtenidos:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(municipios_chile<span class="op">$</span>casen, municipios_chile<span class="op">$</span>ingresos, 
     <span class="dt">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span>)
@@ -752,7 +752,7 @@ plot_c <span class="op">+</span><span class="st"> </span>
        <span class="dt">x =</span> <span class="st">&quot;Porcentaje de Pobreza CASEN&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Ingresos&quot;</span>, 
        <span class="dt">caption =</span> <span class="st">&quot;Fuente: Elaboración propia en base a datos del SINIM (2018)&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">50</span>, <span class="dt">y =</span> <span class="dv">15</span>, <span class="dt">label =</span> <span class="st">&quot;Correlación:</span><span class="ch">\n</span><span class="st">-0.27&quot;</span>)</code></pre>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-38-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-37-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="para-seguir-aprendiendo" class="section level2">
@@ -778,9 +778,14 @@ Figura 4.5: Gráfico de barras diferenciando la mortalidad de los soldados brit�
 <p>Si estudias redes y conoces el funcionamiento de <code>ggplot2</code>, este paquete puede convertirse en tu nuevo mejor amigo. Está hecho para todo tipo de datos relacionales, y si bien funciona con la lógica de <code>ggplot2</code>, tiene su propio conjunto de objetos geométricos, <em>facets</em>, entre otros. <a href="https://github.com/thomasp85/ggraph">Aquí</a> puedes encontrar más información. En el capítulo de análisis de redes del libro, el <a href="redes.html#redes">13</a>,</p>
 <div class="books">
 <p>
-<strong>Ejercicios antes de continuar al próximo capítulo</strong> - Ya sabes como hacer gráficos y, por básico que parezca, ahora cuentas con muchas herramientas para seguir trabajando. Pero hay algunas cosas que se quedaron en el tintero:
+<strong>Ejercicios antes de continuar al próximo capítulo</strong>
 </p>
 <ul>
+<li>
+<p>
+Ya sabes como hacer gráficos y, por básico que parezca, ahora cuentas con muchas herramientas para seguir trabajando. Pero hay algunas cosas que se quedaron en el tintero:
+</p>
+</li>
 <li>
 <p>
 Ya vimos cómo hacer un histograma, aun así, los gráficos de densidad suelen ser más usados para ver la distribución de una variable. Utilizando las mismas variables, haz un gráfico de densidad con <code>geom_density()</code>.

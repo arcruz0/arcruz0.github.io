@@ -749,8 +749,9 @@ texreg::screenreg(list(modelo_incompleto, e_modelo_imputado))
 ¡Esperamos que hayas encontrado útil el capítulo! Si te interesa profundizar sobre el trabajo con valores faltantes te recomendamos que leas el texto de James Honaker y Gary King ["What to do About Missing Values in Time Series Cross-Section Data" American Journal of Political Science Vol. 54, No. 2 (April, 2010): Pp. 561-581.](http://gking.harvard.edu/files/pr.pdf).
 
 <div class="books">
-<p><strong>Ejercicios antes de continuar al próximo capítulo</strong> - A la base que hemos llamado <code>base_unida</code> agregale una variable de tu elección bajada de Worldwide Governance Indicators. Usa el paquete <code>coutrycode</code> para unir las variables.</p>
+<p><strong>Ejercicios antes de continuar al próximo capítulo</strong></p>
 <ul>
-<li>En vez de 4 imputaciones, repite el ejercicio de utilizar datos imputados para modelos de regresión pero esta vez con 6 imputaciones.</li>
+<li><p>A la base que hemos llamado <code>base_unida</code> agregale una variable de tu elección bajada de Worldwide Governance Indicators. Usa el paquete <code>coutrycode</code> para unir las variables.</p></li>
+<li><p>En vez de 4 imputaciones, repite el ejercicio de utilizar datos imputados para modelos de regresión pero esta vez con 6 imputaciones.</p></li>
 </ul>
 </div>

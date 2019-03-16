@@ -413,7 +413,7 @@ Figura 8.2: Diferentes riesgos de base en el modelo de Weibull
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
 <img src="00-images/surv_fig_10_3.png" alt="Valores de poliarquía para Colombia según V-Dem" width="600" />
 <p class="caption">
-Figura 3.1: Valores de poliarquía para Colombia según V-Dem
+Figura 8.3: Valores de poliarquía para Colombia según V-Dem
 </p>
 </div>
 <p>La ventaja del modelo de Cox sobre sus contrapartes paramétricas es que existen tests para saber si alguna variable de nuestro modelo rompe el presupuesto de proporcionalidad de los riesgos, y de esa forma podremos corregirlo generando interacciones entre estas variables y variables temporales. De esta forma, permitimos que en nuestro modelo haya dos tipos de coeficientes: coeficientes constantes en el tiempo, y coeficientes cambiantes en el tiempo. Por ejemplo, podemos imaginar que ante un aumento brusco en la calidad de las instituciones democráticas de un país la tasa de riesgo de implementar democracia directa se dispare, pero que dicho efecto de desvanezca en el lapso de cuatro o cinco años. Cuando definas tu modelo, es importante que reflexiones sobre qué variables puede asumirse que permanezcan constantes en los riesgos y cuales no.</p>
@@ -652,7 +652,7 @@ gantt_plot</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-19"></span>
 <img src="surv_files/figure-html/unnamed-chunk-19-1.png" alt="Diagrama de Gantt para todas las observaciones" width="672" />
 <p class="caption">
-Figura 8.3: Diagrama de Gantt para todas las observaciones
+Figura 8.4: Diagrama de Gantt para todas las observaciones
 </p>
 </div>
 <p>En el eje vertical tenemos los países ordenados alfabeticamente, y en el eje x hay dos variables que informan al gráfico, por un lado el comienzo de la línea (<code>year_enters</code>) y por otro su fin (<code>year_exits</code>). Además, hay una tercer variable informativa que es el color de la línea, que denota si el país implementó o no una instancia de democracia directa (<code>exits_bc_dd</code>). Los países en azul son los que implementaron dicha instancia entre 1900 y 2016.</p>
@@ -668,7 +668,7 @@ gantt_plot_sa</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-20"></span>
 <img src="surv_files/figure-html/unnamed-chunk-20-1.png" alt="Diagrama de Gantt para América del Sur" width="480" />
 <p class="caption">
-Figura 8.4: Diagrama de Gantt para América del Sur
+Figura 8.5: Diagrama de Gantt para América del Sur
 </p>
 </div>
 <p>Podemos agregarle los años como texto para mejorar aún más la lectura de la figura:</p>
@@ -680,7 +680,7 @@ gantt_plot_sa</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-21"></span>
 <img src="surv_files/figure-html/unnamed-chunk-21-1.png" alt="Diagrama de Gantt para América del Sur con todas las mejoras" width="480" />
 <p class="caption">
-Figura 8.5: Diagrama de Gantt para América del Sur con todas las mejoras
+Figura 8.6: Diagrama de Gantt para América del Sur con todas las mejoras
 </p>
 </div>
 <p>Finalmente, algunos retoques estéticos, con todo lo que hemos aprendido en el Capítulo <a href="dataviz.html#dataviz">4</a>:</p>
@@ -695,7 +695,7 @@ gantt_plot_sa</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-22"></span>
 <img src="surv_files/figure-html/unnamed-chunk-22-1.png" alt="Diagrama de Gantt para todas las observaciones" width="480" />
 <p class="caption">
-Figura 8.6: Diagrama de Gantt para todas las observaciones
+Figura 8.7: Diagrama de Gantt para todas las observaciones
 </p>
 </div>
 <p>Además de gráficos de Gantt, es muy común que quien trabaja con modelos de supervivencia muestre gráficos con las curvas de supervivencia comparando dos grupos de interés. Por ejemplo, David Altman se pregunta si hubo una diferencia en el siglo XX entre países que se democratizaron rápidamente y aquellos que demoraron décadas en hacerlo respecto a la rapidez con que implementaron mecanismos de democracia directa. Este tipo de figuras no tiene valor inferencial, pero si gran valor decriptivo. Tenemos que estimar una curva de supervivencia no paramétrica, usando el método de Kaplan-Meier.</p>
@@ -757,7 +757,7 @@ km &lt;-<span class="st"> </span><span class="kw">survfit</span>(<span class="kw
 <div class="figure" style="text-align: center"><span id="fig:kaplan"></span>
 <img src="surv_files/figure-html/kaplan-1.png" alt="Curva de Kaplan-Meier" width="1056" />
 <p class="caption">
-Figura 8.7: Curva de Kaplan-Meier
+Figura 8.8: Curva de Kaplan-Meier
 </p>
 </div>
 <p>Altman tiene la hipótesis de que países que sufrieron “shocks” democratizadores fueron mucho más rápidos en implementar mecanismos directos. La figura confirma su intuición, pues vemos que la probabilidad de supervivencia de un país (léase como la probabilidad de que persista sin implementar mecanismos de democracia directa) se reduce a la mitad en los primeros cuatro años que siguien al shock democratizador. Por el contrario, países que se democratizan de a poco, no sufren este efecto.</p>

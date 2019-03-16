@@ -569,7 +569,7 @@ Primero eliminamos estos datos de la base</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-20"></span>
 <img src="manejo-av_files/figure-html/unnamed-chunk-20-1.png" alt="A la figura le faltan los datos de Estados Unidos entre 1950 y 1970" width="480" />
 <p class="caption">
-Figura 9.3: A la figura le faltan los datos de Estados Unidos entre 1950 y 1970
+Figura 8.5: A la figura le faltan los datos de Estados Unidos entre 1950 y 1970
 </p>
 </div>
 <p>Es importante en este punto hacer la reflexión del tipo de datos faltantes que tenemos. Vamos a suponer que no habría motivos para asumir que esos datos faltasen en la base, por lo tanto son faltantes aleatoriamente. Para hacer la imputación vamos a usar <code>Amelia</code>.</p>
@@ -651,7 +651,7 @@ Figura 9.3: A la figura le faltan los datos de Estados Unidos entre 1950 y 1970
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-27"></span>
 <img src="manejo-av_files/figure-html/unnamed-chunk-27-1.png" alt="Los valores entre 1950 y 1970 para EEUU han sido imputados con `Amelia`" width="480" />
 <p class="caption">
-Figura 9.4: Los valores entre 1950 y 1970 para EEUU han sido imputados con <code>Amelia</code>
+Figura 9.3: Los valores entre 1950 y 1970 para EEUU han sido imputados con <code>Amelia</code>
 </p>
 </div>
 <p>Ahora haremos la simulación definiendo cuatro imputaciones en vez de una. Para ello, repetiremos el proceso, con la única diferencia que en la opción <code>m</code> indicaremos 4 en vez de 1.</p>
@@ -767,14 +767,14 @@ datos_imputados_<span class="dv">4</span>&lt;-imputado_m4<span class="op">$</spa
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-32"></span>
 <img src="manejo-av_files/figure-html/unnamed-chunk-32-1.png" alt="Esta figura refleja las cuatro imputaciones que hicimos con `amelia` junto a su promedio" width="480" />
 <p class="caption">
-Figura 9.5: Esta figura refleja las cuatro imputaciones que hicimos con <code>amelia</code> junto a su promedio
+Figura 6.8: Esta figura refleja las cuatro imputaciones que hicimos con <code>amelia</code> junto a su promedio
 </p>
 </div>
 <p>Es importante repetir aquí que el ejercicio de imputación cuando hagamos trabajos descriptivos es diferente al ejercicio cuando imputemos para rodar regresiones.</p>
 <div class="figure" style="text-align: center"><span id="fig:imp"></span>
 <img src="00-images/imputa_1.PNG" alt="El proceso de imputación para análisis visual se hace luego de promediar las imputaciones que hayamos pedido a Amelia" width="60%" />
 <p class="caption">
-Figura 9.6: El proceso de imputación para análisis visual se hace luego de promediar las imputaciones que hayamos pedido a Amelia
+Figura 9.4: El proceso de imputación para análisis visual se hace luego de promediar las imputaciones que hayamos pedido a Amelia
 </p>
 </div>
 <p>De esta forma hemos visto como completar bases de datos con valores faltantes, ya sea mediante una o más imputaciones usando <code>amelia</code>.</p>
@@ -866,7 +866,7 @@ En este caso no hay una diferencia notable entre las tres opciones. Cuando la ca
 <div class="figure" style="text-align: center"><span id="fig:imputa3"></span>
 <img src="00-images/imputa_2.PNG" alt="El proceso de imputación para análisis de regresión consiste en promediar los coeficientes de los datos imputados, no promediar las bases imputadas." width="60%" />
 <p class="caption">
-Figura 9.7: El proceso de imputación para análisis de regresión consiste en promediar los coeficientes de los datos imputados, no promediar las bases imputadas.
+Figura 9.5: El proceso de imputación para análisis de regresión consiste en promediar los coeficientes de los datos imputados, no promediar las bases imputadas.
 </p>
 </div>
 <p>Primero, veamos como se ve la regresión con los datos incompletos para Estados Unidos. Estaremos explicando el índice CINC de cada país por las variables <code>pec</code> y <code>upop</code>.</p>
@@ -957,11 +957,18 @@ e_modelo_imputado<span class="op">@</span>pvalues &lt;-<span class="st"> </span>
 <p>¡Esperamos que hayas encontrado útil el capítulo! Si te interesa profundizar sobre el trabajo con valores faltantes te recomendamos que leas el texto de James Honaker y Gary King <a href="http://gking.harvard.edu/files/pr.pdf">“What to do About Missing Values in Time Series Cross-Section Data” American Journal of Political Science Vol. 54, No. 2 (April, 2010): Pp. 561-581.</a>.</p>
 <div class="books">
 <p>
-<strong>Ejercicios antes de continuar al próximo capítulo</strong> - A la base que hemos llamado <code>base_unida</code> agregale una variable de tu elección bajada de Worldwide Governance Indicators. Usa el paquete <code>coutrycode</code> para unir las variables.
+<strong>Ejercicios antes de continuar al próximo capítulo</strong>
 </p>
 <ul>
 <li>
+<p>
+A la base que hemos llamado <code>base_unida</code> agregale una variable de tu elección bajada de Worldwide Governance Indicators. Usa el paquete <code>coutrycode</code> para unir las variables.
+</p>
+</li>
+<li>
+<p>
 En vez de 4 imputaciones, repite el ejercicio de utilizar datos imputados para modelos de regresión pero esta vez con 6 imputaciones.
+</p>
 </li>
 </ul>
 </div>
