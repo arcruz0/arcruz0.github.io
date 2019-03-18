@@ -2,13 +2,14 @@
 --- 
 title: "AnalizaR Datos Políticos"
 author: "Francisco Urdinez y Andrés Cruz Labrín (editores)"
-date: "16 de marzo de 2019; versión 0.1"
+date: "15 de marzo de 2019; versión 0.1"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
     split_by: chapter
     includes:
       in_header: style.html
+    highlight: espresso
   # bookdown::pdf_book:
   #   keep_tex: yes
   #   includes: 
@@ -29,7 +30,14 @@ favicon: "favicon.ico"
 
 **AnalizaR Datos Políticos** es un libro que podrás usar como manual de referencia cuando estés quebrandote la cabeza usando `R`. Por eso, decidimos que sea más aplicado que teórico, y hemos considerado tanto temas de ciencia política como de relaciones internacionales. De ahí el subtítulo del libro: "Manual aplicado para politólogos y relacionistas internacionales en R". Una gran ventaja del libro es que utiliza para cada tarea la opción más actualizada y sencilla disponible en la red. ¡Además, ocupa cada vez que es posible el `tidyverse`, el grupo de paquetes que ha revolucionado el uso de `R` recientemente por su sencillez!
 
-Inspirado por el concepto de libro digital llamado [bookdown](https://github.com/rstudio/bookdown) y la filosofía de software libre y de código abierto, este libro es de uso libre y gratuito. Esto garantiza que sus contenidos sean reproducibles y accesibles públicamente para personas de todo el mundo. La versión del libro que estás leyendo ahora (0.1) se construyó el 16 de marzo de 2019. A medida que el libro reciba retroalimentación de los usuarios, iremos actualizando los contenidos. 
+Construido gracias a la tecnología de libro digital llamada [bookdown](https://github.com/rstudio/bookdown) e inspirado por la filosofía de software libre y código abierto, este libro es de uso libre y gratuito. Esto garantiza que sus contenidos sean reproducibles y accesibles públicamente para personas de todo el mundo. La versión del libro que estás leyendo ahora (0.1) se construyó el 15 de marzo de 2019. A medida que el libro reciba retroalimentación de los usuarios, iremos actualizando los contenidos. 
+
+<hr>
+
+<img src="00-images/index/cc.png" width="15%" style="display: block; margin: auto auto auto 0;" />
+Este libro digital se encuentra bajo una licencia [Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es).
+
+<hr>
 
 ## ¿Cómo contribuir?
 

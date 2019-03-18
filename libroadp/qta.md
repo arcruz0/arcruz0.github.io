@@ -72,16 +72,16 @@ skim(tweets_dips_chile)
 ##  n obs: 9758 
 ##  n variables: 11 
 ## 
-## ── Variable type:character ──────────────────
+## ── Variable type:character ──────────────────────────────
 ##        variable missing complete    n min max empty n_unique
 ##       coalicion       0     9758 9758   2   4     0        7
 ##  [ reached getOption("max.print") -- omitted 7 rows ]
 ## 
-## ── Variable type:numeric ────────────────────
+## ── Variable type:numeric ────────────────────────────────
 ##     variable missing complete    n  mean   sd p0 p25 p50 p75 p100     hist
 ##  [ reached getOption("max.print") -- omitted 2 rows ]
 ## 
-## ── Variable type:POSIXct ────────────────────
+## ── Variable type:POSIXct ────────────────────────────────
 ##    variable missing complete    n        min        max     median
 ##  created_at       0     9758 9758 2018-05-01 2018-06-10 2018-05-23
 ##  n_unique

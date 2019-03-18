@@ -133,11 +133,11 @@ skim(dem_directa)
 ##  n obs: 13885 
 ##  n variables: 23 
 ## 
-## ── Variable type:character ──────────────────
+## ── Variable type:character ──────────────────────────────
 ##      variable missing complete     n min max empty n_unique
 ##  country_name       0    13885 13885   4  32     0      202
 ## 
-## ── Variable type:numeric ────────────────────
+## ── Variable type:numeric ────────────────────────────────
 ##              variable missing complete     n      mean    sd        p0
 ##        p25     p50      p75    p100     hist
 ##  [ reached getOption("max.print") -- omitted 22 rows ]

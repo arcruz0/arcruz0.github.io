@@ -420,7 +420,7 @@ skim(vars_modelo_3)
 ##  n obs: 2216 
 ##  n variables: 3 
 ## 
-## ── Variable type:numeric ────────────────────
+## ── Variable type:numeric ────────────────────────────────
 ##  variable missing complete    n  mean    sd p0 p25 p50 p75 p100     hist
 ##  [ reached getOption("max.print") -- omitted 3 rows ]
 ```

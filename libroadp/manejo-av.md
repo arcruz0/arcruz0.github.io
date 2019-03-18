@@ -33,12 +33,12 @@ Para ejemplificar este ejercicio vamos a usar la base de datos sobre tratados in
 
 ```r
 library(tidyverse)
-## ── Attaching packages ──── tidyverse 1.2.1 ──
+## ── Attaching packages ──────────────── tidyverse 1.2.1 ──
 ## ✔ ggplot2 3.1.0       ✔ purrr   0.3.1  
 ## ✔ tibble  2.0.1       ✔ dplyr   0.8.0.1
 ## ✔ tidyr   0.8.3       ✔ stringr 1.4.0  
 ## ✔ readr   1.3.1       ✔ forcats 0.4.0
-## ── Conflicts ─────── tidyverse_conflicts() ──
+## ── Conflicts ─────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ```
@@ -71,12 +71,12 @@ skimr::skim(tratados_int)
 ##  n obs: 300 
 ##  n variables: 6 
 ## 
-## ── Variable type:character ──────────────────
+## ── Variable type:character ──────────────────────────────
 ##            variable missing complete   n min max empty n_unique
 ##  action_type_string       0      300 300   8  23     0        7
 ##  [ reached getOption("max.print") -- omitted 3 rows ]
 ## 
-## ── Variable type:Date ───────────────────────
+## ── Variable type:Date ───────────────────────────────────
 ##       variable missing complete   n        min        max     median
 ##    action_date     211       89 300 1996-09-24 2016-03-03 1999-03-23
 ##  n_unique
@@ -311,11 +311,11 @@ skimr::skim(cinc_cow2)
 ##  n obs: 14124 
 ##  n variables: 12 
 ## 
-## ── Variable type:character ──────────────────
+## ── Variable type:character ──────────────────────────────
 ##  variable missing complete     n min max empty n_unique
 ##  stateabb    1937    12187 14124   3   3     0      159
 ## 
-## ── Variable type:numeric ────────────────────
+## ── Variable type:numeric ────────────────────────────────
 ##  variable missing complete     n        mean           sd         p0
 ##         p25        p50         p75          p100     hist
 ##  [ reached getOption("max.print") -- omitted 11 rows ]
