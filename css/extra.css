@@ -1,0 +1,20 @@
+.feather-32{
+    width: 32px;
+    height: 32px;
+}
+
+a .feather-32 {
+color: #212529;
+}
+
+#footer {
+  font-size: 90%;
+}
+
+* {
+  font-family: 'Merriweather', serif;
+}
+
+.jumbotron{
+  padding: 3rem; 3rem;
+}
