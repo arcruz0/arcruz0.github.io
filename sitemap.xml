@@ -3,21 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/about/</loc>
+    <loc>https://arcruz0.github.io/about/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://arcruz0.github.io/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/proyectos/</loc>
+    <loc>https://arcruz0.github.io/proyectos/</loc>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://arcruz0.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   
