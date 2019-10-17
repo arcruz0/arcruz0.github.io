@@ -67,66 +67,41 @@ for (var i = 0, linksLength = links.length; i < linksLength; i++) {
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    background-color: #2a211c;
-    color: #bdae9d;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
-div.sourceCode
-  { color: #bdae9d; background-color: #2a211c; }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ffff00; } /* Alert */
-code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { } /* Attribute */
-code span.bn { color: #44aa43; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #049b0a; } /* Char */
-code span.cn { } /* Constant */
-code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
-code span.do { color: #0066ff; font-style: italic; } /* Documentation */
-code span.dt { text-decoration: underline; } /* DataType */
-code span.dv { color: #44aa43; } /* DecVal */
-code span.er { color: #ffff00; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #44aa43; } /* Float */
-code span.fu { color: #ff9358; font-weight: bold; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
-code span.op { } /* Operator */
-code span.pp { font-weight: bold; } /* Preprocessor */
-code span.sc { color: #049b0a; } /* SpecialChar */
-code span.ss { color: #049b0a; } /* SpecialString */
-code span.st { color: #049b0a; } /* String */
-code span.va { } /* Variable */
-code span.vs { color: #049b0a; } /* VerbatimString */
-code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #2a211c; color: #bdae9d; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #2a211c; color: #bdae9d; border-right: 1px solid #bdae9d; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #bdae9d; background-color: #2a211c; }
+code > span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code > span.dt { text-decoration: underline; } /* DataType */
+code > span.dv { color: #44aa43; } /* DecVal */
+code > span.bn { color: #44aa43; } /* BaseN */
+code > span.fl { color: #44aa43; } /* Float */
+code > span.ch { color: #049b0a; } /* Char */
+code > span.st { color: #049b0a; } /* String */
+code > span.co { color: #0066ff; font-style: italic; } /* Comment */
+code > span.al { color: #ffff00; } /* Alert */
+code > span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code > span.er { color: #ffff00; font-weight: bold; } /* Error */
+code > span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+code > span.cn { } /* Constant */
+code > span.sc { color: #049b0a; } /* SpecialChar */
+code > span.vs { color: #049b0a; } /* VerbatimString */
+code > span.ss { color: #049b0a; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code > span.op { } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code > span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code > span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -380,9 +355,9 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <p>Todas estas preguntas son sobre la duración de un evento. El momento de ocurrencia de un evento es parte de la respuesta que buscamos, necesitamos de un modelo que nos permita llegar a esta respuesta. <a href="https://polisci.osu.edu/people/steffensmeier.2">Janet Box-Steffensmeier</a>, una de las principales referencias en Ciencia Política de este método, se refiere a ellos como “modelos de eventos históricos” aunque buena parte de la literatura los llama modelos de supervivencia o modelos de duración. Si bien en la Ciencia Política no son modelos tan utilizados como uno creería (en el fondo, casi todas las preguntas que nos hacemos pueden ser reformuladas en una pregunta sobre la duración del evento), las ciencias médicas han explorado estos métodos en profundidad, y muchas las referencias que uno encuentra en <code>R</code> sobre paquetes accesorios a estos modelos son de departamentos bioestadísticos y médicos. De allí que “modelos de supervivencia” sea el nombre más frecuentemente utilizado para estos modelos, ya que en medicina comenzó a utilizárselos para modelar qué variables afectaban la sobrevida de sus pacientes enfermos.</p>
 <p>Podemos tener dos tipos de bases de datos para estos problemas. Por un lado podemos tener una base en formato de panel en el que para un momento dado nuestra variable dependiente codifica si el evento ha ocurrido (<span class="math inline">\(=1\)</span>) o no (<span class="math inline">\(=0\)</span>). Así, por ejemplo, podemos tener una muestra de veinte países para cincuenta años (1965-2015) en los que nuestra variable de interés es si el país ha implementado una reforma constitucional. La variable independiente asumirá el valor 1 para el año 1994 en Argentina, pero será 0 para el resto de los años en este país. Por otro lado, podemos tener una base de datos transversal en la que cada observación aparece codificada apenas una vez. En este caso necesitamos, además de la variable que nos dirá si en el periodo de interés el evento ocurrió o no para cada observación (por ejemplo, Argentina debería ser codificada como “1”), una variable extra que codifique el tiempo de “supervivencia” de cada observación, es decir, cuánto tiempo pasó hasta que finalmente el evento sucedió. Para el caso de Argentina, esta variable codificará 29 (años), que es lo que demoró en implementarse una reforma constitucional desde 1965. La elección del año de partida, como podrá sospechar, es decisión del investigador, pero tiene un efecto enorme sobre nuestros resultados. Además, muchas veces la fecha de inicio acaba determinada por la disponibilidad de datos y se alejan del ideal que quisieramos modelar.</p>
 <p>Supongamos que nos hacemos la pregunta que se hizo <a href="https://www.cambridge.org/core/books/citizenship-and-contemporary-direct-democracy/5F2081B8D1FD8AE7C7B9D784D272ED33">David Altman</a>: “¿Por qué algunos países demoran menos que otros en implementar instancias de democracia directa?”. Para ello tenemos una base de datos en formato de panel que parte del año 1900 y que llega a 2016 para 202 países (algunas observaciones, como la Unión Soviética se transforman en otras observaciones a partir de un determinado año en que dejan de existir). Al observar sus datos uno nota algo que probablemente también te suceda en tu base de datos. Para el año 2016 apenas un pequeño porcentaje de países había implementado este tipo de mecanismos (27% para ser más precisos) pero la base está censurada ya que a partir de ese año no sabemos que ha ocurrido con los países que aún no han implementado mecanismos de democracia directa. No todas las observaciones han “muerto” aún, ¿cómo saber cuándo lo harán? Ésta es una pregunta válida, que podremos responder con este tipo de modelos, ya que podemos calcular el tiempo que demorará cada uno de los países censurados en nuestra muestra (con la información que le damos al modelo, que siempre es incompleta).</p>
-<p>En nuestra base de datos tendremos, al menos, cuatro tipos de observaciones (ver figura <a href="surv.html#fig:surv">8.1</a>): (a) aquellas que, para el momento en que tenemos datos ya estaban en la muestra, aunque no siempre sabremos hace cuanto que “existen”. Son, en la figura, las observaciones B y C. En la base de datos de Altman, por ejemplo, México ya existía como entidad política en 1900, cuando su base de datos parte (sabemos que la Primera República Federal existió como entidad política desde octubre de 1824, por lo que México sería codificado como existente a partir de esa fecha). También sabemos que en 2012, por primera vez, México implementó una iniciativa de democracia directa, lo que define como positiva la ocurrencia del evento que nos interesa medir. Así, México sería como la observación B de la figura; (b) Algunas observaciones estarán desde el comienzo de la muestra, y existirán hasta el último momento sin haber registrado el evento de interés. Tal es el caso, de la observación C en la figura. En la muestra de Altman un ejemplo sería Argentina, que desde 1900 está registrado en la base (ya había “nacido”), y hasta el último año de la muestra no había registrado instancias de democracia directa (no “murió”), lo que la transforma en una observación censurada. A los fines prácticos no cambia saber qué ocurrió a partir del año en que nuestra base termina. Por ejemplo, en la figura, nuestra base cubre hast <span class="math inline">\(t_7\)</span>, y sabemos que en <span class="math inline">\(t_8\)</span> la observación C aún no había muerto, y la observación D lo había hecho en <span class="math inline">\(t_8\)</span>. En nuestra base, C y D serán ambas observaciones censuradas en <span class="math inline">\(t_7\)</span>; (c) Algunas observaciones pueden entrar “tarde” en la muestra, como es el caso de las observaciones A y D. Por ejemplo, Eslovenia entra a la muestra de Altman en 1991, que es cuando se independiza de Yugoslavia y “nace” como país; (d) Algunas observaciones, independientemente de cuando entren a la muestra, “moriran” durante el periodo analizado. Por ejemplo, A y B mueren dentro del periodo que hemos medido entrte <span class="math inline">\(t_1\)</span> y <span class="math inline">\(t_7\)</span>. Ya para la observación D, no registramos su muerte. Hay un caso no considerado en el ejemplo, de observaciones que nacen y mueren sucesivamente a lo largo del periodo de estudio. Para ellas, deberemos decidir si las tratamos como observaciones independientes, o si modelamos la posibilidad de morir más de una vez. Si es así, la probabilidad de morir por segunda vez deberá estar condicionada por la probabilidad de haber muerto (y cuando!) por primera vez. Este es un tipo de caso algo más complejo que no cubriremos en este caoítulo.</p>
-<div class="figure" style="text-align: center"><span id="fig:surv"></span>
-<img src="00-images/surv_fig_10_1.PNG" alt="Ejemplos de observaciones presentes en una base de datos de supervivencia" width="70%" />
+<p>En nuestra base de datos tendremos, al menos, cuatro tipos de observaciones (ver figura <a href="#fig:surv"><strong>??</strong></a>): (a) aquellas que, para el momento en que tenemos datos ya estaban en la muestra, aunque no siempre sabremos hace cuanto que “existen”. Son, en la figura, las observaciones B y C. En la base de datos de Altman, por ejemplo, México ya existía como entidad política en 1900, cuando su base de datos parte (sabemos que la Primera República Federal existió como entidad política desde octubre de 1824, por lo que México sería codificado como existente a partir de esa fecha). También sabemos que en 2012, por primera vez, México implementó una iniciativa de democracia directa, lo que define como positiva la ocurrencia del evento que nos interesa medir. Así, México sería como la observación B de la figura; (b) Algunas observaciones estarán desde el comienzo de la muestra, y existirán hasta el último momento sin haber registrado el evento de interés. Tal es el caso, de la observación C en la figura. En la muestra de Altman un ejemplo sería Argentina, que desde 1900 está registrado en la base (ya había “nacido”), y hasta el último año de la muestra no había registrado instancias de democracia directa (no “murió”), lo que la transforma en una observación censurada. A los fines prácticos no cambia saber qué ocurrió a partir del año en que nuestra base termina. Por ejemplo, en la figura, nuestra base cubre hast <span class="math inline">\(t_7\)</span>, y sabemos que en <span class="math inline">\(t_8\)</span> la observación C aún no había muerto, y la observación D lo había hecho en <span class="math inline">\(t_8\)</span>. En nuestra base, C y D serán ambas observaciones censuradas en <span class="math inline">\(t_7\)</span>; (c) Algunas observaciones pueden entrar “tarde” en la muestra, como es el caso de las observaciones A y D. Por ejemplo, Eslovenia entra a la muestra de Altman en 1991, que es cuando se independiza de Yugoslavia y “nace” como país; (d) Algunas observaciones, independientemente de cuando entren a la muestra, “moriran” durante el periodo analizado. Por ejemplo, A y B mueren dentro del periodo que hemos medido entrte <span class="math inline">\(t_1\)</span> y <span class="math inline">\(t_7\)</span>. Ya para la observación D, no registramos su muerte. Hay un caso no considerado en el ejemplo, de observaciones que nacen y mueren sucesivamente a lo largo del periodo de estudio. Para ellas, deberemos decidir si las tratamos como observaciones independientes, o si modelamos la posibilidad de morir más de una vez. Si es así, la probabilidad de morir por segunda vez deberá estar condicionada por la probabilidad de haber muerto (y cuando!) por primera vez. Este es un tipo de caso algo más complejo que no cubriremos en este caoítulo.</p>
+<div class="figure" style="text-align: center"><span id="fig:surv-ej-obs"></span>
+<img src="00-images/surv/ej_obs.png" alt="Ejemplos de observaciones presentes en una base de datos de supervivencia" width="70%" />
 <p class="caption">
 Figura 8.1: Ejemplos de observaciones presentes en una base de datos de supervivencia
 </p>
@@ -400,17 +375,17 @@ Figura 8.1: Ejemplos de observaciones presentes en una base de datos de superviv
 <div id="el-modelo-cox-de-riesgos-proporcionales" class="section level2">
 <h2><span class="header-section-number">8.2</span> El modelo Cox de riesgos proporcionales</h2>
 <p>Hay dos tipos de modelos de supervivencia, los llamados modelos paramétricos y los llamados semi-parametricos. Los primeros son aquellos que hacen supuestos sobre las características de la población a la que la muestra pertenece. En este caso, los supuestos son sobre el “baseline hazard”, es decir, sobre el riesgo de que el evento ocurra cuando todas nuestras variables independientes sean iguales a cero. El tipo de modelo de surpervivencia más común para esta categoría es el modelo de Weibull. Por otro lado, los modelos semi-parametricos no hacen ningún tipo de supuestos sobre la función de base, ya que ésta es estimada a partir de los datos. El ejemplo más famoso de ésta especificación es la del modelo de Cox.</p>
-<p>El <em>Oxford Handbook</em> sobre metodología política dedica un capítulo entero a discutir modelos de supervivencia, y en el se toma una posición fuerte en favor de los modelos semi-parametricos. Aquí seguiremos dicha recomendación ya que las ventajas son varias. Por un lado, como no se hacen presupustos sobre la función del riesgo de base, su estimación es mucho más precisa. En una estimación paramétrica, elegir un “baseline hazard” equivocado siginificará que todo nuestro trabajo analítico estará sesgado. La decisión de la forma que adopta la curva de base en un modelo de Weibull debería estar orientado por razones teóricas de cuál es el efecto de nuestra variable independiente sobre la probabilidad de supervivencia de la observación (ver figura <a href="surv.html#fig:weibull">8.2</a>). Sin embargo, no siempre nuestra teoría define tales presupuestos. Elegir una especificación por Cox nos ahorra tomar una decisión tan costosa.</p>
-<div class="figure" style="text-align: center"><span id="fig:weibull"></span>
-<img src="00-images/surv_fig_10_2.png" alt="Diferentes riesgos de base en el modelo de Weibull" width="423" />
+<p>El <em>Oxford Handbook</em> sobre metodología política dedica un capítulo entero a discutir modelos de supervivencia, y en el se toma una posición fuerte en favor de los modelos semi-parametricos. Aquí seguiremos dicha recomendación ya que las ventajas son varias. Por un lado, como no se hacen presupustos sobre la función del riesgo de base, su estimación es mucho más precisa. En una estimación paramétrica, elegir un “baseline hazard” equivocado siginificará que todo nuestro trabajo analítico estará sesgado. La decisión de la forma que adopta la curva de base en un modelo de Weibull debería estar orientado por razones teóricas de cuál es el efecto de nuestra variable independiente sobre la probabilidad de supervivencia de la observación (ver figura <a href="#fig:weibull"><strong>??</strong></a>). Sin embargo, no siempre nuestra teoría define tales presupuestos. Elegir una especificación por Cox nos ahorra tomar una decisión tan costosa.</p>
+<div class="figure" style="text-align: center"><span id="fig:surv-riesgos"></span>
+<img src="00-images/surv/riesgos.png" alt="Diferentes riesgos de base en el modelo de Weibull"  />
 <p class="caption">
 Figura 8.2: Diferentes riesgos de base en el modelo de Weibull
 </p>
 </div>
 <p>Una segunda ventaja de los modelos semi-parametricos sobre los paramétricos tiene que ver con el presupuesto de riesgos proporcionales. Ambos, modelos paramétricos y semi-parametricos, asumen que los riesgos entre dos individuos cualquiera de la muestra se mantienen constantes a lo largo de todo su periodo de supervivencia. Es decir, se asume que la curva de riesgo de cada individuo sigue la misma curva en el tiempo. Este es un presupuesto fuerte para trabajos en ciencia política, ya que las observaciones cambian en el tiempo y se diferencian unas de otras. Piénsense en el trabajo de Altman, por ejemplo. Uno puede teorizar que la probabilidad de una iniciativa de democracia directa en un determinado año en un determinado país estará afectada por el nivel de solidez de las instituciones democráticas, que podemos medir con algún tipo de variable estándar como los 21 puntos de <a href="https://www.systemicpeace.org/polity/polity4.htm">Polity IV</a> o la más reciente medición de <a href="https://www.v-dem.net">V-Dem</a>. Podemos, entonces, teorizar que a mayor solidez institucional mayor probabilidad de implementar mecanismos de democracia directa.</p>
 <p>Sin embargo, los valores de estas variables no solo difieren ente países, sino que a lo largo del tiempo estas variables cambian mucho para un mismo país. Piénsese en Colombia, por ejemplo, en que la variable de V-Dem “v2x_polyarchy” sufrió avances y retrocesos entre 1900 y 2016 (ver figura 3). Cada vez que el valor de esta variable cambia, necesariamente cambia la tasa de riesgo de democracia directa para Colombia, rompiendo el presupuesto de proporcionalidad de los riesgos.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
-<img src="00-images/surv_fig_10_3.png" alt="Valores de poliarquía para Colombia según V-Dem" width="600" />
+<div class="figure" style="text-align: center"><span id="fig:poliarq"></span>
+<img src="00-images/surv/poliarq.png" alt="Valores de poliarquía para Colombia según V-Dem"  />
 <p class="caption">
 Figura 8.3: Valores de poliarquía para Colombia según V-Dem
 </p>
@@ -421,120 +396,108 @@ Figura 8.3: Valores de poliarquía para Colombia según V-Dem
 <div id="aplicacion-en-r-2" class="section level2">
 <h2><span class="header-section-number">8.3</span> Aplicación en <code>R</code></h2>
 <p>Volvamos, entonces, a la pregunta que se hizo David Altman en el capítulo 3 de <a href="https://www.cambridge.org/core/books/citizenship-and-contemporary-direct-democracy/5F2081B8D1FD8AE7C7B9D784D272ED33">Citizenship and Contemporary Direct Democracy (2019)</a>, “Catching on: waves of adoption of citizen-initiated mechanisms of direct democracy since World War I”: “¿Por qué algunos países demoran menos que otros en implementar instancias de democracia directa?”. Para poder responder a esta pregunta, uno debe correr modelos de supervivencia. Comencemos por cargar el <code>tidyverse</code> y nuestra base (esta última, desde nuestro paquete <code>paqueteadp</code>):</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(paqueteadp)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(dem_directa)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(paqueteadp)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(dem_directa)</code></pre></div>
 <p>Ahora la base se ha cargado en nuestra sesión de R:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()
-<span class="co">## [1] &quot;dem_directa&quot;</span></code></pre>
-<p>Las variables que tenemos en la base son las siguientes:
-+ Variable dependiente. Registra la ocurrencia del evento, que en este caso es la adopción de un mecanismo de democracia directa - <code>cic_dummy</code>
-+ Año - <code>year</code><br />
-+ Nombre del país - <code>country_name</code>
-+ El país sufre un proceso de rápida democratización - <code>dem_positive</code>
-+ El país sufre un proceso rápido de deterioro de la democracia - <code>dem_negative</code>
-+ Memoria de instancias previas de democracia directa - <code>memory</code>
-+ Score de democracia del país - <code>v2x_polyarchy</code>
-+ Efecto de la difusion de capacidades - <code>capabilities_geo_ide</code>
-+ Efecto de la difusión de ocurrencias - <code>occur_geo_ide</code>
-+ Logaritmo natural de la población total del país - <code>log_pop</code>
-+ Dummy para ex colonias británicas - <code>c_gbr</code>
-+ Dummy para ex miembros de la URSS - <code>c_ussr</code></p>
-<p>A lo largo del ejemplo usaremos los paquetes <code>skimr</code>, <code>countrycode</code>, <code>survival</code>, <code>rms</code>, <code>survminer</code>, <code>ggalt</code>, <code>tidyverse</code>y <code>texreg</code>, pero los iremos cargando uno a uno para que veas para que sirven.
-Si utilizamos <code>skim</code>, como ya hicimos en otros capítulos, podemos ver que es una base en formato de panel balanceado. Es decir, tenemos una variable “país” (<code>country_name</code>), que se repite a lo largo de una variable “año” (<code>year</code>).</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">skim</span>(dem_directa)
-<span class="co">## Skim summary statistics</span>
-<span class="co">##  n obs: 13885 </span>
-<span class="co">##  n variables: 23 </span>
-<span class="co">## </span>
-<span class="co">## ── Variable type:character ──────────────────────────────</span>
-<span class="co">##      variable missing complete     n min max empty n_unique</span>
-<span class="co">##  country_name       0    13885 13885   4  32     0      202</span>
-<span class="co">## </span>
-<span class="co">## ── Variable type:numeric ────────────────────────────────</span>
-<span class="co">##              variable missing complete     n      mean    sd        p0</span>
-<span class="co">##        p25     p50      p75    p100     hist</span>
-<span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 22 rows ]</span></code></pre>
-<p>Los países &quot;“entran” a la base cuando comienzan a existir como países independientes. Veamos el caso de Albania, por ejemplo, que nace como país en 1912 luego de las <a href="https://es.wikipedia.org/wiki/Guerras_de_los_Balcanes">Guerras los Balcanes</a>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dem_directa <span class="op">%&gt;%</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()
+## [1] &quot;dem_directa&quot;</code></pre></div>
+<p>Las variables que tenemos en la base son las siguientes: + Variable dependiente. Registra la ocurrencia del evento, que en este caso es la adopción de un mecanismo de democracia directa - <code>cic_dummy</code> + Año - <code>year</code><br />
++ Nombre del país - <code>country_name</code> + El país sufre un proceso de rápida democratización - <code>dem_positive</code> + El país sufre un proceso rápido de deterioro de la democracia - <code>dem_negative</code> + Memoria de instancias previas de democracia directa - <code>memory</code> + Score de democracia del país - <code>v2x_polyarchy</code> + Efecto de la difusion de capacidades - <code>capabilities_geo_ide</code> + Efecto de la difusión de ocurrencias - <code>occur_geo_ide</code> + Logaritmo natural de la población total del país - <code>log_pop</code> + Dummy para ex colonias británicas - <code>c_gbr</code> + Dummy para ex miembros de la URSS - <code>c_ussr</code></p>
+<p>A lo largo del ejemplo usaremos los paquetes <code>skimr</code>, <code>countrycode</code>, <code>survival</code>, <code>rms</code>, <code>survminer</code>, <code>ggalt</code>, <code>tidyverse</code>y <code>texreg</code>, pero los iremos cargando uno a uno para que veas para que sirven. Si utilizamos <code>skim</code>, como ya hicimos en otros capítulos, podemos ver que es una base en formato de panel balanceado. Es decir, tenemos una variable “país” (<code>country_name</code>), que se repite a lo largo de una variable “año” (<code>year</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">skim</span>(dem_directa)
+## Skim summary statistics
+##  n obs: 13885 
+##  n variables: 23 
+## 
+## ── Variable type:character ───────────────────────────────────
+##      variable missing complete     n min max empty n_unique
+##  country_name       0    13885 13885   4  32     0      202
+## 
+## ── Variable type:numeric ─────────────────────────────────────
+##              variable missing complete     n      mean    sd        p0
+##        p25     p50      p75    p100     hist
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 22 rows ]</code></pre></div>
+<p>Los países “”entran&quot; a la base cuando comienzan a existir como países independientes. Veamos el caso de Albania, por ejemplo, que nace como país en 1912 luego de las <a href="https://es.wikipedia.org/wiki/Guerras_de_los_Balcanes">Guerras los Balcanes</a>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dem_directa <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(country_name <span class="op">==</span><span class="st"> &quot;Albania&quot;</span>)
-<span class="co">## # A tibble: 105 x 23</span>
-<span class="co">##    country_name  year cic_dummy dem_positive dem_negative memory</span>
-<span class="co">##    &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">##  1 Albania       1912         0            0            0      0</span>
-<span class="co">##  2 Albania       1913         0            0            0      0</span>
-<span class="co">##  3 Albania       1914         0            0            0      0</span>
-<span class="co">##  4 Albania       1915         0            0            0      0</span>
-<span class="co">##  5 Albania       1916         0            0            0      0</span>
-<span class="co">##  6 Albania       1917         0            0            0      0</span>
-<span class="co">##  7 Albania       1918         0            0            0      0</span>
-<span class="co">##  8 Albania       1919         0            0            0      0</span>
-<span class="co">##  9 Albania       1920         0            0            0      0</span>
-<span class="co">## 10 Albania       1921         0            0            0      0</span>
-<span class="co">## # … with 95 more rows, and 17 more variables: v2x_polyarchy &lt;dbl&gt;,</span>
-<span class="co">## #   capabilities_geo_ide &lt;dbl&gt;, occur_geo_ide &lt;dbl&gt;,</span>
-<span class="co">## #   c_pos_capabilities &lt;dbl&gt;, c_pos_occurrences &lt;dbl&gt;, c_pos_memory &lt;dbl&gt;,</span>
-<span class="co">## #   log_pop &lt;dbl&gt;, c_gbr &lt;dbl&gt;, c_fra &lt;dbl&gt;, c_ussr &lt;dbl&gt;, c_spa &lt;dbl&gt;,</span>
-<span class="co">## #   c_usa &lt;dbl&gt;, c_ned &lt;dbl&gt;, c_prt &lt;dbl&gt;, c_bel &lt;dbl&gt;, c_ahe &lt;dbl&gt;,</span>
-<span class="co">## #   c_ote &lt;dbl&gt;</span></code></pre>
+## # A tibble: 105 x 23
+##    country_name  year cic_dummy dem_positive dem_negative memory
+##    &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Albania       1912         0            0            0      0
+##  2 Albania       1913         0            0            0      0
+##  3 Albania       1914         0            0            0      0
+##  4 Albania       1915         0            0            0      0
+##  5 Albania       1916         0            0            0      0
+##  6 Albania       1917         0            0            0      0
+##  7 Albania       1918         0            0            0      0
+##  8 Albania       1919         0            0            0      0
+##  9 Albania       1920         0            0            0      0
+## 10 Albania       1921         0            0            0      0
+## # … with 95 more rows, and 17 more variables: v2x_polyarchy &lt;dbl&gt;,
+## #   capabilities_geo_ide &lt;dbl&gt;, occur_geo_ide &lt;dbl&gt;,
+## #   c_pos_capabilities &lt;dbl&gt;, c_pos_occurrences &lt;dbl&gt;, c_pos_memory &lt;dbl&gt;,
+## #   log_pop &lt;dbl&gt;, c_gbr &lt;dbl&gt;, c_fra &lt;dbl&gt;, c_ussr &lt;dbl&gt;, c_spa &lt;dbl&gt;,
+## #   c_usa &lt;dbl&gt;, c_ned &lt;dbl&gt;, c_prt &lt;dbl&gt;, c_bel &lt;dbl&gt;, c_ahe &lt;dbl&gt;,
+## #   c_ote &lt;dbl&gt;</code></pre></div>
 Para que los modelos funcionen correctamente en <code>R</code>, los países deberían salir del análisis (¡y de la base!) cuando “mueren”. En este caso la muerte se da cuando los países adoptan mecanismos de democracia directa. Albania, siguiendo el ejemplo, debería dejar de existir en 1998, y no perdurar en la base hasta 2016 como sucede ahora. Entonces crearemos una segunda versión de nuestra base de datos donde esto ya ha sido corregido:
 <div class="books">
 <p>
 Si tu base de datos está en este formato desde el comienzo, entonces podrás saltarte este paso.
 </p>
 </div>
-<pre class="sourceCode r"><code class="sourceCode r">dem_directa_b &lt;-<span class="st"> </span>dem_directa <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dem_directa_b &lt;-<span class="st"> </span>dem_directa <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(country_name) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="co"># que la suma acumulada de la dummy sea como máximo 1</span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">cumsum</span>(cic_dummy) <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ungroup</span>()</code></pre>
+<span class="st">  </span><span class="kw">ungroup</span>()</code></pre></div>
 <p>Lo que estamos haciendo es filtrar de tal forma que al registrar el primer evento de interés (en este caso es la variable <code>cic_dummy</code>) el resto es dejado a un lado. Si comparamos el caso de Albania para la base original y para la base actual veremos la diferencia:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dem_directa <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dem_directa <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(country_name <span class="op">==</span><span class="st"> &quot;Albania&quot;</span> <span class="op">&amp;</span><span class="st"> </span>cic_dummy <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)
-<span class="co">## # A tibble: 19 x 23</span>
-<span class="co">##    country_name  year cic_dummy dem_positive dem_negative memory</span>
-<span class="co">##    &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">##  1 Albania       1998         1            0            0  1    </span>
-<span class="co">##  2 Albania       1999         1            0            0  1    </span>
-<span class="co">##  3 Albania       2000         1            0            0  1    </span>
-<span class="co">##  4 Albania       2001         1            0            0  1    </span>
-<span class="co">##  5 Albania       2002         1            0            0  0.94 </span>
-<span class="co">##  6 Albania       2003         1            0            0  0.88 </span>
-<span class="co">##  7 Albania       2004         1            0            0  0.82 </span>
-<span class="co">##  8 Albania       2005         1            0            0  0.76 </span>
-<span class="co">##  9 Albania       2006         1            0            0  0.7  </span>
-<span class="co">## 10 Albania       2007         1            0            0  0.64 </span>
-<span class="co">## 11 Albania       2008         1            0            0  0.580</span>
-<span class="co">## 12 Albania       2009         1            0            0  0.52 </span>
-<span class="co">## 13 Albania       2010         1            0            0  0.46 </span>
-<span class="co">## 14 Albania       2011         1            0            0  0.4  </span>
-<span class="co">## 15 Albania       2012         1            0            0  0.34 </span>
-<span class="co">## 16 Albania       2013         1            0            0  0.28 </span>
-<span class="co">## 17 Albania       2014         1            0            0  0.22 </span>
-<span class="co">## 18 Albania       2015         1            0            0  0.16 </span>
-<span class="co">## 19 Albania       2016         1            0            0  0.1  </span>
-<span class="co">## # … with 17 more variables: v2x_polyarchy &lt;dbl&gt;,</span>
-<span class="co">## #   capabilities_geo_ide &lt;dbl&gt;, occur_geo_ide &lt;dbl&gt;,</span>
-<span class="co">## #   c_pos_capabilities &lt;dbl&gt;, c_pos_occurrences &lt;dbl&gt;, c_pos_memory &lt;dbl&gt;,</span>
-<span class="co">## #   log_pop &lt;dbl&gt;, c_gbr &lt;dbl&gt;, c_fra &lt;dbl&gt;, c_ussr &lt;dbl&gt;, c_spa &lt;dbl&gt;,</span>
-<span class="co">## #   c_usa &lt;dbl&gt;, c_ned &lt;dbl&gt;, c_prt &lt;dbl&gt;, c_bel &lt;dbl&gt;, c_ahe &lt;dbl&gt;,</span>
-<span class="co">## #   c_ote &lt;dbl&gt;</span>
+## # A tibble: 19 x 23
+##    country_name  year cic_dummy dem_positive dem_negative memory
+##    &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Albania       1998         1            0            0  1    
+##  2 Albania       1999         1            0            0  1    
+##  3 Albania       2000         1            0            0  1    
+##  4 Albania       2001         1            0            0  1    
+##  5 Albania       2002         1            0            0  0.94 
+##  6 Albania       2003         1            0            0  0.88 
+##  7 Albania       2004         1            0            0  0.82 
+##  8 Albania       2005         1            0            0  0.76 
+##  9 Albania       2006         1            0            0  0.7  
+## 10 Albania       2007         1            0            0  0.64 
+## 11 Albania       2008         1            0            0  0.580
+## 12 Albania       2009         1            0            0  0.52 
+## 13 Albania       2010         1            0            0  0.46 
+## 14 Albania       2011         1            0            0  0.4  
+## 15 Albania       2012         1            0            0  0.34 
+## 16 Albania       2013         1            0            0  0.28 
+## 17 Albania       2014         1            0            0  0.22 
+## 18 Albania       2015         1            0            0  0.16 
+## 19 Albania       2016         1            0            0  0.1  
+## # … with 17 more variables: v2x_polyarchy &lt;dbl&gt;,
+## #   capabilities_geo_ide &lt;dbl&gt;, occur_geo_ide &lt;dbl&gt;,
+## #   c_pos_capabilities &lt;dbl&gt;, c_pos_occurrences &lt;dbl&gt;, c_pos_memory &lt;dbl&gt;,
+## #   log_pop &lt;dbl&gt;, c_gbr &lt;dbl&gt;, c_fra &lt;dbl&gt;, c_ussr &lt;dbl&gt;, c_spa &lt;dbl&gt;,
+## #   c_usa &lt;dbl&gt;, c_ned &lt;dbl&gt;, c_prt &lt;dbl&gt;, c_bel &lt;dbl&gt;, c_ahe &lt;dbl&gt;,
+## #   c_ote &lt;dbl&gt;
 
 dem_directa_b <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(country_name <span class="op">==</span><span class="st"> &quot;Albania&quot;</span> <span class="op">&amp;</span><span class="st"> </span>cic_dummy <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)
-<span class="co">## # A tibble: 1 x 23</span>
-<span class="co">##   country_name  year cic_dummy dem_positive dem_negative memory</span>
-<span class="co">##   &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">## 1 Albania       1998         1            0            0      1</span>
-<span class="co">## # … with 17 more variables: v2x_polyarchy &lt;dbl&gt;,</span>
-<span class="co">## #   capabilities_geo_ide &lt;dbl&gt;, occur_geo_ide &lt;dbl&gt;,</span>
-<span class="co">## #   c_pos_capabilities &lt;dbl&gt;, c_pos_occurrences &lt;dbl&gt;, c_pos_memory &lt;dbl&gt;,</span>
-<span class="co">## #   log_pop &lt;dbl&gt;, c_gbr &lt;dbl&gt;, c_fra &lt;dbl&gt;, c_ussr &lt;dbl&gt;, c_spa &lt;dbl&gt;,</span>
-<span class="co">## #   c_usa &lt;dbl&gt;, c_ned &lt;dbl&gt;, c_prt &lt;dbl&gt;, c_bel &lt;dbl&gt;, c_ahe &lt;dbl&gt;,</span>
-<span class="co">## #   c_ote &lt;dbl&gt;</span></code></pre>
+## # A tibble: 1 x 23
+##   country_name  year cic_dummy dem_positive dem_negative memory
+##   &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Albania       1998         1            0            0      1
+## # … with 17 more variables: v2x_polyarchy &lt;dbl&gt;,
+## #   capabilities_geo_ide &lt;dbl&gt;, occur_geo_ide &lt;dbl&gt;,
+## #   c_pos_capabilities &lt;dbl&gt;, c_pos_occurrences &lt;dbl&gt;, c_pos_memory &lt;dbl&gt;,
+## #   log_pop &lt;dbl&gt;, c_gbr &lt;dbl&gt;, c_fra &lt;dbl&gt;, c_ussr &lt;dbl&gt;, c_spa &lt;dbl&gt;,
+## #   c_usa &lt;dbl&gt;, c_ned &lt;dbl&gt;, c_prt &lt;dbl&gt;, c_bel &lt;dbl&gt;, c_ahe &lt;dbl&gt;,
+## #   c_ote &lt;dbl&gt;</code></pre></div>
 <p>En resumen, ahora tenemos un panel desbalanceado, en el que los países entran a la base cuando comienzan a existir como tales y salen, o bien cuando adoptan mecanismos de democracia directa, o bien cuando la base termina en su extensión temporal (en 2016). De esta forma nuestra base se acerca mucho a la figura 1 con la que ejemplificamos los distintos tipos de observaciones. ¿Qué tal si probamos hacer algo similar a la figura 1 pero con los datos de David Altman? Este tipo de figuras se llaman gráficos de Gantt, y pueden recrearse con <code>ggplot2</code> aunque es justo decir que hay que seguir unos cuantos pasos, y puede ser algo dificil. Ojalá que con este ejemplo puedas recrearlo con tus propios datos porque una figura así es de mucha utlidad para el lector.</p>
 <p>Primero debemos crear una base de datos que, para cada país, registre el año de entrada y el año de salida. También nos interesa por qué sale el país: ¿adopta democracia directa o la base termina? Vamos a crear un subonjunto que llamaremos <code>gantt_plot_df</code> donde nos quedamos solamente con tres variables de la base, que son el nombre del país <code>country_name</code>, el año <code>year</code>, y la variable dependiente <code>cic_dummy</code>. También quitaremos de la base aquellas observaciones que para el primer año de la base ya han “muerto”. Por ejemplo, Suiza había implementado mecanismos de democracia directa mucho antes que 1900, así que desde el primer año de la base hasta el último la variable dependiente será “1”:</p>
-<pre class="sourceCode r"><code class="sourceCode r">gantt_plot_df &lt;-<span class="st"> </span>dem_directa_b <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gantt_plot_df &lt;-<span class="st"> </span>dem_directa_b <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="co"># las variables que nos interesan</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(country_name, year, cic_dummy) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(country_name) <span class="op">%&gt;%</span>
@@ -546,69 +509,69 @@ dem_directa_b <span class="op">%&gt;%</span><span class="st"> </span>
             <span class="dt">exits_bc_dd =</span> <span class="kw">max</span>(cic_dummy)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ungroup</span>()
 gantt_plot_df
-<span class="co">## # A tibble: 194 x 4</span>
-<span class="co">##    country_name        year_enters year_exits exits_bc_dd</span>
-<span class="co">##    &lt;chr&gt;                     &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan                1919       2016           0</span>
-<span class="co">##  2 Albania                    1912       1998           1</span>
-<span class="co">##  3 Algeria                    1962       2016           0</span>
-<span class="co">##  4 Andorra                    1900       2016           0</span>
-<span class="co">##  5 Angola                     1975       2016           0</span>
-<span class="co">##  6 Antigua and Barbuda        1981       2016           0</span>
-<span class="co">##  7 Argentina                  1900       2016           0</span>
-<span class="co">##  8 Armenia                    1991       2016           0</span>
-<span class="co">##  9 Australia                  1901       2016           0</span>
-<span class="co">## 10 Austria                    1918       2016           0</span>
-<span class="co">## # … with 184 more rows</span></code></pre>
+## # A tibble: 194 x 4
+##    country_name        year_enters year_exits exits_bc_dd
+##    &lt;chr&gt;                     &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Afghanistan                1919       2016           0
+##  2 Albania                    1912       1998           1
+##  3 Algeria                    1962       2016           0
+##  4 Andorra                    1900       2016           0
+##  5 Angola                     1975       2016           0
+##  6 Antigua and Barbuda        1981       2016           0
+##  7 Argentina                  1900       2016           0
+##  8 Armenia                    1991       2016           0
+##  9 Australia                  1901       2016           0
+## 10 Austria                    1918       2016           0
+## # … with 184 more rows</code></pre></div>
 <p>Los países que salen por democracia directa (“mueren”) son:</p>
-<pre class="sourceCode r"><code class="sourceCode r">gantt_plot_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(exits_bc_dd <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)
-<span class="co">## # A tibble: 49 x 4</span>
-<span class="co">##    country_name year_enters year_exits exits_bc_dd</span>
-<span class="co">##    &lt;chr&gt;              &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;</span>
-<span class="co">##  1 Albania             1912       1998           1</span>
-<span class="co">##  2 Belarus             1991       1995           1</span>
-<span class="co">##  3 Belize              1981       2008           1</span>
-<span class="co">##  4 Bolivia             1900       2004           1</span>
-<span class="co">##  5 Bulgaria            1908       2009           1</span>
-<span class="co">##  6 Cape Verde          1975       1992           1</span>
-<span class="co">##  7 Colombia            1900       1991           1</span>
-<span class="co">##  8 Costa Rica          1900       2002           1</span>
-<span class="co">##  9 Croatia             1992       2001           1</span>
-<span class="co">## 10 Ecuador             1900       1998           1</span>
-<span class="co">## # … with 39 more rows</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gantt_plot_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(exits_bc_dd <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)
+## # A tibble: 49 x 4
+##    country_name year_enters year_exits exits_bc_dd
+##    &lt;chr&gt;              &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Albania             1912       1998           1
+##  2 Belarus             1991       1995           1
+##  3 Belize              1981       2008           1
+##  4 Bolivia             1900       2004           1
+##  5 Bulgaria            1908       2009           1
+##  6 Cape Verde          1975       1992           1
+##  7 Colombia            1900       1991           1
+##  8 Costa Rica          1900       2002           1
+##  9 Croatia             1992       2001           1
+## 10 Ecuador             1900       1998           1
+## # … with 39 more rows</code></pre></div>
 <p>Podemos identificar en una nueva variable la región geopolítica de cada país, gracias a la función <code>countrycode::countrycode()</code> (Esto lo explicamos en detalle en el Capítulo <a href="manejo-av.html#manejo-av">9</a>). Este paquete es de gran utilidad para quienes hacen política comparada o relaciones internacionales porque facilita mucho darle códigos a los países. Lo que nos permite el paquete es asignar a cada país su región de pertenencia de manera casi automática:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(countrycode)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(countrycode)
 gantt_plot_df_region &lt;-<span class="st"> </span>gantt_plot_df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">region =</span> <span class="kw">countrycode</span>(country_name, <span class="dt">origin =</span> <span class="st">&quot;country.name&quot;</span>, <span class="dt">dest =</span> <span class="st">&quot;region&quot;</span>))
-<span class="co">## Warning in countrycode(country_name, origin = &quot;country.name&quot;, dest = &quot;region&quot;): Some values were not matched unambiguously: Kosovo, South Yemen, Vietnam, Democratic Republic of, Vietnam, Republic of</span>
+## Warning in countrycode(country_name, origin = &quot;country.name&quot;, dest = &quot;region&quot;): Some values were not matched unambiguously: Kosovo, South Yemen, Vietnam, Democratic Republic of, Vietnam, Republic of
 
 gantt_plot_df_region
-<span class="co">## # A tibble: 194 x 5</span>
-<span class="co">##    country_name      year_enters year_exits exits_bc_dd region             </span>
-<span class="co">##    &lt;chr&gt;                   &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;              </span>
-<span class="co">##  1 Afghanistan              1919       2016           0 Southern Asia      </span>
-<span class="co">##  2 Albania                  1912       1998           1 Southern Europe    </span>
-<span class="co">##  3 Algeria                  1962       2016           0 Northern Africa    </span>
-<span class="co">##  4 Andorra                  1900       2016           0 Southern Europe    </span>
-<span class="co">##  5 Angola                   1975       2016           0 Middle Africa      </span>
-<span class="co">##  6 Antigua and Barb…        1981       2016           0 Caribbean          </span>
-<span class="co">##  7 Argentina                1900       2016           0 South America      </span>
-<span class="co">##  8 Armenia                  1991       2016           0 Western Asia       </span>
-<span class="co">##  9 Australia                1901       2016           0 Australia and New …</span>
-<span class="co">## 10 Austria                  1918       2016           0 Western Europe     </span>
-<span class="co">## # … with 184 more rows</span></code></pre>
+## # A tibble: 194 x 5
+##    country_name      year_enters year_exits exits_bc_dd region             
+##    &lt;chr&gt;                   &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;              
+##  1 Afghanistan              1919       2016           0 Southern Asia      
+##  2 Albania                  1912       1998           1 Southern Europe    
+##  3 Algeria                  1962       2016           0 Northern Africa    
+##  4 Andorra                  1900       2016           0 Southern Europe    
+##  5 Angola                   1975       2016           0 Middle Africa      
+##  6 Antigua and Barb…        1981       2016           0 Caribbean          
+##  7 Argentina                1900       2016           0 South America      
+##  8 Armenia                  1991       2016           0 Western Asia       
+##  9 Australia                1901       2016           0 Australia and New …
+## 10 Austria                  1918       2016           0 Western Europe     
+## # … with 184 more rows</code></pre></div>
 <p>Como dice el warning, algunos países no fueron encontrados. Estos son los países que <code>countrycode</code> no pudo encontrar, seguramente porque los países están escritos de otra manera:</p>
-<pre class="sourceCode r"><code class="sourceCode r">gantt_plot_df_region <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gantt_plot_df_region <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(region))
-<span class="co">## # A tibble: 4 x 5</span>
-<span class="co">##   country_name                    year_enters year_exits exits_bc_dd region</span>
-<span class="co">##   &lt;chr&gt;                                 &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt; </span>
-<span class="co">## 1 Kosovo                                 2008       2016           0 &lt;NA&gt;  </span>
-<span class="co">## 2 South Yemen                            1967       2016           0 &lt;NA&gt;  </span>
-<span class="co">## 3 Vietnam, Democratic Republic of        1945       2016           0 &lt;NA&gt;  </span>
-<span class="co">## 4 Vietnam, Republic of                   1949       1975           0 &lt;NA&gt;</span></code></pre>
+## # A tibble: 4 x 5
+##   country_name                    year_enters year_exits exits_bc_dd region
+##   &lt;chr&gt;                                 &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt; 
+## 1 Kosovo                                 2008       2016           0 &lt;NA&gt;  
+## 2 South Yemen                            1967       2016           0 &lt;NA&gt;  
+## 3 Vietnam, Democratic Republic of        1945       2016           0 &lt;NA&gt;  
+## 4 Vietnam, Republic of                   1949       1975           0 &lt;NA&gt;</code></pre></div>
 <p>Podemos corregir esto a mano ex-post o correr <code>countrycode::countrycode()</code> de nuevo, pero con el argumento <code>custom_match</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">gantt_plot_df_region &lt;-<span class="st"> </span>gantt_plot_df <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gantt_plot_df_region &lt;-<span class="st"> </span>gantt_plot_df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">region =</span> <span class="kw">countrycode</span>(country_name, 
                               <span class="dt">origin       =</span> <span class="st">&quot;country.name&quot;</span>, 
                               <span class="dt">dest         =</span> <span class="st">&quot;region&quot;</span>,
@@ -618,28 +581,28 @@ gantt_plot_df_region
                                                <span class="st">&quot;Vietnam, Democratic Republic of&quot;</span> =<span class="st"> &quot;South-Eastern Asia&quot;</span>,
                                                <span class="st">&quot;Vietnam, Republic of&quot;</span> =<span class="st"> &quot;South-Eastern Asia&quot;</span>)))
 gantt_plot_df_region
-<span class="co">## # A tibble: 194 x 5</span>
-<span class="co">##    country_name      year_enters year_exits exits_bc_dd region             </span>
-<span class="co">##    &lt;chr&gt;                   &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;              </span>
-<span class="co">##  1 Afghanistan              1919       2016           0 Southern Asia      </span>
-<span class="co">##  2 Albania                  1912       1998           1 Southern Europe    </span>
-<span class="co">##  3 Algeria                  1962       2016           0 Northern Africa    </span>
-<span class="co">##  4 Andorra                  1900       2016           0 Southern Europe    </span>
-<span class="co">##  5 Angola                   1975       2016           0 Middle Africa      </span>
-<span class="co">##  6 Antigua and Barb…        1981       2016           0 Caribbean          </span>
-<span class="co">##  7 Argentina                1900       2016           0 South America      </span>
-<span class="co">##  8 Armenia                  1991       2016           0 Western Asia       </span>
-<span class="co">##  9 Australia                1901       2016           0 Australia and New …</span>
-<span class="co">## 10 Austria                  1918       2016           0 Western Europe     </span>
-<span class="co">## # … with 184 more rows</span></code></pre>
+## # A tibble: 194 x 5
+##    country_name      year_enters year_exits exits_bc_dd region             
+##    &lt;chr&gt;                   &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;              
+##  1 Afghanistan              1919       2016           0 Southern Asia      
+##  2 Albania                  1912       1998           1 Southern Europe    
+##  3 Algeria                  1962       2016           0 Northern Africa    
+##  4 Andorra                  1900       2016           0 Southern Europe    
+##  5 Angola                   1975       2016           0 Middle Africa      
+##  6 Antigua and Barb…        1981       2016           0 Caribbean          
+##  7 Argentina                1900       2016           0 South America      
+##  8 Armenia                  1991       2016           0 Western Asia       
+##  9 Australia                1901       2016           0 Australia and New …
+## 10 Austria                  1918       2016           0 Western Europe     
+## # … with 184 more rows</code></pre></div>
 <p>Ahora no tenemos NA! Hemos logrado asignar una región a cada país de la muestra.</p>
-<pre class="sourceCode r"><code class="sourceCode r">gantt_plot_df_region <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gantt_plot_df_region <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(region))
-<span class="co">## # A tibble: 0 x 5</span>
-<span class="co">## # … with 5 variables: country_name &lt;chr&gt;, year_enters &lt;dbl&gt;,</span>
-<span class="co">## #   year_exits &lt;dbl&gt;, exits_bc_dd &lt;dbl&gt;, region &lt;chr&gt;</span></code></pre>
+## # A tibble: 0 x 5
+## # … with 5 variables: country_name &lt;chr&gt;, year_enters &lt;dbl&gt;,
+## #   year_exits &lt;dbl&gt;, exits_bc_dd &lt;dbl&gt;, region &lt;chr&gt;</code></pre></div>
 <p>Con nuestra base ya armada, podemos hacer el plot con facilidad, gracias a <code>ggalt::geom_dumbbell()</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggalt)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggalt)
 gantt_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data    =</span> gantt_plot_df_region, 
                      <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x     =</span> year_enters, 
                                    <span class="dt">xend  =</span> year_exits, 
@@ -647,112 +610,112 @@ gantt_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span cl
                                    <span class="dt">color =</span> <span class="kw">factor</span>(exits_bc_dd))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_dumbbell</span>(<span class="dt">size_x =</span> <span class="dv">2</span>, <span class="dt">size_xend =</span> <span class="dv">2</span>)
 
-gantt_plot</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-19"></span>
-<img src="surv_files/figure-html/unnamed-chunk-19-1.png" alt="Diagrama de Gantt para todas las observaciones" width="672" />
+gantt_plot</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-18"></span>
+<img src="surv_files/figure-html/unnamed-chunk-18-1.png" alt="Diagrama de Gantt para todas las observaciones" width="672" />
 <p class="caption">
 Figura 8.4: Diagrama de Gantt para todas las observaciones
 </p>
 </div>
 <p>En el eje vertical tenemos los países ordenados alfabeticamente, y en el eje x hay dos variables que informan al gráfico, por un lado el comienzo de la línea (<code>year_enters</code>) y por otro su fin (<code>year_exits</code>). Además, hay una tercer variable informativa que es el color de la línea, que denota si el país implementó o no una instancia de democracia directa (<code>exits_bc_dd</code>). Los países en azul son los que implementaron dicha instancia entre 1900 y 2016.</p>
 <p>Si bien la figura es de una enorme utilidad visual, hay que reconocer que son demasiados países para incluirla en el cuerpo de un artículo. Un enfoque posible es concentrarnos en ciertas regiones. Recordarás la función <code>filter</code>del Capítulo <a href="manejo-de-datos.html#manejo-de-datos">3</a>. Filtremos Sudamérica, por ejemplo:</p>
-<pre class="sourceCode r"><code class="sourceCode r">gantt_plot_sa &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data    =</span> gantt_plot_df_region <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(region <span class="op">==</span><span class="st"> &quot;South America&quot;</span>), 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gantt_plot_sa &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data    =</span> gantt_plot_df_region <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(region <span class="op">==</span><span class="st"> &quot;South America&quot;</span>), 
                      <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x     =</span> year_enters, 
                                    <span class="dt">xend  =</span> year_exits, 
                                    <span class="dt">y     =</span> <span class="kw">fct_rev</span>(country_name), 
                                    <span class="dt">color =</span> <span class="kw">fct_recode</span>(<span class="kw">factor</span>(exits_bc_dd)))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_dumbbell</span>(<span class="dt">size_x =</span> <span class="dv">2</span>, <span class="dt">size_xend =</span> <span class="dv">2</span>)
 
-gantt_plot_sa</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-20"></span>
-<img src="surv_files/figure-html/unnamed-chunk-20-1.png" alt="Diagrama de Gantt para América del Sur" width="480" />
+gantt_plot_sa</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-19"></span>
+<img src="surv_files/figure-html/unnamed-chunk-19-1.png" alt="Diagrama de Gantt para América del Sur" width="480" />
 <p class="caption">
 Figura 8.5: Diagrama de Gantt para América del Sur
 </p>
 </div>
 <p>Podemos agregarle los años como texto para mejorar aún más la lectura de la figura:</p>
-<pre class="sourceCode r"><code class="sourceCode r">gantt_plot_sa &lt;-<span class="st"> </span>gantt_plot_sa <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> year_enters), <span class="dt">vjust =</span> <span class="fl">-.4</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year_exits, <span class="dt">label =</span> year_exits), <span class="dt">vjust =</span> <span class="fl">-.4</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gantt_plot_sa &lt;-<span class="st"> </span>gantt_plot_sa <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> year_enters), <span class="dt">vjust =</span> <span class="op">-</span>.<span class="dv">4</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year_exits, <span class="dt">label =</span> year_exits), <span class="dt">vjust =</span> <span class="op">-</span>.<span class="dv">4</span>)
 
-gantt_plot_sa</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-21"></span>
-<img src="surv_files/figure-html/unnamed-chunk-21-1.png" alt="Diagrama de Gantt para América del Sur con todas las mejoras" width="480" />
+gantt_plot_sa</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-20"></span>
+<img src="surv_files/figure-html/unnamed-chunk-20-1.png" alt="Diagrama de Gantt para América del Sur con todas las mejoras" width="480" />
 <p class="caption">
 Figura 8.6: Diagrama de Gantt para América del Sur con todas las mejoras
 </p>
 </div>
 <p>Finalmente, algunos retoques estéticos, con todo lo que hemos aprendido en el Capítulo <a href="dataviz.html#dataviz">4</a>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 gantt_plot_sa &lt;-<span class="st"> </span>gantt_plot_sa <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x     =</span> <span class="st">&quot;año&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>,
        <span class="dt">title =</span> <span class="st">&quot;Años de entrada y salida, Sudamérica&quot;</span>,
        <span class="dt">color =</span> <span class="st">&quot;¿Adopta democracia directa?&quot;</span>) <span class="op">+</span>
 <span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>())
 
-gantt_plot_sa</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-22"></span>
-<img src="surv_files/figure-html/unnamed-chunk-22-1.png" alt="Diagrama de Gantt para todas las observaciones" width="480" />
+gantt_plot_sa</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-21"></span>
+<img src="surv_files/figure-html/unnamed-chunk-21-1.png" alt="Diagrama de Gantt para todas las observaciones" width="480" />
 <p class="caption">
 Figura 8.7: Diagrama de Gantt para todas las observaciones
 </p>
 </div>
 <p>Además de gráficos de Gantt, es muy común que quien trabaja con modelos de supervivencia muestre gráficos con las curvas de supervivencia comparando dos grupos de interés. Por ejemplo, David Altman se pregunta si hubo una diferencia en el siglo XX entre países que se democratizaron rápidamente y aquellos que demoraron décadas en hacerlo respecto a la rapidez con que implementaron mecanismos de democracia directa. Este tipo de figuras no tiene valor inferencial, pero si gran valor decriptivo. Tenemos que estimar una curva de supervivencia no paramétrica, usando el método de Kaplan-Meier.</p>
 <p>A partir de este punto debemos hacer una modificación más a nuestra base. Seguramente tu también debas hacerlo con tus propios datos, así que presta atención. Los modelos de supervivencia no trabajan con datos de panel tradicionales, como el de nuestra base. Tenemos que convertirlos a “tiempo en riesgo”. ¿Qué quiere decir esto? Quiere decir que necesitamos dos variables nuevas, una que nos diga el tiempo que la observación lleva en riesgo de morir al inicio de cada t <code>risk_time_at_start</code>y otra variable que haga lo mismo al final de cada t <code>risk_time_at_end</code>. Estas dos variables serán utilizadas a partir de ahora en los scripts del análisis de supervivencia:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dem_directa_c &lt;-<span class="st"> </span>dem_directa_b <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dem_directa_c &lt;-<span class="st"> </span>dem_directa_b <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(country_name) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="co"># vamos a eliminar el primer año para cada país. no está en riesgo, por definición!</span>
 <span class="st">  </span><span class="kw">filter</span>(year <span class="op">!=</span><span class="st"> </span><span class="kw">min</span>(year)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">risk_time_at_end   =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">n</span>()),
          <span class="dt">risk_time_at_start =</span> <span class="kw">c</span>(<span class="dv">0</span><span class="op">:</span>(<span class="kw">n</span>() <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(country_name, year, risk_time_at_start, risk_time_at_end, <span class="kw">everything</span>())</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">dem_directa_c
-<span class="co">## # A tibble: 12,014 x 25</span>
-<span class="co">##    country_name  year risk_time_at_st… risk_time_at_end cic_dummy</span>
-<span class="co">##    &lt;chr&gt;        &lt;dbl&gt;            &lt;int&gt;            &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan   1920                0                1         0</span>
-<span class="co">##  2 Afghanistan   1921                1                2         0</span>
-<span class="co">##  3 Afghanistan   1922                2                3         0</span>
-<span class="co">##  4 Afghanistan   1923                3                4         0</span>
-<span class="co">##  5 Afghanistan   1924                4                5         0</span>
-<span class="co">##  6 Afghanistan   1925                5                6         0</span>
-<span class="co">##  7 Afghanistan   1926                6                7         0</span>
-<span class="co">##  8 Afghanistan   1927                7                8         0</span>
-<span class="co">##  9 Afghanistan   1928                8                9         0</span>
-<span class="co">## 10 Afghanistan   1929                9               10         0</span>
-<span class="co">## # … with 12,004 more rows, and 20 more variables: dem_positive &lt;dbl&gt;,</span>
-<span class="co">## #   dem_negative &lt;dbl&gt;, memory &lt;dbl&gt;, v2x_polyarchy &lt;dbl&gt;,</span>
-<span class="co">## #   capabilities_geo_ide &lt;dbl&gt;, occur_geo_ide &lt;dbl&gt;,</span>
-<span class="co">## #   c_pos_capabilities &lt;dbl&gt;, c_pos_occurrences &lt;dbl&gt;, c_pos_memory &lt;dbl&gt;,</span>
-<span class="co">## #   log_pop &lt;dbl&gt;, c_gbr &lt;dbl&gt;, c_fra &lt;dbl&gt;, c_ussr &lt;dbl&gt;, c_spa &lt;dbl&gt;,</span>
-<span class="co">## #   c_usa &lt;dbl&gt;, c_ned &lt;dbl&gt;, c_prt &lt;dbl&gt;, c_bel &lt;dbl&gt;, c_ahe &lt;dbl&gt;,</span>
-<span class="co">## #   c_ote &lt;dbl&gt;</span></code></pre>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(country_name, year, risk_time_at_start, risk_time_at_end, <span class="kw">everything</span>())</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dem_directa_c
+## # A tibble: 12,014 x 25
+##    country_name  year risk_time_at_st… risk_time_at_end cic_dummy
+##    &lt;chr&gt;        &lt;dbl&gt;            &lt;int&gt;            &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan   1920                0                1         0
+##  2 Afghanistan   1921                1                2         0
+##  3 Afghanistan   1922                2                3         0
+##  4 Afghanistan   1923                3                4         0
+##  5 Afghanistan   1924                4                5         0
+##  6 Afghanistan   1925                5                6         0
+##  7 Afghanistan   1926                6                7         0
+##  8 Afghanistan   1927                7                8         0
+##  9 Afghanistan   1928                8                9         0
+## 10 Afghanistan   1929                9               10         0
+## # … with 12,004 more rows, and 20 more variables: dem_positive &lt;dbl&gt;,
+## #   dem_negative &lt;dbl&gt;, memory &lt;dbl&gt;, v2x_polyarchy &lt;dbl&gt;,
+## #   capabilities_geo_ide &lt;dbl&gt;, occur_geo_ide &lt;dbl&gt;,
+## #   c_pos_capabilities &lt;dbl&gt;, c_pos_occurrences &lt;dbl&gt;, c_pos_memory &lt;dbl&gt;,
+## #   log_pop &lt;dbl&gt;, c_gbr &lt;dbl&gt;, c_fra &lt;dbl&gt;, c_ussr &lt;dbl&gt;, c_spa &lt;dbl&gt;,
+## #   c_usa &lt;dbl&gt;, c_ned &lt;dbl&gt;, c_prt &lt;dbl&gt;, c_bel &lt;dbl&gt;, c_ahe &lt;dbl&gt;,
+## #   c_ote &lt;dbl&gt;</code></pre></div>
 <p>Corramos la curva de supervivencia no paramétrica, usando el método de Kaplan-Meier:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(survival)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(survival)
 
 km &lt;-<span class="st"> </span><span class="kw">survfit</span>(<span class="kw">Surv</span>(<span class="dt">time =</span> risk_time_at_start, <span class="dt">time2 =</span> risk_time_at_end,
                    <span class="dt">event =</span> cic_dummy) <span class="op">~</span><span class="st"> </span>dem_positive,
               <span class="dt">type      =</span> <span class="st">&quot;kaplan-meier&quot;</span>, 
               <span class="dt">conf.type =</span> <span class="st">&quot;log&quot;</span>, 
-              <span class="dt">data      =</span> dem_directa_c)</code></pre>
+              <span class="dt">data      =</span> dem_directa_c)</code></pre></div>
 <p>Ahora podemos armar nuestro plot con <code>survminer::ggsurvplot()</code></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(survminer)
-<span class="co">## Loading required package: ggpubr</span>
-<span class="co">## Loading required package: magrittr</span>
-<span class="co">## </span>
-<span class="co">## Attaching package: &#39;magrittr&#39;</span>
-<span class="co">## The following object is masked from &#39;package:purrr&#39;:</span>
-<span class="co">## </span>
-<span class="co">##     set_names</span>
-<span class="co">## The following object is masked from &#39;package:tidyr&#39;:</span>
-<span class="co">## </span>
-<span class="co">##     extract</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(survminer)
+## Loading required package: ggpubr
+## Loading required package: magrittr
+## 
+## Attaching package: &#39;magrittr&#39;
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     set_names
+## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract
 <span class="kw">ggsurvplot</span>(km, <span class="dt">conf.int =</span> T, <span class="dt">legend.title =</span> <span class="st">&quot;&quot;</span>,
            <span class="dt">break.x.by =</span> <span class="dv">20</span>,
            <span class="dt">legend.labs =</span> <span class="kw">c</span>(<span class="st">&quot;Fast democratization = 0&quot;</span>, <span class="st">&quot;Fast democratization = 1&quot;</span>), 
            <span class="dt">data =</span> dem_directa_c) <span class="op">+</span>
-<span class="st">            </span><span class="kw">labs</span>(<span class="dt">title    =</span> <span class="st">&quot;Kaplan-Meier Survival estimates&quot;</span>)</code></pre>
+<span class="st">            </span><span class="kw">labs</span>(<span class="dt">title    =</span> <span class="st">&quot;Kaplan-Meier Survival estimates&quot;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:kaplan"></span>
 <img src="surv_files/figure-html/kaplan-1.png" alt="Curva de Kaplan-Meier" width="1056" />
 <p class="caption">
@@ -764,121 +727,121 @@ Figura 8.8: Curva de Kaplan-Meier
 <h3><span class="header-section-number">8.3.1</span> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</h3>
 <p>Vamos a usar la base de Altman para estimar algunos modelos como ejemplo y correr los tests de Grambsch y Therneau para testear que ninguno de los coeficientes viole el presupuesto de proporcionalidad de los riesgos. No estamos replicando los modelos de su capítulo porque son algo más complejos (incluyen varias interacciones), simplemente usamos su base como referencia. Aquí vale la pena hacer una aclaración respecto a replicabilidad: Si el autor utiliza Stata (por ejemplo con el comando <code>stcox</code>) van a haber algunas diferencias menores en los resultados obtenidos utilizando <code>R</code>.</p>
 <p>Primer modelo:</p>
-<pre class="sourceCode r"><code class="sourceCode r">cox_m1 &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(risk_time_at_start, risk_time_at_end, cic_dummy) <span class="op">~</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cox_m1 &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(risk_time_at_start, risk_time_at_end, cic_dummy) <span class="op">~</span><span class="st"> </span>
 <span class="st">                  </span>dem_positive <span class="op">+</span><span class="st"> </span>dem_negative <span class="op">+</span><span class="st"> </span>memory <span class="op">+</span><span class="st"> </span>v2x_polyarchy, 
                 <span class="dt">data   =</span> dem_directa_c, 
                 <span class="dt">robust =</span> T, 
-                <span class="dt">method =</span><span class="st">&quot;breslow&quot;</span>)</code></pre>
+                <span class="dt">method =</span><span class="st">&quot;breslow&quot;</span>)</code></pre></div>
 <p>Su test de riesgos proporcionales:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cox.zph</span>(cox_m1)
-<span class="co">##                   rho chisq     p</span>
-<span class="co">## dem_positive  -0.0786 0.310 0.578</span>
-<span class="co">## dem_negative   0.0482 0.108 0.743</span>
-<span class="co">## memory        -0.1065 0.785 0.376</span>
-<span class="co">## v2x_polyarchy -0.2978 3.170 0.075</span>
-<span class="co">## GLOBAL             NA 4.909 0.297</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cox.zph</span>(cox_m1)
+##                   rho chisq     p
+## dem_positive  -0.0786 0.310 0.578
+## dem_negative   0.0482 0.108 0.743
+## memory        -0.1065 0.785 0.376
+## v2x_polyarchy -0.2978 3.170 0.075
+## GLOBAL             NA 4.909 0.297</code></pre></div>
 <p>Miremos el valor global del test. Su p-valor es superior al punto de corte de 0.05.</p>
 <p>Segundo modelo:</p>
-<pre class="sourceCode r"><code class="sourceCode r">cox_m2 &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(risk_time_at_start, risk_time_at_end, cic_dummy) <span class="op">~</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cox_m2 &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(risk_time_at_start, risk_time_at_end, cic_dummy) <span class="op">~</span><span class="st"> </span>
 <span class="st">                  </span>dem_positive <span class="op">+</span><span class="st"> </span>dem_negative <span class="op">+</span><span class="st"> </span>memory <span class="op">+</span><span class="st"> </span>v2x_polyarchy <span class="op">+</span><span class="st"> </span>
 <span class="st">                  </span>capabilities_geo_ide, 
                 <span class="dt">data   =</span> dem_directa_c, 
                 <span class="dt">robust =</span> <span class="ot">TRUE</span>, 
-                <span class="dt">method =</span><span class="st">&quot;breslow&quot;</span>)</code></pre>
+                <span class="dt">method =</span><span class="st">&quot;breslow&quot;</span>)</code></pre></div>
 <p>Su test de riesgos proporcionales:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cox.zph</span>(cox_m2)
-<span class="co">##                          rho   chisq      p</span>
-<span class="co">## dem_positive         -0.0549  0.1514 0.6972</span>
-<span class="co">## dem_negative          0.0445  0.0979 0.7544</span>
-<span class="co">## memory               -0.0801  0.4505 0.5021</span>
-<span class="co">## v2x_polyarchy        -0.2974  3.2226 0.0726</span>
-<span class="co">## capabilities_geo_ide -0.2892  4.9878 0.0255</span>
-<span class="co">## GLOBAL                    NA 10.3957 0.0648</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cox.zph</span>(cox_m2)
+##                          rho   chisq      p
+## dem_positive         -0.0549  0.1514 0.6972
+## dem_negative          0.0445  0.0979 0.7544
+## memory               -0.0801  0.4505 0.5021
+## v2x_polyarchy        -0.2974  3.2226 0.0726
+## capabilities_geo_ide -0.2892  4.9878 0.0255
+## GLOBAL                    NA 10.3957 0.0648</code></pre></div>
 <p>En este caso, el test global no llega al valor p de corte de 0.05. Sin embargo, hay una variable significativa en su Chi cuadrado:<code>capabilities_geo_ide</code>.</p>
 <p>El tercer modelo:</p>
-<pre class="sourceCode r"><code class="sourceCode r">cox_m3 &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(risk_time_at_start, risk_time_at_end, cic_dummy) <span class="op">~</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cox_m3 &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(risk_time_at_start, risk_time_at_end, cic_dummy) <span class="op">~</span><span class="st"> </span>
 <span class="st">                  </span>dem_positive <span class="op">+</span><span class="st"> </span>dem_negative <span class="op">+</span><span class="st"> </span>memory <span class="op">+</span><span class="st"> </span>v2x_polyarchy <span class="op">+</span><span class="st"> </span>
 <span class="st">                  </span>capabilities_geo_ide <span class="op">+</span><span class="st"> </span>occur_geo_ide, 
                 <span class="dt">data   =</span> dem_directa_c, 
                 <span class="dt">robust =</span> <span class="ot">TRUE</span>, 
-                <span class="dt">method =</span><span class="st">&quot;breslow&quot;</span>)</code></pre>
+                <span class="dt">method =</span><span class="st">&quot;breslow&quot;</span>)</code></pre></div>
 <p>Su test de riesgos proporcionales:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cox.zph</span>(cox_m3)
-<span class="co">##                          rho  chisq      p</span>
-<span class="co">## dem_positive         -0.1234 0.7250 0.3945</span>
-<span class="co">## dem_negative          0.0147 0.0106 0.9178</span>
-<span class="co">## memory               -0.1059 0.7539 0.3852</span>
-<span class="co">## v2x_polyarchy        -0.2826 3.1303 0.0769</span>
-<span class="co">## capabilities_geo_ide -0.1881 2.6878 0.1011</span>
-<span class="co">## occur_geo_ide         0.0919 0.6365 0.4250</span>
-<span class="co">## GLOBAL                    NA 7.8623 0.2484</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cox.zph</span>(cox_m3)
+##                          rho  chisq      p
+## dem_positive         -0.1234 0.7250 0.3945
+## dem_negative          0.0147 0.0106 0.9178
+## memory               -0.1059 0.7539 0.3852
+## v2x_polyarchy        -0.2826 3.1303 0.0769
+## capabilities_geo_ide -0.1881 2.6878 0.1011
+## occur_geo_ide         0.0919 0.6365 0.4250
+## GLOBAL                    NA 7.8623 0.2484</code></pre></div>
 <p>Aquí, el test revela un escenario similar al del primer modelo, sin grandes problemas.</p>
 <p>El cuarto modelo:</p>
-<pre class="sourceCode r"><code class="sourceCode r">cox_m4 &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(risk_time_at_start, risk_time_at_end, cic_dummy) <span class="op">~</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cox_m4 &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(risk_time_at_start, risk_time_at_end, cic_dummy) <span class="op">~</span><span class="st"> </span>
 <span class="st">                  </span>dem_positive <span class="op">+</span><span class="st"> </span>dem_negative <span class="op">+</span><span class="st"> </span>memory <span class="op">+</span><span class="st"> </span>v2x_polyarchy <span class="op">+</span><span class="st"> </span>
 <span class="st">                  </span>capabilities_geo_ide <span class="op">+</span><span class="st"> </span>occur_geo_ide <span class="op">+</span><span class="st"> </span>log_pop, 
                 <span class="dt">data   =</span> dem_directa_c, 
                 <span class="dt">robust =</span> <span class="ot">TRUE</span>, 
-                <span class="dt">method =</span> <span class="st">&quot;breslow&quot;</span>)</code></pre>
+                <span class="dt">method =</span> <span class="st">&quot;breslow&quot;</span>)</code></pre></div>
 <p>Su test de riesgos proporcionales:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cox.zph</span>(cox_m4)
-<span class="co">##                          rho  chisq      p</span>
-<span class="co">## dem_positive         -0.1132  0.601 0.4383</span>
-<span class="co">## dem_negative          0.0602  0.187 0.6655</span>
-<span class="co">## memory               -0.1051  0.740 0.3898</span>
-<span class="co">## v2x_polyarchy        -0.3694  5.586 0.0181</span>
-<span class="co">## capabilities_geo_ide -0.1936  2.858 0.0909</span>
-<span class="co">## occur_geo_ide         0.0973  0.718 0.3967</span>
-<span class="co">## log_pop              -0.3457  5.104 0.0239</span>
-<span class="co">## GLOBAL                    NA 12.859 0.0756</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cox.zph</span>(cox_m4)
+##                          rho  chisq      p
+## dem_positive         -0.1132  0.601 0.4383
+## dem_negative          0.0602  0.187 0.6655
+## memory               -0.1051  0.740 0.3898
+## v2x_polyarchy        -0.3694  5.586 0.0181
+## capabilities_geo_ide -0.1936  2.858 0.0909
+## occur_geo_ide         0.0973  0.718 0.3967
+## log_pop              -0.3457  5.104 0.0239
+## GLOBAL                    NA 12.859 0.0756</code></pre></div>
 <p>Note como el p-valor global está muy cerca del punto de corte y las variables <code>v2x_polyarchy</code> y <code>log_pop</code> están violando el presupuesto de proporcionalidad de los riesgos.</p>
 <p>El quinto modelo:</p>
-<pre class="sourceCode r"><code class="sourceCode r">cox_m5 &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(risk_time_at_start, risk_time_at_end, cic_dummy) <span class="op">~</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cox_m5 &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(risk_time_at_start, risk_time_at_end, cic_dummy) <span class="op">~</span><span class="st"> </span>
 <span class="st">                  </span>dem_positive <span class="op">+</span><span class="st"> </span>dem_negative <span class="op">+</span><span class="st"> </span>memory <span class="op">+</span><span class="st"> </span>v2x_polyarchy <span class="op">+</span><span class="st"> </span>
 <span class="st">                  </span>capabilities_geo_ide <span class="op">+</span><span class="st"> </span>occur_geo_ide <span class="op">+</span><span class="st"> </span>log_pop <span class="op">+</span><span class="st"> </span>c_gbr, 
                 <span class="dt">data   =</span> dem_directa_c, 
                 <span class="dt">robust =</span> <span class="ot">TRUE</span>, 
-                <span class="dt">method =</span><span class="st">&quot;breslow&quot;</span>)</code></pre>
+                <span class="dt">method =</span><span class="st">&quot;breslow&quot;</span>)</code></pre></div>
 <p>Su test de riesgos proporcionales:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cox.zph</span>(cox_m5)
-<span class="co">##                          rho  chisq      p</span>
-<span class="co">## dem_positive         -0.0910  0.415 0.5196</span>
-<span class="co">## dem_negative          0.0722  0.272 0.6023</span>
-<span class="co">## memory               -0.0915  0.739 0.3900</span>
-<span class="co">## v2x_polyarchy        -0.3369  4.451 0.0349</span>
-<span class="co">## capabilities_geo_ide -0.1889  2.499 0.1139</span>
-<span class="co">## occur_geo_ide         0.0860  0.545 0.4602</span>
-<span class="co">## log_pop              -0.3091  4.599 0.0320</span>
-<span class="co">## c_gbr                -0.1168  0.863 0.3529</span>
-<span class="co">## GLOBAL                    NA 11.731 0.1636</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cox.zph</span>(cox_m5)
+##                          rho  chisq      p
+## dem_positive         -0.0910  0.415 0.5196
+## dem_negative          0.0722  0.272 0.6023
+## memory               -0.0915  0.739 0.3900
+## v2x_polyarchy        -0.3369  4.451 0.0349
+## capabilities_geo_ide -0.1889  2.499 0.1139
+## occur_geo_ide         0.0860  0.545 0.4602
+## log_pop              -0.3091  4.599 0.0320
+## c_gbr                -0.1168  0.863 0.3529
+## GLOBAL                    NA 11.731 0.1636</code></pre></div>
 <p>El quinto modelo presenta el mismo escenario que el cuarto modelo. Tenemos dos variables violando el presupuesto de proporcionalidad. El test global tiene un p-valor de <code>0.16</code> por lo que no deberíamos preocuparnos por resolver la violación. Sin embargo, caso que en tu trabajo tengas un p-valor global menor a <code>0.05</code> te mostramos como abordar el problema tal como recomienda el texto del <em>Oxford Handbook</em> sobre el que basamos la discusión teórica al inicio del capítulo. Una forma de resolverlo es interactuando las variables problemáticas con el logaritmo natural de la variable temporal que creamos anteriormente.</p>
 <p>El quinto modelo corregido se vería así:</p>
-<pre class="sourceCode r"><code class="sourceCode r">cox_m5_int &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(risk_time_at_start, risk_time_at_end, cic_dummy) <span class="op">~</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cox_m5_int &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(risk_time_at_start, risk_time_at_end, cic_dummy) <span class="op">~</span><span class="st"> </span>
 <span class="st">                  </span>dem_positive <span class="op">+</span><span class="st"> </span>dem_negative <span class="op">+</span><span class="st"> </span>memory <span class="op">+</span><span class="st"> </span>v2x_polyarchy <span class="op">+</span><span class="st"> </span>
 <span class="st">                  </span>capabilities_geo_ide <span class="op">+</span><span class="st"> </span>occur_geo_ide <span class="op">+</span><span class="st"> </span>log_pop <span class="op">+</span><span class="st"> </span>c_gbr <span class="op">+</span>
 <span class="st">                  </span>v2x_polyarchy<span class="op">:</span><span class="kw">log</span>(risk_time_at_end) <span class="op">+</span>
 <span class="st">                  </span>log_pop<span class="op">:</span><span class="kw">log</span>(risk_time_at_end), 
                 <span class="dt">data   =</span> dem_directa_c, 
                 <span class="dt">robust =</span> <span class="ot">TRUE</span>, 
-                <span class="dt">method =</span><span class="st">&quot;breslow&quot;</span>)</code></pre>
+                <span class="dt">method =</span><span class="st">&quot;breslow&quot;</span>)</code></pre></div>
 <p>Verás que el test ya no muestra problemas con la proporcionalidad de los riesgos.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cox.zph</span>(cox_m5_int)
-<span class="co">##                                         rho  chisq      p</span>
-<span class="co">## dem_positive                        -0.1020 0.6613 0.4161</span>
-<span class="co">## dem_negative                         0.0469 0.1141 0.7355</span>
-<span class="co">## memory                              -0.0289 0.0808 0.7762</span>
-<span class="co">## v2x_polyarchy                        0.1570 1.2161 0.2701</span>
-<span class="co">## capabilities_geo_ide                -0.2036 3.4194 0.0644</span>
-<span class="co">## occur_geo_ide                        0.1072 0.9180 0.3380</span>
-<span class="co">## log_pop                              0.1627 1.3982 0.2370</span>
-<span class="co">## c_gbr                               -0.0765 0.4057 0.5242</span>
-<span class="co">## v2x_polyarchy:log(risk_time_at_end) -0.1466 1.1154 0.2909</span>
-<span class="co">## log_pop:log(risk_time_at_end)       -0.1891 1.9723 0.1602</span>
-<span class="co">## GLOBAL                                   NA 6.8948 0.7353</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cox.zph</span>(cox_m5_int)
+##                                         rho  chisq      p
+## dem_positive                        -0.1020 0.6613 0.4161
+## dem_negative                         0.0469 0.1141 0.7355
+## memory                              -0.0289 0.0808 0.7762
+## v2x_polyarchy                        0.1570 1.2161 0.2701
+## capabilities_geo_ide                -0.2036 3.4194 0.0644
+## occur_geo_ide                        0.1072 0.9180 0.3380
+## log_pop                              0.1627 1.3982 0.2370
+## c_gbr                               -0.0765 0.4057 0.5242
+## v2x_polyarchy:log(risk_time_at_end) -0.1466 1.1154 0.2909
+## log_pop:log(risk_time_at_end)       -0.1891 1.9723 0.1602
+## GLOBAL                                   NA 6.8948 0.7353</code></pre></div>
 <p>Veamos todos los modelos juntos con <code>texreg</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(texreg)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(texreg)</code></pre></div>
 <p>Para obtener <em>hazard ratios</em> en <code>R</code> necesitamos exponenciar los coeficientes y luego calcular los errores estándar y valores-p a partir de una transformación de la matriz varianza-covarianza del modelo. En el Capítulo <a href="logit.html#logit">7</a> vimos cómo hacer esto para modelos logísticos cuando queremos <em>odds ratios</em> (utilizando las opciones <code>override.coef</code>, <code>override.se</code> y <code>override.pvalues</code> de <code>texreg</code>). Para los modelos de supervivencia este paso es idéntico. La única diferencia para nuestro caso actual es la siguiente: ahora tenemos varios modelos para los que queremos <em>hazard ratios</em>, por lo que utilizaremos la función de iteración <code>map()</code> para que las transformaciones de coeficientes, errores estándar y valores-p se apliquen en cada modelo:</p>
-<pre class="sourceCode r"><code class="sourceCode r">lista_modelos &lt;-<span class="st"> </span><span class="kw">list</span>(cox_m1, cox_m2, cox_m3, cox_m4, cox_m5, cox_m5_int)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista_modelos &lt;-<span class="st"> </span><span class="kw">list</span>(cox_m1, cox_m2, cox_m3, cox_m4, cox_m5, cox_m5_int)
 
 <span class="kw">screenreg</span>(<span class="dt">l =</span> lista_modelos,
           <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>, <span class="st">&quot;Modelo 3&quot;</span>, <span class="st">&quot;Modelo 4&quot;</span>, <span class="st">&quot;Modelo 5&quot;</span>, <span class="st">&quot;Modelo 5.b&quot;</span>),
@@ -886,40 +849,40 @@ Figura 8.8: Curva de Kaplan-Meier
           <span class="dt">override.se      =</span> <span class="kw">map</span>(lista_modelos, <span class="op">~</span><span class="st"> </span><span class="kw">odds_se</span>(.x)),
           <span class="dt">override.pvalues =</span> <span class="kw">map</span>(lista_modelos, <span class="op">~</span><span class="st"> </span><span class="kw">odds_pvalues</span>(.x))
 )
-<span class="co">## </span>
-<span class="co">## =====================================================================================================================</span>
-<span class="co">##                                      Modelo 1     Modelo 2      Modelo 3     Modelo 4      Modelo 5      Modelo 5.b  </span>
-<span class="co">## ---------------------------------------------------------------------------------------------------------------------</span>
-<span class="co">## dem_positive                             6.24 **      6.20 **       7.00 **      6.83 **       6.20 **       4.57 *  </span>
-<span class="co">##                                         (2.26)       (2.28)        (2.53)       (2.44)        (2.17)        (1.81)   </span>
-<span class="co">## dem_negative                             2.33         2.45          2.42         2.41          2.26          2.35    </span>
-<span class="co">##                                         (1.67)       (1.80)        (1.77)       (1.78)        (1.66)        (1.75)   </span>
-<span class="co">## memory                                   5.32 **      4.92 **       5.11 **      5.06 **       4.58 **       4.69 *  </span>
-<span class="co">##                                         (1.95)       (1.81)        (1.85)       (1.83)        (1.76)        (1.82)   </span>
-<span class="co">## v2x_polyarchy                            4.15         3.16          3.91         4.20          5.67        395.49    </span>
-<span class="co">##                                         (2.24)       (1.75)        (2.17)       (2.46)        (3.38)      (595.13)   </span>
-<span class="co">## capabilities_geo_ide                                  1.59 ***      2.98 **      2.98 **       2.78 **       2.71 ** </span>
-<span class="co">##                                                      (0.35)        (0.99)       (0.99)        (0.90)        (0.92)   </span>
-<span class="co">## occur_geo_ide                                                       0.03         0.03          0.02          0.04    </span>
-<span class="co">##                                                                    (0.05)       (0.05)        (0.04)        (0.07)   </span>
-<span class="co">## log_pop                                                                          1.04 ***      1.03 ***      1.61 ***</span>
-<span class="co">##                                                                                 (0.09)        (0.09)        (0.33)   </span>
-<span class="co">## c_gbr                                                                                          0.43 *        0.47 *  </span>
-<span class="co">##                                                                                               (0.19)        (0.22)   </span>
-<span class="co">## v2x_polyarchy:log(risk_time_at_end)                                                                          0.26 *  </span>
-<span class="co">##                                                                                                             (0.11)   </span>
-<span class="co">## log_pop:log(risk_time_at_end)                                                                                0.88 ***</span>
-<span class="co">##                                                                                                             (0.05)   </span>
-<span class="co">## ---------------------------------------------------------------------------------------------------------------------</span>
-<span class="co">## AIC                                    386.32       382.78        379.23       380.98        379.30        373.28    </span>
-<span class="co">## R^2                                      0.00         0.00          0.01         0.01          0.01          0.01    </span>
-<span class="co">## Max. R^2                                 0.04         0.04          0.04         0.04          0.04          0.04    </span>
-<span class="co">## Num. events                             48           48            48           48            48            48       </span>
-<span class="co">## Num. obs.                            11460        11285         11276        11245         11245         11245       </span>
-<span class="co">## Missings                               554          729           738          769           769           769       </span>
-<span class="co">## PH test                                  0.30         0.06          0.25         0.08          0.16          0.74    </span>
-<span class="co">## =====================================================================================================================</span>
-<span class="co">## *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</span></code></pre>
+## 
+## =====================================================================================================================
+##                                      Modelo 1     Modelo 2      Modelo 3     Modelo 4      Modelo 5      Modelo 5.b  
+## ---------------------------------------------------------------------------------------------------------------------
+## dem_positive                             6.24 **      6.20 **       7.00 **      6.83 **       6.20 **       4.57 *  
+##                                         (2.26)       (2.28)        (2.53)       (2.44)        (2.17)        (1.81)   
+## dem_negative                             2.33         2.45          2.42         2.41          2.26          2.35    
+##                                         (1.67)       (1.80)        (1.77)       (1.78)        (1.66)        (1.75)   
+## memory                                   5.32 **      4.92 **       5.11 **      5.06 **       4.58 **       4.69 *  
+##                                         (1.95)       (1.81)        (1.85)       (1.83)        (1.76)        (1.82)   
+## v2x_polyarchy                            4.15         3.16          3.91         4.20          5.67        395.49    
+##                                         (2.24)       (1.75)        (2.17)       (2.46)        (3.38)      (595.13)   
+## capabilities_geo_ide                                  1.59 ***      2.98 **      2.98 **       2.78 **       2.71 ** 
+##                                                      (0.35)        (0.99)       (0.99)        (0.90)        (0.92)   
+## occur_geo_ide                                                       0.03         0.03          0.02          0.04    
+##                                                                    (0.05)       (0.05)        (0.04)        (0.07)   
+## log_pop                                                                          1.04 ***      1.03 ***      1.61 ***
+##                                                                                 (0.09)        (0.09)        (0.33)   
+## c_gbr                                                                                          0.43 *        0.47 *  
+##                                                                                               (0.19)        (0.22)   
+## v2x_polyarchy:log(risk_time_at_end)                                                                          0.26 *  
+##                                                                                                             (0.11)   
+## log_pop:log(risk_time_at_end)                                                                                0.88 ***
+##                                                                                                             (0.05)   
+## ---------------------------------------------------------------------------------------------------------------------
+## AIC                                    386.32       382.78        379.23       380.98        379.30        373.28    
+## R^2                                      0.00         0.00          0.01         0.01          0.01          0.01    
+## Max. R^2                                 0.04         0.04          0.04         0.04          0.04          0.04    
+## Num. events                             48           48            48           48            48            48       
+## Num. obs.                            11460        11285         11276        11245         11245         11245       
+## Missings                               554          729           738          769           769           769       
+## PH test                                  0.30         0.06          0.25         0.08          0.16          0.74    
+## =====================================================================================================================
+## *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre></div>
 <p>Si bien no estamos replicando la especificación de Altman, a simple vista nuestros resultados confirmarían la hipótesis de que países que sufrieron “shocks” democratizadores fueron mucho más rápidos en implementar mecanismos directos de democracia. Hemos terminado el ejercicio, ahora te invitamos a que hagas la lista de ejercicios antes de pasar al próximo capítulo.</p>
 <div class="books">
 <p>
@@ -991,7 +954,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

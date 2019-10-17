@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 13 Análisis de redes | AnalizaR Datos Políticos</title>
   <meta name="description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
-  <meta name="generator" content="bookdown  and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12.2 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 13 Análisis de redes | AnalizaR Datos Políticos" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="web-mining.html">
-<link rel="next" href="qta.html">
+<link rel="prev" href="web-mining.html"/>
+<link rel="next" href="qta.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -47,11 +47,11 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
-<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+<script src="libs/wordcloud2-binding-0.2.2/wordcloud2.js"></script>
 <script>
 % https://stackoverflow.com/a/4425214/8242291
 var links = document.links;
@@ -72,7 +72,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -175,16 +174,28 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <li class="chapter" data-level="3.1.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>3.1.1</b> Nuestra base de datos</a></li>
 <li class="chapter" data-level="3.1.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#describir-la-base"><i class="fa fa-check"></i><b>3.1.2</b> Describir la base</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-en-bases"><i class="fa fa-check"></i><b>3.2</b> Operaciones en bases</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ordenar-una-base"><i class="fa fa-check"></i><b>3.2.1</b> Ordenar una base</a></li>
-<li class="chapter" data-level="3.2.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#seleccionar-columnas"><i class="fa fa-check"></i><b>3.2.2</b> Seleccionar columnas</a></li>
-<li class="chapter" data-level="3.2.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#renombrar-columnas"><i class="fa fa-check"></i><b>3.2.3</b> Renombrar columnas</a></li>
-<li class="chapter" data-level="3.2.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#filtrar-observaciones"><i class="fa fa-check"></i><b>3.2.4</b> Filtrar observaciones</a></li>
-<li class="chapter" data-level="3.2.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#crear-nuevas-variables"><i class="fa fa-check"></i><b>3.2.5</b> Crear nuevas variables</a></li>
-<li class="chapter" data-level="3.2.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#concatenar-comandos"><i class="fa fa-check"></i><b>3.2.6</b> Concatenar comandos</a></li>
-<li class="chapter" data-level="3.2.7" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-agrupadas"><i class="fa fa-check"></i><b>3.2.7</b> Operaciones agrupadas</a></li>
+<li class="chapter" data-level="3.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-basicas"><i class="fa fa-check"></i><b>3.2</b> Operaciones básicas</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#seleccionar-columnas"><i class="fa fa-check"></i><b>3.2.1</b> Seleccionar columnas</a></li>
+<li class="chapter" data-level="3.2.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#renombrar-columnas"><i class="fa fa-check"></i><b>3.2.2</b> Renombrar columnas</a></li>
+<li class="chapter" data-level="3.2.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#filtrar-observaciones"><i class="fa fa-check"></i><b>3.2.3</b> Filtrar observaciones</a></li>
+<li class="chapter" data-level="3.2.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ejercicio-a"><i class="fa fa-check"></i><b>3.2.4</b> (Ejercicio A)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ordenar-una-base"><i class="fa fa-check"></i><b>3.2.5</b> Ordenar una base</a></li>
+<li class="chapter" data-level="3.2.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#transformar-y-crear-variables"><i class="fa fa-check"></i><b>3.2.6</b> Transformar y crear variables</a></li>
+<li class="chapter" data-level="3.2.7" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ejercicio-b"><i class="fa fa-check"></i><b>3.2.7</b> (Ejercicio B)</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#reformatear-bases"><i class="fa fa-check"></i><b>3.3</b> Reformatear bases</a></li>
+<li class="chapter" data-level="3.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#resumenes"><i class="fa fa-check"></i><b>3.3</b> Resúmenes</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#resumenes-agrupados"><i class="fa fa-check"></i><b>3.3.1</b> Resúmenes agrupados</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#comandos-en-cadena"><i class="fa fa-check"></i><b>3.4</b> Comandos en cadena</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ejercicio-c"><i class="fa fa-check"></i><b>3.4.1</b> (Ejercicio C)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#manejo-de-datos-recodificar"><i class="fa fa-check"></i><b>3.5</b> Recodificar valores</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ejercicio-d"><i class="fa fa-check"></i><b>3.5.1</b> (Ejercicio D)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#manejo-de-datos-pivoteo"><i class="fa fa-check"></i><b>3.6</b> Pivoteo de bases</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ejercicio-e"><i class="fa fa-check"></i><b>3.6.1</b> (Ejercicio E)</a></li>
+<li class="chapter" data-level="3.6.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#bases-en-formato-wide-con-mas-de-una-variable-de-interes"><i class="fa fa-check"></i><b>3.6.2</b> Bases en formato <em>wide</em> con más de una variable de interés</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Visualización de datos</a><ul>
 <li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#por-que-quiero-visualizar-mis-datos"><i class="fa fa-check"></i><b>4.1</b> ¿Por qué quiero visualizar mis datos?</a></li>
@@ -375,7 +386,7 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <hr />
 <div id="introduccion-4" class="section level2">
 <h2><span class="header-section-number">13.1</span> Introducción</h2>
-<p>No es exagerado decir que en política todo está conectado con todo. Por ejemplo, fíjate en el caso de las y los legisladores. Las conexiones son evidentes: partidos, coaliciones, comisiones, familias, colegios… Para comprender mejor estas enmarañadas relaciones, una de las herramientas que está en el cinturón de herramientas de los politólogos es la del análisis de redes. Las redes son capaces de reconocer que todo está conectado con todo, y dar pistas sobre la lógica detrás de esas conexiones. No solo permiten visualizar de forma atractiva dichas conexiones, sino que también calcular distintas mediciones interesantes sobre los actores en cuestión y los vínculos que los unen. En este capítulo aprenderás las bases del análisis de redes con <code>R</code>, principalmente utilizando los paquetes <code>tidygraph</code> y <code>ggraph</code>, que se aproximan al análisis de redes desde los preceptos del <code>tidyverse</code>.</p>
+<p>No es exagerado decir que en política todo está conectado con todo. Por ejemplo, miremos el caso de las y los legisladores. Las conexiones son evidentes: partidos, coaliciones, comisiones, familias, colegios… Para comprender mejor estas enmarañadas relaciones, una de las herramientas que está en el cinturón de los cientistas sociales es el análisis de redes. Las redes son capaces de reconocer que todo está conectado con todo, y dar pistas sobre la lógica detrás de esas conexiones. No solo permiten visualizar de forma atractiva dichas conexiones, sino que también calcular distintas mediciones interesantes sobre los actores en cuestión y los vínculos que los unen. En este capítulo aprenderás las bases del análisis de redes con <code>R</code>, principalmente utilizando los paquetes <code>tidygraph</code> y <code>ggraph</code>, que se aproximan al análisis de redes desde los preceptos del <code>tidyverse</code>.</p>
 </div>
 <div id="conceptos-iniciales" class="section level2">
 <h2><span class="header-section-number">13.2</span> Conceptos iniciales</h2>
@@ -487,6 +498,7 @@ D
 </div>
 <div id="pesos-y-direccion" class="section level3">
 <h3><span class="header-section-number">13.2.3</span> Pesos y dirección</h3>
+<p>La naturaleza de nuestros datos</p>
 <p>Una red tan básica como la vista hasta ahora puede complejizarse bastante más, de acuerdo a la naturaleza de los datos. Dos complejizaciones típicas refieren a los enlaces: añadir pesos y dirección. Para comenzar con los pesos, en nuestro ejemplo los legisladores están conectados si es que <em>alguna vez</em> han presentado un proyecto de ley en conjunto. Sin embargo, a menudo es de interés no solo conocer la existencia de una conexión entre dos actores, sino que también la fuerza de esta: no es lo mismo que dos legisladores hayan aceptado con reticencia presentar un proyecto juntos en una ocasión, a que hayan presentado múltiples proyectos de ley en conjunto. Volvamos a la matriz de adyacencia, esta vez incluyendo pesos. En este nuevo ejemplo, de la Tabla <a href="redes.html#tab:matriz-ady2">13.2</a>, las legisladoras A y B han presentado 9 proyectos de ley juntas. Nota cómo, por convención, la diagonal de la matriz sigue llena de unos.</p>
 <table class="table table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
@@ -579,7 +591,7 @@ D
 </tr>
 </tbody>
 </table>
-<p>La segunda forma de añadir información adicional a los enlaces es registrando su dirección. En algunas legislaturas los proyectos de ley tienen un autor o autora principal (sponsor), a quien el resto de los legisladores se suman (co-sponsors). En estos casos, la red de co-sponsorship naturalmente tendrá dirección: un legislador “auspiciará” a otro firmando en su proyecto de ley, sin que esta relación sea necesariamente recíproca. Es posible incluir esta información en la red, tal como realiza <a href="http://jhfowler.ucsd.edu/cosponsorship.htm">Fowler (2006)</a> para el Congreso de Estados Unidos. Una matriz de adyacencia con direcciones (y pesos) podría verse como la de la Tabla <a href="redes.html#tab:matriz-ady3">13.3</a>. Nota que ahora la matriz no es simétrica, pues existe más información sobre la relación de co-sponsorship entre las legisladoras A y B: mientras que la legisladora A auspició siete proyectos de la legisladora B, esta solo reciprocó en dos proyectos de ley<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>.</p>
+<p>La segunda forma de añadir información adicional a los enlaces es registrando su dirección. En algunas legislaturas los proyectos de ley tienen un autor o autora principal (sponsor), a quien el resto de los legisladores se suman (co-sponsors). En estos casos, la red de co-sponsorship naturalmente tendrá dirección: un legislador “auspiciará” a otro firmando en su proyecto de ley, sin que esta relación sea necesariamente recíproca. Es posible incluir esta información en la red, tal como realiza <a href="http://jhfowler.ucsd.edu/cosponsorship.htm">Fowler (2006)</a> para el Congreso de Estados Unidos. Una matriz de adyacencia con direcciones (y pesos) podría verse como la de la Tabla <a href="redes.html#tab:matriz-ady3">13.3</a>. Nota que ahora la matriz no es simétrica, pues existe más información sobre la relación de co-sponsorship entre las legisladoras A y B: mientras que la legisladora A auspició siete proyectos de la legisladora B, esta solo reciprocó en dos proyectos de ley<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <table class="table table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:matriz-ady3">Tabla 13.3: </span>Matriz de adyacencia, red con pesos y direcciones.
@@ -676,148 +688,149 @@ D
 <div id="bases-de-datos-de-redes" class="section level2">
 <h2><span class="header-section-number">13.3</span> Bases de datos de redes</h2>
 <p>Siguiendo con el espíritu del ejemplo anterior, en este capítulo trabajaremos con datos de co-sponsorship de leyes en el Senado argentino. Utilizaremos los datos de <a href="https://onlinelibrary.wiley.com/doi/abs/10.3162/036298009787500358">Alemán et al. (2009)</a>, en específico para el año 1983, justo después del regreso de la democracia. Comencemos cargando la base de datos con la ayuda de nuestro paquete <code>paqueteadp</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(paqueteadp)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(leyes_argentina)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(paqueteadp)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">data</span>(leyes_argentina)</a></code></pre></div>
 <p>Podemos revisar que nuestra base se cargó adecuadamente con <code>ls()</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">ls</span>()</a></code></pre></div>
 <pre><code>## [1] &quot;leyes_argentina&quot;</code></pre>
 <p>Para pasar esta base de datos a un formato de redes utilizaremos el paquete <code>tidygraph</code>. Nuestro objetivo será el siguiente: crear dos bases de datos, una con información sobre los nodos de la red (legisladores/as) y otra con información sobre los vínculos entre esos nodos (firmas en común). Nota que el procedimiento exacto para crear estas bases dependerá de la estructura original de tus datos.</p>
 <p>Comencemos explorando nuestra base inicial:</p>
-<pre class="sourceCode r"><code class="sourceCode r">leyes_argentina
-<span class="co">## # A tibble: 665 x 7</span>
-<span class="co">##    id_proyecto n_firmantes id_leg nombre_leg provincia_leg partido_leg</span>
-<span class="co">##    &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt;      </span>
-<span class="co">##  1 0001-S-84             2     25 JOSE H MA… JUJUY         JUSTICIALI…</span>
-<span class="co">##  2 0001-S-84             2      4 ALFREDO L… JUJUY         JUSTICIALI…</span>
-<span class="co">##  3 0002-S-84             2     34 OLIJELA D… TUCUMAN       JUSTICIALI…</span>
-<span class="co">##  4 0002-S-84             2      3 RAMON A A… TUCUMAN       JUSTICIALI…</span>
-<span class="co">##  5 0003-S-84             2      3 RAMON A A… TUCUMAN       JUSTICIALI…</span>
-<span class="co">##  6 0003-S-84             2     34 OLIJELA D… TUCUMAN       JUSTICIALI…</span>
-<span class="co">##  7 0004-S-84             1     37 LUIS SALIM S DEL ESTERO  JUSTICIALI…</span>
-<span class="co">##  8 0006-S-84             2     38 LIBARDO N… LA RIOJA      JUSTICIALI…</span>
-<span class="co">##  9 0006-S-84             2     29 EDUARDO M… LA RIOJA      JUSTICIALI…</span>
-<span class="co">## 10 0007-S-84             2     38 LIBARDO N… LA RIOJA      JUSTICIALI…</span>
-<span class="co">## # … with 655 more rows, and 1 more variable: bloque_leg &lt;chr&gt;</span></code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">leyes_argentina</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">## # A tibble: 665 x 7</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">##    id_proyecto n_firmantes id_leg nombre_leg provincia_leg partido_leg</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">##    &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt;      </span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">##  1 0001-S-84             2     25 JOSE H MA… JUJUY         JUSTICIALI…</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">##  2 0001-S-84             2      4 ALFREDO L… JUJUY         JUSTICIALI…</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">##  3 0002-S-84             2     34 OLIJELA D… TUCUMAN       JUSTICIALI…</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">##  4 0002-S-84             2      3 RAMON A A… TUCUMAN       JUSTICIALI…</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">##  5 0003-S-84             2      3 RAMON A A… TUCUMAN       JUSTICIALI…</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">##  6 0003-S-84             2     34 OLIJELA D… TUCUMAN       JUSTICIALI…</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">##  7 0004-S-84             1     37 LUIS SALIM S DEL ESTERO  JUSTICIALI…</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">##  8 0006-S-84             2     38 LIBARDO N… LA RIOJA      JUSTICIALI…</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">##  9 0006-S-84             2     29 EDUARDO M… LA RIOJA      JUSTICIALI…</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">## 10 0007-S-84             2     38 LIBARDO N… LA RIOJA      JUSTICIALI…</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">## # … with 655 more rows, and 1 more variable: bloque_leg &lt;chr&gt;</span></a></code></pre></div>
 <p>Como puedes notar, esta es una base de formato “long”, donde cada firma es una fila. De esta forma, podemos inmediatamente saber que hubo 665 firmas en proyectos durante el año 1983. ¿En cuántos proyectos se distribuyeron esas firmas? Hagamos una tabla de frecuencia para la variable <code>id_proyecto</code>, utilizando la función <code>count()</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">leyes_argentina <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">count</span>(id_proyecto)
-<span class="co">## # A tibble: 248 x 2</span>
-<span class="co">##    id_proyecto     n</span>
-<span class="co">##    &lt;chr&gt;       &lt;int&gt;</span>
-<span class="co">##  1 0001-S-84       2</span>
-<span class="co">##  2 0002-S-84       2</span>
-<span class="co">##  3 0003-S-84       2</span>
-<span class="co">##  4 0004-S-84       1</span>
-<span class="co">##  5 0006-S-84       2</span>
-<span class="co">##  6 0007-S-84       2</span>
-<span class="co">##  7 0009-S-84       6</span>
-<span class="co">##  8 0010-S-84       3</span>
-<span class="co">##  9 0011-S-84       5</span>
-<span class="co">## 10 0012-S-84       9</span>
-<span class="co">## # … with 238 more rows</span></code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">leyes_argentina <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(id_proyecto)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">## # A tibble: 248 x 2</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">##    id_proyecto     n</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">##    &lt;chr&gt;       &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">##  1 0001-S-84       2</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">##  2 0002-S-84       2</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">##  3 0003-S-84       2</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">##  4 0004-S-84       1</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">##  5 0006-S-84       2</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">##  6 0007-S-84       2</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">##  7 0009-S-84       6</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">##  8 0010-S-84       3</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">##  9 0011-S-84       5</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">## 10 0012-S-84       9</span></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">## # … with 238 more rows</span></a></code></pre></div>
 <p>Sabemos entonces que hubo 248 proyectos de ley. ¿Cuántos legisladores/as firmaron en proyectos?</p>
-<pre class="sourceCode r"><code class="sourceCode r">leyes_argentina <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">count</span>(id_leg)
-<span class="co">## # A tibble: 46 x 2</span>
-<span class="co">##    id_leg     n</span>
-<span class="co">##     &lt;dbl&gt; &lt;int&gt;</span>
-<span class="co">##  1      1    13</span>
-<span class="co">##  2      2    21</span>
-<span class="co">##  3      3    24</span>
-<span class="co">##  4      4    18</span>
-<span class="co">##  5      5    23</span>
-<span class="co">##  6      6    19</span>
-<span class="co">##  7      7    26</span>
-<span class="co">##  8      8    21</span>
-<span class="co">##  9      9    15</span>
-<span class="co">## 10     10    10</span>
-<span class="co">## # … with 36 more rows</span></code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">leyes_argentina <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(id_leg)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">## # A tibble: 46 x 2</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">##    id_leg     n</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">##     &lt;dbl&gt; &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">##  1      1    13</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">##  2      2    21</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">##  3      3    24</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">##  4      4    18</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">##  5      5    23</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">##  6      6    19</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">##  7      7    26</span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">##  8      8    21</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">##  9      9    15</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">## 10     10    10</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">## # … with 36 more rows</span></a></code></pre></div>
 <p>Nota que la variable <code>id_leg</code> asigna un número correlativo, entre 1 y 46, para cada senador/a. Entonces, hasta ahora sabemos que 46 senadores/as firmaron en proyectos, sumando 665 firmas en 248 proyectos de ley distintos. Pero volvamos a nuestro objetivo inicial para comenzar con el análisis de redes: necesitamos crear una base de datos de nodos y otra de enlaces.</p>
 <p>Nuestra base de datos de nodos tendrá, entonces, información de los legisladores/as, totalizando 46 observaciones. Otras variables en la base que nos entregan información sobre los legisladores/as son <code>nombre_leg</code>, <code>provincia_leg</code>, <code>partido_leg</code> y <code>bloque_leg</code>, por lo que estas deberían estar presentes en nuestra base de datos de nodos. Construyámosla:</p>
-<pre class="sourceCode r"><code class="sourceCode r">df_nodos &lt;-<span class="st"> </span>leyes_argentina <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(id_leg) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">nombre_leg    =</span> <span class="kw">unique</span>(nombre_leg),
-            <span class="dt">provincia_leg =</span> <span class="kw">unique</span>(provincia_leg),
-            <span class="dt">partido_leg   =</span> <span class="kw">unique</span>(partido_leg),
-            <span class="dt">bloque_leg    =</span> <span class="kw">unique</span>(bloque_leg))</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">df_nodos
-<span class="co">## # A tibble: 46 x 5</span>
-<span class="co">##    id_leg nombre_leg               provincia_leg partido_leg   bloque_leg  </span>
-<span class="co">##     &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;       </span>
-<span class="co">##  1      1 RAMON A ALMENDRA         SANTA CRUZ    JUSTICIALISTA JUSTICIALIS…</span>
-<span class="co">##  2      2 JULIO AMOEDO             CATAMARCA     JUSTICIALISTA JUSTICIALIS…</span>
-<span class="co">##  3      3 RAMON A ARAUJO           TUCUMAN       JUSTICIALISTA JUSTICIALIS…</span>
-<span class="co">##  4      4 ALFREDO L BENITEZ        JUJUY         JUSTICIALISTA JUSTICIALIS…</span>
-<span class="co">##  5      5 ANTONIO TOMAS BERHONGAR… LA PAMPA      UCR           UCR         </span>
-<span class="co">##  6      6 DEOLINDO FELIPE BITTEL   CHACO         JUSTICIALISTA JUSTICIALIS…</span>
-<span class="co">##  7      7 LUIS BRASESCO            ENTRE RIOS    UCR           UCR         </span>
-<span class="co">##  8      8 HORACIO F BRAVO HERRERA  SALTA         JUSTICIALISTA JUSTICIALIS…</span>
-<span class="co">##  9      9 ORALDO N BRITOS          SAN LUIS      JUSTICIALISTA JUSTICIALIS…</span>
-<span class="co">## 10     10 JORGE A CASTRO           S DEL ESTERO  JUSTICIALISTA JUSTICIALIS…</span>
-<span class="co">## # … with 36 more rows</span></code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">df_nodos &lt;-<span class="st"> </span>leyes_argentina <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(id_leg) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">nombre_leg    =</span> <span class="kw">unique</span>(nombre_leg),</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">            <span class="dt">provincia_leg =</span> <span class="kw">unique</span>(provincia_leg),</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">            <span class="dt">partido_leg   =</span> <span class="kw">unique</span>(partido_leg),</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">            <span class="dt">bloque_leg    =</span> <span class="kw">unique</span>(bloque_leg))</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">df_nodos</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">## # A tibble: 46 x 5</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">##    id_leg nombre_leg               provincia_leg partido_leg   bloque_leg  </span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">##     &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;       </span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">##  1      1 RAMON A ALMENDRA         SANTA CRUZ    JUSTICIALISTA JUSTICIALIS…</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">##  2      2 JULIO AMOEDO             CATAMARCA     JUSTICIALISTA JUSTICIALIS…</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">##  3      3 RAMON A ARAUJO           TUCUMAN       JUSTICIALISTA JUSTICIALIS…</span></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="co">##  4      4 ALFREDO L BENITEZ        JUJUY         JUSTICIALISTA JUSTICIALIS…</span></a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">##  5      5 ANTONIO TOMAS BERHONGAR… LA PAMPA      UCR           UCR         </span></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">##  6      6 DEOLINDO FELIPE BITTEL   CHACO         JUSTICIALISTA JUSTICIALIS…</span></a>
+<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="co">##  7      7 LUIS BRASESCO            ENTRE RIOS    UCR           UCR         </span></a>
+<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co">##  8      8 HORACIO F BRAVO HERRERA  SALTA         JUSTICIALISTA JUSTICIALIS…</span></a>
+<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">##  9      9 ORALDO N BRITOS          SAN LUIS      JUSTICIALISTA JUSTICIALIS…</span></a>
+<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co">## 10     10 JORGE A CASTRO           S DEL ESTERO  JUSTICIALISTA JUSTICIALIS…</span></a>
+<a class="sourceLine" id="cb9-15" data-line-number="15"><span class="co">## # … with 36 more rows</span></a></code></pre></div>
 <p>¡Nuestra base de datos de nodos está lista! Ahora necesitamos crear la base de datos de enlaces, que una a los legisladores/as de acuerdo a su co-sponsorship. Para los propósitos de este ejercicio realizaremos una base binaria, como la del primer ejemplo del capítulo: dos legisladores/as estarán conectados (<code>1</code>) si es que alguna vez en 1983 presentaron un proyecto en conjunto.</p>
 <p>Siguiendo el espíritu de las pipes, que revisamos en el Capítulo <a href="manejo-de-datos.html#manejo-de-datos">3</a>, realizaremos una operación compleja con una sola concatenación de comandos –¡revisa muy bien los comentarios del código!–. Como vimos, nuestro objetivo será crear los pares de diputados que están conectados por, a lo menos, un proyecto en común.</p>
-<pre class="sourceCode r"><code class="sourceCode r">df_enlaces &lt;-<span class="st"> </span>leyes_argentina <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="co"># Seleccionemos solo las variables de proyecto y legislador</span>
-<span class="st">  </span><span class="kw">select</span>(id_proyecto, id_leg) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="co"># Ahora unamos la base consigo misma, para crear todas las combinaciones</span>
-<span class="st">  </span><span class="co">## de pares de legisladores/as por proyecto </span>
-<span class="st">  </span><span class="kw">left_join</span>(., ., <span class="dt">by =</span> <span class="st">&quot;id_proyecto&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="co"># Eliminemos los pares de un legislador/a consigo mismo</span>
-<span class="st">  </span><span class="kw">filter</span>(id_leg.x <span class="op">!=</span><span class="st"> </span>id_leg.y) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="co"># Quedémonos con lo pares únicos (aquí el orden no importa).</span>
-<span class="st">  </span><span class="co">## En la variable id_leg_1 quedará el legislador/a con id menor.</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id_leg_1 =</span> <span class="kw">pmin</span>(id_leg.x, id_leg.y), 
-         <span class="dt">id_leg_2 =</span> <span class="kw">pmax</span>(id_leg.x, id_leg.y)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(id_leg_<span class="dv">1</span>, id_leg_<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># Ordenemos la base según las ids</span>
-<span class="st">  </span><span class="kw">arrange</span>(id_leg_<span class="dv">1</span>, id_leg_<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="co"># Creemos una variable solo con 1, que explicitan la conexión entre</span>
-<span class="st">  </span><span class="co">## el par de legisladores/as</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">d_firma_conjunta =</span> 1L)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">df_enlaces
-<span class="co">## # A tibble: 509 x 3</span>
-<span class="co">##    id_leg_1 id_leg_2 d_firma_conjunta</span>
-<span class="co">##       &lt;dbl&gt;    &lt;dbl&gt;            &lt;int&gt;</span>
-<span class="co">##  1        1        2                1</span>
-<span class="co">##  2        1        3                1</span>
-<span class="co">##  3        1        4                1</span>
-<span class="co">##  4        1        5                1</span>
-<span class="co">##  5        1        6                1</span>
-<span class="co">##  6        1        8                1</span>
-<span class="co">##  7        1        9                1</span>
-<span class="co">##  8        1       10                1</span>
-<span class="co">##  9        1       12                1</span>
-<span class="co">## 10        1       16                1</span>
-<span class="co">## # … with 499 more rows</span></code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">df_enlaces &lt;-<span class="st"> </span>leyes_argentina <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="co"># Seleccionemos solo las variables de proyecto y legislador</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(id_proyecto, id_leg) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span><span class="co"># Ahora unamos la base consigo misma, para crear todas las combinaciones</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">  </span><span class="co">## de pares de legisladores/as por proyecto </span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="st">  </span><span class="kw">left_join</span>(., ., <span class="dt">by =</span> <span class="st">&quot;id_proyecto&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="st">  </span><span class="co"># Eliminemos los pares de un legislador/a consigo mismo</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">  </span><span class="kw">filter</span>(id_leg.x <span class="op">!=</span><span class="st"> </span>id_leg.y) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="st">  </span><span class="co"># Quedémonos con lo pares únicos (aquí el orden no importa).</span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="st">  </span><span class="co">## En la variable id_leg_1 quedará el legislador/a con id menor.</span></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id_leg_1 =</span> <span class="kw">pmin</span>(id_leg.x, id_leg.y), </a>
+<a class="sourceLine" id="cb10-12" data-line-number="12">         <span class="dt">id_leg_2 =</span> <span class="kw">pmax</span>(id_leg.x, id_leg.y)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="st">  </span><span class="kw">select</span>(id_leg_<span class="dv">1</span>, id_leg_<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-14" data-line-number="14"><span class="st">  </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-15" data-line-number="15"><span class="st">  </span><span class="co"># Ordenemos la base según las ids</span></a>
+<a class="sourceLine" id="cb10-16" data-line-number="16"><span class="st">  </span><span class="kw">arrange</span>(id_leg_<span class="dv">1</span>, id_leg_<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="st">  </span><span class="co"># Creemos una variable solo con 1, que explicitan la conexión entre</span></a>
+<a class="sourceLine" id="cb10-18" data-line-number="18"><span class="st">  </span><span class="co">## el par de legisladores/as</span></a>
+<a class="sourceLine" id="cb10-19" data-line-number="19"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">d_firma_conjunta =</span> 1L)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">df_enlaces</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">## # A tibble: 509 x 3</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">##    id_leg_1 id_leg_2 d_firma_conjunta</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">##       &lt;dbl&gt;    &lt;dbl&gt;            &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">##  1        1        2                1</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">##  2        1        3                1</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">##  3        1        4                1</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">##  4        1        5                1</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">##  5        1        6                1</span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">##  6        1        8                1</span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co">##  7        1        9                1</span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">##  8        1       10                1</span></a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co">##  9        1       12                1</span></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co">## 10        1       16                1</span></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co">## # … with 499 more rows</span></a></code></pre></div>
 <p>Existen 509 vínculos entre legisladores/as en nuestra red. Nota que aquí solo hemos obtenido los pares que están conectados: nuestra base no contiene información sobre los pares sin conexión. Luego, <code>tidygraph</code> asumirá, correctamente, que los pares no explicitados en la base de enlaces se encuentran desconectados.</p>
 <p>Ahora solo nos queda crear el objeto <code>tbl_graph</code>, propio del paquete <code>tidygraph</code>. Este simplemente contiene nuestras dos bases de datos:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidygraph)
-red_cosp_arg &lt;-<span class="st"> </span><span class="kw">tbl_graph</span>(<span class="dt">nodes =</span> df_nodos,
-                          <span class="dt">edges =</span> df_enlaces,
-                          <span class="dt">directed =</span> F <span class="co"># ¡nuestra base no tiene dirección!</span>
-                          )</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">library</span>(tidygraph)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">red_cosp_arg &lt;-<span class="st"> </span><span class="kw">tbl_graph</span>(<span class="dt">nodes =</span> df_nodos,</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">                          <span class="dt">edges =</span> df_enlaces,</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">                          <span class="dt">directed =</span> F <span class="co"># ¡nuestra base no tiene dirección!</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">                          )</a></code></pre></div>
 <p>Nota que, para que <code>tbl_graph</code> funcione correctamente en este caso, las id de identifación de cada nodo deben ser correlativas, abarcando desde 1 hasta el total de nodos. Como es el caso en nuestro ejemplo, podemos seguir adelante.</p>
 </div>
 <div id="disposicion-grafica" class="section level2">
 <h2><span class="header-section-number">13.4</span> Disposición gráfica</h2>
 <p>Ahora tenemos una red de legisladores que se dispone de la siguiente forma:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggraph)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">100</span>); layout_red &lt;-<span class="st"> </span><span class="kw">create_layout</span>(red_cosp_arg, <span class="st">&quot;fr&quot;</span>)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggraph</span>(layout_red) <span class="op">+</span>
-<span class="st">  </span><span class="co"># Añadir los enlaces:</span>
-<span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="dt">color =</span> <span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="co"># Añadir los nodos (con color según bloque):</span>
-<span class="st">  </span><span class="kw">geom_node_point</span>(<span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span>
-<span class="st">  </span><span class="co"># Utilizar fondo blanco y tema vacío:</span>
-<span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span>
-<span class="st">  </span><span class="co"># Añadir una etiqueta más legible</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Bloque legislativo&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(ggraph)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">100</span>); layout_red &lt;-<span class="st"> </span><span class="kw">create_layout</span>(red_cosp_arg, <span class="st">&quot;fr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">ggraph</span>(layout_red) <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="co"># Añadir los enlaces:</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="dt">color =</span> <span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="co"># Añadir los nodos (con color según bloque):</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_node_point</span>(<span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="st">  </span><span class="co"># Utilizar fondo blanco y tema vacío:</span></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="st">  </span><span class="co"># Añadir una etiqueta más legible</span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Bloque legislativo&quot;</span>)</a></code></pre></div>
 <p><img src="redes_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" /></p>
 <div id="color-y-forma-en-la-representacion-visual" class="section level3">
 <h3><span class="header-section-number">13.4.1</span> Color y forma en la representación visual</h3>
+<p><strong>PENDIENTE</strong></p>
 </div>
 </div>
 <div id="analisis-basico-de-redes" class="section level2">
@@ -840,8 +853,8 @@ red_cosp_arg &lt;-<span class="st"> </span><span class="kw">tbl_graph</span>(<sp
 </div>
 <div class="footnotes">
 <hr />
-<ol start="8">
-<li id="fn8"><p>Nota que esta tercera red, como está descrita en nuestro ejemplo, no registra cuando dos legisladores apoyan en conjunto un proyecto de otro legislador distinto. En este sentido, solo mide apoyos <em>directos</em> entre pares de legisladores.<a href="redes.html#fnref8" class="footnote-back">↩</a></p></li>
+<ol start="1">
+<li id="fn1"><p>Nota que esta tercera red, como está descrita en nuestro ejemplo, no registra cuando dos legisladores apoyan en conjunto un proyecto de otro legislador distinto. En este sentido, solo mide apoyos <em>directos</em> entre pares de legisladores.<a href="redes.html#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -892,8 +905,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

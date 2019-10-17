@@ -28,8 +28,8 @@ Supongamos que nos hacemos la pregunta que se hizo [David Altman](https://www.ca
 En nuestra base de datos tendremos, al menos, cuatro tipos de observaciones (ver figura \@ref(fig:surv)): (a) aquellas que, para el momento en que tenemos datos ya estaban en la muestra, aunque no siempre sabremos hace cuanto que “existen”. Son, en la figura, las observaciones B y C. En la base de datos de Altman, por ejemplo, México ya existía como entidad política en 1900, cuando su base de datos parte (sabemos que la Primera República Federal existió como entidad política desde octubre de 1824, por lo que México sería codificado como existente a partir de esa fecha). También sabemos que en 2012, por primera vez, México implementó una iniciativa de democracia directa, lo que define como positiva la ocurrencia del evento que nos interesa medir. Así, México sería como la observación B de la figura; (b) Algunas observaciones estarán desde el comienzo de la muestra, y existirán hasta el último momento sin haber registrado el evento de interés. Tal es el caso, de la observación C en la figura. En la muestra de Altman un ejemplo sería Argentina, que desde 1900 está registrado en la base (ya había "nacido"), y hasta el último año de la muestra no había registrado instancias de democracia directa (no "murió"), lo que la transforma en una observación censurada. A los fines prácticos no cambia saber qué ocurrió a partir del año en que nuestra base termina. Por ejemplo, en la figura, nuestra base cubre hast $t_7$, y sabemos que en $t_8$ la observación C aún no había muerto, y la observación D lo había hecho en $t_8$. En nuestra base, C y D serán ambas observaciones censuradas en $t_7$; (c) Algunas observaciones pueden entrar “tarde” en la muestra, como es el caso de las observaciones A y D. Por ejemplo, Eslovenia entra a la muestra de Altman en 1991, que es cuando se independiza de Yugoslavia y "nace" como país; (d) Algunas observaciones, independientemente de cuando entren a la muestra, "moriran" durante el periodo analizado. Por ejemplo, A y B mueren dentro del periodo que hemos medido entrte $t_1$ y $t_7$. Ya para la observación D, no registramos su muerte. Hay un caso no considerado en el ejemplo, de observaciones que nacen y mueren sucesivamente a lo largo del periodo de estudio. Para ellas, deberemos decidir si las tratamos como observaciones independientes, o si modelamos la posibilidad de morir más de una vez. Si es así, la probabilidad de morir por segunda vez deberá estar condicionada por la probabilidad de haber muerto (y cuando!) por primera vez. Este es un tipo de caso algo más complejo que no cubriremos en este caoítulo.
 
 <div class="figure" style="text-align: center">
-<img src="00-images/surv_fig_10_1.PNG" alt="Ejemplos de observaciones presentes en una base de datos de supervivencia" width="70%" />
-<p class="caption">(\#fig:surv)Ejemplos de observaciones presentes en una base de datos de supervivencia</p>
+<img src="00-images/surv/ej_obs.png" alt="Ejemplos de observaciones presentes en una base de datos de supervivencia" width="70%" />
+<p class="caption">(\#fig:surv-ej-obs)Ejemplos de observaciones presentes en una base de datos de supervivencia</p>
 </div>
 
 Los modelos de supervivencia se interpretan a partir de la probabilidad de que en un momento dado el evento de interés ocurra siendo que que no ha ocurrido aun. Esta probabilidad recibe el nombre de tasa de riesgo. Partimos sabiendo que tenemos una variable, que llamaremos $T$, y que representa un valor aleatorio positivo y que tiene una distribución de probabilidades (correspondiente a la probabilidad del evento ocurrir en cada uno de los momentos posibles) que llamaremos $f(t)$. Esta probabilidad se puede expresar de manera acumulada, como una densidad acumulada $F(t)$. Com, en la que vemos que $F(t)$ viene dada por la probabilidad de que el tiempo de supervivencia $T$ sea menor o igual a un tiempo específico $t$ :
@@ -59,8 +59,8 @@ El *Oxford Handbook* sobre metodología política dedica un capítulo entero a d
 
 
 <div class="figure" style="text-align: center">
-<img src="00-images/surv_fig_10_2.png" alt="Diferentes riesgos de base en el modelo de Weibull" width="423" />
-<p class="caption">(\#fig:weibull)Diferentes riesgos de base en el modelo de Weibull</p>
+<img src="00-images/surv/riesgos.png" alt="Diferentes riesgos de base en el modelo de Weibull"  />
+<p class="caption">(\#fig:surv-riesgos)Diferentes riesgos de base en el modelo de Weibull</p>
 </div>
 
 
@@ -69,8 +69,8 @@ Una segunda ventaja de los modelos semi-parametricos sobre los paramétricos tie
 Sin embargo, los valores de estas variables no solo difieren ente países, sino que a lo largo del tiempo estas variables cambian mucho para un mismo país. Piénsese en Colombia, por ejemplo, en que la variable de V-Dem “v2x_polyarchy” sufrió avances y retrocesos entre 1900 y 2016 (ver figura 3). Cada vez que el valor de esta variable cambia, necesariamente cambia la tasa de riesgo de democracia directa para Colombia, rompiendo el presupuesto de proporcionalidad de los riesgos.
 
 <div class="figure" style="text-align: center">
-<img src="00-images/surv_fig_10_3.png" alt="Valores de poliarquía para Colombia según V-Dem" width="600" />
-<p class="caption">(\#fig:unnamed-chunk-2)Valores de poliarquía para Colombia según V-Dem</p>
+<img src="00-images/surv/poliarq.png" alt="Valores de poliarquía para Colombia según V-Dem"  />
+<p class="caption">(\#fig:poliarq)Valores de poliarquía para Colombia según V-Dem</p>
 </div>
 
 La ventaja del modelo de Cox sobre sus contrapartes paramétricas es que existen tests para saber si alguna variable de nuestro modelo rompe el presupuesto de proporcionalidad de los riesgos, y de esa forma podremos corregirlo generando interacciones entre estas variables y variables temporales. De esta forma, permitimos que en nuestro modelo haya dos tipos de coeficientes: coeficientes constantes en el tiempo, y coeficientes cambiantes en el tiempo. Por ejemplo, podemos imaginar que ante un aumento brusco en la calidad de las instituciones democráticas de un país la tasa de riesgo de implementar democracia directa se dispare, pero que dicho efecto de desvanezca en el lapso de cuatro o cinco años. Cuando definas tu modelo, es importante que reflexiones sobre qué variables puede asumirse que permanezcan constantes en los riesgos y cuales no. 
@@ -133,11 +133,11 @@ skim(dem_directa)
 ##  n obs: 13885 
 ##  n variables: 23 
 ## 
-## ── Variable type:character ──────────────────────────────
+## ── Variable type:character ───────────────────────────────────
 ##      variable missing complete     n min max empty n_unique
 ##  country_name       0    13885 13885   4  32     0      202
 ## 
-## ── Variable type:numeric ────────────────────────────────
+## ── Variable type:numeric ─────────────────────────────────────
 ##              variable missing complete     n      mean    sd        p0
 ##        p25     p50      p75    p100     hist
 ##  [ reached getOption("max.print") -- omitted 22 rows ]
@@ -370,8 +370,8 @@ gantt_plot
 ```
 
 <div class="figure" style="text-align: center">
-<img src="surv_files/figure-html/unnamed-chunk-19-1.png" alt="Diagrama de Gantt para todas las observaciones" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-19)Diagrama de Gantt para todas las observaciones</p>
+<img src="surv_files/figure-html/unnamed-chunk-18-1.png" alt="Diagrama de Gantt para todas las observaciones" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-18)Diagrama de Gantt para todas las observaciones</p>
 </div>
 En el eje vertical tenemos los países ordenados alfabeticamente, y en el eje x hay dos variables que informan al gráfico, por un lado el comienzo de la línea (`year_enters`) y por otro su fin (`year_exits`). Además, hay una tercer variable informativa que es el color de la línea, que denota si el país implementó o no una instancia de democracia directa (`exits_bc_dd`). Los países en azul son los que implementaron dicha instancia entre 1900 y 2016.  
 
@@ -389,8 +389,8 @@ gantt_plot_sa
 ```
 
 <div class="figure" style="text-align: center">
-<img src="surv_files/figure-html/unnamed-chunk-20-1.png" alt="Diagrama de Gantt para América del Sur" width="480" />
-<p class="caption">(\#fig:unnamed-chunk-20)Diagrama de Gantt para América del Sur</p>
+<img src="surv_files/figure-html/unnamed-chunk-19-1.png" alt="Diagrama de Gantt para América del Sur" width="480" />
+<p class="caption">(\#fig:unnamed-chunk-19)Diagrama de Gantt para América del Sur</p>
 </div>
 Podemos agregarle los años como texto para mejorar aún más la lectura de la figura:
 
@@ -403,8 +403,8 @@ gantt_plot_sa
 ```
 
 <div class="figure" style="text-align: center">
-<img src="surv_files/figure-html/unnamed-chunk-21-1.png" alt="Diagrama de Gantt para América del Sur con todas las mejoras" width="480" />
-<p class="caption">(\#fig:unnamed-chunk-21)Diagrama de Gantt para América del Sur con todas las mejoras</p>
+<img src="surv_files/figure-html/unnamed-chunk-20-1.png" alt="Diagrama de Gantt para América del Sur con todas las mejoras" width="480" />
+<p class="caption">(\#fig:unnamed-chunk-20)Diagrama de Gantt para América del Sur con todas las mejoras</p>
 </div>
 Finalmente, algunos retoques estéticos, con todo lo que hemos aprendido en el Capítulo \@ref(dataviz):
 
@@ -420,8 +420,8 @@ gantt_plot_sa
 ```
 
 <div class="figure" style="text-align: center">
-<img src="surv_files/figure-html/unnamed-chunk-22-1.png" alt="Diagrama de Gantt para todas las observaciones" width="480" />
-<p class="caption">(\#fig:unnamed-chunk-22)Diagrama de Gantt para todas las observaciones</p>
+<img src="surv_files/figure-html/unnamed-chunk-21-1.png" alt="Diagrama de Gantt para todas las observaciones" width="480" />
+<p class="caption">(\#fig:unnamed-chunk-21)Diagrama de Gantt para todas las observaciones</p>
 </div>
 
 Además de gráficos de Gantt, es muy común que quien trabaja con modelos de supervivencia muestre gráficos con las curvas de supervivencia comparando dos grupos de interés. Por ejemplo, David Altman se pregunta si hubo una diferencia en el siglo XX entre países que se democratizaron rápidamente y aquellos que demoraron décadas en hacerlo respecto a la rapidez con que implementaron mecanismos de democracia directa. Este tipo de figuras no tiene valor inferencial, pero si gran valor decriptivo. Tenemos que estimar una curva de supervivencia no paramétrica, usando el método de Kaplan-Meier. 

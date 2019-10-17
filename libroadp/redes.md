@@ -14,7 +14,7 @@
 
 ## Introducción
 
-No es exagerado decir que en política todo está conectado con todo. Por ejemplo, fíjate en el caso de las y los legisladores. Las conexiones son evidentes: partidos, coaliciones, comisiones, familias, colegios... Para comprender mejor estas enmarañadas relaciones, una de las herramientas que está en el cinturón de herramientas de los politólogos es la del análisis de redes. Las redes son capaces de reconocer que todo está conectado con todo, y dar pistas sobre la lógica detrás de esas conexiones. No solo permiten visualizar de forma atractiva dichas conexiones, sino que también calcular distintas mediciones interesantes sobre los actores en cuestión y los vínculos que los unen. En este capítulo aprenderás las bases del análisis de redes con `R`, principalmente utilizando los paquetes `tidygraph` y `ggraph`, que se aproximan al análisis de redes desde los preceptos del `tidyverse`.
+No es exagerado decir que en política todo está conectado con todo. Por ejemplo, miremos el caso de las y los legisladores. Las conexiones son evidentes: partidos, coaliciones, comisiones, familias, colegios... Para comprender mejor estas enmarañadas relaciones, una de las herramientas que está en el cinturón de los cientistas sociales es el análisis de redes. Las redes son capaces de reconocer que todo está conectado con todo, y dar pistas sobre la lógica detrás de esas conexiones. No solo permiten visualizar de forma atractiva dichas conexiones, sino que también calcular distintas mediciones interesantes sobre los actores en cuestión y los vínculos que los unen. En este capítulo aprenderás las bases del análisis de redes con `R`, principalmente utilizando los paquetes `tidygraph` y `ggraph`, que se aproximan al análisis de redes desde los preceptos del `tidyverse`.
 
 ## Conceptos iniciales
 
@@ -82,6 +82,8 @@ Aparte de una descripción visual, como la de la Figura \@ref(fig:ej-redes), es 
 </table>
 
 ### Pesos y dirección
+
+La naturaleza de nuestros datos 
 
 Una red tan básica como la vista hasta ahora puede complejizarse bastante más, de acuerdo a la naturaleza de los datos. Dos complejizaciones típicas refieren a los enlaces: añadir pesos y dirección. Para comenzar con los pesos, en nuestro ejemplo los legisladores están conectados si es que *alguna vez* han presentado un proyecto de ley en conjunto. Sin embargo, a menudo es de interés no solo conocer la existencia de una conexión entre dos actores, sino que también la fuerza de esta: no es lo mismo que dos legisladores hayan aceptado con reticencia presentar un proyecto juntos en una ocasión, a que hayan presentado múltiples proyectos de ley en conjunto. Volvamos a la matriz de adyacencia, esta vez incluyendo pesos. En este nuevo ejemplo, de la Tabla \@ref(tab:matriz-ady2), las legisladoras A y B han presentado 9 proyectos de ley juntas. Nota cómo, por convención, la diagonal de la matriz sigue llena de unos.
 
@@ -391,6 +393,8 @@ ggraph(layout_red) +
 <img src="redes_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" />
 
 ### Color y forma en la representación visual
+
+**PENDIENTE**
 
 ## Análisis básico de redes
 
