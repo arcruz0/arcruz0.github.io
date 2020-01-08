@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 10 Creación de índices con PCA | AnalizaR Datos Políticos</title>
   <meta name="description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
-  <meta name="generator" content="bookdown  and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16.5 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 10 Creación de índices con PCA | AnalizaR Datos Políticos" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="manejo-av.html">
-<link rel="next" href="casos.html">
+<link rel="prev" href="manejo-av.html"/>
+<link rel="next" href="casos.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -47,11 +50,11 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
-<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+<script src="libs/wordcloud2-binding-0.2.2/wordcloud2.js"></script>
 <script>
 % https://stackoverflow.com/a/4425214/8242291
 var links = document.links;
@@ -72,7 +75,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -147,56 +149,74 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#inicio"><i class="fa fa-check"></i><b>1.1</b> Inicio</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#como-contribuir"><i class="fa fa-check"></i><b>1.2</b> ¿Cómo contribuir?</a><ul>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#cómo-contribuir"><i class="fa fa-check"></i><b>1.2</b> ¿Cómo contribuir?</a><ul>
 <li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#sobre-los-autores-y-autoras"><i class="fa fa-check"></i><b>1.2.1</b> Sobre los autores y autoras</a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#prefacio"><i class="fa fa-check"></i><b>1.3</b> Prefacio</a><ul>
 <li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i><b>1.3.1</b> Agradecimientos</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#que-esperar-del-libro"><i class="fa fa-check"></i><b>1.4</b> Qué esperar del libro</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#qué-esperar-del-libro"><i class="fa fa-check"></i><b>1.4</b> Qué esperar del libro</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#estructura-del-libro"><i class="fa fa-check"></i><b>1.5</b> Estructura del libro</a></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#prerrequisitos"><i class="fa fa-check"></i><b>1.6</b> Prerrequisitos</a></li>
 </ul></li>
 <li class="part"><span><b>I Introducción a R</b></span></li>
 <li class="chapter" data-level="2" data-path="rbas.html"><a href="rbas.html"><i class="fa fa-check"></i><b>2</b> R básico</a><ul>
-<li class="chapter" data-level="2.1" data-path="rbas.html"><a href="rbas.html#instalacion"><i class="fa fa-check"></i><b>2.1</b> Instalación</a><ul>
+<li class="chapter" data-level="2.1" data-path="rbas.html"><a href="rbas.html#instalación"><i class="fa fa-check"></i><b>2.1</b> Instalación</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="rbas.html"><a href="rbas.html#r"><i class="fa fa-check"></i><b>2.1.1</b> R</a></li>
 <li class="chapter" data-level="2.1.2" data-path="rbas.html"><a href="rbas.html#rstudio"><i class="fa fa-check"></i><b>2.1.2</b> RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="rbas.html"><a href="rbas.html#partes-de-rstudio"><i class="fa fa-check"></i><b>2.2</b> Partes de RStudio</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="rbas.html"><a href="rbas.html#consola"><i class="fa fa-check"></i><b>2.2.1</b> Consola</a></li>
-<li class="chapter" data-level="2.2.2" data-path="rbas.html"><a href="rbas.html#script"><i class="fa fa-check"></i><b>2.2.2</b> Script</a></li>
-<li class="chapter" data-level="2.2.3" data-path="rbas.html"><a href="rbas.html#objetos"><i class="fa fa-check"></i><b>2.2.3</b> Objetos</a></li>
-<li class="chapter" data-level="2.2.4" data-path="rbas.html"><a href="rbas.html#archivos-graficos-paquetes-ayuda"><i class="fa fa-check"></i><b>2.2.4</b> Archivos / gráficos / paquetes / ayuda</a></li>
+<li class="chapter" data-level="2.2" data-path="rbas.html"><a href="rbas.html#consola"><i class="fa fa-check"></i><b>2.2</b> Consola</a></li>
+<li class="chapter" data-level="2.3" data-path="rbas.html"><a href="rbas.html#script"><i class="fa fa-check"></i><b>2.3</b> Script</a></li>
+<li class="chapter" data-level="2.4" data-path="rbas.html"><a href="rbas.html#objetos"><i class="fa fa-check"></i><b>2.4</b> Objetos</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="rbas.html"><a href="rbas.html#vectores"><i class="fa fa-check"></i><b>2.4.1</b> Vectores</a></li>
+<li class="chapter" data-level="2.4.2" data-path="rbas.html"><a href="rbas.html#funciones"><i class="fa fa-check"></i><b>2.4.2</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="rbas.html"><a href="rbas.html#archivos-gráficos-paquetes-ayuda"><i class="fa fa-check"></i><b>2.5</b> Archivos / gráficos / paquetes / ayuda</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="rbas.html"><a href="rbas.html#archivos-y-proyectos-de-rstudio"><i class="fa fa-check"></i><b>2.5.1</b> Archivos y Proyectos de RStudio</a></li>
+<li class="chapter" data-level="2.5.2" data-path="rbas.html"><a href="rbas.html#gráficos"><i class="fa fa-check"></i><b>2.5.2</b> Gráficos</a></li>
+<li class="chapter" data-level="2.5.3" data-path="rbas.html"><a href="rbas.html#rbas-paquetes"><i class="fa fa-check"></i><b>2.5.3</b> Instalar paquetes</a></li>
+<li class="chapter" data-level="2.5.4" data-path="rbas.html"><a href="rbas.html#ayuda"><i class="fa fa-check"></i><b>2.5.4</b> Ayuda</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html"><i class="fa fa-check"></i><b>3</b> Manejo de datos</a><ul>
-<li class="chapter" data-level="3.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#introduccion-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a><ul>
+<li class="chapter" data-level="3.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#introducción-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>3.1.1</b> Nuestra base de datos</a></li>
 <li class="chapter" data-level="3.1.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#describir-la-base"><i class="fa fa-check"></i><b>3.1.2</b> Describir la base</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-en-bases"><i class="fa fa-check"></i><b>3.2</b> Operaciones en bases</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ordenar-una-base"><i class="fa fa-check"></i><b>3.2.1</b> Ordenar una base</a></li>
-<li class="chapter" data-level="3.2.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#seleccionar-columnas"><i class="fa fa-check"></i><b>3.2.2</b> Seleccionar columnas</a></li>
-<li class="chapter" data-level="3.2.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#renombrar-columnas"><i class="fa fa-check"></i><b>3.2.3</b> Renombrar columnas</a></li>
-<li class="chapter" data-level="3.2.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#filtrar-observaciones"><i class="fa fa-check"></i><b>3.2.4</b> Filtrar observaciones</a></li>
-<li class="chapter" data-level="3.2.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#crear-nuevas-variables"><i class="fa fa-check"></i><b>3.2.5</b> Crear nuevas variables</a></li>
-<li class="chapter" data-level="3.2.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#concatenar-comandos"><i class="fa fa-check"></i><b>3.2.6</b> Concatenar comandos</a></li>
-<li class="chapter" data-level="3.2.7" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-agrupadas"><i class="fa fa-check"></i><b>3.2.7</b> Operaciones agrupadas</a></li>
+<li class="chapter" data-level="3.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-básicas"><i class="fa fa-check"></i><b>3.2</b> Operaciones básicas</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#seleccionar-columnas"><i class="fa fa-check"></i><b>3.2.1</b> Seleccionar columnas</a></li>
+<li class="chapter" data-level="3.2.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#renombrar-columnas"><i class="fa fa-check"></i><b>3.2.2</b> Renombrar columnas</a></li>
+<li class="chapter" data-level="3.2.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#filtrar-observaciones"><i class="fa fa-check"></i><b>3.2.3</b> Filtrar observaciones</a></li>
+<li class="chapter" data-level="3.2.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ejercicio-a"><i class="fa fa-check"></i><b>3.2.4</b> (Ejercicio A)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ordenar-una-base"><i class="fa fa-check"></i><b>3.2.5</b> Ordenar una base</a></li>
+<li class="chapter" data-level="3.2.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#transformar-y-crear-variables"><i class="fa fa-check"></i><b>3.2.6</b> Transformar y crear variables</a></li>
+<li class="chapter" data-level="3.2.7" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ejercicio-b"><i class="fa fa-check"></i><b>3.2.7</b> (Ejercicio B)</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#reformatear-bases"><i class="fa fa-check"></i><b>3.3</b> Reformatear bases</a></li>
+<li class="chapter" data-level="3.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#resúmenes"><i class="fa fa-check"></i><b>3.3</b> Resúmenes</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#resúmenes-agrupados"><i class="fa fa-check"></i><b>3.3.1</b> Resúmenes agrupados</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#comandos-en-cadena"><i class="fa fa-check"></i><b>3.4</b> Comandos en cadena</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ejercicio-c"><i class="fa fa-check"></i><b>3.4.1</b> (Ejercicio C)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#manejo-de-datos-recodificar"><i class="fa fa-check"></i><b>3.5</b> Recodificar valores</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ejercicio-d"><i class="fa fa-check"></i><b>3.5.1</b> (Ejercicio D)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#manejo-de-datos-pivoteo"><i class="fa fa-check"></i><b>3.6</b> Pivoteo de bases</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ejercicio-e"><i class="fa fa-check"></i><b>3.6.1</b> (Ejercicio E)</a></li>
+<li class="chapter" data-level="3.6.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#bases-en-formato-wide-con-más-de-una-variable-de-interés"><i class="fa fa-check"></i><b>3.6.2</b> Bases en formato <em>wide</em> con más de una variable de interés</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Visualización de datos</a><ul>
-<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#por-que-quiero-visualizar-mis-datos"><i class="fa fa-check"></i><b>4.1</b> ¿Por qué quiero visualizar mis datos?</a></li>
+<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#por-qué-quiero-visualizar-mis-datos"><i class="fa fa-check"></i><b>4.1</b> ¿Por qué quiero visualizar mis datos?</a></li>
 <li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>4.2</b> Primeros pasos</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-multiverso-ggplotidiano"><i class="fa fa-check"></i><b>4.2.1</b> Las capas del multiverso ggplotidiano</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#elecciones-locales-y-visualizacion-de-datos"><i class="fa fa-check"></i><b>4.3</b> Elecciones locales y visualización de datos</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="dataviz.html"><a href="dataviz.html#grafico-de-barras"><i class="fa fa-check"></i><b>4.3.1</b> Gráfico de barras</a></li>
-<li class="chapter" data-level="4.3.2" data-path="dataviz.html"><a href="dataviz.html#grafico-de-linea"><i class="fa fa-check"></i><b>4.3.2</b> Gráfico de Línea</a></li>
+<li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#elecciones-locales-y-visualización-de-datos"><i class="fa fa-check"></i><b>4.3</b> Elecciones locales y visualización de datos</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-barras"><i class="fa fa-check"></i><b>4.3.1</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-línea"><i class="fa fa-check"></i><b>4.3.2</b> Gráfico de Línea</a></li>
 <li class="chapter" data-level="4.3.3" data-path="dataviz.html"><a href="dataviz.html#boxplot"><i class="fa fa-check"></i><b>4.3.3</b> Boxplot</a></li>
 <li class="chapter" data-level="4.3.4" data-path="dataviz.html"><a href="dataviz.html#histograma"><i class="fa fa-check"></i><b>4.3.4</b> Histograma</a></li>
-<li class="chapter" data-level="4.3.5" data-path="dataviz.html"><a href="dataviz.html#relacion-entre-variables"><i class="fa fa-check"></i><b>4.3.5</b> Relación entre variables</a></li>
+<li class="chapter" data-level="4.3.5" data-path="dataviz.html"><a href="dataviz.html#relación-entre-variables"><i class="fa fa-check"></i><b>4.3.5</b> Relación entre variables</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#para-seguir-aprendiendo"><i class="fa fa-check"></i><b>4.4</b> Para seguir aprendiendo</a><ul>
 <li class="chapter" data-level="4.4.1" data-path="dataviz.html"><a href="dataviz.html#otros-paquetes"><i class="fa fa-check"></i><b>4.4.1</b> Otros paquetes:</a></li>
@@ -210,121 +230,127 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <li class="chapter" data-level="5.2.3" data-path="carga.html"><a href="carga.html#carga-etiquetas"><i class="fa fa-check"></i><b>5.2.3</b> Datos con etiquetas (Stata o SPSS)</a></li>
 <li class="chapter" data-level="5.2.4" data-path="carga.html"><a href="carga.html#carga-excel"><i class="fa fa-check"></i><b>5.2.4</b> Archivos de Excel</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="carga.html"><a href="carga.html#multiples-bases-de-datos-a-la-vez"><i class="fa fa-check"></i><b>5.3</b> Múltiples bases de datos a la vez</a></li>
+<li class="chapter" data-level="5.3" data-path="carga.html"><a href="carga.html#múltiples-bases-de-datos-a-la-vez"><i class="fa fa-check"></i><b>5.3</b> Múltiples bases de datos a la vez</a></li>
 <li class="chapter" data-level="5.4" data-path="carga.html"><a href="carga.html#carga-grandes"><i class="fa fa-check"></i><b>5.4</b> Bases de datos tabulares grandes</a></li>
 </ul></li>
 <li class="part"><span><b>II Modelos</b></span></li>
 <li class="chapter" data-level="6" data-path="lineal.html"><a href="lineal.html"><i class="fa fa-check"></i><b>6</b> Modelos lineales</a><ul>
-<li class="chapter" data-level="6.1" data-path="lineal.html"><a href="lineal.html#introduccion-2"><i class="fa fa-check"></i><b>6.1</b> Introducción</a></li>
-<li class="chapter" data-level="6.2" data-path="lineal.html"><a href="lineal.html#aplicacion-en-r"><i class="fa fa-check"></i><b>6.2</b> Aplicación en <code>R</code></a><ul>
-<li class="chapter" data-level="6.2.1" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos"><i class="fa fa-check"></i><b>6.2.1</b> Estadísticos Descriptivos</a></li>
-<li class="chapter" data-level="6.2.2" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos-y-distribucion-de-las-variables-del-modelo"><i class="fa fa-check"></i><b>6.2.2</b> Estadísticos descriptivos y distribución de las variables del modelo</a></li>
-<li class="chapter" data-level="6.2.3" data-path="lineal.html"><a href="lineal.html#matriz-de-correlacion-de-variables-independientes"><i class="fa fa-check"></i><b>6.2.3</b> Matriz de correlación de variables independientes</a></li>
-<li class="chapter" data-level="6.2.4" data-path="lineal.html"><a href="lineal.html#distribucion-de-las-variables-de-interes"><i class="fa fa-check"></i><b>6.2.4</b> Distribución de las variables de interés</a></li>
-<li class="chapter" data-level="6.2.5" data-path="lineal.html"><a href="lineal.html#relacion-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>6.2.5</b> Relación entre la variable dependiente e independiente</a></li>
+<li class="chapter" data-level="6.1" data-path="lineal.html"><a href="lineal.html#introducción-2"><i class="fa fa-check"></i><b>6.1</b> Introducción</a></li>
+<li class="chapter" data-level="6.2" data-path="lineal.html"><a href="lineal.html#aplicación-en-r"><i class="fa fa-check"></i><b>6.2</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="lineal.html"><a href="lineal.html#estadísticos-descriptivos"><i class="fa fa-check"></i><b>6.2.1</b> Estadísticos Descriptivos</a></li>
+<li class="chapter" data-level="6.2.2" data-path="lineal.html"><a href="lineal.html#estadísticos-descriptivos-y-distribución-de-las-variables-del-modelo"><i class="fa fa-check"></i><b>6.2.2</b> Estadísticos descriptivos y distribución de las variables del modelo</a></li>
+<li class="chapter" data-level="6.2.3" data-path="lineal.html"><a href="lineal.html#matriz-de-correlación-de-variables-independientes"><i class="fa fa-check"></i><b>6.2.3</b> Matriz de correlación de variables independientes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="lineal.html"><a href="lineal.html#distribución-de-las-variables-de-interés"><i class="fa fa-check"></i><b>6.2.4</b> Distribución de las variables de interés</a></li>
+<li class="chapter" data-level="6.2.5" data-path="lineal.html"><a href="lineal.html#relación-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>6.2.5</b> Relación entre la variable dependiente e independiente</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="lineal.html"><a href="lineal.html#modelo-bivariado-regresion-lineal-simple"><i class="fa fa-check"></i><b>6.3</b> Modelo bivariado: regresión lineal simple</a><ul>
+<li class="chapter" data-level="6.3" data-path="lineal.html"><a href="lineal.html#modelo-bivariado-regresión-lineal-simple"><i class="fa fa-check"></i><b>6.3</b> Modelo bivariado: regresión lineal simple</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="lineal.html"><a href="lineal.html#estimando-un-modelo-lineal-en-r"><i class="fa fa-check"></i><b>6.3.1</b> Estimando un modelo lineal en <code>R</code></a></li>
-<li class="chapter" data-level="6.3.2" data-path="lineal.html"><a href="lineal.html#representacion-grafica"><i class="fa fa-check"></i><b>6.3.2</b> Representación gráfica</a></li>
+<li class="chapter" data-level="6.3.2" data-path="lineal.html"><a href="lineal.html#representación-gráfica"><i class="fa fa-check"></i><b>6.3.2</b> Representación gráfica</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="lineal.html"><a href="lineal.html#modelo-multivariado-regresion-multiple"><i class="fa fa-check"></i><b>6.4</b> Modelo multivariado: regresión múltiple</a><ul>
+<li class="chapter" data-level="6.4" data-path="lineal.html"><a href="lineal.html#modelo-multivariado-regresión-múltiple"><i class="fa fa-check"></i><b>6.4</b> Modelo multivariado: regresión múltiple</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="lineal.html"><a href="lineal.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>6.4.1</b> Ajuste del modelo</a></li>
-<li class="chapter" data-level="6.4.2" data-path="lineal.html"><a href="lineal.html#inferencia-en-modelos-lineales-multiples"><i class="fa fa-check"></i><b>6.4.2</b> Inferencia en modelos lineales múltiples</a></li>
+<li class="chapter" data-level="6.4.2" data-path="lineal.html"><a href="lineal.html#inferencia-en-modelos-lineales-múltiples"><i class="fa fa-check"></i><b>6.4.2</b> Inferencia en modelos lineales múltiples</a></li>
 <li class="chapter" data-level="6.4.3" data-path="lineal.html"><a href="lineal.html#supuestos-de-ols"><i class="fa fa-check"></i><b>6.4.3</b> Supuestos de OLS</a></li>
-<li class="chapter" data-level="6.4.4" data-path="lineal.html"><a href="lineal.html#errores-estandares-robustos"><i class="fa fa-check"></i><b>6.4.4</b> Errores estándares robustos</a></li>
+<li class="chapter" data-level="6.4.4" data-path="lineal.html"><a href="lineal.html#errores-estándares-robustos"><i class="fa fa-check"></i><b>6.4.4</b> Errores estándares robustos</a></li>
 <li class="chapter" data-level="6.4.5" data-path="lineal.html"><a href="lineal.html#un-caso-especial-de-heterocedasticidad-la-varianza-del-error-asociada-a-clusters"><i class="fa fa-check"></i><b>6.4.5</b> Un caso especial de Heterocedasticidad: la varianza del error asociada a clusters</a></li>
 <li class="chapter" data-level="6.4.6" data-path="lineal.html"><a href="lineal.html#un-supuesto-adicional-para-poder-realizar-inferencia"><i class="fa fa-check"></i><b>6.4.6</b> Un supuesto adicional para poder realizar <strong>inferencia</strong></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>7</b> Modelos logísticos</a><ul>
-<li class="chapter" data-level="7.1" data-path="logit.html"><a href="logit.html#nociones-basicas"><i class="fa fa-check"></i><b>7.1</b> Nociones básicas</a></li>
-<li class="chapter" data-level="7.2" data-path="logit.html"><a href="logit.html#aplicacion-en-r-1"><i class="fa fa-check"></i><b>7.2</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="7.1" data-path="logit.html"><a href="logit.html#nociones-básicas"><i class="fa fa-check"></i><b>7.1</b> Nociones básicas</a></li>
+<li class="chapter" data-level="7.2" data-path="logit.html"><a href="logit.html#aplicación-en-r-1"><i class="fa fa-check"></i><b>7.2</b> Aplicación en <code>R</code></a><ul>
 <li class="chapter" data-level="7.2.1" data-path="logit.html"><a href="logit.html#estimar-los-modelos"><i class="fa fa-check"></i><b>7.2.1</b> Estimar los modelos</a></li>
 <li class="chapter" data-level="7.2.2" data-path="logit.html"><a href="logit.html#crear-tablas"><i class="fa fa-check"></i><b>7.2.2</b> Crear tablas</a></li>
-<li class="chapter" data-level="7.2.3" data-path="logit.html"><a href="logit.html#visualizacion-de-resultados"><i class="fa fa-check"></i><b>7.2.3</b> Visualización de resultados</a></li>
+<li class="chapter" data-level="7.2.3" data-path="logit.html"><a href="logit.html#visualización-de-resultados"><i class="fa fa-check"></i><b>7.2.3</b> Visualización de resultados</a></li>
 <li class="chapter" data-level="7.2.4" data-path="logit.html"><a href="logit.html#ajuste-de-los-modelos"><i class="fa fa-check"></i><b>7.2.4</b> Ajuste de los modelos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>8</b> Modelos de supervivencia</a><ul>
-<li class="chapter" data-level="8.1" data-path="surv.html"><a href="surv.html#nociones-basicas-1"><i class="fa fa-check"></i><b>8.1</b> Nociones básicas</a></li>
+<li class="chapter" data-level="8.1" data-path="surv.html"><a href="surv.html#nociones-básicas-1"><i class="fa fa-check"></i><b>8.1</b> Nociones básicas</a></li>
 <li class="chapter" data-level="8.2" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>8.2</b> El modelo Cox de riesgos proporcionales</a></li>
-<li class="chapter" data-level="8.3" data-path="surv.html"><a href="surv.html#aplicacion-en-r-2"><i class="fa fa-check"></i><b>8.3</b> Aplicación en <code>R</code></a><ul>
-<li class="chapter" data-level="8.3.1" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretacion-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>8.3.1</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
+<li class="chapter" data-level="8.3" data-path="surv.html"><a href="surv.html#aplicación-en-r-2"><i class="fa fa-check"></i><b>8.3</b> Aplicación en <code>R</code></a><ul>
+<li class="chapter" data-level="8.3.1" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretación-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>8.3.1</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Aplicaciones</b></span></li>
 <li class="chapter" data-level="9" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i><b>9</b> Manejo avanzado de datos políticos</a><ul>
-<li class="chapter" data-level="9.1" data-path="manejo-av.html"><a href="manejo-av.html#introduccion-3"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
-<li class="chapter" data-level="9.2" data-path="manejo-av.html"><a href="manejo-av.html#como-aprovechar-countrycode"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo aprovechar <code>countrycode</code>?</a></li>
-<li class="chapter" data-level="9.3" data-path="manejo-av.html"><a href="manejo-av.html#como-imputar-datos-faltantes"><i class="fa fa-check"></i><b>9.3</b> ¿Cómo imputar datos faltantes?</a></li>
+<li class="chapter" data-level="9.1" data-path="manejo-av.html"><a href="manejo-av.html#introducción-3"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="manejo-av.html"><a href="manejo-av.html#cómo-aprovechar-countrycode"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo aprovechar <code>countrycode</code>?</a></li>
+<li class="chapter" data-level="9.3" data-path="manejo-av.html"><a href="manejo-av.html#cómo-imputar-datos-faltantes"><i class="fa fa-check"></i><b>9.3</b> ¿Cómo imputar datos faltantes?</a></li>
 <li class="chapter" data-level="9.4" data-path="manejo-av.html"><a href="manejo-av.html#imputar-datos-usando-amelia"><i class="fa fa-check"></i><b>9.4</b> Imputar datos usando Amelia</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="manejo-av.html"><a href="manejo-av.html#diagnosticos"><i class="fa fa-check"></i><b>9.4.1</b> Diagnosticos</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="manejo-av.html"><a href="manejo-av.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>9.5</b> Regresiones luego de imputar datos</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>10</b> Creación de índices con PCA</a><ul>
-<li class="chapter" data-level="10.1" data-path="pca.html"><a href="pca.html#aplicacion-en-r-3"><i class="fa fa-check"></i><b>10.1</b> Aplicación en <code>R</code></a></li>
+<li class="chapter" data-level="10.1" data-path="pca.html"><a href="pca.html#introducción-4"><i class="fa fa-check"></i><b>10.1</b> Introducción</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="pca.html"><a href="pca.html#conceptos-mediciones-y-validez"><i class="fa fa-check"></i><b>10.1.1</b> Conceptos, mediciones y validez</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="pca.html"><a href="pca.html#análisis-de-componentes-principales"><i class="fa fa-check"></i><b>10.2</b> Análisis de Componentes Principales</a></li>
+<li class="chapter" data-level="10.3" data-path="pca.html"><a href="pca.html#aplicación-en-r-3"><i class="fa fa-check"></i><b>10.3</b> Aplicación en R</a></li>
+<li class="chapter" data-level="10.4" data-path="pca.html"><a href="pca.html#dimensionalidad-del-concepto"><i class="fa fa-check"></i><b>10.4</b> Dimensionalidad del concepto</a></li>
+<li class="chapter" data-level="10.5" data-path="pca.html"><a href="pca.html#variación-del-concepto"><i class="fa fa-check"></i><b>10.5</b> Variación del concepto</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="casos.html"><a href="casos.html"><i class="fa fa-check"></i><b>11</b> Selección de casos a partir de regresiones</a><ul>
-<li class="chapter" data-level="11.1" data-path="casos.html"><a href="casos.html#que-casos-de-estudio-debo-seleccionar-para-testear-mi-hipotesis"><i class="fa fa-check"></i><b>11.1</b> ¿Qué casos de estudio debo seleccionar para testear mi hipótesis?</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="casos.html"><a href="casos.html#casos-tipicos"><i class="fa fa-check"></i><b>11.1.1</b> Casos Típicos</a></li>
+<li class="chapter" data-level="11.1" data-path="casos.html"><a href="casos.html#qué-casos-de-estudio-debo-seleccionar-para-testear-mi-hipótesis"><i class="fa fa-check"></i><b>11.1</b> ¿Qué casos de estudio debo seleccionar para testear mi hipótesis?</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="casos.html"><a href="casos.html#casos-típicos"><i class="fa fa-check"></i><b>11.1.1</b> Casos Típicos</a></li>
 <li class="chapter" data-level="11.1.2" data-path="casos.html"><a href="casos.html#casos-desviados"><i class="fa fa-check"></i><b>11.1.2</b> Casos desviados</a></li>
 <li class="chapter" data-level="11.1.3" data-path="casos.html"><a href="casos.html#casos-influyentes"><i class="fa fa-check"></i><b>11.1.3</b> Casos Influyentes</a></li>
 <li class="chapter" data-level="11.1.4" data-path="casos.html"><a href="casos.html#casos-extremos"><i class="fa fa-check"></i><b>11.1.4</b> Casos extremos</a></li>
-<li class="chapter" data-level="11.1.5" data-path="casos.html"><a href="casos.html#casos-mas-similares"><i class="fa fa-check"></i><b>11.1.5</b> Casos más similares</a></li>
-<li class="chapter" data-level="11.1.6" data-path="casos.html"><a href="casos.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>11.1.6</b> Casos más diferentes</a></li>
+<li class="chapter" data-level="11.1.5" data-path="casos.html"><a href="casos.html#casos-más-similares"><i class="fa fa-check"></i><b>11.1.5</b> Casos más similares</a></li>
+<li class="chapter" data-level="11.1.6" data-path="casos.html"><a href="casos.html#casos-más-diferentes"><i class="fa fa-check"></i><b>11.1.6</b> Casos más diferentes</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="casos.html"><a href="casos.html#la-relevancia-de-combinar-metodos"><i class="fa fa-check"></i><b>11.2</b> La relevancia de combinar métodos</a></li>
+<li class="chapter" data-level="11.2" data-path="casos.html"><a href="casos.html#la-relevancia-de-combinar-métodos"><i class="fa fa-check"></i><b>11.2</b> La relevancia de combinar métodos</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Mínería de datos</a></li>
 <li class="chapter" data-level="13" data-path="redes.html"><a href="redes.html"><i class="fa fa-check"></i><b>13</b> Análisis de redes</a><ul>
-<li class="chapter" data-level="13.1" data-path="redes.html"><a href="redes.html#introduccion-4"><i class="fa fa-check"></i><b>13.1</b> Introducción</a></li>
+<li class="chapter" data-level="13.1" data-path="redes.html"><a href="redes.html#introducción-5"><i class="fa fa-check"></i><b>13.1</b> Introducción</a></li>
 <li class="chapter" data-level="13.2" data-path="redes.html"><a href="redes.html#conceptos-iniciales"><i class="fa fa-check"></i><b>13.2</b> Conceptos iniciales</a><ul>
 <li class="chapter" data-level="13.2.1" data-path="redes.html"><a href="redes.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>13.2.1</b> Nodos y enlaces</a></li>
 <li class="chapter" data-level="13.2.2" data-path="redes.html"><a href="redes.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>13.2.2</b> Matriz de adyacencia</a></li>
-<li class="chapter" data-level="13.2.3" data-path="redes.html"><a href="redes.html#pesos-y-direccion"><i class="fa fa-check"></i><b>13.2.3</b> Pesos y dirección</a></li>
+<li class="chapter" data-level="13.2.3" data-path="redes.html"><a href="redes.html#pesos-y-dirección"><i class="fa fa-check"></i><b>13.2.3</b> Pesos y dirección</a></li>
 </ul></li>
 <li class="chapter" data-level="13.3" data-path="redes.html"><a href="redes.html#bases-de-datos-de-redes"><i class="fa fa-check"></i><b>13.3</b> Bases de datos de redes</a></li>
-<li class="chapter" data-level="13.4" data-path="redes.html"><a href="redes.html#disposicion-grafica"><i class="fa fa-check"></i><b>13.4</b> Disposición gráfica</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="redes.html"><a href="redes.html#color-y-forma-en-la-representacion-visual"><i class="fa fa-check"></i><b>13.4.1</b> Color y forma en la representación visual</a></li>
+<li class="chapter" data-level="13.4" data-path="redes.html"><a href="redes.html#disposición-gráfica"><i class="fa fa-check"></i><b>13.4</b> Disposición gráfica</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="redes.html"><a href="redes.html#color-y-forma-en-la-representación-visual"><i class="fa fa-check"></i><b>13.4.1</b> Color y forma en la representación visual</a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="redes.html"><a href="redes.html#analisis-basico-de-redes"><i class="fa fa-check"></i><b>13.5</b> Análisis básico de redes</a><ul>
+<li class="chapter" data-level="13.5" data-path="redes.html"><a href="redes.html#análisis-básico-de-redes"><i class="fa fa-check"></i><b>13.5</b> Análisis básico de redes</a><ul>
 <li class="chapter" data-level="13.5.1" data-path="redes.html"><a href="redes.html#medidas-de-centralidad"><i class="fa fa-check"></i><b>13.5.1</b> Medidas de centralidad</a></li>
 <li class="chapter" data-level="13.5.2" data-path="redes.html"><a href="redes.html#comunidades-en-las-redes"><i class="fa fa-check"></i><b>13.5.2</b> Comunidades en las redes</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>14</b> Análisis cuantitativo de texto</a><ul>
-<li class="chapter" data-level="14.1" data-path="qta.html"><a href="qta.html#introduccion-5"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
-<li class="chapter" data-level="14.2" data-path="qta.html"><a href="qta.html#exploracion-de-la-bases-de-datos"><i class="fa fa-check"></i><b>14.2</b> Exploración de la bases de datos</a></li>
-<li class="chapter" data-level="14.3" data-path="qta.html"><a href="qta.html#calculo-de-frecuencias"><i class="fa fa-check"></i><b>14.3</b> Cálculo de frecuencias</a><ul>
-<li class="chapter" data-level="14.3.1" data-path="qta.html"><a href="qta.html#cuales-son-los-diez-hashtags-mas-usados-de-las-cuentas-de-los-diputados"><i class="fa fa-check"></i><b>14.3.1</b> ¿Cuáles son los diez hashtags más usados de las cuentas de los diputados?</a></li>
-<li class="chapter" data-level="14.3.2" data-path="qta.html"><a href="qta.html#frecuencias-por-genero-cantidad-de-hashtags-usados-por-los-diputados-en-total"><i class="fa fa-check"></i><b>14.3.2</b> Frecuencias por género: cantidad de hashtags usados por los diputados en total</a></li>
+<li class="chapter" data-level="14.1" data-path="qta.html"><a href="qta.html#introducción-6"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
+<li class="chapter" data-level="14.2" data-path="qta.html"><a href="qta.html#exploración-de-la-bases-de-datos"><i class="fa fa-check"></i><b>14.2</b> Exploración de la bases de datos</a></li>
+<li class="chapter" data-level="14.3" data-path="qta.html"><a href="qta.html#cálculo-de-frecuencias"><i class="fa fa-check"></i><b>14.3</b> Cálculo de frecuencias</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="qta.html"><a href="qta.html#cuáles-son-los-diez-hashtags-más-usados-de-las-cuentas-de-los-diputados"><i class="fa fa-check"></i><b>14.3.1</b> ¿Cuáles son los diez hashtags más usados de las cuentas de los diputados?</a></li>
+<li class="chapter" data-level="14.3.2" data-path="qta.html"><a href="qta.html#frecuencias-por-género-cantidad-de-hashtags-usados-por-los-diputados-en-total"><i class="fa fa-check"></i><b>14.3.2</b> Frecuencias por género: cantidad de hashtags usados por los diputados en total</a></li>
 </ul></li>
 <li class="chapter" data-level="14.4" data-path="qta.html"><a href="qta.html#wordcloud-de-hashtags"><i class="fa fa-check"></i><b>14.4</b> Wordcloud de hashtags</a></li>
-<li class="chapter" data-level="14.5" data-path="qta.html"><a href="qta.html#graficar-los-hashtags-mas-utilizados-por-grupos-de-interes"><i class="fa fa-check"></i><b>14.5</b> Graficar los hashtags más utilizados por grupos de interés</a><ul>
-<li class="chapter" data-level="14.5.1" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-las-diputadas"><i class="fa fa-check"></i><b>14.5.1</b> Hashtags más usados entre las diputadas</a></li>
-<li class="chapter" data-level="14.5.2" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-los-diputados"><i class="fa fa-check"></i><b>14.5.2</b> Hashtags más usados entre los diputados</a></li>
+<li class="chapter" data-level="14.5" data-path="qta.html"><a href="qta.html#graficar-los-hashtags-más-utilizados-por-grupos-de-interés"><i class="fa fa-check"></i><b>14.5</b> Graficar los hashtags más utilizados por grupos de interés</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="qta.html"><a href="qta.html#hashtags-más-usados-entre-las-diputadas"><i class="fa fa-check"></i><b>14.5.1</b> Hashtags más usados entre las diputadas</a></li>
+<li class="chapter" data-level="14.5.2" data-path="qta.html"><a href="qta.html#hashtags-más-usados-entre-los-diputados"><i class="fa fa-check"></i><b>14.5.2</b> Hashtags más usados entre los diputados</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-caracteristicas-del-diputado"><i class="fa fa-check"></i><b>14.6</b> Hashtags de género por características del diputado</a><ul>
-<li class="chapter" data-level="14.6.1" data-path="qta.html"><a href="qta.html#por-el-genero-del-diputado"><i class="fa fa-check"></i><b>14.6.1</b> Por el género del diputado</a></li>
-<li class="chapter" data-level="14.6.2" data-path="qta.html"><a href="qta.html#por-la-coalicion-de-los-diputados"><i class="fa fa-check"></i><b>14.6.2</b> Por la coalición de los diputados</a></li>
+<li class="chapter" data-level="14.6" data-path="qta.html"><a href="qta.html#hashtags-de-género-por-características-del-diputado"><i class="fa fa-check"></i><b>14.6</b> Hashtags de género por características del diputado</a><ul>
+<li class="chapter" data-level="14.6.1" data-path="qta.html"><a href="qta.html#por-el-género-del-diputado"><i class="fa fa-check"></i><b>14.6.1</b> Por el género del diputado</a></li>
+<li class="chapter" data-level="14.6.2" data-path="qta.html"><a href="qta.html#por-la-coalición-de-los-diputados"><i class="fa fa-check"></i><b>14.6.2</b> Por la coalición de los diputados</a></li>
 </ul></li>
-<li class="chapter" data-level="14.7" data-path="qta.html"><a href="qta.html#variacion-temporal-del-uso-de-estos-hashtags"><i class="fa fa-check"></i><b>14.7</b> Variación temporal del uso de estos hashtags</a><ul>
+<li class="chapter" data-level="14.7" data-path="qta.html"><a href="qta.html#variación-temporal-del-uso-de-estos-hashtags"><i class="fa fa-check"></i><b>14.7</b> Variación temporal del uso de estos hashtags</a><ul>
 <li class="chapter" data-level="14.7.1" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-olafeminista"><i class="fa fa-check"></i><b>14.7.1</b> Frecuencia semanal de #olafeminista</a></li>
-<li class="chapter" data-level="14.7.2" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-tres-hashtags-de-genero"><i class="fa fa-check"></i><b>14.7.2</b> Frecuencia semanal de tres hashtags de género</a></li>
-<li class="chapter" data-level="14.7.3" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-de-genero-por-semana"><i class="fa fa-check"></i><b>14.7.3</b> Grafiquemos los hashtags de género por semana</a></li>
-<li class="chapter" data-level="14.7.4" data-path="qta.html"><a href="qta.html#ponderamos-en-relacion-al-total-de-hashtags-por-semana"><i class="fa fa-check"></i><b>14.7.4</b> Ponderamos en relación al total de hashtags por semana</a></li>
+<li class="chapter" data-level="14.7.2" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-tres-hashtags-de-género"><i class="fa fa-check"></i><b>14.7.2</b> Frecuencia semanal de tres hashtags de género</a></li>
+<li class="chapter" data-level="14.7.3" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-de-género-por-semana"><i class="fa fa-check"></i><b>14.7.3</b> Grafiquemos los hashtags de género por semana</a></li>
+<li class="chapter" data-level="14.7.4" data-path="qta.html"><a href="qta.html#ponderamos-en-relación-al-total-de-hashtags-por-semana"><i class="fa fa-check"></i><b>14.7.4</b> Ponderamos en relación al total de hashtags por semana</a></li>
 <li class="chapter" data-level="14.7.5" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-interesantes-ponderados-por-el-total-semanal"><i class="fa fa-check"></i><b>14.7.5</b> Grafiquemos los hashtags interesantes ponderados por el total semanal</a></li>
 <li class="chapter" data-level="14.7.6" data-path="qta.html"><a href="qta.html#diputadas"><i class="fa fa-check"></i><b>14.7.6</b> Diputadas</a></li>
 </ul></li>
-<li class="chapter" data-level="14.8" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-semana-a-nivel-de-diputados-ponderados-por-semana"><i class="fa fa-check"></i><b>14.8</b> Hashtags de género por semana a nivel de diputados (ponderados por semana)</a></li>
+<li class="chapter" data-level="14.8" data-path="qta.html"><a href="qta.html#hashtags-de-género-por-semana-a-nivel-de-diputados-ponderados-por-semana"><i class="fa fa-check"></i><b>14.8</b> Hashtags de género por semana a nivel de diputados (ponderados por semana)</a></li>
 <li class="chapter" data-level="14.9" data-path="qta.html"><a href="qta.html#comentarios-finales"><i class="fa fa-check"></i><b>14.9</b> Comentarios finales</a></li>
 <li class="chapter" data-level="14.10" data-path="qta.html"><a href="qta.html#anexo-problemas-que-se-presentan-cuando-analizas-discursos-debates-o-leyes"><i class="fa fa-check"></i><b>14.10</b> Anexo: Problemas que se presentan cuando analizas discursos, debates o leyes</a></li>
 <li class="chapter" data-level="14.11" data-path="qta.html"><a href="qta.html#tidy-text"><i class="fa fa-check"></i><b>14.11</b> <code>Tidy text</code></a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>15</b> Generación de mapas</a><ul>
 <li class="chapter" data-level="15.1" data-path="mapas.html"><a href="mapas.html#datos-espaciales"><i class="fa fa-check"></i><b>15.1</b> Datos Espaciales</a><ul>
-<li class="chapter" data-level="15.1.1" data-path="mapas.html"><a href="mapas.html#que-son"><i class="fa fa-check"></i><b>15.1.1</b> ¿Qué son?</a></li>
+<li class="chapter" data-level="15.1.1" data-path="mapas.html"><a href="mapas.html#qué-son"><i class="fa fa-check"></i><b>15.1.1</b> ¿Qué son?</a></li>
 <li class="chapter" data-level="15.1.2" data-path="mapas.html"><a href="mapas.html#estructura-de-los-datos-espaciales"><i class="fa fa-check"></i><b>15.1.2</b> Estructura de los Datos Espaciales</a></li>
 </ul></li>
 <li class="chapter" data-level="15.2" data-path="mapas.html"><a href="mapas.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>15.2</b> Datos Espaciales en R</a></li>
@@ -341,7 +367,7 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <li class="chapter" data-level="15.6.1" data-path="mapas.html"><a href="mapas.html#mapas-animados-con-gganimate"><i class="fa fa-check"></i><b>15.6.1</b> Mapas animados con <code>gganimate</code></a></li>
 </ul></li>
 <li class="chapter" data-level="15.7" data-path="mapas.html"><a href="mapas.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>15.7</b> Inferencia a partir de Datos Espaciales</a><ul>
-<li class="chapter" data-level="15.7.1" data-path="mapas.html"><a href="mapas.html#indicadores-locales-de-asociacion-espacial-lisa"><i class="fa fa-check"></i><b>15.7.1</b> Indicadores locales de asociación espacial (LISA)</a></li>
+<li class="chapter" data-level="15.7.1" data-path="mapas.html"><a href="mapas.html#indicadores-locales-de-asociación-espacial-lisa"><i class="fa fa-check"></i><b>15.7.1</b> Indicadores locales de asociación espacial (LISA)</a></li>
 <li class="chapter" data-level="15.7.2" data-path="mapas.html"><a href="mapas.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>15.7.2</b> Matriz de Pesos Espaciales</a></li>
 <li class="chapter" data-level="15.7.3" data-path="mapas.html"><a href="mapas.html#morans-i"><i class="fa fa-check"></i><b>15.7.3</b> Moran’s I</a></li>
 </ul></li>
@@ -367,263 +393,365 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <h1><span class="header-section-number">Capítulo 10</span> Creación de índices con PCA</h1>
 <p><em>Por Caterina Labrín y Francisco Urdinez</em></p>
 <hr />
-<p><strong>Lecturas de referencia</strong></p>
+<p><strong>Lectura sugerida</strong></p>
 <ul>
-<li><p>Box-Steffensmeier, J. M., Brady, H. E., &amp; Collier, D. (Eds.). (2008). <em>The Oxford handbook of political methodology</em> (Vol. 10).Oxford University Press. Caps.6 y 7: “Measurement” y “Typologies: Forming Concepts and Creating Categorical Variables”.</p></li>
-<li><p>Goertz, G. (2006). <em>Social science concepts: A user’s guide</em>. Princeton University Press.
-Capítulo 4 “Incrasing Concept-Measure Consistency”.</p></li>
-<li><p>Abeyasekera, S. (2005). “Multivariate Methods for Index Construction.” In
-<em>Household Sample Surveys and Transition Countries</em>.367-387. New York City: DESA/UNSD.</p></li>
+<li><p>Box-Steffensmeier, J. M., Brady, H. E., &amp; Collier, D. (Eds.). (2008). <em>The Oxford Handbook of Political Methodology</em> (Vol. 10). Oxford University Press. Caps. 6 y 7: “Measurement” y “Typologies: Forming Concepts and Creating Categorical Variables”.</p></li>
+<li><p>Goertz, G. (2006). <em>Social science concepts: A user’s guide</em>. Princeton University Press. Capítulo 4 “Increasing Concept-Measure Consistency”.</p></li>
+<li><p>Abeyasekera, S. (2005). “Multivariate Methods for Index Construction.” In Household Sample Surveys and Transition Countries. 367-387. New York City: DESA/UNSD.</p></li>
 <li><p>Miller, J. E. (2013). <em>The Chicago guide to writing about multivariate analysis</em>. University of Chicago Press. Cap. 15: “Speaking about Multivariate Analyses”.</p></li>
 <li><p>Grimm, L. G., &amp; Yarnold, P. R. (2000). <em>Reading and understanding multivariate statistics</em>. American Psychological Association. Cap. 7: “Assessing the validity of measure”.</p></li>
 </ul>
 <hr />
-<p>A esta altura del libro has visto herramientas suficientes como para tener una caja de herramientas que te permita escribir un artículo académico, hacer consultoría o formular políticas públicas. En este capítulo veremos cómo crear índices compuestos a partir de un conjunto de variables que miden una misma variable latente. En toda ciencia social y sobre todo en la ciencia política, constantemente trabajamos con variables sumamente abstractas, que muchas veces son difíciles de medir con un solo indicador. “Democracia” o “capacidad estatal” son conceptos con los que debemos trabajar, pero muchas veces poder construirlos conceptualmente es un poco complejo.</p>
-<p>Cuando construimos una medición empírica de un concepto abstracto, además de dar cuenta de su complejidad, queremos que sea <em>válido</em> (ver Grimm y Yarnold 2000 para un excelente resumen sobre diferentes tipos de validez). La validez de constructo, que es la que nos importa aquí, refiere a que el concepto <em>mida lo que dice medir</em> y en disciplinas como la ciencia política siempre debe estar cuestionada, precisamente por lo que anteriormente decíamos de la complejidad de los conceptos con los que trabajamos. Por ejemplo, esto es muy frecuente con las mediciones que existen de democracia. Incluso cuando hemos avanzado enormemente como disciplina, y hoy disponemos de mediciones comparables entre países y a lo largo del tiempo, como <a href="https://www.systemicpeace.org/polity/polity4.htm">Polity</a> y <a href="https://www.v-dem.net/es/">Varieties of Democracy</a>, ambos están sujetos a críticas sobre como miden la variable. Es natural que así sea, de eso se trata la ciencia.</p>
-<p>Hay dos formas, sin embargo, de tener confianza respecto a la validez de constructo de nuestra variable de interés. La primera es por validez convergente, es decir, la correlación que mi medida de interés tiene con medidas de otros. Por ejemplo, la democracia tal como la mide V-Dem tiene una correlación de 0.8 con la forma como la mide Polity. Si yo creo una tercera medición, cuya correlación es de 0.70 con Polity y 0.9 con V-Dem podré estar confiado de que las tres variables están aproximándose de manera similar a la variable latente.</p>
-<p>La segunda alternativa para tener confianza respecto a la validez de constructo de nuestra variable es por medio de lo que se llama “validez discriminativa”, es decir que nuestro constructo no debería estar altamente correlacionado a variables que nuestro indicador dice no medir. Este concepto se puede ejemplificar bien con la forma en que V-Dem ha elegido crear su índice de democracia (al que llaman de poliarquía): como dice el nombre, lo que hacen es medir <em>variedades</em> de democracia a partir de diferentes sub-dimensiones, a saber, las dimensiones liberal, participativa, deliberativa, electoral e igualitaria. Lo que esperaríamos es que cada una de ellas tenga baja correlación de manera que tengamos confianza en que verdaderamente capturan las diferentes aristas de este concepto multifacético.</p>
-<p>El poder crear índices compuestos a partir de varias variables que miden un mismo concepto puede sernos muy útil. El análisis de componentes principales (PCA por sus siglas en inglés) es una técnica muy útil a la hora de combinar distintas variables y veremos cómo hacerlo en <code>R</code>. Consiste literalmente en trabajar con la correlación entre las variables, y dar cuenta de lo que ellas miden en común y lo que cada una mide individualmente que las otras variables no capturan. La técnica de PCA nos entrega distintos “componentes”, que son variables conformadas a partir de una combinación lineal de las variables usadas para crear el índice, y estos componentes pueden ser unidos para generar una nueva variable. Vamos a pasar a un ejemplo práctico para evitar que la discusión se vuelva muy abstracta. Te recomendamos, si vas a usar índices en tus trabajos, que antes leas los capítulos que te hemos recomendado del Oxford handbook of political methodology. También te recomendamos <a href="http://setosa.io/ev/principal-component-analysis/">esta visualización</a> creada por el proyecto de visualización de datos <a href="http://setosa.io/#/">Setosa</a> donde podrás ver de qué manera PCA “reduce” muchas variables en la menor cantidad posible de “componentes” maximizando la cantidad de varianza común que ellos tienen. Por ejemplo, verás como a partir de 17 variables con las dietas de los cuatro países que conforman el Reino Unido, PCA logra reducir estas diferencias a dos variables. Como técnica de reducción de dimensiones, PCA logra resultados muy útiles que vamos a explotar a continuación.</p>
-<div id="aplicacion-en-r-3" class="section level2">
-<h2><span class="header-section-number">10.1</span> Aplicación en <code>R</code></h2>
-<p>Existen hoy en día distintas mediciones de democracia a nivel internacional, tales como Polity o Freedom House, pero ¿qué pasa si queremos saber qué es lo que opinan los ciudadanos que votan en las democracias sobre las instituciones democráticas que respaldan este sistema político?</p>
-<p>En América Latina, dado el pasado de gobiernos dictatoriales y el reciente debilitamiento democrático de muchos países, puede ser importante en nuestra investigación considerar la opinión pública sobre las instituciones de sus propios países. Una buena pregunta para hacerse es ¿cómo poder saber cuál es la opinión que los ciudadanos latinoamericanos tienen respecto a las instituciones democráticas de sus países? El Proyecto de Opinión Pública de América Latina ( <a href="https://www.vanderbilt.edu/lapop-espanol/">LAPOP</a> en inglés) – es coordinado desde la Universidad de Vanderbilt y está especializado en conducir estudios de evaluación de impacto, y producir reportes acerca de las actitudes, evaluaciones y experiencias de los individuos de países latinoamericanos. Este proyecto pone a disposición de los investigadores distintas preguntas que, en su conjunto, podrían ayudarnos a aproximar cuanta confianza existe en la región con respecto a instituciones democráticas del país correspondiente a cada individuo.</p>
-<p>La aplicación de esta herramienta en <code>R</code> responde a una serie de pasos que nos permitirá generar un índice que caracterice a cada uno de los individuos desde aquellos que sean más propensos a tener confianza en las instituciones formales democráticas y aquellos que no. A partir de este índice individual, luego podremos hacer una gran variedad de estudios, desde comparaciones entre países, a comparaciones por edad, género, renta u otra variable de interés. Partiremos cargando una base con las preguntas.</p>
-<p>Es importante como primer paso seleccionar las variables que nos servirán para realizar el PCA, dejando de lado todo aquello que no queramos usar en el índice final. Para esto, generamos una nueva base que contenga sólo las variables que queramos ocupar, en este caso, para conocer cuál es la opinión sobre las instituciones democráticas que tienen los latinoamericanos. Para poder seleccionar las variables y utilizar los pipes cargamos <code>tidyverse</code>. Luego, cargamos la base desde el paquete del libro, <code>paqueteadp</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(paqueteadp)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(lapop)</code></pre>
-<p>Una vez cargada la base, filtramos aquellas preguntas que nos interesan
-+ <code>del</code>: Variable dicotómica que mide el nivel de justificación de golpes de estado militares en el país del encuestado frente a mucha delincuencia. Basada en la pregunta “jc10” de Encuesta LAPOP.
-+ <code>pdte</code>: Variable dicotómica que mide el nivel de justificación de cierre del congreso en situaciones difíciles por parte del presidente. Basada en la pregunta “jc15a” de Encuesta LAPOP.
-+ <code>trib</code>: Mide en una escala del 1 al 7 el nivel de confianza en los tribunales del país del encuestado. Basada en la pregunta “b1” de Encuesta LAPOP.
-+ <code>inst</code>: Mide en una escala del 1 al 7 el nivel de respeto por las instituciones políticas del país del encuestado. Basada en la pregunta “b2” de Encuesta LAPOP.
-+ <code>confcon</code>: Mide en una escala del 1 al 7 el nivel de confianza en el Congreso Nacional (poder legislativo) del país del encuestado. Basada en la pregunta “b13” de Encuesta LAPOP.
-+ <code>confpdte</code>: Mide en una escala del 1 al 7 el nivel de confianza en el presidente (poder ejecutivo) del país del encuestado. Basada en la pregunta “b21a” de Encuesta LAPOP.
-+ <code>confpp</code>: Mide en una escala del 1 al 7 el nivel de confianza en los partidos políticos del país del encuestado. Basada en la pregunta “b21” de Encuesta LAPOP.
-+ <code>confmedia</code>: Mide en una escala del 1 al 7 el nivel de confianza en los medios de comunicación del país del encuestado. Basada en la pregunta “b37” de Encuesta LAPOP.
-+ <code>confelec</code>: Mide en una escala del 1 al 7 el nivel de confianza en las elecciones del país del encuestado. Basada en la pregunta “b47a” de Encuesta LAPOP.
-+ <code>satdem</code>: Variable dicotómica que mide el nivel de satisfacción con la democracia tienen los encuestados. Basada en la pregunta “pn4” de Encuesta LAPOP.
-+ <code>dervoto</code>: Mide en una escala del 1 al 7 la satisfacción con la idea de que aquellos que se encuentren en contra del gobierno de turno puedan ejercer el voto en las elecciones del país del encuestado. Basada en la pregunta “d1” de Encuesta LAPOP.
-+ <code>derman</code>: Mide en una escala del 1 al 7 la satisfacción con la idea de que aquellos que se encuentren en contra del gobierno de turno puedan llevar a cabo manifestaciones pacíficas para expresar su punto de vista. Basada en la pregunta “d2” de Encuesta LAPOP.</p>
-<p>Estas variables pueden explorarse gráficamente antes de pasar a la creación del índice. Por ejemplo, podemos ver por país la confianza que sus ciudadanos tienen en las elecciones</p>
-<pre class="sourceCode r"><code class="sourceCode r">lapop &lt;-<span class="st"> </span>lapop <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(paisnom) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">confelec_prom =</span> <span class="kw">mean</span>(confelec)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-
-<span class="kw">ggplot</span>(lapop, <span class="kw">aes</span>(<span class="dt">x =</span> confelec)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Confianza en las elecciones&quot;</span>,<span class="dt">x=</span><span class="st">&quot;En azul el promedio de cada país&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;conteo&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>paisnom) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept=</span>(confelec_prom)),
-            <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">size=</span><span class="dv">1</span>)</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
-<img src="pca_files/figure-html/unnamed-chunk-5-1.png" alt="En la figura vemos el valor promedio de confianza de las elecciones en azul y la distribución de la variable para cada país" width="480" />
-<p class="caption">
-Figura 10.1: En la figura vemos el valor promedio de confianza de las elecciones en azul y la distribución de la variable para cada país
-</p>
+<hr />
+<p><strong>Paquetes que tienes que tener instalados</strong></p>
+<ul>
+<li><code>FactoMineR</code>, <code>GGally</code>, <code>tidyverse</code>.</li>
+</ul>
+<hr />
+<div id="introducción-4" class="section level2">
+<h2><span class="header-section-number">10.1</span> Introducción</h2>
+<p>A esta altura del libro has visto suficientes herramientas para trabajar de buena forma con datos y conceptos de las ciencias sociales. En este capítulo en particular veremos cómo generar de forma simple, mediciones de conceptos complejos que muchas veces en ciencias sociales, sobre todo en ciencia política, queremos utilizar para generar hipótesis de mecanismos causales o simplemente visualizar cómo se comportan.</p>
+<p>La relación entre <em>guerra</em> y <em>democracia</em> o de <em>democracia</em> y <em>desarrollo</em> son cosas que usualmente se estudian en ciencia política, pero estos conceptos a veces no están claramente definidos con anticipación o si es que lo están, no sabemos cuál de las definiciones nos pueda servir. Conceptos como <em>terrorismo</em> o <em>populismo</em> también son utilizados y entregados a la sociedad todos los días por políticos y periodistas, muchas veces de forma errada, manifestando que el problema no solo ocurre a nivel académico sino también en todo orden de cosas, generando niveles de desinformación bastante graves. Esta fragilidad de nuestros conceptos se torna aún más grave si tenemos que operacionalizar con datos, ya que muchas veces queremos medir conceptos complejos con indicadores que nos muestren las variaciones o relaciones con otros conceptos de forma más cuantitativa o visual.</p>
+<p>Para ilustrar la situación, pongámonos en un caso hipotético: hagamos de cuenta que nos encontramos trabajando en un proyecto que entre otras cosas pide comparar que tan democráticos son los países latinoamericanos y poder visualizarlo de forma clara en una tabla o gráfico. Usualmente, en este caso buscaríamos algún indicador de democracia de los que V-dem o Freedom House nos entrega para todos los países latinoamericanos. Asumiríamos por práctica, que estos indicadores tienen validez evidente y fueron apropiadamente construidos en base a dimensiones claras. Nadie cuestionaría nuestra elección. Ahora, pensemos que nos piden o queremos investigar ahora sobre un concepto distinto y un poco más específico. De este no tenemos un indicador similar a los de democracia y debemos empezar de cero: ¿qué es lo que estamos midiendo? ¿cómo lo medimos? ¿qué datos ocupamos?</p>
+<p>Frente a este problema, en este capítulo queremos presentar la utilidad que podría tener el Análisis de Componentes Principales (PCA) como una forma de poder generar las distintas dimensiones que componen un concepto abstracto a través de la reducción de distintos indicadores previamente elegidos. Esto principalmente para analizar cómo se compondría un concepto de este estilo y comprender lo que estamos analizando. Además, presentaremos algunas formas de operacionalizar los conceptos a través de índices que puedan mostrarnos la variabilidad de la medición entre distintas unidades de análisis, para compararlos o incluirlos dentro de un análisis más complejo.</p>
+<div id="conceptos-mediciones-y-validez" class="section level3">
+<h3><span class="header-section-number">10.1.1</span> Conceptos, mediciones y validez</h3>
+<p>Cuando construimos una medición empírica de un concepto abstracto, además de dar cuenta de su complejidad, queremos que sea válido (ver Grimm y Yarnold 2000 para un excelente resumen sobre diferentes tipos de validez). La validez de contenido es aquella que nos permite asegurarnos que el contenido de la medición corresponde a lo conceptualmente definido para esa medición. Esto debe realizarse cada vez que queramos generar un concepto a través de una revisión teórica que sitúe hasta donde llegará nuestro concepto, cuáles serán las partes que lo compondrán y principalmente qué variables utilizaremos para medirlas. Una adecuada revisión de literatura respecto al concepto en particular que estamos trabajando, que puede ser enmarcada en un marco teórico más grande, siempre será más que deseable a la hora de trabajar con conceptos abstractos y complejos.</p>
+<p>La validez de constructo, que es la que particularmente nos importa aquí, refiere a que el concepto mida lo que dice medir. Esta validez siempre debe estar cuestionada, precisamente por lo que anteriormente decíamos de la complejidad de los conceptos con los que trabajamos. Por ejemplo, esto es muy frecuente con las mediciones que existen de democracia. Incluso cuando hemos avanzado enormemente como disciplina, y hoy disponemos de mediciones comparables entre países y a lo largo del tiempo, como Polity y Varieties of Democracy, ambos están sujetos a críticas sobre como miden la variable.</p>
+<p>Hay dos formas, sin embargo, de ganar validez de constructo de nuestra variable de interés. La primera alternativa para obtener validez de constructo de nuestra variable es por medio de lo que se llama validez discriminativa, es decir que nuestro constructo no debería estar altamente correlacionado a variables que nuestro indicador no dice medir. Este concepto se puede ejemplificar bien con la forma en que V-Dem ha elegido crear su índice de democracia (al que llaman de poliarquía): como dice el nombre, lo que hacen es medir variedades de democracia a partir de diferentes dimensiones, a saber, las dimensiones liberal, participativa, deliberativa, electoral e igualitaria. Lo que esperaríamos es que cada una de ellas tenga baja correlación de manera que tengamos confianza en que verdaderamente capturan las diferentes aristas de este concepto multifacético.</p>
+<p>La segunda alternativa es por validez convergente, es decir, la correlación que mi medida de interés tiene con medidas de otros. Por ejemplo, la democracia tal como la mide V-Dem tiene una correlación de 0.8 con la forma como la mide Polity. Si yo creo una tercera medición, cuya correlación es de 0.70 con Polity y 0.9 con V-Dem podré estar confiado en que las tres variables están aproximándose de manera similar a la variable latente.</p>
+<p>Es importante definir anteriormente de forma general cuales van a ser los lineamientos que guiarán los conceptos que definiremos en relación tanto a si su construcción tiene una teoría que lo respalde como en si los indicadores dicen medir lo que están midiendo. La herramienta del análisis de componentes principales (PCA por sus siglas en inglés) nos ayuda a definir en base a un set de datos que teóricamente creemos que son importantes para el concepto que queremos representar, cual combinación de ellos representa mejor a dicho concepto.</p>
 </div>
-<p>Vamos a filtrar nuestras variables de interés, esto quiere decir que dejamos fuera toda variable que no sea proxy de democracia, por ejemplo la variable <code>paisnom</code> que indica el país de cada individuo no debería ser incorporada.</p>
-<pre class="sourceCode r"><code class="sourceCode r">datos_pca_lapop &lt;-<span class="st"> </span>lapop <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(del, pdte, trib, inst, confcon, confpdte,
-         confpp, confmedia, confelec, satdem, dervoto, derman) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_all</span>(as.numeric)</code></pre>
-<p>Esta data contiene doce preguntas de la encuesta de LAPOP, realizadas a una selección de cerca de 7000 personas en 10 países latinoamericanos. El cuestionario entero puede accederse en este <a href="https://www.vanderbilt.edu/lapop/ab2016/AB2017-v18.0-Spa-170202_W.pdf">link</a>. Este primer paso es fundamental. Elegir bien las variables que van a integrar nuestro índice merece mucha reflexión y debe haber justificación teórica para cada variable. Como se dice en la jerga: <em>garbage in, garbage out</em>. Por eso, reflexiona sobre cuál es el concepto o variable latente que estas intentando medir empíricamente (en este caso, la opinión individual sobre las instituciones democráticas), seleccionando las variables que realmente necesites a la hora de construir el índice. Si agregamos variables que no se condicen realmente con aquello que queremos medir, el PCA como herramienta nos arrojará un resultado que no servirá de mucho.</p>
-<p>Ya habiendo seleccionado las variables, el siguiente paso es observar la correlación entre ellas.</p>
-<p>Esto sirve también para saber cómo se relacionan las variables elegidas, y además para ver si hay correlaciones extremadamente altas entre dos o más variables ya que si existe el caso en que tengamos dos o más variables con alta correlación entre ellas, éstas tendrán enorme influencia sobre el resultado de nuestro índice (esto quedará más claro en un segundo cuando hablemos de los componentes).</p>
-<p>La mejor alternativa para observar correlación entre variables creemos que es con el paquete <code>GGally</code>. A mayor intensidad del color, más fuerte la correlación. En azul tendremos correlaciones negativas, y en rojo correlaciones positivas.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
-<span class="kw">ggcorr</span>(datos_pca_lapop, <span class="dt">label =</span> T)</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
-<img src="pca_files/figure-html/unnamed-chunk-7-1.png" alt="Matriz de correlación de las variables elegidas para nuestro índice" width="480" />
-<p class="caption">
-Figura 10.2: Matriz de correlación de las variables elegidas para nuestro índice
-</p>
 </div>
-<p>Lo que vemos es que las variables sobre confianza están correlacionadas de manera positiva. Es decir, quien confía en el presidente tiende a confiar también en medios, elecciones, etc.</p>
-<p>Una vez que observamos las correlaciones, pasamos al próximo paso que es el de generar análisis de componentes principales con el paquete <code>FactoMineR</code> de la siguiente forma:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(FactoMineR)
-pca_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">PCA</span>(datos_pca_lapop, <span class="dt">graph =</span> F)</code></pre>
-<p>Lo que obtendremos es un componente (<code>R</code> las llama dimensiones) por cada variable que hemos agregado al análisis. Como utilizamos doce variables, esperamos doce componentes. Estos componentes son variables que capturan la correlación entre si que todas ellas tienen. Cada dimensión tiene su valor propio o <em>eigenvalue</em> y el porcentaje de varianza que esta dimensión representa. Ambos valores que podemos encontrar con el paquete<code>factoextra</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(factoextra)
-<span class="kw">get_eig</span>(pca_<span class="dv">1</span>)
-<span class="co">##        eigenvalue variance.percent cumulative.variance.percent</span>
-<span class="co">## Dim.1        3.44             28.7                          29</span>
-<span class="co">## Dim.2        1.48             12.3                          41</span>
-<span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 10 rows ]</span></code></pre>
-<p>Vea que la primera dimensión condensa el 29% de la varianza común entre las variables. Antes de continuar con estos, nos vamos a detener un minuto así explicamos bien la forma en que estas dimensiones son creadas y qué representan.</p>
-<p>Ahora detengámonos un segundo para hacer un ejercicio teórico para entender cómo funciona PCA: Imagine que en vez de las doce variables tenemos apenas dos, y que estas variables tienen una correlación baja entre ellas. De esta forma, ambas variables se verían de la siguiente forma en un <em>scatterplot</em>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">n.casos &lt;-<span class="st"> </span><span class="dv">240</span>               
-n.vars &lt;-<span class="st"> </span><span class="dv">1</span>         
-<span class="kw">set.seed</span>(<span class="dv">26</span>)                
-simulacion &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n.vars, <span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">4</span>) 
-x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(n.casos <span class="op">*</span><span class="st"> </span>(n.vars<span class="op">+</span><span class="dv">1</span>)), <span class="dt">nrow=</span>n.casos)
-beta &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="kw">rep</span>(<span class="dv">0</span>, n.vars)), <span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rep</span>(<span class="dv">1</span>, n.vars)), <span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">0</span>,n.vars), <span class="kw">diag</span>(simulacion)))
-<span class="kw">cor</span>(x)                       
-<span class="co">##       [,1]  [,2]</span>
-<span class="co">## [1,]  1.00 -0.12</span>
-<span class="co">## [2,] -0.12  1.00</span>
-<span class="kw">plot</span>(<span class="kw">data.frame</span>(x))          </code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
-<img src="pca_files/figure-html/unnamed-chunk-10-1.png" alt="Scatterplot de dos variables cuya correlación es cercana a 0" width="480" />
-<p class="caption">
-Figura 10.3: Scatterplot de dos variables cuya correlación es cercana a 0
-</p>
+<div id="análisis-de-componentes-principales" class="section level2">
+<h2><span class="header-section-number">10.2</span> Análisis de Componentes Principales</h2>
+<p>El análisis de componentes principales (PCA) es una técnica muy útil a la hora de combinar distintas variables. Al elegir previamente las variables que se ocuparán, la técnica de PCA nos entrega distintos “componentes”, que son la reducción de la dimensionalidad de un conjunto de datos multivariados y que intentan retener la mayor cantidad posible de la variación original. Consiste literalmente en trabajar con la correlación entre las variables, y dar cuenta de lo que ellas miden en común y lo que cada una mide individualmente que las otras variables no capturan.</p>
+<p>El PCA al incluir todas las variables, nos entregará un número de componentes igual a la cantidad de variables pero que, a su vez, contendrán en cierta medida, a todas las variables, aunque destacarán algunas que serán las variables que guiarán la variabilidad de cada componente. Además de una reducción de las otras variables que se utilizaron, un componente puede ser considerado como una variable nueva con la que se puede trabajar, que puede representar una dimensión de un concepto mas complejo.</p>
+<p>Esta variable también vendrá con un Eigenvalue, que indica que tanta varianza tienen las variables que generan el componente y cuanto porcentaje de variabilidad explica. El Eigenvalue ordena los componentes desde aquel que tiene mayor varianza en su interior (es decir, el Componente Principal) hasta aquellos que contienen menor dispersión, que serán muchas veces despreciables. Un Eigenvalue &gt; 1 indica que representa mayor varianza que una variable de las que contiene el componente, por lo que vamos a querer quedarnos siempre con aquellos componentes que varíen mas que una variable, es decir, que cumplan con esta regla.</p>
+<p>La creación de distintos componentes a través de PCA nos entrega varias que fácilmente podemos utilizar con R, de las cuales hemos elegido, por su utilidad y sencillez, dos: poder conocer una forma de visualizar cómo está construido nuestro concepto a través de la dimensionalidad de los componentes principales; y poder generar un índice que, con los componentes más importantes, pueda representar la variación del concepto que intentamos medir, entre distintas unidades de análisis. Ahora entregaremos un ejemplo aplicado para ambos instrumentos.</p>
 </div>
-<p>Si realizaramos un PCA entre ambas, veríamos que los dos componentes creados a partir de estas dos variables se dividen, más o menos equitativamente, la varianza total explicada.</p>
-<pre class="sourceCode r"><code class="sourceCode r">peso.componentes &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">2</span><span class="op">:</span><span class="kw">dim</span>(beta)[<span class="dv">1</span>], <span class="cf">function</span>(k) <span class="kw">prcomp</span>(x[, <span class="dv">1</span><span class="op">:</span>k], <span class="dt">scale=</span>T))
-grafico &lt;-<span class="st"> </span><span class="kw">lapply</span>(peso.componentes, summary)
-<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
-grafico &lt;-<span class="st"> </span><span class="kw">lapply</span>(peso.componentes, plot)</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-11"></span>
-<img src="pca_files/figure-html/unnamed-chunk-11-1.png" alt="En esta figura vemos nuestros dos componentes, y que ambos tienen eigenvalores similares" width="480" />
-<p class="caption">
-Figura 10.4: En esta figura vemos nuestros dos componentes, y que ambos tienen eigenvalores similares
-</p>
-</div>
-<p>Sin embargo, a medida que agregamos variables que correlacionan fuertemente entre si, todas estas se condensarán en el primer componente que nos dará PCA. Es como si toda la correlación en común se condensara en una sola variable. Veamos cómo sería el ejemplo si tuviéramos una tercer variable, fuertemente correlacionada con <span class="math inline">\(x2\)</span> pero poco correlacionada a <span class="math inline">\(x1\)</span>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">n.casos &lt;-<span class="st"> </span><span class="dv">240</span>             
-n.vars &lt;-<span class="st"> </span><span class="dv">2</span>            
-<span class="kw">set.seed</span>(<span class="dv">26</span>)              
-simulacion<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n.vars, <span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">4</span>) 
-x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(n.casos <span class="op">*</span><span class="st"> </span>(n.vars<span class="op">+</span><span class="dv">2</span>)), <span class="dt">nrow=</span>n.casos)
-beta &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="kw">rep</span>(<span class="dv">0</span>, n.vars)), <span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rep</span>(<span class="dv">1</span>, n.vars)), <span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">0</span>,n.vars), <span class="kw">diag</span>(simulacion<span class="fl">.2</span>)))
-y &lt;-<span class="st"> </span>x<span class="op">%*%</span>beta               
-<span class="kw">cor</span>(y)                       
-<span class="co">##       [,1]  [,2]  [,3]</span>
-<span class="co">## [1,]  1.00 -0.10 -0.12</span>
-<span class="co">## [2,] -0.10  1.00  0.82</span>
-<span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 1 row ]</span>
-<span class="kw">plot</span>(<span class="kw">data.frame</span>(y))          </code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
-<img src="pca_files/figure-html/unnamed-chunk-12-1.png" alt="Ahora hemos incorporado una tercer variable fuertemente correlacionada con una de las variables que teníamos pero no con la otra" width="480" />
-<p class="caption">
-Figura 10.5: Ahora hemos incorporado una tercer variable fuertemente correlacionada con una de las variables que teníamos pero no con la otra
-</p>
-</div>
-<p>En este caso, el primer componente del PCA representa casi <span class="math inline">\(2/3\)</span> de la varianza explicada.</p>
-<pre class="sourceCode r"><code class="sourceCode r">peso.componentes &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">3</span><span class="op">:</span><span class="kw">dim</span>(beta)[<span class="dv">2</span>], <span class="cf">function</span>(k) <span class="kw">prcomp</span>(y[, <span class="dv">1</span><span class="op">:</span>k], <span class="dt">scale=</span><span class="ot">TRUE</span>))
-grafico &lt;-<span class="st"> </span><span class="kw">lapply</span>(peso.componentes, summary)
-<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
-grafico &lt;-<span class="st"> </span><span class="kw">lapply</span>(peso.componentes, plot)</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
-<img src="pca_files/figure-html/unnamed-chunk-13-1.png" alt="En este caso el primer componente condensa aún más varianza, luego de agregar la tercera variable" width="480" />
-<p class="caption">
-Figura 10.6: En este caso el primer componente condensa aún más varianza, luego de agregar la tercera variable
-</p>
-</div>
-<p>Veamos, entonces, que sucedería si agregáramos tres variables más que correlacionan fuertemente con <span class="math inline">\(x2\)</span> pero poco con <span class="math inline">\(x1\)</span>. Aquí notaremos que el primer componente del PCA concentra aún más el porcentaje de varianza explicada.</p>
-<pre class="sourceCode r"><code class="sourceCode r">n.casos &lt;-<span class="st"> </span><span class="dv">240</span>             
-n.vars &lt;-<span class="st"> </span><span class="dv">5</span>           
-<span class="kw">set.seed</span>(<span class="dv">26</span>)              
-simulacion<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n.vars, <span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">4</span>) 
-x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(n.casos <span class="op">*</span><span class="st"> </span>(n.vars<span class="op">+</span><span class="dv">2</span>)), <span class="dt">nrow=</span>n.casos)
-beta &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="kw">rep</span>(<span class="dv">0</span>, n.vars)), <span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rep</span>(<span class="dv">1</span>, n.vars)), <span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">0</span>,n.vars), <span class="kw">diag</span>(simulacion<span class="fl">.3</span>)))
-y &lt;-<span class="st"> </span>x<span class="op">%*%</span>beta               
-<span class="kw">cor</span>(y)                       
-<span class="co">##       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]</span>
-<span class="co">## [1,]  1.00 -0.11 -0.12 -0.10 -0.11 -0.12</span>
-<span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 5 rows ]</span>
-<span class="kw">plot</span>(<span class="kw">data.frame</span>(y))   </code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
-<img src="pca_files/figure-html/unnamed-chunk-14-1.png" alt="Ahora agregamos más variables correlacionadas con x2 al análisis" width="480" />
-<p class="caption">
-Figura 9.1: Ahora agregamos más variables correlacionadas con x2 al análisis
-</p>
-</div>
-<p>Al extraer con PCA los seis componentes, lo que veremos es que el primero de ellos concentra casi <span class="math inline">\(5/6\)</span> positiva entre estas variables. A medida que agregamos una variable muy correlacionada a <span class="math inline">\(x2\)</span>, el componente 1 se va volviendo más y más relevante en el PCA.</p>
-<pre class="sourceCode r"><code class="sourceCode r">peso.componentes &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">3</span><span class="op">:</span><span class="kw">dim</span>(beta)[<span class="dv">2</span>], <span class="cf">function</span>(k) <span class="kw">prcomp</span>(y[,<span class="dv">1</span><span class="op">:</span>k], <span class="dt">scale=</span><span class="ot">TRUE</span>))
-<span class="co"># grafico &lt;- lapply(p, summary)</span>
-<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
-grafico &lt;-<span class="st"> </span><span class="kw">lapply</span>(peso.componentes, plot)</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
-<img src="pca_files/figure-html/unnamed-chunk-15-1.png" alt="En esta figura verás como a medida que agregamos una variable más a la correlación (primero x4, luego x5 y finalmente x6 el primer componente condensa más varianza común entre las variables" width="480" /><img src="pca_files/figure-html/unnamed-chunk-15-2.png" alt="En esta figura verás como a medida que agregamos una variable más a la correlación (primero x4, luego x5 y finalmente x6 el primer componente condensa más varianza común entre las variables" width="480" /><img src="pca_files/figure-html/unnamed-chunk-15-3.png" alt="En esta figura verás como a medida que agregamos una variable más a la correlación (primero x4, luego x5 y finalmente x6 el primer componente condensa más varianza común entre las variables" width="480" /><img src="pca_files/figure-html/unnamed-chunk-15-4.png" alt="En esta figura verás como a medida que agregamos una variable más a la correlación (primero x4, luego x5 y finalmente x6 el primer componente condensa más varianza común entre las variables" width="480" />
-<p class="caption">
-Figura 10.7: En esta figura verás como a medida que agregamos una variable más a la correlación (primero x4, luego x5 y finalmente x6 el primer componente condensa más varianza común entre las variables
-</p>
-</div>
-<p>Así, lo que te queremos mostrar es como PCA aglutina las correlaciones altas entre variables y las condenas en un único componente. Cuanto más parecidas sean las variables (correlaciones altas y en la misma dirección) se necesitarán menos componentes para capturar toda la complejidad de los datos.</p>
-<p>Volviendo a nuestro ejemplo de LAPOP, una vez que obtenemos los componentes ¿cuál es el próximo paso? Bueno, como queremos reducir las 12 variables de LAPOP en un solo índice, tenemos que decidir cuantos componentes vamos a retener para seguir trabajando. Si retenemos los 12 componentes no descartamos nada de la información original pero tampoco ganamos nada en haber hecho el ejercicio de reducción. Si retenemos apenas el primero, nos quedamos con 29% de la varianza. ¿Cuál es la regla que se usa para maximizar la cantidad de componentes que se retienen?</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_eig</span>(pca_<span class="dv">1</span>, <span class="dt">choice =</span> <span class="st">&quot;variance&quot;</span>, <span class="dt">addlabels =</span> T)</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-16"></span>
-<img src="pca_files/figure-html/unnamed-chunk-16-1.png" alt="Screeplot de todas las dimensiones del PCA con la varianza explicada de cada uno de ellos" width="480" />
-<p class="caption">
-Figura 10.8: Screeplot de todas las dimensiones del PCA con la varianza explicada de cada uno de ellos
-</p>
-</div>
-<p>Lo que se hace es expresar este mismo gráfico con el eigenvalor que PCA da a cada componente, y retener aquellos cuyo valor es mayor a 1. De esta forma, retendríamos 4 componentes, que sumados representan 59.25% de la varianza.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_eig</span>(pca_<span class="dv">1</span>, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>, <span class="dt">addlabels =</span> T)</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-17"></span>
-<img src="pca_files/figure-html/unnamed-chunk-17-1.png" alt="Screeplot de todas las dimensiones del PCA con la varianza explicada de cada uno de ellos" width="480" />
-<p class="caption">
-Figura 10.9: Screeplot de todas las dimensiones del PCA con la varianza explicada de cada uno de ellos
-</p>
-</div>
-<p>Nada mal, cuatro variables expresan 60% de la varianza acumulada de las 12 originales. Ahora, el siguiente paso es lograr que estas 4 se transformen en una sola. Podemos ver que variables “alimentaron” cada uno de los cuatro componentes que hemos retenido.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_contrib</span>(pca_<span class="dv">1</span>, <span class="dt">choice =</span> <span class="st">&quot;var&quot;</span>, <span class="dt">axes =</span> <span class="dv">1</span>)
-<span class="kw">fviz_contrib</span>(pca_<span class="dv">1</span>, <span class="dt">choice =</span> <span class="st">&quot;var&quot;</span>, <span class="dt">axes =</span> <span class="dv">2</span>)
-<span class="kw">fviz_contrib</span>(pca_<span class="dv">1</span>, <span class="dt">choice =</span> <span class="st">&quot;var&quot;</span>, <span class="dt">axes =</span> <span class="dv">3</span>)
-<span class="kw">fviz_contrib</span>(pca_<span class="dv">1</span>, <span class="dt">choice =</span> <span class="st">&quot;var&quot;</span>, <span class="dt">axes =</span> <span class="dv">4</span>)</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-18"></span>
-<img src="pca_files/figure-html/unnamed-chunk-18-1.png" alt="De esta manera podemos saber cuales variables contribuyen a cada componente" width="480" /><img src="pca_files/figure-html/unnamed-chunk-18-2.png" alt="De esta manera podemos saber cuales variables contribuyen a cada componente" width="480" /><img src="pca_files/figure-html/unnamed-chunk-18-3.png" alt="De esta manera podemos saber cuales variables contribuyen a cada componente" width="480" /><img src="pca_files/figure-html/unnamed-chunk-18-4.png" alt="De esta manera podemos saber cuales variables contribuyen a cada componente" width="480" />
-<p class="caption">
-Figura 9.2: De esta manera podemos saber cuales variables contribuyen a cada componente
-</p>
-</div>
-<p>Por ejemplo, el primer componente es el más diverso pero se alimenta en gran medida de las variables de confianza. Si recuerdas la matriz de correlación que hicimos con <code>GGally</code>, todas estas variables tenían correlaciones altas entre sí. El segundo componente se alimenta de la correlación fuerte entre <code>derman</code> y <code>dervoto</code>. La línea roja punteada nos expresa el valor que asumiría un escenario en el que todas las variables contribuyen en igual medida, es decir <span class="math inline">\(1/12\)</span> (8.33%), y nos sirve apenas como referencia visual.</p>
-<p>Para poder condensar los componentes elegidos en una sola variable es necesario recordar cuanta varianza acumulada representan del total. Habíamos visto que los cuatro componentes representaban casi 60% de la varianza total: El primer componente un 28.7%, el segundo componente un 12.3%, el tercer componente un 10.3% y el cuarto componente un 7.9%. El siguiente paso consiste en sumar estos cuatro componentes, pero ponderando cada uno por el porcentaje de la varianza que representan.
-Lo hacemos de la siguiente forma:</p>
-<pre class="sourceCode r"><code class="sourceCode r">datos_pca_final &lt;-<span class="st"> </span>pca_<span class="dv">1</span><span class="op">$</span>ind<span class="op">$</span>coord<span class="op">%&gt;%</span>
-<span class="st"> </span><span class="kw">as_tibble</span>()<span class="op">%&gt;%</span>
-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">pca_01 =</span> (Dim<span class="fl">.1</span> <span class="op">*</span><span class="st"> </span><span class="fl">28.7</span> <span class="op">+</span><span class="st"> </span>Dim<span class="fl">.2</span> <span class="op">*</span><span class="st"> </span><span class="fl">12.3</span> <span class="op">+</span><span class="st"> </span>Dim<span class="fl">.3</span> <span class="op">*</span><span class="st"> </span><span class="fl">10.3</span> <span class="op">+</span><span class="st"> </span>Dim<span class="fl">.4</span> <span class="op">*</span><span class="st"> </span><span class="fl">7.9</span>)  <span class="op">/</span><span class="st"> </span><span class="dv">60</span>)
-
-lapop &lt;-<span class="st"> </span>lapop <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">bind_cols</span>(datos_pca_final <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(pca_<span class="dv">01</span>))</code></pre>
-<p>De esta forma, hemos creado una única variable, que llamamos <code>pca_01</code>. ¡Estamos muy cerca de que esta variable sea nuestro indicador de valoración de la democracia! Sucede que la variable <code>pca_01</code> está en una escala poco amigable. Idealmente queremos que nuestro indicador oscile de 0 a 1, de 0 a 10, o 0 a 100 de tal forma que sea más fácil su interpretación. Lo haremos para que sea de 0 a 100, si quieres que sea de 0 a 10 o de 0 a 1 tienes que reemplazar el 100 de la formula a continuación por el número que te interese.</p>
-<pre class="sourceCode r"><code class="sourceCode r">rescale01 &lt;-<span class="st"> </span><span class="cf">function</span>(x) { rng &lt;-<span class="st"> </span><span class="kw">range</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-(x <span class="op">-</span><span class="st"> </span>rng[<span class="dv">1</span>]) <span class="op">/</span><span class="st"> </span>(rng[<span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>rng[<span class="dv">1</span>])}
-
-lapop &lt;-<span class="st"> </span>lapop <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">indice_democracia =</span> <span class="kw">rescale01</span>(pca_<span class="dv">01</span>)<span class="op">*</span><span class="dv">100</span>)<span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(indice_democracia, <span class="kw">everything</span>())</code></pre>
-<p>Veamos como se ve la densidad de nuestro nuevo índice:</p>
-<pre class="sourceCode r"><code class="sourceCode r">densidad_indice &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> lapop,
-            <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> indice_democracia)) <span class="op">+</span><span class="st"> </span>
-<span class="st">            </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;índice de confianza en la democracia&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;densidad&quot;</span>) <span class="op">+</span>
-<span class="st">            </span><span class="kw">geom_density</span>()
-
-densidad_indice</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-21"></span>
-<img src="pca_files/figure-html/unnamed-chunk-21-1.png" alt="Densidad el índice que acabamos de crear" width="480" />
-<p class="caption">
-Figura 8.6: Densidad el índice que acabamos de crear
-</p>
-</div>
-<p>Ahora que tenemos el índice listo, podemos hacer todo tipo de análisis. Por ejemplo, podemos hacer comparación por países. Si tuviéramos variables individuales, podríamos proceder a modelos de regresión con controles por género, ideología, renta, nivel educativo. Para ello, puedes usar lo aprendido en los capítulos <strong>7 y 8</strong>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">
-lapop &lt;-<span class="st"> </span>lapop <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">        </span><span class="kw">group_by</span>(paisnom) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">democracia_prom =</span> <span class="kw">mean</span>(indice_democracia))
-
-<span class="kw">ggplot</span>(lapop, <span class="kw">aes</span>(<span class="dt">x =</span> indice_democracia)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Confianza en la democracia en América Latina (N = 7000)&quot;</span>,<span class="dt">x=</span><span class="st">&quot;En azul el promedio de cada país&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;densidad&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>paisnom) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept=</span>(democracia_prom)),
-            <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">size=</span><span class="dv">1</span>)</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-22"></span>
-<img src="pca_files/figure-html/unnamed-chunk-22-1.png" alt="Media y distribución de confianza en la democracia para cada país de América del Sur" width="480" />
-<p class="caption">
-Figura 8.7: Media y distribución de confianza en la democracia para cada país de América del Sur
-</p>
-</div>
+<div id="aplicación-en-r-3" class="section level2">
+<h2><span class="header-section-number">10.3</span> Aplicación en R</h2>
+<p>En América Latina, dado el pasado de gobiernos dictatoriales y el reciente debilitamiento democrático de muchos países, puede ser importante para una posible investigación, considerar la opinión pública sobre las instituciones de sus propios países. Una buena pregunta para hacerse es ¿cómo poder saber cuál es la opinión que los ciudadanos latinoamericanos tienen respecto a las instituciones democráticas de sus países?</p>
+<p>El Proyecto de Opinión Pública de América Latina (LAPOP en inglés) – es coordinado desde la Universidad de Vanderbilt y está especializado en conducir estudios de evaluación de impacto, y producir reportes acerca de las actitudes, evaluaciones y experiencias de los individuos de países latinoamericanos. Este proyecto pone a disposición de los investigadores distintas preguntas que, en su conjunto, podrían ayudarnos a aproximar cuanta confianza existe en la región con respecto a instituciones democráticas del país correspondiente a cada individuo.</p>
 <div class="books">
 <p>
-<strong>Ejercicios antes de continuar al próximo capítulo</strong> - Utilizando el índice de confianza en la democracia en América Latina que acabamos de crear, analice con modelos de regresion lineales que variables tienen alto poder explicativo sobre esta variable ¿Son la ideología, renta o edad variables importantes?
+<strong>Ejercicios antes de continuar con el capítulo</strong>
+</p>
+<p>
+Asumamos que te solicitan medir el antiamericanismo en Latinoamerica. ¿Cómo medirías este concepto? Elige 5 o más preguntas de la encuesta LAPOP (puedes consultar el codebook <a href="https://www.vanderbilt.edu/lapop/ab2016/AB2017-v18.0-Spa-170202_W.pdf">aquí</a>) que ocuparías para medir el antiamericanismo.
+</p>
+</div>
+<p>Es importante como primer paso seleccionar las variables que nos servirán para realizar el PCA, dejando de lado todo aquello que no queramos usar en el índice final. Esta data contiene doce preguntas de la encuesta de LAPOP, realizadas a una selección de cerca de 7000 personas en 10 países latinoamericanos. El cuestionario entero puede accederse en este [link] (<a href="https://www.vanderbilt.edu/lapop/ab2016/AB2017-v18.0-Spa-170202_W.pdf" class="uri">https://www.vanderbilt.edu/lapop/ab2016/AB2017-v18.0-Spa-170202_W.pdf</a>). Este primer paso es fundamental. Este es el paso que conlleva más trabajo teórico para el investigador, ya que desde aquí se definen cuáles serán las variables que se integrarán en el análisis (y cuales se dejarán fuera). Bajo nuestro análisis, las variables que dejamos son las siguientes:</p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="48%" />
+<col width="35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nombre</th>
+<th>Descripción</th>
+<th>Fuente</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>del</strong></td>
+<td>Variable dicotómica que mide el nivel de justificación de <strong>golpes de estado militares</strong> en el país del encuestado frente a mucha delincuencia.</td>
+<td><em>Basada en la pregunta “jc10” de Encuesta LAPOP.</em></td>
+</tr>
+<tr class="even">
+<td><strong>pdte</strong></td>
+<td>Variable dicotómica que mide el nivel de justificación de <strong>cierre del congreso</strong> en situaciones difíciles por parte del presidente.</td>
+<td><em>Basada en la pregunta “jc15a” de Encuesta LAPOP.</em></td>
+</tr>
+<tr class="odd">
+<td><strong>trib</strong></td>
+<td>Mide en una escala del 1 al 7 el nivel de <strong>confianza en los tribunales</strong> del país del encuestado</td>
+<td><em>Basada en la pregunta “b1” de Encuesta LAPOP.</em></td>
+</tr>
+<tr class="even">
+<td><strong>inst</strong></td>
+<td>Mide en una escala del 1 al 7 el nivel de <strong>respeto por las instituciones políticas</strong> del país del encuestado.</td>
+<td><em>Basada en la pregunta “b2” de Encuesta LAPOP.</em></td>
+</tr>
+<tr class="odd">
+<td><strong>confcon</strong></td>
+<td>Mide en una escala del 1 al 7 el nivel de confianza en el Congreso Nacional (poder legislativo) del país del encuestado</td>
+<td><em>Basada en la pregunta “b13” de Encuesta LAPOP.</em></td>
+</tr>
+<tr class="even">
+<td><strong>confpdte</strong></td>
+<td>Mide en una escala del 1 al 7 el nivel de <strong>confianza en el presidente (poder ejecutivo)</strong> del país del encuestado</td>
+<td><em>Basada en la pregunta “b21a” de Encuesta LAPOP.</em></td>
+</tr>
+<tr class="odd">
+<td><strong>confpp</strong></td>
+<td>Mide en una escala del 1 al 7 el nivel de <strong>confianza en los partidos políticos</strong> del país del encuestado</td>
+<td><em>Basada en la pregunta “b21” de Encuesta LAPOP.</em></td>
+</tr>
+<tr class="even">
+<td><strong>confmedia</strong></td>
+<td>Mide en una escala del 1 al 7 el nivel de <strong>confianza en los medios de comunicación</strong> del país del encuestado</td>
+<td><em>Basada en la pregunta “b37” de Encuesta LAPOP.</em></td>
+</tr>
+<tr class="odd">
+<td><strong>confelec</strong></td>
+<td>Mide en una escala del 1 al 7 el nivel de <strong>confianza en las elecciones del país</strong> del encuestado.</td>
+<td><em>Basada en la pregunta “b47a” de Encuesta LAPOP.</em></td>
+</tr>
+<tr class="even">
+<td><strong>satdem</strong></td>
+<td>Variable dicotómica que mide el nivel de <strong>satisfacción con la democracia</strong> tienen los encuestados</td>
+<td><em>Basada en la pregunta “pn4” de Encuesta LAPOP.</em></td>
+</tr>
+<tr class="odd">
+<td><strong>dervoto</strong></td>
+<td>Mide en una escala del 1 al 7 la satisfacción con la idea de que aquellos que se encuentren en contra del gobierno de turno puedan <strong>ejercer el voto</strong> en las elecciones del país del encuestado</td>
+<td><em>Basada en la pregunta “d1” de Encuesta LAPOP.</em></td>
+</tr>
+<tr class="even">
+<td><strong>derman</strong></td>
+<td>Mide en una escala del 1 al 7 la satisfacción con la idea de que aquellos que se encuentren en contra del gobierno de turno puedan llevar a cabo <strong>manifestaciones pacíficas</strong> para expresar su punto de vista</td>
+<td><em>Basada en la pregunta “d2” de Encuesta LAPOP.</em></td>
+</tr>
+</tbody>
+</table>
+<p>Para poder seleccionar las variables y utilizar los pipes cargamos <code>tidyverse</code>. Luego, cargamos la base desde el paquete del libro, <code>paqueteadp</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(paqueteadp)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;lapop_pca&quot;</span>)</a></code></pre></div>
+<p>Estas variables pueden explorarse gráficamente. Por ejemplo, podemos ver por país la confianza que sus ciudadanos tienen en las elecciones:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">lapop_pca &lt;-<span class="st"> </span>lapop_pca <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(paisnom) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">confelec_prom =</span> <span class="kw">mean</span>(confelec)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw">ggplot</span>(lapop_pca, <span class="kw">aes</span>(<span class="dt">x =</span> confelec)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Confianza en las elecciones&quot;</span>, </a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">       <span class="dt">x =</span> <span class="st">&quot;En azul, el promedio nacional&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Conteo&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>paisnom) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> confelec_prom),</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="pca_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Vamos a filtrar nuestras variables de interés, esto quiere decir que dejamos fuera toda variable que no sea proxy de democracia, por ejemplo la variable <code>paisnom</code> que indica el país de cada individuo no debería ser incorporada. Para esto, generamos una nueva base que contenga sólo las variables que queramos ocupar, en este caso, para conocer cuál es la opinión sobre las instituciones democráticas que tienen los latinoamericanos. Con <code>stargazer</code> podemos ver los estadísticos descriptivos de cada variable.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">lapop_pca_num &lt;-<span class="st"> </span>lapop_pca <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(del, pdte, trib, inst, confcon, confpdte, confpp, confmedia, confelec, </a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">         satdem, dervoto, derman) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate_all</span>(as.numeric)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">lapop_pca</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">## # A tibble: 7,655 x 14</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">##    paisnom   del  pdte  trib  inst confcon confpdte confpp confmedia confelec</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">##    &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">##  1 Argent…     0     1     6     4       6        5      3         4        6</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">##  2 Argent…     1     0     4     6       5        1      1         6        3</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">##  3 Argent…     0     0     4     4       2        6      3         6        4</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">##  4 Argent…     1     1     3     7       4        1      2         4        3</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">##  5 Argent…     0     0     5     6       4        3      3         5        5</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">##  6 Argent…     0     0     2     1       1        2      1         2        1</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">##  7 Argent…     0     0     4     2       4        1      3         4        7</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">##  8 Argent…     1     0     1     1       1        1      1         7        1</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">##  9 Argent…     1     1     5     7       7        5      7         7        6</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">## 10 Argent…     0     0     2     7       1        3      1         4        5</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">## # … with 7,645 more rows, and 4 more variables: satdem &lt;dbl&gt;, dervoto &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">## #   derman &lt;dbl&gt;, confelec_prom &lt;dbl&gt;</span></a></code></pre></div>
+<p>Ya habiendo seleccionado las variables, el primer paso es estandarizarlas y luego tratar los valores negativos. La técnica del PCA acepta variables de distinto tipo, pero importa bastanta omitir o imputar a las medias los valores nulos que toman. En este caso, omitiremos los posibles NA que tenga la base.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">lapop_pca_num &lt;-<span class="st"> </span>lapop_pca_num <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a></code></pre></div>
+<p>El siguiente paso es observar la correlación entre ellas. Esto sirve también para saber cómo se relacionan las variables elegidas, y además para ver si hay correlaciones extremadamente altas entre dos o más variables ya que si existe el caso en que tengamos dos o más variables con alta correlación entre ellas, éstas tendrán enorme influencia en sobre cómo se orientan los componentes.</p>
+<p>La mejor alternativa para observar correlación entre variables creemos que es con el paquete <code>GGally</code>. A mayor intensidad del color, más fuerte la correlación. En azul tendremos correlaciones negativas, y en rojo correlaciones positivas.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(GGally)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">ggcorr</span>(lapop_pca_num, <span class="dt">label =</span> T)</a></code></pre></div>
+<p><img src="pca_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Lo que vemos es que las variables sobre confianza están correlacionadas de manera positiva. Es decir, quien confía en el presidente tiende a confiar también en medios, elecciones, por ejemplo.</p>
+<p>Una vez que observamos las correlaciones, estamos listos para realizar el Análisis de Componentes Principales. La idea entonces es explicar dos grandes utilidades complementarias que tiene para las ciencias sociales y la construcción de algún concepto. Para esto, ocuparemos dos paquetes distintos que realizan el PCA, esto para otorgar opciones de cómo realizar la técnica en R. El PCA nos permitirá definir a través de los componentes cuales van a ser las dimensiones del concepto que ocuparemos a través de cómo se relacionan los datos en su interior, para luego avanzar a realizar un índice simple que denote la variación del concepto a través de distintas unidades de análisis.</p>
+</div>
+<div id="dimensionalidad-del-concepto" class="section level2">
+<h2><span class="header-section-number">10.4</span> Dimensionalidad del concepto</h2>
+<p>Primero, con el subset de datos que tenemos, generamos un PCA con el paquete <code>stats</code>. Luego con el comando <code>summary</code> podremos ver lo que nos entrega el análisis.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(stats)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">pca &lt;-<span class="st"> </span><span class="kw">princomp</span>(lapop_pca_num)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">summary</span>(pca, <span class="dt">loadings =</span> T, <span class="dt">cutoff =</span> <span class="fl">0.3</span>)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">## Importance of components:</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">##                        Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7 Comp.8</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">##                        Comp.9 Comp.10 Comp.11 Comp.12</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 3 rows ]</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">## </span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">## Loadings:</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">##           Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7 Comp.8 Comp.9</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">##           Comp.10 Comp.11 Comp.12</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 12 rows ]</span></a></code></pre></div>
+<p>Como puede verse, existen tres componentes que nos entregan un Eigenvalue (denotado por Standard deviation) mayor a 1. Como mencionamos con anterioridad, ese será nuestro criterio para seleccionar los componentes que consideraremos como importantes. También nos entrega cómo se construyen cada componente con las variables que seleccionamos.</p>
+<p>Otra forma de observar los Eigenvalues de cada componente es con el comando get_eigenvalue de la librería <code>factoextra</code>. Al igual que con el resultado de <code>summary()</code>, nos entrega, además del Eigenvalue, la varianza que explica cada componente.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">library</span>(factoextra)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">eig_val &lt;-<span class="st"> </span><span class="kw">get_eigenvalue</span>(pca)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">eig_val</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">##       eigenvalue variance.percent cumulative.variance.percent</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">## Dim.1        3.4               29                          29</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">## Dim.2        1.5               12                          41</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 10 rows ]</span></a></code></pre></div>
+<p>Como puede verse, el componente 1 representa cerca del 29% de la varianza total de las variables elegidas. La varianza de los otros dos componentes importantes es de un 12% y 10% respectivamente.</p>
+<p>Otra forma de que nos entregue esta información es a través de gráficos. El siguiente comando nos entrega en su forma mas simple, el porcentaje de varianza explicado por cada uno de los componentes que el PCA nos entrega.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">fviz_eig</span>(pca, <span class="dt">addlabels =</span> T, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</a></code></pre></div>
+<p><img src="pca_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Un cambio pequeño en el comando, nos entrega también un gráfico con los Eigenvalues de cada uno de los componentes:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">fviz_eig</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>, <span class="dt">addlabels =</span> T, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</a></code></pre></div>
+<p><img src="pca_files/figure-html/unnamed-chunk-13-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Para saber cómo se encuentran compuestos cada uno de estos componentes, podemos generar un Biplot. Este tipo de gráficos nos mostrará como vectores en dos dimensiones (que serán los primeros dos componentes del análisis).</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">repel =</span> F, <span class="dt">col.var =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">col.ind =</span> <span class="st">&quot;gray&quot;</span>)</a></code></pre></div>
+<p><img src="pca_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Este gráfico bidimensional nos muestra claramente que tenemos tres grupos de variables. Estos conjuntos de variables son los que precisamente son reducidos a tres componentes, que pueden representar a tres dimensiones de la opinión sobre instituciones políticas que queremos medir en Latinoamérica.</p>
+<p>Podemos saber también, cómo estarán compuestas las dimensiones del concepto que queremos medir con el comando fviz_contrib, cambiando los componentes en cada eje:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">fviz_contrib</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;var&quot;</span>, <span class="dt">axes =</span> <span class="dv">1</span>, <span class="dt">top =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">fviz_contrib</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;var&quot;</span>, <span class="dt">axes =</span> <span class="dv">2</span>, <span class="dt">top =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">fviz_contrib</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;var&quot;</span>, <span class="dt">axes =</span> <span class="dv">3</span>, <span class="dt">top =</span> <span class="dv">10</span>)</a></code></pre></div>
+<p><img src="pca_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;" /><img src="pca_files/figure-html/unnamed-chunk-15-2.png" width="480" style="display: block; margin: auto;" /><img src="pca_files/figure-html/unnamed-chunk-15-3.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Por ejemplo, el primer componente es el más diverso pero se alimenta en gran medida de las variables de confianza. Si recuerdas la matriz de correlación que hicimos con <code>GGally</code>, todas estas variables tenían correlaciones altas entre sí. El segundo componente se alimenta de la correlación fuerte entre <code>derman</code> y <code>dervoto</code>. La línea roja punteada nos expresa el valor que asumiría un escenario en el que todas las variables contribuyen en igual medida, es decir 1/12 (8.33%), y nos sirve apenas como referencia visual.</p>
+<p>La composición de cada componente, nos puede ayudar a nombrar cada dimensión del concepto que estamos creando. Esto entregará más sustento a la hora de justificar la forma de medir la opinión pública orientada hacia las instituciones políticas.
+La primera dimensión, que es aquella que concentra la mayor cantidad de varianza, representa la confianza en instituciones como lo son los poderes del estado, los partidos políticos y las elecciones. Es el más diverso pero se alimenta en gran medida de las variables de confianza. Si recuerdas la matriz de correlación que hicimos con <code>GGally</code>, todas estas variables tenían correlaciones altas entre sí. Esto quiere decir que cuando queramos medir la confianza en la política de los individuos, lo que principalmente representarán nuestros datos es aquella confianza en la política más formal, en el concepto más clásico de política.</p>
+<p>La segunda de las dimensiones es aquella que denota el nivel de tolerancia política con la disidencia, que podría orientar una opinión hacia una forma de controlar los derechos a voto y manifestación pública pacífica. Esto puede denotar que tan propensa es la gente a suspender ciertos derechos democráticos de aquellos que piensan distinto.</p>
+<p>La tercera de las dimensiones, que representa el 10% de la varianza, es aquella compuesta por variables que representan la propensión a justificar golpes de estado o cierres de Congreso. Nuestro concepto entonces tendrá componentes que miden que tanto individualmente se forman opiniones de quiebres democráticos, midiendo que tan frágiles son instituciones formales dentro de la opinión pública en Latinoamérica.</p>
+<p>Los resultados cualitativos de cada dimensión pueden ser representados en una tabla como esta:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Dimensión 1</th>
+<th align="center">Dimensión 2</th>
+<th align="center">Dimensión 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><em>Política Formal</em></td>
+<td align="center"><em>Derechos Democráticos</em></td>
+<td align="center"><em>Justificación Antidemocrática</em></td>
+</tr>
+<tr class="even">
+<td align="center">trib</td>
+<td align="center">dervoto</td>
+<td align="center">del</td>
+</tr>
+<tr class="odd">
+<td align="center">inst</td>
+<td align="center">derman</td>
+<td align="center">pdte</td>
+</tr>
+<tr class="even">
+<td align="center">confcon</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">confpdte</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">confpp</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">confelec</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>28.7%</strong></td>
+<td align="center"><strong>12.3%</strong></td>
+<td align="center"><strong>10.3%</strong></td>
+</tr>
+<tr class="odd">
+<td align="center">de la varianza explicada</td>
+<td align="center">de la varianza explicada</td>
+<td align="center">de la varianza explicada</td>
+</tr>
+</tbody>
+</table>
+<p>Al crearse estas nuevas dimensiones, estas pueden ser consideradas como nuevas variables a integrar dentro de nuestra base de datos original, como se ve a continuación:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">lapop_pca &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(lapop_pca, <span class="kw">as_tibble</span>(pca<span class="op">$</span>scores))</a></code></pre></div>
+<p>Estas pueden ser tratadas como variables nuevas que se puedan integrar por separado al análisis o, como veremos a continuación, ser integrados en un índice de confianza en instituciones políticas, que evalúe en su conjunto, las tres dimensiones.</p>
+<div class="books">
+<p>
+<strong>Ejercicios antes de continuar con el capítulo</strong>
+</p>
+<p>
+Estandariza y omite los NA de las preguntas que elegiste en la primera parte para el nivel de antiamericanismo. Realiza un Análisis de Componentes Principales y responde las siguientes preguntas: ¿Cuáles son los componentes más importantes? ¿Qué variables los integran? ¿Qué dimensiones tiene el concepto de antiamericanismo que estás realizando?
+</p>
+</div>
+</div>
+<div id="variación-del-concepto" class="section level2">
+<h2><span class="header-section-number">10.5</span> Variación del concepto</h2>
+<p>Otra de las aplicaciones de esta herramienta en R permitirá generar un índice que caracterice a cada uno de los individuos desde aquellos que sean más propensos a tener confianza en las instituciones y aquellos que no. A partir de este índice individual, luego podremos hacer una gran variedad de estudios, desde comparaciones entre países, a comparaciones por edad, género, renta u otra variable de interés.</p>
+<p>Para esta parte, volveremos a generar un PCA, pero esta vez lo haremos con el comando PCA del paquete <code>FactoMineR</code>. Esto nos entregará el mismo resultado que el paquete anterior, pero nos interesa mostrar que esta herramienta puede ser ocupada de varias formas el R.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">library</span>(FactoMineR)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">pca_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">PCA</span>(lapop_pca_num, <span class="dt">graph =</span> F)</a></code></pre></div>
+<p>Como vimos con anterioridad, debemos retener los componentes que contienen un Eigen Value mayor a 1, lo que podemos ver nuevamente en el gráfico:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">fviz_eig</span>(pca_<span class="dv">1</span>, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>, <span class="dt">addlabels =</span> T, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</a></code></pre></div>
+<p><img src="pca_files/figure-html/unnamed-chunk-19-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Como pudimos ver con anticipación, los componentes mayores a 1 son los primeros tres. Dejaremos en este caso al componente 4 para agregar mayores variables a nuestro índice.<br />
+Para poder condensar los componentes elegidos en una sola variable es necesario recordar cuanta varianza acumulada representan del total:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">eig &lt;-<span class="st"> </span><span class="kw">get_eig</span>(pca_<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">eig</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co">##        eigenvalue variance.percent cumulative.variance.percent</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="co">## Dim.1        3.44             28.7                          29</span></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">## Dim.2        1.48             12.3                          41</span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 10 rows ]</span></a></code></pre></div>
+<p>Habíamos visto que los cuatro componentes representaban casi 60% de la varianza total: El primer componente un 28.7%, el segundo componente un 12.3%, el tercer componente un 10.3% y el cuarto componente un 7.9%. El siguiente paso consiste en sumar estos cuatro componentes, pero ponderando cada uno por el porcentaje de la varianza que representan. Lo hacemos de la siguiente forma:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">data_pca &lt;-<span class="st"> </span>pca_<span class="dv">1</span><span class="op">$</span>ind<span class="op">$</span>coord<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st"> </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">pca_01 =</span> (Dim<span class="fl">.1</span> <span class="op">*</span><span class="st"> </span><span class="fl">28.7</span> <span class="op">+</span><span class="st"> </span>Dim<span class="fl">.2</span> <span class="op">*</span><span class="st"> </span><span class="fl">12.3</span> <span class="op">+</span><span class="st"> </span>Dim<span class="fl">.3</span> <span class="op">*</span><span class="st"> </span><span class="fl">10.3</span> <span class="op">+</span><span class="st"> </span>Dim<span class="fl">.4</span> <span class="op">*</span><span class="st"> </span><span class="fl">7.9</span>) <span class="op">/</span><span class="st"> </span><span class="dv">60</span>)</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">lapop_pca &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(lapop_pca, data_pca <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(pca_<span class="dv">01</span>))</a></code></pre></div>
+<p>De esta forma, hemos creado una única variable, que llamamos pca_01. ¡Estamos muy cerca de que esta variable sea nuestro indicador de valoración de la democracia! Sucede que la variable pca_01 está en una escala poco amigable. Idealmente queremos que nuestro indicador oscile de 0 a 1, de 0 a 10, o 0 a 100 de tal forma que sea más fácil su interpretación. Lo haremos para que sea de 0 a 100, si quieres que sea de 0 a 10 o de 0 a 1 tienes que reemplazar el 100 de la formula a continuación por el número que te interese.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">lapop_pca &lt;-<span class="st"> </span>lapop_pca <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">democracy_index =</span> <span class="kw">rescale01</span>(pca_<span class="dv">01</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(democracy_index, <span class="kw">everything</span>())</a></code></pre></div>
+<p>Ya con nuestro nuevo índice reescalado, podemos ver cómo se ve su densidad:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">index_density &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> lapop_pca,</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">                        <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> democracy_index)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span><span class="st">&quot;Índice de confianza en la democracia&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Densidad&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_density</span>()</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6">index_density </a></code></pre></div>
+<p><img src="pca_files/figure-html/unnamed-chunk-23-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Ahora que tenemos el índice listo, podemos hacer todo tipo de análisis. Por ejemplo, podemos hacer comparación por países. Si tuviéramos variables individuales, podríamos proceder a modelos de regresión con controles por género, ideología, renta, nivel educativo. Para ello, puedes usar lo aprendido en los capítulos 7 y 8.</p>
+<p>Descriptivamente, podemos hacer una comparación de cómo se encuentra nuestro índice de confianza en instituciones en los países latinoamericanos:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">lapop_pca &lt;-<span class="st"> </span>lapop_pca <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(paisnom) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">democracy_avg =</span> <span class="kw">mean</span>(democracy_index)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="kw">ggplot</span>(lapop_pca, <span class="kw">aes</span>(<span class="dt">x =</span> democracy_index)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Confianza en la democracia en América Latina (n = 7000)&quot;</span>,</a>
+<a class="sourceLine" id="cb21-9" data-line-number="9">       <span class="dt">x =</span> <span class="st">&quot;En azul, el promedio para cada país&quot;</span>, </a>
+<a class="sourceLine" id="cb21-10" data-line-number="10">       <span class="dt">y =</span> <span class="st">&quot;Densidad&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>paisnom) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> democracy_avg),</a>
+<a class="sourceLine" id="cb21-13" data-line-number="13">             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="pca_files/figure-html/unnamed-chunk-24-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="books">
+<p>
+<strong>Ejercicios antes de continuar al próximo capítulo</strong>
 </p>
 <ul>
 <li>
-Utilizando la base de LAPOP (puedes consultar el <a href="https://www.vanderbilt.edu/lapop/ab2016/AB2017-v18.0-Spa-170202_W.pdf">codebook aquí</a>) elige un set de variables para crear un índice de antiamericanismo siguiendo los lineamientos del capítulo.
+Utilizando el índice de confianza en la democracia en América Latina que acabamos de crear, analice con modelos de regresion lineales que variables tienen alto poder explicativo sobre esta variable ¿Son la ideología, renta o edad variables importantes?
 </li>
 </ul>
+<p>
+-Con el set de variables que elegiste, crea un índice de antiamericanismo siguiendo los lineamientos del capítulo.
+</p>
 </div>
 
 </div>
@@ -639,11 +767,13 @@ Utilizando la base de LAPOP (puedes consultar el <a href="https://www.vanderbilt
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -658,6 +788,10 @@ gitbook.start({
 "text": "Edit"
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -676,8 +810,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
