@@ -28,8 +28,7 @@ It makes use of a variety of open source projects including:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/proyectos/</guid>
-      <description>  
- AnalizaR Datos Políticos es un manual aplicado de R y el tidyverse, especialmente pensado para la ciencia política. Cada capítulo explica el contenido haciendo uso de ejemplos de investigación en Latinoamérica. De acceso abierto y gratuito, actualmente se encuentra en la versión 0.1 (2019-03-15). Coeditado con Francisco Urdinez, los(as) colaboradores(as) son estudiantes de Pregrado, Magíster y Doctorado del Instituto de Ciencia Política, PUC Chile.     </description>
+      <description>AnalizaR Datos Políticos es un manual aplicado de R y el tidyverse, especialmente pensado para la ciencia política. Cada capítulo explica el contenido haciendo uso de ejemplos de investigación en Latinoamérica. De acceso abierto y gratuito, actualmente se encuentra en la versión 0.1 (2019-03-15). Coeditado con Francisco Urdinez, los(as) colaboradores(as) son estudiantes de Pregrado, Magíster y Doctorado del Instituto de Ciencia Política, PUC Chile.     inexact es un addin de RStudio para supervisar uniones fuzzy de datos, de forma visual y reproducible.</description>
     </item>
     
   </channel>
