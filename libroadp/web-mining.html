@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 12 Web Scraping | AnalizaR Datos Políticos (v1.0)</title>
-  <meta name="description" content="Capítulo 12 Web Scraping | AnalizaR Datos Políticos (v1.0)" />
+  <title>Capítulo 12 Minería de datos web | AnalizaR Datos Políticos (v1.0)</title>
+  <meta name="description" content="Capítulo 12 Minería de datos web | AnalizaR Datos Políticos (v1.0)" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 12 Web Scraping | AnalizaR Datos Políticos (v1.0)" />
+  <meta property="og:title" content="Capítulo 12 Minería de datos web | AnalizaR Datos Políticos (v1.0)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 12 Web Scraping | AnalizaR Datos Políticos (v1.0)" />
+  <meta name="twitter:title" content="Capítulo 12 Minería de datos web | AnalizaR Datos Políticos (v1.0)" />
   
   
   
@@ -212,7 +212,7 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="dataviz.html"><a href="dataviz.html#para-continuar-aprendiendo"><i class="fa fa-check"></i><b>3.4</b> Para continuar aprendiendo</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="load.html"><a href="load.html"><i class="fa fa-check"></i><b>4</b> Carga de datos</a><ul>
+<li class="chapter" data-level="4" data-path="load.html"><a href="load.html"><i class="fa fa-check"></i><b>4</b> Carga de bases</a><ul>
 <li class="chapter" data-level="" data-path="load.html"><a href="load.html#los-paquetes-que-necesitas-instalar-2"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
 <li class="chapter" data-level="4.1" data-path="load.html"><a href="load.html#load-intro"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
 <li class="chapter" data-level="4.2" data-path="load.html"><a href="load.html#carga-formatos"><i class="fa fa-check"></i><b>4.2</b> Diferentes formatos de bases de datos</a></li>
@@ -259,7 +259,7 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="case-sel.html"><a href="case-sel.html#la-importancia-de-la-combinación-de-métodos"><i class="fa fa-check"></i><b>6.3</b> La importancia de la combinación de métodos</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="panel.html"><a href="panel.html"><i class="fa fa-check"></i><b>7</b> Datos de panel</a><ul>
+<li class="chapter" data-level="7" data-path="panel.html"><a href="panel.html"><i class="fa fa-check"></i><b>7</b> Modelos de panel</a><ul>
 <li class="chapter" data-level="" data-path="panel.html"><a href="panel.html#lecturas-sugeridas-3"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
 <li class="chapter" data-level="" data-path="panel.html"><a href="panel.html#los-paquetes-que-necesitas-instalar-5"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
 <li class="chapter" data-level="7.1" data-path="panel.html"><a href="panel.html#introducción-2"><i class="fa fa-check"></i><b>7.1</b> Introducción</a></li>
@@ -342,7 +342,7 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <li class="chapter" data-level="11.6.1" data-path="adv-data.html"><a href="adv-data.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>11.6.1</b> Regresiones luego de imputar datos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Web Scraping</a><ul>
+<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Minería de datos web</a><ul>
 <li class="chapter" data-level="" data-path="web-mining.html"><a href="web-mining.html#lecturas-sugeridas-8"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
 <li class="chapter" data-level="" data-path="web-mining.html"><a href="web-mining.html#los-paquetes-que-necesitas-instalar-10"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
 <li class="chapter" data-level="12.1" data-path="web-mining.html"><a href="web-mining.html#introducción-7"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
@@ -465,7 +465,7 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 
             <section class="normal" id="section-">
 <div id="web-mining" class="section level1">
-<h1><span class="header-section-number">Capítulo 12</span> Web Scraping</h1>
+<h1><span class="header-section-number">Capítulo 12</span> Minería de datos web</h1>
 <p>Gonzalo Barría<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a></p>
 <div id="lecturas-sugeridas-8" class="section level3 unnumbered">
 <h3>Lecturas sugeridas</h3>
@@ -791,19 +791,19 @@ Luego procedes a cargar el paquete <code>rtweet</code> que te permitirá extraer
 <span id="cb447-6"><a href="web-mining.html#cb447-6"></a><span class="co">## # A tibble: 3 x 90</span></span>
 <span id="cb447-7"><a href="web-mining.html#cb447-7"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
 <span id="cb447-8"><a href="web-mining.html#cb447-8"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
-<span id="cb447-9"><a href="web-mining.html#cb447-9"></a><span class="co">## 1 636247… 12951952… 2020-08-17 03:06:29 vivimatus   &quot;Si … Twitt…</span></span>
-<span id="cb447-10"><a href="web-mining.html#cb447-10"></a><span class="co">## 2 121075… 12951952… 2020-08-17 03:06:27 ChilenoVot… &quot;Si … Twitt…</span></span>
-<span id="cb447-11"><a href="web-mining.html#cb447-11"></a><span class="co">## 3 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   &quot;#Pi… Twitt…</span></span>
+<span id="cb447-9"><a href="web-mining.html#cb447-9"></a><span class="co">## 1 185366… 12952017… 2020-08-17 03:32:14 carmelcita  &quot;Si … Twitt…</span></span>
+<span id="cb447-10"><a href="web-mining.html#cb447-10"></a><span class="co">## 2 147890… 12952016… 2020-08-17 03:32:02 prospeccio… &quot;Si … Twitt…</span></span>
+<span id="cb447-11"><a href="web-mining.html#cb447-11"></a><span class="co">## 3 121427… 12952014… 2020-08-17 03:31:11 wenqleo     &quot;Si … Twitt…</span></span>
 <span id="cb447-12"><a href="web-mining.html#cb447-12"></a><span class="co">## # … with 84 more variables</span></span></code></pre></div>
 <p>Para obtener información de los usuarios que están emitiendo tweets sobre #piñera en el momento que estamos escribiendo este capitulo</p>
 <div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="web-mining.html#cb448-1"></a><span class="kw">lookup_users</span>(pinera_tweets<span class="op">$</span>user_id)</span>
-<span id="cb448-2"><a href="web-mining.html#cb448-2"></a><span class="co">## # A tibble: 866 x 90</span></span>
+<span id="cb448-2"><a href="web-mining.html#cb448-2"></a><span class="co">## # A tibble: 871 x 90</span></span>
 <span id="cb448-3"><a href="web-mining.html#cb448-3"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
 <span id="cb448-4"><a href="web-mining.html#cb448-4"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
-<span id="cb448-5"><a href="web-mining.html#cb448-5"></a><span class="co">## 1 636247… 12951954… 2020-08-17 03:07:15 vivimatus   &quot;Par… Twitt…</span></span>
-<span id="cb448-6"><a href="web-mining.html#cb448-6"></a><span class="co">## 2 121075… 12951952… 2020-08-17 03:06:27 ChilenoVot… &quot;Si … Twitt…</span></span>
-<span id="cb448-7"><a href="web-mining.html#cb448-7"></a><span class="co">## 3 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   &quot;#Pi… Twitt…</span></span>
-<span id="cb448-8"><a href="web-mining.html#cb448-8"></a><span class="co">## # … with 863 more rows, and 84 more variables</span></span></code></pre></div>
+<span id="cb448-5"><a href="web-mining.html#cb448-5"></a><span class="co">## 1 185366… 12952017… 2020-08-17 03:32:14 carmelcita  &quot;Si … Twitt…</span></span>
+<span id="cb448-6"><a href="web-mining.html#cb448-6"></a><span class="co">## 2 147890… 12952024… 2020-08-17 03:34:53 prospeccio… &quot;Nun… Twitt…</span></span>
+<span id="cb448-7"><a href="web-mining.html#cb448-7"></a><span class="co">## 3 121427… 12952025… 2020-08-17 03:35:34 wenqleo     &quot;@ma… Twitt…</span></span>
+<span id="cb448-8"><a href="web-mining.html#cb448-8"></a><span class="co">## # … with 868 more rows, and 84 more variables</span></span></code></pre></div>
 <p>Las consultas de tweets pueden hacerse de varias maneras dependiendo en los que estas buscando:</p>
 </div>
 <div id="buscar-una-palabra-clave" class="section level3">
@@ -850,23 +850,23 @@ Luego procedes a cargar el paquete <code>rtweet</code> que te permitirá extraer
 <span id="cb454-7"><a href="web-mining.html#cb454-7"></a><span class="co">## # A tibble: 2 x 90</span></span>
 <span id="cb454-8"><a href="web-mining.html#cb454-8"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
 <span id="cb454-9"><a href="web-mining.html#cb454-9"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
-<span id="cb454-10"><a href="web-mining.html#cb454-10"></a><span class="co">## 1 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   &quot;#Pi… Twitt…</span></span>
-<span id="cb454-11"><a href="web-mining.html#cb454-11"></a><span class="co">## 2 109934… 12948332… 2020-08-16 03:07:50 nacido_aC   &quot;Rog… Twitt…</span></span>
+<span id="cb454-10"><a href="web-mining.html#cb454-10"></a><span class="co">## 1 671326… 12951957… 2020-08-17 03:08:20 nnnnico     &quot;Tan… Twitt…</span></span>
+<span id="cb454-11"><a href="web-mining.html#cb454-11"></a><span class="co">## 2 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   &quot;#Pi… Twitt…</span></span>
 <span id="cb454-12"><a href="web-mining.html#cb454-12"></a><span class="co">## # … with 84 more variables</span></span></code></pre></div>
 <p>Ahora veamos quién está twiteando sobre el hashtag “#piñera”</p>
 <div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="web-mining.html#cb455-1"></a><span class="co"># Look at the column with the names - top 6</span></span>
 <span id="cb455-2"><a href="web-mining.html#cb455-2"></a><span class="kw">head</span>(pinera_tweets<span class="op">$</span>screen_name)</span>
-<span id="cb455-3"><a href="web-mining.html#cb455-3"></a><span class="co">## [1] &quot;nacido_aC&quot;   &quot;nacido_aC&quot;   &quot;nacido_aC&quot;   &quot;nacido_aC&quot;   &quot;MolinavSeba&quot;</span></span>
+<span id="cb455-3"><a href="web-mining.html#cb455-3"></a><span class="co">## [1] &quot;nnnnico&quot;     &quot;nacido_aC&quot;   &quot;nacido_aC&quot;   &quot;nacido_aC&quot;   &quot;nacido_aC&quot;  </span></span>
 <span id="cb455-4"><a href="web-mining.html#cb455-4"></a><span class="co">## [6] &quot;MolinavSeba&quot;</span></span>
 <span id="cb455-5"><a href="web-mining.html#cb455-5"></a></span>
 <span id="cb455-6"><a href="web-mining.html#cb455-6"></a><span class="kw">unique</span>(pinera_tweets<span class="op">$</span>screen_name)</span>
-<span id="cb455-7"><a href="web-mining.html#cb455-7"></a><span class="co">##  [1] &quot;nacido_aC&quot;       &quot;MolinavSeba&quot;     &quot;HSBnoticias&quot;    </span></span>
-<span id="cb455-8"><a href="web-mining.html#cb455-8"></a><span class="co">##  [4] &quot;criticolunar&quot;    &quot;alert_ve&quot;        &quot;CerroaIzquierda&quot;</span></span>
-<span id="cb455-9"><a href="web-mining.html#cb455-9"></a><span class="co">##  [7] &quot;ElPobreHank&quot;     &quot;1_panchovilla&quot;   &quot;Rubencorsal&quot;    </span></span>
-<span id="cb455-10"><a href="web-mining.html#cb455-10"></a><span class="co">## [10] &quot;bullboss63&quot;      &quot;Thunder_Pantera&quot; &quot;cebef&quot;          </span></span>
-<span id="cb455-11"><a href="web-mining.html#cb455-11"></a><span class="co">## [13] &quot;villanomacul&quot;    &quot;LKatrileo&quot;       &quot;TIRSO48&quot;        </span></span>
-<span id="cb455-12"><a href="web-mining.html#cb455-12"></a><span class="co">## [16] &quot;nacioncl&quot;        &quot;minevargasg&quot;     &quot;_hexagram_&quot;     </span></span>
-<span id="cb455-13"><a href="web-mining.html#cb455-13"></a><span class="co">## [19] &quot;CiudadannoChile&quot; &quot;rechazoviejo&quot;   </span></span>
+<span id="cb455-7"><a href="web-mining.html#cb455-7"></a><span class="co">##  [1] &quot;nnnnico&quot;         &quot;nacido_aC&quot;       &quot;MolinavSeba&quot;    </span></span>
+<span id="cb455-8"><a href="web-mining.html#cb455-8"></a><span class="co">##  [4] &quot;HSBnoticias&quot;     &quot;criticolunar&quot;    &quot;alert_ve&quot;       </span></span>
+<span id="cb455-9"><a href="web-mining.html#cb455-9"></a><span class="co">##  [7] &quot;CerroaIzquierda&quot; &quot;ElPobreHank&quot;     &quot;1_panchovilla&quot;  </span></span>
+<span id="cb455-10"><a href="web-mining.html#cb455-10"></a><span class="co">## [10] &quot;Rubencorsal&quot;     &quot;bullboss63&quot;      &quot;Thunder_Pantera&quot;</span></span>
+<span id="cb455-11"><a href="web-mining.html#cb455-11"></a><span class="co">## [13] &quot;cebef&quot;           &quot;villanomacul&quot;    &quot;LKatrileo&quot;      </span></span>
+<span id="cb455-12"><a href="web-mining.html#cb455-12"></a><span class="co">## [16] &quot;TIRSO48&quot;         &quot;nacioncl&quot;        &quot;minevargasg&quot;    </span></span>
+<span id="cb455-13"><a href="web-mining.html#cb455-13"></a><span class="co">## [19] &quot;_hexagram_&quot;      &quot;CiudadannoChile&quot;</span></span>
 <span id="cb455-14"><a href="web-mining.html#cb455-14"></a><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 338 entries ]</span></span></code></pre></div>
 <p>También podemos usar la función <code>search_users()</code> para explorar qué usuarios están twiteando usando un hashtag particular. Esta función extrae un data.frame de los usuarios e información sobre sus cuentas.</p>
 <div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="web-mining.html#cb456-1"></a><span class="co"># Which users are tweeting about #piñera?</span></span>

@@ -1,4 +1,4 @@
-# Carga de datos {#load}
+# Carga de bases {#load}
 
 Soledad Araya^[E-mail: snaraya@uc.cl] y Andrés Cruz^[E-mail: arcruz\@uc.cl]
 

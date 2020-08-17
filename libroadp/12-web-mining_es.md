@@ -1,4 +1,4 @@
-# Web Scraping {#web-mining}
+# Minería de datos web {#web-mining}
 
 Gonzalo Barría^[E-mail: ghbarria@uc.cl]
 
@@ -452,9 +452,9 @@ head(pinera_tweets, n = 3)
 ## # A tibble: 3 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 636247… 12951952… 2020-08-17 03:06:29 vivimatus   "Si … Twitt…
-## 2 121075… 12951952… 2020-08-17 03:06:27 ChilenoVot… "Si … Twitt…
-## 3 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   "#Pi… Twitt…
+## 1 185366… 12952017… 2020-08-17 03:32:14 carmelcita  "Si … Twitt…
+## 2 147890… 12952016… 2020-08-17 03:32:02 prospeccio… "Si … Twitt…
+## 3 121427… 12952014… 2020-08-17 03:31:11 wenqleo     "Si … Twitt…
 ## # … with 84 more variables
 ```
 
@@ -463,13 +463,13 @@ Para obtener información de los usuarios que están emitiendo tweets sobre #pi�
 
 ```r
 lookup_users(pinera_tweets$user_id)
-## # A tibble: 866 x 90
+## # A tibble: 871 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 636247… 12951954… 2020-08-17 03:07:15 vivimatus   "Par… Twitt…
-## 2 121075… 12951952… 2020-08-17 03:06:27 ChilenoVot… "Si … Twitt…
-## 3 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   "#Pi… Twitt…
-## # … with 863 more rows, and 84 more variables
+## 1 185366… 12952017… 2020-08-17 03:32:14 carmelcita  "Si … Twitt…
+## 2 147890… 12952024… 2020-08-17 03:34:53 prospeccio… "Nun… Twitt…
+## 3 121427… 12952025… 2020-08-17 03:35:34 wenqleo     "@ma… Twitt…
+## # … with 868 more rows, and 84 more variables
 ```
 
 
@@ -537,8 +537,8 @@ head(pinera_tweets, n = 2)
 ## # A tibble: 2 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   "#Pi… Twitt…
-## 2 109934… 12948332… 2020-08-16 03:07:50 nacido_aC   "Rog… Twitt…
+## 1 671326… 12951957… 2020-08-17 03:08:20 nnnnico     "Tan… Twitt…
+## 2 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   "#Pi… Twitt…
 ## # … with 84 more variables
 ```
 
@@ -548,17 +548,17 @@ Ahora veamos quién está twiteando sobre el hashtag "#piñera"
 ```r
 # Look at the column with the names - top 6
 head(pinera_tweets$screen_name)
-## [1] "nacido_aC"   "nacido_aC"   "nacido_aC"   "nacido_aC"   "MolinavSeba"
+## [1] "nnnnico"     "nacido_aC"   "nacido_aC"   "nacido_aC"   "nacido_aC"  
 ## [6] "MolinavSeba"
 
 unique(pinera_tweets$screen_name)
-##  [1] "nacido_aC"       "MolinavSeba"     "HSBnoticias"    
-##  [4] "criticolunar"    "alert_ve"        "CerroaIzquierda"
-##  [7] "ElPobreHank"     "1_panchovilla"   "Rubencorsal"    
-## [10] "bullboss63"      "Thunder_Pantera" "cebef"          
-## [13] "villanomacul"    "LKatrileo"       "TIRSO48"        
-## [16] "nacioncl"        "minevargasg"     "_hexagram_"     
-## [19] "CiudadannoChile" "rechazoviejo"   
+##  [1] "nnnnico"         "nacido_aC"       "MolinavSeba"    
+##  [4] "HSBnoticias"     "criticolunar"    "alert_ve"       
+##  [7] "CerroaIzquierda" "ElPobreHank"     "1_panchovilla"  
+## [10] "Rubencorsal"     "bullboss63"      "Thunder_Pantera"
+## [13] "cebef"           "villanomacul"    "LKatrileo"      
+## [16] "TIRSO48"         "nacioncl"        "minevargasg"    
+## [19] "_hexagram_"      "CiudadannoChile"
 ##  [ reached getOption("max.print") -- omitted 338 entries ]
 ```
 

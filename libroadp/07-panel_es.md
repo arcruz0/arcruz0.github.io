@@ -1,4 +1,4 @@
-# Datos de panel {#panel}
+# Modelos de panel {#panel}
 
 Francisco Urdinez^[E-mail: furdinez\@uc.cl]
   

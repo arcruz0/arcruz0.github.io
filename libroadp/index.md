@@ -107,8 +107,8 @@ El libro se alimenta del avance enorme que se ha hecho en los últimos años a p
  <thead>
   <tr>
    <th style="text-align:right;"> # </th>
-   <th style="text-align:left;"> Chapter </th>
-   <th style="text-align:left;"> Author(s) </th>
+   <th style="text-align:left;"> Capítulo </th>
+   <th style="text-align:left;"> Autores </th>
   </tr>
  </thead>
 <tbody>
@@ -151,7 +151,7 @@ El libro se alimenta del avance enorme que se ha hecho en los últimos años a p
   </tr>
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 8 </td>
-   <td style="text-align:left;"> Modelos binarios </td>
+   <td style="text-align:left;"> Modelos logísticos </td>
    <td style="text-align:left;"> Francisco Urdinez </td>
   </tr>
   <tr>
@@ -182,7 +182,7 @@ El libro se alimenta del avance enorme que se ha hecho en los últimos años a p
   </tr>
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 14 </td>
-   <td style="text-align:left;"> Redes </td>
+   <td style="text-align:left;"> Análisis de redes </td>
    <td style="text-align:left;"> Andrés Cruz </td>
   </tr>
   <tr>
