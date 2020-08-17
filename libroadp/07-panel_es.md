@@ -22,7 +22,8 @@ En este capítulo, aprenderemos más sobre lo que hemos tocado en el capítulo d
 
 Trabajaremos con un ejemplo práctico de relaciones internacionales: Históricamente, la política exterior de América Latina ha estado fuertemente influenciada por los Estados Unidos, probablemente más que cualquier otra región del mundo. Sin embargo, en los últimos treinta años, esta tendencia se ha debilitado, y la influencia es menos evidente ahora que durante la Guerra Fría. ¿Cuál es la razón de esta tendencia?
 
-Esta pregunta fue abordada por Octavio Amorim Neto, un reconocido politólogo brasileño,  en*de Dutra a Lula*: La formación y los determinantes de la política exterior brasileña* (De Dutra a Lula: a condução e os determinantes da política externa brasileira) [-@amorimnetoDutraLulaConducao2012]. Este libro tiene la ventaja de responder a esta pregunta con una metodología cuantitativa, algo inusual en un campo dominado por los trabajos historiográficos. Otros artículos pasaron luego a refinar más los argumentos del libro, como @netoWhatDeterminesForeign2015 y @rodriguesMeasuringInternationalEngagement2019. Abramos la base de datos:
+Esta pregunta fue abordada por Octavio Amorim Neto, un reconocido politólogo brasileño,  en *de Dutra a Lula*: La formación y los determinantes de la política exterior brasileña* (De Dutra a Lula: a condução e os determinantes da política externa brasileira) [-@amorimnetoDutraLulaConducao2012]. Este libro tiene la ventaja de responder a esta pregunta con una metodología cuantitativa, algo inusual en un campo dominado por los trabajos historiográficos. Otros artículos pasaron luego a refinar más los argumentos del libro, como @netoWhatDeterminesForeign2015 y @rodriguesMeasuringInternationalEngagement2019. Abramos la base de datos:
+
 
 ```r
 library(tidyverse)

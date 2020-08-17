@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 12 Web Scraping | AnalizaR Datos Políticos</title>
-  <meta name="description" content="Capítulo 12 Web Scraping | AnalizaR Datos Políticos" />
+  <title>Capítulo 12 Web Scraping | AnalizaR Datos Políticos (v1.0)</title>
+  <meta name="description" content="Capítulo 12 Web Scraping | AnalizaR Datos Políticos (v1.0)" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 12 Web Scraping | AnalizaR Datos Políticos" />
+  <meta property="og:title" content="Capítulo 12 Web Scraping | AnalizaR Datos Políticos (v1.0)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 12 Web Scraping | AnalizaR Datos Políticos" />
+  <meta name="twitter:title" content="Capítulo 12 Web Scraping | AnalizaR Datos Políticos (v1.0)" />
   
   
   
@@ -24,6 +24,7 @@
 <meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (editores)" />
 
 
+<meta name="date" content="2020-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -455,7 +456,7 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos (v1.0)</a>
           </h1>
         </div>
 
@@ -790,19 +791,19 @@ Luego procedes a cargar el paquete <code>rtweet</code> que te permitirá extraer
 <span id="cb447-6"><a href="web-mining.html#cb447-6"></a><span class="co">## # A tibble: 3 x 90</span></span>
 <span id="cb447-7"><a href="web-mining.html#cb447-7"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
 <span id="cb447-8"><a href="web-mining.html#cb447-8"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
-<span id="cb447-9"><a href="web-mining.html#cb447-9"></a><span class="co">## 1 122154… 12951194… 2020-08-16 22:05:08 Flako823    &quot;🤣 c… Twitt…</span></span>
-<span id="cb447-10"><a href="web-mining.html#cb447-10"></a><span class="co">## 2 122154… 12950348… 2020-08-16 16:28:52 Flako823    &quot;Lad… Twitt…</span></span>
-<span id="cb447-11"><a href="web-mining.html#cb447-11"></a><span class="co">## 3 142816… 12951192… 2020-08-16 22:04:19 CiudadanoC… &quot;¿Cu… Twitt…</span></span>
+<span id="cb447-9"><a href="web-mining.html#cb447-9"></a><span class="co">## 1 636247… 12951952… 2020-08-17 03:06:29 vivimatus   &quot;Si … Twitt…</span></span>
+<span id="cb447-10"><a href="web-mining.html#cb447-10"></a><span class="co">## 2 121075… 12951952… 2020-08-17 03:06:27 ChilenoVot… &quot;Si … Twitt…</span></span>
+<span id="cb447-11"><a href="web-mining.html#cb447-11"></a><span class="co">## 3 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   &quot;#Pi… Twitt…</span></span>
 <span id="cb447-12"><a href="web-mining.html#cb447-12"></a><span class="co">## # … with 84 more variables</span></span></code></pre></div>
 <p>Para obtener información de los usuarios que están emitiendo tweets sobre #piñera en el momento que estamos escribiendo este capitulo</p>
 <div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="web-mining.html#cb448-1"></a><span class="kw">lookup_users</span>(pinera_tweets<span class="op">$</span>user_id)</span>
-<span id="cb448-2"><a href="web-mining.html#cb448-2"></a><span class="co">## # A tibble: 860 x 90</span></span>
+<span id="cb448-2"><a href="web-mining.html#cb448-2"></a><span class="co">## # A tibble: 866 x 90</span></span>
 <span id="cb448-3"><a href="web-mining.html#cb448-3"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
 <span id="cb448-4"><a href="web-mining.html#cb448-4"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
-<span id="cb448-5"><a href="web-mining.html#cb448-5"></a><span class="co">## 1 122154… 12951194… 2020-08-16 22:05:08 Flako823    🤣 co… Twitt…</span></span>
-<span id="cb448-6"><a href="web-mining.html#cb448-6"></a><span class="co">## 2 142816… 12951194… 2020-08-16 22:05:20 CiudadanoC… Cree… Twitt…</span></span>
-<span id="cb448-7"><a href="web-mining.html#cb448-7"></a><span class="co">## 3 119324… 12951192… 2020-08-16 22:04:14 marvelalre… Se v… Twitt…</span></span>
-<span id="cb448-8"><a href="web-mining.html#cb448-8"></a><span class="co">## # … with 857 more rows, and 84 more variables</span></span></code></pre></div>
+<span id="cb448-5"><a href="web-mining.html#cb448-5"></a><span class="co">## 1 636247… 12951954… 2020-08-17 03:07:15 vivimatus   &quot;Par… Twitt…</span></span>
+<span id="cb448-6"><a href="web-mining.html#cb448-6"></a><span class="co">## 2 121075… 12951952… 2020-08-17 03:06:27 ChilenoVot… &quot;Si … Twitt…</span></span>
+<span id="cb448-7"><a href="web-mining.html#cb448-7"></a><span class="co">## 3 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   &quot;#Pi… Twitt…</span></span>
+<span id="cb448-8"><a href="web-mining.html#cb448-8"></a><span class="co">## # … with 863 more rows, and 84 more variables</span></span></code></pre></div>
 <p>Las consultas de tweets pueden hacerse de varias maneras dependiendo en los que estas buscando:</p>
 </div>
 <div id="buscar-una-palabra-clave" class="section level3">
@@ -849,24 +850,24 @@ Luego procedes a cargar el paquete <code>rtweet</code> que te permitirá extraer
 <span id="cb454-7"><a href="web-mining.html#cb454-7"></a><span class="co">## # A tibble: 2 x 90</span></span>
 <span id="cb454-8"><a href="web-mining.html#cb454-8"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
 <span id="cb454-9"><a href="web-mining.html#cb454-9"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
-<span id="cb454-10"><a href="web-mining.html#cb454-10"></a><span class="co">## 1 604708… 12951150… 2020-08-16 21:47:50 TIRSO48     El #… Twitt…</span></span>
-<span id="cb454-11"><a href="web-mining.html#cb454-11"></a><span class="co">## 2 604708… 12950584… 2020-08-16 18:02:49 TIRSO48     #Piñ… Twitt…</span></span>
+<span id="cb454-10"><a href="web-mining.html#cb454-10"></a><span class="co">## 1 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   &quot;#Pi… Twitt…</span></span>
+<span id="cb454-11"><a href="web-mining.html#cb454-11"></a><span class="co">## 2 109934… 12948332… 2020-08-16 03:07:50 nacido_aC   &quot;Rog… Twitt…</span></span>
 <span id="cb454-12"><a href="web-mining.html#cb454-12"></a><span class="co">## # … with 84 more variables</span></span></code></pre></div>
 <p>Ahora veamos quién está twiteando sobre el hashtag “#piñera”</p>
 <div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="web-mining.html#cb455-1"></a><span class="co"># Look at the column with the names - top 6</span></span>
 <span id="cb455-2"><a href="web-mining.html#cb455-2"></a><span class="kw">head</span>(pinera_tweets<span class="op">$</span>screen_name)</span>
-<span id="cb455-3"><a href="web-mining.html#cb455-3"></a><span class="co">## [1] &quot;TIRSO48&quot;     &quot;TIRSO48&quot;     &quot;TIRSO48&quot;     &quot;Seba_fabres&quot; &quot;Seba_fabres&quot;</span></span>
-<span id="cb455-4"><a href="web-mining.html#cb455-4"></a><span class="co">## [6] &quot;nacioncl&quot;</span></span>
+<span id="cb455-3"><a href="web-mining.html#cb455-3"></a><span class="co">## [1] &quot;nacido_aC&quot;   &quot;nacido_aC&quot;   &quot;nacido_aC&quot;   &quot;nacido_aC&quot;   &quot;MolinavSeba&quot;</span></span>
+<span id="cb455-4"><a href="web-mining.html#cb455-4"></a><span class="co">## [6] &quot;MolinavSeba&quot;</span></span>
 <span id="cb455-5"><a href="web-mining.html#cb455-5"></a></span>
 <span id="cb455-6"><a href="web-mining.html#cb455-6"></a><span class="kw">unique</span>(pinera_tweets<span class="op">$</span>screen_name)</span>
-<span id="cb455-7"><a href="web-mining.html#cb455-7"></a><span class="co">##  [1] &quot;TIRSO48&quot;         &quot;Seba_fabres&quot;     &quot;nacioncl&quot;       </span></span>
-<span id="cb455-8"><a href="web-mining.html#cb455-8"></a><span class="co">##  [4] &quot;minevargasg&quot;     &quot;_hexagram_&quot;      &quot;CiudadannoChile&quot;</span></span>
-<span id="cb455-9"><a href="web-mining.html#cb455-9"></a><span class="co">##  [7] &quot;rechazoviejo&quot;    &quot;MolinavSeba&quot;     &quot;marcelotobarc&quot;  </span></span>
-<span id="cb455-10"><a href="web-mining.html#cb455-10"></a><span class="co">## [10] &quot;peval29&quot;         &quot;tiomattu&quot;        &quot;solangeeguia&quot;   </span></span>
-<span id="cb455-11"><a href="web-mining.html#cb455-11"></a><span class="co">## [13] &quot;hugoguionista&quot;   &quot;PaoprimeraL&quot;     &quot;PabloPincel&quot;    </span></span>
-<span id="cb455-12"><a href="web-mining.html#cb455-12"></a><span class="co">## [16] &quot;ElPobreHank&quot;     &quot;matera_di&quot;       &quot;fcojavier_cl&quot;   </span></span>
-<span id="cb455-13"><a href="web-mining.html#cb455-13"></a><span class="co">## [19] &quot;peyoaguilera&quot;    &quot;go4kchile&quot;      </span></span>
-<span id="cb455-14"><a href="web-mining.html#cb455-14"></a><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 339 entries ]</span></span></code></pre></div>
+<span id="cb455-7"><a href="web-mining.html#cb455-7"></a><span class="co">##  [1] &quot;nacido_aC&quot;       &quot;MolinavSeba&quot;     &quot;HSBnoticias&quot;    </span></span>
+<span id="cb455-8"><a href="web-mining.html#cb455-8"></a><span class="co">##  [4] &quot;criticolunar&quot;    &quot;alert_ve&quot;        &quot;CerroaIzquierda&quot;</span></span>
+<span id="cb455-9"><a href="web-mining.html#cb455-9"></a><span class="co">##  [7] &quot;ElPobreHank&quot;     &quot;1_panchovilla&quot;   &quot;Rubencorsal&quot;    </span></span>
+<span id="cb455-10"><a href="web-mining.html#cb455-10"></a><span class="co">## [10] &quot;bullboss63&quot;      &quot;Thunder_Pantera&quot; &quot;cebef&quot;          </span></span>
+<span id="cb455-11"><a href="web-mining.html#cb455-11"></a><span class="co">## [13] &quot;villanomacul&quot;    &quot;LKatrileo&quot;       &quot;TIRSO48&quot;        </span></span>
+<span id="cb455-12"><a href="web-mining.html#cb455-12"></a><span class="co">## [16] &quot;nacioncl&quot;        &quot;minevargasg&quot;     &quot;_hexagram_&quot;     </span></span>
+<span id="cb455-13"><a href="web-mining.html#cb455-13"></a><span class="co">## [19] &quot;CiudadannoChile&quot; &quot;rechazoviejo&quot;   </span></span>
+<span id="cb455-14"><a href="web-mining.html#cb455-14"></a><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 338 entries ]</span></span></code></pre></div>
 <p>También podemos usar la función <code>search_users()</code> para explorar qué usuarios están twiteando usando un hashtag particular. Esta función extrae un data.frame de los usuarios e información sobre sus cuentas.</p>
 <div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="web-mining.html#cb456-1"></a><span class="co"># Which users are tweeting about #piñera?</span></span>
 <span id="cb456-2"><a href="web-mining.html#cb456-2"></a>users &lt;-<span class="st"> </span><span class="kw">search_users</span>(<span class="st">&quot;#piñera&quot;</span>,</span>

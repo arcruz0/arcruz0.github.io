@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 10 Inferencia causal | AnalizaR Datos Políticos</title>
-  <meta name="description" content="Capítulo 10 Inferencia causal | AnalizaR Datos Políticos" />
+  <title>Capítulo 10 Inferencia causal | AnalizaR Datos Políticos (v1.0)</title>
+  <meta name="description" content="Capítulo 10 Inferencia causal | AnalizaR Datos Políticos (v1.0)" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 10 Inferencia causal | AnalizaR Datos Políticos" />
+  <meta property="og:title" content="Capítulo 10 Inferencia causal | AnalizaR Datos Políticos (v1.0)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 10 Inferencia causal | AnalizaR Datos Políticos" />
+  <meta name="twitter:title" content="Capítulo 10 Inferencia causal | AnalizaR Datos Políticos (v1.0)" />
   
   
   
@@ -24,6 +24,7 @@
 <meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (editores)" />
 
 
+<meta name="date" content="2020-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -455,7 +456,7 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos (v1.0)</a>
           </h1>
         </div>
 
@@ -1071,7 +1072,7 @@ Figura 10.19: Matching basado en la distancia Mahalanobis del vecino más cercan
 <span id="cb364-8"><a href="causal-inf.html#cb364-8"></a>  model_tratamiento, edad_educ, <span class="dt">type.predict =</span> <span class="st">&quot;response&quot;</span></span>
 <span id="cb364-9"><a href="causal-inf.html#cb364-9"></a>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb364-10"><a href="causal-inf.html#cb364-10"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">propension =</span> .fitted)</span></code></pre></div>
-<p>Podemos mirar unas pocas filas en los datos para ver estos puntajes de propensión (o propension scores). La persona 59 tenía una probabilidad del 14% de auto-seleccionarse para el tratamiento dada su educación y edad, pero terminó no haciendo el tratamiento, como se predijo. La persona 27, por otro lado, también tenía una probabilidad del 14% de elegir el tratamiento y lo hizo, lo cual es un resultado bastante improbable. Esa elección es inesperada!</p>
+<p>Podemos mirar unas pocas filas en los datos para ver estos puntajes de propensión (o propensity scores). La persona 59 tenía una probabilidad del 14% de auto-seleccionarse para el tratamiento dada su educación y edad, pero terminó no haciendo el tratamiento, como se predijo. La persona 27, por otro lado, también tenía una probabilidad del 14% de elegir el tratamiento y lo hizo, lo cual es un resultado bastante improbable. Esa elección es inesperada!</p>
 <div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="causal-inf.html#cb365-1"></a>edad_educ_propensiones <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb365-2"><a href="causal-inf.html#cb365-2"></a><span class="st">  </span><span class="kw">select</span>(codigo, tratamiento, educacion, edad, propension) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb365-3"><a href="causal-inf.html#cb365-3"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">59</span>, <span class="dv">27</span>)</span>

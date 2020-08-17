@@ -1,7 +1,7 @@
 --- 
-title: "AnalizaR Datos Políticos"
+title: "AnalizaR Datos Políticos (v1.0)"
 author: "Francisco Urdinez y Andrés Cruz Labrín (editores)"
-date: "Agosto de 2020; versión 1.0"
+date: "2020-08-17"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:

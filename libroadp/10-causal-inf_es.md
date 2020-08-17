@@ -811,7 +811,7 @@ edad_educ_propensiones <- broom::augment_columns(
   rename(propension = .fitted)
 ```
 
-Podemos mirar unas pocas filas en los datos para ver estos puntajes de propensión (o propension scores). La persona 59 tenía una probabilidad del 14% de auto-seleccionarse para el tratamiento dada su educación y edad, pero terminó no haciendo el tratamiento, como se predijo. La persona 27, por otro lado, también tenía una probabilidad del 14% de elegir el tratamiento y lo hizo, lo cual es un resultado bastante improbable. Esa elección es inesperada!
+Podemos mirar unas pocas filas en los datos para ver estos puntajes de propensión (o propensity scores). La persona 59 tenía una probabilidad del 14% de auto-seleccionarse para el tratamiento dada su educación y edad, pero terminó no haciendo el tratamiento, como se predijo. La persona 27, por otro lado, también tenía una probabilidad del 14% de elegir el tratamiento y lo hizo, lo cual es un resultado bastante improbable. Esa elección es inesperada!
 
 
 ```r

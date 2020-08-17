@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 7 Datos de panel | AnalizaR Datos Políticos</title>
-  <meta name="description" content="Capítulo 7 Datos de panel | AnalizaR Datos Políticos" />
+  <title>Capítulo 7 Datos de panel | AnalizaR Datos Políticos (v1.0)</title>
+  <meta name="description" content="Capítulo 7 Datos de panel | AnalizaR Datos Políticos (v1.0)" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 7 Datos de panel | AnalizaR Datos Políticos" />
+  <meta property="og:title" content="Capítulo 7 Datos de panel | AnalizaR Datos Políticos (v1.0)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 7 Datos de panel | AnalizaR Datos Políticos" />
+  <meta name="twitter:title" content="Capítulo 7 Datos de panel | AnalizaR Datos Políticos (v1.0)" />
   
   
   
@@ -24,6 +24,7 @@
 <meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (editores)" />
 
 
+<meta name="date" content="2020-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -455,7 +456,7 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos (v1.0)</a>
           </h1>
         </div>
 
@@ -485,7 +486,7 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <h2><span class="header-section-number">7.1</span> Introducción</h2>
 <p>En este capítulo, aprenderemos más sobre lo que hemos tocado en el capítulo de modelos lineales. Aprenderemos cómo trabajar con datos de panel, es decir, cómo añadir una dimensión temporal a nuestras regresiones lineales. Le mostraremos cómo diagnosticar si el tiempo tiene un efecto en nuestros resultados de MCO y de qué manera, y (a) estimar modelos con efectos fijos y efectos aleatorios, (b) ver cómo diagnosticar raíces unitarias, (c) cómo crear variables con desfases (llamados <em>lags</em> en inglés) o prospectivas (llamados <em>leads</em> en inglés), y (d) cómo calcular los errores estándar corregidos para panel. Recuerde que este es un capítulo introductorio, por lo que le recomendamos que consulte la bibliografía sugerida para responder a preguntas específicas.</p>
 <p>Trabajaremos con un ejemplo práctico de relaciones internacionales: Históricamente, la política exterior de América Latina ha estado fuertemente influenciada por los Estados Unidos, probablemente más que cualquier otra región del mundo. Sin embargo, en los últimos treinta años, esta tendencia se ha debilitado, y la influencia es menos evidente ahora que durante la Guerra Fría. ¿Cuál es la razón de esta tendencia?</p>
-<p>Esta pregunta fue abordada por Octavio Amorim Neto, un reconocido politólogo brasileño, en<em>de Dutra a Lula</em>: La formación y los determinantes de la política exterior brasileña* (De Dutra a Lula: a condução e os determinantes da política externa brasileira) <span class="citation">(<a href="referencias.html#ref-amorimnetoDutraLulaConducao2012" role="doc-biblioref">2012</a>)</span>. Este libro tiene la ventaja de responder a esta pregunta con una metodología cuantitativa, algo inusual en un campo dominado por los trabajos historiográficos. Otros artículos pasaron luego a refinar más los argumentos del libro, como <span class="citation">Neto and Malamud (<a href="referencias.html#ref-netoWhatDeterminesForeign2015" role="doc-biblioref">2015</a>)</span> y <span class="citation">Rodrigues, Urdinez, and de Oliveira (<a href="referencias.html#ref-rodriguesMeasuringInternationalEngagement2019" role="doc-biblioref">2019</a>)</span>. Abramos la base de datos:</p>
+<p>Esta pregunta fue abordada por Octavio Amorim Neto, un reconocido politólogo brasileño, en <em>de Dutra a Lula</em>: La formación y los determinantes de la política exterior brasileña* (De Dutra a Lula: a condução e os determinantes da política externa brasileira) <span class="citation">(<a href="referencias.html#ref-amorimnetoDutraLulaConducao2012" role="doc-biblioref">2012</a>)</span>. Este libro tiene la ventaja de responder a esta pregunta con una metodología cuantitativa, algo inusual en un campo dominado por los trabajos historiográficos. Otros artículos pasaron luego a refinar más los argumentos del libro, como <span class="citation">Neto and Malamud (<a href="referencias.html#ref-netoWhatDeterminesForeign2015" role="doc-biblioref">2015</a>)</span> y <span class="citation">Rodrigues, Urdinez, and de Oliveira (<a href="referencias.html#ref-rodriguesMeasuringInternationalEngagement2019" role="doc-biblioref">2019</a>)</span>. Abramos la base de datos:</p>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="panel.html#cb213-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="panel.html#cb214-1"></a><span class="kw">library</span>(paqueteadp)</span>
 <span id="cb214-2"><a href="panel.html#cb214-2"></a><span class="kw">data</span>(<span class="st">&quot;eeuu_brasil&quot;</span>)</span></code></pre></div>
