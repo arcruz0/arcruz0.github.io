@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>AnalizaR Datos Políticos</title>
-  <meta name="description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
-  <meta name="generator" content="bookdown  and GitBook 2.6.7" />
+  <meta name="description" content="AnalizaR Datos Políticos" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="AnalizaR Datos Políticos" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="AnalizaR Datos Políticos" />
   
-  <meta name="twitter:description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  
   
 
 <meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (editores)" />
@@ -31,7 +31,7 @@
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-<link rel="next" href="rbas.html">
+<link rel="next" href="basic-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,12 +47,10 @@
 
 
 
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
-<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
-<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
-<script src="libs/wordcloud2-0.0.1/hover.js"></script>
-<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
 <script>
 % https://stackoverflow.com/a/4425214/8242291
 var links = document.links;
@@ -67,26 +66,27 @@ for (var i = 0, linksLength = links.length; i < linksLength; i++) {
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -98,7 +98,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-le
 div.sourceCode
   { color: #bdae9d; background-color: #2a211c; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffff00; } /* Alert */
 code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
@@ -145,207 +145,307 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <li><b><a href="./index.html"><img style="float: left; margin-right: 5px;" src="favicon.ico"></img>AnalizaR datos políticos</a></b></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#inicio"><i class="fa fa-check"></i><b>1.1</b> Inicio</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#como-contribuir"><i class="fa fa-check"></i><b>1.2</b> ¿Cómo contribuir?</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#sobre-los-autores-y-autoras"><i class="fa fa-check"></i><b>1.2.1</b> Sobre los autores y autoras</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introducción</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#inicio"><i class="fa fa-check"></i>Inicio</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cómo-contribuir"><i class="fa fa-check"></i>¿Cómo contribuir?</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#sobre-los-autores-y-autoras"><i class="fa fa-check"></i>Sobre los autores y autoras</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#prefacio"><i class="fa fa-check"></i><b>1.3</b> Prefacio</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i><b>1.3.1</b> Agradecimientos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prefacio"><i class="fa fa-check"></i>Prefacio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#que-esperar-del-libro"><i class="fa fa-check"></i><b>1.4</b> Qué esperar del libro</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#estructura-del-libro"><i class="fa fa-check"></i><b>1.5</b> Estructura del libro</a></li>
-<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#prerrequisitos"><i class="fa fa-check"></i><b>1.6</b> Prerrequisitos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#qué-esperar-del-libro"><i class="fa fa-check"></i>Qué esperar del libro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura-del-libro"><i class="fa fa-check"></i>Estructura del libro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cómo-utilizar-el-libro-en-un-curso-de-métodos"><i class="fa fa-check"></i>¿Cómo utilizar el libro en un curso de métodos?</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#primera-opción-curso-semestral-de-análisis-de-datos-políticos"><i class="fa fa-check"></i>Primera opción: Curso semestral de análisis de datos políticos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#segunda-opción-curso-semestral-de-introducción-a-métodos-cuantitativos"><i class="fa fa-check"></i>Segunda opción: Curso semestral de introducción a métodos cuantitativos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerrequisitos"><i class="fa fa-check"></i>Prerrequisitos</a></li>
 </ul></li>
 <li class="part"><span><b>I Introducción a R</b></span></li>
-<li class="chapter" data-level="2" data-path="rbas.html"><a href="rbas.html"><i class="fa fa-check"></i><b>2</b> R básico</a><ul>
-<li class="chapter" data-level="2.1" data-path="rbas.html"><a href="rbas.html#instalacion"><i class="fa fa-check"></i><b>2.1</b> Instalación</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="rbas.html"><a href="rbas.html#r"><i class="fa fa-check"></i><b>2.1.1</b> R</a></li>
-<li class="chapter" data-level="2.1.2" data-path="rbas.html"><a href="rbas.html#rstudio"><i class="fa fa-check"></i><b>2.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1" data-path="basic-r.html"><a href="basic-r.html"><i class="fa fa-check"></i><b>1</b> R Básico</a><ul>
+<li class="chapter" data-level="1.1" data-path="basic-r.html"><a href="basic-r.html#instalación"><i class="fa fa-check"></i><b>1.1</b> Instalación</a><ul>
+<li class="chapter" data-level="" data-path="basic-r.html"><a href="basic-r.html#r"><i class="fa fa-check"></i>R</a></li>
+<li class="chapter" data-level="" data-path="basic-r.html"><a href="basic-r.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="rbas.html"><a href="rbas.html#partes-de-rstudio"><i class="fa fa-check"></i><b>2.2</b> Partes de RStudio</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="rbas.html"><a href="rbas.html#consola"><i class="fa fa-check"></i><b>2.2.1</b> Consola</a></li>
-<li class="chapter" data-level="2.2.2" data-path="rbas.html"><a href="rbas.html#script"><i class="fa fa-check"></i><b>2.2.2</b> Script</a></li>
-<li class="chapter" data-level="2.2.3" data-path="rbas.html"><a href="rbas.html#objetos"><i class="fa fa-check"></i><b>2.2.3</b> Objetos</a></li>
-<li class="chapter" data-level="2.2.4" data-path="rbas.html"><a href="rbas.html#archivos-graficos-paquetes-ayuda"><i class="fa fa-check"></i><b>2.2.4</b> Archivos / gráficos / paquetes / ayuda</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html"><i class="fa fa-check"></i><b>3</b> Manejo de datos</a><ul>
-<li class="chapter" data-level="3.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#introduccion-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>3.1.1</b> Nuestra base de datos</a></li>
-<li class="chapter" data-level="3.1.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#describir-la-base"><i class="fa fa-check"></i><b>3.1.2</b> Describir la base</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-en-bases"><i class="fa fa-check"></i><b>3.2</b> Operaciones en bases</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ordenar-una-base"><i class="fa fa-check"></i><b>3.2.1</b> Ordenar una base</a></li>
-<li class="chapter" data-level="3.2.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#seleccionar-columnas"><i class="fa fa-check"></i><b>3.2.2</b> Seleccionar columnas</a></li>
-<li class="chapter" data-level="3.2.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#renombrar-columnas"><i class="fa fa-check"></i><b>3.2.3</b> Renombrar columnas</a></li>
-<li class="chapter" data-level="3.2.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#filtrar-observaciones"><i class="fa fa-check"></i><b>3.2.4</b> Filtrar observaciones</a></li>
-<li class="chapter" data-level="3.2.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#crear-nuevas-variables"><i class="fa fa-check"></i><b>3.2.5</b> Crear nuevas variables</a></li>
-<li class="chapter" data-level="3.2.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#concatenar-comandos"><i class="fa fa-check"></i><b>3.2.6</b> Concatenar comandos</a></li>
-<li class="chapter" data-level="3.2.7" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-agrupadas"><i class="fa fa-check"></i><b>3.2.7</b> Operaciones agrupadas</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#reformatear-bases"><i class="fa fa-check"></i><b>3.3</b> Reformatear bases</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Visualización de datos</a><ul>
-<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#por-que-quiero-visualizar-mis-datos"><i class="fa fa-check"></i><b>4.1</b> ¿Por qué quiero visualizar mis datos?</a></li>
-<li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>4.2</b> Primeros pasos</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-multiverso-ggplotidiano"><i class="fa fa-check"></i><b>4.2.1</b> Las capas del multiverso ggplotidiano</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#elecciones-locales-y-visualizacion-de-datos"><i class="fa fa-check"></i><b>4.3</b> Elecciones locales y visualización de datos</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="dataviz.html"><a href="dataviz.html#grafico-de-barras"><i class="fa fa-check"></i><b>4.3.1</b> Gráfico de barras</a></li>
-<li class="chapter" data-level="4.3.2" data-path="dataviz.html"><a href="dataviz.html#grafico-de-linea"><i class="fa fa-check"></i><b>4.3.2</b> Gráfico de Línea</a></li>
-<li class="chapter" data-level="4.3.3" data-path="dataviz.html"><a href="dataviz.html#boxplot"><i class="fa fa-check"></i><b>4.3.3</b> Boxplot</a></li>
-<li class="chapter" data-level="4.3.4" data-path="dataviz.html"><a href="dataviz.html#histograma"><i class="fa fa-check"></i><b>4.3.4</b> Histograma</a></li>
-<li class="chapter" data-level="4.3.5" data-path="dataviz.html"><a href="dataviz.html#relacion-entre-variables"><i class="fa fa-check"></i><b>4.3.5</b> Relación entre variables</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#para-seguir-aprendiendo"><i class="fa fa-check"></i><b>4.4</b> Para seguir aprendiendo</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="dataviz.html"><a href="dataviz.html#otros-paquetes"><i class="fa fa-check"></i><b>4.4.1</b> Otros paquetes:</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-r.html"><a href="basic-r.html#consola"><i class="fa fa-check"></i><b>1.2</b> Consola</a></li>
+<li class="chapter" data-level="1.3" data-path="basic-r.html"><a href="basic-r.html#script"><i class="fa fa-check"></i><b>1.3</b> Script</a></li>
+<li class="chapter" data-level="1.4" data-path="basic-r.html"><a href="basic-r.html#objetos-y-funciones"><i class="fa fa-check"></i><b>1.4</b> Objetos (y funciones)</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="basic-r.html"><a href="basic-r.html#vectores"><i class="fa fa-check"></i><b>1.4.1</b> Vectores</a></li>
+<li class="chapter" data-level="1.4.2" data-path="basic-r.html"><a href="basic-r.html#basic-r-functions"><i class="fa fa-check"></i><b>1.4.2</b> Functions</a></li>
+<li class="chapter" data-level="1.4.3" data-path="basic-r.html"><a href="basic-r.html#archivos-gráficos-paquetes-ayuda"><i class="fa fa-check"></i><b>1.4.3</b> Archivos / gráficos / paquetes / ayuda</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="carga.html"><a href="carga.html"><i class="fa fa-check"></i><b>5</b> Carga de bases</a><ul>
-<li class="chapter" data-level="5.1" data-path="carga.html"><a href="carga.html#carga-intro"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
-<li class="chapter" data-level="5.2" data-path="carga.html"><a href="carga.html#carga-formatos"><i class="fa fa-check"></i><b>5.2</b> Distintos formatos de bases</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="carga.html"><a href="carga.html#archivos-separados-por-delimitadores-.csv-y-.tsv"><i class="fa fa-check"></i><b>5.2.1</b> Archivos separados por delimitadores (.csv y .tsv)</a></li>
-<li class="chapter" data-level="5.2.2" data-path="carga.html"><a href="carga.html#carga-r"><i class="fa fa-check"></i><b>5.2.2</b> Archivos creados con R (.Rdata y .rds)</a></li>
-<li class="chapter" data-level="5.2.3" data-path="carga.html"><a href="carga.html#carga-etiquetas"><i class="fa fa-check"></i><b>5.2.3</b> Datos con etiquetas (Stata o SPSS)</a></li>
-<li class="chapter" data-level="5.2.4" data-path="carga.html"><a href="carga.html#carga-excel"><i class="fa fa-check"></i><b>5.2.4</b> Archivos de Excel</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Manejo de datos</a><ul>
+<li class="chapter" data-level="" data-path="data.html"><a href="data.html#los-paquetes-que-necesitas-instalar"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#introducción-al-manejo-de-datos"><i class="fa fa-check"></i><b>2.1</b> Introducción al manejo de datos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>2.1.1</b> Nuestra base de datos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="carga.html"><a href="carga.html#multiples-bases-de-datos-a-la-vez"><i class="fa fa-check"></i><b>5.3</b> Múltiples bases de datos a la vez</a></li>
-<li class="chapter" data-level="5.4" data-path="carga.html"><a href="carga.html#carga-grandes"><i class="fa fa-check"></i><b>5.4</b> Bases de datos tabulares grandes</a></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#describiendo-una-base-de-datos"><i class="fa fa-check"></i><b>2.2</b> Describiendo una base de datos</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#operaciones-básicas"><i class="fa fa-check"></i><b>2.3</b> Operaciones básicas</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data.html"><a href="data.html#seleccionar-columnas"><i class="fa fa-check"></i><b>2.3.1</b> Seleccionar columnas</a></li>
+<li class="chapter" data-level="2.3.2" data-path="data.html"><a href="data.html#renombra-las-columnas"><i class="fa fa-check"></i><b>2.3.2</b> Renombra las columnas</a></li>
+<li class="chapter" data-level="2.3.3" data-path="data.html"><a href="data.html#filtrar-las-observaciones"><i class="fa fa-check"></i><b>2.3.3</b> Filtrar las observaciones</a></li>
+<li class="chapter" data-level="2.3.4" data-path="data.html"><a href="data.html#cambiar-el-orden-de-una-base-de-datos"><i class="fa fa-check"></i><b>2.3.4</b> Cambiar el orden de una base de datos</a></li>
+<li class="chapter" data-level="2.3.5" data-path="data.html"><a href="data.html#transformar-y-crear-variables"><i class="fa fa-check"></i><b>2.3.5</b> Transformar y crear variables</a></li>
+<li class="chapter" data-level="2.3.6" data-path="data.html"><a href="data.html#resúmenes"><i class="fa fa-check"></i><b>2.3.6</b> Resúmenes</a></li>
+<li class="chapter" data-level="2.3.7" data-path="data.html"><a href="data.html#resúmenes-por-grupo"><i class="fa fa-check"></i><b>2.3.7</b> Resúmenes por grupo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#comandos-en-cadena"><i class="fa fa-check"></i><b>2.4</b> Comandos en cadena</a></li>
+<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#data-recodificar"><i class="fa fa-check"></i><b>2.5</b> Recodificar valores</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#pivoteo-de-datos-data-pivot"><i class="fa fa-check"></i><b>2.5.1</b> Pivoteo de datos {data-pivot}</a></li>
+<li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#bases-de-datos-anchas-con-más-de-una-variable-de-interés"><i class="fa fa-check"></i><b>2.5.2</b> Bases de datos anchas con más de una variable de interés</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>3</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#lecturas-sugeridas"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#los-paquetes-que-necesitas-instalar-1"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="3.1" data-path="dataviz.html"><a href="dataviz.html#por-qué-visualizar-mis-datos"><i class="fa fa-check"></i><b>3.1</b> ¿Por qué visualizar mis datos?</a></li>
+<li class="chapter" data-level="3.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>3.2</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-universo-ggplotiano"><i class="fa fa-check"></i><b>3.2.1</b> Las capas del “universo ggplotiano”</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dataviz.html"><a href="dataviz.html#ejemplo-aplicado-elecciones-locales-y-visualización-de-datos"><i class="fa fa-check"></i><b>3.3</b> Ejemplo aplicado: Elecciones locales y visualización de datos</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-barras"><i class="fa fa-check"></i><b>3.3.1</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-caja"><i class="fa fa-check"></i><b>3.3.2</b> Gráfico de caja</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataviz.html"><a href="dataviz.html#histograma"><i class="fa fa-check"></i><b>3.3.3</b> Histograma</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataviz.html"><a href="dataviz.html#relación-entre-las-variables"><i class="fa fa-check"></i><b>3.3.4</b> Relación entre las variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="dataviz.html"><a href="dataviz.html#para-continuar-aprendiendo"><i class="fa fa-check"></i><b>3.4</b> Para continuar aprendiendo</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="load.html"><a href="load.html"><i class="fa fa-check"></i><b>4</b> Carga de datos</a><ul>
+<li class="chapter" data-level="" data-path="load.html"><a href="load.html#los-paquetes-que-necesitas-instalar-2"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="4.1" data-path="load.html"><a href="load.html#load-intro"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="load.html"><a href="load.html#carga-formatos"><i class="fa fa-check"></i><b>4.2</b> Diferentes formatos de bases de datos</a></li>
+<li class="chapter" data-level="4.3" data-path="load.html"><a href="load.html#los-archivos-separados-por-delimitadores-.csv-y-.tsv"><i class="fa fa-check"></i><b>4.3</b> Los archivos separados por delimitadores (.csv y .tsv)</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="load.html"><a href="load.html#r-básico-utils"><i class="fa fa-check"></i><b>4.3.1</b> R básico: <code>utils</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="load.html"><a href="load.html#load-r"><i class="fa fa-check"></i><b>4.3.2</b> Archivos creados con R (.Rdata y .rds)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="load.html"><a href="load.html#load-labels"><i class="fa fa-check"></i><b>4.3.3</b> Bases de datos con etiquetas (de Stata or SPSS)</a></li>
+<li class="chapter" data-level="4.3.4" data-path="load.html"><a href="load.html#load-excel"><i class="fa fa-check"></i><b>4.3.4</b> Archivos de Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="load.html"><a href="load.html#load-large"><i class="fa fa-check"></i><b>4.4</b> Grandes bases de datos tabulares</a></li>
 </ul></li>
 <li class="part"><span><b>II Modelos</b></span></li>
-<li class="chapter" data-level="6" data-path="lineal.html"><a href="lineal.html"><i class="fa fa-check"></i><b>6</b> Modelos lineales</a><ul>
-<li class="chapter" data-level="6.1" data-path="lineal.html"><a href="lineal.html#introduccion-2"><i class="fa fa-check"></i><b>6.1</b> Introducción</a></li>
-<li class="chapter" data-level="6.2" data-path="lineal.html"><a href="lineal.html#aplicacion-en-r"><i class="fa fa-check"></i><b>6.2</b> Aplicación en <code>R</code></a><ul>
-<li class="chapter" data-level="6.2.1" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos"><i class="fa fa-check"></i><b>6.2.1</b> Estadísticos Descriptivos</a></li>
-<li class="chapter" data-level="6.2.2" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos-y-distribucion-de-las-variables-del-modelo"><i class="fa fa-check"></i><b>6.2.2</b> Estadísticos descriptivos y distribución de las variables del modelo</a></li>
-<li class="chapter" data-level="6.2.3" data-path="lineal.html"><a href="lineal.html#matriz-de-correlacion-de-variables-independientes"><i class="fa fa-check"></i><b>6.2.3</b> Matriz de correlación de variables independientes</a></li>
-<li class="chapter" data-level="6.2.4" data-path="lineal.html"><a href="lineal.html#distribucion-de-las-variables-de-interes"><i class="fa fa-check"></i><b>6.2.4</b> Distribución de las variables de interés</a></li>
-<li class="chapter" data-level="6.2.5" data-path="lineal.html"><a href="lineal.html#relacion-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>6.2.5</b> Relación entre la variable dependiente e independiente</a></li>
+<li class="chapter" data-level="5" data-path="linear.html"><a href="linear.html"><i class="fa fa-check"></i><b>5</b> Modelos lineales</a><ul>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#lecturas-sugeridas-1"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#los-paquetes-que-necesitas-instalar-3"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#introducción-1"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="5.1" data-path="linear.html"><a href="linear.html#mínimos-cuadrados-ordinarios-en-r"><i class="fa fa-check"></i><b>5.1</b> Mínimos cuadrados ordinarios en R</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="linear.html"><a href="linear.html#cómo-obtener-estadísticas-descriptivas"><i class="fa fa-check"></i><b>5.1.1</b> Cómo obtener estadísticas descriptivas</a></li>
+<li class="chapter" data-level="5.1.2" data-path="linear.html"><a href="linear.html#estadísticas-descriptivas-y-distribución-de-las-variables-en-el-modelo"><i class="fa fa-check"></i><b>5.1.2</b> Estadísticas descriptivas y distribución de las variables en el modelo</a></li>
+<li class="chapter" data-level="5.1.3" data-path="linear.html"><a href="linear.html#matriz-de-correlación-de-variables-independientes"><i class="fa fa-check"></i><b>5.1.3</b> Matriz de correlación de variables independientes</a></li>
+<li class="chapter" data-level="5.1.4" data-path="linear.html"><a href="linear.html#distribución-de-las-variables-de-interés"><i class="fa fa-check"></i><b>5.1.4</b> Distribución de las variables de interés</a></li>
+<li class="chapter" data-level="5.1.5" data-path="linear.html"><a href="linear.html#relación-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>5.1.5</b> Relación entre la variable dependiente e independiente</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="lineal.html"><a href="lineal.html#modelo-bivariado-regresion-lineal-simple"><i class="fa fa-check"></i><b>6.3</b> Modelo bivariado: regresión lineal simple</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="lineal.html"><a href="lineal.html#estimando-un-modelo-lineal-en-r"><i class="fa fa-check"></i><b>6.3.1</b> Estimando un modelo lineal en <code>R</code></a></li>
-<li class="chapter" data-level="6.3.2" data-path="lineal.html"><a href="lineal.html#representacion-grafica"><i class="fa fa-check"></i><b>6.3.2</b> Representación gráfica</a></li>
+<li class="chapter" data-level="5.2" data-path="linear.html"><a href="linear.html#modelo-bivariado-regresión-lineal-simple"><i class="fa fa-check"></i><b>5.2</b> Modelo bivariado: regresión lineal simple</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="linear.html"><a href="linear.html#la-función-lm"><i class="fa fa-check"></i><b>5.2.1</b> La función <code>lm</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="linear.html"><a href="linear.html#representación-gráfica"><i class="fa fa-check"></i><b>5.2.2</b> Representación gráfica</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="lineal.html"><a href="lineal.html#modelo-multivariado-regresion-multiple"><i class="fa fa-check"></i><b>6.4</b> Modelo multivariado: regresión múltiple</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="lineal.html"><a href="lineal.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>6.4.1</b> Ajuste del modelo</a></li>
-<li class="chapter" data-level="6.4.2" data-path="lineal.html"><a href="lineal.html#inferencia-en-modelos-lineales-multiples"><i class="fa fa-check"></i><b>6.4.2</b> Inferencia en modelos lineales múltiples</a></li>
-<li class="chapter" data-level="6.4.3" data-path="lineal.html"><a href="lineal.html#supuestos-de-ols"><i class="fa fa-check"></i><b>6.4.3</b> Supuestos de OLS</a></li>
-<li class="chapter" data-level="6.4.4" data-path="lineal.html"><a href="lineal.html#errores-estandares-robustos"><i class="fa fa-check"></i><b>6.4.4</b> Errores estándares robustos</a></li>
-<li class="chapter" data-level="6.4.5" data-path="lineal.html"><a href="lineal.html#un-caso-especial-de-heterocedasticidad-la-varianza-del-error-asociada-a-clusters"><i class="fa fa-check"></i><b>6.4.5</b> Un caso especial de Heterocedasticidad: la varianza del error asociada a clusters</a></li>
-<li class="chapter" data-level="6.4.6" data-path="lineal.html"><a href="lineal.html#un-supuesto-adicional-para-poder-realizar-inferencia"><i class="fa fa-check"></i><b>6.4.6</b> Un supuesto adicional para poder realizar <strong>inferencia</strong></a></li>
+<li class="chapter" data-level="5.3" data-path="linear.html"><a href="linear.html#modelo-multivariado-regresión-múltiple"><i class="fa fa-check"></i><b>5.3</b> Modelo multivariado: regresión múltiple</a></li>
+<li class="chapter" data-level="5.4" data-path="linear.html"><a href="linear.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Ajuste del modelo</a></li>
+<li class="chapter" data-level="5.5" data-path="linear.html"><a href="linear.html#inferencia-en-los-modelos-lineales-múltiples"><i class="fa fa-check"></i><b>5.5</b> Inferencia en los modelos lineales múltiples</a></li>
+<li class="chapter" data-level="5.6" data-path="linear.html"><a href="linear.html#testeando-los-supuestos-de-mco"><i class="fa fa-check"></i><b>5.6</b> Testeando los supuestos de MCO</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="case-sel.html"><a href="case-sel.html"><i class="fa fa-check"></i><b>6</b> Selección de casos basada en regresiones</a><ul>
+<li class="chapter" data-level="" data-path="case-sel.html"><a href="case-sel.html#lecturas-sugeridas-2"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="case-sel.html"><a href="case-sel.html#los-paquetes-que-necesitas-instalar-4"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="6.1" data-path="case-sel.html"><a href="case-sel.html#selección-de-estudios-de-casos"><i class="fa fa-check"></i><b>6.1</b> Selección de estudios de casos</a></li>
+<li class="chapter" data-level="6.2" data-path="case-sel.html"><a href="case-sel.html#qué-estudio-de-caso-debería-seleccionar-para-la-investigación-cualitativa"><i class="fa fa-check"></i><b>6.2</b> ¿Qué estudio de caso debería seleccionar para la investigación cualitativa?</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="case-sel.html"><a href="case-sel.html#casos-típicos"><i class="fa fa-check"></i><b>6.2.1</b> Casos típicos</a></li>
+<li class="chapter" data-level="6.2.2" data-path="case-sel.html"><a href="case-sel.html#los-valores-atípicos"><i class="fa fa-check"></i><b>6.2.2</b> Los valores atípicos</a></li>
+<li class="chapter" data-level="6.2.3" data-path="case-sel.html"><a href="case-sel.html#casos-influyentes"><i class="fa fa-check"></i><b>6.2.3</b> Casos influyentes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="case-sel.html"><a href="case-sel.html#casos-extremos"><i class="fa fa-check"></i><b>6.2.4</b> Casos extremos</a></li>
+<li class="chapter" data-level="6.2.5" data-path="case-sel.html"><a href="case-sel.html#casos-más-similares"><i class="fa fa-check"></i><b>6.2.5</b> Casos más similares</a></li>
+<li class="chapter" data-level="6.2.6" data-path="case-sel.html"><a href="case-sel.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>6.2.6</b> Casos mas diferentes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="case-sel.html"><a href="case-sel.html#la-importancia-de-la-combinación-de-métodos"><i class="fa fa-check"></i><b>6.3</b> La importancia de la combinación de métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="panel.html"><a href="panel.html"><i class="fa fa-check"></i><b>7</b> Datos de panel</a><ul>
+<li class="chapter" data-level="" data-path="panel.html"><a href="panel.html#lecturas-sugeridas-3"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="panel.html"><a href="panel.html#los-paquetes-que-necesitas-instalar-5"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="7.1" data-path="panel.html"><a href="panel.html#introducción-2"><i class="fa fa-check"></i><b>7.1</b> Introducción</a></li>
+<li class="chapter" data-level="7.2" data-path="panel.html"><a href="panel.html#describiendo-la-base-de-datos-en-panel"><i class="fa fa-check"></i><b>7.2</b> Describiendo la base de datos en panel</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="panel.html"><a href="panel.html#opción-a.-gráfico-de-líneas"><i class="fa fa-check"></i><b>7.2.1</b> Opción A. Gráfico de líneas</a></li>
+<li class="chapter" data-level="7.2.2" data-path="panel.html"><a href="panel.html#option-b.-gráfico-de-cajas"><i class="fa fa-check"></i><b>7.2.2</b> Option B. Gráfico de cajas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="panel.html"><a href="panel.html#modelización-de-la-variación-a-nivel-de-grupo"><i class="fa fa-check"></i><b>7.3</b> Modelización de la variación a nivel de grupo</a></li>
+<li class="chapter" data-level="7.4" data-path="panel.html"><a href="panel.html#efectos-fijos-vs.-efectos-aleatorios"><i class="fa fa-check"></i><b>7.4</b> Efectos fijos vs. efectos aleatorios</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="panel.html"><a href="panel.html#test-de-hausman"><i class="fa fa-check"></i><b>7.4.1</b> Test de Hausman</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="panel.html"><a href="panel.html#testeando-raíces-unitarias"><i class="fa fa-check"></i><b>7.5</b> Testeando raíces unitarias</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="panel.html"><a href="panel.html#creación-de-variables-rezagadas-lags-y-variables-prospectivas-leads"><i class="fa fa-check"></i><b>7.5.1</b> Creación de variables rezagadas (<em>lags</em>) y variables prospectivas (<em>leads</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="panel.html"><a href="panel.html#errores-estándar-robustos-corregidos-para-panel"><i class="fa fa-check"></i><b>7.6</b> Errores estándar robustos corregidos para panel</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="panel.html"><a href="panel.html#errores-estándar-robustos-1"><i class="fa fa-check"></i><b>7.6.1</b> Errores estándar robustos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>7</b> Modelos logísticos</a><ul>
-<li class="chapter" data-level="7.1" data-path="logit.html"><a href="logit.html#nociones-basicas"><i class="fa fa-check"></i><b>7.1</b> Nociones básicas</a></li>
-<li class="chapter" data-level="7.2" data-path="logit.html"><a href="logit.html#aplicacion-en-r-1"><i class="fa fa-check"></i><b>7.2</b> Aplicación en <code>R</code></a><ul>
-<li class="chapter" data-level="7.2.1" data-path="logit.html"><a href="logit.html#estimar-los-modelos"><i class="fa fa-check"></i><b>7.2.1</b> Estimar los modelos</a></li>
-<li class="chapter" data-level="7.2.2" data-path="logit.html"><a href="logit.html#crear-tablas"><i class="fa fa-check"></i><b>7.2.2</b> Crear tablas</a></li>
-<li class="chapter" data-level="7.2.3" data-path="logit.html"><a href="logit.html#visualizacion-de-resultados"><i class="fa fa-check"></i><b>7.2.3</b> Visualización de resultados</a></li>
-<li class="chapter" data-level="7.2.4" data-path="logit.html"><a href="logit.html#ajuste-de-los-modelos"><i class="fa fa-check"></i><b>7.2.4</b> Ajuste de los modelos</a></li>
+<li class="chapter" data-level="8" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>8</b> Modelos logísticos</a><ul>
+<li class="chapter" data-level="" data-path="logit.html"><a href="logit.html#lecturas-sugeridas-4"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="logit.html"><a href="logit.html#los-paquetes-que-necesitas-instalar-6"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="8.1" data-path="logit.html"><a href="logit.html#introducción-3"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
+<li class="chapter" data-level="8.2" data-path="logit.html"><a href="logit.html#uso-de-los-modelos-logísticos"><i class="fa fa-check"></i><b>8.2</b> Uso de los modelos logísticos</a></li>
+<li class="chapter" data-level="8.3" data-path="logit.html"><a href="logit.html#cómo-se-estiman-las-probabilidades"><i class="fa fa-check"></i><b>8.3</b> ¿Cómo se estiman las probabilidades?</a></li>
+<li class="chapter" data-level="8.4" data-path="logit.html"><a href="logit.html#estimación-de-los-modelos"><i class="fa fa-check"></i><b>8.4</b> Estimación de los modelos</a></li>
+<li class="chapter" data-level="8.5" data-path="logit.html"><a href="logit.html#creando-tablas"><i class="fa fa-check"></i><b>8.5</b> Creando tablas</a></li>
+<li class="chapter" data-level="8.6" data-path="logit.html"><a href="logit.html#representación-visual-de-los-resultados"><i class="fa fa-check"></i><b>8.6</b> Representación visual de los resultados</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="logit.html"><a href="logit.html#visualización-de-las-interacciones-entre-las-variables"><i class="fa fa-check"></i><b>8.6.1</b> Visualización de las interacciones entre las variables</a></li>
 </ul></li>
+<li class="chapter" data-level="8.7" data-path="logit.html"><a href="logit.html#medidas-para-evaluar-el-ajuste-de-los-modelos"><i class="fa fa-check"></i><b>8.7</b> Medidas para evaluar el ajuste de los modelos</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>8</b> Modelos de supervivencia</a><ul>
-<li class="chapter" data-level="8.1" data-path="surv.html"><a href="surv.html#nociones-basicas-1"><i class="fa fa-check"></i><b>8.1</b> Nociones básicas</a></li>
-<li class="chapter" data-level="8.2" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>8.2</b> El modelo Cox de riesgos proporcionales</a></li>
-<li class="chapter" data-level="8.3" data-path="surv.html"><a href="surv.html#aplicacion-en-r-2"><i class="fa fa-check"></i><b>8.3</b> Aplicación en <code>R</code></a><ul>
-<li class="chapter" data-level="8.3.1" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretacion-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>8.3.1</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
+<li class="chapter" data-level="9" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>9</b> Modelos de supervivencia</a><ul>
+<li class="chapter" data-level="" data-path="surv.html"><a href="surv.html#lecturas-sugeridas-5"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="surv.html"><a href="surv.html#los-paquetes-que-necesitas-instalar-7"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="9.1" data-path="surv.html"><a href="surv.html#introducción-4"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="surv.html"><a href="surv.html#cómo-interpretamos-las-tasas-de-riesgo"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo interpretamos las tasas de riesgo?</a></li>
+<li class="chapter" data-level="9.3" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>9.3</b> El modelo Cox de riesgos proporcionales</a></li>
+<li class="chapter" data-level="9.4" data-path="surv.html"><a href="surv.html#estimación-de-los-modelos-de-cox-en-r"><i class="fa fa-check"></i><b>9.4</b> Estimación de los modelos de Cox en R</a></li>
+<li class="chapter" data-level="9.5" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretación-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>9.5</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="causal-inf.html"><a href="causal-inf.html"><i class="fa fa-check"></i><b>10</b> Inferencia causal</a><ul>
+<li class="chapter" data-level="" data-path="causal-inf.html"><a href="causal-inf.html#lecturas-sugeridas-6"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="causal-inf.html"><a href="causal-inf.html#los-paquetes-que-necesitas-instalar-8"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="10.1" data-path="causal-inf.html"><a href="causal-inf.html#introducción-5"><i class="fa fa-check"></i><b>10.1</b> Introducción</a></li>
+<li class="chapter" data-level="10.2" data-path="causal-inf.html"><a href="causal-inf.html#causalidad-y-gráficos-causales"><i class="fa fa-check"></i><b>10.2</b> Causalidad y gráficos causales</a></li>
+<li class="chapter" data-level="10.3" data-path="causal-inf.html"><a href="causal-inf.html#midiendo-efectos-causales"><i class="fa fa-check"></i><b>10.3</b> Midiendo efectos causales</a></li>
+<li class="chapter" data-level="10.4" data-path="causal-inf.html"><a href="causal-inf.html#dags-y-asociaciones-estadísticas"><i class="fa fa-check"></i><b>10.4</b> DAGs y asociaciones estadísticas</a></li>
+<li class="chapter" data-level="10.5" data-path="causal-inf.html"><a href="causal-inf.html#puertas-traseras-y-cálculos-hacer"><i class="fa fa-check"></i><b>10.5</b> Puertas traseras y cálculos “<em>hacer</em>”</a></li>
+<li class="chapter" data-level="10.6" data-path="causal-inf.html"><a href="causal-inf.html#dibujar-y-analizar-dags"><i class="fa fa-check"></i><b>10.6</b> Dibujar y analizar DAGs</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="causal-inf.html"><a href="causal-inf.html#dibujar-un-dag-con-dagitty"><i class="fa fa-check"></i><b>10.6.1</b> Dibujar un DAG con DAGitty</a></li>
+<li class="chapter" data-level="10.6.2" data-path="causal-inf.html"><a href="causal-inf.html#encontrar-sets-de-ajuste-con-dagitty"><i class="fa fa-check"></i><b>10.6.2</b> Encontrar sets de ajuste con DAGitty</a></li>
+<li class="chapter" data-level="10.6.3" data-path="causal-inf.html"><a href="causal-inf.html#diseñar-dags-en-r"><i class="fa fa-check"></i><b>10.6.3</b> Diseñar DAGs en R</a></li>
+<li class="chapter" data-level="10.6.4" data-path="causal-inf.html"><a href="causal-inf.html#encontrar-caminos-y-sets-de-ajustes-con-r"><i class="fa fa-check"></i><b>10.6.4</b> Encontrar caminos y sets de ajustes con R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="causal-inf.html"><a href="causal-inf.html#haciendo-ajustes-causales"><i class="fa fa-check"></i><b>10.7</b> Haciendo ajustes causales</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="causal-inf.html"><a href="causal-inf.html#datos-de-redes-para-mosquitos"><i class="fa fa-check"></i><b>10.7.1</b> Datos de redes para mosquitos</a></li>
+<li class="chapter" data-level="10.7.2" data-path="causal-inf.html"><a href="causal-inf.html#verificar-las-independencias-condicionales"><i class="fa fa-check"></i><b>10.7.2</b> Verificar las independencias condicionales</a></li>
+<li class="chapter" data-level="10.7.3" data-path="causal-inf.html"><a href="causal-inf.html#encuentra-el-set-de-ajuste"><i class="fa fa-check"></i><b>10.7.3</b> Encuentra el set de ajuste</a></li>
+<li class="chapter" data-level="10.7.4" data-path="causal-inf.html"><a href="causal-inf.html#estimación-ingenua-no-ajustada"><i class="fa fa-check"></i><b>10.7.4</b> Estimación ingenua no ajustada</a></li>
+<li class="chapter" data-level="10.7.5" data-path="causal-inf.html"><a href="causal-inf.html#regresiones"><i class="fa fa-check"></i><b>10.7.5</b> Regresiones</a></li>
+<li class="chapter" data-level="10.7.6" data-path="causal-inf.html"><a href="causal-inf.html#matching"><i class="fa fa-check"></i><b>10.7.6</b> Matching</a></li>
+<li class="chapter" data-level="10.7.7" data-path="causal-inf.html"><a href="causal-inf.html#ponderación-de-probabilidad-inversa"><i class="fa fa-check"></i><b>10.7.7</b> Ponderación de probabilidad inversa</a></li>
+<li class="chapter" data-level="10.7.8" data-path="causal-inf.html"><a href="causal-inf.html#comparando-todos-los-métodos"><i class="fa fa-check"></i><b>10.7.8</b> Comparando todos los métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="causal-inf.html"><a href="causal-inf.html#cconsejos-finales"><i class="fa fa-check"></i><b>10.8</b> CConsejos finales</a></li>
 </ul></li>
 <li class="part"><span><b>III Aplicaciones</b></span></li>
-<li class="chapter" data-level="9" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i><b>9</b> Manejo avanzado de datos políticos</a><ul>
-<li class="chapter" data-level="9.1" data-path="manejo-av.html"><a href="manejo-av.html#introduccion-3"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
-<li class="chapter" data-level="9.2" data-path="manejo-av.html"><a href="manejo-av.html#como-aprovechar-countrycode"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo aprovechar <code>countrycode</code>?</a></li>
-<li class="chapter" data-level="9.3" data-path="manejo-av.html"><a href="manejo-av.html#como-imputar-datos-faltantes"><i class="fa fa-check"></i><b>9.3</b> ¿Cómo imputar datos faltantes?</a></li>
-<li class="chapter" data-level="9.4" data-path="manejo-av.html"><a href="manejo-av.html#imputar-datos-usando-amelia"><i class="fa fa-check"></i><b>9.4</b> Imputar datos usando Amelia</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="manejo-av.html"><a href="manejo-av.html#diagnosticos"><i class="fa fa-check"></i><b>9.4.1</b> Diagnosticos</a></li>
+<li class="chapter" data-level="11" data-path="adv-data.html"><a href="adv-data.html"><i class="fa fa-check"></i><b>11</b> Manejo avanzado de datos políticos</a><ul>
+<li class="chapter" data-level="" data-path="adv-data.html"><a href="adv-data.html#lecturas-sugeridas-7"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="adv-data.html"><a href="adv-data.html#los-paquetes-que-necesitas-instalar-9"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="11.1" data-path="adv-data.html"><a href="adv-data.html#introducción-6"><i class="fa fa-check"></i><b>11.1</b> Introducción</a></li>
+<li class="chapter" data-level="11.2" data-path="adv-data.html"><a href="adv-data.html#uniendo-bases-de-datos"><i class="fa fa-check"></i><b>11.2</b> Uniendo bases de datos</a></li>
+<li class="chapter" data-level="11.3" data-path="adv-data.html"><a href="adv-data.html#estandarizando-los-códigos-de-país"><i class="fa fa-check"></i><b>11.3</b> Estandarizando los códigos de país</a></li>
+<li class="chapter" data-level="11.4" data-path="adv-data.html"><a href="adv-data.html#la-unión-borrosa-o-inexacta-de-los-datos"><i class="fa fa-check"></i><b>11.4</b> La unión borrosa o inexacta de los datos</a></li>
+<li class="chapter" data-level="11.5" data-path="adv-data.html"><a href="adv-data.html#gestión-de-valores-perdidos"><i class="fa fa-check"></i><b>11.5</b> Gestión de valores perdidos</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="adv-data.html"><a href="adv-data.html#tipos-de-valores-perdidos"><i class="fa fa-check"></i><b>11.5.1</b> Tipos de valores perdidos</a></li>
+<li class="chapter" data-level="11.5.2" data-path="adv-data.html"><a href="adv-data.html#descripción-de-los-valores-que-faltan-en-la-base-de-datos"><i class="fa fa-check"></i><b>11.5.2</b> Descripción de los valores que faltan en la base de datos</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="manejo-av.html"><a href="manejo-av.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>9.5</b> Regresiones luego de imputar datos</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>10</b> Creación de índices con PCA</a><ul>
-<li class="chapter" data-level="10.1" data-path="pca.html"><a href="pca.html#aplicacion-en-r-3"><i class="fa fa-check"></i><b>10.1</b> Aplicación en <code>R</code></a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="casos.html"><a href="casos.html"><i class="fa fa-check"></i><b>11</b> Selección de casos a partir de regresiones</a><ul>
-<li class="chapter" data-level="11.1" data-path="casos.html"><a href="casos.html#que-casos-de-estudio-debo-seleccionar-para-testear-mi-hipotesis"><i class="fa fa-check"></i><b>11.1</b> ¿Qué casos de estudio debo seleccionar para testear mi hipótesis?</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="casos.html"><a href="casos.html#casos-tipicos"><i class="fa fa-check"></i><b>11.1.1</b> Casos Típicos</a></li>
-<li class="chapter" data-level="11.1.2" data-path="casos.html"><a href="casos.html#casos-desviados"><i class="fa fa-check"></i><b>11.1.2</b> Casos desviados</a></li>
-<li class="chapter" data-level="11.1.3" data-path="casos.html"><a href="casos.html#casos-influyentes"><i class="fa fa-check"></i><b>11.1.3</b> Casos Influyentes</a></li>
-<li class="chapter" data-level="11.1.4" data-path="casos.html"><a href="casos.html#casos-extremos"><i class="fa fa-check"></i><b>11.1.4</b> Casos extremos</a></li>
-<li class="chapter" data-level="11.1.5" data-path="casos.html"><a href="casos.html#casos-mas-similares"><i class="fa fa-check"></i><b>11.1.5</b> Casos más similares</a></li>
-<li class="chapter" data-level="11.1.6" data-path="casos.html"><a href="casos.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>11.1.6</b> Casos más diferentes</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="casos.html"><a href="casos.html#la-relevancia-de-combinar-metodos"><i class="fa fa-check"></i><b>11.2</b> La relevancia de combinar métodos</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Mínería de datos</a></li>
-<li class="chapter" data-level="13" data-path="redes.html"><a href="redes.html"><i class="fa fa-check"></i><b>13</b> Análisis de redes</a><ul>
-<li class="chapter" data-level="13.1" data-path="redes.html"><a href="redes.html#introduccion-4"><i class="fa fa-check"></i><b>13.1</b> Introducción</a></li>
-<li class="chapter" data-level="13.2" data-path="redes.html"><a href="redes.html#conceptos-iniciales"><i class="fa fa-check"></i><b>13.2</b> Conceptos iniciales</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="redes.html"><a href="redes.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>13.2.1</b> Nodos y enlaces</a></li>
-<li class="chapter" data-level="13.2.2" data-path="redes.html"><a href="redes.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>13.2.2</b> Matriz de adyacencia</a></li>
-<li class="chapter" data-level="13.2.3" data-path="redes.html"><a href="redes.html#pesos-y-direccion"><i class="fa fa-check"></i><b>13.2.3</b> Pesos y dirección</a></li>
-</ul></li>
-<li class="chapter" data-level="13.3" data-path="redes.html"><a href="redes.html#bases-de-datos-de-redes"><i class="fa fa-check"></i><b>13.3</b> Bases de datos de redes</a></li>
-<li class="chapter" data-level="13.4" data-path="redes.html"><a href="redes.html#disposicion-grafica"><i class="fa fa-check"></i><b>13.4</b> Disposición gráfica</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="redes.html"><a href="redes.html#color-y-forma-en-la-representacion-visual"><i class="fa fa-check"></i><b>13.4.1</b> Color y forma en la representación visual</a></li>
-</ul></li>
-<li class="chapter" data-level="13.5" data-path="redes.html"><a href="redes.html#analisis-basico-de-redes"><i class="fa fa-check"></i><b>13.5</b> Análisis básico de redes</a><ul>
-<li class="chapter" data-level="13.5.1" data-path="redes.html"><a href="redes.html#medidas-de-centralidad"><i class="fa fa-check"></i><b>13.5.1</b> Medidas de centralidad</a></li>
-<li class="chapter" data-level="13.5.2" data-path="redes.html"><a href="redes.html#comunidades-en-las-redes"><i class="fa fa-check"></i><b>13.5.2</b> Comunidades en las redes</a></li>
+<li class="chapter" data-level="11.6" data-path="adv-data.html"><a href="adv-data.html#imputación-de-valores-perdidos"><i class="fa fa-check"></i><b>11.6</b> Imputación de valores perdidos</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="adv-data.html"><a href="adv-data.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>11.6.1</b> Regresiones luego de imputar datos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>14</b> Análisis cuantitativo de texto</a><ul>
-<li class="chapter" data-level="14.1" data-path="qta.html"><a href="qta.html#introduccion-5"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
-<li class="chapter" data-level="14.2" data-path="qta.html"><a href="qta.html#exploracion-de-la-bases-de-datos"><i class="fa fa-check"></i><b>14.2</b> Exploración de la bases de datos</a></li>
-<li class="chapter" data-level="14.3" data-path="qta.html"><a href="qta.html#calculo-de-frecuencias"><i class="fa fa-check"></i><b>14.3</b> Cálculo de frecuencias</a><ul>
-<li class="chapter" data-level="14.3.1" data-path="qta.html"><a href="qta.html#cuales-son-los-diez-hashtags-mas-usados-de-las-cuentas-de-los-diputados"><i class="fa fa-check"></i><b>14.3.1</b> ¿Cuáles son los diez hashtags más usados de las cuentas de los diputados?</a></li>
-<li class="chapter" data-level="14.3.2" data-path="qta.html"><a href="qta.html#frecuencias-por-genero-cantidad-de-hashtags-usados-por-los-diputados-en-total"><i class="fa fa-check"></i><b>14.3.2</b> Frecuencias por género: cantidad de hashtags usados por los diputados en total</a></li>
+<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Web Scraping</a><ul>
+<li class="chapter" data-level="" data-path="web-mining.html"><a href="web-mining.html#lecturas-sugeridas-8"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="web-mining.html"><a href="web-mining.html#los-paquetes-que-necesitas-instalar-10"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="12.1" data-path="web-mining.html"><a href="web-mining.html#introducción-7"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
+<li class="chapter" data-level="12.2" data-path="web-mining.html"><a href="web-mining.html#formas-de-hacer-web-scraping"><i class="fa fa-check"></i><b>12.2</b> Formas de hacer web scraping</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="web-mining.html"><a href="web-mining.html#estándar-de-exclusión-de-robot"><i class="fa fa-check"></i><b>12.2.1</b> Estándar de exclusión de robot</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="qta.html"><a href="qta.html#wordcloud-de-hashtags"><i class="fa fa-check"></i><b>14.4</b> Wordcloud de hashtags</a></li>
-<li class="chapter" data-level="14.5" data-path="qta.html"><a href="qta.html#graficar-los-hashtags-mas-utilizados-por-grupos-de-interes"><i class="fa fa-check"></i><b>14.5</b> Graficar los hashtags más utilizados por grupos de interés</a><ul>
-<li class="chapter" data-level="14.5.1" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-las-diputadas"><i class="fa fa-check"></i><b>14.5.1</b> Hashtags más usados entre las diputadas</a></li>
-<li class="chapter" data-level="14.5.2" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-los-diputados"><i class="fa fa-check"></i><b>14.5.2</b> Hashtags más usados entre los diputados</a></li>
+<li class="chapter" data-level="12.3" data-path="web-mining.html"><a href="web-mining.html#web-scraping-en-r"><i class="fa fa-check"></i><b>12.3</b> Web scraping en R</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="web-mining.html"><a href="web-mining.html#ejemplo-aplicado-los-comunicados-de-prensa-de-la-organización-de-estados-americanos-oea"><i class="fa fa-check"></i><b>12.3.1</b> Ejemplo aplicado: los comunicados de prensa de la Organización de Estados Americanos (OEA)</a></li>
+<li class="chapter" data-level="12.3.2" data-path="web-mining.html"><a href="web-mining.html#caraga-el-html-para-trabajar-con-r"><i class="fa fa-check"></i><b>12.3.2</b> Caraga el html para trabajar con R</a></li>
+<li class="chapter" data-level="12.3.3" data-path="web-mining.html"><a href="web-mining.html#extraer-la-información-con-html_nodes-html_text"><i class="fa fa-check"></i><b>12.3.3</b> Extraer la información con <code>html_nodes()</code> + <code>html_text()</code></a></li>
+<li class="chapter" data-level="12.3.4" data-path="web-mining.html"><a href="web-mining.html#iteraciones"><i class="fa fa-check"></i><b>12.3.4</b> Iteraciones</a></li>
+<li class="chapter" data-level="12.3.5" data-path="web-mining.html"><a href="web-mining.html#funciones-personalizadas-recetas"><i class="fa fa-check"></i><b>12.3.5</b> Funciones personalizadas (recetas)</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-caracteristicas-del-diputado"><i class="fa fa-check"></i><b>14.6</b> Hashtags de género por características del diputado</a><ul>
-<li class="chapter" data-level="14.6.1" data-path="qta.html"><a href="qta.html#por-el-genero-del-diputado"><i class="fa fa-check"></i><b>14.6.1</b> Por el género del diputado</a></li>
-<li class="chapter" data-level="14.6.2" data-path="qta.html"><a href="qta.html#por-la-coalicion-de-los-diputados"><i class="fa fa-check"></i><b>14.6.2</b> Por la coalición de los diputados</a></li>
-</ul></li>
-<li class="chapter" data-level="14.7" data-path="qta.html"><a href="qta.html#variacion-temporal-del-uso-de-estos-hashtags"><i class="fa fa-check"></i><b>14.7</b> Variación temporal del uso de estos hashtags</a><ul>
-<li class="chapter" data-level="14.7.1" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-olafeminista"><i class="fa fa-check"></i><b>14.7.1</b> Frecuencia semanal de #olafeminista</a></li>
-<li class="chapter" data-level="14.7.2" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-tres-hashtags-de-genero"><i class="fa fa-check"></i><b>14.7.2</b> Frecuencia semanal de tres hashtags de género</a></li>
-<li class="chapter" data-level="14.7.3" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-de-genero-por-semana"><i class="fa fa-check"></i><b>14.7.3</b> Grafiquemos los hashtags de género por semana</a></li>
-<li class="chapter" data-level="14.7.4" data-path="qta.html"><a href="qta.html#ponderamos-en-relacion-al-total-de-hashtags-por-semana"><i class="fa fa-check"></i><b>14.7.4</b> Ponderamos en relación al total de hashtags por semana</a></li>
-<li class="chapter" data-level="14.7.5" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-interesantes-ponderados-por-el-total-semanal"><i class="fa fa-check"></i><b>14.7.5</b> Grafiquemos los hashtags interesantes ponderados por el total semanal</a></li>
-<li class="chapter" data-level="14.7.6" data-path="qta.html"><a href="qta.html#diputadas"><i class="fa fa-check"></i><b>14.7.6</b> Diputadas</a></li>
-</ul></li>
-<li class="chapter" data-level="14.8" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-semana-a-nivel-de-diputados-ponderados-por-semana"><i class="fa fa-check"></i><b>14.8</b> Hashtags de género por semana a nivel de diputados (ponderados por semana)</a></li>
-<li class="chapter" data-level="14.9" data-path="qta.html"><a href="qta.html#comentarios-finales"><i class="fa fa-check"></i><b>14.9</b> Comentarios finales</a></li>
-<li class="chapter" data-level="14.10" data-path="qta.html"><a href="qta.html#anexo-problemas-que-se-presentan-cuando-analizas-discursos-debates-o-leyes"><i class="fa fa-check"></i><b>14.10</b> Anexo: Problemas que se presentan cuando analizas discursos, debates o leyes</a></li>
-<li class="chapter" data-level="14.11" data-path="qta.html"><a href="qta.html#tidy-text"><i class="fa fa-check"></i><b>14.11</b> <code>Tidy text</code></a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>15</b> Generación de mapas</a><ul>
-<li class="chapter" data-level="15.1" data-path="mapas.html"><a href="mapas.html#datos-espaciales"><i class="fa fa-check"></i><b>15.1</b> Datos Espaciales</a><ul>
-<li class="chapter" data-level="15.1.1" data-path="mapas.html"><a href="mapas.html#que-son"><i class="fa fa-check"></i><b>15.1.1</b> ¿Qué son?</a></li>
-<li class="chapter" data-level="15.1.2" data-path="mapas.html"><a href="mapas.html#estructura-de-los-datos-espaciales"><i class="fa fa-check"></i><b>15.1.2</b> Estructura de los Datos Espaciales</a></li>
-</ul></li>
-<li class="chapter" data-level="15.2" data-path="mapas.html"><a href="mapas.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>15.2</b> Datos Espaciales en R</a></li>
-<li class="chapter" data-level="15.3" data-path="mapas.html"><a href="mapas.html#special-features-en-r"><i class="fa fa-check"></i><b>15.3</b> Special Features en R</a><ul>
-<li class="chapter" data-level="15.3.1" data-path="mapas.html"><a href="mapas.html#estructura"><i class="fa fa-check"></i><b>15.3.1</b> Estructura</a></li>
-</ul></li>
-<li class="chapter" data-level="15.4" data-path="mapas.html"><a href="mapas.html#manejo-de-datos-espaciales"><i class="fa fa-check"></i><b>15.4</b> Manejo de Datos Espaciales</a><ul>
-<li class="chapter" data-level="15.4.1" data-path="mapas.html"><a href="mapas.html#modificaciones"><i class="fa fa-check"></i><b>15.4.1</b> Modificaciones</a></li>
-<li class="chapter" data-level="15.4.2" data-path="mapas.html"><a href="mapas.html#crear-nuevos-shapefiles-con-st_write"><i class="fa fa-check"></i><b>15.4.2</b> Crear nuevos shapefiles con <code>st_write</code></a></li>
-<li class="chapter" data-level="15.4.3" data-path="mapas.html"><a href="mapas.html#incorporar-datos-de-otras-bases-con-merge"><i class="fa fa-check"></i><b>15.4.3</b> Incorporar datos de otras bases con <code>merge</code></a></li>
-</ul></li>
-<li class="chapter" data-level="15.5" data-path="mapas.html"><a href="mapas.html#mapear-en-r"><i class="fa fa-check"></i><b>15.5</b> Mapear en R</a></li>
-<li class="chapter" data-level="15.6" data-path="mapas.html"><a href="mapas.html#mapeando-variables"><i class="fa fa-check"></i><b>15.6</b> Mapeando variables</a><ul>
-<li class="chapter" data-level="15.6.1" data-path="mapas.html"><a href="mapas.html#mapas-animados-con-gganimate"><i class="fa fa-check"></i><b>15.6.1</b> Mapas animados con <code>gganimate</code></a></li>
-</ul></li>
-<li class="chapter" data-level="15.7" data-path="mapas.html"><a href="mapas.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>15.7</b> Inferencia a partir de Datos Espaciales</a><ul>
-<li class="chapter" data-level="15.7.1" data-path="mapas.html"><a href="mapas.html#indicadores-locales-de-asociacion-espacial-lisa"><i class="fa fa-check"></i><b>15.7.1</b> Indicadores locales de asociación espacial (LISA)</a></li>
-<li class="chapter" data-level="15.7.2" data-path="mapas.html"><a href="mapas.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>15.7.2</b> Matriz de Pesos Espaciales</a></li>
-<li class="chapter" data-level="15.7.3" data-path="mapas.html"><a href="mapas.html#morans-i"><i class="fa fa-check"></i><b>15.7.3</b> Moran’s I</a></li>
+<li class="chapter" data-level="12.4" data-path="web-mining.html"><a href="web-mining.html#usando-apis-y-extrayendo-datos-de-twitter"><i class="fa fa-check"></i><b>12.4</b> Usando APIs y extrayendo datos de Twitter</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="web-mining.html"><a href="web-mining.html#buscar-una-palabra-clave"><i class="fa fa-check"></i><b>12.4.1</b> Buscar una palabra clave</a></li>
+<li class="chapter" data-level="12.4.2" data-path="web-mining.html"><a href="web-mining.html#buscar-una-frase"><i class="fa fa-check"></i><b>12.4.2</b> Buscar una frase</a></li>
+<li class="chapter" data-level="12.4.3" data-path="web-mining.html"><a href="web-mining.html#descargando-características-relacionadas-con-los-usuarios-de-twitter"><i class="fa fa-check"></i><b>12.4.3</b> Descargando características relacionadas con los usuarios de Twitter</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="13" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>13</b> Análisis cuantitativo de textos políticos</a><ul>
+<li class="chapter" data-level="" data-path="qta.html"><a href="qta.html#lecturas-recomendadas"><i class="fa fa-check"></i>Lecturas recomendadas</a></li>
+<li class="chapter" data-level="" data-path="qta.html"><a href="qta.html#paquetes-que-necesitas-instalar"><i class="fa fa-check"></i>Paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="13.1" data-path="qta.html"><a href="qta.html#sqta1"><i class="fa fa-check"></i><b>13.1</b> Análisis de hashtags políticos</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="qta.html"><a href="qta.html#exploración-de-datos-de-twitter"><i class="fa fa-check"></i><b>13.1.1</b> Exploración de datos de Twitter</a></li>
+<li class="chapter" data-level="13.1.2" data-path="qta.html"><a href="qta.html#diagnóstico-visual"><i class="fa fa-check"></i><b>13.1.2</b> Diagnóstico visual</a></li>
+<li class="chapter" data-level="13.1.3" data-path="qta.html"><a href="qta.html#hashtags-más-utilizados"><i class="fa fa-check"></i><b>13.1.3</b> Hashtags más utilizados</a></li>
+<li class="chapter" data-level="13.1.4" data-path="qta.html"><a href="qta.html#wordclouds-nubes-de-palabras"><i class="fa fa-check"></i><b>13.1.4</b> Wordclouds (Nubes de palabras)</a></li>
+<li class="chapter" data-level="13.1.5" data-path="qta.html"><a href="qta.html#nubes-de-palabras-por-grupos"><i class="fa fa-check"></i><b>13.1.5</b> Nubes de palabras por grupos</a></li>
+<li class="chapter" data-level="13.1.6" data-path="qta.html"><a href="qta.html#gráficos-de-barras"><i class="fa fa-check"></i><b>13.1.6</b> Gráficos de barras</a></li>
+<li class="chapter" data-level="13.1.7" data-path="qta.html"><a href="qta.html#variación-temporal-en-el-uso-de-hashtags"><i class="fa fa-check"></i><b>13.1.7</b> Variación temporal en el uso de hashtags</a></li>
+<li class="chapter" data-level="13.1.8" data-path="qta.html"><a href="qta.html#para-resumir"><i class="fa fa-check"></i><b>13.1.8</b> Para resumir</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="qta.html"><a href="qta.html#wordfish"><i class="fa fa-check"></i><b>13.2</b> Wordfish</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="qta.html"><a href="qta.html#inspección-y-limpieza-de-datos"><i class="fa fa-check"></i><b>13.2.1</b> Inspección y limpieza de datos</a></li>
+<li class="chapter" data-level="13.2.2" data-path="qta.html"><a href="qta.html#pre-procesamiento"><i class="fa fa-check"></i><b>13.2.2</b> Pre-procesamiento</a></li>
+<li class="chapter" data-level="13.2.3" data-path="qta.html"><a href="qta.html#sqta2"><i class="fa fa-check"></i><b>13.2.3</b> Wordfish</a></li>
+<li class="chapter" data-level="13.2.4" data-path="qta.html"><a href="qta.html#qué-aprendimos-de-wordfish"><i class="fa fa-check"></i><b>13.2.4</b> ¿Qué aprendimos de Wordfish?</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="qta.html"><a href="qta.html#sqta3"><i class="fa fa-check"></i><b>13.3</b> Structural Topic Modeling (STM)</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="qta.html"><a href="qta.html#pre-procesamiento-1"><i class="fa fa-check"></i><b>13.3.1</b> Pre-procesamiento</a></li>
+<li class="chapter" data-level="13.3.2" data-path="qta.html"><a href="qta.html#diagnósticos"><i class="fa fa-check"></i><b>13.3.2</b> Diagnósticos</a></li>
+<li class="chapter" data-level="13.3.3" data-path="qta.html"><a href="qta.html#análisis"><i class="fa fa-check"></i><b>13.3.3</b> Análisis</a></li>
+<li class="chapter" data-level="13.3.4" data-path="qta.html"><a href="qta.html#observaciones-finales"><i class="fa fa-check"></i><b>13.3.4</b> Observaciones finales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="networks.html"><a href="networks.html"><i class="fa fa-check"></i><b>14</b> Análisis de redes</a><ul>
+<li class="chapter" data-level="" data-path="networks.html"><a href="networks.html#lecturas-sugeridas-9"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="networks.html"><a href="networks.html#los-paquetes-que-necesitas-instalar-11"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="14.1" data-path="networks.html"><a href="networks.html#introducción-8"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
+<li class="chapter" data-level="14.2" data-path="networks.html"><a href="networks.html#conceptos-básicos-en-una-red"><i class="fa fa-check"></i><b>14.2</b> Conceptos básicos en una red</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="networks.html"><a href="networks.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>14.2.1</b> Nodos y enlaces</a></li>
+<li class="chapter" data-level="14.2.2" data-path="networks.html"><a href="networks.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>14.2.2</b> Matriz de adyacencia</a></li>
+<li class="chapter" data-level="14.2.3" data-path="networks.html"><a href="networks.html#pesos-y-direcciones"><i class="fa fa-check"></i><b>14.2.3</b> Pesos y direcciones</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="networks.html"><a href="networks.html#bases-de-datos-de-la-red"><i class="fa fa-check"></i><b>14.3</b> Bases de datos de la red</a></li>
+<li class="chapter" data-level="14.4" data-path="networks.html"><a href="networks.html#presentación-gráfica-de-una-red"><i class="fa fa-check"></i><b>14.4</b> Presentación gráfica de una red</a></li>
+<li class="chapter" data-level="14.5" data-path="networks.html"><a href="networks.html#medidas-de-centralidad"><i class="fa fa-check"></i><b>14.5</b> Medidas de centralidad</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="networks.html"><a href="networks.html#grado"><i class="fa fa-check"></i><b>14.5.1</b> Grado</a></li>
+<li class="chapter" data-level="14.5.2" data-path="networks.html"><a href="networks.html#centralidad-del-eigenvector"><i class="fa fa-check"></i><b>14.5.2</b> Centralidad del eigenvector</a></li>
+<li class="chapter" data-level="14.5.3" data-path="networks.html"><a href="networks.html#centralidad-de-intermediación-betweenness"><i class="fa fa-check"></i><b>14.5.3</b> Centralidad de intermediación (<em>betweenness</em>)</a></li>
+<li class="chapter" data-level="14.5.4" data-path="networks.html"><a href="networks.html#cercanía"><i class="fa fa-check"></i><b>14.5.4</b> Cercanía</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="networks.html"><a href="networks.html#aplicación-en-r"><i class="fa fa-check"></i><b>14.6</b> Aplicación en R</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="indexes.html"><a href="indexes.html"><i class="fa fa-check"></i><b>15</b> Análisis de componentes principales</a><ul>
+<li class="chapter" data-level="" data-path="indexes.html"><a href="indexes.html#lecturas-sugeridas-10"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="indexes.html"><a href="indexes.html#los-paquetes-que-necesitas-instalar-12"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="15.1" data-path="indexes.html"><a href="indexes.html#introducción-9"><i class="fa fa-check"></i><b>15.1</b> Introducción</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="indexes.html"><a href="indexes.html#conceptos-medidas-y-validez"><i class="fa fa-check"></i><b>15.1.1</b> Conceptos, medidas y validez</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="indexes.html"><a href="indexes.html#cómo-funciona-el-análisis-de-componentes-principales"><i class="fa fa-check"></i><b>15.2</b> Cómo funciona el Análisis de Componentes Principales</a></li>
+<li class="chapter" data-level="15.3" data-path="indexes.html"><a href="indexes.html#nociones-básicas-en-r"><i class="fa fa-check"></i><b>15.3</b> Nociones básicas en R</a></li>
+<li class="chapter" data-level="15.4" data-path="indexes.html"><a href="indexes.html#dimensionalidad-del-concepto"><i class="fa fa-check"></i><b>15.4</b> Dimensionalidad del concepto</a></li>
+<li class="chapter" data-level="15.5" data-path="indexes.html"><a href="indexes.html#variación-del-concepto"><i class="fa fa-check"></i><b>15.5</b> Variación del concepto</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="maps.html"><a href="maps.html"><i class="fa fa-check"></i><b>16</b> Mapas y datos espaciales</a><ul>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#lecturas-sugeridas-11"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#los-paquetes-que-necesitas-instalar-13"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="16.1" data-path="maps.html"><a href="maps.html#introducción-10"><i class="fa fa-check"></i><b>16.1</b> Introducción</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="maps.html"><a href="maps.html#datos-espaciales-qué-son"><i class="fa fa-check"></i><b>16.1.1</b> Datos espaciales: ¿qué son?</a></li>
+<li class="chapter" data-level="16.1.2" data-path="maps.html"><a href="maps.html#estructura-de-datos-espaciales"><i class="fa fa-check"></i><b>16.1.2</b> Estructura de datos espaciales</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="maps.html"><a href="maps.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>16.2</b> Datos espaciales en R</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="maps.html"><a href="maps.html#características-simples-en-r"><i class="fa fa-check"></i><b>16.2.1</b> Características simples en R</a></li>
+<li class="chapter" data-level="16.2.2" data-path="maps.html"><a href="maps.html#estructura"><i class="fa fa-check"></i><b>16.2.2</b> Estructura</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="maps.html"><a href="maps.html#gestión-de-datos-espaciales"><i class="fa fa-check"></i><b>16.3</b> Gestión de Datos Espaciales</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="maps.html"><a href="maps.html#modificaciones"><i class="fa fa-check"></i><b>16.3.1</b> Modificaciones</a></li>
+<li class="chapter" data-level="16.3.2" data-path="maps.html"><a href="maps.html#añade-datos-de-otras-bases-de-datos-con-left_join"><i class="fa fa-check"></i><b>16.3.2</b> Añade datos de otras bases de datos con <code>left_join()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="maps.html"><a href="maps.html#mapeo"><i class="fa fa-check"></i><b>16.4</b> Mapeo</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="maps.html"><a href="maps.html#generando-centroides"><i class="fa fa-check"></i><b>16.4.1</b> Generando centroides</a></li>
+<li class="chapter" data-level="16.4.2" data-path="maps.html"><a href="maps.html#mapeando-variables"><i class="fa fa-check"></i><b>16.4.2</b> Mapeando variables</a></li>
+<li class="chapter" data-level="16.4.3" data-path="maps.html"><a href="maps.html#mapeando-puntos"><i class="fa fa-check"></i><b>16.4.3</b> Mapeando puntos</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="maps.html"><a href="maps.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>16.5</b> Inferencia a partir de datos espaciales</a><ul>
+<li class="chapter" data-level="16.5.1" data-path="maps.html"><a href="maps.html#indicador-local-de-asociación-espacial-lisa-por-sus-siglas-en-inglés"><i class="fa fa-check"></i><b>16.5.1</b> Indicador local de asociación espacial (LISA, por sus siglas en inglés)</a></li>
+<li class="chapter" data-level="16.5.2" data-path="maps.html"><a href="maps.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>16.5.2</b> Matriz de pesos espaciales</a></li>
+<li class="chapter" data-level="16.5.3" data-path="maps.html"><a href="maps.html#i-de-moran"><i class="fa fa-check"></i><b>16.5.3</b> I de Moran</a></li>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#comentarios-finales-referencias-para-un-mejor-análisis-de-datos-espaciales"><i class="fa fa-check"></i>Comentarios finales: Referencias para un mejor análisis de datos espaciales</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Referencias</b></span></li>
+<li class="chapter" data-level="17" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i><b>17</b> Referencias</a></li>
 </ul>
 
       </nav>
@@ -366,94 +466,91 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <div id="header">
 <h1 class="title">AnalizaR Datos Políticos</h1>
 <p class="author"><em>Francisco Urdinez y Andrés Cruz Labrín (editores)</em></p>
-<p class="date"><em>15 de marzo de 2019; versión 0.1</em></p>
+<p class="date"><em>Agosto de 2020; versión 1.0</em></p>
 </div>
-<div id="introduccion" class="section level1">
-<h1><span class="header-section-number">Capítulo 1</span> Introducción</h1>
-<div id="inicio" class="section level2">
-<h2><span class="header-section-number">1.1</span> Inicio</h2>
+<div id="introducción" class="section level1 unnumbered">
+<h1>Introducción</h1>
+<div id="inicio" class="section level2 unnumbered">
+<h2>Inicio</h2>
 <p><img src="00-images/tapa.png" width="280" height="435" alt="Portada" align="right" style="margin: 0 1em 0 1em" /></p>
 <p><strong>AnalizaR Datos Políticos</strong> es un libro que podrás usar como manual de referencia cuando estés quebrandote la cabeza usando <code>R</code>. Por eso, decidimos que sea más aplicado que teórico, y hemos considerado tanto temas de ciencia política como de relaciones internacionales. De ahí el subtítulo del libro: “Manual aplicado para politólogos y relacionistas internacionales en R”. Una gran ventaja del libro es que utiliza para cada tarea la opción más actualizada y sencilla disponible en la red. ¡Además, ocupa cada vez que es posible el <code>tidyverse</code>, el grupo de paquetes que ha revolucionado el uso de <code>R</code> recientemente por su sencillez!</p>
-<p>Construido gracias a la tecnología de libro digital llamada <a href="https://github.com/rstudio/bookdown">bookdown</a> e inspirado por la filosofía de software libre y código abierto, este libro es de uso libre y gratuito. Esto garantiza que sus contenidos sean reproducibles y accesibles públicamente para personas de todo el mundo. La versión del libro que estás leyendo ahora (0.1) se construyó el 15 de marzo de 2019. A medida que el libro reciba retroalimentación de los usuarios, iremos actualizando los contenidos.</p>
+<p>Construido gracias a la tecnología de libro digital llamada <a href="https://github.com/rstudio/bookdown">bookdown</a> e inspirado por la filosofía de software libre y código abierto, este libro es de uso libre y gratuito. Esto garantiza que sus contenidos sean reproducibles y accesibles públicamente para personas de todo el mundo. La versión del libro que estás leyendo ahora (1.0) se construyó en abril de 2020 luego de dos años de trabajo. A medida que el libro reciba retroalimentación de los usuarios iremos actualizando los contenidos.</p>
 <hr>
-<p><img src="00-images/index/cc.png" width="15%" style="display: block; margin: auto auto auto 0;" />
-Este libro digital se encuentra bajo una licencia <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es">Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional</a>.</p>
+<p><img src="00-images/index/cc.png" width="15%" style="display: block; margin: auto auto auto 0;" /></p>
+<p>Este libro digital se encuentra bajo una licencia <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es">Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional</a>.</p>
 <hr>
 </div>
-<div id="como-contribuir" class="section level2">
-<h2><span class="header-section-number">1.2</span> ¿Cómo contribuir?</h2>
+<div id="cómo-contribuir" class="section level2 unnumbered">
+<h2>¿Cómo contribuir?</h2>
 <p><code>bookdown</code> hace que la edición de un libro sea tan fácil como editar un wiki, siempre que tengas una cuenta de <a href="https://github.com/">GitHub</a>. Puedes proponer cambios en el libro desde el foro “Issues” en <a href="https://github.com/arcruz0/libroadp">el repositorio del libro en GitHub</a>, que contiene todo el código utilizado para generarlo.</p>
 <p>Adicionalmente, si tienes más experiencia con GitHub y git, también puedes proponer <em>pull requests</em>. Haciendo click en el ícono de edición, como se aprecia en la siguiente figura, puedes rápidamente crear un fork del repositorio y comenzar a editar. ¡Creemos que las contribuciones –a través de <em>issues</em> o <em>pull requests</em>– nos ayudarán muchísimo a mejorar el libro!</p>
 <div class="figure" style="text-align: center"><span id="fig:edit-bookdown"></span>
 <img src="00-images/index/edit_bookdown.png" alt="Botón de 'Editar' en cada capítulo" width="518" />
 <p class="caption">
-Figura 1.1: Botón de ‘Editar’ en cada capítulo
+Figura 0.1: Botón de ‘Editar’ en cada capítulo
 </p>
 </div>
 <p>Adicionalmente, si encuentras el libro útil, por favor apóyalo de alguna de estas formas:</p>
 <ul>
 <li><p>Leyéndolo.</p></li>
 <li><p>Recomendándolo o compartiéndolo en redes sociales.</p></li>
+<li><p>Citando la versión del libro que hemos publicado en inglés: Urdinez, F. and Cruz, A. (2020). <em>Political Data Science Using R: A Practical Guide</em>. CRC Press. Si deseas, puedes recomendar a la biblioteca de tu universidad que compre la <a href="https://www.routledge.com/R-for-Political-Data-Science-A-Practical-Guide/Urdinez-Cruz/p/book/9780367818890">versión en papel del libro</a>.</p></li>
 </ul>
-<div id="sobre-los-autores-y-autoras" class="section level3">
-<h3><span class="header-section-number">1.2.1</span> Sobre los autores y autoras</h3>
-<p>Todos los autores son politólogos pertenecientes al <a href="www.cienciapolitica.uc.cl/">Instituto de Ciencia Política</a> de la Pontificia Universidad Católica de Chile, e investigadores y colaboradores del <a href="https://imfd.cl/es/">Instituto Milenio de Fundamento de los Datos</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:tapa-ingles"></span>
+<img src="00-images/index/book.jpg" alt="Tapa del libro editado en inglés por CRC Press" width="30%" />
+<p class="caption">
+Figura 0.2: Tapa del libro editado en inglés por CRC Press
+</p>
+</div>
+<div id="sobre-los-autores-y-autoras" class="section level3 unnumbered">
+<h3>Sobre los autores y autoras</h3>
+<p>Este libro está editado por Francisco Urdinez, Profesor Asistente del <a href="www.cienciapolitica.uc.cl/">Instituto de Ciencia Política</a> de la Pontificia Universidad Católica de Chile, y Andrés Cruz, Instructor Adjunto de Análisis de Datos en la Escuela de Ciencia Política de la Universidad Diego Portales, Chile. La mayoría de los autores que contribuyeron con capítulos a este volumen son politólogos afiliados al <a href="www.cienciapolitica.uc.cl/">Instituto de Ciencia Política</a> de la Pontificia Universidad Católica de Chile, y muchos son investigadores y colaboradores del <a href="https://imfd.cl/es/">Instituto de la Fundación Millennium Data</a>, institución que tiene como objetivo la recolección, depuración y análisis de datos públicos para apoyar políticas públicas. Andrew Heiss está afiliado al Departamento de Gestión y Política Pública de Georgia State University y se unió a este proyecto contribuyendo con un capítulo sobre la inferencia causal. Andrew suele compartir mucho de su trabajo en R en su <a href="www.andrewheiss.com">sitio web</a>. Sobre todo, todos los autores son usuarios entusiastas de R.</p>
 </div>
 </div>
-<div id="prefacio" class="section level2">
-<h2><span class="header-section-number">1.3</span> Prefacio</h2>
+<div id="prefacio" class="section level2 unnumbered">
+<h2>Prefacio</h2>
 <p>Este libro nació haciendo análisis de datos políticos. Es decir, es hijo de la praxis. Por ello su naturaleza es aplicada, y tiene su foco puesto en ser una caja de herramientas para el lector. <strong>AnalizaR Datos Políticos</strong> está pensado para ser un manual de referencia que podrá ser consultado tanto por un estudiante universitario viviendo en Bogotá, como por un consultor político viviendo en México D.F. o un o funcionario público en Brasilia, todos con la necesidad de transformar sus bases de datos en conclusiones sustantivas y fácilmente interpretables.</p>
 <p>Trabajando juntos en la cátedra de Análisis Cuantitativo de Datos II del Instituto de Ciencia Política de la Universidad Católica de Chile encontramos que ni aquí, ni en otras universidades de la región, había material didáctico y aplicado hecho en casa para enseñar a nuestros alumnos de ciencia política cómo extraer conclusiones a partir de datos duros. Todo el material utilizado en nuestra cátedra era publicado en inglés, por politólogos anglosajones trabajando en universidades anglosajonas. Por ello <strong>AnalizaR Datos Políticos</strong> tiene como público imaginario al politólogo latinoamericano, ya sea alumno de pregrado o posgrado, o ya en el mercado. Hemos querido que nuestro libro esté disponible en español y portugués, y esto lo hace extensible a otras universidades de realidades similares fuera de América Latina, como en los países lusófonos de África y en la región ibérica.</p>
 <p>Los autores son todos politólogos que tuvieron que enfrentarse a problemas aplicados y tuvieron curvas de aprendizaje, más o menos empinadas, en el uso de <code>R</code>. Algunos han migrado de otros software de análisis de datos, otros han comenzado su experiencia directamente en <code>R</code>. Algunos son hábiles usuarios, otros, usuarios funcionales, pero todos tienen en común que tienen conocimiento aplicado que será de utilidad a quien quiera tener material de apoyo.</p>
 <p>Las universidades latinoamericanas han hecho grandes esfuerzos en que sus alumnos de politología se alfabeticen en herramientas estadísticas y de análisis de datos, algo que hasta hace diez años era algo poco frecuente. Hoy las cinco mejores universidades de la región, según el ranking de <a href="https://www.timeshighereducation.com/digital-editions/latin-america-university-rankings-2018-digital-edition"><em>Times Higher Education</em></a>, tienen cursos de análisis cuantitativo de datos en sus programas de ciencia política. Algunos departamentos, como el Departamento de Ciencia Política de la Universidad de São Paulo, que co-organiza la escuela de verano de IPSA en métodos, el Instituto de Ciencia Política de la Universidad Católica de Chile, que organiza su escuela de verano en Métodos Mixtos, o la División de Estudios Políticos del CIDE, han hecho esfuerzos por exponer a sus alumnos a profesores norteamericanos y europeos que cuentan con muchas décadas de tradición cuantitativa en sus programas. Lo bueno es que poco a poco comienzan a aparecer metodólogos nacidos y formados en América Latina. Entendemos que, hoy por hoy, ningún politólogo puede salir al mercado laboral sin saber utilizar con holgura software de análisis cuantitativo, y es a esa demanda a la que apuntamos aquí.</p>
-<p>Ahora mismo, <code>R</code> es probablemente la mejor opción que el mercado provee para análisis estadístico de datos. Esto puede ser sorpresivo para un lector recién salido de una máquina del tiempo: hace diez años, o tal vez menos, R era simplemente mirado como la alternativa gratis a los programas comerciales de verdad, que sí podían realizar análisis cuantitativo serio. Sin embargo, esto ha cambiado drásticamente en los últimos años. La Figura <a href="index.html#fig:pref-gtrends">1.2</a> muestra las tendencias de búsqueda en Google en América Latina para los programas más comúnmente utilizados en ciencia. <code>R</code> ha pasado a ocupar un lugar en el mercado que hace 15 años le correspondía a SPSS, y los programas de nicho -como Stata y Minitab- son cada vez menos buscados. La tendencia sugiere que <code>R</code> será cada vez más popular en la ciencia latinoamericana, siguiendo una tendencia global.</p>
+<p>Ahora mismo, <code>R</code> es probablemente la mejor opción que el mercado provee para análisis estadístico de datos. Esto puede ser sorpresivo para un lector recién salido de una máquina del tiempo: hace diez años, o tal vez menos, R era simplemente mirado como la alternativa gratis a los programas comerciales de verdad, que sí podían realizar análisis cuantitativo serio. Sin embargo, esto ha cambiado drásticamente en los últimos años. La Figura <a href="index.html#fig:pref-gtrends">0.3</a> muestra las tendencias de búsqueda en Google en América Latina para los programas más comúnmente utilizados en ciencia. <code>R</code> ha pasado a ocupar un lugar en el mercado que hace 15 años le correspondía a SPSS, y los programas de nicho -como Stata y Minitab- son cada vez menos buscados. La tendencia sugiere que <code>R</code> será cada vez más popular en la ciencia latinoamericana, siguiendo una tendencia global.</p>
 <div class="figure" style="text-align: center"><span id="fig:pref-gtrends"></span>
-<img src="index_files/figure-html/pref-gtrends-1.png" alt="Elaborada por los autores usando el paquete ggplot2 de R, y datos extraídos de Google Trends. Los datos corresponden a promedios anuales para países latinoamericanos en el sector 'ciencia'" width="50%" />
+<img src="index_files/figure-html/pref-gtrends-1.png" alt="Elaborada por los autores usando el paquete ggplot2 de R, y datos extraídos de Google Trends. Los datos corresponden a promedios anuales para países latinoamericanos en el sector 'ciencia'" width="80%" />
 <p class="caption">
-Figura 1.2: Elaborada por los autores usando el paquete ggplot2 de R, y datos extraídos de Google Trends. Los datos corresponden a promedios anuales para países latinoamericanos en el sector ‘ciencia’
+Figura 0.3: Elaborada por los autores usando el paquete ggplot2 de R, y datos extraídos de Google Trends. Los datos corresponden a promedios anuales para países latinoamericanos en el sector ‘ciencia’
 </p>
 </div>
 <p>El modelo de software libre en el que se basa <code>R</code> —con licencias de derechos de autor permisivas, que ponen prácticamente todas las herramientas en forma gratuita a disposición del público, tanto para su uso como para su reformulación— finalmente rindió frutos. Una activa comunidad de desarrolladores se ha anclado en <code>R</code>, añadiéndole nuevas funcionalidades que lo han dotado de elegancia, simplicidad y flexibilidad. <code>R</code> ya no solo brilla en la generación de modelos estadísticos, sino que hoy es hogar de un vasto universo de herramientas que permite al usuario importar, ordenar, transformar, visualizar, modelar y comunicar los datos que le interesen, sin tener que cambiar de herramienta.</p>
 <p>Es esta la novedad tecnológica que queremos acercar al lector interesado en el análisis político, con la esperanza de que contribuya a optimizar el proceso entre la pregunta que le quita el sueño (y/o le promete el pan) y su solución. Esto sin desconocer, claro está, que el beneficio inicial de <code>R</code>, el que estaba incluso cuando nadie quisiera usarlo si no era a regañadientes, permanece. Sabemos que el lector —y tal vez su casa de estudios— agradecerá la amable coincidencia de que el mejor software disponible en términos de calidad es también el mejor para su bolsillo.</p>
 <p>Francisco Urdinez y Andrés Cruz.</p>
-<p>Santiago de Chile, 2019.</p>
-<div id="agradecimientos" class="section level3">
-<h3><span class="header-section-number">1.3.1</span> Agradecimientos</h3>
-<p>Queremos agradecerle al <a href="https://imfd.cl/">Instituto Milenio Fundamentos de los Datos</a> por apoyar este proyecto.</p>
+<p>Santiago de Chile, 2020.</p>
+<div id="agradecimientos" class="section level3 unnumbered">
+<h3>Agradecimientos</h3>
+<p>Agradecemos a todos los prestigiosos académicos que permitieron usar sus bases de datos para ejemplificar nuestros capítulos. Queremos agradecer a Matías Piña, Eliana Jung, Vicente Quintero y Beatriz Urrutia por ayudar con correcciones y la edición del libro y a Daniel Alcatruz, Javiera Venegas, Santiago Olivella, Laura Levick y Carsten Schulz por sus comentarios sobre varios capítulos. Queremos agradecerle al <a href="https://imfd.cl/">Instituto Milenio Fundamentos de los Datos</a> por apoyar a los alumnos de doctorado que participaron en este proyecto, así como a la Vicerrectoría de Investigación de la Pontificia Universidad Católica de Chile por apoyar su edición en la versión en inglés, publicada por CRC press como parte de <a href="https://www.routledge.com/R-for-Political-Data-Science-A-Practical-Guide/Urdinez-Cruz/p/book/9780367818890">R Series</a>.</p>
 </div>
 </div>
-<div id="que-esperar-del-libro" class="section level2">
-<h2><span class="header-section-number">1.4</span> Qué esperar del libro</h2>
+<div id="qué-esperar-del-libro" class="section level2 unnumbered">
+<h2>Qué esperar del libro</h2>
 <p>El análisis cuantitativo de datos es una de las tantas herramientas que los investigadores tenemos para abordar las preguntas que nos interesan, ya sea en el mundo profesional o en la academia (o “por amor al arte” en muy encendidas noches de viernes, por qué no). Es por esto que <strong>AnalizaR Datos Políticos</strong> tiene un fuerte énfasis en ejemplos politológicos aplicados. Utilizar ejemplos de texto trillados e idealizados sobre autitos o islas imaginarias sería una falta de respeto para el lector, a quien sabemos ávido por ocupar las herramientas de este libro en las preguntas de investigación política que le parecen importantes. Por el contrario, queremos mostrar el potencial de dichas herramientas metiendo las manos en la masa, con datos de verdad, investigaciones que colegas ya han realizado y dificultades particulares de llevar el análisis de datos a preguntas políticas. Será bueno que nos acompañe a lo largo del libro con <code>RStudio</code> abierto en su computador, nada mejor que aprender juntos.</p>
 <p>El libro se alimenta del avance enorme que se ha hecho en los últimos años a partir de la creación del lenguaje de <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> y de la publicación de <em>R for Data Science</em>, el cual puede ser accedido de manera gratuita en español gracias al trabajo colaborativo de sus usuarios en el siguiente <a href="http://es.r4ds.hadley.nz/">link</a>. Todo el trabajo hecho por Garrett Grolemund y Hadley Wickham por facilitar la sintaxis de <code>R</code> es una excelente invitación para quienes nunca han utilizado software estadístico o para quienes quieren mudarse de otras alternativas como Stata o SPSS.</p>
 </div>
-<div id="estructura-del-libro" class="section level2">
-<h2><span class="header-section-number">1.5</span> Estructura del libro</h2>
-<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<div id="estructura-del-libro" class="section level2 unnumbered">
+<h2>Estructura del libro</h2>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:right;">
 #
 </th>
 <th style="text-align:left;">
-Capítulo
+Chapter
 </th>
 <th style="text-align:left;">
-Autor(es)
+Author(s)
 </th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-Introducción
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
 <tr grouplength="4">
 <td colspan="3" style="text-align:center">
 <strong>I. Introducción a R</strong>
@@ -461,10 +558,10 @@ Introducción
 </tr>
 <tr>
 <td style="text-align:right; padding-left: 2em;" indentlevel="1">
-2
+1
 </td>
 <td style="text-align:left;">
-R Básico
+R básico
 </td>
 <td style="text-align:left;">
 Andrés Cruz
@@ -472,7 +569,7 @@ Andrés Cruz
 </tr>
 <tr>
 <td style="text-align:right; padding-left: 2em;" indentlevel="1">
-3
+2
 </td>
 <td style="text-align:left;">
 Manejo de datos
@@ -483,7 +580,7 @@ Andrés Cruz
 </tr>
 <tr>
 <td style="text-align:right; padding-left: 2em;" indentlevel="1">
-4
+3
 </td>
 <td style="text-align:left;">
 Visualización de datos
@@ -494,18 +591,29 @@ Soledad Araya
 </tr>
 <tr>
 <td style="text-align:right; padding-left: 2em;" indentlevel="1">
-5
+4
 </td>
 <td style="text-align:left;">
 Carga de bases
 </td>
 <td style="text-align:left;">
-Soledad Araya y Andrés Cruz
+Soledad Araya and Andrés Cruz
 </td>
 </tr>
-<tr grouplength="3">
+<tr grouplength="6">
 <td colspan="3" style="text-align:center">
 <strong>II. Modelos</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:right; padding-left: 2em;" indentlevel="1">
+5
+</td>
+<td style="text-align:left;">
+Modelos lineales
+</td>
+<td style="text-align:left;">
+Inés Fynn and Lihuen Nocetto
 </td>
 </tr>
 <tr>
@@ -513,10 +621,10 @@ Soledad Araya y Andrés Cruz
 6
 </td>
 <td style="text-align:left;">
-Modelos lineales
+Selección de casos basada en regresiones
 </td>
 <td style="text-align:left;">
-Inés Fynn y Lihuen Nocetto
+Inés Fynn and Lihuen Nocetto
 </td>
 </tr>
 <tr>
@@ -524,7 +632,7 @@ Inés Fynn y Lihuen Nocetto
 7
 </td>
 <td style="text-align:left;">
-Modelos binarios
+Modelos de panel
 </td>
 <td style="text-align:left;">
 Francisco Urdinez
@@ -535,15 +643,10 @@ Francisco Urdinez
 8
 </td>
 <td style="text-align:left;">
-Modelos de supervivencia
+Modelos binarios
 </td>
 <td style="text-align:left;">
 Francisco Urdinez
-</td>
-</tr>
-<tr grouplength="7">
-<td colspan="3" style="text-align:center">
-<strong>III. Aplicaciones</strong>
 </td>
 </tr>
 <tr>
@@ -551,10 +654,10 @@ Francisco Urdinez
 9
 </td>
 <td style="text-align:left;">
-Manejo avanzado de datos políticos
+Modelos de supervivencia
 </td>
 <td style="text-align:left;">
-Andrés Cruz y Francisco Urdinez
+Francisco Urdinez
 </td>
 </tr>
 <tr>
@@ -562,10 +665,15 @@ Andrés Cruz y Francisco Urdinez
 10
 </td>
 <td style="text-align:left;">
-Creación de índices con PCA
+Inferencia causal
 </td>
 <td style="text-align:left;">
-Caterina Labrín y Francisco Urdinez
+Andrew Heiss
+</td>
+</tr>
+<tr grouplength="6">
+<td colspan="3" style="text-align:center">
+<strong>III. Aplicaciones</strong>
 </td>
 </tr>
 <tr>
@@ -573,10 +681,10 @@ Caterina Labrín y Francisco Urdinez
 11
 </td>
 <td style="text-align:left;">
-Selección de casos a partir de regresiones
+Manejo avanzado de datos políticos
 </td>
 <td style="text-align:left;">
-Inés Fynn y Lihuen Nocetto
+Andrés Cruz and Francisco Urdinez
 </td>
 </tr>
 <tr>
@@ -584,7 +692,7 @@ Inés Fynn y Lihuen Nocetto
 12
 </td>
 <td style="text-align:left;">
-Minería de datos
+Minería de datos web
 </td>
 <td style="text-align:left;">
 Gonzalo Barría
@@ -595,18 +703,7 @@ Gonzalo Barría
 13
 </td>
 <td style="text-align:left;">
-Análisis de redes
-</td>
-<td style="text-align:left;">
-Andrés Cruz
-</td>
-</tr>
-<tr>
-<td style="text-align:right; padding-left: 2em;" indentlevel="1">
-14
-</td>
-<td style="text-align:left;">
-Análisis cuantitativo de textos
+Análisis cuantitativo de textos políticos
 </td>
 <td style="text-align:left;">
 Sebastián Huneeus
@@ -614,13 +711,35 @@ Sebastián Huneeus
 </tr>
 <tr>
 <td style="text-align:right; padding-left: 2em;" indentlevel="1">
+14
+</td>
+<td style="text-align:left;">
+Redes
+</td>
+<td style="text-align:left;">
+Andrés Cruz
+</td>
+</tr>
+<tr>
+<td style="text-align:right; padding-left: 2em;" indentlevel="1">
 15
 </td>
 <td style="text-align:left;">
-Generación de mapas
+Análisis de componentes principales
 </td>
 <td style="text-align:left;">
-Andrea Escobar y Gabriel Ortiz
+Caterina Labrin and Francisco Urdinez
+</td>
+</tr>
+<tr>
+<td style="text-align:right; padding-left: 2em;" indentlevel="1">
+16
+</td>
+<td style="text-align:left;">
+Mapas y datos espaciales
+</td>
+<td style="text-align:left;">
+Andrea Escobar and Gabriel Ortiz
 </td>
 </tr>
 </tbody>
@@ -633,10 +752,51 @@ En la sección II está el corazón del libro. Veremos cómo responder a pregunt
 <p><Descripción de los capítulos de la sección III>
 Por último, en la sección III dejaremos el mundo ideal y nos adentraremos en la resolución de problemas. Ya sea porque un colega nos prestó su base de datos y se ve más bien como una obra de arte surrealista, o simplemente porque la dificultad de los problemas a los que nos enfrentamos deja corto lo que aprendimos al principio del libro, aquí presentaremos un popurrí de herramientas para que el lector integre en su flujo de trabajo cotidiano. Estas han sido seleccionadas desde nuestra experiencia y son cuáles creemos las más requeridas en la práctica del análisis de datos políticos.</p>
 </div>
-<div id="prerrequisitos" class="section level2">
-<h2><span class="header-section-number">1.6</span> Prerrequisitos</h2>
+<div id="cómo-utilizar-el-libro-en-un-curso-de-métodos" class="section level2 unnumbered">
+<h2>¿Cómo utilizar el libro en un curso de métodos?</h2>
+<p>Si este libro te ha interesado como recurso pedagógico, y deseas utilizarlo para estructurar tu clase de métodos cuantitativos o de análisis de datos en ciencia política, te ofrecemos dos alternativas, para diagramar un curso semestral de 10 clases, según donde se quiera poner el foco. Los capítulos de la sección II y III sugieren lecturas que son fuertemente recomendadas para dar robustez a los contenidos del libro. Recuerda que éste no es un libro de metodología, sino que es un libro aplicado de R, por lo tanto, es importante que las lecturas cubran bien la parte teórica de cada tema.</p>
+<div id="primera-opción-curso-semestral-de-análisis-de-datos-políticos" class="section level3 unnumbered">
+<h3>Primera opción: Curso semestral de análisis de datos políticos</h3>
+<blockquote>
+<p>Ésta es una diagramación para un curso donde el énfasis está puesto en que el alumno aprenda a utilizar R, y rápidamente sacar conclusiones descriptivas de los datos que se usen.
+Nota: antes de comenzar el curso los alumnos deben haber leído el capítulo 1 “R Básico” y tener instalado RStudio y el paquete del libro. Es importante siempre llevar scripts listos a clases para que los alumnos rápidamente se pongan a trabajar sin sufrir la codificación, que se aprenderá de a poco en casa. Otra opción a considerar es <a href="https://rstudio.cloud">RStudio Cloud</a>, que permite a los estudiantes trabajar directamente en el navegador.</p>
+</blockquote>
+<ul>
+<li><p><em>Clase 1</em>. Utilice el Capítulo 2 para trabajar con la base de datos de aprobación presidencial hasta cubrir <code>mutate()</code>, pasando por <code>arrange()</code>, <code>filter()</code>, <code>rename()</code>, <code>select()</code> y <code>skim()</code>. Es fundamental que en esta primera clase la alumna salga de ella sintiendo que ha aprendido algo sustantivo de la base de datos. Es recomendable ofrecer el script ya redactado para evitar frustraciones con la sintaxis.</p></li>
+<li><p><em>Clase 2</em>. Continúe con el Capítulo 2. Utilizando <code>summarize()</code> por grupos, el estudiante debe comenzar a interpretar medias, valores máximos y mínimos y compararlos entre grupos de interés. Puede pedirles crear una variable dicotómica para comparar dos grupos de interés. Haga énfasis en el potencial de combinar <code>mutate()</code> con <code>if_else()</code> y no se detenga en la idea de pivotear. Es recomendable ofrecer el script ya redactado para evitar frustraciones con la sintaxis, el alumno podrá ponerlos en práctica si se le pide hacer los ejercicios del capítulo en casa.</p></li>
+<li><p><em>Clase 3</em>. Comience el Capítulo 3, introduciendo el mundo de capas de <code>ggplot2</code>. Ofrezca un script con la base de datos de las dos clases previas, a saber, la base de datos de aprobación presidencial, y deje la base de datos que utiliza el capítulo para que el alumno la analice en casa. Ejemplifique la idea de los mapeos estéticos con <code>geom_boxplot()</code>, <code>geom_bar()</code> y <code>geom_line()</code>, y combine las tres con <code>patchwork</code>. Con lo aprendido previamente cree variables categóricas para agrupar países, lo que a continuación puede servir para introducir la idea de las facetas. Termine la clase demostrando opciones de temas de <code>ggplot2</code>.</p></li>
+<li><p><em>Clase 4</em>. Continúe con el Capítulo 3 a partir de <code>geom_histogram()</code>. Combine esta herramienta con <code>skim()</code> y <code>filter()</code>. Nuevamente, ofrezca un script redactado, pero permita que de a poco los alumnos tengan que participar activamente en la sintaxis de los comandos. Incorpore las opciones complementarias como <code>labs()</code> y <code>scale_x_continuous()</code>. Combine <code>geom_point()</code> y <code>geom_smooth()</code> para analizar la correlación entre varias variables. Invite a los alumnos a sacar conclusiones de los datos y, si desea, aproveche a profundizar en el concepto de correlación y su cálculo.</p></li>
+<li><p><em>Clase 5</em>. Cubra el Capítulo 4 en una sola clase. La carga de datos puede ser frustrante, es importante preparar un ejercicio práctico para llevar a la clase y enfatizar sobre la importancia de trabajar con RStudio Projects. Cree versiones en Excel y .csv de la base de aprobación presidencial y ejemplifique cómo se importan a su proyecto. Luego, repita el proceso con versiones de su base en Stata y SPSS. Para finalizar, haga a los alumnos cargar una base y responder a preguntas sobre los datos utilizando lo aprendido en las cuatro clases previas. Ahora sí, los alumnos están listos para redactar su propio código.</p></li>
+<li><p><em>Clase 6</em>. Usando el contenido del capítulo 12 enseñe a los alumnos a extraer datos de Twitter utilizando APIs con <code>rtweet</code>. Ejemplifique el paso a paso del uso de las funciones <code>search_tweets()</code>, <code>get_followers()</code> y <code>lookup_users()</code> y luego deje un espacio de tiempo para que cada alumno replique este ejemplo con el tema que sea de su interés. Con lo aprendido en la clase 5 pida a los alumnos que guarden sus bases para ser usadas en la próxima clase.</p></li>
+<li><p><em>Clase 7</em>. Usando el contenido del Capítulo 12 analice la base creada en la clase anterior con el paquete <code>tidytext</code>, introduciendo análisis de frecuencias de palabras y tf-idf. Retome lo cubierto en clase dos sobre combinar <code>mutate()</code> con <code>if_else()</code> para agrupar tweets por variables de interés. A esta altura del curso es importante que el alumno intente escribir código por sí solo, y es bueno exigir el uso de opciones estéticas en las figuras creadas con <code>ggplot2</code>.</p></li>
+<li><p><em>Clase 8</em>. Profundice en análisis de texto, centrándose en modelamientos de tópicos sencillos. Demuestre cómo utilizar en conjunto los paquetes <code>tidytext</code>, <code>lubridate</code> y <code>stm</code> con un ejemplo creado previamente, y luego invite a los alumnos a aplicar estas funciones en su base de datos.</p></li>
+<li><p><em>Clase 9</em>. En esta clase retomaremos lo visto en clases 3 y 4 para avanzar sobre el contenido del capítulo 16. Parta explicando la lógica de un shapefile, y ejemplifique como visualizarla con <code>geom_sf()</code>. Para una primera experiencia con el tema recomendamos un shapefile de América Latina con sus fronteras políticas. Usando la base de aprobación presidencial demuestre cómo agregar variables a su shapefile utilizando <code>left_join()</code>. En este curso debe asegurarse que la variable de unión coincida lo mejor posible en ambas bases. No querremos cubrir temas de fuzzy join, por ejemplo.</p></li>
+<li><p><em>Clase 10</em>. En esta clase cubra ideas de LISAs y clusters espaciales utilizando <code>spdep</code>. Recomendamos también cubrir la utilidad de <code>geom_point()</code>, que puede ejemplificarse utilizando el paquete <code>pinochet</code> y <code>rnaturalearthhires</code>. A modo de trabajo final del curso sería bueno pedir un R Markdown que sintetice este ejercicio y que incorpore la mayor cantidad de herramientas aprendidas en las clases previas.</p></li>
+</ul>
+</div>
+<div id="segunda-opción-curso-semestral-de-introducción-a-métodos-cuantitativos" class="section level3 unnumbered">
+<h3>Segunda opción: Curso semestral de introducción a métodos cuantitativos</h3>
+<blockquote>
+<p>Ésta es una diagramación para un curso donde el énfasis está puesto en Mínimos Cuadrados Ordinarios.
+*antes de comenzar el curso los alumnos deben haber leído el capítulo 1 “R Básico” y tener instalado RStudio y el paquete del libro. Es importante siempre llevar scripts listos a clases para que los alumnos rápidamente se pongan a trabajar sin sufrir la codificación, que se aprenderá de a poco en casa.</p>
+</blockquote>
+<ul>
+<li><em>Clase 1</em>. Utilice el Capítulo 2 para trabajar con la base de datos de aprobación presidencial hasta cubrir <code>mutate()</code>, pasando por <code>arrange()</code>, <code>filter()</code>, <code>rename()</code>, <code>select()</code> y <code>skim()</code>. Utilizando <code>summarize()</code> por grupos, el alumno debe comenzar a interpretar medias, valores máximos y mínimos y compararlos entre grupos de interés. Puede pedirles crear una variable dicotómica para comparar dos grupos de interés. Haga énfasis en el potencial de combinar <code>mutate()</code> con <code>if_else()</code> y no se detenga en <code>pivot</code>. Es fundamental que en esta primera clase la alumna salga de ella sintiendo que ha aprendido algo sustantivo de la base de datos. Es recomendable ofrecer el script ya redactado para evitar frustraciones con la sintaxis e introducir a los alumnos a R Markdown.</li>
+<li><em>Clase 2</em>. Comience el Capítulo 3, introduciendo el mundo de capas de <code>tidyverse</code>. Parta por <code>geom_histogram()</code> y combine esta herramienta con <code>skim</code> y <code>filter</code>. Nuevamente, ofrezca un script redactado, pero permita que de a poco los alumnos tengan que participar activamente en la sintaxis de los comandos. Incorpore las opciones complementarias como <code>labs()</code> y <code>scale_x_continuous()</code>. Combine <code>geom_point()</code> y <code>geom_smooth()</code> para analizar la correlación entre varias variables. Presente el concepto de mínimos cuadrados ordinarios con un ejemplo aplicado de <code>geom_smooth()</code>. Termine la clase demostrando opciones de <code>themes</code>.</li>
+<li><em>Clase 3</em>. Rápidamente cubra el capítulo 4 con un ejercicio práctico para llevar a la clase y enfatizar sobre la importancia de trabajar con RStudio Projects. Cree versiones en Excel, csv de la base de aprobación presidencial y ejemplifique como se importan a su proyecto. Si el curso tiene experiencia en Stata, explique <code>haven()</code>. De en .csv la base de municipios del capítulo 3 a los alumnos, muestre <code>ggcorrplot()</code> y avance al capítulo 5 cubriendo rápidamente <code>lm()</code> con una regresión univariada y <code>texreg()</code>. Los alumnos tendrán dos semanas para trabajar en casa con la base de bienestar de Huber et al. y crear un Markdown.</li>
+<li><em>Clase 4</em>. En esta clase se profundizará en el capítulo 5 partiendo por regresiones multivariadas. Explique <code>factor()</code>, <code>list()</code> y deténgase en la interpretación de coeficientes. Profundice este tema con <code>prediction()</code> y ejemplifique su utilidad con <code>ggplot()</code>. A partir de esta clase deje tiempo de clases para que los alumnos trabajen solos o en pares y redacten su propio código.</li>
+<li><em>Clase 5</em>. Dedique esta clase a cubrir ajuste de modelos y presupuestos de MCO, así como el uso de transformaciones logarítmicas en variables dependientes e independientes y la implementación de errores estándar robustos.</li>
+<li><em>Clase 6</em>. Con la base de datos que se haya usado para cubrir los contenidos de las clases 4 y 5 cubra los contenidos del capítulo 6 de manera aplicada, pidiendo a los alumnos que apliquen <code>broom()</code> para seleccionar casos a partir de regresiones. Es recomendable que los alumnos hagan en clase el ejercicio 7.C. y entreguen un Markdown con sus respuestas.</li>
+<li><em>Clase 7</em>. Desarrolle el capítulo 10 sobre DAGs en una clase, introduciendo <code>ggdag()</code>, <code>dagitty()</code>, <code>MatchIt()</code> y utilizando los ya conocidos <code>broom()</code> y <code>texreg()</code>. Para abordar la clase recomendamos que se desarrolle un ejemplo similar al que el autor utiliza en el capítulo, y que luego se trabaje sobre la base de la clase anterior para que los alumnos diseñen su propio DAG. + <em>Clase 8</em>. Cubra los contenidos del capítulo 7 sobre datos en panel, donde se presente <code>lubridate()</code> y <code>plm()</code>. Dedique una parte de la clase a presentar <code>devtools</code>, cuyas funciones sirven para visualizar resultados y se complementa muy bien con <code>prediction()</code>. Cubra modelos de efectos fijos y aleatorios, <code>phtest()</code>, tests de raíz unitaria y correlación temporal y la incorporación de errores estándar robustos corregidos para panel. Refuerce el uso de <code>texreg</code> y la exportación de tablas para su uso en artículos académicos.</li>
+<li><em>Clase 9</em>. Las últimas dos clases pueden ser dedicadas a ofrecer al alumno herramientas para complementar lo que ha aprendido hasta este punto. Utilice el capítulo 15 para introducir a los alumnos a la creación de índices que puedan ser incorporados en modelos tanto como variables dependientes como independientes.</li>
+<li><em>Clase 10</em>. Finalice el curso usando el capítulo 11 con una discusión sobre estandarización de códigos y unión de bases de datos mediante <code>left_join()</code> y demostrando el uso de <code>countrycode</code>, <code>stringdist</code>, <code>inexact</code>. Pida a los alumnos hacer un ejercicio en clases. Luego discuta datos faltantes e imputación presentando <code>naniar</code> y <code>mice</code> y pida a los alumnos hacer un ejercicio en clases el paquete.</li>
+</ul>
+</div>
+</div>
+<div id="prerrequisitos" class="section level2 unnumbered">
+<h2>Prerrequisitos</h2>
 <p>Este libro está pensado para alumnos que más que brillantes son motivados: el análisis cuantitativo de datos exige sobre todo tenacidad y curiosidad. Es altamente deseable que el lector tenga nociones básicas de matemática, probabilidad y/o estadística universitaria antes de leer este libro, aun cuando nos esforzamos por mantenerlo lo más simple que pudimos en dichas materias. En términos de hardware, prácticamente cualquier computador moderno con acceso a internet será suficiente, pues las herramientas que utilizaremos son más bien livianas. Todo el software que utilizaremos es gratuito.</p>
-<p>En el Capítulo <a href="rbas.html#rbas">2</a>, de R Básico, se explica cómo instalar todo el software que se utilizará en el libro. Si ya sabes un poco sobre el funcionamiento de R, debes saber que en la subsección <a href="rbas.html#rbas-paquetes">2.2.4.3</a> instalaremos dos paquetes que luego asumiremos instalados en el resto del libro: <code>tidyverse</code> y <code>paqueteadp</code> (un paquete especialmente creado para apoyar al libro).</p>
+<p>En el Capítulo <a href="basic-r.html#basic-r">1</a>, de R Básico, se explica cómo instalar todo el software que se utilizará en el libro. Si ya sabes un poco sobre el funcionamiento de R, debes saber que en la subsección <a href="basic-r.html#basic-r-packages">1.4.3.3</a> instalaremos dos paquetes que luego asumiremos instalados en el resto del libro: <code>tidyverse</code> y <code>paqueteadp</code> (un paquete especialmente creado para apoyar al libro).</p>
 
 </div>
 </div>
@@ -649,16 +809,18 @@ Por último, en la sección III dejaremos el mundo ideal y nos adentraremos en l
         </div>
       </div>
 
-<a href="rbas.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="basic-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -673,6 +835,10 @@ gitbook.start({
 "text": "Edit"
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -691,8 +857,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

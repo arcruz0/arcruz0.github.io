@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 12 Mínería de datos | AnalizaR Datos Políticos</title>
-  <meta name="description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
-  <meta name="generator" content="bookdown  and GitBook 2.6.7" />
+  <title>Capítulo 12 Web Scraping | AnalizaR Datos Políticos</title>
+  <meta name="description" content="Capítulo 12 Web Scraping | AnalizaR Datos Políticos" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 12 Mínería de datos | AnalizaR Datos Políticos" />
+  <meta property="og:title" content="Capítulo 12 Web Scraping | AnalizaR Datos Políticos" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 12 Mínería de datos | AnalizaR Datos Políticos" />
+  <meta name="twitter:title" content="Capítulo 12 Web Scraping | AnalizaR Datos Políticos" />
   
-  <meta name="twitter:description" content="Manual aplicado para politólogos y relacionistas internacionales en R" />
+  
   
 
 <meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (editores)" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="casos.html">
-<link rel="next" href="redes.html">
+<link rel="prev" href="adv-data.html"/>
+<link rel="next" href="qta.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,12 +47,10 @@
 
 
 
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
-<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
-<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
-<script src="libs/wordcloud2-0.0.1/hover.js"></script>
-<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
 <script>
 % https://stackoverflow.com/a/4425214/8242291
 var links = document.links;
@@ -67,26 +66,27 @@ for (var i = 0, linksLength = links.length; i < linksLength; i++) {
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -98,7 +98,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-le
 div.sourceCode
   { color: #bdae9d; background-color: #2a211c; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffff00; } /* Alert */
 code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
@@ -145,207 +145,307 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <li><b><a href="./index.html"><img style="float: left; margin-right: 5px;" src="favicon.ico"></img>AnalizaR datos políticos</a></b></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#inicio"><i class="fa fa-check"></i><b>1.1</b> Inicio</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#como-contribuir"><i class="fa fa-check"></i><b>1.2</b> ¿Cómo contribuir?</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#sobre-los-autores-y-autoras"><i class="fa fa-check"></i><b>1.2.1</b> Sobre los autores y autoras</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introducción</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#inicio"><i class="fa fa-check"></i>Inicio</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cómo-contribuir"><i class="fa fa-check"></i>¿Cómo contribuir?</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#sobre-los-autores-y-autoras"><i class="fa fa-check"></i>Sobre los autores y autoras</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#prefacio"><i class="fa fa-check"></i><b>1.3</b> Prefacio</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i><b>1.3.1</b> Agradecimientos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prefacio"><i class="fa fa-check"></i>Prefacio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#que-esperar-del-libro"><i class="fa fa-check"></i><b>1.4</b> Qué esperar del libro</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#estructura-del-libro"><i class="fa fa-check"></i><b>1.5</b> Estructura del libro</a></li>
-<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#prerrequisitos"><i class="fa fa-check"></i><b>1.6</b> Prerrequisitos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#qué-esperar-del-libro"><i class="fa fa-check"></i>Qué esperar del libro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura-del-libro"><i class="fa fa-check"></i>Estructura del libro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cómo-utilizar-el-libro-en-un-curso-de-métodos"><i class="fa fa-check"></i>¿Cómo utilizar el libro en un curso de métodos?</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#primera-opción-curso-semestral-de-análisis-de-datos-políticos"><i class="fa fa-check"></i>Primera opción: Curso semestral de análisis de datos políticos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#segunda-opción-curso-semestral-de-introducción-a-métodos-cuantitativos"><i class="fa fa-check"></i>Segunda opción: Curso semestral de introducción a métodos cuantitativos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerrequisitos"><i class="fa fa-check"></i>Prerrequisitos</a></li>
 </ul></li>
 <li class="part"><span><b>I Introducción a R</b></span></li>
-<li class="chapter" data-level="2" data-path="rbas.html"><a href="rbas.html"><i class="fa fa-check"></i><b>2</b> R básico</a><ul>
-<li class="chapter" data-level="2.1" data-path="rbas.html"><a href="rbas.html#instalacion"><i class="fa fa-check"></i><b>2.1</b> Instalación</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="rbas.html"><a href="rbas.html#r"><i class="fa fa-check"></i><b>2.1.1</b> R</a></li>
-<li class="chapter" data-level="2.1.2" data-path="rbas.html"><a href="rbas.html#rstudio"><i class="fa fa-check"></i><b>2.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1" data-path="basic-r.html"><a href="basic-r.html"><i class="fa fa-check"></i><b>1</b> R Básico</a><ul>
+<li class="chapter" data-level="1.1" data-path="basic-r.html"><a href="basic-r.html#instalación"><i class="fa fa-check"></i><b>1.1</b> Instalación</a><ul>
+<li class="chapter" data-level="" data-path="basic-r.html"><a href="basic-r.html#r"><i class="fa fa-check"></i>R</a></li>
+<li class="chapter" data-level="" data-path="basic-r.html"><a href="basic-r.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="rbas.html"><a href="rbas.html#partes-de-rstudio"><i class="fa fa-check"></i><b>2.2</b> Partes de RStudio</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="rbas.html"><a href="rbas.html#consola"><i class="fa fa-check"></i><b>2.2.1</b> Consola</a></li>
-<li class="chapter" data-level="2.2.2" data-path="rbas.html"><a href="rbas.html#script"><i class="fa fa-check"></i><b>2.2.2</b> Script</a></li>
-<li class="chapter" data-level="2.2.3" data-path="rbas.html"><a href="rbas.html#objetos"><i class="fa fa-check"></i><b>2.2.3</b> Objetos</a></li>
-<li class="chapter" data-level="2.2.4" data-path="rbas.html"><a href="rbas.html#archivos-graficos-paquetes-ayuda"><i class="fa fa-check"></i><b>2.2.4</b> Archivos / gráficos / paquetes / ayuda</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html"><i class="fa fa-check"></i><b>3</b> Manejo de datos</a><ul>
-<li class="chapter" data-level="3.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#introduccion-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>3.1.1</b> Nuestra base de datos</a></li>
-<li class="chapter" data-level="3.1.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#describir-la-base"><i class="fa fa-check"></i><b>3.1.2</b> Describir la base</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-en-bases"><i class="fa fa-check"></i><b>3.2</b> Operaciones en bases</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#ordenar-una-base"><i class="fa fa-check"></i><b>3.2.1</b> Ordenar una base</a></li>
-<li class="chapter" data-level="3.2.2" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#seleccionar-columnas"><i class="fa fa-check"></i><b>3.2.2</b> Seleccionar columnas</a></li>
-<li class="chapter" data-level="3.2.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#renombrar-columnas"><i class="fa fa-check"></i><b>3.2.3</b> Renombrar columnas</a></li>
-<li class="chapter" data-level="3.2.4" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#filtrar-observaciones"><i class="fa fa-check"></i><b>3.2.4</b> Filtrar observaciones</a></li>
-<li class="chapter" data-level="3.2.5" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#crear-nuevas-variables"><i class="fa fa-check"></i><b>3.2.5</b> Crear nuevas variables</a></li>
-<li class="chapter" data-level="3.2.6" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#concatenar-comandos"><i class="fa fa-check"></i><b>3.2.6</b> Concatenar comandos</a></li>
-<li class="chapter" data-level="3.2.7" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#operaciones-agrupadas"><i class="fa fa-check"></i><b>3.2.7</b> Operaciones agrupadas</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="manejo-de-datos.html"><a href="manejo-de-datos.html#reformatear-bases"><i class="fa fa-check"></i><b>3.3</b> Reformatear bases</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>4</b> Visualización de datos</a><ul>
-<li class="chapter" data-level="4.1" data-path="dataviz.html"><a href="dataviz.html#por-que-quiero-visualizar-mis-datos"><i class="fa fa-check"></i><b>4.1</b> ¿Por qué quiero visualizar mis datos?</a></li>
-<li class="chapter" data-level="4.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>4.2</b> Primeros pasos</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-multiverso-ggplotidiano"><i class="fa fa-check"></i><b>4.2.1</b> Las capas del multiverso ggplotidiano</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="dataviz.html"><a href="dataviz.html#elecciones-locales-y-visualizacion-de-datos"><i class="fa fa-check"></i><b>4.3</b> Elecciones locales y visualización de datos</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="dataviz.html"><a href="dataviz.html#grafico-de-barras"><i class="fa fa-check"></i><b>4.3.1</b> Gráfico de barras</a></li>
-<li class="chapter" data-level="4.3.2" data-path="dataviz.html"><a href="dataviz.html#grafico-de-linea"><i class="fa fa-check"></i><b>4.3.2</b> Gráfico de Línea</a></li>
-<li class="chapter" data-level="4.3.3" data-path="dataviz.html"><a href="dataviz.html#boxplot"><i class="fa fa-check"></i><b>4.3.3</b> Boxplot</a></li>
-<li class="chapter" data-level="4.3.4" data-path="dataviz.html"><a href="dataviz.html#histograma"><i class="fa fa-check"></i><b>4.3.4</b> Histograma</a></li>
-<li class="chapter" data-level="4.3.5" data-path="dataviz.html"><a href="dataviz.html#relacion-entre-variables"><i class="fa fa-check"></i><b>4.3.5</b> Relación entre variables</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="dataviz.html"><a href="dataviz.html#para-seguir-aprendiendo"><i class="fa fa-check"></i><b>4.4</b> Para seguir aprendiendo</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="dataviz.html"><a href="dataviz.html#otros-paquetes"><i class="fa fa-check"></i><b>4.4.1</b> Otros paquetes:</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-r.html"><a href="basic-r.html#consola"><i class="fa fa-check"></i><b>1.2</b> Consola</a></li>
+<li class="chapter" data-level="1.3" data-path="basic-r.html"><a href="basic-r.html#script"><i class="fa fa-check"></i><b>1.3</b> Script</a></li>
+<li class="chapter" data-level="1.4" data-path="basic-r.html"><a href="basic-r.html#objetos-y-funciones"><i class="fa fa-check"></i><b>1.4</b> Objetos (y funciones)</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="basic-r.html"><a href="basic-r.html#vectores"><i class="fa fa-check"></i><b>1.4.1</b> Vectores</a></li>
+<li class="chapter" data-level="1.4.2" data-path="basic-r.html"><a href="basic-r.html#basic-r-functions"><i class="fa fa-check"></i><b>1.4.2</b> Functions</a></li>
+<li class="chapter" data-level="1.4.3" data-path="basic-r.html"><a href="basic-r.html#archivos-gráficos-paquetes-ayuda"><i class="fa fa-check"></i><b>1.4.3</b> Archivos / gráficos / paquetes / ayuda</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="carga.html"><a href="carga.html"><i class="fa fa-check"></i><b>5</b> Carga de bases</a><ul>
-<li class="chapter" data-level="5.1" data-path="carga.html"><a href="carga.html#carga-intro"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
-<li class="chapter" data-level="5.2" data-path="carga.html"><a href="carga.html#carga-formatos"><i class="fa fa-check"></i><b>5.2</b> Distintos formatos de bases</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="carga.html"><a href="carga.html#archivos-separados-por-delimitadores-.csv-y-.tsv"><i class="fa fa-check"></i><b>5.2.1</b> Archivos separados por delimitadores (.csv y .tsv)</a></li>
-<li class="chapter" data-level="5.2.2" data-path="carga.html"><a href="carga.html#carga-r"><i class="fa fa-check"></i><b>5.2.2</b> Archivos creados con R (.Rdata y .rds)</a></li>
-<li class="chapter" data-level="5.2.3" data-path="carga.html"><a href="carga.html#carga-etiquetas"><i class="fa fa-check"></i><b>5.2.3</b> Datos con etiquetas (Stata o SPSS)</a></li>
-<li class="chapter" data-level="5.2.4" data-path="carga.html"><a href="carga.html#carga-excel"><i class="fa fa-check"></i><b>5.2.4</b> Archivos de Excel</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Manejo de datos</a><ul>
+<li class="chapter" data-level="" data-path="data.html"><a href="data.html#los-paquetes-que-necesitas-instalar"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#introducción-al-manejo-de-datos"><i class="fa fa-check"></i><b>2.1</b> Introducción al manejo de datos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>2.1.1</b> Nuestra base de datos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="carga.html"><a href="carga.html#multiples-bases-de-datos-a-la-vez"><i class="fa fa-check"></i><b>5.3</b> Múltiples bases de datos a la vez</a></li>
-<li class="chapter" data-level="5.4" data-path="carga.html"><a href="carga.html#carga-grandes"><i class="fa fa-check"></i><b>5.4</b> Bases de datos tabulares grandes</a></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#describiendo-una-base-de-datos"><i class="fa fa-check"></i><b>2.2</b> Describiendo una base de datos</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#operaciones-básicas"><i class="fa fa-check"></i><b>2.3</b> Operaciones básicas</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data.html"><a href="data.html#seleccionar-columnas"><i class="fa fa-check"></i><b>2.3.1</b> Seleccionar columnas</a></li>
+<li class="chapter" data-level="2.3.2" data-path="data.html"><a href="data.html#renombra-las-columnas"><i class="fa fa-check"></i><b>2.3.2</b> Renombra las columnas</a></li>
+<li class="chapter" data-level="2.3.3" data-path="data.html"><a href="data.html#filtrar-las-observaciones"><i class="fa fa-check"></i><b>2.3.3</b> Filtrar las observaciones</a></li>
+<li class="chapter" data-level="2.3.4" data-path="data.html"><a href="data.html#cambiar-el-orden-de-una-base-de-datos"><i class="fa fa-check"></i><b>2.3.4</b> Cambiar el orden de una base de datos</a></li>
+<li class="chapter" data-level="2.3.5" data-path="data.html"><a href="data.html#transformar-y-crear-variables"><i class="fa fa-check"></i><b>2.3.5</b> Transformar y crear variables</a></li>
+<li class="chapter" data-level="2.3.6" data-path="data.html"><a href="data.html#resúmenes"><i class="fa fa-check"></i><b>2.3.6</b> Resúmenes</a></li>
+<li class="chapter" data-level="2.3.7" data-path="data.html"><a href="data.html#resúmenes-por-grupo"><i class="fa fa-check"></i><b>2.3.7</b> Resúmenes por grupo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#comandos-en-cadena"><i class="fa fa-check"></i><b>2.4</b> Comandos en cadena</a></li>
+<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#data-recodificar"><i class="fa fa-check"></i><b>2.5</b> Recodificar valores</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#pivoteo-de-datos-data-pivot"><i class="fa fa-check"></i><b>2.5.1</b> Pivoteo de datos {data-pivot}</a></li>
+<li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#bases-de-datos-anchas-con-más-de-una-variable-de-interés"><i class="fa fa-check"></i><b>2.5.2</b> Bases de datos anchas con más de una variable de interés</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>3</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#lecturas-sugeridas"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#los-paquetes-que-necesitas-instalar-1"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="3.1" data-path="dataviz.html"><a href="dataviz.html#por-qué-visualizar-mis-datos"><i class="fa fa-check"></i><b>3.1</b> ¿Por qué visualizar mis datos?</a></li>
+<li class="chapter" data-level="3.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>3.2</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-universo-ggplotiano"><i class="fa fa-check"></i><b>3.2.1</b> Las capas del “universo ggplotiano”</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dataviz.html"><a href="dataviz.html#ejemplo-aplicado-elecciones-locales-y-visualización-de-datos"><i class="fa fa-check"></i><b>3.3</b> Ejemplo aplicado: Elecciones locales y visualización de datos</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-barras"><i class="fa fa-check"></i><b>3.3.1</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-caja"><i class="fa fa-check"></i><b>3.3.2</b> Gráfico de caja</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataviz.html"><a href="dataviz.html#histograma"><i class="fa fa-check"></i><b>3.3.3</b> Histograma</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataviz.html"><a href="dataviz.html#relación-entre-las-variables"><i class="fa fa-check"></i><b>3.3.4</b> Relación entre las variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="dataviz.html"><a href="dataviz.html#para-continuar-aprendiendo"><i class="fa fa-check"></i><b>3.4</b> Para continuar aprendiendo</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="load.html"><a href="load.html"><i class="fa fa-check"></i><b>4</b> Carga de datos</a><ul>
+<li class="chapter" data-level="" data-path="load.html"><a href="load.html#los-paquetes-que-necesitas-instalar-2"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="4.1" data-path="load.html"><a href="load.html#load-intro"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="load.html"><a href="load.html#carga-formatos"><i class="fa fa-check"></i><b>4.2</b> Diferentes formatos de bases de datos</a></li>
+<li class="chapter" data-level="4.3" data-path="load.html"><a href="load.html#los-archivos-separados-por-delimitadores-.csv-y-.tsv"><i class="fa fa-check"></i><b>4.3</b> Los archivos separados por delimitadores (.csv y .tsv)</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="load.html"><a href="load.html#r-básico-utils"><i class="fa fa-check"></i><b>4.3.1</b> R básico: <code>utils</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="load.html"><a href="load.html#load-r"><i class="fa fa-check"></i><b>4.3.2</b> Archivos creados con R (.Rdata y .rds)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="load.html"><a href="load.html#load-labels"><i class="fa fa-check"></i><b>4.3.3</b> Bases de datos con etiquetas (de Stata or SPSS)</a></li>
+<li class="chapter" data-level="4.3.4" data-path="load.html"><a href="load.html#load-excel"><i class="fa fa-check"></i><b>4.3.4</b> Archivos de Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="load.html"><a href="load.html#load-large"><i class="fa fa-check"></i><b>4.4</b> Grandes bases de datos tabulares</a></li>
 </ul></li>
 <li class="part"><span><b>II Modelos</b></span></li>
-<li class="chapter" data-level="6" data-path="lineal.html"><a href="lineal.html"><i class="fa fa-check"></i><b>6</b> Modelos lineales</a><ul>
-<li class="chapter" data-level="6.1" data-path="lineal.html"><a href="lineal.html#introduccion-2"><i class="fa fa-check"></i><b>6.1</b> Introducción</a></li>
-<li class="chapter" data-level="6.2" data-path="lineal.html"><a href="lineal.html#aplicacion-en-r"><i class="fa fa-check"></i><b>6.2</b> Aplicación en <code>R</code></a><ul>
-<li class="chapter" data-level="6.2.1" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos"><i class="fa fa-check"></i><b>6.2.1</b> Estadísticos Descriptivos</a></li>
-<li class="chapter" data-level="6.2.2" data-path="lineal.html"><a href="lineal.html#estadisticos-descriptivos-y-distribucion-de-las-variables-del-modelo"><i class="fa fa-check"></i><b>6.2.2</b> Estadísticos descriptivos y distribución de las variables del modelo</a></li>
-<li class="chapter" data-level="6.2.3" data-path="lineal.html"><a href="lineal.html#matriz-de-correlacion-de-variables-independientes"><i class="fa fa-check"></i><b>6.2.3</b> Matriz de correlación de variables independientes</a></li>
-<li class="chapter" data-level="6.2.4" data-path="lineal.html"><a href="lineal.html#distribucion-de-las-variables-de-interes"><i class="fa fa-check"></i><b>6.2.4</b> Distribución de las variables de interés</a></li>
-<li class="chapter" data-level="6.2.5" data-path="lineal.html"><a href="lineal.html#relacion-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>6.2.5</b> Relación entre la variable dependiente e independiente</a></li>
+<li class="chapter" data-level="5" data-path="linear.html"><a href="linear.html"><i class="fa fa-check"></i><b>5</b> Modelos lineales</a><ul>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#lecturas-sugeridas-1"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#los-paquetes-que-necesitas-instalar-3"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#introducción-1"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="5.1" data-path="linear.html"><a href="linear.html#mínimos-cuadrados-ordinarios-en-r"><i class="fa fa-check"></i><b>5.1</b> Mínimos cuadrados ordinarios en R</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="linear.html"><a href="linear.html#cómo-obtener-estadísticas-descriptivas"><i class="fa fa-check"></i><b>5.1.1</b> Cómo obtener estadísticas descriptivas</a></li>
+<li class="chapter" data-level="5.1.2" data-path="linear.html"><a href="linear.html#estadísticas-descriptivas-y-distribución-de-las-variables-en-el-modelo"><i class="fa fa-check"></i><b>5.1.2</b> Estadísticas descriptivas y distribución de las variables en el modelo</a></li>
+<li class="chapter" data-level="5.1.3" data-path="linear.html"><a href="linear.html#matriz-de-correlación-de-variables-independientes"><i class="fa fa-check"></i><b>5.1.3</b> Matriz de correlación de variables independientes</a></li>
+<li class="chapter" data-level="5.1.4" data-path="linear.html"><a href="linear.html#distribución-de-las-variables-de-interés"><i class="fa fa-check"></i><b>5.1.4</b> Distribución de las variables de interés</a></li>
+<li class="chapter" data-level="5.1.5" data-path="linear.html"><a href="linear.html#relación-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>5.1.5</b> Relación entre la variable dependiente e independiente</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="lineal.html"><a href="lineal.html#modelo-bivariado-regresion-lineal-simple"><i class="fa fa-check"></i><b>6.3</b> Modelo bivariado: regresión lineal simple</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="lineal.html"><a href="lineal.html#estimando-un-modelo-lineal-en-r"><i class="fa fa-check"></i><b>6.3.1</b> Estimando un modelo lineal en <code>R</code></a></li>
-<li class="chapter" data-level="6.3.2" data-path="lineal.html"><a href="lineal.html#representacion-grafica"><i class="fa fa-check"></i><b>6.3.2</b> Representación gráfica</a></li>
+<li class="chapter" data-level="5.2" data-path="linear.html"><a href="linear.html#modelo-bivariado-regresión-lineal-simple"><i class="fa fa-check"></i><b>5.2</b> Modelo bivariado: regresión lineal simple</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="linear.html"><a href="linear.html#la-función-lm"><i class="fa fa-check"></i><b>5.2.1</b> La función <code>lm</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="linear.html"><a href="linear.html#representación-gráfica"><i class="fa fa-check"></i><b>5.2.2</b> Representación gráfica</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="lineal.html"><a href="lineal.html#modelo-multivariado-regresion-multiple"><i class="fa fa-check"></i><b>6.4</b> Modelo multivariado: regresión múltiple</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="lineal.html"><a href="lineal.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>6.4.1</b> Ajuste del modelo</a></li>
-<li class="chapter" data-level="6.4.2" data-path="lineal.html"><a href="lineal.html#inferencia-en-modelos-lineales-multiples"><i class="fa fa-check"></i><b>6.4.2</b> Inferencia en modelos lineales múltiples</a></li>
-<li class="chapter" data-level="6.4.3" data-path="lineal.html"><a href="lineal.html#supuestos-de-ols"><i class="fa fa-check"></i><b>6.4.3</b> Supuestos de OLS</a></li>
-<li class="chapter" data-level="6.4.4" data-path="lineal.html"><a href="lineal.html#errores-estandares-robustos"><i class="fa fa-check"></i><b>6.4.4</b> Errores estándares robustos</a></li>
-<li class="chapter" data-level="6.4.5" data-path="lineal.html"><a href="lineal.html#un-caso-especial-de-heterocedasticidad-la-varianza-del-error-asociada-a-clusters"><i class="fa fa-check"></i><b>6.4.5</b> Un caso especial de Heterocedasticidad: la varianza del error asociada a clusters</a></li>
-<li class="chapter" data-level="6.4.6" data-path="lineal.html"><a href="lineal.html#un-supuesto-adicional-para-poder-realizar-inferencia"><i class="fa fa-check"></i><b>6.4.6</b> Un supuesto adicional para poder realizar <strong>inferencia</strong></a></li>
+<li class="chapter" data-level="5.3" data-path="linear.html"><a href="linear.html#modelo-multivariado-regresión-múltiple"><i class="fa fa-check"></i><b>5.3</b> Modelo multivariado: regresión múltiple</a></li>
+<li class="chapter" data-level="5.4" data-path="linear.html"><a href="linear.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Ajuste del modelo</a></li>
+<li class="chapter" data-level="5.5" data-path="linear.html"><a href="linear.html#inferencia-en-los-modelos-lineales-múltiples"><i class="fa fa-check"></i><b>5.5</b> Inferencia en los modelos lineales múltiples</a></li>
+<li class="chapter" data-level="5.6" data-path="linear.html"><a href="linear.html#testeando-los-supuestos-de-mco"><i class="fa fa-check"></i><b>5.6</b> Testeando los supuestos de MCO</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="case-sel.html"><a href="case-sel.html"><i class="fa fa-check"></i><b>6</b> Selección de casos basada en regresiones</a><ul>
+<li class="chapter" data-level="" data-path="case-sel.html"><a href="case-sel.html#lecturas-sugeridas-2"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="case-sel.html"><a href="case-sel.html#los-paquetes-que-necesitas-instalar-4"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="6.1" data-path="case-sel.html"><a href="case-sel.html#selección-de-estudios-de-casos"><i class="fa fa-check"></i><b>6.1</b> Selección de estudios de casos</a></li>
+<li class="chapter" data-level="6.2" data-path="case-sel.html"><a href="case-sel.html#qué-estudio-de-caso-debería-seleccionar-para-la-investigación-cualitativa"><i class="fa fa-check"></i><b>6.2</b> ¿Qué estudio de caso debería seleccionar para la investigación cualitativa?</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="case-sel.html"><a href="case-sel.html#casos-típicos"><i class="fa fa-check"></i><b>6.2.1</b> Casos típicos</a></li>
+<li class="chapter" data-level="6.2.2" data-path="case-sel.html"><a href="case-sel.html#los-valores-atípicos"><i class="fa fa-check"></i><b>6.2.2</b> Los valores atípicos</a></li>
+<li class="chapter" data-level="6.2.3" data-path="case-sel.html"><a href="case-sel.html#casos-influyentes"><i class="fa fa-check"></i><b>6.2.3</b> Casos influyentes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="case-sel.html"><a href="case-sel.html#casos-extremos"><i class="fa fa-check"></i><b>6.2.4</b> Casos extremos</a></li>
+<li class="chapter" data-level="6.2.5" data-path="case-sel.html"><a href="case-sel.html#casos-más-similares"><i class="fa fa-check"></i><b>6.2.5</b> Casos más similares</a></li>
+<li class="chapter" data-level="6.2.6" data-path="case-sel.html"><a href="case-sel.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>6.2.6</b> Casos mas diferentes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="case-sel.html"><a href="case-sel.html#la-importancia-de-la-combinación-de-métodos"><i class="fa fa-check"></i><b>6.3</b> La importancia de la combinación de métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="panel.html"><a href="panel.html"><i class="fa fa-check"></i><b>7</b> Datos de panel</a><ul>
+<li class="chapter" data-level="" data-path="panel.html"><a href="panel.html#lecturas-sugeridas-3"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="panel.html"><a href="panel.html#los-paquetes-que-necesitas-instalar-5"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="7.1" data-path="panel.html"><a href="panel.html#introducción-2"><i class="fa fa-check"></i><b>7.1</b> Introducción</a></li>
+<li class="chapter" data-level="7.2" data-path="panel.html"><a href="panel.html#describiendo-la-base-de-datos-en-panel"><i class="fa fa-check"></i><b>7.2</b> Describiendo la base de datos en panel</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="panel.html"><a href="panel.html#opción-a.-gráfico-de-líneas"><i class="fa fa-check"></i><b>7.2.1</b> Opción A. Gráfico de líneas</a></li>
+<li class="chapter" data-level="7.2.2" data-path="panel.html"><a href="panel.html#option-b.-gráfico-de-cajas"><i class="fa fa-check"></i><b>7.2.2</b> Option B. Gráfico de cajas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="panel.html"><a href="panel.html#modelización-de-la-variación-a-nivel-de-grupo"><i class="fa fa-check"></i><b>7.3</b> Modelización de la variación a nivel de grupo</a></li>
+<li class="chapter" data-level="7.4" data-path="panel.html"><a href="panel.html#efectos-fijos-vs.-efectos-aleatorios"><i class="fa fa-check"></i><b>7.4</b> Efectos fijos vs. efectos aleatorios</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="panel.html"><a href="panel.html#test-de-hausman"><i class="fa fa-check"></i><b>7.4.1</b> Test de Hausman</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="panel.html"><a href="panel.html#testeando-raíces-unitarias"><i class="fa fa-check"></i><b>7.5</b> Testeando raíces unitarias</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="panel.html"><a href="panel.html#creación-de-variables-rezagadas-lags-y-variables-prospectivas-leads"><i class="fa fa-check"></i><b>7.5.1</b> Creación de variables rezagadas (<em>lags</em>) y variables prospectivas (<em>leads</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="panel.html"><a href="panel.html#errores-estándar-robustos-corregidos-para-panel"><i class="fa fa-check"></i><b>7.6</b> Errores estándar robustos corregidos para panel</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="panel.html"><a href="panel.html#errores-estándar-robustos-1"><i class="fa fa-check"></i><b>7.6.1</b> Errores estándar robustos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>7</b> Modelos logísticos</a><ul>
-<li class="chapter" data-level="7.1" data-path="logit.html"><a href="logit.html#nociones-basicas"><i class="fa fa-check"></i><b>7.1</b> Nociones básicas</a></li>
-<li class="chapter" data-level="7.2" data-path="logit.html"><a href="logit.html#aplicacion-en-r-1"><i class="fa fa-check"></i><b>7.2</b> Aplicación en <code>R</code></a><ul>
-<li class="chapter" data-level="7.2.1" data-path="logit.html"><a href="logit.html#estimar-los-modelos"><i class="fa fa-check"></i><b>7.2.1</b> Estimar los modelos</a></li>
-<li class="chapter" data-level="7.2.2" data-path="logit.html"><a href="logit.html#crear-tablas"><i class="fa fa-check"></i><b>7.2.2</b> Crear tablas</a></li>
-<li class="chapter" data-level="7.2.3" data-path="logit.html"><a href="logit.html#visualizacion-de-resultados"><i class="fa fa-check"></i><b>7.2.3</b> Visualización de resultados</a></li>
-<li class="chapter" data-level="7.2.4" data-path="logit.html"><a href="logit.html#ajuste-de-los-modelos"><i class="fa fa-check"></i><b>7.2.4</b> Ajuste de los modelos</a></li>
+<li class="chapter" data-level="8" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>8</b> Modelos logísticos</a><ul>
+<li class="chapter" data-level="" data-path="logit.html"><a href="logit.html#lecturas-sugeridas-4"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="logit.html"><a href="logit.html#los-paquetes-que-necesitas-instalar-6"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="8.1" data-path="logit.html"><a href="logit.html#introducción-3"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
+<li class="chapter" data-level="8.2" data-path="logit.html"><a href="logit.html#uso-de-los-modelos-logísticos"><i class="fa fa-check"></i><b>8.2</b> Uso de los modelos logísticos</a></li>
+<li class="chapter" data-level="8.3" data-path="logit.html"><a href="logit.html#cómo-se-estiman-las-probabilidades"><i class="fa fa-check"></i><b>8.3</b> ¿Cómo se estiman las probabilidades?</a></li>
+<li class="chapter" data-level="8.4" data-path="logit.html"><a href="logit.html#estimación-de-los-modelos"><i class="fa fa-check"></i><b>8.4</b> Estimación de los modelos</a></li>
+<li class="chapter" data-level="8.5" data-path="logit.html"><a href="logit.html#creando-tablas"><i class="fa fa-check"></i><b>8.5</b> Creando tablas</a></li>
+<li class="chapter" data-level="8.6" data-path="logit.html"><a href="logit.html#representación-visual-de-los-resultados"><i class="fa fa-check"></i><b>8.6</b> Representación visual de los resultados</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="logit.html"><a href="logit.html#visualización-de-las-interacciones-entre-las-variables"><i class="fa fa-check"></i><b>8.6.1</b> Visualización de las interacciones entre las variables</a></li>
 </ul></li>
+<li class="chapter" data-level="8.7" data-path="logit.html"><a href="logit.html#medidas-para-evaluar-el-ajuste-de-los-modelos"><i class="fa fa-check"></i><b>8.7</b> Medidas para evaluar el ajuste de los modelos</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>8</b> Modelos de supervivencia</a><ul>
-<li class="chapter" data-level="8.1" data-path="surv.html"><a href="surv.html#nociones-basicas-1"><i class="fa fa-check"></i><b>8.1</b> Nociones básicas</a></li>
-<li class="chapter" data-level="8.2" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>8.2</b> El modelo Cox de riesgos proporcionales</a></li>
-<li class="chapter" data-level="8.3" data-path="surv.html"><a href="surv.html#aplicacion-en-r-2"><i class="fa fa-check"></i><b>8.3</b> Aplicación en <code>R</code></a><ul>
-<li class="chapter" data-level="8.3.1" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretacion-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>8.3.1</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
+<li class="chapter" data-level="9" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>9</b> Modelos de supervivencia</a><ul>
+<li class="chapter" data-level="" data-path="surv.html"><a href="surv.html#lecturas-sugeridas-5"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="surv.html"><a href="surv.html#los-paquetes-que-necesitas-instalar-7"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="9.1" data-path="surv.html"><a href="surv.html#introducción-4"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="surv.html"><a href="surv.html#cómo-interpretamos-las-tasas-de-riesgo"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo interpretamos las tasas de riesgo?</a></li>
+<li class="chapter" data-level="9.3" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>9.3</b> El modelo Cox de riesgos proporcionales</a></li>
+<li class="chapter" data-level="9.4" data-path="surv.html"><a href="surv.html#estimación-de-los-modelos-de-cox-en-r"><i class="fa fa-check"></i><b>9.4</b> Estimación de los modelos de Cox en R</a></li>
+<li class="chapter" data-level="9.5" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretación-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>9.5</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="causal-inf.html"><a href="causal-inf.html"><i class="fa fa-check"></i><b>10</b> Inferencia causal</a><ul>
+<li class="chapter" data-level="" data-path="causal-inf.html"><a href="causal-inf.html#lecturas-sugeridas-6"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="causal-inf.html"><a href="causal-inf.html#los-paquetes-que-necesitas-instalar-8"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="10.1" data-path="causal-inf.html"><a href="causal-inf.html#introducción-5"><i class="fa fa-check"></i><b>10.1</b> Introducción</a></li>
+<li class="chapter" data-level="10.2" data-path="causal-inf.html"><a href="causal-inf.html#causalidad-y-gráficos-causales"><i class="fa fa-check"></i><b>10.2</b> Causalidad y gráficos causales</a></li>
+<li class="chapter" data-level="10.3" data-path="causal-inf.html"><a href="causal-inf.html#midiendo-efectos-causales"><i class="fa fa-check"></i><b>10.3</b> Midiendo efectos causales</a></li>
+<li class="chapter" data-level="10.4" data-path="causal-inf.html"><a href="causal-inf.html#dags-y-asociaciones-estadísticas"><i class="fa fa-check"></i><b>10.4</b> DAGs y asociaciones estadísticas</a></li>
+<li class="chapter" data-level="10.5" data-path="causal-inf.html"><a href="causal-inf.html#puertas-traseras-y-cálculos-hacer"><i class="fa fa-check"></i><b>10.5</b> Puertas traseras y cálculos “<em>hacer</em>”</a></li>
+<li class="chapter" data-level="10.6" data-path="causal-inf.html"><a href="causal-inf.html#dibujar-y-analizar-dags"><i class="fa fa-check"></i><b>10.6</b> Dibujar y analizar DAGs</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="causal-inf.html"><a href="causal-inf.html#dibujar-un-dag-con-dagitty"><i class="fa fa-check"></i><b>10.6.1</b> Dibujar un DAG con DAGitty</a></li>
+<li class="chapter" data-level="10.6.2" data-path="causal-inf.html"><a href="causal-inf.html#encontrar-sets-de-ajuste-con-dagitty"><i class="fa fa-check"></i><b>10.6.2</b> Encontrar sets de ajuste con DAGitty</a></li>
+<li class="chapter" data-level="10.6.3" data-path="causal-inf.html"><a href="causal-inf.html#diseñar-dags-en-r"><i class="fa fa-check"></i><b>10.6.3</b> Diseñar DAGs en R</a></li>
+<li class="chapter" data-level="10.6.4" data-path="causal-inf.html"><a href="causal-inf.html#encontrar-caminos-y-sets-de-ajustes-con-r"><i class="fa fa-check"></i><b>10.6.4</b> Encontrar caminos y sets de ajustes con R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="causal-inf.html"><a href="causal-inf.html#haciendo-ajustes-causales"><i class="fa fa-check"></i><b>10.7</b> Haciendo ajustes causales</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="causal-inf.html"><a href="causal-inf.html#datos-de-redes-para-mosquitos"><i class="fa fa-check"></i><b>10.7.1</b> Datos de redes para mosquitos</a></li>
+<li class="chapter" data-level="10.7.2" data-path="causal-inf.html"><a href="causal-inf.html#verificar-las-independencias-condicionales"><i class="fa fa-check"></i><b>10.7.2</b> Verificar las independencias condicionales</a></li>
+<li class="chapter" data-level="10.7.3" data-path="causal-inf.html"><a href="causal-inf.html#encuentra-el-set-de-ajuste"><i class="fa fa-check"></i><b>10.7.3</b> Encuentra el set de ajuste</a></li>
+<li class="chapter" data-level="10.7.4" data-path="causal-inf.html"><a href="causal-inf.html#estimación-ingenua-no-ajustada"><i class="fa fa-check"></i><b>10.7.4</b> Estimación ingenua no ajustada</a></li>
+<li class="chapter" data-level="10.7.5" data-path="causal-inf.html"><a href="causal-inf.html#regresiones"><i class="fa fa-check"></i><b>10.7.5</b> Regresiones</a></li>
+<li class="chapter" data-level="10.7.6" data-path="causal-inf.html"><a href="causal-inf.html#matching"><i class="fa fa-check"></i><b>10.7.6</b> Matching</a></li>
+<li class="chapter" data-level="10.7.7" data-path="causal-inf.html"><a href="causal-inf.html#ponderación-de-probabilidad-inversa"><i class="fa fa-check"></i><b>10.7.7</b> Ponderación de probabilidad inversa</a></li>
+<li class="chapter" data-level="10.7.8" data-path="causal-inf.html"><a href="causal-inf.html#comparando-todos-los-métodos"><i class="fa fa-check"></i><b>10.7.8</b> Comparando todos los métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="causal-inf.html"><a href="causal-inf.html#cconsejos-finales"><i class="fa fa-check"></i><b>10.8</b> CConsejos finales</a></li>
 </ul></li>
 <li class="part"><span><b>III Aplicaciones</b></span></li>
-<li class="chapter" data-level="9" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i><b>9</b> Manejo avanzado de datos políticos</a><ul>
-<li class="chapter" data-level="9.1" data-path="manejo-av.html"><a href="manejo-av.html#introduccion-3"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
-<li class="chapter" data-level="9.2" data-path="manejo-av.html"><a href="manejo-av.html#como-aprovechar-countrycode"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo aprovechar <code>countrycode</code>?</a></li>
-<li class="chapter" data-level="9.3" data-path="manejo-av.html"><a href="manejo-av.html#como-imputar-datos-faltantes"><i class="fa fa-check"></i><b>9.3</b> ¿Cómo imputar datos faltantes?</a></li>
-<li class="chapter" data-level="9.4" data-path="manejo-av.html"><a href="manejo-av.html#imputar-datos-usando-amelia"><i class="fa fa-check"></i><b>9.4</b> Imputar datos usando Amelia</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="manejo-av.html"><a href="manejo-av.html#diagnosticos"><i class="fa fa-check"></i><b>9.4.1</b> Diagnosticos</a></li>
+<li class="chapter" data-level="11" data-path="adv-data.html"><a href="adv-data.html"><i class="fa fa-check"></i><b>11</b> Manejo avanzado de datos políticos</a><ul>
+<li class="chapter" data-level="" data-path="adv-data.html"><a href="adv-data.html#lecturas-sugeridas-7"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="adv-data.html"><a href="adv-data.html#los-paquetes-que-necesitas-instalar-9"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="11.1" data-path="adv-data.html"><a href="adv-data.html#introducción-6"><i class="fa fa-check"></i><b>11.1</b> Introducción</a></li>
+<li class="chapter" data-level="11.2" data-path="adv-data.html"><a href="adv-data.html#uniendo-bases-de-datos"><i class="fa fa-check"></i><b>11.2</b> Uniendo bases de datos</a></li>
+<li class="chapter" data-level="11.3" data-path="adv-data.html"><a href="adv-data.html#estandarizando-los-códigos-de-país"><i class="fa fa-check"></i><b>11.3</b> Estandarizando los códigos de país</a></li>
+<li class="chapter" data-level="11.4" data-path="adv-data.html"><a href="adv-data.html#la-unión-borrosa-o-inexacta-de-los-datos"><i class="fa fa-check"></i><b>11.4</b> La unión borrosa o inexacta de los datos</a></li>
+<li class="chapter" data-level="11.5" data-path="adv-data.html"><a href="adv-data.html#gestión-de-valores-perdidos"><i class="fa fa-check"></i><b>11.5</b> Gestión de valores perdidos</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="adv-data.html"><a href="adv-data.html#tipos-de-valores-perdidos"><i class="fa fa-check"></i><b>11.5.1</b> Tipos de valores perdidos</a></li>
+<li class="chapter" data-level="11.5.2" data-path="adv-data.html"><a href="adv-data.html#descripción-de-los-valores-que-faltan-en-la-base-de-datos"><i class="fa fa-check"></i><b>11.5.2</b> Descripción de los valores que faltan en la base de datos</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="manejo-av.html"><a href="manejo-av.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>9.5</b> Regresiones luego de imputar datos</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>10</b> Creación de índices con PCA</a><ul>
-<li class="chapter" data-level="10.1" data-path="pca.html"><a href="pca.html#aplicacion-en-r-3"><i class="fa fa-check"></i><b>10.1</b> Aplicación en <code>R</code></a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="casos.html"><a href="casos.html"><i class="fa fa-check"></i><b>11</b> Selección de casos a partir de regresiones</a><ul>
-<li class="chapter" data-level="11.1" data-path="casos.html"><a href="casos.html#que-casos-de-estudio-debo-seleccionar-para-testear-mi-hipotesis"><i class="fa fa-check"></i><b>11.1</b> ¿Qué casos de estudio debo seleccionar para testear mi hipótesis?</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="casos.html"><a href="casos.html#casos-tipicos"><i class="fa fa-check"></i><b>11.1.1</b> Casos Típicos</a></li>
-<li class="chapter" data-level="11.1.2" data-path="casos.html"><a href="casos.html#casos-desviados"><i class="fa fa-check"></i><b>11.1.2</b> Casos desviados</a></li>
-<li class="chapter" data-level="11.1.3" data-path="casos.html"><a href="casos.html#casos-influyentes"><i class="fa fa-check"></i><b>11.1.3</b> Casos Influyentes</a></li>
-<li class="chapter" data-level="11.1.4" data-path="casos.html"><a href="casos.html#casos-extremos"><i class="fa fa-check"></i><b>11.1.4</b> Casos extremos</a></li>
-<li class="chapter" data-level="11.1.5" data-path="casos.html"><a href="casos.html#casos-mas-similares"><i class="fa fa-check"></i><b>11.1.5</b> Casos más similares</a></li>
-<li class="chapter" data-level="11.1.6" data-path="casos.html"><a href="casos.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>11.1.6</b> Casos más diferentes</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="casos.html"><a href="casos.html#la-relevancia-de-combinar-metodos"><i class="fa fa-check"></i><b>11.2</b> La relevancia de combinar métodos</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Mínería de datos</a></li>
-<li class="chapter" data-level="13" data-path="redes.html"><a href="redes.html"><i class="fa fa-check"></i><b>13</b> Análisis de redes</a><ul>
-<li class="chapter" data-level="13.1" data-path="redes.html"><a href="redes.html#introduccion-4"><i class="fa fa-check"></i><b>13.1</b> Introducción</a></li>
-<li class="chapter" data-level="13.2" data-path="redes.html"><a href="redes.html#conceptos-iniciales"><i class="fa fa-check"></i><b>13.2</b> Conceptos iniciales</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="redes.html"><a href="redes.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>13.2.1</b> Nodos y enlaces</a></li>
-<li class="chapter" data-level="13.2.2" data-path="redes.html"><a href="redes.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>13.2.2</b> Matriz de adyacencia</a></li>
-<li class="chapter" data-level="13.2.3" data-path="redes.html"><a href="redes.html#pesos-y-direccion"><i class="fa fa-check"></i><b>13.2.3</b> Pesos y dirección</a></li>
-</ul></li>
-<li class="chapter" data-level="13.3" data-path="redes.html"><a href="redes.html#bases-de-datos-de-redes"><i class="fa fa-check"></i><b>13.3</b> Bases de datos de redes</a></li>
-<li class="chapter" data-level="13.4" data-path="redes.html"><a href="redes.html#disposicion-grafica"><i class="fa fa-check"></i><b>13.4</b> Disposición gráfica</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="redes.html"><a href="redes.html#color-y-forma-en-la-representacion-visual"><i class="fa fa-check"></i><b>13.4.1</b> Color y forma en la representación visual</a></li>
-</ul></li>
-<li class="chapter" data-level="13.5" data-path="redes.html"><a href="redes.html#analisis-basico-de-redes"><i class="fa fa-check"></i><b>13.5</b> Análisis básico de redes</a><ul>
-<li class="chapter" data-level="13.5.1" data-path="redes.html"><a href="redes.html#medidas-de-centralidad"><i class="fa fa-check"></i><b>13.5.1</b> Medidas de centralidad</a></li>
-<li class="chapter" data-level="13.5.2" data-path="redes.html"><a href="redes.html#comunidades-en-las-redes"><i class="fa fa-check"></i><b>13.5.2</b> Comunidades en las redes</a></li>
+<li class="chapter" data-level="11.6" data-path="adv-data.html"><a href="adv-data.html#imputación-de-valores-perdidos"><i class="fa fa-check"></i><b>11.6</b> Imputación de valores perdidos</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="adv-data.html"><a href="adv-data.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>11.6.1</b> Regresiones luego de imputar datos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>14</b> Análisis cuantitativo de texto</a><ul>
-<li class="chapter" data-level="14.1" data-path="qta.html"><a href="qta.html#introduccion-5"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
-<li class="chapter" data-level="14.2" data-path="qta.html"><a href="qta.html#exploracion-de-la-bases-de-datos"><i class="fa fa-check"></i><b>14.2</b> Exploración de la bases de datos</a></li>
-<li class="chapter" data-level="14.3" data-path="qta.html"><a href="qta.html#calculo-de-frecuencias"><i class="fa fa-check"></i><b>14.3</b> Cálculo de frecuencias</a><ul>
-<li class="chapter" data-level="14.3.1" data-path="qta.html"><a href="qta.html#cuales-son-los-diez-hashtags-mas-usados-de-las-cuentas-de-los-diputados"><i class="fa fa-check"></i><b>14.3.1</b> ¿Cuáles son los diez hashtags más usados de las cuentas de los diputados?</a></li>
-<li class="chapter" data-level="14.3.2" data-path="qta.html"><a href="qta.html#frecuencias-por-genero-cantidad-de-hashtags-usados-por-los-diputados-en-total"><i class="fa fa-check"></i><b>14.3.2</b> Frecuencias por género: cantidad de hashtags usados por los diputados en total</a></li>
+<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Web Scraping</a><ul>
+<li class="chapter" data-level="" data-path="web-mining.html"><a href="web-mining.html#lecturas-sugeridas-8"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="web-mining.html"><a href="web-mining.html#los-paquetes-que-necesitas-instalar-10"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="12.1" data-path="web-mining.html"><a href="web-mining.html#introducción-7"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
+<li class="chapter" data-level="12.2" data-path="web-mining.html"><a href="web-mining.html#formas-de-hacer-web-scraping"><i class="fa fa-check"></i><b>12.2</b> Formas de hacer web scraping</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="web-mining.html"><a href="web-mining.html#estándar-de-exclusión-de-robot"><i class="fa fa-check"></i><b>12.2.1</b> Estándar de exclusión de robot</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="qta.html"><a href="qta.html#wordcloud-de-hashtags"><i class="fa fa-check"></i><b>14.4</b> Wordcloud de hashtags</a></li>
-<li class="chapter" data-level="14.5" data-path="qta.html"><a href="qta.html#graficar-los-hashtags-mas-utilizados-por-grupos-de-interes"><i class="fa fa-check"></i><b>14.5</b> Graficar los hashtags más utilizados por grupos de interés</a><ul>
-<li class="chapter" data-level="14.5.1" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-las-diputadas"><i class="fa fa-check"></i><b>14.5.1</b> Hashtags más usados entre las diputadas</a></li>
-<li class="chapter" data-level="14.5.2" data-path="qta.html"><a href="qta.html#hashtags-mas-usados-entre-los-diputados"><i class="fa fa-check"></i><b>14.5.2</b> Hashtags más usados entre los diputados</a></li>
+<li class="chapter" data-level="12.3" data-path="web-mining.html"><a href="web-mining.html#web-scraping-en-r"><i class="fa fa-check"></i><b>12.3</b> Web scraping en R</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="web-mining.html"><a href="web-mining.html#ejemplo-aplicado-los-comunicados-de-prensa-de-la-organización-de-estados-americanos-oea"><i class="fa fa-check"></i><b>12.3.1</b> Ejemplo aplicado: los comunicados de prensa de la Organización de Estados Americanos (OEA)</a></li>
+<li class="chapter" data-level="12.3.2" data-path="web-mining.html"><a href="web-mining.html#caraga-el-html-para-trabajar-con-r"><i class="fa fa-check"></i><b>12.3.2</b> Caraga el html para trabajar con R</a></li>
+<li class="chapter" data-level="12.3.3" data-path="web-mining.html"><a href="web-mining.html#extraer-la-información-con-html_nodes-html_text"><i class="fa fa-check"></i><b>12.3.3</b> Extraer la información con <code>html_nodes()</code> + <code>html_text()</code></a></li>
+<li class="chapter" data-level="12.3.4" data-path="web-mining.html"><a href="web-mining.html#iteraciones"><i class="fa fa-check"></i><b>12.3.4</b> Iteraciones</a></li>
+<li class="chapter" data-level="12.3.5" data-path="web-mining.html"><a href="web-mining.html#funciones-personalizadas-recetas"><i class="fa fa-check"></i><b>12.3.5</b> Funciones personalizadas (recetas)</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-caracteristicas-del-diputado"><i class="fa fa-check"></i><b>14.6</b> Hashtags de género por características del diputado</a><ul>
-<li class="chapter" data-level="14.6.1" data-path="qta.html"><a href="qta.html#por-el-genero-del-diputado"><i class="fa fa-check"></i><b>14.6.1</b> Por el género del diputado</a></li>
-<li class="chapter" data-level="14.6.2" data-path="qta.html"><a href="qta.html#por-la-coalicion-de-los-diputados"><i class="fa fa-check"></i><b>14.6.2</b> Por la coalición de los diputados</a></li>
-</ul></li>
-<li class="chapter" data-level="14.7" data-path="qta.html"><a href="qta.html#variacion-temporal-del-uso-de-estos-hashtags"><i class="fa fa-check"></i><b>14.7</b> Variación temporal del uso de estos hashtags</a><ul>
-<li class="chapter" data-level="14.7.1" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-olafeminista"><i class="fa fa-check"></i><b>14.7.1</b> Frecuencia semanal de #olafeminista</a></li>
-<li class="chapter" data-level="14.7.2" data-path="qta.html"><a href="qta.html#frecuencia-semanal-de-tres-hashtags-de-genero"><i class="fa fa-check"></i><b>14.7.2</b> Frecuencia semanal de tres hashtags de género</a></li>
-<li class="chapter" data-level="14.7.3" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-de-genero-por-semana"><i class="fa fa-check"></i><b>14.7.3</b> Grafiquemos los hashtags de género por semana</a></li>
-<li class="chapter" data-level="14.7.4" data-path="qta.html"><a href="qta.html#ponderamos-en-relacion-al-total-de-hashtags-por-semana"><i class="fa fa-check"></i><b>14.7.4</b> Ponderamos en relación al total de hashtags por semana</a></li>
-<li class="chapter" data-level="14.7.5" data-path="qta.html"><a href="qta.html#grafiquemos-los-hashtags-interesantes-ponderados-por-el-total-semanal"><i class="fa fa-check"></i><b>14.7.5</b> Grafiquemos los hashtags interesantes ponderados por el total semanal</a></li>
-<li class="chapter" data-level="14.7.6" data-path="qta.html"><a href="qta.html#diputadas"><i class="fa fa-check"></i><b>14.7.6</b> Diputadas</a></li>
-</ul></li>
-<li class="chapter" data-level="14.8" data-path="qta.html"><a href="qta.html#hashtags-de-genero-por-semana-a-nivel-de-diputados-ponderados-por-semana"><i class="fa fa-check"></i><b>14.8</b> Hashtags de género por semana a nivel de diputados (ponderados por semana)</a></li>
-<li class="chapter" data-level="14.9" data-path="qta.html"><a href="qta.html#comentarios-finales"><i class="fa fa-check"></i><b>14.9</b> Comentarios finales</a></li>
-<li class="chapter" data-level="14.10" data-path="qta.html"><a href="qta.html#anexo-problemas-que-se-presentan-cuando-analizas-discursos-debates-o-leyes"><i class="fa fa-check"></i><b>14.10</b> Anexo: Problemas que se presentan cuando analizas discursos, debates o leyes</a></li>
-<li class="chapter" data-level="14.11" data-path="qta.html"><a href="qta.html#tidy-text"><i class="fa fa-check"></i><b>14.11</b> <code>Tidy text</code></a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>15</b> Generación de mapas</a><ul>
-<li class="chapter" data-level="15.1" data-path="mapas.html"><a href="mapas.html#datos-espaciales"><i class="fa fa-check"></i><b>15.1</b> Datos Espaciales</a><ul>
-<li class="chapter" data-level="15.1.1" data-path="mapas.html"><a href="mapas.html#que-son"><i class="fa fa-check"></i><b>15.1.1</b> ¿Qué son?</a></li>
-<li class="chapter" data-level="15.1.2" data-path="mapas.html"><a href="mapas.html#estructura-de-los-datos-espaciales"><i class="fa fa-check"></i><b>15.1.2</b> Estructura de los Datos Espaciales</a></li>
-</ul></li>
-<li class="chapter" data-level="15.2" data-path="mapas.html"><a href="mapas.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>15.2</b> Datos Espaciales en R</a></li>
-<li class="chapter" data-level="15.3" data-path="mapas.html"><a href="mapas.html#special-features-en-r"><i class="fa fa-check"></i><b>15.3</b> Special Features en R</a><ul>
-<li class="chapter" data-level="15.3.1" data-path="mapas.html"><a href="mapas.html#estructura"><i class="fa fa-check"></i><b>15.3.1</b> Estructura</a></li>
-</ul></li>
-<li class="chapter" data-level="15.4" data-path="mapas.html"><a href="mapas.html#manejo-de-datos-espaciales"><i class="fa fa-check"></i><b>15.4</b> Manejo de Datos Espaciales</a><ul>
-<li class="chapter" data-level="15.4.1" data-path="mapas.html"><a href="mapas.html#modificaciones"><i class="fa fa-check"></i><b>15.4.1</b> Modificaciones</a></li>
-<li class="chapter" data-level="15.4.2" data-path="mapas.html"><a href="mapas.html#crear-nuevos-shapefiles-con-st_write"><i class="fa fa-check"></i><b>15.4.2</b> Crear nuevos shapefiles con <code>st_write</code></a></li>
-<li class="chapter" data-level="15.4.3" data-path="mapas.html"><a href="mapas.html#incorporar-datos-de-otras-bases-con-merge"><i class="fa fa-check"></i><b>15.4.3</b> Incorporar datos de otras bases con <code>merge</code></a></li>
-</ul></li>
-<li class="chapter" data-level="15.5" data-path="mapas.html"><a href="mapas.html#mapear-en-r"><i class="fa fa-check"></i><b>15.5</b> Mapear en R</a></li>
-<li class="chapter" data-level="15.6" data-path="mapas.html"><a href="mapas.html#mapeando-variables"><i class="fa fa-check"></i><b>15.6</b> Mapeando variables</a><ul>
-<li class="chapter" data-level="15.6.1" data-path="mapas.html"><a href="mapas.html#mapas-animados-con-gganimate"><i class="fa fa-check"></i><b>15.6.1</b> Mapas animados con <code>gganimate</code></a></li>
-</ul></li>
-<li class="chapter" data-level="15.7" data-path="mapas.html"><a href="mapas.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>15.7</b> Inferencia a partir de Datos Espaciales</a><ul>
-<li class="chapter" data-level="15.7.1" data-path="mapas.html"><a href="mapas.html#indicadores-locales-de-asociacion-espacial-lisa"><i class="fa fa-check"></i><b>15.7.1</b> Indicadores locales de asociación espacial (LISA)</a></li>
-<li class="chapter" data-level="15.7.2" data-path="mapas.html"><a href="mapas.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>15.7.2</b> Matriz de Pesos Espaciales</a></li>
-<li class="chapter" data-level="15.7.3" data-path="mapas.html"><a href="mapas.html#morans-i"><i class="fa fa-check"></i><b>15.7.3</b> Moran’s I</a></li>
+<li class="chapter" data-level="12.4" data-path="web-mining.html"><a href="web-mining.html#usando-apis-y-extrayendo-datos-de-twitter"><i class="fa fa-check"></i><b>12.4</b> Usando APIs y extrayendo datos de Twitter</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="web-mining.html"><a href="web-mining.html#buscar-una-palabra-clave"><i class="fa fa-check"></i><b>12.4.1</b> Buscar una palabra clave</a></li>
+<li class="chapter" data-level="12.4.2" data-path="web-mining.html"><a href="web-mining.html#buscar-una-frase"><i class="fa fa-check"></i><b>12.4.2</b> Buscar una frase</a></li>
+<li class="chapter" data-level="12.4.3" data-path="web-mining.html"><a href="web-mining.html#descargando-características-relacionadas-con-los-usuarios-de-twitter"><i class="fa fa-check"></i><b>12.4.3</b> Descargando características relacionadas con los usuarios de Twitter</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="13" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>13</b> Análisis cuantitativo de textos políticos</a><ul>
+<li class="chapter" data-level="" data-path="qta.html"><a href="qta.html#lecturas-recomendadas"><i class="fa fa-check"></i>Lecturas recomendadas</a></li>
+<li class="chapter" data-level="" data-path="qta.html"><a href="qta.html#paquetes-que-necesitas-instalar"><i class="fa fa-check"></i>Paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="13.1" data-path="qta.html"><a href="qta.html#sqta1"><i class="fa fa-check"></i><b>13.1</b> Análisis de hashtags políticos</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="qta.html"><a href="qta.html#exploración-de-datos-de-twitter"><i class="fa fa-check"></i><b>13.1.1</b> Exploración de datos de Twitter</a></li>
+<li class="chapter" data-level="13.1.2" data-path="qta.html"><a href="qta.html#diagnóstico-visual"><i class="fa fa-check"></i><b>13.1.2</b> Diagnóstico visual</a></li>
+<li class="chapter" data-level="13.1.3" data-path="qta.html"><a href="qta.html#hashtags-más-utilizados"><i class="fa fa-check"></i><b>13.1.3</b> Hashtags más utilizados</a></li>
+<li class="chapter" data-level="13.1.4" data-path="qta.html"><a href="qta.html#wordclouds-nubes-de-palabras"><i class="fa fa-check"></i><b>13.1.4</b> Wordclouds (Nubes de palabras)</a></li>
+<li class="chapter" data-level="13.1.5" data-path="qta.html"><a href="qta.html#nubes-de-palabras-por-grupos"><i class="fa fa-check"></i><b>13.1.5</b> Nubes de palabras por grupos</a></li>
+<li class="chapter" data-level="13.1.6" data-path="qta.html"><a href="qta.html#gráficos-de-barras"><i class="fa fa-check"></i><b>13.1.6</b> Gráficos de barras</a></li>
+<li class="chapter" data-level="13.1.7" data-path="qta.html"><a href="qta.html#variación-temporal-en-el-uso-de-hashtags"><i class="fa fa-check"></i><b>13.1.7</b> Variación temporal en el uso de hashtags</a></li>
+<li class="chapter" data-level="13.1.8" data-path="qta.html"><a href="qta.html#para-resumir"><i class="fa fa-check"></i><b>13.1.8</b> Para resumir</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="qta.html"><a href="qta.html#wordfish"><i class="fa fa-check"></i><b>13.2</b> Wordfish</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="qta.html"><a href="qta.html#inspección-y-limpieza-de-datos"><i class="fa fa-check"></i><b>13.2.1</b> Inspección y limpieza de datos</a></li>
+<li class="chapter" data-level="13.2.2" data-path="qta.html"><a href="qta.html#pre-procesamiento"><i class="fa fa-check"></i><b>13.2.2</b> Pre-procesamiento</a></li>
+<li class="chapter" data-level="13.2.3" data-path="qta.html"><a href="qta.html#sqta2"><i class="fa fa-check"></i><b>13.2.3</b> Wordfish</a></li>
+<li class="chapter" data-level="13.2.4" data-path="qta.html"><a href="qta.html#qué-aprendimos-de-wordfish"><i class="fa fa-check"></i><b>13.2.4</b> ¿Qué aprendimos de Wordfish?</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="qta.html"><a href="qta.html#sqta3"><i class="fa fa-check"></i><b>13.3</b> Structural Topic Modeling (STM)</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="qta.html"><a href="qta.html#pre-procesamiento-1"><i class="fa fa-check"></i><b>13.3.1</b> Pre-procesamiento</a></li>
+<li class="chapter" data-level="13.3.2" data-path="qta.html"><a href="qta.html#diagnósticos"><i class="fa fa-check"></i><b>13.3.2</b> Diagnósticos</a></li>
+<li class="chapter" data-level="13.3.3" data-path="qta.html"><a href="qta.html#análisis"><i class="fa fa-check"></i><b>13.3.3</b> Análisis</a></li>
+<li class="chapter" data-level="13.3.4" data-path="qta.html"><a href="qta.html#observaciones-finales"><i class="fa fa-check"></i><b>13.3.4</b> Observaciones finales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="networks.html"><a href="networks.html"><i class="fa fa-check"></i><b>14</b> Análisis de redes</a><ul>
+<li class="chapter" data-level="" data-path="networks.html"><a href="networks.html#lecturas-sugeridas-9"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="networks.html"><a href="networks.html#los-paquetes-que-necesitas-instalar-11"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="14.1" data-path="networks.html"><a href="networks.html#introducción-8"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
+<li class="chapter" data-level="14.2" data-path="networks.html"><a href="networks.html#conceptos-básicos-en-una-red"><i class="fa fa-check"></i><b>14.2</b> Conceptos básicos en una red</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="networks.html"><a href="networks.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>14.2.1</b> Nodos y enlaces</a></li>
+<li class="chapter" data-level="14.2.2" data-path="networks.html"><a href="networks.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>14.2.2</b> Matriz de adyacencia</a></li>
+<li class="chapter" data-level="14.2.3" data-path="networks.html"><a href="networks.html#pesos-y-direcciones"><i class="fa fa-check"></i><b>14.2.3</b> Pesos y direcciones</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="networks.html"><a href="networks.html#bases-de-datos-de-la-red"><i class="fa fa-check"></i><b>14.3</b> Bases de datos de la red</a></li>
+<li class="chapter" data-level="14.4" data-path="networks.html"><a href="networks.html#presentación-gráfica-de-una-red"><i class="fa fa-check"></i><b>14.4</b> Presentación gráfica de una red</a></li>
+<li class="chapter" data-level="14.5" data-path="networks.html"><a href="networks.html#medidas-de-centralidad"><i class="fa fa-check"></i><b>14.5</b> Medidas de centralidad</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="networks.html"><a href="networks.html#grado"><i class="fa fa-check"></i><b>14.5.1</b> Grado</a></li>
+<li class="chapter" data-level="14.5.2" data-path="networks.html"><a href="networks.html#centralidad-del-eigenvector"><i class="fa fa-check"></i><b>14.5.2</b> Centralidad del eigenvector</a></li>
+<li class="chapter" data-level="14.5.3" data-path="networks.html"><a href="networks.html#centralidad-de-intermediación-betweenness"><i class="fa fa-check"></i><b>14.5.3</b> Centralidad de intermediación (<em>betweenness</em>)</a></li>
+<li class="chapter" data-level="14.5.4" data-path="networks.html"><a href="networks.html#cercanía"><i class="fa fa-check"></i><b>14.5.4</b> Cercanía</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="networks.html"><a href="networks.html#aplicación-en-r"><i class="fa fa-check"></i><b>14.6</b> Aplicación en R</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="indexes.html"><a href="indexes.html"><i class="fa fa-check"></i><b>15</b> Análisis de componentes principales</a><ul>
+<li class="chapter" data-level="" data-path="indexes.html"><a href="indexes.html#lecturas-sugeridas-10"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="indexes.html"><a href="indexes.html#los-paquetes-que-necesitas-instalar-12"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="15.1" data-path="indexes.html"><a href="indexes.html#introducción-9"><i class="fa fa-check"></i><b>15.1</b> Introducción</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="indexes.html"><a href="indexes.html#conceptos-medidas-y-validez"><i class="fa fa-check"></i><b>15.1.1</b> Conceptos, medidas y validez</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="indexes.html"><a href="indexes.html#cómo-funciona-el-análisis-de-componentes-principales"><i class="fa fa-check"></i><b>15.2</b> Cómo funciona el Análisis de Componentes Principales</a></li>
+<li class="chapter" data-level="15.3" data-path="indexes.html"><a href="indexes.html#nociones-básicas-en-r"><i class="fa fa-check"></i><b>15.3</b> Nociones básicas en R</a></li>
+<li class="chapter" data-level="15.4" data-path="indexes.html"><a href="indexes.html#dimensionalidad-del-concepto"><i class="fa fa-check"></i><b>15.4</b> Dimensionalidad del concepto</a></li>
+<li class="chapter" data-level="15.5" data-path="indexes.html"><a href="indexes.html#variación-del-concepto"><i class="fa fa-check"></i><b>15.5</b> Variación del concepto</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="maps.html"><a href="maps.html"><i class="fa fa-check"></i><b>16</b> Mapas y datos espaciales</a><ul>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#lecturas-sugeridas-11"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#los-paquetes-que-necesitas-instalar-13"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="16.1" data-path="maps.html"><a href="maps.html#introducción-10"><i class="fa fa-check"></i><b>16.1</b> Introducción</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="maps.html"><a href="maps.html#datos-espaciales-qué-son"><i class="fa fa-check"></i><b>16.1.1</b> Datos espaciales: ¿qué son?</a></li>
+<li class="chapter" data-level="16.1.2" data-path="maps.html"><a href="maps.html#estructura-de-datos-espaciales"><i class="fa fa-check"></i><b>16.1.2</b> Estructura de datos espaciales</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="maps.html"><a href="maps.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>16.2</b> Datos espaciales en R</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="maps.html"><a href="maps.html#características-simples-en-r"><i class="fa fa-check"></i><b>16.2.1</b> Características simples en R</a></li>
+<li class="chapter" data-level="16.2.2" data-path="maps.html"><a href="maps.html#estructura"><i class="fa fa-check"></i><b>16.2.2</b> Estructura</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="maps.html"><a href="maps.html#gestión-de-datos-espaciales"><i class="fa fa-check"></i><b>16.3</b> Gestión de Datos Espaciales</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="maps.html"><a href="maps.html#modificaciones"><i class="fa fa-check"></i><b>16.3.1</b> Modificaciones</a></li>
+<li class="chapter" data-level="16.3.2" data-path="maps.html"><a href="maps.html#añade-datos-de-otras-bases-de-datos-con-left_join"><i class="fa fa-check"></i><b>16.3.2</b> Añade datos de otras bases de datos con <code>left_join()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="maps.html"><a href="maps.html#mapeo"><i class="fa fa-check"></i><b>16.4</b> Mapeo</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="maps.html"><a href="maps.html#generando-centroides"><i class="fa fa-check"></i><b>16.4.1</b> Generando centroides</a></li>
+<li class="chapter" data-level="16.4.2" data-path="maps.html"><a href="maps.html#mapeando-variables"><i class="fa fa-check"></i><b>16.4.2</b> Mapeando variables</a></li>
+<li class="chapter" data-level="16.4.3" data-path="maps.html"><a href="maps.html#mapeando-puntos"><i class="fa fa-check"></i><b>16.4.3</b> Mapeando puntos</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="maps.html"><a href="maps.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>16.5</b> Inferencia a partir de datos espaciales</a><ul>
+<li class="chapter" data-level="16.5.1" data-path="maps.html"><a href="maps.html#indicador-local-de-asociación-espacial-lisa-por-sus-siglas-en-inglés"><i class="fa fa-check"></i><b>16.5.1</b> Indicador local de asociación espacial (LISA, por sus siglas en inglés)</a></li>
+<li class="chapter" data-level="16.5.2" data-path="maps.html"><a href="maps.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>16.5.2</b> Matriz de pesos espaciales</a></li>
+<li class="chapter" data-level="16.5.3" data-path="maps.html"><a href="maps.html#i-de-moran"><i class="fa fa-check"></i><b>16.5.3</b> I de Moran</a></li>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#comentarios-finales-referencias-para-un-mejor-análisis-de-datos-espaciales"><i class="fa fa-check"></i>Comentarios finales: Referencias para un mejor análisis de datos espaciales</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Referencias</b></span></li>
+<li class="chapter" data-level="17" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i><b>17</b> Referencias</a></li>
 </ul>
 
       </nav>
@@ -364,27 +464,510 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 
             <section class="normal" id="section-">
 <div id="web-mining" class="section level1">
-<h1><span class="header-section-number">Capítulo 12</span> Mínería de datos</h1>
-<p><em>Por Gonzalo Barría</em></p>
-<p>PENDIENTE.</p>
+<h1><span class="header-section-number">Capítulo 12</span> Web Scraping</h1>
+<p>Gonzalo Barría<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a></p>
+<div id="lecturas-sugeridas-8" class="section level3 unnumbered">
+<h3>Lecturas sugeridas</h3>
+<ul>
+<li><p>Calvo, E. (2015). <em>Anatomía política de Twitter en Argentina. Tuiteando #Nisman</em>. Buenos Aires: Capital Intelectual.</p></li>
+<li><p>Steinert-Threlkeld, Z. (2018). <em>Twitter as Data (Elements in Quantitative and Computational Methods for the Social Sciences)</em>. Cambridge: Cambridge University Press.</p></li>
+</ul>
+</div>
+<div id="los-paquetes-que-necesitas-instalar-10" class="section level3 unnumbered">
+<h3>Los paquetes que necesitas instalar</h3>
+<ul>
+<li><code>tidyverse</code> <span class="citation">(Wickham <a href="referencias.html#ref-R-tidyverse" role="doc-biblioref">2019</a><a href="referencias.html#ref-R-tidyverse" role="doc-biblioref">b</a>)</span>, <code>glue</code> <span class="citation">(Hester <a href="referencias.html#ref-R-glue" role="doc-biblioref">2020</a>)</span>, <code>rvest</code> <span class="citation">(Wickham <a href="referencias.html#ref-R-rvest" role="doc-biblioref">2019</a><a href="referencias.html#ref-R-rvest" role="doc-biblioref">a</a>)</span>, <code>rtweet</code> <span class="citation">(Kearney <a href="referencias.html#ref-R-rtweet" role="doc-biblioref">2020</a>)</span>.</li>
+</ul>
+</div>
+<div id="introducción-7" class="section level2">
+<h2><span class="header-section-number">12.1</span> Introducción</h2>
+<p>La información en Internet crece exponencialmente cada día. Si el problema de la ciencia política en el siglo XX fue la falta de datos para probar hipótesis, el siglo XXI presenta otro desafío: la información es abundante y está al alcance de la mano, pero hay que saber cómo recopilarla y analizarla. Esta enorme cantidad de datos está generalmente disponible pero de forma no estructurada, por lo que cuando te encuentres con la información tendrás dos retos principales: extraerla y luego clasificarla (es decir, dejarla como <em>datos organizados (tidy)</em>).</p>
+<p>Una de las técnicas más utilizadas para extraer información de los sitios web es la técnica conocida como <em>web scraping</em>.</p>
+<p>El web scraping se está convirtiendo en una técnica cada vez más popular en el análisis de datos debido a su versatilidad para tratar con diferentes sitios web. Como podemos ver en el siguiente gráfico, las búsquedas en Google del término “web scraping” han crecido constantemente año tras año desde 200:</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<img src="12-web-mining_es_files/figure-html/unnamed-chunk-2-1.png" alt="Búsquedas de 'web scraping' en Google" width="672" />
+<p class="caption">
+Figura 12.1: Búsquedas de ‘web scraping’ en Google
+</p>
+</div>
+<p>Esto consiste en obtener datos no muy estructurados (HTML) desde un sitio web, que usualmente luego transformamos a un formato estructurado con filas y columnas, con el que es más fácil trabajar. Nos permite obtener datos de fuentes no tradicionales (¡prácticamente cualquier página web!)</p>
+<ul>
+<li>La información que podemos obtener es la misma que podríamos hacer manualmente (copiar y pegar a un documento de Excel, por ejemplo), pero podemos automatizar tareas muy tediosas.</li>
+</ul>
+<p>¿Para qué podríamos usar el web scraping? Como ejemplo práctico, vamos a realizar 2 simples ejercicios de extracción de datos. Pero antes de eso es bueno estar familiarizado con las fuentes de información y los múltiples usos que se le pueden dar a los datos extraídos. Algunas otras posibles aplicaciones para las que se puede usar el web scraping son:</p>
+<ol style="list-style-type: decimal">
+<li><p>Por ejemplo, pueden utilizarse para clasificar productos o servicios para crear motores de recomendación, para obtener datos de texto, como en la Wikipedia, para hacer sistemas basados en el Procesamiento del Lenguaje Natural.</p></li>
+<li><p>Generar datos a partir de etiquetas de imágenes, de sitios web como Google, Flickr, etc. para entrenar modelos de clasificación de imágenes.</p></li>
+<li><p>Consolidar los datos de las redes sociales: Facebook y Twitter, para realizar análisis de sentimientos u opiniones.</p></li>
+<li><p>Extraer comentarios de usuarios y sitios de comercio electrónico como Alibaba, Amazon o Walmart.</p></li>
+</ol>
+</div>
+<div id="formas-de-hacer-web-scraping" class="section level2">
+<h2><span class="header-section-number">12.2</span> Formas de hacer web scraping</h2>
+<p>Podemos raspar (scrape) los datos, es decir, obtenerlos, de diferentes maneras:</p>
+<ol style="list-style-type: decimal">
+<li><p>Copiar y pegar: obviamente esto debe ser hecho por un humano, es una manera lenta e ineficiente de obtener datos de la web.</p></li>
+<li><p>Uso de APIs: API (por sus siglas en inglés) significa <em>interfaz de programación de aplicaciones</em>. Sitios web como Facebook, Twitter, LinkedIn, entre otros, ofrecen una API pública y/o privada, a la que se puede acceder mediante programación, para recuperar datos en el formato deseado. Una API es un conjunto de definiciones y protocolos utilizados para desarrollar e integrar programas informáticos de aplicación. En pocas palabras, es un código que indica a las aplicaciones cómo pueden comunicarse entre sí. Las API permiten que sus productos y servicios se comuniquen con otros, sin necesidad de saber cómo se implementan. Esto simplifica el desarrollo de aplicaciones y ahorra tiempo y dinero.</p></li>
+<li><p>Análisis DOM: DOM significa <em>Documento Objeto Modelo</em> y es esencialmente una interfaz de plataforma que proporciona un conjunto estándar de objetos para representar documentos HTML y XML. El DOM permite el acceso dinámico a través de la programación para acceder, añadir y cambiar dinámicamente el contenido estructurado en documentos con lenguajes como <em>JavaScript</em>. A través de algunos programas es posible recuperar el contenido dinámico, o partes de sitios web generados por scripts de un cliente. Los objetos DOM modelan tanto la ventana del navegador como el historial, el documento o la página web, y todos los elementos que la propia página puede tener, como párrafos, divisiones, tablas, formularios y sus campos, etc. A través del DOM se puede acceder, mediante Javascript, a cualquiera de estos elementos, es decir, a sus correspondientes objetos para alterar sus propiedades o invocar sus métodos. Sin embargo, a través del DOM, cualquier elemento de la página está disponible para los programadores de Javascript, para modificarlos, borrarlos, crear nuevos elementos y colocarlos en la página.</p></li>
+</ol>
+<div id="estándar-de-exclusión-de-robot" class="section level3">
+<h3><span class="header-section-number">12.2.1</span> Estándar de exclusión de robot</h3>
+<p>Antes de entrar en la práctica del <em>web scraping</em> tenemos que entender mejor qué es y cómo funciona el archivo <em>robots.txt</em> presente en la mayoría de los sitios web. Este archivo contiene el llamado <em>estándar de exclusión de robot</em> que es una serie de instrucciones especialmente dirigidas a los programas que buscan indexar el contenido de estas páginas (por ejemplo el bot de Google que “guarda” las nuevas páginas que se crean en Internet). Este método se utiliza para evitar que ciertos bots que analizan sitios de Internet añadan información “innecesaria” a los resultados de las búsquedas. Un archivo <em>robots.txt</em> en una página web funcionará como una petición para que ciertos bots ignoren archivos o directorios específicos en su búsqueda. Esto es importante cuando hablamos de <em>web scraping</em> ya que siempre es aconsejable revisar el archivo <em>robots.txt</em> de una página web antes de iniciar el scraping ya que puede incluir información que necesitaremos más adelante. Un ejemplo de cómo es uno de estos archivos se puede encontrar en el archivo <em>robots.txt</em> de Google <a href="https://www.google.com/robots.txt" class="uri">https://www.google.com/robots.txt</a></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="00-images/web-mining/web-mining4.png" alt="Vistazo a los estándares de exclusión de Google" width="70%" />
+<p class="caption">
+Figura 7.1: Vistazo a los estándares de exclusión de Google
+</p>
+</div>
+<p>En esta imagen encontramos la expresión <em>Usuario-agente: </em>. Esto permite a todos los robots acceder a los archivos que se almacenan en el código principal de la página web ya que el comodín (<em>) significa “TODO”.
+A continuación vemos que los robots no pueden indexar o visitar páginas web del tipo </em>/index.html?* o <em>/grupos</em> por ejemplo. Si encontramos la expresión <em>Rechazar: /</em> significa que se le niega el acceso a todos los bots (el comodín <em>/</em> se aplica automáticamente a todos los archivos almacenados en el directorio raíz del sitio web).</p>
+</div>
+</div>
+<div id="web-scraping-en-r" class="section level2">
+<h2><span class="header-section-number">12.3</span> Web scraping en R</h2>
+<p>Iremos cargando los paquetes que necesitamos. Ya estás familiarizado con algunos de ellos como <code>ggplot2</code>, que es parte del <code>tidyverse</code>. El paquete <code>rvest</code> es el que nos permitirá hacer el scraping de datos con R. Es esencialmente una librería que nos permite traer y manipular datos de una página web, usando HTML y XML. Finalmente, el paquete <code>glue</code> está diseñado para hacer más fácil interpolar (pegar) datos en <em>strings¨</em></p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="web-mining.html#cb427-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb427-2"><a href="web-mining.html#cb427-2"></a><span class="kw">library</span>(glue)</span>
+<span id="cb427-3"><a href="web-mining.html#cb427-3"></a><span class="kw">library</span>(rvest)</span></code></pre></div>
+<p>Para “leer” datos de diferentes sitios web necesitaremos la ayuda de una herramienta de código abierto (open source tool), un plugin llamado “selectorgadget”. Este se utiliza para extraer información de un sitio web. En este caso lo usaremos para seleccionar y resaltar las partes del sitio web que queremos extraer.</p>
+<p>Se puede encontrar más información en este enlace <a href="https://selectorgadget.com/" class="uri">https://selectorgadget.com/</a> y aquí <a href="https://cran.r-project.org/web/packages/rvest/vignettes/selectorgadget.html" class="uri">https://cran.r-project.org/web/packages/rvest/vignettes/selectorgadget.html</a></p>
+<div id="ejemplo-aplicado-los-comunicados-de-prensa-de-la-organización-de-estados-americanos-oea" class="section level3">
+<h3><span class="header-section-number">12.3.1</span> Ejemplo aplicado: los comunicados de prensa de la Organización de Estados Americanos (OEA)</h3>
+<p>Como primer ejemplo haremos un web scraping de un sitio estático. Es decir, un sitio web que tiene texto en HTML y que no cambia. Supongamos que estamos trabajando en un proyecto de diplomacia y relaciones internacionales en el que debemos sistematizar la información sobre la interacción entre los países de América Latina. Uno de los repositorios más útiles para iniciar este tipo de investigación es el sitio web de la Organización de Estados Americanos (OEA). Se puede encontrar en el siguiente link: <a href="https://www.oas.org/es/" class="uri">https://www.oas.org/es/</a>.</p>
+<p>Este sitio ofrece información muy pertinente para los analistas de datos políticos, ya que se trata de datos no estructurados que permiten identificar, por ejemplo, las redes de países, las alianzas, las fuentes de conflicto y las cuestiones que los ministerios de relaciones exteriores consideran pertinentes.</p>
+<p>Antes de comenzar con el <em>web scraping</em> en sí mismo analizaremos el archivo <em>robots-txt</em> del sitio web de la OEA <a href="http://oas.org/robots.txt" class="uri">http://oas.org/robots.txt</a></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="00-images/web-mining/web-mining3.png" alt="Vistazo al archivo robots.txt de la OEA" width="100%" />
+<p class="caption">
+Figura 3.4: Vistazo al archivo robots.txt de la OEA
+</p>
+</div>
+<p>Encontramos que algunos directorios están prohibidos de ser indexados, pero todos los bots y usuarios están autorizados a visitar el sitio. Lo más importante es la expresión <em>Crawl-delay: 3</em> que básicamente nos dice que por cada petición hecha por un robot es aconsejable esperar 3 segundos entre una consulta y otra para no saturar el sitio, lo que puede resultar en que te bloquee.</p>
+<p>En este ejemplo en particular, queremos extraer los títulos de los comunicados de prensa que se encuentran en este sitio web. Para simplificar, se recomienda utilizar Google Chrome (<a href="https://chrome.google.com/" class="uri">https://chrome.google.com/</a>) y la extensión Selector Gadget para este buscador.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a> La extensión Selector Gadget también funciona en Firefox y en Safari (así como en otros navegadores), sólo tienes que arrastrar el marcador a tu barra de marcadores.</p>
+<p>Primero cargamos la página como un objeto para que luego podamos leerla como un archivo html. En este caso queremos que los títulos de los comunicados de prensa de la Organización de Estados Americanos (OEA) para octubre de 2019</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="web-mining.html#cb428-1"></a><span class="kw">download_html</span>(<span class="dt">url  =</span> <span class="st">&quot;https://www.oas.org/es/centro_noticias/</span></span>
+<span id="cb428-2"><a href="web-mining.html#cb428-2"></a><span class="st">              comunicados_prensa.asp?nMes=10&amp;nAnio=2019&quot;</span>, </span>
+<span id="cb428-3"><a href="web-mining.html#cb428-3"></a>              <span class="dt">file =</span> <span class="st">&quot;webs/comunicados_oea_10_2019.html&quot;</span>)</span></code></pre></div>
+</div>
+<div id="caraga-el-html-para-trabajar-con-r" class="section level3">
+<h3><span class="header-section-number">12.3.2</span> Caraga el html para trabajar con R</h3>
+<p>Una vez que descargamos los datos, los importamos en R usando <code>read_html()</code></p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="web-mining.html#cb429-1"></a>web_comunicados_<span class="dv">10</span>_<span class="dv">2019</span> &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="st">&quot;webs/comunicados_oea_10_2019.html&quot;</span>, </span>
+<span id="cb429-2"><a href="web-mining.html#cb429-2"></a>                                     <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span></code></pre></div>
+</div>
+<div id="extraer-la-información-con-html_nodes-html_text" class="section level3">
+<h3><span class="header-section-number">12.3.3</span> Extraer la información con <code>html_nodes()</code> + <code>html_text()</code></h3>
+<p>A continuación, abrimos la página en Google Chrome donde lo primero que veremos es el sitio con las noticias. Allí hacemos clic en la extensión Chrome del Selector Gadget como se indica en la figura de abajo (es la pequeña lupa en la esquina superior derecha).</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<img src="00-images/web-mining/web-mining1.png" alt="Pantallazo del sitio de los comunicados de prensa de la OEA" width="100%" />
+<p class="caption">
+Figura 3.7: Pantallazo del sitio de los comunicados de prensa de la OEA
+</p>
+</div>
+<p>El primer paso es encontrar el selector de CSS que contiene nuestra información. En la mayoría de los casos sólo usaremos <a href="https://selectorgadget.com/">SelectorGadget</a>. Empecemos con los títulos. Como podemos ver en la figura, seleccionamos la parte del sitio web que queremos extraer. En este caso queremos los títulos de los comunicados de prensa que después de ser seleccionados se destacan en amarillo. Observarán que al hacer clic en uno de ellos, aparece un mensaje “.itemmenulink” en el espacio vacío que hay en el Selector. Estos son los caracteres designados para los títulos en este sitio web</p>
+<div class="figure" style="text-align: center"><span id="fig:pressure"></span>
+<img src="00-images/web-mining/web-mining2.png" alt="Títulos de los comunicados de prensa que queremos extraer" width="100%" />
+<p class="caption">
+Figura 12.2: Títulos de los comunicados de prensa que queremos extraer
+</p>
+</div>
+<p>A continuación creamos un objeto para leer esta información como un objeto html en R. Lo llamaremos <code>titulos_web_comunicados_10_2019</code>. Dentro de la función <code>html_nodes()</code> añadimos el carácter “.itemmenulink” ya que representa los títulos según el selector.</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="web-mining.html#cb430-1"></a>titulos_web_comunicados_<span class="dv">10</span>_<span class="dv">2019</span> &lt;-<span class="st"> </span>web_comunicados_<span class="dv">10</span>_<span class="dv">2019</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb430-2"><a href="web-mining.html#cb430-2"></a><span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;.itemmenulink&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb430-3"><a href="web-mining.html#cb430-3"></a><span class="st">  </span><span class="kw">html_text</span>()</span></code></pre></div>
+<p>Así es como obtuvimos los titulares de todo el sitio web.</p>
+<p>Ahora revisaremos los primeros 10 resultados para ver cómo se clasificaron los datos. La idea más adelante sería transformar este objeto en un marco de datos. También podemos extraer el contenido de cada noticia, pero para ello necesitaríamos la URL en inglés (o en el idioma que prefieras) de cada comunicado de prensa.</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="web-mining.html#cb431-1"></a><span class="kw">head</span>(titulos_web_comunicados_<span class="dv">10</span>_<span class="dv">2019</span>, <span class="dt">n =</span> <span class="dv">10</span>)</span>
+<span id="cb431-2"><a href="web-mining.html#cb431-2"></a><span class="co">##  [1] &quot;Ministros de Seguridad de las AmÃ©ricas adoptan recomendaciones de Quito para fortalecer la prevenciÃ³n y lucha contra la delincuencia organizada&quot;                  </span></span>
+<span id="cb431-3"><a href="web-mining.html#cb431-3"></a><span class="co">##  [2] &quot;La SecretarÃ­a General de la OEA inicia hoy el anÃ¡lisis de integridad electoral y auditorÃ­a del cÃ³mputo oficial en Bolivia&quot;                                      </span></span>
+<span id="cb431-4"><a href="web-mining.html#cb431-4"></a><span class="co">##  [3] &quot;El Salvador serÃ¡ sede de la VIII ReuniÃ³n de Ministros de Seguridad PÃºblica de la OEA en 2021&quot;                                                                    </span></span>
+<span id="cb431-5"><a href="web-mining.html#cb431-5"></a><span class="co">##  [4] &quot;Pronunciamiento de los Ministros en Materia de Seguridad PÃºblica de las AmÃ©ricas&quot;                                                                                 </span></span>
+<span id="cb431-6"><a href="web-mining.html#cb431-6"></a><span class="co">##  [5] &quot;Recomendaciones de Quito para el Fortalecimiento de la CooperaciÃ³n Internacional en Materia de Seguridad PÃºblica en la PrevenciÃ³n y Lucha Contra la Delincuencia&quot;</span></span>
+<span id="cb431-7"><a href="web-mining.html#cb431-7"></a><span class="co">##  [6] &quot;Secretario General de la OEA rechaza masacre de indÃ­genas en Cauca, Colombia&quot;                                                                                      </span></span>
+<span id="cb431-8"><a href="web-mining.html#cb431-8"></a><span class="co">##  [7] &quot;Â¿QuÃ© es la ReuniÃ³n de Ministros en Materia de Seguridad PÃºblica de las AmÃ©ricas (MISPA)?&quot;                                                                      </span></span>
+<span id="cb431-9"><a href="web-mining.html#cb431-9"></a><span class="co">##  [8] &quot;Informe Preliminar de la MisiÃ³n de VeedurÃ­a Electoral de la OEA para las Elecciones de Autoridades Territoriales en Colombia&quot;                                     </span></span>
+<span id="cb431-10"><a href="web-mining.html#cb431-10"></a><span class="co">##  [9] &quot;OEA recibe contribuciÃ³n de Estados Unidos al Programa de CapacitaciÃ³n sobre Delito CibernÃ©tico&quot;                                                                  </span></span>
+<span id="cb431-11"><a href="web-mining.html#cb431-11"></a><span class="co">## [10] &quot;Consejo Permanente de la OEA celebra DÃ­a de la Visibilidad Intersexual y recibe Informe de la Ombudsperson&quot;</span></span></code></pre></div>
+<p>Para eliminar los enlaces de un elemento, en lugar de su texto, debemos sustituir <code>html_text()</code>por <code>html_attr("href")</code>:</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="web-mining.html#cb432-1"></a>links_web_comunicados_<span class="dv">10</span>_<span class="dv">2019</span> &lt;-<span class="st"> </span>web_comunicados_<span class="dv">10</span>_<span class="dv">2019</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb432-2"><a href="web-mining.html#cb432-2"></a><span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;.itemmenulink&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb432-3"><a href="web-mining.html#cb432-3"></a><span class="st">  </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb432-4"><a href="web-mining.html#cb432-4"></a><span class="st">  </span><span class="kw">str_c</span>(<span class="st">&quot;https://www.oas.org/es/centro_noticias/&quot;</span>,.)</span>
+<span id="cb432-5"><a href="web-mining.html#cb432-5"></a>links_web_comunicados_<span class="dv">10</span>_<span class="dv">2019</span></span>
+<span id="cb432-6"><a href="web-mining.html#cb432-6"></a><span class="co">##  [1] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=C-092/19&quot;  </span></span>
+<span id="cb432-7"><a href="web-mining.html#cb432-7"></a><span class="co">##  [2] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=C-091/19&quot;  </span></span>
+<span id="cb432-8"><a href="web-mining.html#cb432-8"></a><span class="co">##  [3] &quot;https://www.oas.org/es/centro_noticias/fotonoticia.asp?sCodigo=FNC-97905&quot;       </span></span>
+<span id="cb432-9"><a href="web-mining.html#cb432-9"></a><span class="co">##  [4] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=D-023/19&quot;  </span></span>
+<span id="cb432-10"><a href="web-mining.html#cb432-10"></a><span class="co">##  [5] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=D-022/19&quot;  </span></span>
+<span id="cb432-11"><a href="web-mining.html#cb432-11"></a><span class="co">##  [6] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=C-090/19&quot;  </span></span>
+<span id="cb432-12"><a href="web-mining.html#cb432-12"></a><span class="co">##  [7] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=D-021/19&quot;  </span></span>
+<span id="cb432-13"><a href="web-mining.html#cb432-13"></a><span class="co">##  [8] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=D-020/19&quot;  </span></span>
+<span id="cb432-14"><a href="web-mining.html#cb432-14"></a><span class="co">##  [9] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=C-089/19&quot;  </span></span>
+<span id="cb432-15"><a href="web-mining.html#cb432-15"></a><span class="co">## [10] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=AVI-209/19&quot;</span></span>
+<span id="cb432-16"><a href="web-mining.html#cb432-16"></a><span class="co">## [11] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=AVI-206/19&quot;</span></span>
+<span id="cb432-17"><a href="web-mining.html#cb432-17"></a><span class="co">## [12] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=C-087/19&quot;  </span></span>
+<span id="cb432-18"><a href="web-mining.html#cb432-18"></a><span class="co">## [13] &quot;https://www.oas.org/es/centro_noticias/fotonoticia.asp?sCodigo=FNC-97847&quot;       </span></span>
+<span id="cb432-19"><a href="web-mining.html#cb432-19"></a><span class="co">## [14] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=D-019/19&quot;  </span></span>
+<span id="cb432-20"><a href="web-mining.html#cb432-20"></a><span class="co">## [15] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=AVI-203/19&quot;</span></span>
+<span id="cb432-21"><a href="web-mining.html#cb432-21"></a><span class="co">## [16] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=C-086/19&quot;  </span></span>
+<span id="cb432-22"><a href="web-mining.html#cb432-22"></a><span class="co">## [17] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=AVI-200/19&quot;</span></span>
+<span id="cb432-23"><a href="web-mining.html#cb432-23"></a><span class="co">## [18] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=C-085/19&quot;  </span></span>
+<span id="cb432-24"><a href="web-mining.html#cb432-24"></a><span class="co">## [19] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=C-083/19&quot;  </span></span>
+<span id="cb432-25"><a href="web-mining.html#cb432-25"></a><span class="co">## [20] &quot;https://www.oas.org/es/centro_noticias/comunicado_prensa.asp?sCodigo=C-082/19&quot;  </span></span>
+<span id="cb432-26"><a href="web-mining.html#cb432-26"></a><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 19 entries ]</span></span></code></pre></div>
+<p>Ahora podemos crear un <em>marco de datos</em> (data frame) con toda la información:</p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="web-mining.html#cb433-1"></a>df_web_comunicados_<span class="dv">10</span>_<span class="dv">2019</span> &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb433-2"><a href="web-mining.html#cb433-2"></a>  <span class="dt">titulo =</span> titulos_web_comunicados_<span class="dv">10</span>_<span class="dv">2019</span>,</span>
+<span id="cb433-3"><a href="web-mining.html#cb433-3"></a>  <span class="dt">link   =</span> links_web_comunicados_<span class="dv">10</span>_<span class="dv">2019</span>)</span>
+<span id="cb433-4"><a href="web-mining.html#cb433-4"></a></span>
+<span id="cb433-5"><a href="web-mining.html#cb433-5"></a>df_web_comunicados_<span class="dv">10</span>_<span class="dv">2019</span></span>
+<span id="cb433-6"><a href="web-mining.html#cb433-6"></a><span class="co">## # A tibble: 39 x 2</span></span>
+<span id="cb433-7"><a href="web-mining.html#cb433-7"></a><span class="co">##   titulo                               link                              </span></span>
+<span id="cb433-8"><a href="web-mining.html#cb433-8"></a><span class="co">##   &lt;chr&gt;                                &lt;chr&gt;                             </span></span>
+<span id="cb433-9"><a href="web-mining.html#cb433-9"></a><span class="co">## 1 Ministros de Seguridad de las AmÃ©r… https://www.oas.org/es/centro_not…</span></span>
+<span id="cb433-10"><a href="web-mining.html#cb433-10"></a><span class="co">## 2 La SecretarÃ­a General de la OEA in…  https://www.oas.org/es/centro_not…</span></span>
+<span id="cb433-11"><a href="web-mining.html#cb433-11"></a><span class="co">## 3 El Salvador serÃ¡ sede de la VIII R… https://www.oas.org/es/centro_not…</span></span>
+<span id="cb433-12"><a href="web-mining.html#cb433-12"></a><span class="co">## # … with 36 more rows</span></span></code></pre></div>
+<blockquote>
+<p><strong>Ejercicio 12A.</strong> Consigue la fecha de cada comunicado de prensa de la OEA para octubre de 2019. Llama al vector “web_date_releases_10_2019”.</p>
+<p><strong>Ejercicio 12B.</strong> Consigue los títulos de las noticias de la página web de la revista <em>The Economist</em> como su sección internacional: <a href="https://www.economist.com/international/?page=1" class="uri">https://www.economist.com/international/?page=1</a></p>
+</blockquote>
+</div>
+<div id="iteraciones" class="section level3">
+<h3><span class="header-section-number">12.3.4</span> Iteraciones</h3>
+<p>Las iteraciones nos permiten repetir la misma operación para un conjunto de elementos. Analicemos la sintaxis en el siguiente ejemplo:</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="web-mining.html#cb434-1"></a><span class="kw">print</span>(<span class="dv">10</span>)</span></code></pre></div>
+<p>[1] 10</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="web-mining.html#cb435-1"></a><span class="kw">walk</span>(<span class="dt">.x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
+<span id="cb435-2"><a href="web-mining.html#cb435-2"></a>     <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>{</span>
+<span id="cb435-3"><a href="web-mining.html#cb435-3"></a>       <span class="kw">print</span>(.x)</span>
+<span id="cb435-4"><a href="web-mining.html#cb435-4"></a>     })</span></code></pre></div>
+<p>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6
+[1] 7
+[1] 8
+[1] 9
+[1] 10</p>
+<p>Podríamos descargar varias páginas del sitio web de la OEA con una iteración. Por ejemplo, descarguemos los comunicados de prensa de todos los meses de 2016 a 2018. Para ello, utilizamos la función <code>cross_df()</code> para crear un <em>data.frame</em> que contiene todas las combinaciones posibles entre meses y años:</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="web-mining.html#cb436-1"></a>iteration_df &lt;-<span class="st"> </span><span class="kw">cross_df</span>(<span class="kw">list</span>(<span class="dt">month =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>,<span class="dt">year =</span> <span class="dv">2016</span><span class="op">:</span><span class="dv">2018</span>))</span></code></pre></div>
+<p>Entonces, usamos la función <code>walk2()</code> que recibirá 2 argumentos que se iterarán, los meses y los años.</p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="web-mining.html#cb437-1"></a><span class="kw">walk2</span>(<span class="dt">.x =</span> iteration_df<span class="op">$</span>month,</span>
+<span id="cb437-2"><a href="web-mining.html#cb437-2"></a>      <span class="dt">.y =</span> iteration_df<span class="op">$</span>year,</span>
+<span id="cb437-3"><a href="web-mining.html#cb437-3"></a>      <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>{</span>
+<span id="cb437-4"><a href="web-mining.html#cb437-4"></a>        <span class="kw">Sys.sleep</span>(<span class="dv">2</span>) <span class="co"># stops</span></span>
+<span id="cb437-5"><a href="web-mining.html#cb437-5"></a>        <span class="kw">download_html</span>(</span>
+<span id="cb437-6"><a href="web-mining.html#cb437-6"></a>          <span class="dt">url  =</span> <span class="kw">glue</span>(<span class="st">&quot;https://www.oas.org/es/centro_noticias/</span></span>
+<span id="cb437-7"><a href="web-mining.html#cb437-7"></a><span class="st">                      comunicados_prensa.asp?nMes={.x}&amp;nAnio={.y}&quot;</span>),</span>
+<span id="cb437-8"><a href="web-mining.html#cb437-8"></a>          <span class="dt">file =</span> <span class="kw">glue</span>(<span class="st">&quot;webs/comunicados_oea_{.x}_{.y}.html&quot;</span>))</span>
+<span id="cb437-9"><a href="web-mining.html#cb437-9"></a>      })</span></code></pre></div>
+<p>Nuestros próximos pasos te mostrarán cómo procesar estos sitios web (en este caso haremos 37 URL, pero podrían ser muchos más) para crear una base de datos único. Utilizaremos funciones e iteraciones personalizadas en el proceso.</p>
+</div>
+<div id="funciones-personalizadas-recetas" class="section level3">
+<h3><span class="header-section-number">12.3.5</span> Funciones personalizadas (recetas)</h3>
+<p>Lo que hicimos hasta ahora para obtener nuestro <em>marco de datos</em> con información del sitio web de la OEA puede resumirse en los siguientes pasos:</p>
+<ol style="list-style-type: decimal">
+<li><p>Descargar el sitio</p></li>
+<li><p>Sube el html a la ‘R’</p></li>
+<li><p>Extraer los vectores para el título y el enlace usando selectores</p></li>
+<li><p>Crear el <em>marco de datos</em> con estos vectores</p></li>
+</ol>
+<p>Esto puede ser pensado como una “receta”, que debería funcionar para cualquier archivo. Por lo tanto, lo crearemos como una función personalizada para que trabajes con ella:</p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="web-mining.html#cb438-1"></a>f_procesar_sitio &lt;-<span class="st"> </span><span class="cf">function</span>(file){</span>
+<span id="cb438-2"><a href="web-mining.html#cb438-2"></a>  web &lt;-<span class="st"> </span><span class="kw">read_html</span>(file, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb438-3"><a href="web-mining.html#cb438-3"></a>  </span>
+<span id="cb438-4"><a href="web-mining.html#cb438-4"></a>  titulos &lt;-<span class="st"> </span>web <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb438-5"><a href="web-mining.html#cb438-5"></a><span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.itemmenulink&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb438-6"><a href="web-mining.html#cb438-6"></a><span class="st">    </span><span class="kw">html_text</span>()</span>
+<span id="cb438-7"><a href="web-mining.html#cb438-7"></a>  </span>
+<span id="cb438-8"><a href="web-mining.html#cb438-8"></a>  links &lt;-<span class="st"> </span>web <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb438-9"><a href="web-mining.html#cb438-9"></a><span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;.itemmenulink&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb438-10"><a href="web-mining.html#cb438-10"></a><span class="st">  </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb438-11"><a href="web-mining.html#cb438-11"></a><span class="st">  </span><span class="kw">str_c</span>(<span class="st">&quot;https://www.oas.org/es/centro_noticias/&quot;</span>,.)</span>
+<span id="cb438-12"><a href="web-mining.html#cb438-12"></a>  </span>
+<span id="cb438-13"><a href="web-mining.html#cb438-13"></a>  df_info &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb438-14"><a href="web-mining.html#cb438-14"></a>    <span class="dt">titulo =</span> titulos,</span>
+<span id="cb438-15"><a href="web-mining.html#cb438-15"></a>    <span class="dt">link   =</span> links</span>
+<span id="cb438-16"><a href="web-mining.html#cb438-16"></a>  )</span>
+<span id="cb438-17"><a href="web-mining.html#cb438-17"></a>  </span>
+<span id="cb438-18"><a href="web-mining.html#cb438-18"></a>  <span class="kw">return</span>(df_info) <span class="co"># what returns/delivers the function</span></span>
+<span id="cb438-19"><a href="web-mining.html#cb438-19"></a>}</span></code></pre></div>
+<p>Ahora la función toma cualquier archivo como argumento y nos da lo que esperamos:</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="web-mining.html#cb439-1"></a><span class="kw">f_procesar_sitio</span>(<span class="dt">file =</span> <span class="st">&quot;webs/comunicados_oea_10_2016.html&quot;</span>)</span>
+<span id="cb439-2"><a href="web-mining.html#cb439-2"></a><span class="co">## # A tibble: 24 x 2</span></span>
+<span id="cb439-3"><a href="web-mining.html#cb439-3"></a><span class="co">##   titulo                               link                              </span></span>
+<span id="cb439-4"><a href="web-mining.html#cb439-4"></a><span class="co">##   &lt;chr&gt;                                &lt;chr&gt;                             </span></span>
+<span id="cb439-5"><a href="web-mining.html#cb439-5"></a><span class="co">## 1 &quot;Asamblea General Extraordinaria de… https://www.oas.org/es/centro_not…</span></span>
+<span id="cb439-6"><a href="web-mining.html#cb439-6"></a><span class="co">## 2 &quot;ATENCIÃ\u0093N - ACTUALIZA FECHA Y… https://www.oas.org/es/centro_not…</span></span>
+<span id="cb439-7"><a href="web-mining.html#cb439-7"></a><span class="co">## 3 &quot;La OEA y la UNESCO buscan reducir … https://www.oas.org/es/centro_not…</span></span>
+<span id="cb439-8"><a href="web-mining.html#cb439-8"></a><span class="co">## # … with 21 more rows</span></span></code></pre></div>
+<p>Así, podemos iterar esta función en nuestros 37 archivos para crear una base de datos completo. En este caso no usaremos <code>walk()</code>, sino <code>map_dfr()</code> –esta función espera que cada iteración devuelva un <em>marco de datos</em>, y (debajo) los pega en orden con <code>bind_rows()</code>.</p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="web-mining.html#cb440-1"></a>archivos &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;webs/&quot;</span>, <span class="dt">full.names =</span> T)</span>
+<span id="cb440-2"><a href="web-mining.html#cb440-2"></a>archivos</span>
+<span id="cb440-3"><a href="web-mining.html#cb440-3"></a><span class="co">##  [1] &quot;webs//comunicados_oea_1_2016.html&quot; </span></span>
+<span id="cb440-4"><a href="web-mining.html#cb440-4"></a><span class="co">##  [2] &quot;webs//comunicados_oea_1_2017.html&quot; </span></span>
+<span id="cb440-5"><a href="web-mining.html#cb440-5"></a><span class="co">##  [3] &quot;webs//comunicados_oea_1_2018.html&quot; </span></span>
+<span id="cb440-6"><a href="web-mining.html#cb440-6"></a><span class="co">##  [4] &quot;webs//comunicados_oea_10_2016.html&quot;</span></span>
+<span id="cb440-7"><a href="web-mining.html#cb440-7"></a><span class="co">##  [5] &quot;webs//comunicados_oea_10_2017.html&quot;</span></span>
+<span id="cb440-8"><a href="web-mining.html#cb440-8"></a><span class="co">##  [6] &quot;webs//comunicados_oea_10_2018.html&quot;</span></span>
+<span id="cb440-9"><a href="web-mining.html#cb440-9"></a><span class="co">##  [7] &quot;webs//comunicados_oea_10_2019.html&quot;</span></span>
+<span id="cb440-10"><a href="web-mining.html#cb440-10"></a><span class="co">##  [8] &quot;webs//comunicados_oea_11_2016.html&quot;</span></span>
+<span id="cb440-11"><a href="web-mining.html#cb440-11"></a><span class="co">##  [9] &quot;webs//comunicados_oea_11_2017.html&quot;</span></span>
+<span id="cb440-12"><a href="web-mining.html#cb440-12"></a><span class="co">## [10] &quot;webs//comunicados_oea_11_2018.html&quot;</span></span>
+<span id="cb440-13"><a href="web-mining.html#cb440-13"></a><span class="co">## [11] &quot;webs//comunicados_oea_12_2016.html&quot;</span></span>
+<span id="cb440-14"><a href="web-mining.html#cb440-14"></a><span class="co">## [12] &quot;webs//comunicados_oea_12_2017.html&quot;</span></span>
+<span id="cb440-15"><a href="web-mining.html#cb440-15"></a><span class="co">## [13] &quot;webs//comunicados_oea_12_2018.html&quot;</span></span>
+<span id="cb440-16"><a href="web-mining.html#cb440-16"></a><span class="co">## [14] &quot;webs//comunicados_oea_2_2016.html&quot; </span></span>
+<span id="cb440-17"><a href="web-mining.html#cb440-17"></a><span class="co">## [15] &quot;webs//comunicados_oea_2_2017.html&quot; </span></span>
+<span id="cb440-18"><a href="web-mining.html#cb440-18"></a><span class="co">## [16] &quot;webs//comunicados_oea_2_2018.html&quot; </span></span>
+<span id="cb440-19"><a href="web-mining.html#cb440-19"></a><span class="co">## [17] &quot;webs//comunicados_oea_3_2016.html&quot; </span></span>
+<span id="cb440-20"><a href="web-mining.html#cb440-20"></a><span class="co">## [18] &quot;webs//comunicados_oea_3_2017.html&quot; </span></span>
+<span id="cb440-21"><a href="web-mining.html#cb440-21"></a><span class="co">## [19] &quot;webs//comunicados_oea_3_2018.html&quot; </span></span>
+<span id="cb440-22"><a href="web-mining.html#cb440-22"></a><span class="co">## [20] &quot;webs//comunicados_oea_4_2016.html&quot; </span></span>
+<span id="cb440-23"><a href="web-mining.html#cb440-23"></a><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 53 entries ]</span></span>
+<span id="cb440-24"><a href="web-mining.html#cb440-24"></a></span>
+<span id="cb440-25"><a href="web-mining.html#cb440-25"></a>df_web_comunicados_<span class="dv">2016</span>_<span class="dv">2018</span> &lt;-<span class="st"> </span><span class="kw">map_dfr</span>(<span class="dt">.x =</span> archivos,</span>
+<span id="cb440-26"><a href="web-mining.html#cb440-26"></a>                                 <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>{</span>
+<span id="cb440-27"><a href="web-mining.html#cb440-27"></a>                                   <span class="kw">f_procesar_sitio</span>(.x)</span>
+<span id="cb440-28"><a href="web-mining.html#cb440-28"></a>                                 })</span>
+<span id="cb440-29"><a href="web-mining.html#cb440-29"></a>df_web_comunicados_<span class="dv">2016</span>_<span class="dv">2018</span></span>
+<span id="cb440-30"><a href="web-mining.html#cb440-30"></a><span class="co">## # A tibble: 1,397 x 2</span></span>
+<span id="cb440-31"><a href="web-mining.html#cb440-31"></a><span class="co">##   titulo                               link                              </span></span>
+<span id="cb440-32"><a href="web-mining.html#cb440-32"></a><span class="co">##   &lt;chr&gt;                                &lt;chr&gt;                             </span></span>
+<span id="cb440-33"><a href="web-mining.html#cb440-33"></a><span class="co">## 1 &quot;MisiÃ³n Especial de la OEA llegarÃ… https://www.oas.org/es/centro_not…</span></span>
+<span id="cb440-34"><a href="web-mining.html#cb440-34"></a><span class="co">## 2 &quot;OEA enviarÃ¡ MisiÃ³n Especial a Ha… https://www.oas.org/es/centro_not…</span></span>
+<span id="cb440-35"><a href="web-mining.html#cb440-35"></a><span class="co">## 3 &quot;ATENCIÃ\u0093N CAMBIO DE HORA: Con… https://www.oas.org/es/centro_not…</span></span>
+<span id="cb440-36"><a href="web-mining.html#cb440-36"></a><span class="co">## # … with 1,394 more rows</span></span></code></pre></div>
+</div>
+</div>
+<div id="usando-apis-y-extrayendo-datos-de-twitter" class="section level2">
+<h2><span class="header-section-number">12.4</span> Usando APIs y extrayendo datos de Twitter</h2>
+<p>Twitter es una red social fundada en 2006 que permite a los usuarios interactuar entre sí enviando mensajes de no más de 280 caracteres. Es ampliamente usada por servicios públicos y por políticos especialmente en las épocas de campaña electoral. Con las nuevas técnicas de análisis de datos el estudio de la interacción de los usuarios en twitter se ha vuelto muy importante por ejemplo para medir los temas sobre los que está hablando la gente (<em>trending topics</em>) y sobre si las opiniones sobre una persona o tema son positivas o negativas. Por ejemplo Ernesto Calvo en su libro <em>Anatomía Política de Twitter en Argentina: Tuiteando #NISMAN</em> en el que identifica a través del estudio de los tweets sobre las causas de la muerte del ex fiscal Alberto Nisman que reflejaban (y estaban muy correlacionados con) las divisiones políticas de la oposición del gobiernon. A partir del caso Nisman, Ernesto Calvo analiza los tweets de los usuarios argentinos y muestra que la polarización mezcla política, algoritmos y smartphones.</p>
+<p>Si has leído la sección anterior, ya conoces los paquetes R que se utilizarán en esta sección del libro. Para hacer la extracción de datos de Twitter la mejor opción en mano es <code>Rtweet</code>, que permite acceder gratuitamente al API de Twitter para descargar información de los usuarios, temas de tendencias y hashtags. Para extraer datos de Twitter con R se recomienda consultar <em>Twitter as Data</em>, que contiene algunas rutinas estandarizadas para descargar datos de esta plataforma.</p>
+<p>##Algunos antecedentes en APIs</p>
+<p>La interfaz de programación de aplicaciones <em>Application Program Interfaces</em> (APIs en inglés) son un set de protocolos y funciones que gobiernan ciertas interacciones entre aplicaciones web y usuarios.</p>
+<p>las APIs son similares a los navegadores web pero cumplen diferentes propósitos:</p>
+<p>-Navegadores web reproducen contenido de los browsers
+-Las APIs permiten manipular y organizador datos</p>
+<p>Para que las APIs públicas sean utilizadas muchos sitios solo permiten a usuarios autorizados (por ejemplo aquellos que tienen una cuenta en la plataforma). Este es el caso para Twitter, Facebook, Instagram and Github.</p>
+<p>Si bien estas APIs son ampliamente conocidas no está demás mencionar algunas creadas por la misma comunidad de R especializada en datos políticos. Por ejemplo el paquete <code>lobbyR</code> creado por Daniel Alcatruz<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a> que permite cargar y estructurar datos desde la API lobby que se encuentra en la plataforma de Ley de Lobby (<a href="https://www.leylobby.gob.cl/" class="uri">https://www.leylobby.gob.cl/</a>) implementada para el Gobierno de Chile, que permite realizar consultas por ejemplo sobre audiencias en determinados servicios públicos y organismos del estado como el congreso y los municipios. Otro paquete que es necesario mencionar es <code>inegiR</code> creado por Eduardo Flores que permite interactuar con la API del INEGI (Instituto Nacional de Estadística y Geografía de México) para realizar consultas específicas. <a href="http://enelmargen.org/ds/inegiR/vignette_spa.html" class="uri">http://enelmargen.org/ds/inegiR/vignette_spa.html</a></p>
+<p>#Extraer los datos</p>
+<p>Lo primero es no depender de la API oficial de Twitter, y por lo tanto deberías tener tu propia cuenta de Twitter que puedes crear en (<a href="https://twitter.com/i/flow/signup" class="uri">https://twitter.com/i/flow/signup</a>).
+Luego procedes a cargar el paquete <code>rtweet</code> que te permitirá extraer datos de Twitter. Te mostraremos esta rutina y extraeremos datos de diferentes usuarios y hashtags.</p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="web-mining.html#cb441-1"></a><span class="kw">library</span>(rtweet)</span></code></pre></div>
+<p>Por ejemplo podemos obtener los IDs de las cuentas que sigue la ONU en español. Por defecto la función te muestra hasta 5000 usuarios.</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="web-mining.html#cb442-1"></a><span class="co">## Obtener los ID que son seguidos por la cuenta de la ONU en español</span></span>
+<span id="cb442-2"><a href="web-mining.html#cb442-2"></a>friends_ONU_es &lt;-<span class="st"> </span><span class="kw">get_friends</span>(<span class="st">&quot;ONU_es&quot;</span>)</span></code></pre></div>
+<p>Para saber más información de estos usuarios utilizamos la <code>lookup_users()</code></p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="web-mining.html#cb443-1"></a>info_friends_ONU_es &lt;-<span class="st"> </span><span class="kw">lookup_users</span>(friends_ONU_es<span class="op">$</span>user_id)</span></code></pre></div>
+<p>Podemos obtener información de los seguidores también mediante la función <code>get_followers()</code>. Como la cuenta de twitter de ONU en español tiene más de un millón de seguidores, es más comodo hacer un anáisis de una porción de ellos. Para obtener todos los IDs de usuarios que siguen a @ONU_es, solo necesitas 2 cosas:</p>
+<ul>
+<li>Una conexión estable a Internet</li>
+<li>Tiempo - aproximadamente cinco días y medio</li>
+</ul>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="web-mining.html#cb444-1"></a>followers_ONU_es &lt;-<span class="st"> </span><span class="kw">get_followers</span>(<span class="st">&quot;ONU_es&quot;</span>, <span class="dt">n =</span> <span class="dv">200</span>, </span>
+<span id="cb444-2"><a href="web-mining.html#cb444-2"></a>                                  <span class="dt">retryonratelimit =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p>Aquí obtenemos la información de los usuarios que siguen la cuenta @ONU_es</p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="web-mining.html#cb445-1"></a>info_followers_ONU_es&lt;-<span class="kw">lookup_users</span>(followers_ONU_es<span class="op">$</span>user_id)</span></code></pre></div>
+<div id="buscando-tweets-especificos" class="section level4">
+<h4><span class="header-section-number">12.4.0.1</span> Buscando tweets especificos</h4>
+<p>Ahora estamos listos para buscar tweets recientes. Busquemos por ejemplo todos los tweets que lleven el hashtag “#Piñera”, en alusión al presidente chileno. Recordemos que un hashtag es una etiqueta que corresponde a una palabra antecedida por el símbolo “#”. Esta es utilizada principalmente para encontrar tweets con contenido similar, ya que el fin es que tanto el sistema como el usuario la identifiquen de forma rápida. Utilizaremos la función rtweet::search_tweets(). Esta función requiere los siguientes argumentos</p>
+<p><code>q</code>: la palabra que quieres buscar
+<code>n</code>: el número de tweets máximos que quieres extraer. Puedes pedir un máximo de 18.000 tweets cada 15 minutos.</p>
+<blockquote>
+<p>Tip: Para ver otros argumentos de la función puedes usar el documento de ayuda</p>
+</blockquote>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="web-mining.html#cb446-1"></a>?search_tweets</span></code></pre></div>
+<p>Un aspecto importante que tenemos que aclarar con respecto a las consultas que le hacemos a la API de Twitter es que los resultados obtenidos no podrán reproducir completamente, estos cambiarán, ya que la versión gratuita de Twitter nos permite hacer consultas en un periodo terminado de tiempo en el pasado (por ejemplo una semana) por lo que los resultados de las consultas cambiarán con el tiempo. Si te interesa una cierta agenda o hashtag, un buen consejo es descargarla regularmente y guardarla en un disco duro. No podrás volver a ellas en el futuro.</p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="web-mining.html#cb447-1"></a><span class="co"># Look for 500 tweets with the hashtag #piñera</span></span>
+<span id="cb447-2"><a href="web-mining.html#cb447-2"></a>pinera_tweets &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(<span class="dt">q =</span> <span class="st">&quot;#piñera&quot;</span>,</span>
+<span id="cb447-3"><a href="web-mining.html#cb447-3"></a>                               <span class="dt">n =</span> <span class="dv">1000</span>)</span>
+<span id="cb447-4"><a href="web-mining.html#cb447-4"></a><span class="co"># We see the first 3 columns</span></span>
+<span id="cb447-5"><a href="web-mining.html#cb447-5"></a><span class="kw">head</span>(pinera_tweets, <span class="dt">n =</span> <span class="dv">3</span>)</span>
+<span id="cb447-6"><a href="web-mining.html#cb447-6"></a><span class="co">## # A tibble: 3 x 90</span></span>
+<span id="cb447-7"><a href="web-mining.html#cb447-7"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
+<span id="cb447-8"><a href="web-mining.html#cb447-8"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
+<span id="cb447-9"><a href="web-mining.html#cb447-9"></a><span class="co">## 1 122154… 12951194… 2020-08-16 22:05:08 Flako823    &quot;🤣 c… Twitt…</span></span>
+<span id="cb447-10"><a href="web-mining.html#cb447-10"></a><span class="co">## 2 122154… 12950348… 2020-08-16 16:28:52 Flako823    &quot;Lad… Twitt…</span></span>
+<span id="cb447-11"><a href="web-mining.html#cb447-11"></a><span class="co">## 3 142816… 12951192… 2020-08-16 22:04:19 CiudadanoC… &quot;¿Cu… Twitt…</span></span>
+<span id="cb447-12"><a href="web-mining.html#cb447-12"></a><span class="co">## # … with 84 more variables</span></span></code></pre></div>
+<p>Para obtener información de los usuarios que están emitiendo tweets sobre #piñera en el momento que estamos escribiendo este capitulo</p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="web-mining.html#cb448-1"></a><span class="kw">lookup_users</span>(pinera_tweets<span class="op">$</span>user_id)</span>
+<span id="cb448-2"><a href="web-mining.html#cb448-2"></a><span class="co">## # A tibble: 860 x 90</span></span>
+<span id="cb448-3"><a href="web-mining.html#cb448-3"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
+<span id="cb448-4"><a href="web-mining.html#cb448-4"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
+<span id="cb448-5"><a href="web-mining.html#cb448-5"></a><span class="co">## 1 122154… 12951194… 2020-08-16 22:05:08 Flako823    🤣 co… Twitt…</span></span>
+<span id="cb448-6"><a href="web-mining.html#cb448-6"></a><span class="co">## 2 142816… 12951194… 2020-08-16 22:05:20 CiudadanoC… Cree… Twitt…</span></span>
+<span id="cb448-7"><a href="web-mining.html#cb448-7"></a><span class="co">## 3 119324… 12951192… 2020-08-16 22:04:14 marvelalre… Se v… Twitt…</span></span>
+<span id="cb448-8"><a href="web-mining.html#cb448-8"></a><span class="co">## # … with 857 more rows, and 84 more variables</span></span></code></pre></div>
+<p>Las consultas de tweets pueden hacerse de varias maneras dependiendo en los que estas buscando:</p>
+</div>
+<div id="buscar-una-palabra-clave" class="section level3">
+<h3><span class="header-section-number">12.4.1</span> Buscar una palabra clave</h3>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="web-mining.html#cb449-1"></a>query_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(<span class="dt">q =</span> <span class="st">&quot;piñera&quot;</span>, <span class="dt">n =</span> <span class="dv">20</span>)</span></code></pre></div>
+</div>
+<div id="buscar-una-frase" class="section level3">
+<h3><span class="header-section-number">12.4.2</span> Buscar una frase</h3>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="web-mining.html#cb450-1"></a>query_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(<span class="dt">q =</span> <span class="st">&quot;piñera economia&quot;</span>, <span class="dt">n =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div id="buscar-múltiples-palabras-claves" class="section level4">
+<h4><span class="header-section-number">12.4.2.1</span> Buscar múltiples palabras claves</h4>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="web-mining.html#cb451-1"></a>query_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(<span class="dt">q =</span> <span class="st">&quot;piñera AND bachelet&quot;</span>, <span class="dt">n =</span> <span class="dv">20</span>)</span></code></pre></div>
+<p>Por defecto <code>search_tweets()</code> retorna 100 tweets. Para retornar más el n debe ser mayor, esto se hace con <code>n =</code>.</p>
+<blockquote>
+<p><strong>Ejercicio 12C.</strong> En lugar de usar AND, usa OR entre los diferentes términos de búsqueda. Ambas búsquedas devolverán tweets muy diferentes.</p>
+</blockquote>
+</div>
+<div id="busca-cualquier-mención-de-una-lista-de-palabras" class="section level4">
+<h4><span class="header-section-number">12.4.2.2</span> Busca cualquier mención de una lista de palabras</h4>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="web-mining.html#cb452-1"></a>query_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(<span class="st">&quot;bolsonaro OR piñera OR macri&quot;</span>, <span class="dt">n =</span> <span class="dv">20</span>)</span></code></pre></div>
+<blockquote>
+<p><strong>Ejercicio 12D.</strong> Buscar tweets en español que no sean retweets</p>
+</blockquote>
+</div>
+<div id="especifica-el-lenguaje-de-los-tweets-y-excluye-los-retweets" class="section level4">
+<h4><span class="header-section-number">12.4.2.3</span> Especifica el lenguaje de los tweets y excluye los retweets</h4>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="web-mining.html#cb453-1"></a>query_<span class="dv">5</span> &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(<span class="st">&quot;piñera&quot;</span>, <span class="dt">lang =</span> <span class="st">&quot;es&quot;</span>, <span class="dt">include_rts =</span> <span class="ot">FALSE</span>, <span class="dt">n=</span><span class="dv">20</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="descargando-características-relacionadas-con-los-usuarios-de-twitter" class="section level3">
+<h3><span class="header-section-number">12.4.3</span> Descargando características relacionadas con los usuarios de Twitter</h3>
+<div id="retweets" class="section level4">
+<h4><span class="header-section-number">12.4.3.1</span> Retweets</h4>
+<p>Un retweet es cuando tú o alguien más comparte un tweet para que tus seguidores puedan verlo. Es similar a la característica de “compartir” en Facebook. Hagamos la misma rutina de antes pero esta vez ignorando los retweets. Lo hacemos con el argumento <code>include_rts</code> definido como <code>FALSE</code>. Entonces podemos obtener tweets y retweets en un marco de datos separado</p>
+<blockquote>
+<p>Nota: La opción <code>include_rts =</code> es muy útil si estás estudiando los patrones de viralización de ciertos hashtags.</p>
+</blockquote>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="web-mining.html#cb454-1"></a><span class="co"># Look for 500 tweets with the hashtag #piñera, but ignore retweets</span></span>
+<span id="cb454-2"><a href="web-mining.html#cb454-2"></a>pinera_tweets &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(<span class="st">&quot;#piñera&quot;</span>, </span>
+<span id="cb454-3"><a href="web-mining.html#cb454-3"></a>                               <span class="dt">n =</span> <span class="dv">500</span>,</span>
+<span id="cb454-4"><a href="web-mining.html#cb454-4"></a>                               <span class="dt">include_rts =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb454-5"><a href="web-mining.html#cb454-5"></a><span class="co"># See the first two columns</span></span>
+<span id="cb454-6"><a href="web-mining.html#cb454-6"></a><span class="kw">head</span>(pinera_tweets, <span class="dt">n =</span> <span class="dv">2</span>)</span>
+<span id="cb454-7"><a href="web-mining.html#cb454-7"></a><span class="co">## # A tibble: 2 x 90</span></span>
+<span id="cb454-8"><a href="web-mining.html#cb454-8"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
+<span id="cb454-9"><a href="web-mining.html#cb454-9"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
+<span id="cb454-10"><a href="web-mining.html#cb454-10"></a><span class="co">## 1 604708… 12951150… 2020-08-16 21:47:50 TIRSO48     El #… Twitt…</span></span>
+<span id="cb454-11"><a href="web-mining.html#cb454-11"></a><span class="co">## 2 604708… 12950584… 2020-08-16 18:02:49 TIRSO48     #Piñ… Twitt…</span></span>
+<span id="cb454-12"><a href="web-mining.html#cb454-12"></a><span class="co">## # … with 84 more variables</span></span></code></pre></div>
+<p>Ahora veamos quién está twiteando sobre el hashtag “#piñera”</p>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="web-mining.html#cb455-1"></a><span class="co"># Look at the column with the names - top 6</span></span>
+<span id="cb455-2"><a href="web-mining.html#cb455-2"></a><span class="kw">head</span>(pinera_tweets<span class="op">$</span>screen_name)</span>
+<span id="cb455-3"><a href="web-mining.html#cb455-3"></a><span class="co">## [1] &quot;TIRSO48&quot;     &quot;TIRSO48&quot;     &quot;TIRSO48&quot;     &quot;Seba_fabres&quot; &quot;Seba_fabres&quot;</span></span>
+<span id="cb455-4"><a href="web-mining.html#cb455-4"></a><span class="co">## [6] &quot;nacioncl&quot;</span></span>
+<span id="cb455-5"><a href="web-mining.html#cb455-5"></a></span>
+<span id="cb455-6"><a href="web-mining.html#cb455-6"></a><span class="kw">unique</span>(pinera_tweets<span class="op">$</span>screen_name)</span>
+<span id="cb455-7"><a href="web-mining.html#cb455-7"></a><span class="co">##  [1] &quot;TIRSO48&quot;         &quot;Seba_fabres&quot;     &quot;nacioncl&quot;       </span></span>
+<span id="cb455-8"><a href="web-mining.html#cb455-8"></a><span class="co">##  [4] &quot;minevargasg&quot;     &quot;_hexagram_&quot;      &quot;CiudadannoChile&quot;</span></span>
+<span id="cb455-9"><a href="web-mining.html#cb455-9"></a><span class="co">##  [7] &quot;rechazoviejo&quot;    &quot;MolinavSeba&quot;     &quot;marcelotobarc&quot;  </span></span>
+<span id="cb455-10"><a href="web-mining.html#cb455-10"></a><span class="co">## [10] &quot;peval29&quot;         &quot;tiomattu&quot;        &quot;solangeeguia&quot;   </span></span>
+<span id="cb455-11"><a href="web-mining.html#cb455-11"></a><span class="co">## [13] &quot;hugoguionista&quot;   &quot;PaoprimeraL&quot;     &quot;PabloPincel&quot;    </span></span>
+<span id="cb455-12"><a href="web-mining.html#cb455-12"></a><span class="co">## [16] &quot;ElPobreHank&quot;     &quot;matera_di&quot;       &quot;fcojavier_cl&quot;   </span></span>
+<span id="cb455-13"><a href="web-mining.html#cb455-13"></a><span class="co">## [19] &quot;peyoaguilera&quot;    &quot;go4kchile&quot;      </span></span>
+<span id="cb455-14"><a href="web-mining.html#cb455-14"></a><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 339 entries ]</span></span></code></pre></div>
+<p>También podemos usar la función <code>search_users()</code> para explorar qué usuarios están twiteando usando un hashtag particular. Esta función extrae un data.frame de los usuarios e información sobre sus cuentas.</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="web-mining.html#cb456-1"></a><span class="co"># Which users are tweeting about #piñera?</span></span>
+<span id="cb456-2"><a href="web-mining.html#cb456-2"></a>users &lt;-<span class="st"> </span><span class="kw">search_users</span>(<span class="st">&quot;#piñera&quot;</span>,</span>
+<span id="cb456-3"><a href="web-mining.html#cb456-3"></a>                      <span class="dt">n =</span> <span class="dv">500</span>)</span>
+<span id="cb456-4"><a href="web-mining.html#cb456-4"></a><span class="co"># see the first 2 users (the data frame is large)</span></span>
+<span id="cb456-5"><a href="web-mining.html#cb456-5"></a><span class="kw">head</span>(users, <span class="dt">n =</span> <span class="dv">2</span>)</span>
+<span id="cb456-6"><a href="web-mining.html#cb456-6"></a><span class="co">## # A tibble: 2 x 90</span></span>
+<span id="cb456-7"><a href="web-mining.html#cb456-7"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
+<span id="cb456-8"><a href="web-mining.html#cb456-8"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
+<span id="cb456-9"><a href="web-mining.html#cb456-9"></a><span class="co">## 1 201853… 11916828… 2019-11-05 11:45:16 Plaid_Pine… Of c… Twitt…</span></span>
+<span id="cb456-10"><a href="web-mining.html#cb456-10"></a><span class="co">## 2 947001… 11362572… 2019-06-05 13:03:23 robbiepine… @PLD… Twitt…</span></span>
+<span id="cb456-11"><a href="web-mining.html#cb456-11"></a><span class="co">## # … with 84 more variables</span></span></code></pre></div>
+<p>Aprendamos más sobre estas personas. ¿De dónde son? Como vemos, hay 304 lugares únicos por lo que el gráfico que usamos para trazar la información no es addecuado para visualizarlo.</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="web-mining.html#cb457-1"></a><span class="co"># How many places are represented?</span></span>
+<span id="cb457-2"><a href="web-mining.html#cb457-2"></a><span class="kw">length</span>(<span class="kw">unique</span>(users<span class="op">$</span>location))</span>
+<span id="cb457-3"><a href="web-mining.html#cb457-3"></a><span class="co">## [1] 227</span></span>
+<span id="cb457-4"><a href="web-mining.html#cb457-4"></a><span class="co">## [1] 304</span></span>
+<span id="cb457-5"><a href="web-mining.html#cb457-5"></a></span>
+<span id="cb457-6"><a href="web-mining.html#cb457-6"></a>users <span class="op">%&gt;%</span></span>
+<span id="cb457-7"><a href="web-mining.html#cb457-7"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(location)) <span class="op">+</span></span>
+<span id="cb457-8"><a href="web-mining.html#cb457-8"></a><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb457-9"><a href="web-mining.html#cb457-9"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb457-10"><a href="web-mining.html#cb457-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Frecuencia&quot;</span>,</span>
+<span id="cb457-11"><a href="web-mining.html#cb457-11"></a>       <span class="dt">y =</span> <span class="st">&quot;Ubicación&quot;,</span></span>
+<span id="cb457-12"><a href="web-mining.html#cb457-12"></a><span class="st">       title = &quot;</span>Cuentas de Twitter <span class="op">-</span><span class="st"> </span>Ubicaciones únicas<span class="st">&quot;)</span></span></code></pre></div>
+<p><img src="12-web-mining_es_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Ordenemos por frecuencia las ubicaciones más nombradas y las trazamos. Para ello utilizamos <code>top_n()</code> que extraerá las localizaciones con al menos 20 usuarios asociados a ella</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="web-mining.html#cb458-1"></a>users <span class="op">%&gt;%</span></span>
+<span id="cb458-2"><a href="web-mining.html#cb458-2"></a><span class="st">  </span><span class="kw">count</span>(location, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb458-3"><a href="web-mining.html#cb458-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">location =</span> <span class="kw">reorder</span>(location, n)) <span class="op">%&gt;%</span></span>
+<span id="cb458-4"><a href="web-mining.html#cb458-4"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>) <span class="op">%&gt;%</span></span>
+<span id="cb458-5"><a href="web-mining.html#cb458-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> location, <span class="dt">y =</span> n)) <span class="op">+</span></span>
+<span id="cb458-6"><a href="web-mining.html#cb458-6"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb458-7"><a href="web-mining.html#cb458-7"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb458-8"><a href="web-mining.html#cb458-8"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Frecuencia&quot;</span>,</span>
+<span id="cb458-9"><a href="web-mining.html#cb458-9"></a>      <span class="dt">y =</span> <span class="st">&quot;Ubicación&quot;,</span></span>
+<span id="cb458-10"><a href="web-mining.html#cb458-10"></a><span class="st">      title = &quot;</span>¿De dónde son estas cuentas de Twitter? Ubicaciones únicas<span class="st">&quot;)</span></span></code></pre></div>
+<p><img src="12-web-mining_es_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Es mejor si quitamos los NAs para ver los lugares más claramente. En general, la geolocalización en Twitter es bastante mediocre porque es voluntaria y pocas personas la tienen activada en sus teléfonos móviles. Así que lo que vemos es gente que quiere que sepamos su ubicación, lo que significa que hay un sesgo en estos resultados.</p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="web-mining.html#cb459-1"></a>users <span class="op">%&gt;%</span></span>
+<span id="cb459-2"><a href="web-mining.html#cb459-2"></a><span class="st">  </span><span class="kw">count</span>(location, <span class="dt">sort =</span> T) <span class="op">%&gt;%</span></span>
+<span id="cb459-3"><a href="web-mining.html#cb459-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">location =</span> <span class="kw">reorder</span>(location,n)) <span class="op">%&gt;%</span></span>
+<span id="cb459-4"><a href="web-mining.html#cb459-4"></a><span class="st">  </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(location <span class="op">!=</span><span class="st"> &quot;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb459-5"><a href="web-mining.html#cb459-5"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>) <span class="op">%&gt;%</span></span>
+<span id="cb459-6"><a href="web-mining.html#cb459-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> location,<span class="dt">y =</span> n)) <span class="op">+</span></span>
+<span id="cb459-7"><a href="web-mining.html#cb459-7"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb459-8"><a href="web-mining.html#cb459-8"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb459-9"><a href="web-mining.html#cb459-9"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Ubicación&quot;,</span></span>
+<span id="cb459-10"><a href="web-mining.html#cb459-10"></a><span class="st">      y = &quot;</span>Frecuencia<span class="st">&quot;,</span></span>
+<span id="cb459-11"><a href="web-mining.html#cb459-11"></a><span class="st">      title = &quot;</span>Usuarios de Twitter <span class="op">-</span><span class="st"> </span>Ubicaciones únicas<span class="st">&quot;)</span></span></code></pre></div>
+<p><img src="12-web-mining_es_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Finalmente repetimos el ejercicio usando hashtags que se refieren a Michelle Bachelet, la ex presidenta de Chile:</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="web-mining.html#cb460-1"></a><span class="co">## Buscar tweets que usen el hashtag #bachelet</span></span>
+<span id="cb460-2"><a href="web-mining.html#cb460-2"></a>rt &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(</span>
+<span id="cb460-3"><a href="web-mining.html#cb460-3"></a>  <span class="st">&quot;#bachelet&quot;</span>, <span class="dt">n =</span> <span class="dv">600</span>, <span class="dt">include_rts =</span> <span class="ot">FALSE</span></span>
+<span id="cb460-4"><a href="web-mining.html#cb460-4"></a>)</span></code></pre></div>
+<p>¿Cómo ha sido la tendencia temporal de este hashtag en los últimos días?</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="web-mining.html#cb461-1"></a><span class="co">## Graficar una serie de tiempo de tweets</span></span>
+<span id="cb461-2"><a href="web-mining.html#cb461-2"></a>rt <span class="op">%&gt;%</span></span>
+<span id="cb461-3"><a href="web-mining.html#cb461-3"></a><span class="st">  </span><span class="kw">ts_plot</span>(<span class="st">&quot;3 hours&quot;</span>) <span class="op">+</span></span>
+<span id="cb461-4"><a href="web-mining.html#cb461-4"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb461-5"><a href="web-mining.html#cb461-5"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme</span>(<span class="dt">plot.title =</span> ggplot2<span class="op">::</span><span class="kw">element_text</span>(<span class="dt">face =</span> <span class="st">&quot;bold&quot;</span>)) <span class="op">+</span></span>
+<span id="cb461-6"><a href="web-mining.html#cb461-6"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">labs</span>(</span>
+<span id="cb461-7"><a href="web-mining.html#cb461-7"></a>    <span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>,</span>
+<span id="cb461-8"><a href="web-mining.html#cb461-8"></a>    <span class="dt">title =</span> <span class="st">&quot;Frecuencia de #bachelet en los tweets de los últimos 9 días&quot;</span>,</span>
+<span id="cb461-9"><a href="web-mining.html#cb461-9"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Conteo de tweets usando intervalos de tres horas&quot;</span>,</span>
+<span id="cb461-10"><a href="web-mining.html#cb461-10"></a>    <span class="dt">caption =</span> <span class="st">&quot;Fuente: Datos recolectados desde la API de Twitter, usando el paquete rtweet&quot;</span></span>
+<span id="cb461-11"><a href="web-mining.html#cb461-11"></a>  )</span></code></pre></div>
+<p><img src="12-web-mining_es_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Esperamos que este capítulo haya sido útil. En el Capítulo <a href="qta.html#qta">13</a> te mostraremos cómo explorar más a fondo los datos de Twitter una vez que los hayas descargado.</p>
 
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="49">
+<li id="fn49"><p>E-mail: <a href="mailto:ghbarria@uc.cl" class="email">ghbarria@uc.cl</a><a href="web-mining.html#fnref49" class="footnote-back">↩︎</a></p></li>
+<li id="fn50"><p>Se puede instalar desde este enlace <a href="https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb" class="uri">https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb</a>.<a href="web-mining.html#fnref50" class="footnote-back">↩︎</a></p></li>
+<li id="fn51"><p><a href="https://github.com/Dalcatruz/lobbyR" class="uri">https://github.com/Dalcatruz/lobbyR</a><a href="web-mining.html#fnref51" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="casos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="redes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="adv-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="qta.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -395,10 +978,14 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/arcruz0/libroadp/edit/master/web-mining.Rmd",
+"link": "https://github.com/arcruz0/libroadp/edit/master/12-web-mining_es.Rmd",
 "text": "Edit"
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -417,8 +1004,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

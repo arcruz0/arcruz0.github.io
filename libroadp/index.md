@@ -1,8 +1,7 @@
-
 --- 
 title: "AnalizaR Datos Políticos"
 author: "Francisco Urdinez y Andrés Cruz Labrín (editores)"
-date: "15 de marzo de 2019; versión 0.1"
+date: "Agosto de 2020; versión 1.0"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -10,36 +9,34 @@ output:
     includes:
       in_header: style.html
     highlight: espresso
-  # bookdown::pdf_book:
-  #   keep_tex: yes
-  #   includes: 
-  #     in_header: preamble.tex
 documentclass: book
-bibliography: [book.bib, packages.bib]
+bibliography: [libroadp.bib, packages.bib]
 biblio-style: apalike
+nocite: | 
+  @kastellecUsingGraphsInstead2007, @henshawDataAnalysisData2018, @angristMostlyHarmlessEconometrics2008, @lewis-beckAppliedRegressionIntroduction2016, @glasgowDiscreteChoiceMethods2008, @longRegressionModelsCategorical1997, @henningsenAnalysisPanelData2019, @brostromEventHistoryAnalysis2012, @allisonEventHistorySurvival2014, @Shalizi:2019, @MorganWinship:2007, @lallHowMultipleImputation2016, @grahamInternationalPoliticalEconomy2019, @steinert-threlkeldTwitterData2018, @newmanNetworks2018, @scottSocialNetworkAnalysis2013, @abeyasekeraMultivariateMethodsIndex2005, @bryantAssessingValidityMeasurement2000, @collierTypologiesFormingConcepts2008, @goertzSocialScienceConcepts2006, @jackmanMeasurement2008
 link-citations: yes
-description: "Manual aplicado para politólogos y relacionistas internacionales en R"
 favicon: "favicon.ico"
 ---
 
-# Introducción
+# Introducción {-}
 
-## Inicio
+## Inicio {-}
 
 <img src="./00-images/tapa.png" width="280" height="435" alt="Portada" align="right" style="margin: 0 1em 0 1em" />
 
 **AnalizaR Datos Políticos** es un libro que podrás usar como manual de referencia cuando estés quebrandote la cabeza usando `R`. Por eso, decidimos que sea más aplicado que teórico, y hemos considerado tanto temas de ciencia política como de relaciones internacionales. De ahí el subtítulo del libro: "Manual aplicado para politólogos y relacionistas internacionales en R". Una gran ventaja del libro es que utiliza para cada tarea la opción más actualizada y sencilla disponible en la red. ¡Además, ocupa cada vez que es posible el `tidyverse`, el grupo de paquetes que ha revolucionado el uso de `R` recientemente por su sencillez!
 
-Construido gracias a la tecnología de libro digital llamada [bookdown](https://github.com/rstudio/bookdown) e inspirado por la filosofía de software libre y código abierto, este libro es de uso libre y gratuito. Esto garantiza que sus contenidos sean reproducibles y accesibles públicamente para personas de todo el mundo. La versión del libro que estás leyendo ahora (0.1) se construyó el 15 de marzo de 2019. A medida que el libro reciba retroalimentación de los usuarios, iremos actualizando los contenidos. 
+Construido gracias a la tecnología de libro digital llamada [bookdown](https://github.com/rstudio/bookdown) e inspirado por la filosofía de software libre y código abierto, este libro es de uso libre y gratuito. Esto garantiza que sus contenidos sean reproducibles y accesibles públicamente para personas de todo el mundo. La versión del libro que estás leyendo ahora (1.0) se construyó en abril de 2020 luego de dos años de trabajo. A medida que el libro reciba retroalimentación de los usuarios iremos actualizando los contenidos. 
 
 <hr>
 
 <img src="00-images/index/cc.png" width="15%" style="display: block; margin: auto auto auto 0;" />
+
 Este libro digital se encuentra bajo una licencia [Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es).
 
 <hr>
 
-## ¿Cómo contribuir?
+## ¿Cómo contribuir? {-}
 
 `bookdown` hace que la edición de un libro sea tan fácil como editar un wiki, siempre que tengas una cuenta de [GitHub](https://github.com/). Puedes proponer cambios en el libro desde el foro "Issues" en [el repositorio del libro en GitHub](https://github.com/arcruz0/libroadp), que contiene todo el código utilizado para generarlo. 
 
@@ -56,11 +53,18 @@ Adicionalmente, si encuentras el libro útil, por favor apóyalo de alguna de es
 
 - Recomendándolo o compartiéndolo en redes sociales.
 
-### Sobre los autores y autoras
+- Citando la versión del libro que hemos publicado en inglés: Urdinez, F. and Cruz, A. (2020). *Political Data Science Using R: A Practical Guide*. CRC Press. Si deseas, puedes recomendar a la biblioteca de tu universidad que compre la [versión en papel del libro](https://www.routledge.com/R-for-Political-Data-Science-A-Practical-Guide/Urdinez-Cruz/p/book/9780367818890).
 
-Todos los autores son politólogos pertenecientes al [Instituto de Ciencia Política](www.cienciapolitica.uc.cl/) de la Pontificia Universidad Católica de Chile, e investigadores y colaboradores del [Instituto Milenio de Fundamento de los Datos](https://imfd.cl/es/).
+<div class="figure" style="text-align: center">
+<img src="00-images/index/book.jpg" alt="Tapa del libro editado en inglés por CRC Press" width="30%" />
+<p class="caption">(\#fig:tapa-ingles)Tapa del libro editado en inglés por CRC Press</p>
+</div>
 
-## Prefacio
+### Sobre los autores y autoras {-}
+
+Este libro está editado por Francisco Urdinez, Profesor Asistente del [Instituto de Ciencia Política](www.cienciapolitica.uc.cl/) de la Pontificia Universidad Católica de Chile, y Andrés Cruz, Instructor Adjunto de Análisis de Datos en la Escuela de Ciencia Política de la Universidad Diego Portales, Chile. La mayoría de los autores que contribuyeron con capítulos a este volumen son politólogos afiliados al [Instituto de Ciencia Política](www.cienciapolitica.uc.cl/) de la Pontificia Universidad Católica de Chile, y muchos son investigadores y colaboradores del [Instituto de la Fundación Millennium Data](https://imfd.cl/es/), institución que tiene como objetivo la recolección, depuración y análisis de datos públicos para apoyar  políticas públicas. Andrew Heiss está afiliado al Departamento de Gestión y Política Pública de Georgia State University y se unió a este proyecto contribuyendo con un capítulo sobre la inferencia causal. Andrew suele compartir mucho de su trabajo en R en su [sitio web](www.andrewheiss.com). Sobre todo, todos los autores son usuarios entusiastas de R.
+
+## Prefacio {-}
 
 Este libro nació haciendo análisis de datos políticos. Es decir, es hijo de la praxis. Por ello su naturaleza es aplicada, y tiene su foco puesto en ser una caja de herramientas para el lector. **AnalizaR Datos Políticos** está pensado para ser un manual de referencia que podrá ser consultado tanto por un estudiante universitario viviendo en Bogotá, como por un consultor político viviendo en México D.F. o un o funcionario público en Brasilia, todos con la necesidad de transformar sus bases de datos en conclusiones sustantivas y fácilmente interpretables.
 
@@ -74,7 +78,7 @@ Ahora mismo, `R` es probablemente la mejor opción que el mercado provee para an
 
 
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/pref-gtrends-1.png" alt="Elaborada por los autores usando el paquete ggplot2 de R, y datos extraídos de Google Trends. Los datos corresponden a promedios anuales para países latinoamericanos en el sector 'ciencia'" width="50%" />
+<img src="index_files/figure-html/pref-gtrends-1.png" alt="Elaborada por los autores usando el paquete ggplot2 de R, y datos extraídos de Google Trends. Los datos corresponden a promedios anuales para países latinoamericanos en el sector 'ciencia'" width="80%" />
 <p class="caption">(\#fig:pref-gtrends)Elaborada por los autores usando el paquete ggplot2 de R, y datos extraídos de Google Trends. Los datos corresponden a promedios anuales para países latinoamericanos en el sector 'ciencia'</p>
 </div>
 
@@ -84,107 +88,112 @@ Es esta la novedad tecnológica que queremos acercar al lector interesado en el 
 
 Francisco Urdinez y Andrés Cruz.
 
-Santiago de Chile, 2019.
+Santiago de Chile, 2020.
 
-### Agradecimientos
+### Agradecimientos {-}
 
-Queremos agradecerle al [Instituto Milenio Fundamentos de los Datos](https://imfd.cl/) por apoyar este proyecto.
+Agradecemos a todos los prestigiosos académicos que permitieron usar sus bases de datos para ejemplificar nuestros capítulos. Queremos agradecer a Matías Piña, Eliana Jung, Vicente Quintero y Beatriz Urrutia por ayudar con correcciones y la edición del libro y a Daniel Alcatruz, Javiera Venegas, Santiago Olivella, Laura Levick y Carsten Schulz por sus comentarios sobre varios capítulos. Queremos agradecerle al [Instituto Milenio Fundamentos de los Datos](https://imfd.cl/) por apoyar a los alumnos de doctorado que participaron en este proyecto, así como a la Vicerrectoría de Investigación de la Pontificia Universidad Católica de Chile por apoyar su edición en la versión en inglés, publicada por CRC press como parte de [R Series](https://www.routledge.com/R-for-Political-Data-Science-A-Practical-Guide/Urdinez-Cruz/p/book/9780367818890).
 
 
-## Qué esperar del libro
+## Qué esperar del libro {-}
 
 El análisis cuantitativo de datos es una de las tantas herramientas que los investigadores tenemos para abordar las preguntas que nos interesan, ya sea en el mundo profesional o en la academia (o “por amor al arte” en muy encendidas noches de viernes, por qué no). Es por esto que **AnalizaR Datos Políticos** tiene un fuerte énfasis en ejemplos politológicos aplicados. Utilizar ejemplos de texto trillados e idealizados sobre autitos o islas imaginarias sería una falta de respeto para el lector, a quien sabemos ávido por ocupar las herramientas de este libro en las preguntas de investigación política que le parecen importantes. Por el contrario, queremos mostrar el potencial de dichas herramientas metiendo las manos en la masa, con datos de verdad, investigaciones que colegas ya han realizado y dificultades particulares de llevar el análisis de datos a preguntas políticas. Será bueno que nos acompañe a lo largo del libro con `RStudio` abierto en su computador, nada mejor que aprender juntos. 
 
 El libro se alimenta del avance enorme que se ha hecho en los últimos años a partir de la creación del lenguaje de [`tidyverse`](https://www.tidyverse.org/) y de la publicación de *R for Data Science*, el cual puede ser accedido de manera gratuita en español gracias al trabajo colaborativo de sus usuarios en el siguiente [link](http://es.r4ds.hadley.nz/). Todo el trabajo hecho por Garrett Grolemund y Hadley Wickham por facilitar la sintaxis de `R` es una excelente invitación para quienes nunca han utilizado software estadístico o para quienes quieren mudarse de otras alternativas como Stata o SPSS. 
 
-## Estructura del libro
+## Estructura del libro {-}
 
-<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:right;"> # </th>
-   <th style="text-align:left;"> Capítulo </th>
-   <th style="text-align:left;"> Autor(es) </th>
+   <th style="text-align:left;"> Chapter </th>
+   <th style="text-align:left;"> Author(s) </th>
   </tr>
  </thead>
 <tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> Introducción </td>
-   <td style="text-align:left;">  </td>
-  </tr>
   <tr grouplength="4"><td colspan="3" style="text-align:center"><strong>I. Introducción a R</strong></td></tr>
 <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 2 </td>
-   <td style="text-align:left;"> R Básico </td>
+   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 1 </td>
+   <td style="text-align:left;"> R básico </td>
    <td style="text-align:left;"> Andrés Cruz </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 3 </td>
+   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 2 </td>
    <td style="text-align:left;"> Manejo de datos </td>
    <td style="text-align:left;"> Andrés Cruz </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 4 </td>
+   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 3 </td>
    <td style="text-align:left;"> Visualización de datos </td>
    <td style="text-align:left;"> Soledad Araya </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 5 </td>
+   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 4 </td>
    <td style="text-align:left;"> Carga de bases </td>
-   <td style="text-align:left;"> Soledad Araya y Andrés Cruz </td>
+   <td style="text-align:left;"> Soledad Araya and Andrés Cruz </td>
   </tr>
-  <tr grouplength="3"><td colspan="3" style="text-align:center"><strong>II. Modelos</strong></td></tr>
+  <tr grouplength="6"><td colspan="3" style="text-align:center"><strong>II. Modelos</strong></td></tr>
 <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 6 </td>
+   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 5 </td>
    <td style="text-align:left;"> Modelos lineales </td>
-   <td style="text-align:left;"> Inés Fynn y Lihuen Nocetto </td>
+   <td style="text-align:left;"> Inés Fynn and Lihuen Nocetto </td>
+  </tr>
+  <tr>
+   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 6 </td>
+   <td style="text-align:left;"> Selección de casos basada en regresiones </td>
+   <td style="text-align:left;"> Inés Fynn and Lihuen Nocetto </td>
   </tr>
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 7 </td>
-   <td style="text-align:left;"> Modelos binarios </td>
+   <td style="text-align:left;"> Modelos de panel </td>
    <td style="text-align:left;"> Francisco Urdinez </td>
   </tr>
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 8 </td>
+   <td style="text-align:left;"> Modelos binarios </td>
+   <td style="text-align:left;"> Francisco Urdinez </td>
+  </tr>
+  <tr>
+   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 9 </td>
    <td style="text-align:left;"> Modelos de supervivencia </td>
    <td style="text-align:left;"> Francisco Urdinez </td>
   </tr>
-  <tr grouplength="7"><td colspan="3" style="text-align:center"><strong>III. Aplicaciones</strong></td></tr>
-<tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 9 </td>
-   <td style="text-align:left;"> Manejo avanzado de datos políticos </td>
-   <td style="text-align:left;"> Andrés Cruz y Francisco Urdinez </td>
-  </tr>
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 10 </td>
-   <td style="text-align:left;"> Creación de índices con PCA </td>
-   <td style="text-align:left;"> Caterina Labrín y Francisco Urdinez </td>
+   <td style="text-align:left;"> Inferencia causal </td>
+   <td style="text-align:left;"> Andrew Heiss </td>
   </tr>
-  <tr>
+  <tr grouplength="6"><td colspan="3" style="text-align:center"><strong>III. Aplicaciones</strong></td></tr>
+<tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 11 </td>
-   <td style="text-align:left;"> Selección de casos a partir de regresiones </td>
-   <td style="text-align:left;"> Inés Fynn y Lihuen Nocetto </td>
+   <td style="text-align:left;"> Manejo avanzado de datos políticos </td>
+   <td style="text-align:left;"> Andrés Cruz and Francisco Urdinez </td>
   </tr>
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 12 </td>
-   <td style="text-align:left;"> Minería de datos </td>
+   <td style="text-align:left;"> Minería de datos web </td>
    <td style="text-align:left;"> Gonzalo Barría </td>
   </tr>
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 13 </td>
-   <td style="text-align:left;"> Análisis de redes </td>
-   <td style="text-align:left;"> Andrés Cruz </td>
-  </tr>
-  <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 14 </td>
-   <td style="text-align:left;"> Análisis cuantitativo de textos </td>
+   <td style="text-align:left;"> Análisis cuantitativo de textos políticos </td>
    <td style="text-align:left;"> Sebastián Huneeus </td>
   </tr>
   <tr>
+   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 14 </td>
+   <td style="text-align:left;"> Redes </td>
+   <td style="text-align:left;"> Andrés Cruz </td>
+  </tr>
+  <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 15 </td>
-   <td style="text-align:left;"> Generación de mapas </td>
-   <td style="text-align:left;"> Andrea Escobar y Gabriel Ortiz </td>
+   <td style="text-align:left;"> Análisis de componentes principales </td>
+   <td style="text-align:left;"> Caterina Labrin and Francisco Urdinez </td>
+  </tr>
+  <tr>
+   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 16 </td>
+   <td style="text-align:left;"> Mapas y datos espaciales </td>
+   <td style="text-align:left;"> Andrea Escobar and Gabriel Ortiz </td>
   </tr>
 </tbody>
 </table>
@@ -200,8 +209,53 @@ En la sección II está el corazón del libro. Veremos cómo responder a pregunt
 <Descripción de los capítulos de la sección III>
 Por último, en la sección III dejaremos el mundo ideal y nos adentraremos en la resolución de problemas. Ya sea porque un colega nos prestó su base de datos y se ve más bien como una obra de arte surrealista, o simplemente porque la dificultad de los problemas a los que nos enfrentamos deja corto lo que aprendimos al principio del libro, aquí presentaremos un popurrí de herramientas para que el lector integre en su flujo de trabajo cotidiano. Estas han sido seleccionadas desde nuestra experiencia y son cuáles creemos las más requeridas en la práctica del análisis de datos políticos.
 
-## Prerrequisitos
+## ¿Cómo utilizar el libro en un curso de métodos? {-}
+
+Si este libro te ha interesado como recurso pedagógico, y deseas utilizarlo para estructurar tu clase de métodos cuantitativos o de análisis de datos en ciencia política, te ofrecemos dos alternativas, para diagramar un curso semestral de 10 clases, según donde se quiera poner el foco. Los capítulos de la sección II y III sugieren lecturas que son fuertemente recomendadas para dar robustez a los contenidos del libro. Recuerda que éste no es un libro de metodología, sino que es un libro aplicado de R, por lo tanto, es importante que las lecturas cubran bien la parte teórica de cada tema. 
+
+### Primera opción: Curso semestral de análisis de datos políticos {-}
+
+>Ésta es una diagramación para un curso donde el énfasis está puesto en que el alumno aprenda a utilizar R, y rápidamente sacar conclusiones descriptivas de los datos que se usen. 
+>Nota: antes de comenzar el curso los alumnos deben haber leído el capítulo 1 “R Básico” y tener instalado RStudio y el paquete del libro. Es importante siempre llevar scripts listos a clases para que los alumnos rápidamente se pongan a trabajar sin sufrir la codificación, que se aprenderá de a poco en casa. Otra opción a considerar es [RStudio Cloud](https://rstudio.cloud), que permite a los estudiantes trabajar directamente en el navegador.
+
++ *Clase 1*. Utilice el Capítulo 2 para trabajar con la base de datos de aprobación presidencial hasta cubrir `mutate()`, pasando por `arrange()`, `filter()`, `rename()`, `select()` y `skim()`. Es fundamental que en esta primera clase la alumna salga de ella sintiendo que ha aprendido algo sustantivo de la base de datos. Es recomendable ofrecer el script ya redactado para evitar frustraciones con la sintaxis.
+
++ *Clase 2*. Continúe con el Capítulo 2. Utilizando `summarize()` por grupos, el estudiante debe comenzar a interpretar medias, valores máximos y mínimos y compararlos entre grupos de interés. Puede pedirles crear una variable dicotómica para comparar dos grupos de interés. Haga énfasis en el potencial de combinar `mutate()` con `if_else()` y no se detenga en la idea de pivotear. Es recomendable ofrecer el script ya redactado para evitar frustraciones con la sintaxis, el alumno podrá ponerlos en práctica si se le pide hacer los ejercicios del capítulo en casa.
+
++ *Clase 3*. Comience el Capítulo 3, introduciendo el mundo de capas de `ggplot2`.  Ofrezca un script con la base de datos de las dos clases previas, a saber, la base de datos de aprobación presidencial, y deje la base de datos que utiliza el capítulo para que el alumno la analice en casa. Ejemplifique la idea de los mapeos estéticos con `geom_boxplot()`, `geom_bar()` y `geom_line()`, y combine las tres con `patchwork`. Con lo aprendido previamente cree variables categóricas para agrupar países, lo que a continuación puede servir para introducir la idea de las facetas. Termine la clase demostrando opciones de temas de `ggplot2`. 
+
++ *Clase 4*. Continúe con el Capítulo 3 a partir de `geom_histogram()`. Combine esta herramienta con `skim()` y `filter()`. Nuevamente, ofrezca un script redactado, pero permita que de a poco los alumnos tengan que participar activamente en la sintaxis de los comandos. Incorpore las opciones complementarias como `labs()` y `scale_x_continuous()`. Combine `geom_point()` y `geom_smooth()` para analizar la correlación entre varias variables. Invite a los alumnos a sacar conclusiones de los datos y, si desea, aproveche a profundizar en el concepto de correlación y su cálculo.  
+
++ *Clase 5*. Cubra el Capítulo 4 en una sola clase. La carga de datos puede ser frustrante, es importante preparar un ejercicio práctico para llevar a la clase y enfatizar sobre la importancia de trabajar con RStudio Projects. Cree versiones en Excel y .csv de la base de aprobación presidencial y ejemplifique cómo se importan a su proyecto. Luego, repita el proceso con versiones de su base en Stata y SPSS. Para finalizar, haga a los alumnos cargar una base y responder a preguntas sobre los datos utilizando lo aprendido en las cuatro clases previas. Ahora sí, los alumnos están listos para redactar su propio código. 
+
++ *Clase 6*. Usando el contenido del capítulo 12 enseñe a los alumnos a extraer datos de Twitter utilizando APIs con `rtweet`. Ejemplifique el paso a paso del uso de las funciones `search_tweets()`, `get_followers()` y `lookup_users()` y luego deje un espacio de tiempo para que cada alumno replique este ejemplo con el tema que sea de su interés. Con lo aprendido en la clase 5 pida a los alumnos que guarden sus bases para ser usadas en la próxima clase. 
+
++ *Clase 7*. Usando el contenido del Capítulo 12 analice la base creada en la clase anterior con el paquete `tidytext`, introduciendo análisis de frecuencias de palabras y tf-idf. Retome lo cubierto en clase dos sobre combinar `mutate()` con `if_else()` para agrupar tweets por variables de interés. A esta altura del curso es importante que el alumno intente escribir código por sí solo, y es bueno exigir el uso de opciones estéticas en las figuras creadas con `ggplot2`. 
+
++ *Clase 8*. Profundice en análisis de texto, centrándose en modelamientos de tópicos sencillos. Demuestre cómo utilizar en conjunto los paquetes `tidytext`, `lubridate` y `stm` con un ejemplo creado previamente, y luego invite a los alumnos a aplicar estas funciones en su base de datos.
+
++ *Clase 9*. En esta clase retomaremos lo visto en clases 3 y 4 para avanzar sobre el contenido del capítulo 16. Parta explicando la lógica de un shapefile, y ejemplifique como visualizarla con `geom_sf()`. Para una primera experiencia con el tema recomendamos un shapefile de América Latina con sus fronteras políticas. Usando la base de aprobación presidencial demuestre cómo agregar variables a su shapefile utilizando `left_join()`. En este curso debe asegurarse que la variable de unión coincida lo mejor posible en ambas bases. No querremos cubrir temas de fuzzy join, por ejemplo.
+
++ *Clase 10*. En esta clase cubra ideas de LISAs y clusters espaciales utilizando `spdep`. Recomendamos también cubrir la utilidad de `geom_point()`, que puede ejemplificarse utilizando el paquete `pinochet` y `rnaturalearthhires`. A modo de trabajo final del curso sería bueno pedir un R Markdown que sintetice este ejercicio y que incorpore la mayor cantidad de herramientas aprendidas en las clases previas.
+
+
+### Segunda opción: Curso semestral de introducción a métodos cuantitativos {-}
+
+>Ésta es una diagramación para un curso donde el énfasis está puesto en Mínimos Cuadrados Ordinarios.
+>*antes de comenzar el curso los alumnos deben haber leído el capítulo 1 “R Básico” y tener instalado RStudio y el paquete del libro. Es importante siempre llevar scripts listos a clases para que los alumnos rápidamente se pongan a trabajar sin sufrir la codificación, que se aprenderá de a poco en casa. 
+
++ *Clase 1*. Utilice el Capítulo 2 para trabajar con la base de datos de aprobación presidencial hasta cubrir `mutate()`, pasando por `arrange()`, `filter()`, `rename()`, `select()` y `skim()`. Utilizando `summarize()` por grupos, el alumno debe comenzar a interpretar medias, valores máximos y mínimos y compararlos entre grupos de interés. Puede pedirles crear una variable dicotómica para comparar dos grupos de interés. Haga énfasis en el potencial de combinar `mutate()` con `if_else()` y no se detenga en `pivot`. Es fundamental que en esta primera clase la alumna salga de ella sintiendo que ha aprendido algo sustantivo de la base de datos. Es recomendable ofrecer el script ya redactado para evitar frustraciones con la sintaxis e introducir a los alumnos a R Markdown.
++ *Clase 2*. Comience el Capítulo 3, introduciendo el mundo de capas de `tidyverse`. Parta por `geom_histogram()` y combine esta herramienta con `skim` y `filter`. Nuevamente, ofrezca un script redactado, pero permita que de a poco los alumnos tengan que participar activamente en la sintaxis de los comandos. Incorpore las opciones complementarias como `labs()` y `scale_x_continuous()`. Combine `geom_point()` y `geom_smooth()` para analizar la correlación entre varias variables. Presente el concepto de mínimos cuadrados ordinarios con un ejemplo aplicado de `geom_smooth()`. Termine la clase demostrando opciones de `themes`.
++ *Clase 3*. Rápidamente cubra el capítulo 4 con un ejercicio práctico para llevar a la clase y enfatizar sobre la importancia de trabajar con RStudio Projects. Cree versiones en Excel, csv de la base de aprobación presidencial y ejemplifique como se importan a su proyecto. Si el curso tiene experiencia en Stata, explique `haven()`. De en .csv la base de municipios del capítulo 3 a los alumnos, muestre `ggcorrplot()` y avance al capítulo 5 cubriendo rápidamente `lm()` con una regresión univariada y `texreg()`. Los alumnos tendrán dos semanas para trabajar en casa con la base de bienestar de Huber et al. y crear un Markdown. 
++ *Clase 4*. En esta clase se profundizará en el capítulo 5 partiendo por regresiones multivariadas. Explique `factor()`, `list()`  y deténgase en la interpretación de coeficientes. Profundice este tema con `prediction()` y ejemplifique su utilidad con `ggplot()`. A partir de esta clase deje tiempo de clases para que los alumnos trabajen solos o en pares y redacten su propio código. 
++ *Clase 5*. Dedique esta clase a cubrir ajuste de modelos y presupuestos de MCO, así como el uso de transformaciones logarítmicas en variables dependientes e independientes y la implementación de errores estándar robustos. 
++ *Clase 6*. Con la base de datos que se haya usado para cubrir los contenidos de las clases 4 y 5 cubra los contenidos del capítulo 6 de manera aplicada, pidiendo a los alumnos que apliquen `broom()` para seleccionar casos a partir de regresiones. Es recomendable que los alumnos hagan en clase el ejercicio 7.C. y entreguen un Markdown con sus respuestas. 
++ *Clase 7*. Desarrolle el capítulo 10 sobre DAGs en una clase, introduciendo `ggdag()`, `dagitty()`, `MatchIt()` y utilizando los ya conocidos `broom()` y `texreg()`. Para abordar la clase recomendamos que se desarrolle un ejemplo similar al que el autor utiliza en el capítulo, y que luego se trabaje sobre la base de la clase anterior para que los alumnos diseñen su propio DAG. + *Clase 8*. Cubra los contenidos del capítulo 7 sobre datos en panel, donde se presente `lubridate()` y `plm()`. Dedique una parte de la clase a presentar `devtools`, cuyas funciones sirven para visualizar resultados y se complementa muy bien con `prediction()`. Cubra modelos de efectos fijos y aleatorios, `phtest()`, tests de raíz unitaria y correlación temporal y la incorporación de errores estándar robustos corregidos para panel. Refuerce el uso de `texreg` y la exportación de tablas para su uso en artículos académicos.
++ *Clase 9*. Las últimas dos clases pueden ser dedicadas a ofrecer al alumno herramientas para complementar lo que ha aprendido hasta este punto. Utilice el capítulo 15 para introducir a los alumnos a la creación de índices que puedan ser incorporados en modelos tanto como variables dependientes como independientes. 
++ *Clase 10*. Finalice el curso usando el capítulo 11 con una discusión sobre estandarización de códigos y unión de bases de datos mediante `left_join()` y demostrando el uso de `countrycode`, `stringdist`, `inexact`. Pida a los alumnos hacer un ejercicio en clases. Luego discuta datos faltantes e imputación presentando `naniar` y `mice` y pida a los alumnos hacer un ejercicio en clases el paquete.
+
+## Prerrequisitos {-}
 
 Este libro está pensado para alumnos que más que brillantes son motivados: el análisis cuantitativo de datos exige sobre todo tenacidad y curiosidad. Es altamente deseable que el lector tenga nociones básicas de matemática, probabilidad y/o estadística universitaria antes de leer este libro, aun cuando nos esforzamos por mantenerlo lo más simple que pudimos en dichas materias. En términos de hardware, prácticamente cualquier computador moderno con acceso a internet será suficiente, pues las herramientas que utilizaremos son más bien livianas. Todo el software que utilizaremos es gratuito.
 
-En el Capítulo \@ref(rbas), de R Básico, se explica cómo instalar todo el software que se utilizará en el libro. Si ya sabes un poco sobre el funcionamiento de R, debes saber que en la subsección \@ref(rbas-paquetes) instalaremos dos paquetes que luego asumiremos instalados en el resto del libro: `tidyverse` y `paqueteadp` (un paquete especialmente creado para apoyar al libro). 
+En el Capítulo \@ref(basic-r), de R Básico, se explica cómo instalar todo el software que se utilizará en el libro. Si ya sabes un poco sobre el funcionamiento de R, debes saber que en la subsección \@ref(basic-r-packages) instalaremos dos paquetes que luego asumiremos instalados en el resto del libro: `tidyverse` y `paqueteadp` (un paquete especialmente creado para apoyar al libro). 

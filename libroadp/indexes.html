@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 15 Análisis de componentes principales | AnalizaR Datos Políticos</title>
+  <meta name="description" content="Capítulo 15 Análisis de componentes principales | AnalizaR Datos Políticos" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 15 Análisis de componentes principales | AnalizaR Datos Políticos" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 15 Análisis de componentes principales | AnalizaR Datos Políticos" />
+  
+  
+  
+
+<meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (editores)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="prev" href="networks.html"/>
+<link rel="next" href="maps.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script>
+% https://stackoverflow.com/a/4425214/8242291
+var links = document.links;
+
+for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+
+}
+</script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><b><a href="./index.html"><img style="float: left; margin-right: 5px;" src="favicon.ico"></img>AnalizaR datos políticos</a></b></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introducción</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#inicio"><i class="fa fa-check"></i>Inicio</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cómo-contribuir"><i class="fa fa-check"></i>¿Cómo contribuir?</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#sobre-los-autores-y-autoras"><i class="fa fa-check"></i>Sobre los autores y autoras</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prefacio"><i class="fa fa-check"></i>Prefacio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#qué-esperar-del-libro"><i class="fa fa-check"></i>Qué esperar del libro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura-del-libro"><i class="fa fa-check"></i>Estructura del libro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cómo-utilizar-el-libro-en-un-curso-de-métodos"><i class="fa fa-check"></i>¿Cómo utilizar el libro en un curso de métodos?</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#primera-opción-curso-semestral-de-análisis-de-datos-políticos"><i class="fa fa-check"></i>Primera opción: Curso semestral de análisis de datos políticos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#segunda-opción-curso-semestral-de-introducción-a-métodos-cuantitativos"><i class="fa fa-check"></i>Segunda opción: Curso semestral de introducción a métodos cuantitativos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerrequisitos"><i class="fa fa-check"></i>Prerrequisitos</a></li>
+</ul></li>
+<li class="part"><span><b>I Introducción a R</b></span></li>
+<li class="chapter" data-level="1" data-path="basic-r.html"><a href="basic-r.html"><i class="fa fa-check"></i><b>1</b> R Básico</a><ul>
+<li class="chapter" data-level="1.1" data-path="basic-r.html"><a href="basic-r.html#instalación"><i class="fa fa-check"></i><b>1.1</b> Instalación</a><ul>
+<li class="chapter" data-level="" data-path="basic-r.html"><a href="basic-r.html#r"><i class="fa fa-check"></i>R</a></li>
+<li class="chapter" data-level="" data-path="basic-r.html"><a href="basic-r.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="basic-r.html"><a href="basic-r.html#consola"><i class="fa fa-check"></i><b>1.2</b> Consola</a></li>
+<li class="chapter" data-level="1.3" data-path="basic-r.html"><a href="basic-r.html#script"><i class="fa fa-check"></i><b>1.3</b> Script</a></li>
+<li class="chapter" data-level="1.4" data-path="basic-r.html"><a href="basic-r.html#objetos-y-funciones"><i class="fa fa-check"></i><b>1.4</b> Objetos (y funciones)</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="basic-r.html"><a href="basic-r.html#vectores"><i class="fa fa-check"></i><b>1.4.1</b> Vectores</a></li>
+<li class="chapter" data-level="1.4.2" data-path="basic-r.html"><a href="basic-r.html#basic-r-functions"><i class="fa fa-check"></i><b>1.4.2</b> Functions</a></li>
+<li class="chapter" data-level="1.4.3" data-path="basic-r.html"><a href="basic-r.html#archivos-gráficos-paquetes-ayuda"><i class="fa fa-check"></i><b>1.4.3</b> Archivos / gráficos / paquetes / ayuda</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Manejo de datos</a><ul>
+<li class="chapter" data-level="" data-path="data.html"><a href="data.html#los-paquetes-que-necesitas-instalar"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#introducción-al-manejo-de-datos"><i class="fa fa-check"></i><b>2.1</b> Introducción al manejo de datos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>2.1.1</b> Nuestra base de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#describiendo-una-base-de-datos"><i class="fa fa-check"></i><b>2.2</b> Describiendo una base de datos</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#operaciones-básicas"><i class="fa fa-check"></i><b>2.3</b> Operaciones básicas</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data.html"><a href="data.html#seleccionar-columnas"><i class="fa fa-check"></i><b>2.3.1</b> Seleccionar columnas</a></li>
+<li class="chapter" data-level="2.3.2" data-path="data.html"><a href="data.html#renombra-las-columnas"><i class="fa fa-check"></i><b>2.3.2</b> Renombra las columnas</a></li>
+<li class="chapter" data-level="2.3.3" data-path="data.html"><a href="data.html#filtrar-las-observaciones"><i class="fa fa-check"></i><b>2.3.3</b> Filtrar las observaciones</a></li>
+<li class="chapter" data-level="2.3.4" data-path="data.html"><a href="data.html#cambiar-el-orden-de-una-base-de-datos"><i class="fa fa-check"></i><b>2.3.4</b> Cambiar el orden de una base de datos</a></li>
+<li class="chapter" data-level="2.3.5" data-path="data.html"><a href="data.html#transformar-y-crear-variables"><i class="fa fa-check"></i><b>2.3.5</b> Transformar y crear variables</a></li>
+<li class="chapter" data-level="2.3.6" data-path="data.html"><a href="data.html#resúmenes"><i class="fa fa-check"></i><b>2.3.6</b> Resúmenes</a></li>
+<li class="chapter" data-level="2.3.7" data-path="data.html"><a href="data.html#resúmenes-por-grupo"><i class="fa fa-check"></i><b>2.3.7</b> Resúmenes por grupo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#comandos-en-cadena"><i class="fa fa-check"></i><b>2.4</b> Comandos en cadena</a></li>
+<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#data-recodificar"><i class="fa fa-check"></i><b>2.5</b> Recodificar valores</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#pivoteo-de-datos-data-pivot"><i class="fa fa-check"></i><b>2.5.1</b> Pivoteo de datos {data-pivot}</a></li>
+<li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#bases-de-datos-anchas-con-más-de-una-variable-de-interés"><i class="fa fa-check"></i><b>2.5.2</b> Bases de datos anchas con más de una variable de interés</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>3</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#lecturas-sugeridas"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#los-paquetes-que-necesitas-instalar-1"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="3.1" data-path="dataviz.html"><a href="dataviz.html#por-qué-visualizar-mis-datos"><i class="fa fa-check"></i><b>3.1</b> ¿Por qué visualizar mis datos?</a></li>
+<li class="chapter" data-level="3.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>3.2</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-universo-ggplotiano"><i class="fa fa-check"></i><b>3.2.1</b> Las capas del “universo ggplotiano”</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dataviz.html"><a href="dataviz.html#ejemplo-aplicado-elecciones-locales-y-visualización-de-datos"><i class="fa fa-check"></i><b>3.3</b> Ejemplo aplicado: Elecciones locales y visualización de datos</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-barras"><i class="fa fa-check"></i><b>3.3.1</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-caja"><i class="fa fa-check"></i><b>3.3.2</b> Gráfico de caja</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataviz.html"><a href="dataviz.html#histograma"><i class="fa fa-check"></i><b>3.3.3</b> Histograma</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataviz.html"><a href="dataviz.html#relación-entre-las-variables"><i class="fa fa-check"></i><b>3.3.4</b> Relación entre las variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="dataviz.html"><a href="dataviz.html#para-continuar-aprendiendo"><i class="fa fa-check"></i><b>3.4</b> Para continuar aprendiendo</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="load.html"><a href="load.html"><i class="fa fa-check"></i><b>4</b> Carga de datos</a><ul>
+<li class="chapter" data-level="" data-path="load.html"><a href="load.html#los-paquetes-que-necesitas-instalar-2"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="4.1" data-path="load.html"><a href="load.html#load-intro"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="load.html"><a href="load.html#carga-formatos"><i class="fa fa-check"></i><b>4.2</b> Diferentes formatos de bases de datos</a></li>
+<li class="chapter" data-level="4.3" data-path="load.html"><a href="load.html#los-archivos-separados-por-delimitadores-.csv-y-.tsv"><i class="fa fa-check"></i><b>4.3</b> Los archivos separados por delimitadores (.csv y .tsv)</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="load.html"><a href="load.html#r-básico-utils"><i class="fa fa-check"></i><b>4.3.1</b> R básico: <code>utils</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="load.html"><a href="load.html#load-r"><i class="fa fa-check"></i><b>4.3.2</b> Archivos creados con R (.Rdata y .rds)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="load.html"><a href="load.html#load-labels"><i class="fa fa-check"></i><b>4.3.3</b> Bases de datos con etiquetas (de Stata or SPSS)</a></li>
+<li class="chapter" data-level="4.3.4" data-path="load.html"><a href="load.html#load-excel"><i class="fa fa-check"></i><b>4.3.4</b> Archivos de Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="load.html"><a href="load.html#load-large"><i class="fa fa-check"></i><b>4.4</b> Grandes bases de datos tabulares</a></li>
+</ul></li>
+<li class="part"><span><b>II Modelos</b></span></li>
+<li class="chapter" data-level="5" data-path="linear.html"><a href="linear.html"><i class="fa fa-check"></i><b>5</b> Modelos lineales</a><ul>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#lecturas-sugeridas-1"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#los-paquetes-que-necesitas-instalar-3"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#introducción-1"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="5.1" data-path="linear.html"><a href="linear.html#mínimos-cuadrados-ordinarios-en-r"><i class="fa fa-check"></i><b>5.1</b> Mínimos cuadrados ordinarios en R</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="linear.html"><a href="linear.html#cómo-obtener-estadísticas-descriptivas"><i class="fa fa-check"></i><b>5.1.1</b> Cómo obtener estadísticas descriptivas</a></li>
+<li class="chapter" data-level="5.1.2" data-path="linear.html"><a href="linear.html#estadísticas-descriptivas-y-distribución-de-las-variables-en-el-modelo"><i class="fa fa-check"></i><b>5.1.2</b> Estadísticas descriptivas y distribución de las variables en el modelo</a></li>
+<li class="chapter" data-level="5.1.3" data-path="linear.html"><a href="linear.html#matriz-de-correlación-de-variables-independientes"><i class="fa fa-check"></i><b>5.1.3</b> Matriz de correlación de variables independientes</a></li>
+<li class="chapter" data-level="5.1.4" data-path="linear.html"><a href="linear.html#distribución-de-las-variables-de-interés"><i class="fa fa-check"></i><b>5.1.4</b> Distribución de las variables de interés</a></li>
+<li class="chapter" data-level="5.1.5" data-path="linear.html"><a href="linear.html#relación-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>5.1.5</b> Relación entre la variable dependiente e independiente</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="linear.html"><a href="linear.html#modelo-bivariado-regresión-lineal-simple"><i class="fa fa-check"></i><b>5.2</b> Modelo bivariado: regresión lineal simple</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="linear.html"><a href="linear.html#la-función-lm"><i class="fa fa-check"></i><b>5.2.1</b> La función <code>lm</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="linear.html"><a href="linear.html#representación-gráfica"><i class="fa fa-check"></i><b>5.2.2</b> Representación gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="linear.html"><a href="linear.html#modelo-multivariado-regresión-múltiple"><i class="fa fa-check"></i><b>5.3</b> Modelo multivariado: regresión múltiple</a></li>
+<li class="chapter" data-level="5.4" data-path="linear.html"><a href="linear.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Ajuste del modelo</a></li>
+<li class="chapter" data-level="5.5" data-path="linear.html"><a href="linear.html#inferencia-en-los-modelos-lineales-múltiples"><i class="fa fa-check"></i><b>5.5</b> Inferencia en los modelos lineales múltiples</a></li>
+<li class="chapter" data-level="5.6" data-path="linear.html"><a href="linear.html#testeando-los-supuestos-de-mco"><i class="fa fa-check"></i><b>5.6</b> Testeando los supuestos de MCO</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="case-sel.html"><a href="case-sel.html"><i class="fa fa-check"></i><b>6</b> Selección de casos basada en regresiones</a><ul>
+<li class="chapter" data-level="" data-path="case-sel.html"><a href="case-sel.html#lecturas-sugeridas-2"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="case-sel.html"><a href="case-sel.html#los-paquetes-que-necesitas-instalar-4"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="6.1" data-path="case-sel.html"><a href="case-sel.html#selección-de-estudios-de-casos"><i class="fa fa-check"></i><b>6.1</b> Selección de estudios de casos</a></li>
+<li class="chapter" data-level="6.2" data-path="case-sel.html"><a href="case-sel.html#qué-estudio-de-caso-debería-seleccionar-para-la-investigación-cualitativa"><i class="fa fa-check"></i><b>6.2</b> ¿Qué estudio de caso debería seleccionar para la investigación cualitativa?</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="case-sel.html"><a href="case-sel.html#casos-típicos"><i class="fa fa-check"></i><b>6.2.1</b> Casos típicos</a></li>
+<li class="chapter" data-level="6.2.2" data-path="case-sel.html"><a href="case-sel.html#los-valores-atípicos"><i class="fa fa-check"></i><b>6.2.2</b> Los valores atípicos</a></li>
+<li class="chapter" data-level="6.2.3" data-path="case-sel.html"><a href="case-sel.html#casos-influyentes"><i class="fa fa-check"></i><b>6.2.3</b> Casos influyentes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="case-sel.html"><a href="case-sel.html#casos-extremos"><i class="fa fa-check"></i><b>6.2.4</b> Casos extremos</a></li>
+<li class="chapter" data-level="6.2.5" data-path="case-sel.html"><a href="case-sel.html#casos-más-similares"><i class="fa fa-check"></i><b>6.2.5</b> Casos más similares</a></li>
+<li class="chapter" data-level="6.2.6" data-path="case-sel.html"><a href="case-sel.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>6.2.6</b> Casos mas diferentes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="case-sel.html"><a href="case-sel.html#la-importancia-de-la-combinación-de-métodos"><i class="fa fa-check"></i><b>6.3</b> La importancia de la combinación de métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="panel.html"><a href="panel.html"><i class="fa fa-check"></i><b>7</b> Datos de panel</a><ul>
+<li class="chapter" data-level="" data-path="panel.html"><a href="panel.html#lecturas-sugeridas-3"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="panel.html"><a href="panel.html#los-paquetes-que-necesitas-instalar-5"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="7.1" data-path="panel.html"><a href="panel.html#introducción-2"><i class="fa fa-check"></i><b>7.1</b> Introducción</a></li>
+<li class="chapter" data-level="7.2" data-path="panel.html"><a href="panel.html#describiendo-la-base-de-datos-en-panel"><i class="fa fa-check"></i><b>7.2</b> Describiendo la base de datos en panel</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="panel.html"><a href="panel.html#opción-a.-gráfico-de-líneas"><i class="fa fa-check"></i><b>7.2.1</b> Opción A. Gráfico de líneas</a></li>
+<li class="chapter" data-level="7.2.2" data-path="panel.html"><a href="panel.html#option-b.-gráfico-de-cajas"><i class="fa fa-check"></i><b>7.2.2</b> Option B. Gráfico de cajas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="panel.html"><a href="panel.html#modelización-de-la-variación-a-nivel-de-grupo"><i class="fa fa-check"></i><b>7.3</b> Modelización de la variación a nivel de grupo</a></li>
+<li class="chapter" data-level="7.4" data-path="panel.html"><a href="panel.html#efectos-fijos-vs.-efectos-aleatorios"><i class="fa fa-check"></i><b>7.4</b> Efectos fijos vs. efectos aleatorios</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="panel.html"><a href="panel.html#test-de-hausman"><i class="fa fa-check"></i><b>7.4.1</b> Test de Hausman</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="panel.html"><a href="panel.html#testeando-raíces-unitarias"><i class="fa fa-check"></i><b>7.5</b> Testeando raíces unitarias</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="panel.html"><a href="panel.html#creación-de-variables-rezagadas-lags-y-variables-prospectivas-leads"><i class="fa fa-check"></i><b>7.5.1</b> Creación de variables rezagadas (<em>lags</em>) y variables prospectivas (<em>leads</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="panel.html"><a href="panel.html#errores-estándar-robustos-corregidos-para-panel"><i class="fa fa-check"></i><b>7.6</b> Errores estándar robustos corregidos para panel</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="panel.html"><a href="panel.html#errores-estándar-robustos-1"><i class="fa fa-check"></i><b>7.6.1</b> Errores estándar robustos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>8</b> Modelos logísticos</a><ul>
+<li class="chapter" data-level="" data-path="logit.html"><a href="logit.html#lecturas-sugeridas-4"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="logit.html"><a href="logit.html#los-paquetes-que-necesitas-instalar-6"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="8.1" data-path="logit.html"><a href="logit.html#introducción-3"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
+<li class="chapter" data-level="8.2" data-path="logit.html"><a href="logit.html#uso-de-los-modelos-logísticos"><i class="fa fa-check"></i><b>8.2</b> Uso de los modelos logísticos</a></li>
+<li class="chapter" data-level="8.3" data-path="logit.html"><a href="logit.html#cómo-se-estiman-las-probabilidades"><i class="fa fa-check"></i><b>8.3</b> ¿Cómo se estiman las probabilidades?</a></li>
+<li class="chapter" data-level="8.4" data-path="logit.html"><a href="logit.html#estimación-de-los-modelos"><i class="fa fa-check"></i><b>8.4</b> Estimación de los modelos</a></li>
+<li class="chapter" data-level="8.5" data-path="logit.html"><a href="logit.html#creando-tablas"><i class="fa fa-check"></i><b>8.5</b> Creando tablas</a></li>
+<li class="chapter" data-level="8.6" data-path="logit.html"><a href="logit.html#representación-visual-de-los-resultados"><i class="fa fa-check"></i><b>8.6</b> Representación visual de los resultados</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="logit.html"><a href="logit.html#visualización-de-las-interacciones-entre-las-variables"><i class="fa fa-check"></i><b>8.6.1</b> Visualización de las interacciones entre las variables</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="logit.html"><a href="logit.html#medidas-para-evaluar-el-ajuste-de-los-modelos"><i class="fa fa-check"></i><b>8.7</b> Medidas para evaluar el ajuste de los modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>9</b> Modelos de supervivencia</a><ul>
+<li class="chapter" data-level="" data-path="surv.html"><a href="surv.html#lecturas-sugeridas-5"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="surv.html"><a href="surv.html#los-paquetes-que-necesitas-instalar-7"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="9.1" data-path="surv.html"><a href="surv.html#introducción-4"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="surv.html"><a href="surv.html#cómo-interpretamos-las-tasas-de-riesgo"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo interpretamos las tasas de riesgo?</a></li>
+<li class="chapter" data-level="9.3" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>9.3</b> El modelo Cox de riesgos proporcionales</a></li>
+<li class="chapter" data-level="9.4" data-path="surv.html"><a href="surv.html#estimación-de-los-modelos-de-cox-en-r"><i class="fa fa-check"></i><b>9.4</b> Estimación de los modelos de Cox en R</a></li>
+<li class="chapter" data-level="9.5" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretación-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>9.5</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="causal-inf.html"><a href="causal-inf.html"><i class="fa fa-check"></i><b>10</b> Inferencia causal</a><ul>
+<li class="chapter" data-level="" data-path="causal-inf.html"><a href="causal-inf.html#lecturas-sugeridas-6"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="causal-inf.html"><a href="causal-inf.html#los-paquetes-que-necesitas-instalar-8"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="10.1" data-path="causal-inf.html"><a href="causal-inf.html#introducción-5"><i class="fa fa-check"></i><b>10.1</b> Introducción</a></li>
+<li class="chapter" data-level="10.2" data-path="causal-inf.html"><a href="causal-inf.html#causalidad-y-gráficos-causales"><i class="fa fa-check"></i><b>10.2</b> Causalidad y gráficos causales</a></li>
+<li class="chapter" data-level="10.3" data-path="causal-inf.html"><a href="causal-inf.html#midiendo-efectos-causales"><i class="fa fa-check"></i><b>10.3</b> Midiendo efectos causales</a></li>
+<li class="chapter" data-level="10.4" data-path="causal-inf.html"><a href="causal-inf.html#dags-y-asociaciones-estadísticas"><i class="fa fa-check"></i><b>10.4</b> DAGs y asociaciones estadísticas</a></li>
+<li class="chapter" data-level="10.5" data-path="causal-inf.html"><a href="causal-inf.html#puertas-traseras-y-cálculos-hacer"><i class="fa fa-check"></i><b>10.5</b> Puertas traseras y cálculos “<em>hacer</em>”</a></li>
+<li class="chapter" data-level="10.6" data-path="causal-inf.html"><a href="causal-inf.html#dibujar-y-analizar-dags"><i class="fa fa-check"></i><b>10.6</b> Dibujar y analizar DAGs</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="causal-inf.html"><a href="causal-inf.html#dibujar-un-dag-con-dagitty"><i class="fa fa-check"></i><b>10.6.1</b> Dibujar un DAG con DAGitty</a></li>
+<li class="chapter" data-level="10.6.2" data-path="causal-inf.html"><a href="causal-inf.html#encontrar-sets-de-ajuste-con-dagitty"><i class="fa fa-check"></i><b>10.6.2</b> Encontrar sets de ajuste con DAGitty</a></li>
+<li class="chapter" data-level="10.6.3" data-path="causal-inf.html"><a href="causal-inf.html#diseñar-dags-en-r"><i class="fa fa-check"></i><b>10.6.3</b> Diseñar DAGs en R</a></li>
+<li class="chapter" data-level="10.6.4" data-path="causal-inf.html"><a href="causal-inf.html#encontrar-caminos-y-sets-de-ajustes-con-r"><i class="fa fa-check"></i><b>10.6.4</b> Encontrar caminos y sets de ajustes con R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="causal-inf.html"><a href="causal-inf.html#haciendo-ajustes-causales"><i class="fa fa-check"></i><b>10.7</b> Haciendo ajustes causales</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="causal-inf.html"><a href="causal-inf.html#datos-de-redes-para-mosquitos"><i class="fa fa-check"></i><b>10.7.1</b> Datos de redes para mosquitos</a></li>
+<li class="chapter" data-level="10.7.2" data-path="causal-inf.html"><a href="causal-inf.html#verificar-las-independencias-condicionales"><i class="fa fa-check"></i><b>10.7.2</b> Verificar las independencias condicionales</a></li>
+<li class="chapter" data-level="10.7.3" data-path="causal-inf.html"><a href="causal-inf.html#encuentra-el-set-de-ajuste"><i class="fa fa-check"></i><b>10.7.3</b> Encuentra el set de ajuste</a></li>
+<li class="chapter" data-level="10.7.4" data-path="causal-inf.html"><a href="causal-inf.html#estimación-ingenua-no-ajustada"><i class="fa fa-check"></i><b>10.7.4</b> Estimación ingenua no ajustada</a></li>
+<li class="chapter" data-level="10.7.5" data-path="causal-inf.html"><a href="causal-inf.html#regresiones"><i class="fa fa-check"></i><b>10.7.5</b> Regresiones</a></li>
+<li class="chapter" data-level="10.7.6" data-path="causal-inf.html"><a href="causal-inf.html#matching"><i class="fa fa-check"></i><b>10.7.6</b> Matching</a></li>
+<li class="chapter" data-level="10.7.7" data-path="causal-inf.html"><a href="causal-inf.html#ponderación-de-probabilidad-inversa"><i class="fa fa-check"></i><b>10.7.7</b> Ponderación de probabilidad inversa</a></li>
+<li class="chapter" data-level="10.7.8" data-path="causal-inf.html"><a href="causal-inf.html#comparando-todos-los-métodos"><i class="fa fa-check"></i><b>10.7.8</b> Comparando todos los métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="causal-inf.html"><a href="causal-inf.html#cconsejos-finales"><i class="fa fa-check"></i><b>10.8</b> CConsejos finales</a></li>
+</ul></li>
+<li class="part"><span><b>III Aplicaciones</b></span></li>
+<li class="chapter" data-level="11" data-path="adv-data.html"><a href="adv-data.html"><i class="fa fa-check"></i><b>11</b> Manejo avanzado de datos políticos</a><ul>
+<li class="chapter" data-level="" data-path="adv-data.html"><a href="adv-data.html#lecturas-sugeridas-7"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="adv-data.html"><a href="adv-data.html#los-paquetes-que-necesitas-instalar-9"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="11.1" data-path="adv-data.html"><a href="adv-data.html#introducción-6"><i class="fa fa-check"></i><b>11.1</b> Introducción</a></li>
+<li class="chapter" data-level="11.2" data-path="adv-data.html"><a href="adv-data.html#uniendo-bases-de-datos"><i class="fa fa-check"></i><b>11.2</b> Uniendo bases de datos</a></li>
+<li class="chapter" data-level="11.3" data-path="adv-data.html"><a href="adv-data.html#estandarizando-los-códigos-de-país"><i class="fa fa-check"></i><b>11.3</b> Estandarizando los códigos de país</a></li>
+<li class="chapter" data-level="11.4" data-path="adv-data.html"><a href="adv-data.html#la-unión-borrosa-o-inexacta-de-los-datos"><i class="fa fa-check"></i><b>11.4</b> La unión borrosa o inexacta de los datos</a></li>
+<li class="chapter" data-level="11.5" data-path="adv-data.html"><a href="adv-data.html#gestión-de-valores-perdidos"><i class="fa fa-check"></i><b>11.5</b> Gestión de valores perdidos</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="adv-data.html"><a href="adv-data.html#tipos-de-valores-perdidos"><i class="fa fa-check"></i><b>11.5.1</b> Tipos de valores perdidos</a></li>
+<li class="chapter" data-level="11.5.2" data-path="adv-data.html"><a href="adv-data.html#descripción-de-los-valores-que-faltan-en-la-base-de-datos"><i class="fa fa-check"></i><b>11.5.2</b> Descripción de los valores que faltan en la base de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="adv-data.html"><a href="adv-data.html#imputación-de-valores-perdidos"><i class="fa fa-check"></i><b>11.6</b> Imputación de valores perdidos</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="adv-data.html"><a href="adv-data.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>11.6.1</b> Regresiones luego de imputar datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Web Scraping</a><ul>
+<li class="chapter" data-level="" data-path="web-mining.html"><a href="web-mining.html#lecturas-sugeridas-8"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="web-mining.html"><a href="web-mining.html#los-paquetes-que-necesitas-instalar-10"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="12.1" data-path="web-mining.html"><a href="web-mining.html#introducción-7"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
+<li class="chapter" data-level="12.2" data-path="web-mining.html"><a href="web-mining.html#formas-de-hacer-web-scraping"><i class="fa fa-check"></i><b>12.2</b> Formas de hacer web scraping</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="web-mining.html"><a href="web-mining.html#estándar-de-exclusión-de-robot"><i class="fa fa-check"></i><b>12.2.1</b> Estándar de exclusión de robot</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="web-mining.html"><a href="web-mining.html#web-scraping-en-r"><i class="fa fa-check"></i><b>12.3</b> Web scraping en R</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="web-mining.html"><a href="web-mining.html#ejemplo-aplicado-los-comunicados-de-prensa-de-la-organización-de-estados-americanos-oea"><i class="fa fa-check"></i><b>12.3.1</b> Ejemplo aplicado: los comunicados de prensa de la Organización de Estados Americanos (OEA)</a></li>
+<li class="chapter" data-level="12.3.2" data-path="web-mining.html"><a href="web-mining.html#caraga-el-html-para-trabajar-con-r"><i class="fa fa-check"></i><b>12.3.2</b> Caraga el html para trabajar con R</a></li>
+<li class="chapter" data-level="12.3.3" data-path="web-mining.html"><a href="web-mining.html#extraer-la-información-con-html_nodes-html_text"><i class="fa fa-check"></i><b>12.3.3</b> Extraer la información con <code>html_nodes()</code> + <code>html_text()</code></a></li>
+<li class="chapter" data-level="12.3.4" data-path="web-mining.html"><a href="web-mining.html#iteraciones"><i class="fa fa-check"></i><b>12.3.4</b> Iteraciones</a></li>
+<li class="chapter" data-level="12.3.5" data-path="web-mining.html"><a href="web-mining.html#funciones-personalizadas-recetas"><i class="fa fa-check"></i><b>12.3.5</b> Funciones personalizadas (recetas)</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="web-mining.html"><a href="web-mining.html#usando-apis-y-extrayendo-datos-de-twitter"><i class="fa fa-check"></i><b>12.4</b> Usando APIs y extrayendo datos de Twitter</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="web-mining.html"><a href="web-mining.html#buscar-una-palabra-clave"><i class="fa fa-check"></i><b>12.4.1</b> Buscar una palabra clave</a></li>
+<li class="chapter" data-level="12.4.2" data-path="web-mining.html"><a href="web-mining.html#buscar-una-frase"><i class="fa fa-check"></i><b>12.4.2</b> Buscar una frase</a></li>
+<li class="chapter" data-level="12.4.3" data-path="web-mining.html"><a href="web-mining.html#descargando-características-relacionadas-con-los-usuarios-de-twitter"><i class="fa fa-check"></i><b>12.4.3</b> Descargando características relacionadas con los usuarios de Twitter</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>13</b> Análisis cuantitativo de textos políticos</a><ul>
+<li class="chapter" data-level="" data-path="qta.html"><a href="qta.html#lecturas-recomendadas"><i class="fa fa-check"></i>Lecturas recomendadas</a></li>
+<li class="chapter" data-level="" data-path="qta.html"><a href="qta.html#paquetes-que-necesitas-instalar"><i class="fa fa-check"></i>Paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="13.1" data-path="qta.html"><a href="qta.html#sqta1"><i class="fa fa-check"></i><b>13.1</b> Análisis de hashtags políticos</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="qta.html"><a href="qta.html#exploración-de-datos-de-twitter"><i class="fa fa-check"></i><b>13.1.1</b> Exploración de datos de Twitter</a></li>
+<li class="chapter" data-level="13.1.2" data-path="qta.html"><a href="qta.html#diagnóstico-visual"><i class="fa fa-check"></i><b>13.1.2</b> Diagnóstico visual</a></li>
+<li class="chapter" data-level="13.1.3" data-path="qta.html"><a href="qta.html#hashtags-más-utilizados"><i class="fa fa-check"></i><b>13.1.3</b> Hashtags más utilizados</a></li>
+<li class="chapter" data-level="13.1.4" data-path="qta.html"><a href="qta.html#wordclouds-nubes-de-palabras"><i class="fa fa-check"></i><b>13.1.4</b> Wordclouds (Nubes de palabras)</a></li>
+<li class="chapter" data-level="13.1.5" data-path="qta.html"><a href="qta.html#nubes-de-palabras-por-grupos"><i class="fa fa-check"></i><b>13.1.5</b> Nubes de palabras por grupos</a></li>
+<li class="chapter" data-level="13.1.6" data-path="qta.html"><a href="qta.html#gráficos-de-barras"><i class="fa fa-check"></i><b>13.1.6</b> Gráficos de barras</a></li>
+<li class="chapter" data-level="13.1.7" data-path="qta.html"><a href="qta.html#variación-temporal-en-el-uso-de-hashtags"><i class="fa fa-check"></i><b>13.1.7</b> Variación temporal en el uso de hashtags</a></li>
+<li class="chapter" data-level="13.1.8" data-path="qta.html"><a href="qta.html#para-resumir"><i class="fa fa-check"></i><b>13.1.8</b> Para resumir</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="qta.html"><a href="qta.html#wordfish"><i class="fa fa-check"></i><b>13.2</b> Wordfish</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="qta.html"><a href="qta.html#inspección-y-limpieza-de-datos"><i class="fa fa-check"></i><b>13.2.1</b> Inspección y limpieza de datos</a></li>
+<li class="chapter" data-level="13.2.2" data-path="qta.html"><a href="qta.html#pre-procesamiento"><i class="fa fa-check"></i><b>13.2.2</b> Pre-procesamiento</a></li>
+<li class="chapter" data-level="13.2.3" data-path="qta.html"><a href="qta.html#sqta2"><i class="fa fa-check"></i><b>13.2.3</b> Wordfish</a></li>
+<li class="chapter" data-level="13.2.4" data-path="qta.html"><a href="qta.html#qué-aprendimos-de-wordfish"><i class="fa fa-check"></i><b>13.2.4</b> ¿Qué aprendimos de Wordfish?</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="qta.html"><a href="qta.html#sqta3"><i class="fa fa-check"></i><b>13.3</b> Structural Topic Modeling (STM)</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="qta.html"><a href="qta.html#pre-procesamiento-1"><i class="fa fa-check"></i><b>13.3.1</b> Pre-procesamiento</a></li>
+<li class="chapter" data-level="13.3.2" data-path="qta.html"><a href="qta.html#diagnósticos"><i class="fa fa-check"></i><b>13.3.2</b> Diagnósticos</a></li>
+<li class="chapter" data-level="13.3.3" data-path="qta.html"><a href="qta.html#análisis"><i class="fa fa-check"></i><b>13.3.3</b> Análisis</a></li>
+<li class="chapter" data-level="13.3.4" data-path="qta.html"><a href="qta.html#observaciones-finales"><i class="fa fa-check"></i><b>13.3.4</b> Observaciones finales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="networks.html"><a href="networks.html"><i class="fa fa-check"></i><b>14</b> Análisis de redes</a><ul>
+<li class="chapter" data-level="" data-path="networks.html"><a href="networks.html#lecturas-sugeridas-9"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="networks.html"><a href="networks.html#los-paquetes-que-necesitas-instalar-11"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="14.1" data-path="networks.html"><a href="networks.html#introducción-8"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
+<li class="chapter" data-level="14.2" data-path="networks.html"><a href="networks.html#conceptos-básicos-en-una-red"><i class="fa fa-check"></i><b>14.2</b> Conceptos básicos en una red</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="networks.html"><a href="networks.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>14.2.1</b> Nodos y enlaces</a></li>
+<li class="chapter" data-level="14.2.2" data-path="networks.html"><a href="networks.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>14.2.2</b> Matriz de adyacencia</a></li>
+<li class="chapter" data-level="14.2.3" data-path="networks.html"><a href="networks.html#pesos-y-direcciones"><i class="fa fa-check"></i><b>14.2.3</b> Pesos y direcciones</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="networks.html"><a href="networks.html#bases-de-datos-de-la-red"><i class="fa fa-check"></i><b>14.3</b> Bases de datos de la red</a></li>
+<li class="chapter" data-level="14.4" data-path="networks.html"><a href="networks.html#presentación-gráfica-de-una-red"><i class="fa fa-check"></i><b>14.4</b> Presentación gráfica de una red</a></li>
+<li class="chapter" data-level="14.5" data-path="networks.html"><a href="networks.html#medidas-de-centralidad"><i class="fa fa-check"></i><b>14.5</b> Medidas de centralidad</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="networks.html"><a href="networks.html#grado"><i class="fa fa-check"></i><b>14.5.1</b> Grado</a></li>
+<li class="chapter" data-level="14.5.2" data-path="networks.html"><a href="networks.html#centralidad-del-eigenvector"><i class="fa fa-check"></i><b>14.5.2</b> Centralidad del eigenvector</a></li>
+<li class="chapter" data-level="14.5.3" data-path="networks.html"><a href="networks.html#centralidad-de-intermediación-betweenness"><i class="fa fa-check"></i><b>14.5.3</b> Centralidad de intermediación (<em>betweenness</em>)</a></li>
+<li class="chapter" data-level="14.5.4" data-path="networks.html"><a href="networks.html#cercanía"><i class="fa fa-check"></i><b>14.5.4</b> Cercanía</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="networks.html"><a href="networks.html#aplicación-en-r"><i class="fa fa-check"></i><b>14.6</b> Aplicación en R</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="indexes.html"><a href="indexes.html"><i class="fa fa-check"></i><b>15</b> Análisis de componentes principales</a><ul>
+<li class="chapter" data-level="" data-path="indexes.html"><a href="indexes.html#lecturas-sugeridas-10"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="indexes.html"><a href="indexes.html#los-paquetes-que-necesitas-instalar-12"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="15.1" data-path="indexes.html"><a href="indexes.html#introducción-9"><i class="fa fa-check"></i><b>15.1</b> Introducción</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="indexes.html"><a href="indexes.html#conceptos-medidas-y-validez"><i class="fa fa-check"></i><b>15.1.1</b> Conceptos, medidas y validez</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="indexes.html"><a href="indexes.html#cómo-funciona-el-análisis-de-componentes-principales"><i class="fa fa-check"></i><b>15.2</b> Cómo funciona el Análisis de Componentes Principales</a></li>
+<li class="chapter" data-level="15.3" data-path="indexes.html"><a href="indexes.html#nociones-básicas-en-r"><i class="fa fa-check"></i><b>15.3</b> Nociones básicas en R</a></li>
+<li class="chapter" data-level="15.4" data-path="indexes.html"><a href="indexes.html#dimensionalidad-del-concepto"><i class="fa fa-check"></i><b>15.4</b> Dimensionalidad del concepto</a></li>
+<li class="chapter" data-level="15.5" data-path="indexes.html"><a href="indexes.html#variación-del-concepto"><i class="fa fa-check"></i><b>15.5</b> Variación del concepto</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="maps.html"><a href="maps.html"><i class="fa fa-check"></i><b>16</b> Mapas y datos espaciales</a><ul>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#lecturas-sugeridas-11"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#los-paquetes-que-necesitas-instalar-13"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="16.1" data-path="maps.html"><a href="maps.html#introducción-10"><i class="fa fa-check"></i><b>16.1</b> Introducción</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="maps.html"><a href="maps.html#datos-espaciales-qué-son"><i class="fa fa-check"></i><b>16.1.1</b> Datos espaciales: ¿qué son?</a></li>
+<li class="chapter" data-level="16.1.2" data-path="maps.html"><a href="maps.html#estructura-de-datos-espaciales"><i class="fa fa-check"></i><b>16.1.2</b> Estructura de datos espaciales</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="maps.html"><a href="maps.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>16.2</b> Datos espaciales en R</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="maps.html"><a href="maps.html#características-simples-en-r"><i class="fa fa-check"></i><b>16.2.1</b> Características simples en R</a></li>
+<li class="chapter" data-level="16.2.2" data-path="maps.html"><a href="maps.html#estructura"><i class="fa fa-check"></i><b>16.2.2</b> Estructura</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="maps.html"><a href="maps.html#gestión-de-datos-espaciales"><i class="fa fa-check"></i><b>16.3</b> Gestión de Datos Espaciales</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="maps.html"><a href="maps.html#modificaciones"><i class="fa fa-check"></i><b>16.3.1</b> Modificaciones</a></li>
+<li class="chapter" data-level="16.3.2" data-path="maps.html"><a href="maps.html#añade-datos-de-otras-bases-de-datos-con-left_join"><i class="fa fa-check"></i><b>16.3.2</b> Añade datos de otras bases de datos con <code>left_join()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="maps.html"><a href="maps.html#mapeo"><i class="fa fa-check"></i><b>16.4</b> Mapeo</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="maps.html"><a href="maps.html#generando-centroides"><i class="fa fa-check"></i><b>16.4.1</b> Generando centroides</a></li>
+<li class="chapter" data-level="16.4.2" data-path="maps.html"><a href="maps.html#mapeando-variables"><i class="fa fa-check"></i><b>16.4.2</b> Mapeando variables</a></li>
+<li class="chapter" data-level="16.4.3" data-path="maps.html"><a href="maps.html#mapeando-puntos"><i class="fa fa-check"></i><b>16.4.3</b> Mapeando puntos</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="maps.html"><a href="maps.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>16.5</b> Inferencia a partir de datos espaciales</a><ul>
+<li class="chapter" data-level="16.5.1" data-path="maps.html"><a href="maps.html#indicador-local-de-asociación-espacial-lisa-por-sus-siglas-en-inglés"><i class="fa fa-check"></i><b>16.5.1</b> Indicador local de asociación espacial (LISA, por sus siglas en inglés)</a></li>
+<li class="chapter" data-level="16.5.2" data-path="maps.html"><a href="maps.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>16.5.2</b> Matriz de pesos espaciales</a></li>
+<li class="chapter" data-level="16.5.3" data-path="maps.html"><a href="maps.html#i-de-moran"><i class="fa fa-check"></i><b>16.5.3</b> I de Moran</a></li>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#comentarios-finales-referencias-para-un-mejor-análisis-de-datos-espaciales"><i class="fa fa-check"></i>Comentarios finales: Referencias para un mejor análisis de datos espaciales</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Referencias</b></span></li>
+<li class="chapter" data-level="17" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i><b>17</b> Referencias</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="indexes" class="section level1">
+<h1><span class="header-section-number">Capítulo 15</span> Análisis de componentes principales</h1>
+<p>Caterina Labrín<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a> y Francisco Urdinez<a href="#fn62" class="footnote-ref" id="fnref62"><sup>62</sup></a></p>
+<div id="lecturas-sugeridas-10" class="section level3 unnumbered">
+<h3>Lecturas sugeridas</h3>
+<ul>
+<li><p>Abeyasekera, S. (2005). Multivariate methods for index construction. In <em>Household Sample Surveys in Developing and Transition Countries,</em> pages 367–387. United Nations, New York, NY.</p></li>
+<li><p>Bryant, F. B. (2000). Assessing the Validity of Measurement. In Grimm, L. G. and Yarnold, P. R., editors, <em>Reading and Understanding MORE Multivariate Statistics,</em> pages 99–146. American Psychological Association, Washington, DC.</p></li>
+<li><p>Collier, D., Laporte, J., and Seawright, J. (2008). Typologies: Forming concepts and creating categorical variables. In Box-Steffensmeier, J. M., Brady, H. E., and Collier, D., editors, <em>The Oxford Handbook of Political Methodology,</em> pages 152–173. Oxford University Press, Oxford.</p></li>
+<li><p>Goertz, G. (2006). <em>Social Science Concepts: A User’s Guide.</em> Princeton University Press, Princeton, NJ.</p>
+<ul>
+<li>Capítulo 4 - “Increasing Concept-Measure Consistency.”</li>
+</ul></li>
+<li><p>Jackman, S. (2008). Measurement. In Box-Steffensmeier, J. M., Brady, H. E., and Collier, D., editors, <em>The Oxford Handbook of Political Methodology,</em> pages 119–151. Oxford University Press, Oxford.</p></li>
+</ul>
+</div>
+<div id="los-paquetes-que-necesitas-instalar-12" class="section level3 unnumbered">
+<h3>Los paquetes que necesitas instalar</h3>
+<ul>
+<li><code>tidyverse</code> <span class="citation">(Wickham <a href="referencias.html#ref-R-tidyverse" role="doc-biblioref">2019</a><a href="referencias.html#ref-R-tidyverse" role="doc-biblioref">b</a>)</span>, <code>paqueteadp</code> <span class="citation">(Urdinez and Cruz <a href="referencias.html#ref-R-paqueteadp" role="doc-biblioref">2020</a>)</span>, <code>FactoMineR</code> <span class="citation">(Husson et al. <a href="referencias.html#ref-R-FactoMineR" role="doc-biblioref">2020</a>)</span>, <code>factoextra</code> <span class="citation">(Kassambara and Mundt <a href="referencias.html#ref-R-factoextra" role="doc-biblioref">2020</a>)</span>, <code>GGally</code> <span class="citation">(Schloerke et al. <a href="referencias.html#ref-R-GGally" role="doc-biblioref">2020</a>)</span>, <code>ggcorrplot</code> <span class="citation">(Kassambara <a href="referencias.html#ref-R-ggcorrplot" role="doc-biblioref">2019</a>)</span>.</li>
+</ul>
+</div>
+<div id="introducción-9" class="section level2">
+<h2><span class="header-section-number">15.1</span> Introducción</h2>
+<p>A estas alturas del libro has aprendido muchas herramientas para trabajar bien con los datos y conceptos de las ciencias sociales. En este capítulo verás cómo crear de forma sencilla variables que midan conceptos complejos que muchas veces en las ciencias sociales, y especialmente en las ciencias políticas, queremos utilizar para probar hipótesis o simplemente visualizar cómo se comportan.</p>
+<p>La relación entre guerra y democracia o entre democracia y desarrollo económico son cosas que se suelen estudiar en las ciencias políticas. Sin embargo, estos conceptos a veces no están claramente definidos de antemano o si lo están, no sabemos cuál de las definiciones puede servirnos. Conceptos como terrorismo o populismo son utilizados a diario por políticos y periodistas, muchas veces de forma incorrecta, demostrando que el problema no sólo se da a nivel académico sino en toda la sociedad, generando niveles de desinformación bastante graves. Esta fragilidad de nuestros conceptos se hace aún más grave si tenemos que operar con datos, ya que muchas veces queremos medir conceptos complejos con indicadores que nos muestren las variaciones o relaciones con otros conceptos de una manera más cuantitativa o visual.</p>
+<p>Para ilustrar la situación, tomemos un caso hipotético: pretendamos que estamos trabajando en un proyecto que entre otras cosas pide comparar cómo se comportan los países democráticos de América Latina y por lo tanto debe ser capaz de visualizarlo claramente en una tabla o gráfico. Normalmente, en este caso, buscaríamos algún indicador de la democracia que V-dem o Freedom House nos da para todos los países de América Latina. Asumiríamos por la práctica que estos indicadores tienen una validez evidente y que fueron construidos adecuadamente, basadas en dimensiones claras. Nadie cuestionaría nuestra elección. Ahora, imaginemos que queremos investigar un concepto diferente y más específico. Para esta tarea no tenemos un indicador similar a los de la democracia y debemos empezar de cero: ¿qué estamos midiendo? ¿cómo lo medimos? ¿Qué datos utilizamos?</p>
+<p>Ante este problema, en este capítulo queremos ilustrar la utilidad del Análisis de Componentes Principales (ACP) ya que nos permite generar las diferentes dimensiones que conforman un concepto abstracto a través de la reducción de diferentes indicadores previamente elegidos. Esto es principalmente para analizar cómo se compondría un concepto de este estilo y para entender lo que estamos explorando. Además, presentaremos algunas formas de operativizar los conceptos a través de índices que nos pueden mostrar la variabilidad de la medición entre las diferentes unidades de análisis, para poder compararlos o incluirlos dentro de un análisis más complejo.</p>
+<div id="conceptos-medidas-y-validez" class="section level3">
+<h3><span class="header-section-number">15.1.1</span> Conceptos, medidas y validez</h3>
+<p>Cuando construimos una medición empírica a partir de un concepto abstracto (como son democracia, populismo, desarrollo), además de tener en cuenta su complejidad, queremos que sea <em>válida</em> (ver Grimm and Yarnold 2000 para un excelente resumen sobre los diferentes tipos de validez). La validez del contenido es la que nos permite asegurar que la medición corresponde a lo que está definido conceptualmente para esa medición. Esto debe garantizarse cada vez que queramos generar un concepto a través de una revisión teórica que determine adónde irá nuestro concepto, cuáles serán las partes que lo compondrán y principalmente qué variables utilizaremos para medirlas. Una adecuada revisión de la literatura sobre el concepto concreto en el que estamos trabajando, que pueda situarse en un marco teórico más amplio, siempre será más que deseable cuando se trabaje con conceptos abstractos y complejos.</p>
+<p>La validez de la construcción se refiere a la propiedad de un concepto que mide lo que dice medir. Esta validez siempre debe ser cuestionada, precisamente por lo que dijimos anteriormente sobre la complejidad de los conceptos con los que trabajamos. Por ejemplo, es muy frecuente con las medidas que existen de la democracia. Incluso cuando hemos avanzado enormemente como disciplina y tenemos mediciones comparables entre países y a lo largo del tiempo, como en el caso Polity IV y V-Dem, existen diferentes opiniones sobre cómo debe ser operativizado este concepto y siempre hay espacio para mejoras.</p>
+<p>Hay dos maneras de ganar validez de construcción para nuestra variable de interés. La primera alternativa para obtener la validez de constructo se llama validez discriminatoria, es decir, nuestro constructo no debe estar altamente correlacionado con variables que nuestro indicador no pretende medir. Este concepto puede ejemplificarse muy bien con la forma en que V-Dem ha elegido para crear su índice de democracia (al que llaman poliarquía): como su nombre indica, miden variedades de democracia de diferentes dimensiones, a saber, las dimensiones liberal, participativa, deliberativa, electoral e igualitaria. Cabe esperar que las dimensiones no estén muy correlacionadas entre sí para tener la seguridad de que captan realmente las diferentes caras de este concepto polifacético.</p>
+<p>La segunda alternativa es la de la validez convergente, es decir, la correlación de mi medida de interés con las medidas de los demás. Por ejemplo, la democracia medida por V-Dem tiene una correlación de 0,8 con la forma en que es medida por Polity IV. Si creo una tercera medida, cuya correlación es 0,70 con Polity y 0,9 con V-Dem, puedo estar seguro de que las tres variables son similares a la variable latente.</p>
+<p>La técnica de Análisis de Componentes Principales (PCA, por sus siglas en inglés) nos ayuda a definir qué combinación de datos representa mejor el concepto que queremos medir.</p>
+</div>
+</div>
+<div id="cómo-funciona-el-análisis-de-componentes-principales" class="section level2">
+<h2><span class="header-section-number">15.2</span> Cómo funciona el Análisis de Componentes Principales</h2>
+<p>La ACP (o PCA) es una técnica muy útil cuando queremos trabajar con diferentes variables con un solo concepto. Al elegir previamente las variables con las que queremos trabajar, la técnica PCA nos da diferentes <em>componentes</em>, que son la reducción de la dimensionalidad de una base de datos multivariante que condensan las dimensiones en una sola variable. Consiste literalmente en trabajar con la correlación entre las variables, y dar cuenta de lo que miden en común y lo que cada una mide individualmente.</p>
+<p>El PCA aglutina las correlaciones entre las variables y las condenas en un solo componente. Cuanto más parecidas sean las variables (altas correlaciones y en la misma dirección) menos componentes se necesitarán para captar toda la complejidad de los datos.</p>
+<p>La PCA nos dará un número de “componentes” igual al número de variables. Sin embargo, no necesitaremos todos ellos para condensar las variables y sólo conservaremos unos pocos. Ayuda pensar en PCA como un batido, las variables que ejecutamos son como la fruta que ponemos en la licuadora, mientras que los componentes son los sabores que obtenemos de la mezcla. Por ejemplo, si hacemos funcionar PCA con cuatro variables (X, Y, W, Z) obtenemos cuatro componentes (siempre obtenemos el mismo número de componentes que de variables). Suponga que obtenemos que el componente 1 está alta y positivamente correlacionado con las variables X y W, el componente 2 está alta y negativamente correlacionado con Y y W, el componente 3 está alta y positivamente correlacionado con la variable Z y débilmente y negativamente correlacionado con X, y el componente 4 está débilmente y positivamente correlacionado con Y y W. Del análisis sabemos que si mantenemos los componentes 1 y 2 nuestro índice será lo suficientemente bueno. ¿Cómo decidimos cuál y cuantos mantenemos?</p>
+<p>Los componentes vendrán con un Eigenvalor, que es un puntaje que mide cuánta varianza de las variables originales explica cada componente. El Eigenvalor ordena los componentes de mayor a menor varianza explicada. Como regla general, mantenemos los componentes cuyos Eigenvalor sean mayores que 1.</p>
+<p>La creación de diferentes componentes debido al PCA le será útil para crear índices. Ahora daremos un ejemplo en R.</p>
+</div>
+<div id="nociones-básicas-en-r" class="section level2">
+<h2><span class="header-section-number">15.3</span> Nociones básicas en R</h2>
+<p>En América Latina, dado el pasado de gobiernos dictatoriales y el reciente debilitamiento democrático de muchos países, puede ser importante para una posible investigación considerar la opinión pública sobre las instituciones de los países. Una buena pregunta que se puede hacer es ¿cómo se puede saber cuál es la opinión de los ciudadanos latinoamericanos sobre las instituciones democráticas de sus países?</p>
+<p>El Proyecto de Opinión Pública Latinoamericana (LAPOP por sus siglas en inglés) - coordinado desde la Universidad de Vanderbilt - se especializa en la realización de estudios de evaluación de impacto y en la producción de informes sobre las actitudes, evaluaciones y experiencias de los individuos en los países de América Latina. Este proyecto proporciona a los investigadores diferentes preguntas que, en conjunto, podrían ayudarnos a aproximar el grado de confianza que existe en la región respecto de las instituciones democráticas del país correspondiente a cada individuo.</p>
+<blockquote>
+<p><strong>Ejercicio 15A.</strong> Asumamos que se te pide que midas el antiamericanismo en América Latina. ¿Cómo medirías este concepto? Elije 5 o más preguntas de la encuesta LAPOP (puedes consultar el libro de códigos <a href="https://www.vanderbilt.edu/lapop/ab2016/AB2017-v18.0-Spa-170202_W.pdf">aquí</a>) que usarías para medir el antiamericanismo.</p>
+</blockquote>
+<p>Como primer paso, es importante seleccionar las variables que se utilizarán para llevar a cabo el LAPOP, dejando de lado todo lo que no queremos utilizar en el índice final. Estos datos contienen doce preguntas de la encuesta LAPOP, realizada a una muestra de alrededor de 7000 personas en 10 países de América Latina. Se puede acceder al cuestionario completo en este <a href="https://www.vanderbilt.edu/lapop/ab2016/AB2017-v18.0-Spa-170202_W.pdf">link</a>. Este primer paso es esencial. Es el paso que implica más trabajo teórico para el investigador, ya que a partir de aquí se definen las variables que se integrarán en el análisis (y que se dejarán fuera). En nuestro análisis, las variables que dejamos fuera son las siguientes:</p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="48%" />
+<col width="35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nombre</th>
+<th>Descripción</th>
+<th>Fuente</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>justifica_golpe</strong></td>
+<td>**Variable dicotómica que mide el nivel de justificación de los golpes de estado militares en el país del encuestado contra un gran número de delitos.</td>
+<td><em>Basada en la pregunta “jc10” de la encuesta del LAPOP.</em></td>
+</tr>
+<tr class="even">
+<td><strong>justifica_cierre_cong</strong></td>
+<td>Variable dicotómica que mide el nivel de justificación del cierre del congreso en situaciones difíciles por el presidente.</td>
+<td><em>Basada en la pregunta “jc15a” de la encuesta del LAPOP.</em></td>
+</tr>
+<tr class="odd">
+<td><strong>conf_cortes</strong></td>
+<td>Mide en una escala del 1 al 7 el nivel de confianza en los tribunales en el país del encuestado.</td>
+<td><em>Encuesta LAPOP.</em></td>
+</tr>
+<tr class="even">
+<td><strong>conf_instit</strong></td>
+<td>Mide en una escala del 1 al 7 el nivel de respeto a las instituciones políticas en el país del encuestado.</td>
+<td><em>Encuesta LAPOP.</em></td>
+</tr>
+<tr class="odd">
+<td><strong>conf_congreso</strong></td>
+<td>Mide en una escala de 1 a 7 el nivel de confianza en el Congreso Nacional (poder legislativo) del país del encuestado.</td>
+<td><em>Encuesta LAPOP.</em></td>
+</tr>
+<tr class="even">
+<td><strong>conf_presidente</strong></td>
+<td>Mide en una escala de 1 a 7 el nivel de confianza en el presidente (poder ejecutivo) del país del encuestado</td>
+<td><em>Basado en la pregunta “b21a” de la escuesta LAPOP.</em></td>
+</tr>
+<tr class="odd">
+<td><strong>conf_partidos</strong></td>
+<td>Mide en una escala de 1 a 7 el nivel de confianza en los partidos políticos del país del encuestado</td>
+<td><em>Basado en la pregunta “b21a” de la escuesta LAPOP.</em></td>
+</tr>
+<tr class="even">
+<td><strong>conf_medios</strong></td>
+<td>Mide en una escala del 1 al 7 el nivel de confianza en los medios de comunicación en el país del encuestado</td>
+<td><em>Basado en la pregunta “b37” de la encuesta LAPOP.</em></td>
+</tr>
+<tr class="odd">
+<td><strong>conf_elecciones</strong></td>
+<td>Mide en una escala del 1 al 7 el nivel de confianza en las elecciones del país del encuestado.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>satisfecho_dem</strong></td>
+<td>Variable dicotómica que mide el nivel de satisfacción con la democracia de los encuestados. <em>Basada en la pregunta “pn4” de la encuesta LAPOP.</em></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>dervote</strong></td>
+<td>Mide en una escala del 1 al 7 la satisfacción con la idea de que aquellos que están en contra del gobierno en el poder pueden votar en las elecciones del país del encuestado</td>
+<td><em>Basada en la pregunta “d1” de la encuesta LAPOP.</em></td>
+</tr>
+<tr class="even">
+<td><strong>manifestaciones</strong></td>
+<td>Mide en una escala del 1 al 7 la satisfacción con la idea de que aquellos que están en contra del gobierno en el poder pueden llevar a cabo manifestaciones pacíficas para expresar su punto de vista</td>
+<td><em>Basada en la pregunta “d2” de la encuesta LAPOP.</em></td>
+</tr>
+</tbody>
+</table>
+<p>Para poder seleccionar las variables y usar los <em>pipes</em> (%&gt;% ) cargamos ‘tidyverse’. Luego, cargamos la base de datos del paquete del libro, <code>paqueteadp</code>.</p>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="indexes.html#cb530-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="indexes.html#cb531-1"></a><span class="kw">library</span>(paqueteadp)</span>
+<span id="cb531-2"><a href="indexes.html#cb531-2"></a><span class="kw">data</span>(<span class="st">&quot;lapop&quot;</span>)</span></code></pre></div>
+<p>Estas variables pueden ser exploradas gráficamente. Por ejemplo, podemos ver -por país- la confianza que tienen sus ciudadanos en las elecciones:</p>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="indexes.html#cb532-1"></a>lapop &lt;-<span class="st"> </span>lapop <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb532-2"><a href="indexes.html#cb532-2"></a><span class="st">  </span><span class="kw">group_by</span>(pais_nombre) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb532-3"><a href="indexes.html#cb532-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">conf_elecciones_prom =</span> <span class="kw">mean</span>(conf_elecciones)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb532-4"><a href="indexes.html#cb532-4"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
+<span id="cb532-5"><a href="indexes.html#cb532-5"></a></span>
+<span id="cb532-6"><a href="indexes.html#cb532-6"></a><span class="kw">ggplot</span>(lapop, <span class="kw">aes</span>(<span class="dt">x =</span> conf_elecciones)) <span class="op">+</span></span>
+<span id="cb532-7"><a href="indexes.html#cb532-7"></a><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></span>
+<span id="cb532-8"><a href="indexes.html#cb532-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot; Confianza en las elecciones &quot;</span>, </span>
+<span id="cb532-9"><a href="indexes.html#cb532-9"></a>       <span class="dt">x =</span> <span class="st">&quot; En azul, el promedio nacional &quot;</span>, <span class="dt">y =</span> <span class="st">&quot;conteo&quot;</span>)<span class="op">+</span></span>
+<span id="cb532-10"><a href="indexes.html#cb532-10"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>pais_nombre) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb532-11"><a href="indexes.html#cb532-11"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> conf_elecciones_prom),</span>
+<span id="cb532-12"><a href="indexes.html#cb532-12"></a>             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-3-1.png" alt=" Histogramas de confianza en las elecciones por país. En azul, los promedios nacionales" width="768" />
+<p class="caption">
+Figura 7.1:  Histogramas de confianza en las elecciones por país. En azul, los promedios nacionales
+</p>
+</div>
+<p>Seleccionemos nuestras variables de interés, esto significa que dejamos fuera cualquier variable que no sea representativa de la democracia, por ejemplo la variable ‘pais’ que indica el país de cada individuo no debe ser incorporada. Para ello, generamos una nueva base de datos que contiene sólo las variables que queremos utilizar, en este caso, para saber cuál es la opinión que los latinoamericanos tienen de sus instituciones democráticas.</p>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="indexes.html#cb533-1"></a>lapop_num &lt;-<span class="st"> </span>lapop <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb533-2"><a href="indexes.html#cb533-2"></a><span class="st">  </span><span class="kw">select</span>(justifica_golpe, justifica_cierre_cong, conf_cortes, conf_instit, conf_congreso, conf_presidente, conf_partidos, conf_medios, </span>
+<span id="cb533-3"><a href="indexes.html#cb533-3"></a>         conf_elecciones, satisfecho_dem, voto_opositor, manifestaciones) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb533-4"><a href="indexes.html#cb533-4"></a><span class="st">  </span><span class="kw">mutate_all</span>(as.numeric)</span>
+<span id="cb533-5"><a href="indexes.html#cb533-5"></a></span>
+<span id="cb533-6"><a href="indexes.html#cb533-6"></a>lapop</span>
+<span id="cb533-7"><a href="indexes.html#cb533-7"></a><span class="co">## # A tibble: 7,655 x 15</span></span>
+<span id="cb533-8"><a href="indexes.html#cb533-8"></a><span class="co">##      id pais_nombre justifica_golpe justifica_cierr… conf_cortes</span></span>
+<span id="cb533-9"><a href="indexes.html#cb533-9"></a><span class="co">##   &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt;</span></span>
+<span id="cb533-10"><a href="indexes.html#cb533-10"></a><span class="co">## 1     1 Argentina                 0                1           6</span></span>
+<span id="cb533-11"><a href="indexes.html#cb533-11"></a><span class="co">## 2     2 Argentina                 1                0           4</span></span>
+<span id="cb533-12"><a href="indexes.html#cb533-12"></a><span class="co">## 3     3 Argentina                 0                0           4</span></span>
+<span id="cb533-13"><a href="indexes.html#cb533-13"></a><span class="co">## # … with 7,652 more rows, and 10 more variables</span></span></code></pre></div>
+<p>Habiendo ya seleccionado las variables, el primer paso es estandarizarlas. La técnica PCA acepta variables de diferentes tipos, pero es importante omitir o imputar a los promedios los valores perdidos. En este caso, omitiremos los posibles NA que tenga la base de datos.</p>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="indexes.html#cb534-1"></a>lapop_num &lt;-<span class="st"> </span>lapop_num <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb534-2"><a href="indexes.html#cb534-2"></a><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb534-3"><a href="indexes.html#cb534-3"></a><span class="st">  </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb534-4"><a href="indexes.html#cb534-4"></a><span class="st">  </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<p>El siguiente paso es observar la correlación entre variables. Esto es útil para saber cómo se relacionan las variables elegidas, y también para ver si hay correlaciones extremadamente altas entre dos o más variables. Si se da el caso de que tenemos dos o más variables con alta correlación entre ellas, éstas tendrán una enorme influencia en la orientación de los componentes.</p>
+<p>La mejor alternativa para observar la correlación entre las variables es la que ofrece el paquete <code>GGally</code>. Cuanto más intenso es el color, más fuerte es la correlación. En el azul tendremos correlaciones negativas, y en el rojo correlaciones positivas.</p>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="indexes.html#cb535-1"></a><span class="kw">library</span>(ggcorrplot)</span>
+<span id="cb535-2"><a href="indexes.html#cb535-2"></a></span>
+<span id="cb535-3"><a href="indexes.html#cb535-3"></a>corr_lapop &lt;-<span class="st"> </span>lapop_num <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb535-4"><a href="indexes.html#cb535-4"></a><span class="st">  </span><span class="co"># calculate correlation matrix and round to 1 decimal place:</span></span>
+<span id="cb535-5"><a href="indexes.html#cb535-5"></a><span class="st">  </span><span class="kw">cor</span>(<span class="dt">use =</span> <span class="st">&quot;pairwise&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb535-6"><a href="indexes.html#cb535-6"></a><span class="st">  </span><span class="kw">round</span>(<span class="dv">1</span>)</span>
+<span id="cb535-7"><a href="indexes.html#cb535-7"></a>  </span>
+<span id="cb535-8"><a href="indexes.html#cb535-8"></a><span class="kw">ggcorrplot</span>(corr_lapop, <span class="dt">type =</span> <span class="st">&quot;lower&quot;</span>, <span class="dt">lab =</span> T, <span class="dt">show.legend =</span> F)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-6-1.png" alt="Matriz de correlación de las variables que usaremos en nuestro análisis" width="672" />
+<p class="caption">
+Figura 3.5: Matriz de correlación de las variables que usaremos en nuestro análisis
+</p>
+</div>
+<p>Lo que vemos es que las variables de confianza están positivamente correlacionadas. Es decir, los que confían en el presidente tienden a confiar en los medios de comunicación, las elecciones, por ejemplo.</p>
+<p>Una vez que vemos las correlaciones, estamos listos para hacer el PCA. Para ello, utilizaremos dos paquetes diferentes que realizan el PCA, esto para proporcionar opciones de cómo realizar la técnica en R. El PCA nos permitirá definir a través de los componentes cuáles serán las dimensiones del concepto que guardamos, para luego avanzar a realizar un índice simple que denote la variación del concepto a través de diferentes unidades de análisis.</p>
+</div>
+<div id="dimensionalidad-del-concepto" class="section level2">
+<h2><span class="header-section-number">15.4</span> Dimensionalidad del concepto</h2>
+<p>Primero, con el subconjunto de datos, generamos un PCA con el paquete de <code>stats</code>, que es uno de los paquetes básicos de R (ya viene instalado). Luego con el comando <code>summary()</code> podemos ver lo que el análisis nos da.</p>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="indexes.html#cb536-1"></a>pca &lt;-<span class="st"> </span><span class="kw">princomp</span>(lapop_num)</span>
+<span id="cb536-2"><a href="indexes.html#cb536-2"></a><span class="kw">summary</span>(pca, <span class="dt">loadings =</span> T, <span class="dt">cutoff =</span> <span class="fl">0.3</span>)</span>
+<span id="cb536-3"><a href="indexes.html#cb536-3"></a><span class="co">## Importance of components:</span></span>
+<span id="cb536-4"><a href="indexes.html#cb536-4"></a><span class="co">##                        Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7</span></span>
+<span id="cb536-5"><a href="indexes.html#cb536-5"></a><span class="co">## Standard deviation       1.86   1.22   1.11  0.976  0.893  0.882  0.827</span></span>
+<span id="cb536-6"><a href="indexes.html#cb536-6"></a><span class="co">##                        Comp.8 Comp.9 Comp.10 Comp.11 Comp.12</span></span>
+<span id="cb536-7"><a href="indexes.html#cb536-7"></a><span class="co">## Standard deviation      0.800  0.750   0.725   0.686   0.657</span></span>
+<span id="cb536-8"><a href="indexes.html#cb536-8"></a><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 2 rows ]</span></span>
+<span id="cb536-9"><a href="indexes.html#cb536-9"></a><span class="co">## </span></span>
+<span id="cb536-10"><a href="indexes.html#cb536-10"></a><span class="co">## Loadings:</span></span>
+<span id="cb536-11"><a href="indexes.html#cb536-11"></a><span class="co">##                       Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7</span></span>
+<span id="cb536-12"><a href="indexes.html#cb536-12"></a><span class="co">## justifica_golpe                      0.693                0.501       </span></span>
+<span id="cb536-13"><a href="indexes.html#cb536-13"></a><span class="co">##                       Comp.8 Comp.9 Comp.10 Comp.11 Comp.12</span></span>
+<span id="cb536-14"><a href="indexes.html#cb536-14"></a><span class="co">## justifica_golpe               0.304                        </span></span>
+<span id="cb536-15"><a href="indexes.html#cb536-15"></a><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 11 rows ]</span></span></code></pre></div>
+<p>Como puedes ver, hay tres componentes que nos dan un Eigenvalor (denotado por la desviación estándar) mayor que 1. Este límite será nuestro criterio para seleccionar los componentes que mantendremos. También nos muestra cómo se construye cada componente con las variables que seleccionamos.</p>
+<p>Otra forma de ver los Eigenvalores de cada componente es con el comando <code>get_eigenvalue()</code> del paquete <code>factoextra</code>. Como obtuvimos con <code>summary()</code>, <code>get_eigenvalue</code> nos da además del Eigenvalor, la varianza combinada que cada componente explica.</p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="indexes.html#cb537-1"></a><span class="kw">library</span>(factoextra)</span>
+<span id="cb537-2"><a href="indexes.html#cb537-2"></a>eig_val &lt;-<span class="st"> </span><span class="kw">get_eigenvalue</span>(pca)</span>
+<span id="cb537-3"><a href="indexes.html#cb537-3"></a>eig_val</span>
+<span id="cb537-4"><a href="indexes.html#cb537-4"></a><span class="co">##       eigenvalue variance.percent cumulative.variance.percent</span></span>
+<span id="cb537-5"><a href="indexes.html#cb537-5"></a><span class="co">## Dim.1       3.44             28.7                          29</span></span>
+<span id="cb537-6"><a href="indexes.html#cb537-6"></a><span class="co">## Dim.2       1.48             12.3                          41</span></span>
+<span id="cb537-7"><a href="indexes.html#cb537-7"></a><span class="co">## Dim.3       1.23             10.3                          51</span></span>
+<span id="cb537-8"><a href="indexes.html#cb537-8"></a><span class="co">## Dim.4       0.95              7.9                          59</span></span>
+<span id="cb537-9"><a href="indexes.html#cb537-9"></a><span class="co">## Dim.5       0.80              6.6                          66</span></span>
+<span id="cb537-10"><a href="indexes.html#cb537-10"></a><span class="co">## Dim.6       0.78              6.5                          72</span></span>
+<span id="cb537-11"><a href="indexes.html#cb537-11"></a><span class="co">##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 6 rows ]</span></span></code></pre></div>
+<p>Como puede verse, el componente 1 representa alrededor del 28,7% de la varianza total de las variables elegidas. La varianza de los otros dos componentes importantes es del 12,3% y del 10,3% respectivamente.</p>
+<p>Otra forma de entregar esta información es a través de gráficos. El siguiente comando nos da en su forma más simple, el porcentaje de varianza explicada por cada uno de los componentes que el PCA nos da.</p>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="indexes.html#cb538-1"></a><span class="kw">fviz_eig</span>(pca, <span class="dt">addlabels =</span> T, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-9-1.png" alt=" Porcentaje de la varianza explicada de cada componente" width="480" />
+<p class="caption">
+Figura 3.8:  Porcentaje de la varianza explicada de cada componente
+</p>
+</div>
+<p>Un pequeño cambio en el comando, también nos da un gráfico con los valores propios de cada uno de los componentes:</p>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="indexes.html#cb539-1"></a><span class="kw">fviz_eig</span>(pca, <span class="dt">choice =</span> <span class="kw">c</span>(<span class="st">&quot;eigenvalue&quot;</span>), <span class="dt">addlabels =</span> T, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-10-1.png" alt=" Eigenvalor de cada componente" width="480" />
+<p class="caption">
+Figura 3.9:  Eigenvalor de cada componente
+</p>
+</div>
+<p>Para saber cómo está compuesto cada uno de estos componentes, podemos generar un Biplot. Este tipo de gráfico nos aparecerá como vectores en dos dimensiones (que serán los dos primeros componentes del análisis).</p>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="indexes.html#cb540-1"></a><span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">repel =</span> F, <span class="dt">col.var =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">col.ind =</span> <span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-11"></span>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-11-1.png" alt="Biplot con las dimensiones 1 y 2" width="576" />
+<p class="caption">
+Figura 3.10: Biplot con las dimensiones 1 y 2
+</p>
+</div>
+<p>Este gráfico bidimensional muestra claramente que tenemos tres grupos de variables. Estos conjuntos de variables son los que se reducen precisamente a tres componentes, que pueden representar tres dimensiones de opinión sobre las instituciones políticas que queremos medir en América Latina.</p>
+<p>También podemos saber, cómo se compondrán las dimensiones del concepto que queremos medir con el comando <code>fviz_contrib</code>, cambiando los componentes en cada eje:</p>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="indexes.html#cb541-1"></a><span class="kw">fviz_contrib</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;var&quot;</span>, <span class="dt">axes =</span> <span class="dv">1</span>, <span class="dt">top =</span> <span class="dv">10</span>)</span>
+<span id="cb541-2"><a href="indexes.html#cb541-2"></a><span class="kw">fviz_contrib</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;var&quot;</span>, <span class="dt">axes =</span> <span class="dv">2</span>, <span class="dt">top =</span> <span class="dv">10</span>)</span>
+<span id="cb541-3"><a href="indexes.html#cb541-3"></a><span class="kw">fviz_contrib</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;var&quot;</span>, <span class="dt">axes =</span> <span class="dv">3</span>, <span class="dt">top =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-12-1.png" alt="Las variables que contribuyen a cada dimensión en el PCA" width="672" /><img src="15-indexes_es_files/figure-html/unnamed-chunk-12-2.png" alt="Las variables que contribuyen a cada dimensión en el PCA" width="672" /><img src="15-indexes_es_files/figure-html/unnamed-chunk-12-3.png" alt="Las variables que contribuyen a cada dimensión en el PCA" width="672" />
+<p class="caption">
+Figura 3.11: Las variables que contribuyen a cada dimensión en el PCA
+</p>
+</div>
+<p>Por ejemplo, el primer componente es el más diverso, pero se alimenta en gran medida de variables de confianza. Si recuerdas la matriz de correlación que hicimos con <code>GGally</code>, todas estas variables tenían altas correlaciones entre sí. El segundo componente se alimenta de la fuerte correlación entre <code>manifestaciones</code> y <code>voto_opositor</code>. La línea punteada roja expresa el valor que supondría un escenario en el que todas las variables contribuyen por igual, es decir, 1/12 (8,33%), y sirve sólo como referencia visual.</p>
+<p>La composición de cada componente puede ayudarnos a nombrar cada dimensión del concepto que estamos creando. Esto nos dará más apoyo a la hora de justificar la forma en que se mide la opinión pública orientada hacia las instituciones políticas.</p>
+<p>La primera dimensión, la que tiene mayor grado de variación, representa la confianza en instituciones como los poderes del Estado, los partidos políticos y las elecciones. Es la más diversa, pero se alimenta en gran medida de variables de confianza. Si recuerdas la matriz de correlación que hicimos con <code>GGally</code>, todas estas variables tenían altas correlaciones entre sí. Esto significa que cuando queremos medir la confianza en la política de los individuos, lo que nuestros datos representarán principalmente es esa confianza en la política más formal, en el concepto más clásico de la política.</p>
+<p>La segunda de las dimensiones es la que denota el nivel de tolerancia política de la disidencia, que podría orientar una opinión hacia una forma de controlar los derechos de voto y de manifestación pública pacífica. Esto puede denotar lo propensos que están los ciudadanos a suspender ciertos derechos democráticos de aquellos que piensan de manera diferente.</p>
+<p>La tercera dimensión, que representa el 10% de la varianza, es la compuesta por las variables que representan la propensión a justificar los golpes de Estado o los cierres del Congreso. Nuestro concepto tendrá entonces componentes que miden cómo se forman las opiniones individuales de las rupturas democráticas, midiendo cuán frágiles son las instituciones formales dentro de la opinión pública en América Latina.</p>
+<p>Los resultados cualitativos de cada dimensión pueden ser representados en una tabla como esta:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Dimensión
+</th>
+<th style="text-align:left;">
+Etiqueta
+</th>
+<th style="text-align:left;">
+Variables
+</th>
+<th style="text-align:left;">
+Varianza explicada
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Trust in institutions
+</td>
+<td style="text-align:left;">
+<code>conf_cortes</code>, <code>conf_instit</code>, <code>conf_congreso</code>, <code>conf_presidente</code>, <code>conf_partidos</code>, <code>conf_elecciones</code>
+</td>
+<td style="text-align:left;">
+28.7%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Democratic rights
+</td>
+<td style="text-align:left;">
+<code>voto_opositor</code>, <code>manifestaciones</code>
+</td>
+<td style="text-align:left;">
+12.3%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+Anti-Democratic values
+</td>
+<td style="text-align:left;">
+<code>justifica_golpe</code>, <code>justifica_cierre_cong</code>
+</td>
+<td style="text-align:left;">
+10.3%
+</td>
+</tr>
+</tbody>
+</table>
+<p>A medida que se crean estas nuevas dimensiones, pueden considerarse como nuevas variables a integrar en nuestra base de datos original, como se muestra a continuación:</p>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="indexes.html#cb542-1"></a>lapop &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(lapop, <span class="kw">as_tibble</span>(pca<span class="op">$</span>scores))</span></code></pre></div>
+<p>Éstas pueden tratarse como nuevas variables que pueden integrarse por separado en el análisis o, como veremos más adelante, integrarse en un índice de confianza en las instituciones políticas, que evalúa las tres dimensiones en su conjunto.</p>
+<blockquote>
+<p><strong>Ejercicio 15B.</strong> Estandariza y omite las NAs de las preguntas que elegiste en la primera parte para el sentimiento antiamericano. Realiza un Análisis de Componentes Principales y responde las siguientes preguntas: ¿Cuáles son los componentes más importantes? ¿Qué variables los componen? ¿Qué dimensiones están involucradas en el concepto de antiamericanismo que estás realizando?</p>
+</blockquote>
+</div>
+<div id="variación-del-concepto" class="section level2">
+<h2><span class="header-section-number">15.5</span> Variación del concepto</h2>
+<p>Otra aplicación de esta herramienta en R permitirá generar un índice que caracterice a cada uno de los individuos diferenciando quiénes tienen más probabilidades de confiar en las instituciones y quiénes no. A partir de este índice individual, podremos entonces hacer una amplia variedad de estudios, desde comparaciones entre países, hasta comparaciones utilizando la edad, el género, los ingresos u otra variable de interés.</p>
+<p>Para esta parte, generaremos de nuevo un PCA, pero esta vez lo haremos con el comando PCA del paquete <code>FactoMineR</code>. Esto nos dará el mismo resultado que el paquete anterior, pero queremos mostrar que esta herramienta puede ser utilizada de varias maneras en R.</p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="indexes.html#cb543-1"></a><span class="kw">library</span>(FactoMineR)</span>
+<span id="cb543-2"><a href="indexes.html#cb543-2"></a></span>
+<span id="cb543-3"><a href="indexes.html#cb543-3"></a>pca_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">PCA</span>(lapop_num, <span class="dt">graph =</span> F)</span></code></pre></div>
+<p>Como vimos antes, debemos retener los componentes que contienen un Eigenvalor mayor que 1, que podemos ver de nuevo en el gráfico:</p>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="indexes.html#cb544-1"></a><span class="kw">fviz_eig</span>(pca_<span class="dv">1</span>, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>, <span class="dt">addlabels =</span> T, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-16"></span>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-16-1.png" alt=" Eigenvalores de los componentes. Como regla general, retenemos los componentes con valores mayores que 1" width="672" />
+<p class="caption">
+Figura 3.15:  Eigenvalores de los componentes. Como regla general, retenemos los componentes con valores mayores que 1
+</p>
+</div>
+<p>Como pudimos ver de antemano, los componentes mayores de 1 son los tres primeros. Dejaremos en este caso el componente 4 para añadir más variables a nuestro índice. Hay un enorme grado de discrecionalidad en todo este proceso.
+Para condensar los componentes elegidos en una sola variable, es necesario recordar cuánta varianza acumulada representan del total:</p>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="indexes.html#cb545-1"></a>eig &lt;-<span class="st"> </span><span class="kw">get_eig</span>(pca_<span class="dv">1</span>)</span>
+<span id="cb545-2"><a href="indexes.html#cb545-2"></a></span>
+<span id="cb545-3"><a href="indexes.html#cb545-3"></a>eig</span>
+<span id="cb545-4"><a href="indexes.html#cb545-4"></a><span class="co">##        eigenvalue variance.percent cumulative.variance.percent</span></span>
+<span id="cb545-5"><a href="indexes.html#cb545-5"></a><span class="co">## Dim.1        3.44             28.7                          29</span></span>
+<span id="cb545-6"><a href="indexes.html#cb545-6"></a><span class="co">## Dim.2        1.48             12.3                          41</span></span>
+<span id="cb545-7"><a href="indexes.html#cb545-7"></a><span class="co">## Dim.3        1.23             10.3                          51</span></span>
+<span id="cb545-8"><a href="indexes.html#cb545-8"></a><span class="co">## Dim.4        0.95              7.9                          59</span></span>
+<span id="cb545-9"><a href="indexes.html#cb545-9"></a><span class="co">## Dim.5        0.80              6.6                          66</span></span>
+<span id="cb545-10"><a href="indexes.html#cb545-10"></a><span class="co">## Dim.6        0.78              6.5                          72</span></span>
+<span id="cb545-11"><a href="indexes.html#cb545-11"></a><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 6 rows ]</span></span></code></pre></div>
+<p>Habíamos visto que los cuatro componentes representaban casi el 60% de la variación total: el primer componente 28,7%, el segundo 12,3%, el tercero 10,3% y el cuarto 7,9%. El siguiente paso es sumar estos cuatro componentes, pero ponderando cada uno de ellos por el porcentaje de la varianza que representan. Lo hacemos de la siguiente manera:</p>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="indexes.html#cb546-1"></a>data_pca &lt;-<span class="st"> </span>pca_<span class="dv">1</span><span class="op">$</span>ind<span class="op">$</span>coord<span class="op">%&gt;%</span></span>
+<span id="cb546-2"><a href="indexes.html#cb546-2"></a><span class="st"> </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></span>
+<span id="cb546-3"><a href="indexes.html#cb546-3"></a><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">pca_01 =</span> (Dim<span class="fl">.1</span> <span class="op">*</span><span class="st"> </span><span class="fl">28.7</span> <span class="op">+</span><span class="st"> </span>Dim<span class="fl">.2</span> <span class="op">*</span><span class="st"> </span><span class="fl">12.3</span> <span class="op">+</span><span class="st"> </span>Dim<span class="fl">.3</span> <span class="op">*</span><span class="st"> </span><span class="fl">10.3</span> <span class="op">+</span><span class="st"> </span></span>
+<span id="cb546-4"><a href="indexes.html#cb546-4"></a><span class="st">                    </span>Dim<span class="fl">.4</span> <span class="op">*</span><span class="st"> </span><span class="fl">7.9</span>) <span class="op">/</span><span class="st"> </span><span class="dv">60</span>)</span>
+<span id="cb546-5"><a href="indexes.html#cb546-5"></a></span>
+<span id="cb546-6"><a href="indexes.html#cb546-6"></a>lapop &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(lapop, data_pca <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(pca_<span class="dv">01</span>))</span></code></pre></div>
+<p>Por lo tanto, hemos creado una única variable, que llamamos<code>pca_01</code>. ¡Estamos muy cerca de tener esta variable como nuestro indicador de calificación de la democracia! Sucede que la variable <code>pca_01</code> está en una escala poco amistosa. Idealmente queremos que nuestro indicador vaya de 0 a 1, de 0 a 10, o de 0 a 100 para que sea más fácil de interpretar. Haremos esto para que sea de 0 a 100, si quieres que sea de 0 a 10 o de 0 a 1 tienes que reemplazar 100 en la fórmula de abajo con el número que te interesa.</p>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="indexes.html#cb547-1"></a>lapop &lt;-<span class="st"> </span>lapop <span class="op">%&gt;%</span></span>
+<span id="cb547-2"><a href="indexes.html#cb547-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">democracy_index =</span> GGally<span class="op">::</span><span class="kw">rescale01</span>(pca_<span class="dv">01</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)<span class="op">%&gt;%</span></span>
+<span id="cb547-3"><a href="indexes.html#cb547-3"></a><span class="st">  </span><span class="kw">select</span>(democracy_index, <span class="kw">everything</span>())</span></code></pre></div>
+<p>Ya con nuestro nuevo índice reescalado, podemos ver cómo se ve su densidad:</p>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="indexes.html#cb548-1"></a>index_density &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> lapop,</span>
+<span id="cb548-2"><a href="indexes.html#cb548-2"></a>                        <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> democracy_index)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb548-3"><a href="indexes.html#cb548-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot; Índice de confianza en la democracia&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;densidad&quot;</span>) <span class="op">+</span></span>
+<span id="cb548-4"><a href="indexes.html#cb548-4"></a><span class="st">  </span><span class="kw">geom_density</span>()</span>
+<span id="cb548-5"><a href="indexes.html#cb548-5"></a></span>
+<span id="cb548-6"><a href="indexes.html#cb548-6"></a>index_density </span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-20"></span>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-20-1.png" alt=" Gráfica de densidad de nuestro índice" width="672" />
+<p class="caption">
+Figura 15.1:  Gráfica de densidad de nuestro índice
+</p>
+</div>
+<p>Ahora que tenemos el índice listo, podemos hacer todo tipo de análisis. Por ejemplo, podemos hacer comparaciones por país. Si tuviéramos variables individuales, podríamos proceder a modelos de regresión con controles para el género, la ideología, los ingresos, el nivel de educación. Para hacer esto, puedes usar lo que aprendiste en los capítulos 7 y 8.<br />
+Descriptivamente, podemos hacer una comparación de cómo nuestro índice de confianza en las instituciones de los países de América Latina:</p>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="indexes.html#cb549-1"></a>lapop &lt;-<span class="st"> </span>lapop <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb549-2"><a href="indexes.html#cb549-2"></a><span class="st">  </span><span class="kw">group_by</span>(pais_nombre) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb549-3"><a href="indexes.html#cb549-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">democracy_avg =</span> <span class="kw">mean</span>(democracy_index)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb549-4"><a href="indexes.html#cb549-4"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
+<span id="cb549-5"><a href="indexes.html#cb549-5"></a></span>
+<span id="cb549-6"><a href="indexes.html#cb549-6"></a><span class="kw">ggplot</span>(lapop, <span class="kw">aes</span>(<span class="dt">x =</span> democracy_index)) <span class="op">+</span></span>
+<span id="cb549-7"><a href="indexes.html#cb549-7"></a><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></span>
+<span id="cb549-8"><a href="indexes.html#cb549-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot; Confianza en la democracia en América Latina (N = 7000)&quot;</span>,</span>
+<span id="cb549-9"><a href="indexes.html#cb549-9"></a>       <span class="dt">x =</span> <span class="st">&quot; En azul el promedio de cada país&quot;</span>, </span>
+<span id="cb549-10"><a href="indexes.html#cb549-10"></a>       <span class="dt">y =</span> <span class="st">&quot;densidad&quot;</span>) <span class="op">+</span></span>
+<span id="cb549-11"><a href="indexes.html#cb549-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>pais_nombre) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb549-12"><a href="indexes.html#cb549-12"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> democracy_avg),</span>
+<span id="cb549-13"><a href="indexes.html#cb549-13"></a>             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-21"></span>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-21-1.png" alt=" Gráficos de densidad de nuestro índice de confianza en la democracia por país. En azul, la media nacional" width="576" />
+<p class="caption">
+Figura 3.19:  Gráficos de densidad de nuestro índice de confianza en la democracia por país. En azul, la media nacional
+</p>
+</div>
+<blockquote>
+<p><strong>Ejercicio 15C.</strong> Utilizando el índice de confianza en la democracia en América Latina que acabamos de crear, analiza con modelos de regresión lineal qué variables tienen un alto poder explicativo sobre esta variable, son las variables de ideología, ingresos o edad importantes?</p>
+<p><strong>Ejercicio 15D.</strong> Con el conjunto de variables que elijas, crea un índice de antiamericanismo siguiendo las indicaciones del capítulo.</p>
+</blockquote>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="61">
+<li id="fn61"><p>E-mail: <a href="mailto:cilabrin@uc.cl" class="email">cilabrin@uc.cl</a><a href="indexes.html#fnref61" class="footnote-back">↩︎</a></p></li>
+<li id="fn62"><p>E-mail: furdinez@uc.cl<a href="indexes.html#fnref62" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="networks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="maps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/arcruz0/libroadp/edit/master/15-indexes_es.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
