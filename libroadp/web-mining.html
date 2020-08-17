@@ -485,8 +485,8 @@ code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 <p>La información en Internet crece exponencialmente cada día. Si el problema de la ciencia política en el siglo XX fue la falta de datos para probar hipótesis, el siglo XXI presenta otro desafío: la información es abundante y está al alcance de la mano, pero hay que saber cómo recopilarla y analizarla. Esta enorme cantidad de datos está generalmente disponible pero de forma no estructurada, por lo que cuando te encuentres con la información tendrás dos retos principales: extraerla y luego clasificarla (es decir, dejarla como <em>datos organizados (tidy)</em>).</p>
 <p>Una de las técnicas más utilizadas para extraer información de los sitios web es la técnica conocida como <em>web scraping</em>.</p>
 <p>El web scraping se está convirtiendo en una técnica cada vez más popular en el análisis de datos debido a su versatilidad para tratar con diferentes sitios web. Como podemos ver en el siguiente gráfico, las búsquedas en Google del término “web scraping” han crecido constantemente año tras año desde 200:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
-<img src="12-web-mining_es_files/figure-html/unnamed-chunk-2-1.png" alt="Búsquedas de 'web scraping' en Google" width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
+<img src="12-web-mining_es_files/figure-html/unnamed-chunk-1-1.png" alt="Búsquedas de 'web scraping' en Google" width="672" />
 <p class="caption">
 Figura 12.1: Búsquedas de ‘web scraping’ en Google
 </p>
@@ -514,10 +514,10 @@ Figura 12.1: Búsquedas de ‘web scraping’ en Google
 <div id="estándar-de-exclusión-de-robot" class="section level3">
 <h3><span class="header-section-number">12.2.1</span> Estándar de exclusión de robot</h3>
 <p>Antes de entrar en la práctica del <em>web scraping</em> tenemos que entender mejor qué es y cómo funciona el archivo <em>robots.txt</em> presente en la mayoría de los sitios web. Este archivo contiene el llamado <em>estándar de exclusión de robot</em> que es una serie de instrucciones especialmente dirigidas a los programas que buscan indexar el contenido de estas páginas (por ejemplo el bot de Google que “guarda” las nuevas páginas que se crean en Internet). Este método se utiliza para evitar que ciertos bots que analizan sitios de Internet añadan información “innecesaria” a los resultados de las búsquedas. Un archivo <em>robots.txt</em> en una página web funcionará como una petición para que ciertos bots ignoren archivos o directorios específicos en su búsqueda. Esto es importante cuando hablamos de <em>web scraping</em> ya que siempre es aconsejable revisar el archivo <em>robots.txt</em> de una página web antes de iniciar el scraping ya que puede incluir información que necesitaremos más adelante. Un ejemplo de cómo es uno de estos archivos se puede encontrar en el archivo <em>robots.txt</em> de Google <a href="https://www.google.com/robots.txt" class="uri">https://www.google.com/robots.txt</a></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
 <img src="00-images/web-mining/web-mining4.png" alt="Vistazo a los estándares de exclusión de Google" width="70%" />
 <p class="caption">
-Figura 7.1: Vistazo a los estándares de exclusión de Google
+Figura 12.2: Vistazo a los estándares de exclusión de Google
 </p>
 </div>
 <p>En esta imagen encontramos la expresión <em>Usuario-agente: </em>. Esto permite a todos los robots acceder a los archivos que se almacenan en el código principal de la página web ya que el comodín (<em>) significa “TODO”.
@@ -537,10 +537,10 @@ A continuación vemos que los robots no pueden indexar o visitar páginas web de
 <p>Como primer ejemplo haremos un web scraping de un sitio estático. Es decir, un sitio web que tiene texto en HTML y que no cambia. Supongamos que estamos trabajando en un proyecto de diplomacia y relaciones internacionales en el que debemos sistematizar la información sobre la interacción entre los países de América Latina. Uno de los repositorios más útiles para iniciar este tipo de investigación es el sitio web de la Organización de Estados Americanos (OEA). Se puede encontrar en el siguiente link: <a href="https://www.oas.org/es/" class="uri">https://www.oas.org/es/</a>.</p>
 <p>Este sitio ofrece información muy pertinente para los analistas de datos políticos, ya que se trata de datos no estructurados que permiten identificar, por ejemplo, las redes de países, las alianzas, las fuentes de conflicto y las cuestiones que los ministerios de relaciones exteriores consideran pertinentes.</p>
 <p>Antes de comenzar con el <em>web scraping</em> en sí mismo analizaremos el archivo <em>robots-txt</em> del sitio web de la OEA <a href="http://oas.org/robots.txt" class="uri">http://oas.org/robots.txt</a></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
 <img src="00-images/web-mining/web-mining3.png" alt="Vistazo al archivo robots.txt de la OEA" width="100%" />
 <p class="caption">
-Figura 3.4: Vistazo al archivo robots.txt de la OEA
+Figura 3.3: Vistazo al archivo robots.txt de la OEA
 </p>
 </div>
 <p>Encontramos que algunos directorios están prohibidos de ser indexados, pero todos los bots y usuarios están autorizados a visitar el sitio. Lo más importante es la expresión <em>Crawl-delay: 3</em> que básicamente nos dice que por cada petición hecha por un robot es aconsejable esperar 3 segundos entre una consulta y otra para no saturar el sitio, lo que puede resultar en que te bloquee.</p>
@@ -559,17 +559,17 @@ Figura 3.4: Vistazo al archivo robots.txt de la OEA
 <div id="extraer-la-información-con-html_nodes-html_text" class="section level3">
 <h3><span class="header-section-number">12.3.3</span> Extraer la información con <code>html_nodes()</code> + <code>html_text()</code></h3>
 <p>A continuación, abrimos la página en Google Chrome donde lo primero que veremos es el sitio con las noticias. Allí hacemos clic en la extensión Chrome del Selector Gadget como se indica en la figura de abajo (es la pequeña lupa en la esquina superior derecha).</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
 <img src="00-images/web-mining/web-mining1.png" alt="Pantallazo del sitio de los comunicados de prensa de la OEA" width="100%" />
 <p class="caption">
-Figura 3.7: Pantallazo del sitio de los comunicados de prensa de la OEA
+Figura 3.6: Pantallazo del sitio de los comunicados de prensa de la OEA
 </p>
 </div>
 <p>El primer paso es encontrar el selector de CSS que contiene nuestra información. En la mayoría de los casos sólo usaremos <a href="https://selectorgadget.com/">SelectorGadget</a>. Empecemos con los títulos. Como podemos ver en la figura, seleccionamos la parte del sitio web que queremos extraer. En este caso queremos los títulos de los comunicados de prensa que después de ser seleccionados se destacan en amarillo. Observarán que al hacer clic en uno de ellos, aparece un mensaje “.itemmenulink” en el espacio vacío que hay en el Selector. Estos son los caracteres designados para los títulos en este sitio web</p>
 <div class="figure" style="text-align: center"><span id="fig:pressure"></span>
 <img src="00-images/web-mining/web-mining2.png" alt="Títulos de los comunicados de prensa que queremos extraer" width="100%" />
 <p class="caption">
-Figura 12.2: Títulos de los comunicados de prensa que queremos extraer
+Figura 12.3: Títulos de los comunicados de prensa que queremos extraer
 </p>
 </div>
 <p>A continuación creamos un objeto para leer esta información como un objeto html en R. Lo llamaremos <code>titulos_web_comunicados_10_2019</code>. Dentro de la función <code>html_nodes()</code> añadimos el carácter “.itemmenulink” ya que representa los títulos según el selector.</p>
@@ -791,19 +791,19 @@ Luego procedes a cargar el paquete <code>rtweet</code> que te permitirá extraer
 <span id="cb447-6"><a href="web-mining.html#cb447-6"></a><span class="co">## # A tibble: 3 x 90</span></span>
 <span id="cb447-7"><a href="web-mining.html#cb447-7"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
 <span id="cb447-8"><a href="web-mining.html#cb447-8"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
-<span id="cb447-9"><a href="web-mining.html#cb447-9"></a><span class="co">## 1 185366… 12952017… 2020-08-17 03:32:14 carmelcita  &quot;Si … Twitt…</span></span>
-<span id="cb447-10"><a href="web-mining.html#cb447-10"></a><span class="co">## 2 147890… 12952016… 2020-08-17 03:32:02 prospeccio… &quot;Si … Twitt…</span></span>
-<span id="cb447-11"><a href="web-mining.html#cb447-11"></a><span class="co">## 3 121427… 12952014… 2020-08-17 03:31:11 wenqleo     &quot;Si … Twitt…</span></span>
+<span id="cb447-9"><a href="web-mining.html#cb447-9"></a><span class="co">## 1 331743… 12952068… 2020-08-17 03:52:26 paildad     &quot;Si … Twitt…</span></span>
+<span id="cb447-10"><a href="web-mining.html#cb447-10"></a><span class="co">## 2 127019… 12952067… 2020-08-17 03:52:01 calle65     &quot;#Pi… Twitt…</span></span>
+<span id="cb447-11"><a href="web-mining.html#cb447-11"></a><span class="co">## 3 521542… 12952064… 2020-08-17 03:50:50 Lgarciaja   &quot;Si … Twitt…</span></span>
 <span id="cb447-12"><a href="web-mining.html#cb447-12"></a><span class="co">## # … with 84 more variables</span></span></code></pre></div>
 <p>Para obtener información de los usuarios que están emitiendo tweets sobre #piñera en el momento que estamos escribiendo este capitulo</p>
 <div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="web-mining.html#cb448-1"></a><span class="kw">lookup_users</span>(pinera_tweets<span class="op">$</span>user_id)</span>
-<span id="cb448-2"><a href="web-mining.html#cb448-2"></a><span class="co">## # A tibble: 871 x 90</span></span>
+<span id="cb448-2"><a href="web-mining.html#cb448-2"></a><span class="co">## # A tibble: 875 x 90</span></span>
 <span id="cb448-3"><a href="web-mining.html#cb448-3"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
 <span id="cb448-4"><a href="web-mining.html#cb448-4"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
-<span id="cb448-5"><a href="web-mining.html#cb448-5"></a><span class="co">## 1 185366… 12952017… 2020-08-17 03:32:14 carmelcita  &quot;Si … Twitt…</span></span>
-<span id="cb448-6"><a href="web-mining.html#cb448-6"></a><span class="co">## 2 147890… 12952024… 2020-08-17 03:34:53 prospeccio… &quot;Nun… Twitt…</span></span>
-<span id="cb448-7"><a href="web-mining.html#cb448-7"></a><span class="co">## 3 121427… 12952025… 2020-08-17 03:35:34 wenqleo     &quot;@ma… Twitt…</span></span>
-<span id="cb448-8"><a href="web-mining.html#cb448-8"></a><span class="co">## # … with 868 more rows, and 84 more variables</span></span></code></pre></div>
+<span id="cb448-5"><a href="web-mining.html#cb448-5"></a><span class="co">## 1 331743… 12952068… 2020-08-17 03:52:26 paildad     &quot;Si … Twitt…</span></span>
+<span id="cb448-6"><a href="web-mining.html#cb448-6"></a><span class="co">## 2 127019… 12952067… 2020-08-17 03:52:01 calle65     &quot;#Pi… Twitt…</span></span>
+<span id="cb448-7"><a href="web-mining.html#cb448-7"></a><span class="co">## 3 521542… 12952069… 2020-08-17 03:52:52 Lgarciaja   &quot;La … Twitt…</span></span>
+<span id="cb448-8"><a href="web-mining.html#cb448-8"></a><span class="co">## # … with 872 more rows, and 84 more variables</span></span></code></pre></div>
 <p>Las consultas de tweets pueden hacerse de varias maneras dependiendo en los que estas buscando:</p>
 </div>
 <div id="buscar-una-palabra-clave" class="section level3">
@@ -850,24 +850,24 @@ Luego procedes a cargar el paquete <code>rtweet</code> que te permitirá extraer
 <span id="cb454-7"><a href="web-mining.html#cb454-7"></a><span class="co">## # A tibble: 2 x 90</span></span>
 <span id="cb454-8"><a href="web-mining.html#cb454-8"></a><span class="co">##   user_id status_id created_at          screen_name text  source</span></span>
 <span id="cb454-9"><a href="web-mining.html#cb454-9"></a><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; </span></span>
-<span id="cb454-10"><a href="web-mining.html#cb454-10"></a><span class="co">## 1 671326… 12951957… 2020-08-17 03:08:20 nnnnico     &quot;Tan… Twitt…</span></span>
-<span id="cb454-11"><a href="web-mining.html#cb454-11"></a><span class="co">## 2 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   &quot;#Pi… Twitt…</span></span>
+<span id="cb454-10"><a href="web-mining.html#cb454-10"></a><span class="co">## 1 173969… 12952043… 2020-08-17 03:42:45 sir_emm     @lat… Twitt…</span></span>
+<span id="cb454-11"><a href="web-mining.html#cb454-11"></a><span class="co">## 2 671326… 12951957… 2020-08-17 03:08:20 nnnnico     Tant… Twitt…</span></span>
 <span id="cb454-12"><a href="web-mining.html#cb454-12"></a><span class="co">## # … with 84 more variables</span></span></code></pre></div>
 <p>Ahora veamos quién está twiteando sobre el hashtag “#piñera”</p>
 <div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="web-mining.html#cb455-1"></a><span class="co"># Look at the column with the names - top 6</span></span>
 <span id="cb455-2"><a href="web-mining.html#cb455-2"></a><span class="kw">head</span>(pinera_tweets<span class="op">$</span>screen_name)</span>
-<span id="cb455-3"><a href="web-mining.html#cb455-3"></a><span class="co">## [1] &quot;nnnnico&quot;     &quot;nacido_aC&quot;   &quot;nacido_aC&quot;   &quot;nacido_aC&quot;   &quot;nacido_aC&quot;  </span></span>
-<span id="cb455-4"><a href="web-mining.html#cb455-4"></a><span class="co">## [6] &quot;MolinavSeba&quot;</span></span>
+<span id="cb455-3"><a href="web-mining.html#cb455-3"></a><span class="co">## [1] &quot;sir_emm&quot;   &quot;nnnnico&quot;   &quot;nacido_aC&quot; &quot;nacido_aC&quot; &quot;nacido_aC&quot;</span></span>
+<span id="cb455-4"><a href="web-mining.html#cb455-4"></a><span class="co">## [6] &quot;nacido_aC&quot;</span></span>
 <span id="cb455-5"><a href="web-mining.html#cb455-5"></a></span>
 <span id="cb455-6"><a href="web-mining.html#cb455-6"></a><span class="kw">unique</span>(pinera_tweets<span class="op">$</span>screen_name)</span>
-<span id="cb455-7"><a href="web-mining.html#cb455-7"></a><span class="co">##  [1] &quot;nnnnico&quot;         &quot;nacido_aC&quot;       &quot;MolinavSeba&quot;    </span></span>
-<span id="cb455-8"><a href="web-mining.html#cb455-8"></a><span class="co">##  [4] &quot;HSBnoticias&quot;     &quot;criticolunar&quot;    &quot;alert_ve&quot;       </span></span>
-<span id="cb455-9"><a href="web-mining.html#cb455-9"></a><span class="co">##  [7] &quot;CerroaIzquierda&quot; &quot;ElPobreHank&quot;     &quot;1_panchovilla&quot;  </span></span>
-<span id="cb455-10"><a href="web-mining.html#cb455-10"></a><span class="co">## [10] &quot;Rubencorsal&quot;     &quot;bullboss63&quot;      &quot;Thunder_Pantera&quot;</span></span>
-<span id="cb455-11"><a href="web-mining.html#cb455-11"></a><span class="co">## [13] &quot;cebef&quot;           &quot;villanomacul&quot;    &quot;LKatrileo&quot;      </span></span>
-<span id="cb455-12"><a href="web-mining.html#cb455-12"></a><span class="co">## [16] &quot;TIRSO48&quot;         &quot;nacioncl&quot;        &quot;minevargasg&quot;    </span></span>
-<span id="cb455-13"><a href="web-mining.html#cb455-13"></a><span class="co">## [19] &quot;_hexagram_&quot;      &quot;CiudadannoChile&quot;</span></span>
-<span id="cb455-14"><a href="web-mining.html#cb455-14"></a><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 338 entries ]</span></span></code></pre></div>
+<span id="cb455-7"><a href="web-mining.html#cb455-7"></a><span class="co">##  [1] &quot;sir_emm&quot;         &quot;nnnnico&quot;         &quot;nacido_aC&quot;      </span></span>
+<span id="cb455-8"><a href="web-mining.html#cb455-8"></a><span class="co">##  [4] &quot;MolinavSeba&quot;     &quot;HSBnoticias&quot;     &quot;criticolunar&quot;   </span></span>
+<span id="cb455-9"><a href="web-mining.html#cb455-9"></a><span class="co">##  [7] &quot;alert_ve&quot;        &quot;CerroaIzquierda&quot; &quot;ElPobreHank&quot;    </span></span>
+<span id="cb455-10"><a href="web-mining.html#cb455-10"></a><span class="co">## [10] &quot;1_panchovilla&quot;   &quot;Rubencorsal&quot;     &quot;bullboss63&quot;     </span></span>
+<span id="cb455-11"><a href="web-mining.html#cb455-11"></a><span class="co">## [13] &quot;Thunder_Pantera&quot; &quot;cebef&quot;           &quot;villanomacul&quot;   </span></span>
+<span id="cb455-12"><a href="web-mining.html#cb455-12"></a><span class="co">## [16] &quot;LKatrileo&quot;       &quot;TIRSO48&quot;         &quot;nacioncl&quot;       </span></span>
+<span id="cb455-13"><a href="web-mining.html#cb455-13"></a><span class="co">## [19] &quot;minevargasg&quot;     &quot;_hexagram_&quot;     </span></span>
+<span id="cb455-14"><a href="web-mining.html#cb455-14"></a><span class="co">##  [ reached getOption(&quot;max.print&quot;) -- omitted 339 entries ]</span></span></code></pre></div>
 <p>También podemos usar la función <code>search_users()</code> para explorar qué usuarios están twiteando usando un hashtag particular. Esta función extrae un data.frame de los usuarios e información sobre sus cuentas.</p>
 <div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="web-mining.html#cb456-1"></a><span class="co"># Which users are tweeting about #piñera?</span></span>
 <span id="cb456-2"><a href="web-mining.html#cb456-2"></a>users &lt;-<span class="st"> </span><span class="kw">search_users</span>(<span class="st">&quot;#piñera&quot;</span>,</span>
@@ -893,7 +893,7 @@ Luego procedes a cargar el paquete <code>rtweet</code> que te permitirá extraer
 <span id="cb457-10"><a href="web-mining.html#cb457-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Frecuencia&quot;</span>,</span>
 <span id="cb457-11"><a href="web-mining.html#cb457-11"></a>       <span class="dt">y =</span> <span class="st">&quot;Ubicación&quot;,</span></span>
 <span id="cb457-12"><a href="web-mining.html#cb457-12"></a><span class="st">       title = &quot;</span>Cuentas de Twitter <span class="op">-</span><span class="st"> </span>Ubicaciones únicas<span class="st">&quot;)</span></span></code></pre></div>
-<p><img src="12-web-mining_es_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="12-web-mining_es_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Ordenemos por frecuencia las ubicaciones más nombradas y las trazamos. Para ello utilizamos <code>top_n()</code> que extraerá las localizaciones con al menos 20 usuarios asociados a ella</p>
 <div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="web-mining.html#cb458-1"></a>users <span class="op">%&gt;%</span></span>
 <span id="cb458-2"><a href="web-mining.html#cb458-2"></a><span class="st">  </span><span class="kw">count</span>(location, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
@@ -905,7 +905,7 @@ Luego procedes a cargar el paquete <code>rtweet</code> que te permitirá extraer
 <span id="cb458-8"><a href="web-mining.html#cb458-8"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Frecuencia&quot;</span>,</span>
 <span id="cb458-9"><a href="web-mining.html#cb458-9"></a>      <span class="dt">y =</span> <span class="st">&quot;Ubicación&quot;,</span></span>
 <span id="cb458-10"><a href="web-mining.html#cb458-10"></a><span class="st">      title = &quot;</span>¿De dónde son estas cuentas de Twitter? Ubicaciones únicas<span class="st">&quot;)</span></span></code></pre></div>
-<p><img src="12-web-mining_es_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="12-web-mining_es_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Es mejor si quitamos los NAs para ver los lugares más claramente. En general, la geolocalización en Twitter es bastante mediocre porque es voluntaria y pocas personas la tienen activada en sus teléfonos móviles. Así que lo que vemos es gente que quiere que sepamos su ubicación, lo que significa que hay un sesgo en estos resultados.</p>
 <div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="web-mining.html#cb459-1"></a>users <span class="op">%&gt;%</span></span>
 <span id="cb459-2"><a href="web-mining.html#cb459-2"></a><span class="st">  </span><span class="kw">count</span>(location, <span class="dt">sort =</span> T) <span class="op">%&gt;%</span></span>
@@ -918,7 +918,7 @@ Luego procedes a cargar el paquete <code>rtweet</code> que te permitirá extraer
 <span id="cb459-9"><a href="web-mining.html#cb459-9"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Ubicación&quot;,</span></span>
 <span id="cb459-10"><a href="web-mining.html#cb459-10"></a><span class="st">      y = &quot;</span>Frecuencia<span class="st">&quot;,</span></span>
 <span id="cb459-11"><a href="web-mining.html#cb459-11"></a><span class="st">      title = &quot;</span>Usuarios de Twitter <span class="op">-</span><span class="st"> </span>Ubicaciones únicas<span class="st">&quot;)</span></span></code></pre></div>
-<p><img src="12-web-mining_es_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="12-web-mining_es_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Finalmente repetimos el ejercicio usando hashtags que se refieren a Michelle Bachelet, la ex presidenta de Chile:</p>
 <div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="web-mining.html#cb460-1"></a><span class="co">## Buscar tweets que usen el hashtag #bachelet</span></span>
 <span id="cb460-2"><a href="web-mining.html#cb460-2"></a>rt &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(</span>
@@ -936,7 +936,7 @@ Luego procedes a cargar el paquete <code>rtweet</code> que te permitirá extraer
 <span id="cb461-9"><a href="web-mining.html#cb461-9"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Conteo de tweets usando intervalos de tres horas&quot;</span>,</span>
 <span id="cb461-10"><a href="web-mining.html#cb461-10"></a>    <span class="dt">caption =</span> <span class="st">&quot;Fuente: Datos recolectados desde la API de Twitter, usando el paquete rtweet&quot;</span></span>
 <span id="cb461-11"><a href="web-mining.html#cb461-11"></a>  )</span></code></pre></div>
-<p><img src="12-web-mining_es_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="12-web-mining_es_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Esperamos que este capítulo haya sido útil. En el Capítulo <a href="qta.html#qta">13</a> te mostraremos cómo explorar más a fondo los datos de Twitter una vez que los hayas descargado.</p>
 
 </div>

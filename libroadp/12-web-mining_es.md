@@ -18,13 +18,11 @@ La información en Internet crece exponencialmente cada día. Si el problema de 
 
 Una de las técnicas más utilizadas para extraer información de los sitios web es la técnica conocida como *web scraping*.
 
-
-
 El web scraping se está convirtiendo en una técnica cada vez más popular en el análisis de datos debido a su versatilidad para tratar con diferentes sitios web. Como podemos ver en el siguiente gráfico, las búsquedas en Google del término "web scraping" han crecido constantemente año tras año desde 200:
 
 <div class="figure" style="text-align: center">
-<img src="12-web-mining_es_files/figure-html/unnamed-chunk-2-1.png" alt="Búsquedas de 'web scraping' en Google" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-2)Búsquedas de 'web scraping' en Google</p>
+<img src="12-web-mining_es_files/figure-html/unnamed-chunk-1-1.png" alt="Búsquedas de 'web scraping' en Google" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-1)Búsquedas de 'web scraping' en Google</p>
 </div>
 
 Esto consiste en obtener datos no muy estructurados (HTML) desde un sitio web, que usualmente luego transformamos a un formato estructurado con filas y columnas, con el que es más fácil trabajar. Nos permite obtener datos de fuentes no tradicionales (¡prácticamente cualquier página web!)
@@ -59,7 +57,7 @@ Antes de entrar en la práctica del *web scraping* tenemos que entender mejor qu
 
 <div class="figure" style="text-align: center">
 <img src="00-images/web-mining/web-mining4.png" alt="Vistazo a los estándares de exclusión de Google" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Vistazo a los estándares de exclusión de Google</p>
+<p class="caption">(\#fig:unnamed-chunk-2)Vistazo a los estándares de exclusión de Google</p>
 </div>
 
 En esta imagen encontramos la expresión *Usuario-agente: *. Esto permite a todos los robots acceder a los archivos que se almacenan en el código principal de la página web ya que el comodín (*) significa "TODO". 
@@ -91,7 +89,7 @@ Antes de comenzar con el *web scraping* en sí mismo analizaremos el archivo *ro
 
 <div class="figure" style="text-align: center">
 <img src="00-images/web-mining/web-mining3.png" alt="Vistazo al archivo robots.txt de la OEA" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-5)Vistazo al archivo robots.txt de la OEA</p>
+<p class="caption">(\#fig:unnamed-chunk-4)Vistazo al archivo robots.txt de la OEA</p>
 </div>
 
 Encontramos que algunos directorios están prohibidos de ser indexados, pero todos los bots y usuarios están autorizados a visitar el sitio. Lo más importante es la expresión *Crawl-delay: 3* que básicamente nos dice que por cada petición hecha por un robot es aconsejable esperar 3 segundos entre una consulta y otra para no saturar el sitio, lo que puede resultar en que te bloquee.
@@ -122,7 +120,7 @@ A continuación, abrimos la página en Google Chrome donde lo primero que veremo
 
 <div class="figure" style="text-align: center">
 <img src="00-images/web-mining/web-mining1.png" alt="Pantallazo del sitio de los comunicados de prensa de la OEA" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-8)Pantallazo del sitio de los comunicados de prensa de la OEA</p>
+<p class="caption">(\#fig:unnamed-chunk-7)Pantallazo del sitio de los comunicados de prensa de la OEA</p>
 </div>
 
 El primer paso es encontrar el selector de CSS que contiene nuestra información. En la mayoría de los casos sólo usaremos [SelectorGadget](https://selectorgadget.com/). Empecemos con los títulos. Como podemos ver en la figura, seleccionamos la parte del sitio web que queremos extraer. En este caso queremos los títulos de los comunicados de prensa que después de ser seleccionados se destacan en amarillo. Observarán que al hacer clic en uno de ellos, aparece un mensaje ".itemmenulink" en el espacio vacío que hay en el Selector. Estos son los caracteres designados para los títulos en este sitio web
@@ -452,9 +450,9 @@ head(pinera_tweets, n = 3)
 ## # A tibble: 3 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 185366… 12952017… 2020-08-17 03:32:14 carmelcita  "Si … Twitt…
-## 2 147890… 12952016… 2020-08-17 03:32:02 prospeccio… "Si … Twitt…
-## 3 121427… 12952014… 2020-08-17 03:31:11 wenqleo     "Si … Twitt…
+## 1 331743… 12952068… 2020-08-17 03:52:26 paildad     "Si … Twitt…
+## 2 127019… 12952067… 2020-08-17 03:52:01 calle65     "#Pi… Twitt…
+## 3 521542… 12952064… 2020-08-17 03:50:50 Lgarciaja   "Si … Twitt…
 ## # … with 84 more variables
 ```
 
@@ -463,13 +461,13 @@ Para obtener información de los usuarios que están emitiendo tweets sobre #pi�
 
 ```r
 lookup_users(pinera_tweets$user_id)
-## # A tibble: 871 x 90
+## # A tibble: 875 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 185366… 12952017… 2020-08-17 03:32:14 carmelcita  "Si … Twitt…
-## 2 147890… 12952024… 2020-08-17 03:34:53 prospeccio… "Nun… Twitt…
-## 3 121427… 12952025… 2020-08-17 03:35:34 wenqleo     "@ma… Twitt…
-## # … with 868 more rows, and 84 more variables
+## 1 331743… 12952068… 2020-08-17 03:52:26 paildad     "Si … Twitt…
+## 2 127019… 12952067… 2020-08-17 03:52:01 calle65     "#Pi… Twitt…
+## 3 521542… 12952069… 2020-08-17 03:52:52 Lgarciaja   "La … Twitt…
+## # … with 872 more rows, and 84 more variables
 ```
 
 
@@ -537,8 +535,8 @@ head(pinera_tweets, n = 2)
 ## # A tibble: 2 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 671326… 12951957… 2020-08-17 03:08:20 nnnnico     "Tan… Twitt…
-## 2 109934… 12951949… 2020-08-17 03:05:18 nacido_aC   "#Pi… Twitt…
+## 1 173969… 12952043… 2020-08-17 03:42:45 sir_emm     @lat… Twitt…
+## 2 671326… 12951957… 2020-08-17 03:08:20 nnnnico     Tant… Twitt…
 ## # … with 84 more variables
 ```
 
@@ -548,18 +546,18 @@ Ahora veamos quién está twiteando sobre el hashtag "#piñera"
 ```r
 # Look at the column with the names - top 6
 head(pinera_tweets$screen_name)
-## [1] "nnnnico"     "nacido_aC"   "nacido_aC"   "nacido_aC"   "nacido_aC"  
-## [6] "MolinavSeba"
+## [1] "sir_emm"   "nnnnico"   "nacido_aC" "nacido_aC" "nacido_aC"
+## [6] "nacido_aC"
 
 unique(pinera_tweets$screen_name)
-##  [1] "nnnnico"         "nacido_aC"       "MolinavSeba"    
-##  [4] "HSBnoticias"     "criticolunar"    "alert_ve"       
-##  [7] "CerroaIzquierda" "ElPobreHank"     "1_panchovilla"  
-## [10] "Rubencorsal"     "bullboss63"      "Thunder_Pantera"
-## [13] "cebef"           "villanomacul"    "LKatrileo"      
-## [16] "TIRSO48"         "nacioncl"        "minevargasg"    
-## [19] "_hexagram_"      "CiudadannoChile"
-##  [ reached getOption("max.print") -- omitted 338 entries ]
+##  [1] "sir_emm"         "nnnnico"         "nacido_aC"      
+##  [4] "MolinavSeba"     "HSBnoticias"     "criticolunar"   
+##  [7] "alert_ve"        "CerroaIzquierda" "ElPobreHank"    
+## [10] "1_panchovilla"   "Rubencorsal"     "bullboss63"     
+## [13] "Thunder_Pantera" "cebef"           "villanomacul"   
+## [16] "LKatrileo"       "TIRSO48"         "nacioncl"       
+## [19] "minevargasg"     "_hexagram_"     
+##  [ reached getOption("max.print") -- omitted 339 entries ]
 ```
 
 También podemos usar la función `search_users()` para explorar qué usuarios están twiteando usando un hashtag particular. Esta función extrae un data.frame de los usuarios e información sobre sus cuentas.
@@ -597,7 +595,7 @@ users %>%
        title = "Cuentas de Twitter - Ubicaciones únicas")
 ```
 
-<img src="12-web-mining_es_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" />
+<img src="12-web-mining_es_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" />
 
 Ordenemos por frecuencia las ubicaciones más nombradas y las trazamos. Para ello utilizamos `top_n()` que extraerá las localizaciones con al menos 20 usuarios asociados a ella
 
@@ -615,7 +613,7 @@ users %>%
       title = "¿De dónde son estas cuentas de Twitter? Ubicaciones únicas")
 ```
 
-<img src="12-web-mining_es_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" />
+<img src="12-web-mining_es_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" />
 
 Es mejor si quitamos los NAs para ver los lugares más claramente. En general, la geolocalización en Twitter es bastante mediocre porque es voluntaria y pocas personas la tienen activada en sus teléfonos móviles. Así que lo que vemos es gente que quiere que sepamos su ubicación, lo que significa que hay un sesgo en estos resultados.
 
@@ -634,7 +632,7 @@ users %>%
       title = "Usuarios de Twitter - Ubicaciones únicas")
 ```
 
-<img src="12-web-mining_es_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" />
+<img src="12-web-mining_es_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" />
 
 Finalmente repetimos el ejercicio usando hashtags que se refieren a Michelle Bachelet, la ex presidenta de Chile:
 
@@ -662,6 +660,6 @@ rt %>%
   )
 ```
 
-<img src="12-web-mining_es_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" />
+<img src="12-web-mining_es_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" />
 
 Esperamos que este capítulo haya sido útil. En el Capítulo \@ref(qta) te mostraremos cómo explorar más a fondo los datos de Twitter una vez que los hayas descargado.

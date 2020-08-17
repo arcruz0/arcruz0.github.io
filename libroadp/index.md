@@ -53,7 +53,7 @@ Adicionalmente, si encuentras el libro útil, por favor apóyalo de alguna de es
 
 - Recomendándolo o compartiéndolo en redes sociales.
 
-- Citando la versión del libro que hemos publicado en inglés: Urdinez, F. and Cruz, A. (2020). *Political Data Science Using R: A Practical Guide*. CRC Press. Si deseas, puedes recomendar a la biblioteca de tu universidad que compre la [versión en papel del libro](https://www.routledge.com/R-for-Political-Data-Science-A-Practical-Guide/Urdinez-Cruz/p/book/9780367818890).
+- Citando la versión del libro que hemos publicado en inglés: Urdinez, F. and Cruz, A. (Eds.) (2020). *Political Data Science Using R: A Practical Guide*. CRC Press. Si deseas, puedes recomendar a la biblioteca de tu universidad que compre la [versión en papel del libro](https://www.routledge.com/R-for-Political-Data-Science-A-Practical-Guide/Urdinez-Cruz/p/book/9780367818890).
 
 <div class="figure" style="text-align: center">
 <img src="00-images/index/book.jpg" alt="Tapa del libro editado en inglés por CRC Press" width="30%" />
@@ -131,18 +131,18 @@ El libro se alimenta del avance enorme que se ha hecho en los últimos años a p
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 4 </td>
    <td style="text-align:left;"> Carga de bases </td>
-   <td style="text-align:left;"> Soledad Araya and Andrés Cruz </td>
+   <td style="text-align:left;"> Soledad Araya y Andrés Cruz </td>
   </tr>
   <tr grouplength="6"><td colspan="3" style="text-align:center"><strong>II. Modelos</strong></td></tr>
 <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 5 </td>
    <td style="text-align:left;"> Modelos lineales </td>
-   <td style="text-align:left;"> Inés Fynn and Lihuen Nocetto </td>
+   <td style="text-align:left;"> Inés Fynn y Lihuen Nocetto </td>
   </tr>
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 6 </td>
    <td style="text-align:left;"> Selección de casos basada en regresiones </td>
-   <td style="text-align:left;"> Inés Fynn and Lihuen Nocetto </td>
+   <td style="text-align:left;"> Inés Fynn y Lihuen Nocetto </td>
   </tr>
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 7 </td>
@@ -168,7 +168,7 @@ El libro se alimenta del avance enorme que se ha hecho en los últimos años a p
 <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 11 </td>
    <td style="text-align:left;"> Manejo avanzado de datos políticos </td>
-   <td style="text-align:left;"> Andrés Cruz and Francisco Urdinez </td>
+   <td style="text-align:left;"> Andrés Cruz y Francisco Urdinez </td>
   </tr>
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 12 </td>
@@ -188,12 +188,12 @@ El libro se alimenta del avance enorme que se ha hecho en los últimos años a p
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 15 </td>
    <td style="text-align:left;"> Análisis de componentes principales </td>
-   <td style="text-align:left;"> Caterina Labrin and Francisco Urdinez </td>
+   <td style="text-align:left;"> Caterina Labrin y Francisco Urdinez </td>
   </tr>
   <tr>
    <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 16 </td>
    <td style="text-align:left;"> Mapas y datos espaciales </td>
-   <td style="text-align:left;"> Andrea Escobar and Gabriel Ortiz </td>
+   <td style="text-align:left;"> Andrea Escobar y Gabriel Ortiz </td>
   </tr>
 </tbody>
 </table>
