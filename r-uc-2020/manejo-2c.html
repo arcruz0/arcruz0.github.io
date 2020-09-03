@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>02C - Manejo de datos (extras) | Programación para las Ciencias Sociales</title>
+  <meta name="description" content="Sitio web ICP0506" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="02C - Manejo de datos (extras) | Programación para las Ciencias Sociales" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Sitio web ICP0506" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="02C - Manejo de datos (extras) | Programación para las Ciencias Sociales" />
+  
+  <meta name="twitter:description" content="Sitio web ICP0506" />
+  
+
+<meta name="author" content="Andrés Cruz" />
+
+
+<meta name="date" content="2020-09-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="manejo-2b.html"/>
+<link rel="next" href="manejo-2d.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Prog. Cs. Sociales</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Inicio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#links-importantes"><i class="fa fa-check"></i>Links importantes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cronograma-y-materiales-del-curso"><i class="fa fa-check"></i>Cronograma y materiales del curso</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html"><i class="fa fa-check"></i>01 - R básico</a><ul>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#introducción-comandos-y-código"><i class="fa fa-check"></i>Introducción: comandos y código</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#paquetes"><i class="fa fa-check"></i>Paquetes</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#comandos-básicos-y-tipos-de-objeto-en-r"><i class="fa fa-check"></i>Comandos básicos y tipos de objeto en R</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#sintaxis-de-r-markdown"><i class="fa fa-check"></i>Sintaxis de R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#siguiente-script"><i class="fa fa-check"></i>Siguiente script</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html"><i class="fa fa-check"></i>02A - Manejo de datos</a><ul>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#repaso-de-la-clase-pasada-r-markdown"><i class="fa fa-check"></i>Repaso de la clase pasada: R Markdown</a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#manejo-de-bases-de-datos"><i class="fa fa-check"></i>Manejo de bases de datos</a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#la-base-de-datos-ideal-tidy"><i class="fa fa-check"></i>La base de datos ideal: tidy</a></li>
+<li><a href="manejo-2a.html#operaciones-básicas-en-bases-de-datos-wickham-2014">Operaciones básicas en bases de datos <span>(Wickham, 2014)</span></a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#trabajo-con-r"><i class="fa fa-check"></i>Trabajo con R</a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#manejo-de-datos-operaciones-básicas"><i class="fa fa-check"></i>Manejo de datos: operaciones básicas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html"><i class="fa fa-check"></i>02B - Manejo de datos (ejercicio)</a><ul>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#contexto"><i class="fa fa-check"></i>Contexto</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#a."><i class="fa fa-check"></i>A.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#b."><i class="fa fa-check"></i>B.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#c."><i class="fa fa-check"></i>C.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#d."><i class="fa fa-check"></i>D.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#e."><i class="fa fa-check"></i>E.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#f."><i class="fa fa-check"></i>F.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2c.html"><a href="manejo-2c.html"><i class="fa fa-check"></i>02C - Manejo de datos (extras)</a><ul>
+<li class="chapter" data-level="" data-path="manejo-2c.html"><a href="manejo-2c.html#cargar-y-guardar-bases-de-datos"><i class="fa fa-check"></i>Cargar y guardar bases de datos</a></li>
+<li><a href="manejo-2c.html#versiones-iterativas-de-summarize-y-mutate">Versiones iterativas de <code>summarize()</code> y <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2d.html"><a href="manejo-2d.html"><i class="fa fa-check"></i>02D - Manejo de datos (ejercicio int.)</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación para las Ciencias Sociales</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manejo-2c" class="section level1 unnumbered">
+<h1>02C - Manejo de datos (extras)</h1>
+<blockquote>
+<p>Si quieres correr este script localmente, debe haber descargado el proyecto, como se explica en el script 2A.</p>
+</blockquote>
+<p>Como al principio de todo script, recomiendo reiniciar R. Esto lo conseguimos con Session &gt; Restart R y clickeando en la escoba del panel de “Environment” (superior derecho).</p>
+<p>Ahora carguemos los paquetes que usaremos:</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="manejo-2c.html#cb148-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb148-2"><a href="manejo-2c.html#cb148-2"></a><span class="kw">library</span>(readxl)  <span class="co"># leer datos de Excel</span></span>
+<span id="cb148-3"><a href="manejo-2c.html#cb148-3"></a><span class="co"># install.packages(c(&quot;janitor&quot;, &quot;writexl&quot;))</span></span>
+<span id="cb148-4"><a href="manejo-2c.html#cb148-4"></a><span class="kw">library</span>(janitor) <span class="co"># limpiar bases</span></span>
+<span id="cb148-5"><a href="manejo-2c.html#cb148-5"></a><span class="kw">library</span>(writexl)  <span class="co"># guardar bases de Excel</span></span></code></pre></div>
+<div id="cargar-y-guardar-bases-de-datos" class="section level2 unnumbered">
+<h2>Cargar y guardar bases de datos</h2>
+<div id="cargar-desde-múltiples-formatos" class="section level3 unnumbered">
+<h3>Cargar desde múltiples formatos</h3>
+<p>Hay múltiples formatos en los podemos encontrar bases de datos tabulares. Por suerte, la consistencia del tidyverse nos permite usar funciones muy similares para trabajar con ellas en R <a href="https://arcruz0.github.io/libroadp/carga.html">(Araya y Cruz, 2019)</a>.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Extensión</th>
+<th>Descripción</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>.csv</td>
+<td>Archivo delimitado por comas</td>
+<td><code>read_csv()</code></td>
+</tr>
+<tr class="even">
+<td>.dta</td>
+<td>Stata (suele incluir etiquetas)</td>
+<td><code>haven::read_stata()</code></td>
+</tr>
+<tr class="odd">
+<td>.Rdata</td>
+<td>R (puede tener múltiples objetos)</td>
+<td><code>load()</code></td>
+</tr>
+<tr class="even">
+<td>.rds</td>
+<td>R (un solo objeto)</td>
+<td><code>read_rds()</code></td>
+</tr>
+<tr class="odd">
+<td>.sav</td>
+<td>SPSS (suele incluir etiquetas)</td>
+<td><code>haven::read_spss()</code></td>
+</tr>
+<tr class="even">
+<td>.xlsx</td>
+<td>Excel 2007-</td>
+<td><code>writexl::read_excel()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="limpiar-nombres-de-columnas" class="section level3 unnumbered">
+<h3>Limpiar nombres de columnas</h3>
+<p>En esta ocasión cargaremos unos datos en formato Excel. Es muy común encontrar datos que tienen este tipo de extensión, y en general no vienen demasiado limpios (el trabajo con planillas no necesariamente se hace pensando en el procesamiento con código).</p>
+<p><a href="https://drive.google.com/a/uc.cl/file/d/14lmi6SnIn30KbOgm1t1RdPNtpdPeQcD9/view?usp=drivesdk">Inspeccionémoslos visualmente</a>. Son datos de casos policiales en 2016 para 340 comunas de Chile, recolectados desde la <a href="http://www.fnsp.gob.cl/estadisticas-delictuales-por-comuna/">Subsecretaría de Prevención del Delito (2017)</a>.</p>
+<p>Habiendo cargando el paquete <code>readxl</code> antes, la sintaxis para cargar los datos será familiar:</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="manejo-2c.html#cb149-1"></a>df_casos_policiales &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;datos/casos_delitos_por_comuna.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="manejo-2c.html#cb150-1"></a><span class="kw">glimpse</span>(df_casos_policiales)</span></code></pre></div>
+<pre><code>## Rows: 340
+## Columns: 17
+## $ Comuna                                       &lt;chr&gt; &quot;Algarrobo&quot;, &quot;Alhué&quot;, &quot;Alto-Biobío&quot;, &quot;Alto-del-Carmen&quot;, &quot;Alto-Hospicio&quot;, &quot;Ancud&quot;, &quot;Andacollo&quot;, &quot;Angol&quot;, &quot;Antártica&quot;, &quot;Antofagasta&quot;, &quot;Antuco&quot;, &quot;Arauco&quot;, &quot;Arica&quot;, &quot;Aysén&quot;, &quot;Buin&quot;, &quot;Bulnes&quot;, &quot;Cabil…
+## $ `Comuna ID`                                  &lt;dbl&gt; 5602, 13502, 8314, 3302, 1107, 10202, 4103, 9201, 12202, 2101, 8302, 8202, 15101, 11201, 13402, 8402, 5402, 12201, 8303, 2201, 10102, 3102, 13403, 5302, 15102, 1402, 4202, 8203, 9102, 5603, 5102…
+## $ `Región ID`                                  &lt;dbl&gt; 5, 13, 8, 3, 1, 10, 4, 9, 12, 2, 8, 8, 15, 11, 13, 16, 5, 12, 8, 2, 10, 3, 13, 5, 15, 1, 4, 8, 9, 5, 5, 10, 5, 7, 13, 13, 10, 3, 6, 8, 11, 16, 16, 6, 9, 10, 11, 16, 10, 11, 6, 16, 16, 6, 7, 1, 1…
+## $ `Población (INE 2017)`                       &lt;dbl&gt; 10700, 5916, 5957, 6519, 124872, 44249, 11555, 55845, 202, 389812, 3906, 38431, 243701, 28283, 86079, 22042, 20135, 2906, 29563, 181897, 35282, 18101, 25528, 15021, 783, 1277, 9911, 34277, 26467…
+## $ `Robos con violencia o intimidación`         &lt;dbl&gt; 23, 5, 1, 1, 396, 23, 11, 93, 0, 1150, 3, 40, 618, 18, 213, 17, 13, 0, 29, 652, 11, 67, 79, 16, 0, 0, 6, 53, 15, 121, 40, 57, 19, 34, 601, 587, 0, 29, 3, 204, 0, 30, 353, 30, 3, 8, 0, 1, 1, 0, 1…
+## $ `Robos por sorpresa`                         &lt;dbl&gt; 11, 2, 1, 0, 222, 13, 6, 119, 0, 646, 0, 32, 451, 1, 154, 8, 10, 0, 4, 458, 4, 21, 15, 5, 0, 0, 0, 87, 10, 35, 19, 62, 13, 19, 227, 181, 0, 1, 2, 101, 0, 20, 426, 18, 1, 4, 0, 0, 0, 0, 1, 2, 4, …
+## $ `Robos de vehículo motorizado`               &lt;dbl&gt; 9, 2, 0, 0, 461, 2, 0, 41, 0, 987, 1, 5, 578, 0, 97, 10, 2, 0, 10, 686, 4, 23, 31, 6, 0, 0, 0, 18, 13, 34, 25, 9, 2, 13, 240, 144, 0, 5, 1, 61, 0, 14, 198, 5, 4, 0, 0, 0, 0, 0, 9, 4, 10, 4, 1, 4…
+## $ `Robos de objeto de o desde vehículo`        &lt;dbl&gt; 56, 1, 3, 1, 338, 30, 8, 58, 0, 1010, 3, 24, 546, 11, 195, 22, 20, 0, 30, 840, 9, 24, 68, 18, 1, 0, 15, 32, 11, 105, 73, 79, 5, 10, 530, 93, 1, 14, 2, 116, 0, 45, 441, 34, 2, 3, 0, 2, 1, 1, 12, …
+## $ `Robos en lugar habitado`                    &lt;dbl&gt; 384, 18, 1, 6, 565, 111, 37, 261, 0, 1024, 3, 161, 524, 41, 399, 60, 51, 0, 102, 965, 44, 124, 119, 48, 5, 1, 28, 144, 35, 392, 132, 157, 30, 93, 206, 278, 1, 97, 7, 263, 4, 112, 737, 89, 19, 25…
+## $ `Robos en lugar no habitado`                 &lt;dbl&gt; 80, 16, 7, 7, 193, 130, 20, 181, 0, 778, 6, 159, 382, 44, 271, 45, 42, 4, 106, 577, 62, 125, 79, 34, 3, 1, 16, 105, 34, 88, 108, 136, 40, 74, 295, 191, 6, 83, 19, 109, 17, 92, 505, 90, 12, 31, 1…
+## $ `Otros robos con fuerza`                     &lt;dbl&gt; 5, 1, 0, 0, 23, 6, 3, 35, 0, 43, 1, 4, 105, 5, 17, 4, 1, 0, 28, 40, 3, 14, 6, 0, 0, 1, 17, 5, 0, 10, 4, 6, 0, 11, 39, 7, 0, 6, 0, 3, 0, 7, 80, 4, 2, 1, 0, 0, 0, 0, 3, 6, 6, 1, 2, 2, 23, 25, 0, 0…
+## $ Hurtos                                       &lt;dbl&gt; 184, 15, 18, 11, 791, 253, 39, 549, 0, 5445, 10, 312, 1735, 230, 513, 106, 48, 3, 170, 2156, 121, 206, 93, 57, 7, 1, 12, 252, 121, 236, 234, 702, 58, 243, 1201, 335, 17, 134, 49, 391, 38, 102, 2…
+## $ `Lesiones menos graves, graves o gravísimas` &lt;dbl&gt; 22, 3, 16, 2, 130, 31, 9, 55, 0, 295, 1, 30, 343, 37, 63, 17, 19, 1, 29, 231, 37, 32, 28, 8, 1, 1, 3, 44, 20, 40, 34, 46, 24, 32, 78, 159, 3, 22, 6, 65, 5, 18, 156, 24, 8, 11, 7, 5, 2, 9, 17, 14…
+## $ `Lesiones leves`                             &lt;dbl&gt; 52, 26, 24, 8, 523, 132, 77, 244, 0, 1528, 8, 106, 720, 143, 257, 66, 55, 5, 81, 1047, 114, 136, 66, 29, 6, 7, 18, 145, 64, 161, 127, 176, 43, 96, 358, 307, 10, 70, 37, 239, 28, 58, 453, 78, 40,…
+## $ Homicidios                                   &lt;dbl&gt; 0, 1, 0, 0, 1, 0, 0, 2, 0, 13, 0, 1, 6, 0, 3, 0, 0, 0, 0, 8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 8, 0, 1, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 1, 0, 1, 2, 0, 0, 0, 10, 2, 0, 0, 11, 5, 0, 2,…
+## $ Violaciones                                  &lt;dbl&gt; 1, 0, 3, 0, 20, 10, 1, 7, 0, 50, 0, 8, 47, 2, 12, 0, 1, 0, 3, 28, 13, 3, 3, 0, 2, 0, 1, 7, 4, 9, 7, 13, 1, 7, 6, 21, 1, 1, 0, 7, 0, 5, 32, 0, 0, 2, 0, 1, 0, 0, 4, 3, 0, 2, 3, 0, 26, 6, 3, 0, 61,…
+## $ VIF                                          &lt;dbl&gt; 129, 29, 62, 26, 1226, 330, 67, 508, 0, 2384, 34, 264, 1973, 314, 547, 177, 143, 13, 180, 1146, 369, 153, 120, 67, 3, 4, 31, 224, 123, 230, 219, 378, 119, 263, 521, 831, 22, 126, 77, 628, 19, 18…</code></pre>
+<p>Los nombres de las columnas en la base tienen mayúsculas, espacios y tildes, lo que nos puede generar problemas en el análisis. La <a href="https://style.tidyverse.org/">convención en el <code>tidyverse</code></a> es nombrar utilizando snake_case (nombre_de_mi_objeto), sin mayúsculas, espacios ni tildes. Esto nos ahorrará muchos problemas.</p>
+<p>Si ya tenemos una base de datos y queremos estandarizar sus variables, el paquete <code>janitor</code> provee la función <code>clean_names()</code> para esto:</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="manejo-2c.html#cb152-1"></a>df_casos_policiales_l &lt;-<span class="st"> </span>df_casos_policiales <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb152-2"><a href="manejo-2c.html#cb152-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="manejo-2c.html#cb153-1"></a><span class="kw">glimpse</span>(df_casos_policiales_l)</span></code></pre></div>
+<pre><code>## Rows: 340
+## Columns: 17
+## $ comuna                                    &lt;chr&gt; &quot;Algarrobo&quot;, &quot;Alhué&quot;, &quot;Alto-Biobío&quot;, &quot;Alto-del-Carmen&quot;, &quot;Alto-Hospicio&quot;, &quot;Ancud&quot;, &quot;Andacollo&quot;, &quot;Angol&quot;, &quot;Antártica&quot;, &quot;Antofagasta&quot;, &quot;Antuco&quot;, &quot;Arauco&quot;, &quot;Arica&quot;, &quot;Aysén&quot;, &quot;Buin&quot;, &quot;Bulnes&quot;, &quot;Cabildo&quot;…
+## $ comuna_id                                 &lt;dbl&gt; 5602, 13502, 8314, 3302, 1107, 10202, 4103, 9201, 12202, 2101, 8302, 8202, 15101, 11201, 13402, 8402, 5402, 12201, 8303, 2201, 10102, 3102, 13403, 5302, 15102, 1402, 4202, 8203, 9102, 5603, 5102, 1…
+## $ region_id                                 &lt;dbl&gt; 5, 13, 8, 3, 1, 10, 4, 9, 12, 2, 8, 8, 15, 11, 13, 16, 5, 12, 8, 2, 10, 3, 13, 5, 15, 1, 4, 8, 9, 5, 5, 10, 5, 7, 13, 13, 10, 3, 6, 8, 11, 16, 16, 6, 9, 10, 11, 16, 10, 11, 6, 16, 16, 6, 7, 1, 13, …
+## $ poblacion_ine_2017                        &lt;dbl&gt; 10700, 5916, 5957, 6519, 124872, 44249, 11555, 55845, 202, 389812, 3906, 38431, 243701, 28283, 86079, 22042, 20135, 2906, 29563, 181897, 35282, 18101, 25528, 15021, 783, 1277, 9911, 34277, 26467, 2…
+## $ robos_con_violencia_o_intimidacion        &lt;dbl&gt; 23, 5, 1, 1, 396, 23, 11, 93, 0, 1150, 3, 40, 618, 18, 213, 17, 13, 0, 29, 652, 11, 67, 79, 16, 0, 0, 6, 53, 15, 121, 40, 57, 19, 34, 601, 587, 0, 29, 3, 204, 0, 30, 353, 30, 3, 8, 0, 1, 1, 0, 18, …
+## $ robos_por_sorpresa                        &lt;dbl&gt; 11, 2, 1, 0, 222, 13, 6, 119, 0, 646, 0, 32, 451, 1, 154, 8, 10, 0, 4, 458, 4, 21, 15, 5, 0, 0, 0, 87, 10, 35, 19, 62, 13, 19, 227, 181, 0, 1, 2, 101, 0, 20, 426, 18, 1, 4, 0, 0, 0, 0, 1, 2, 4, 0, …
+## $ robos_de_vehiculo_motorizado              &lt;dbl&gt; 9, 2, 0, 0, 461, 2, 0, 41, 0, 987, 1, 5, 578, 0, 97, 10, 2, 0, 10, 686, 4, 23, 31, 6, 0, 0, 0, 18, 13, 34, 25, 9, 2, 13, 240, 144, 0, 5, 1, 61, 0, 14, 198, 5, 4, 0, 0, 0, 0, 0, 9, 4, 10, 4, 1, 4, 1…
+## $ robos_de_objeto_de_o_desde_vehiculo       &lt;dbl&gt; 56, 1, 3, 1, 338, 30, 8, 58, 0, 1010, 3, 24, 546, 11, 195, 22, 20, 0, 30, 840, 9, 24, 68, 18, 1, 0, 15, 32, 11, 105, 73, 79, 5, 10, 530, 93, 1, 14, 2, 116, 0, 45, 441, 34, 2, 3, 0, 2, 1, 1, 12, 14,…
+## $ robos_en_lugar_habitado                   &lt;dbl&gt; 384, 18, 1, 6, 565, 111, 37, 261, 0, 1024, 3, 161, 524, 41, 399, 60, 51, 0, 102, 965, 44, 124, 119, 48, 5, 1, 28, 144, 35, 392, 132, 157, 30, 93, 206, 278, 1, 97, 7, 263, 4, 112, 737, 89, 19, 25, 3…
+## $ robos_en_lugar_no_habitado                &lt;dbl&gt; 80, 16, 7, 7, 193, 130, 20, 181, 0, 778, 6, 159, 382, 44, 271, 45, 42, 4, 106, 577, 62, 125, 79, 34, 3, 1, 16, 105, 34, 88, 108, 136, 40, 74, 295, 191, 6, 83, 19, 109, 17, 92, 505, 90, 12, 31, 15, …
+## $ otros_robos_con_fuerza                    &lt;dbl&gt; 5, 1, 0, 0, 23, 6, 3, 35, 0, 43, 1, 4, 105, 5, 17, 4, 1, 0, 28, 40, 3, 14, 6, 0, 0, 1, 17, 5, 0, 10, 4, 6, 0, 11, 39, 7, 0, 6, 0, 3, 0, 7, 80, 4, 2, 1, 0, 0, 0, 0, 3, 6, 6, 1, 2, 2, 23, 25, 0, 0, 1…
+## $ hurtos                                    &lt;dbl&gt; 184, 15, 18, 11, 791, 253, 39, 549, 0, 5445, 10, 312, 1735, 230, 513, 106, 48, 3, 170, 2156, 121, 206, 93, 57, 7, 1, 12, 252, 121, 236, 234, 702, 58, 243, 1201, 335, 17, 134, 49, 391, 38, 102, 2308…
+## $ lesiones_menos_graves_graves_o_gravisimas &lt;dbl&gt; 22, 3, 16, 2, 130, 31, 9, 55, 0, 295, 1, 30, 343, 37, 63, 17, 19, 1, 29, 231, 37, 32, 28, 8, 1, 1, 3, 44, 20, 40, 34, 46, 24, 32, 78, 159, 3, 22, 6, 65, 5, 18, 156, 24, 8, 11, 7, 5, 2, 9, 17, 14, 2…
+## $ lesiones_leves                            &lt;dbl&gt; 52, 26, 24, 8, 523, 132, 77, 244, 0, 1528, 8, 106, 720, 143, 257, 66, 55, 5, 81, 1047, 114, 136, 66, 29, 6, 7, 18, 145, 64, 161, 127, 176, 43, 96, 358, 307, 10, 70, 37, 239, 28, 58, 453, 78, 40, 46…
+## $ homicidios                                &lt;dbl&gt; 0, 1, 0, 0, 1, 0, 0, 2, 0, 13, 0, 1, 6, 0, 3, 0, 0, 0, 0, 8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 8, 0, 1, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 1, 0, 1, 2, 0, 0, 0, 10, 2, 0, 0, 11, 5, 0, 2, 4,…
+## $ violaciones                               &lt;dbl&gt; 1, 0, 3, 0, 20, 10, 1, 7, 0, 50, 0, 8, 47, 2, 12, 0, 1, 0, 3, 28, 13, 3, 3, 0, 2, 0, 1, 7, 4, 9, 7, 13, 1, 7, 6, 21, 1, 1, 0, 7, 0, 5, 32, 0, 0, 2, 0, 1, 0, 0, 4, 3, 0, 2, 3, 0, 26, 6, 3, 0, 61, 18…
+## $ vif                                       &lt;dbl&gt; 129, 29, 62, 26, 1226, 330, 67, 508, 0, 2384, 34, 264, 1973, 314, 547, 177, 143, 13, 180, 1146, 369, 153, 120, 67, 3, 4, 31, 224, 123, 230, 219, 378, 119, 263, 521, 831, 22, 126, 77, 628, 19, 188, …</code></pre>
+<div id="ejercicios-a-b" class="section level4 unnumbered">
+<h4>(Ejercicios A-B)</h4>
+<p>A. ¿Cuál fue la comuna con más homicidios en Chile en el año 2016? Tu código:</p>
+<p>B. ¿Cuál fue la comuna con más casos de violencia intrafamiliar por cada 1000 habitantes? Tu código:</p>
+</div>
+</div>
+<div id="crear-bases-de-datos-a-mano" class="section level3 unnumbered">
+<h3>Crear bases de datos “a mano”</h3>
+<p>A veces queremos crear un data frame arbitrariamente a partir de vectores. Para esto, la funcióm <code>tibble()</code> es simple y útil:</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="manejo-2c.html#cb155-1"></a>df_ejemplo &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb155-2"><a href="manejo-2c.html#cb155-2"></a>  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>),</span>
+<span id="cb155-3"><a href="manejo-2c.html#cb155-3"></a>  <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>)</span>
+<span id="cb155-4"><a href="manejo-2c.html#cb155-4"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="manejo-2c.html#cb156-1"></a>df_ejemplo</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 2
+##        x     y
+##    &lt;int&gt; &lt;dbl&gt;
+##  1     1     9
+##  2     2    10
+##  3     3     1
+##  4     4     2
+##  5     5     3
+##  6     6     4
+##  7     7     5
+##  8     8     6
+##  9     9     7
+## 10    10     8</code></pre>
+</div>
+<div id="guardar-bases-de-datos" class="section level3 unnumbered">
+<h3>Guardar bases de datos</h3>
+<p>Guardar una base de datos es necesario para compartirla con colegas o usarla en otros proyectos. La mayoría de las funciones que vimos, que comienzan con <code>read_</code>, tienen su versión <code>write_</code> para este propósito. Por ejemplo, <code>read_csv()</code> -&gt; <code>write_csv()</code>. El único par de comandos en los que hay algo distinto es <code>readxl::read_excel()</code> -&gt; <code>writexl::write_xlsx()</code>.</p>
+<p>En general, los mejores formatos para guardar bases son .csv (muy universal) y .rds (nos aseguramos de que cualquier cosa extraña en nuestros datos pueda volver bien a R).</p>
+<p>Guardemos los datos en formatos .csv, .rds y .xlsx (Excel). Recuerda que ya cargamos antes el paquete <code>writexl</code>, que nos permite hacer esto último.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="manejo-2c.html#cb158-1"></a><span class="kw">write_csv</span>(df_ejemplo, <span class="st">&quot;df_ejemplo.csv&quot;</span>)</span>
+<span id="cb158-2"><a href="manejo-2c.html#cb158-2"></a><span class="kw">write_csv</span>(df_ejemplo, <span class="st">&quot;df_ejemplo.rds&quot;</span>)</span>
+<span id="cb158-3"><a href="manejo-2c.html#cb158-3"></a><span class="kw">write_xlsx</span>(df_ejemplo, <span class="st">&quot;df_ejemplo.xlsx&quot;</span>)</span></code></pre></div>
+<p>Podríamos volver a cargarlo con <code>read_excel()</code>:</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="manejo-2c.html#cb159-1"></a>df_ejemplo_comprob &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;df_ejemplo.xlsx&quot;</span>)</span>
+<span id="cb159-2"><a href="manejo-2c.html#cb159-2"></a>df_ejemplo_comprob</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 2
+##        x     y
+##    &lt;dbl&gt; &lt;dbl&gt;
+##  1     1     9
+##  2     2    10
+##  3     3     1
+##  4     4     2
+##  5     5     3
+##  6     6     4
+##  7     7     5
+##  8     8     6
+##  9     9     7
+## 10    10     8</code></pre>
+<div id="ejercicio" class="section level4 unnumbered">
+<h4>(Ejercicio)</h4>
+<p>Guarda una versión de la base de datos de delitos, en formato csv. Utiliza la versión con los nombres de columnas limpios y excluye la variable de región. Tu código:</p>
+</div>
+</div>
+</div>
+<div id="versiones-iterativas-de-summarize-y-mutate" class="section level2 unnumbered">
+<h2>Versiones iterativas de <code>summarize()</code> y <code>mutate()</code></h2>
+<p>Es común necesitar hacer una misma operación en múltiples columnas de una base. Por ejemplo, podríamos querer los totales de delitos específicos por región, como muestra el siguiente chunk.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="manejo-2c.html#cb161-1"></a>df_casos_policiales_l <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb161-2"><a href="manejo-2c.html#cb161-2"></a><span class="st">  </span><span class="kw">group_by</span>(region_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb161-3"><a href="manejo-2c.html#cb161-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lesiones_leves_total =</span> <span class="kw">sum</span>(lesiones_leves),</span>
+<span id="cb161-4"><a href="manejo-2c.html#cb161-4"></a>            <span class="dt">hurtos_total =</span> <span class="kw">sum</span>(hurtos))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 16 x 3
+##    region_id lesiones_leves_total hurtos_total
+##        &lt;dbl&gt;                &lt;dbl&gt;        &lt;dbl&gt;
+##  1         1                 1523         3935
+##  2         2                 3014         8257
+##  3         3                 1253         2953
+##  4         4                 2830         6613
+##  5         5                 6955        19537
+##  6         6                 3347         8553
+##  7         7                 2368         7371
+##  8         8                 4549        13698
+##  9         9                 3227         9808
+## 10        10                 2824         9575
+## 11        11                  486         1169
+## 12        12                  525         1568
+## 13        13                22796        65621
+## 14        14                 1269         3783
+## 15        15                  733         1762
+## 16        16                 1250         3644</code></pre>
+<p>Sin embargo, hacer este código para los 13 tipos de delito es una pérdida de tiempo: generaría código particularmente difícil de leer. Podemos aplicar la función <code>summarize_at()</code> para usar la función de suma en múltiples variables. Noten cómo en el código siguiente “.” reemplazará a la variable en la definición de la operación (gracias al operador “~”).</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="manejo-2c.html#cb164-1"></a>df_casos_policiales_l <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb164-2"><a href="manejo-2c.html#cb164-2"></a><span class="st">  </span><span class="kw">group_by</span>(region_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb164-3"><a href="manejo-2c.html#cb164-3"></a><span class="st">  </span><span class="kw">summarize_at</span>(<span class="dt">.vars =</span> <span class="kw">vars</span>(robos_con_violencia_o_intimidacion<span class="op">:</span>vif),</span>
+<span id="cb164-4"><a href="manejo-2c.html#cb164-4"></a>               <span class="dt">.funs =</span> <span class="op">~</span><span class="kw">sum</span>(.))</span></code></pre></div>
+<pre><code>## # A tibble: 16 x 14
+##    region_id robos_con_violencia_o_int… robos_por_sorpresa robos_de_vehiculo_moto… robos_de_objeto_de_o_des… robos_en_lugar_hab… robos_en_lugar_no_ha… otros_robos_con_fu… hurtos lesiones_menos_graves_grave… lesiones_leves homicidios violaciones   vif
+##        &lt;dbl&gt;                      &lt;dbl&gt;              &lt;dbl&gt;                   &lt;dbl&gt;                     &lt;dbl&gt;               &lt;dbl&gt;                 &lt;dbl&gt;               &lt;dbl&gt;  &lt;dbl&gt;                        &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+##  1         1                       1554               1499                    1339                      1773                1287                   822                 159   3935                          346           1523          9          51  3321
+##  2         2                       1930               1173                    1754                      1999                2348                  1702                 143   8257                          599           3014         25          97  4192
+##  3         3                        832                379                     355                       792                1299                  1346                 138   2953                          345           1253          7          40  2266
+##  4         4                       1667               1106                     848                      2355                4000                  2450                 272   6613                          608           2830         13         116  4801
+##  5         5                       5777               4537                    2994                      6062                9657                  5580                 402  19537                         1652           6955         44         263 11639
+##  6         6                       1629               1011                     836                      1842                3842                  3246                 330   8553                          844           3347         15         116  6590
+##  7         7                       1108                852                     411                      1050                2886                  2277                 311   7371                          621           2368         19          95  5342
+##  8         8                       4646               2664                    2191                      3057                4972                  4283                 360  13698                         1342           4549         53         218  9362
+##  9         9                       1547               1331                    1518                      1574                3902                  2609                 304   9808                          873           3227         27         194  7781
+## 10        10                       1025                728                     399                      1683                2698                  2543                 151   9575                          761           2824         20         170  7253
+## 11        11                         71                 26                      50                        60                 175                   210                  15   1169                          204            486          4          15  1085
+## 12        12                        112                 29                     274                       162                 279                   262                  25   1568                          159            525          5          25   959
+## 13        13                      41541              19168                   15364                     36183               19585                 18223                2811  65621                         5554          22796        215         976 41674
+## 14        14                        424                339                     244                       711                1681                  1074                 137   3783                          337           1269         14          82  3148
+## 15        15                        618                451                     579                       549                 532                   389                 105   1762                          346            733          6          50  1989
+## 16        16                        605                513                     315                       701                1685                  1191                 158   3644                          383           1250         11          71  3315</code></pre>
+<p>Incluso podemos editar un poco los nombres de los resúmenes, asignándolos como elementos en una lista. Noten cómo van a cambiar dichos nombres, terminando ahora en "_total":</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="manejo-2c.html#cb166-1"></a>df_casos_policiales_l <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb166-2"><a href="manejo-2c.html#cb166-2"></a><span class="st">  </span><span class="kw">group_by</span>(region_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb166-3"><a href="manejo-2c.html#cb166-3"></a><span class="st">  </span><span class="kw">summarize_at</span>(<span class="dt">.vars =</span> <span class="kw">vars</span>(robos_con_violencia_o_intimidacion<span class="op">:</span>vif),</span>
+<span id="cb166-4"><a href="manejo-2c.html#cb166-4"></a>               <span class="dt">.funs =</span> <span class="kw">list</span>(<span class="dt">total =</span> <span class="op">~</span><span class="kw">sum</span>(.)))</span></code></pre></div>
+<pre><code>## # A tibble: 16 x 14
+##    region_id robos_con_violencia_… robos_por_sorpres… robos_de_vehiculo_m… robos_de_objeto_de_o… robos_en_lugar_hab… robos_en_lugar_no… otros_robos_con_f… hurtos_total lesiones_menos_grave… lesiones_leves_… homicidios_total violaciones_tot… vif_total
+##        &lt;dbl&gt;                 &lt;dbl&gt;              &lt;dbl&gt;                &lt;dbl&gt;                 &lt;dbl&gt;               &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;        &lt;dbl&gt;                 &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+##  1         1                  1554               1499                 1339                  1773                1287                822                159         3935                   346             1523                9               51      3321
+##  2         2                  1930               1173                 1754                  1999                2348               1702                143         8257                   599             3014               25               97      4192
+##  3         3                   832                379                  355                   792                1299               1346                138         2953                   345             1253                7               40      2266
+##  4         4                  1667               1106                  848                  2355                4000               2450                272         6613                   608             2830               13              116      4801
+##  5         5                  5777               4537                 2994                  6062                9657               5580                402        19537                  1652             6955               44              263     11639
+##  6         6                  1629               1011                  836                  1842                3842               3246                330         8553                   844             3347               15              116      6590
+##  7         7                  1108                852                  411                  1050                2886               2277                311         7371                   621             2368               19               95      5342
+##  8         8                  4646               2664                 2191                  3057                4972               4283                360        13698                  1342             4549               53              218      9362
+##  9         9                  1547               1331                 1518                  1574                3902               2609                304         9808                   873             3227               27              194      7781
+## 10        10                  1025                728                  399                  1683                2698               2543                151         9575                   761             2824               20              170      7253
+## 11        11                    71                 26                   50                    60                 175                210                 15         1169                   204              486                4               15      1085
+## 12        12                   112                 29                  274                   162                 279                262                 25         1568                   159              525                5               25       959
+## 13        13                 41541              19168                15364                 36183               19585              18223               2811        65621                  5554            22796              215              976     41674
+## 14        14                   424                339                  244                   711                1681               1074                137         3783                   337             1269               14               82      3148
+## 15        15                   618                451                  579                   549                 532                389                105         1762                   346              733                6               50      1989
+## 16        16                   605                513                  315                   701                1685               1191                158         3644                   383             1250               11               71      3315</code></pre>
+<p>También podemos utilizar más de una función de resumen a la vez en nuestros datos:</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="manejo-2c.html#cb168-1"></a>df_casos_policiales_l <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-2"><a href="manejo-2c.html#cb168-2"></a><span class="st">  </span><span class="kw">group_by</span>(region_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-3"><a href="manejo-2c.html#cb168-3"></a><span class="st">  </span><span class="kw">summarize_at</span>(<span class="dt">.vars =</span> <span class="kw">vars</span>(robos_con_violencia_o_intimidacion<span class="op">:</span>vif),</span>
+<span id="cb168-4"><a href="manejo-2c.html#cb168-4"></a>               <span class="dt">.funs =</span> <span class="kw">list</span>(<span class="dt">total =</span> <span class="op">~</span><span class="kw">sum</span>(.), <span class="dt">max =</span> <span class="op">~</span><span class="kw">max</span>(.)))</span></code></pre></div>
+<pre><code>## # A tibble: 16 x 27
+##    region_id robos_con_viole… robos_por_sorpr… robos_de_vehicu… robos_de_objeto… robos_en_lugar_… robos_en_lugar_… otros_robos_con… hurtos_total lesiones_menos_… lesiones_leves_… homicidios_total violaciones_tot… vif_total robos_con_viole…
+##        &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
+##  1         1             1554             1499             1339             1773             1287              822              159         3935              346             1523                9               51      3321             1132
+##  2         2             1930             1173             1754             1999             2348             1702              143         8257              599             3014               25               97      4192             1150
+##  3         3              832              379              355              792             1299             1346              138         2953              345             1253                7               40      2266              615
+##  4         4             1667             1106              848             2355             4000             2450              272         6613              608             2830               13              116      4801              723
+##  5         5             5777             4537             2994             6062             9657             5580              402        19537             1652             6955               44              263     11639             1924
+##  6         6             1629             1011              836             1842             3842             3246              330         8553              844             3347               15              116      6590              825
+##  7         7             1108              852              411             1050             2886             2277              311         7371              621             2368               19               95      5342              627
+##  8         8             4646             2664             2191             3057             4972             4283              360        13698             1342             4549               53              218      9362             1708
+##  9         9             1547             1331             1518             1574             3902             2609              304         9808              873             3227               27              194      7781              876
+## 10        10             1025              728              399             1683             2698             2543              151         9575              761             2824               20              170      7253              512
+## 11        11               71               26               50               60              175              210               15         1169              204              486                4               15      1085               52
+## 12        12              112               29              274              162              279              262               25         1568              159              525                5               25       959               99
+## 13        13            41541            19168            15364            36183            19585            18223             2811        65621             5554            22796              215              976     41674             4302
+## 14        14              424              339              244              711             1681             1074              137         3783              337             1269               14               82      3148              304
+## 15        15              618              451              579              549              532              389              105         1762              346              733                6               50      1989              618
+## 16        16              605              513              315              701             1685             1191              158         3644              383             1250               11               71      3315              353
+## # … with 12 more variables: robos_por_sorpresa_max &lt;dbl&gt;, robos_de_vehiculo_motorizado_max &lt;dbl&gt;, robos_de_objeto_de_o_desde_vehiculo_max &lt;dbl&gt;, robos_en_lugar_habitado_max &lt;dbl&gt;, robos_en_lugar_no_habitado_max &lt;dbl&gt;,
+## #   otros_robos_con_fuerza_max &lt;dbl&gt;, hurtos_max &lt;dbl&gt;, lesiones_menos_graves_graves_o_gravisimas_max &lt;dbl&gt;, lesiones_leves_max &lt;dbl&gt;, homicidios_max &lt;dbl&gt;, violaciones_max &lt;dbl&gt;, vif_max &lt;dbl&gt;</code></pre>
+<p>Aparte de hacer resúmenes, crear múltiples variables según una misma operación es bastante común.</p>
+<p>Supongamos que queremos las cifras relativas (tasas) para cada tipo de delito, como en el siguiente ejemplo:</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="manejo-2c.html#cb170-1"></a>df_casos_policiales_l <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb170-2"><a href="manejo-2c.html#cb170-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lesiones_leves_c1000 =</span> lesiones_leves <span class="op">*</span><span class="st"> </span><span class="dv">1000</span> <span class="op">/</span><span class="st"> </span>poblacion_ine_<span class="dv">2017</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb170-3"><a href="manejo-2c.html#cb170-3"></a><span class="st">  </span><span class="kw">select</span>(comuna, poblacion_ine_<span class="dv">2017</span>, lesiones_leves, lesiones_leves_c1000) <span class="co"># solo para legibilidad</span></span></code></pre></div>
+<pre><code>## # A tibble: 340 x 4
+##    comuna          poblacion_ine_2017 lesiones_leves lesiones_leves_c1000
+##    &lt;chr&gt;                        &lt;dbl&gt;          &lt;dbl&gt;                &lt;dbl&gt;
+##  1 Algarrobo                    10700             52                 4.86
+##  2 Alhué                         5916             26                 4.39
+##  3 Alto-Biobío                   5957             24                 4.03
+##  4 Alto-del-Carmen               6519              8                 1.23
+##  5 Alto-Hospicio               124872            523                 4.19
+##  6 Ancud                        44249            132                 2.98
+##  7 Andacollo                    11555             77                 6.66
+##  8 Angol                        55845            244                 4.37
+##  9 Antártica                      202              0                 0   
+## 10 Antofagasta                 389812           1528                 3.92
+## # … with 330 more rows</code></pre>
+<p>Podemos utilizar <code>mutate_at()</code> para repetir esta operación en todas nuestras variables de interés.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="manejo-2c.html#cb172-1"></a>df_casos_policiales_l <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb172-2"><a href="manejo-2c.html#cb172-2"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="dt">.vars =</span> <span class="kw">vars</span>(robos_con_violencia_o_intimidacion<span class="op">:</span>vif),</span>
+<span id="cb172-3"><a href="manejo-2c.html#cb172-3"></a>            <span class="dt">.funs =</span> <span class="kw">list</span>(<span class="dt">c1000 =</span> <span class="op">~</span><span class="st"> </span>. <span class="op">*</span><span class="st"> </span><span class="dv">1000</span> <span class="op">/</span><span class="st"> </span>poblacion_ine_<span class="dv">2017</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 340 x 30
+##    comuna comuna_id region_id poblacion_ine_2… robos_con_viole… robos_por_sorpr… robos_de_vehicu… robos_de_objeto… robos_en_lugar_… robos_en_lugar_… otros_robos_con… hurtos lesiones_menos_… lesiones_leves homicidios violaciones   vif robos_con_viole…
+##    &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Algar…      5602         5            10700               23               11                9               56              384               80                5    184               22             52          0           1   129            2.15 
+##  2 Alhué      13502        13             5916                5                2                2                1               18               16                1     15                3             26          1           0    29            0.845
+##  3 Alto-…      8314         8             5957                1                1                0                3                1                7                0     18               16             24          0           3    62            0.168
+##  4 Alto-…      3302         3             6519                1                0                0                1                6                7                0     11                2              8          0           0    26            0.153
+##  5 Alto-…      1107         1           124872              396              222              461              338              565              193               23    791              130            523          1          20  1226            3.17 
+##  6 Ancud      10202        10            44249               23               13                2               30              111              130                6    253               31            132          0          10   330            0.520
+##  7 Andac…      4103         4            11555               11                6                0                8               37               20                3     39                9             77          0           1    67            0.952
+##  8 Angol       9201         9            55845               93              119               41               58              261              181               35    549               55            244          2           7   508            1.67 
+##  9 Antár…     12202        12              202                0                0                0                0                0                0                0      0                0              0          0           0     0            0    
+## 10 Antof…      2101         2           389812             1150              646              987             1010             1024              778               43   5445              295           1528         13          50  2384            2.95 
+## # … with 330 more rows, and 12 more variables: robos_por_sorpresa_c1000 &lt;dbl&gt;, robos_de_vehiculo_motorizado_c1000 &lt;dbl&gt;, robos_de_objeto_de_o_desde_vehiculo_c1000 &lt;dbl&gt;, robos_en_lugar_habitado_c1000 &lt;dbl&gt;, robos_en_lugar_no_habitado_c1000 &lt;dbl&gt;,
+## #   otros_robos_con_fuerza_c1000 &lt;dbl&gt;, hurtos_c1000 &lt;dbl&gt;, lesiones_menos_graves_graves_o_gravisimas_c1000 &lt;dbl&gt;, lesiones_leves_c1000 &lt;dbl&gt;, homicidios_c1000 &lt;dbl&gt;, violaciones_c1000 &lt;dbl&gt;, vif_c1000 &lt;dbl&gt;</code></pre>
+<div id="ejercicio-c-2" class="section level3 unnumbered">
+<h3>(Ejercicio C)</h3>
+<p>Si queremos obtener un promedio por región en datos como estos, debemos calcular un <strong>promedio ponderado</strong>: si es que no hacemos esto, comunas con pocos habitantes estarán sobrerrepresentadas en los promedios. Un ejemplo a continuación:</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="manejo-2c.html#cb174-1"></a>df_casos_policiales_l <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb174-2"><a href="manejo-2c.html#cb174-2"></a><span class="st">  </span><span class="kw">group_by</span>(region_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb174-3"><a href="manejo-2c.html#cb174-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">prom_hurtos =</span> <span class="kw">weighted.mean</span>(hurtos, <span class="dt">w =</span> poblacion_ine_<span class="dv">2017</span>))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 16 x 2
+##    region_id prom_hurtos
+##        &lt;dbl&gt;       &lt;dbl&gt;
+##  1         1       1968.
+##  2         2       3941.
+##  3         3       1216.
+##  4         4       1543.
+##  5         5       2039.
+##  6         6       1139.
+##  7         7       1305.
+##  8         8       1304.
+##  9         9       1608.
+## 10        10       1826.
+## 11        11        513.
+## 12        12        990.
+## 13        13       2329.
+## 14        14       1064.
+## 15        15       1711.
+## 16        16        938.</code></pre>
+<p>Para cada tipo de delito, obtén el promedio ponderado por región. Tu código:</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="manejo-2b.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manejo-2d.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
