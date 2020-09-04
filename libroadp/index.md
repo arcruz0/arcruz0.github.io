@@ -1,7 +1,7 @@
 --- 
-title: "AnalizaR Datos Políticos (v1.0)"
-author: "Francisco Urdinez y Andrés Cruz Labrín (editores)"
-date: "2020-08-17"
+title: "AnalizaR Datos Políticos"
+author: "Francisco Urdinez y Andrés Cruz Labrín (Editores)"
+date: "Versión 1.0 compilada el 2020-08-21"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -62,7 +62,7 @@ Adicionalmente, si encuentras el libro útil, por favor apóyalo de alguna de es
 
 ### Sobre los autores y autoras {-}
 
-Este libro está editado por Francisco Urdinez, Profesor Asistente del [Instituto de Ciencia Política](www.cienciapolitica.uc.cl/) de la Pontificia Universidad Católica de Chile, y Andrés Cruz, Instructor Adjunto de Análisis de Datos en la Escuela de Ciencia Política de la Universidad Diego Portales, Chile. La mayoría de los autores que contribuyeron con capítulos a este volumen son politólogos afiliados al [Instituto de Ciencia Política](www.cienciapolitica.uc.cl/) de la Pontificia Universidad Católica de Chile, y muchos son investigadores y colaboradores del [Instituto de la Fundación Millennium Data](https://imfd.cl/es/), institución que tiene como objetivo la recolección, depuración y análisis de datos públicos para apoyar  políticas públicas. Andrew Heiss está afiliado al Departamento de Gestión y Política Pública de Georgia State University y se unió a este proyecto contribuyendo con un capítulo sobre la inferencia causal. Andrew suele compartir mucho de su trabajo en R en su [sitio web](www.andrewheiss.com). Sobre todo, todos los autores son usuarios entusiastas de R.
+Este libro está editado por Francisco Urdinez, Profesor Asistente del [Instituto de Ciencia Política](www.cienciapolitica.uc.cl/) de la Pontificia Universidad Católica de Chile, y Andrés Cruz, Instructor Adjunto de Análisis de Datos en la Escuela de Ciencia Política de la Universidad Diego Portales, Chile. La mayoría de los autores que contribuyeron con capítulos a este volumen son politólogos afiliados al [Instituto de Ciencia Política](www.cienciapolitica.uc.cl/) de la Pontificia Universidad Católica de Chile, y muchos son investigadores y colaboradores del [Instituto Milenio Fundamentos de los Datos](https://imfd.cl/es/), institución que tiene como objetivo la recolección, depuración y análisis de datos públicos para apoyar  políticas públicas. Andrew Heiss está afiliado al Departamento de Gestión y Política Pública de Georgia State University y se unió a este proyecto contribuyendo con un capítulo sobre la inferencia causal. Andrew suele compartir mucho de su trabajo en R en su [sitio web](www.andrewheiss.com). Sobre todo, todos los autores son usuarios entusiastas de R.
 
 ## Prefacio {-}
 
@@ -78,8 +78,8 @@ Ahora mismo, `R` es probablemente la mejor opción que el mercado provee para an
 
 
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/pref-gtrends-1.png" alt="Elaborada por los autores usando el paquete ggplot2 de R, y datos extraídos de Google Trends. Los datos corresponden a promedios anuales para países latinoamericanos en el sector 'ciencia'" width="80%" />
-<p class="caption">(\#fig:pref-gtrends)Elaborada por los autores usando el paquete ggplot2 de R, y datos extraídos de Google Trends. Los datos corresponden a promedios anuales para países latinoamericanos en el sector 'ciencia'</p>
+<img src="index_files/figure-html/pref-gtrends-1.png" alt="Elaborada por los autores usando el paquete ggplot2 de R, y datos extraídos de Google Trends. Los datos corresponden a promedios anuales para países latinoamericanos en el sector 'ciencia'." width="80%" />
+<p class="caption">(\#fig:pref-gtrends)Elaborada por los autores usando el paquete ggplot2 de R, y datos extraídos de Google Trends. Los datos corresponden a promedios anuales para países latinoamericanos en el sector 'ciencia'.</p>
 </div>
 
 El modelo de software libre en el que se basa `R` —con licencias de derechos de autor permisivas, que ponen prácticamente todas las herramientas en forma gratuita a disposición del público, tanto para su uso como para su reformulación— finalmente rindió frutos. Una activa comunidad de desarrolladores se ha anclado en `R`, añadiéndole nuevas funcionalidades que lo han dotado de elegancia, simplicidad y flexibilidad. `R` ya no solo brilla en la generación de modelos estadísticos, sino que hoy es hogar de un vasto universo de herramientas que permite al usuario importar, ordenar, transformar, visualizar, modelar y comunicar los datos que le interesen, sin tener que cambiar de herramienta. 
@@ -241,17 +241,26 @@ Si este libro te ha interesado como recurso pedagógico, y deseas utilizarlo par
 
 ### Segunda opción: Curso semestral de introducción a métodos cuantitativos {-}
 
->Ésta es una diagramación para un curso donde el énfasis está puesto en Mínimos Cuadrados Ordinarios.
->*antes de comenzar el curso los alumnos deben haber leído el capítulo 1 “R Básico” y tener instalado RStudio y el paquete del libro. Es importante siempre llevar scripts listos a clases para que los alumnos rápidamente se pongan a trabajar sin sufrir la codificación, que se aprenderá de a poco en casa. 
+>Ésta es una diagramación para un curso donde el énfasis está puesto en Mínimos Cuadrados Ordinarios. Antes de comenzar el curso los alumnos deben haber leído el capítulo 1 “R Básico” y tener instalado RStudio y el paquete del libro. Es importante siempre llevar scripts listos a clases para que los alumnos rápidamente se pongan a trabajar sin sufrir la codificación, que se aprenderá de a poco en casa. 
 
 + *Clase 1*. Utilice el Capítulo 2 para trabajar con la base de datos de aprobación presidencial hasta cubrir `mutate()`, pasando por `arrange()`, `filter()`, `rename()`, `select()` y `skim()`. Utilizando `summarize()` por grupos, el alumno debe comenzar a interpretar medias, valores máximos y mínimos y compararlos entre grupos de interés. Puede pedirles crear una variable dicotómica para comparar dos grupos de interés. Haga énfasis en el potencial de combinar `mutate()` con `if_else()` y no se detenga en `pivot`. Es fundamental que en esta primera clase la alumna salga de ella sintiendo que ha aprendido algo sustantivo de la base de datos. Es recomendable ofrecer el script ya redactado para evitar frustraciones con la sintaxis e introducir a los alumnos a R Markdown.
+
 + *Clase 2*. Comience el Capítulo 3, introduciendo el mundo de capas de `tidyverse`. Parta por `geom_histogram()` y combine esta herramienta con `skim` y `filter`. Nuevamente, ofrezca un script redactado, pero permita que de a poco los alumnos tengan que participar activamente en la sintaxis de los comandos. Incorpore las opciones complementarias como `labs()` y `scale_x_continuous()`. Combine `geom_point()` y `geom_smooth()` para analizar la correlación entre varias variables. Presente el concepto de mínimos cuadrados ordinarios con un ejemplo aplicado de `geom_smooth()`. Termine la clase demostrando opciones de `themes`.
+
 + *Clase 3*. Rápidamente cubra el capítulo 4 con un ejercicio práctico para llevar a la clase y enfatizar sobre la importancia de trabajar con RStudio Projects. Cree versiones en Excel, csv de la base de aprobación presidencial y ejemplifique como se importan a su proyecto. Si el curso tiene experiencia en Stata, explique `haven()`. De en .csv la base de municipios del capítulo 3 a los alumnos, muestre `ggcorrplot()` y avance al capítulo 5 cubriendo rápidamente `lm()` con una regresión univariada y `texreg()`. Los alumnos tendrán dos semanas para trabajar en casa con la base de bienestar de Huber et al. y crear un Markdown. 
+
 + *Clase 4*. En esta clase se profundizará en el capítulo 5 partiendo por regresiones multivariadas. Explique `factor()`, `list()`  y deténgase en la interpretación de coeficientes. Profundice este tema con `prediction()` y ejemplifique su utilidad con `ggplot()`. A partir de esta clase deje tiempo de clases para que los alumnos trabajen solos o en pares y redacten su propio código. 
+
 + *Clase 5*. Dedique esta clase a cubrir ajuste de modelos y presupuestos de MCO, así como el uso de transformaciones logarítmicas en variables dependientes e independientes y la implementación de errores estándar robustos. 
+
 + *Clase 6*. Con la base de datos que se haya usado para cubrir los contenidos de las clases 4 y 5 cubra los contenidos del capítulo 6 de manera aplicada, pidiendo a los alumnos que apliquen `broom()` para seleccionar casos a partir de regresiones. Es recomendable que los alumnos hagan en clase el ejercicio 7.C. y entreguen un Markdown con sus respuestas. 
-+ *Clase 7*. Desarrolle el capítulo 10 sobre DAGs en una clase, introduciendo `ggdag()`, `dagitty()`, `MatchIt()` y utilizando los ya conocidos `broom()` y `texreg()`. Para abordar la clase recomendamos que se desarrolle un ejemplo similar al que el autor utiliza en el capítulo, y que luego se trabaje sobre la base de la clase anterior para que los alumnos diseñen su propio DAG. + *Clase 8*. Cubra los contenidos del capítulo 7 sobre datos en panel, donde se presente `lubridate()` y `plm()`. Dedique una parte de la clase a presentar `devtools`, cuyas funciones sirven para visualizar resultados y se complementa muy bien con `prediction()`. Cubra modelos de efectos fijos y aleatorios, `phtest()`, tests de raíz unitaria y correlación temporal y la incorporación de errores estándar robustos corregidos para panel. Refuerce el uso de `texreg` y la exportación de tablas para su uso en artículos académicos.
+
++ *Clase 7*. Desarrolle el capítulo 10 sobre DAGs en una clase, introduciendo `ggdag()`, `dagitty()`, `MatchIt()` y utilizando los ya conocidos `broom()` y `texreg()`. Para abordar la clase recomendamos que se desarrolle un ejemplo similar al que el autor utiliza en el capítulo, y que luego se trabaje sobre la base de la clase anterior para que los alumnos diseñen su propio DAG. 
+
++ *Clase 8*. Cubra los contenidos del capítulo 7 sobre datos en panel, donde se presente `lubridate()` y `plm()`. Dedique una parte de la clase a presentar `devtools`, cuyas funciones sirven para visualizar resultados y se complementa muy bien con `prediction()`. Cubra modelos de efectos fijos y aleatorios, `phtest()`, tests de raíz unitaria y correlación temporal y la incorporación de errores estándar robustos corregidos para panel. Refuerce el uso de `texreg` y la exportación de tablas para su uso en artículos académicos.
+
 + *Clase 9*. Las últimas dos clases pueden ser dedicadas a ofrecer al alumno herramientas para complementar lo que ha aprendido hasta este punto. Utilice el capítulo 15 para introducir a los alumnos a la creación de índices que puedan ser incorporados en modelos tanto como variables dependientes como independientes. 
+
 + *Clase 10*. Finalice el curso usando el capítulo 11 con una discusión sobre estandarización de códigos y unión de bases de datos mediante `left_join()` y demostrando el uso de `countrycode`, `stringdist`, `inexact`. Pida a los alumnos hacer un ejercicio en clases. Luego discuta datos faltantes e imputación presentando `naniar` y `mice` y pida a los alumnos hacer un ejercicio en clases el paquete.
 
 ## Prerrequisitos {-}

@@ -59,13 +59,13 @@ model_2 <- lm(gini ~ 1 + gasto_educ + inversion_extranjera + gasto_salud + gasto
 
 model_aug <- broom::augment(model_2, data = bienestar_sinna)
 model_aug
-## # A tibble: 167 x 22
+## # A tibble: 167 x 21
 ##   pais  codigo_pais  anio poblacion  gini dualismo_sector…   pib
 ##   <chr> <chr>       <dbl>     <dbl> <dbl>            <dbl> <dbl>
 ## 1 Arge… ARG          1982      30.8  40.2             9.50 7711.
 ## 2 Arge… ARG          1983      30.9  40.4             8.36 7907.
 ## 3 Arge… ARG          1990      30.7  43.1             7.72 6823.
-## # … with 164 more rows, and 15 more variables
+## # … with 164 more rows, and 14 more variables
 ```
 
 ## ¿Qué estudio de caso debería seleccionar para la investigación cualitativa?
@@ -135,6 +135,13 @@ model_aug %>%
   arrange(-dfb_cseduc) %>%
   slice(1:3) %>%
   dplyr::select(pais, dfb_cseduc)
+## Warning: Problem with `mutate()` input `dfb_cseduc`.
+## ℹ `as.tibble()` is deprecated as of tibble 2.0.0.
+## Please use `as_tibble()` instead.
+## The signature and semantics have changed, see `?as_tibble`.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.
+## ℹ Input `dfb_cseduc` is `as.tibble(dfbetas(model_2))$gasto_educ`.
 ## Warning: `as.tibble()` is deprecated as of tibble 2.0.0.
 ## Please use `as_tibble()` instead.
 ## The signature and semantics have changed, see `?as_tibble`.

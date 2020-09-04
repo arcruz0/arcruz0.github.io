@@ -433,9 +433,15 @@ tg_copatrocinio_arg_centr <- tg_copatrocinio_arg %>%
     c_closeness = centrality_closeness(),
     c_closeness_w = centrality_closeness(weights = n_copatrocinio_inv)
   )
+## Warning: Problem with `mutate()` input `c_closeness`.
+## ℹ At centrality.c:2784 :closeness centrality is not well-defined for disconnected graphs
+## ℹ Input `c_closeness` is `centrality_closeness()`.
 ## Warning in closeness(graph = graph, vids = V(graph), mode = mode, weights
 ## = weights, : At centrality.c:2784 :closeness centrality is not well-
 ## defined for disconnected graphs
+## Warning: Problem with `mutate()` input `c_closeness_w`.
+## ℹ At centrality.c:2617 :closeness centrality is not well-defined for disconnected graphs
+## ℹ Input `c_closeness_w` is `centrality_closeness(weights = n_copatrocinio_inv)`.
 ## Warning in closeness(graph = graph, vids = V(graph), mode = mode, weights
 ## = weights, : At centrality.c:2617 :closeness centrality is not well-
 ## defined for disconnected graphs

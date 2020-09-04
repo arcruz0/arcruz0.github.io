@@ -237,7 +237,15 @@ library(countrycode)
 gantt_chart_df_region <- gantt_chart_df %>%
   mutate(region = countrycode(pais_nombre,
                               origin = "country.name", dest = "region"))
+## Warning: Problem with `mutate()` input `region`.
+## ℹ Some values were not matched unambiguously: Afganistán, Arabia Saudita, Argelia, Azerbaiyán, Bahrein, Belarús, Bélgica, Belice, Bhután, Brasil, Camboya, Camerún, Canadá, Chipre, Comoras, Corea del Norte, Corea del Sur, Costa de Marfil, Croacia, Dinamarca, Egipto, Emiratos Árabes Unidos, Eslovaquia, España, Estados Unidos, Etiopía, Filipinas, Francia, Gabón, Gran Bretaña, Granada, Grecia, Haití, Hungría, Irán, Irlanda, Islandia, Islas Salomón, Italia, Japón, Kazajstán, Kirguistán, Letonia, Líbano, Libia, Lituania, Lituania 2, Malasia, Maldivas, Malí, Marruecos, Mauricio, México, Mónaco, Noruega, Nueva Zelandia, Omán, Países Bajos, Pakistán, Panamá, Papua Nueva Guinea, Perú, Polonia, República Centroafricana, República Checa, República Dominicana, Rusia, San Vicente y las Granadinas, Santa Lucía, Singapur, Siria, Suazilandia, Sudáfrica, Sudán, Sudán del Sur, Suecia, Tailandia, Taiwán, Tayikistán, Timor Oriental, Túnez, Turquía, Ucrania
+## 
+## ℹ Input `region` is `countrycode(pais_nombre, origin = "country.name", dest = "region")`.
 ## Warning in countrycode(pais_nombre, origin = "country.name", dest = "region"): Some values were not matched unambiguously: Afganistán, Arabia Saudita, Argelia, Azerbaiyán, Bahrein, Belarús, Bélgica, Belice, Bhután, Brasil, Camboya, Camerún, Canadá, Chipre, Comoras, Corea del Norte, Corea del Sur, Costa de Marfil, Croacia, Dinamarca, Egipto, Emiratos Árabes Unidos, Eslovaquia, España, Estados Unidos, Etiopía, Filipinas, Francia, Gabón, Gran Bretaña, Granada, Grecia, Haití, Hungría, Irán, Irlanda, Islandia, Islas Salomón, Italia, Japón, Kazajstán, Kirguistán, Letonia, Líbano, Libia, Lituania, Lituania 2, Malasia, Maldivas, Malí, Marruecos, Mauricio, México, Mónaco, Noruega, Nueva Zelandia, Omán, Países Bajos, Pakistán, Panamá, Papua Nueva Guinea, Perú, Polonia, República Centroafricana, República Checa, República Dominicana, Rusia, San Vicente y las Granadinas, Santa Lucía, Singapur, Siria, Suazilandia, Sudáfrica, Sudán, Sudán del Sur, Suecia, Tailandia, Taiwán, Tayikistán, Timor Oriental, Túnez, Turquía, Ucrania
+## Warning: Problem with `mutate()` input `region`.
+## ℹ Some strings were matched more than once, and therefore set to <NA> in the result: Papua Nueva Guinea,Sub-Saharan Africa,East Asia & Pacific
+## 
+## ℹ Input `region` is `countrycode(pais_nombre, origin = "country.name", dest = "region")`.
 ## Warning in countrycode(pais_nombre, origin = "country.name", dest = "region"): Some strings were matched more than once, and therefore set to <NA> in the result: Papua Nueva Guinea,Sub-Saharan Africa,East Asia & Pacific
 
 gantt_chart_df_region
@@ -280,7 +288,15 @@ gantt_chart_df_region <- gantt_chart_df %>%
                      "Vietnam, Democratic Republic of" = "South-Eastern
                      Asia",
                      "Vietnam, Republic of" = "South-Eastern Asia")))
+## Warning: Problem with `mutate()` input `region`.
+## ℹ Some values were not matched unambiguously: Afganistán, Arabia Saudita, Argelia, Azerbaiyán, Bahrein, Belarús, Bélgica, Belice, Bhután, Brasil, Camboya, Camerún, Canadá, Chipre, Comoras, Corea del Norte, Corea del Sur, Costa de Marfil, Croacia, Dinamarca, Egipto, Emiratos Árabes Unidos, Eslovaquia, España, Estados Unidos, Etiopía, Filipinas, Francia, Gabón, Gran Bretaña, Granada, Grecia, Haití, Hungría, Irán, Irlanda, Islandia, Islas Salomón, Italia, Japón, Kazajstán, Kirguistán, Letonia, Líbano, Libia, Lituania, Lituania 2, Malasia, Maldivas, Malí, Marruecos, Mauricio, México, Mónaco, Noruega, Nueva Zelandia, Omán, Países Bajos, Pakistán, Panamá, Papua Nueva Guinea, Perú, Polonia, República Centroafricana, República Checa, República Dominicana, Rusia, San Vicente y las Granadinas, Santa Lucía, Singapur, Siria, Suazilandia, Sudáfrica, Sudán, Sudán del Sur, Suecia, Tailandia, Taiwán, Tayikistán, Timor Oriental, Túnez, Turquía, Ucrania
+## 
+## ℹ Input `region` is `countrycode(...)`.
 ## Warning in countrycode(pais_nombre, origin = "country.name", dest = "region", : Some values were not matched unambiguously: Afganistán, Arabia Saudita, Argelia, Azerbaiyán, Bahrein, Belarús, Bélgica, Belice, Bhután, Brasil, Camboya, Camerún, Canadá, Chipre, Comoras, Corea del Norte, Corea del Sur, Costa de Marfil, Croacia, Dinamarca, Egipto, Emiratos Árabes Unidos, Eslovaquia, España, Estados Unidos, Etiopía, Filipinas, Francia, Gabón, Gran Bretaña, Granada, Grecia, Haití, Hungría, Irán, Irlanda, Islandia, Islas Salomón, Italia, Japón, Kazajstán, Kirguistán, Letonia, Líbano, Libia, Lituania, Lituania 2, Malasia, Maldivas, Malí, Marruecos, Mauricio, México, Mónaco, Noruega, Nueva Zelandia, Omán, Países Bajos, Pakistán, Panamá, Papua Nueva Guinea, Perú, Polonia, República Centroafricana, República Checa, República Dominicana, Rusia, San Vicente y las Granadinas, Santa Lucía, Singapur, Siria, Suazilandia, Sudáfrica, Sudán, Sudán del Sur, Suecia, Tailandia, Taiwán, Tayikistán, Timor Oriental, Túnez, Turquía, Ucrania
+## Warning: Problem with `mutate()` input `region`.
+## ℹ Some strings were matched more than once, and therefore set to <NA> in the result: Papua Nueva Guinea,Sub-Saharan Africa,East Asia & Pacific
+## 
+## ℹ Input `region` is `countrycode(...)`.
 ## Warning in countrycode(pais_nombre, origin = "country.name", dest = "region", : Some strings were matched more than once, and therefore set to <NA> in the result: Papua Nueva Guinea,Sub-Saharan Africa,East Asia & Pacific
 
 gantt_chart_df_region

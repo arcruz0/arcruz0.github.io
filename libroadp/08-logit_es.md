@@ -886,13 +886,13 @@ library(broom)
 
 pred_model_3 <- augment(model_3, type.predict = "response")
 pred_model_3
-## # A tibble: 422 x 12
+## # A tibble: 422 x 11
 ##   .rownames quiebre_democra… poder_presid edad_regimen calidad_democra…
 ##   <chr>                <dbl>        <dbl>        <dbl>            <dbl>
 ## 1 75                       0           19            1                8
 ## 2 76                       0           19            2                8
 ## 3 77                       1           19            3                3
-## # … with 419 more rows, and 7 more variables
+## # … with 419 more rows, and 6 more variables
 ```
 
 La función `dplyr` nos permite transformar nuestra nueva base obtenida a través de `broom`.  Una de las funciones básicas de `dplyr` es `select`, que nos permite elegir las variables por sus nombres. Necesitamos identificar los valores predichos y la variable dependiente (en este caso `quiebre_democracia`) para comparar la probabilidad asignada por el modelo con el valor real de la variable. La función `mutate` de `dplyr` nos permitirá crear una variable binaria para saber si el modelo ha predicho correctamente cada observación.  El punto de corte es 0,5, es decir, si la probabilidad estimada es igual o superior a 0,5, se considera que el modelo ha predicho la ocurrencia del evento, y si es inferior a ese valor, se considera que ha predicho la no ocurrencia del evento. Trabajar con valores de corte arbitrarios tiene desventajas, que como veremos a continuación se resuelven con los ROC. Finalmente, creamos una variable que llamamos `pcp`  (*p*orcentaje de *c*orrectamente *p*redicho) que muestra la proporción de verdaderos positivos y verdaderos negativos estimados por el modelo 3. El resultado muestra que de las 422 observaciones del modelo 3, el 99,5% se han predicho correctamente.

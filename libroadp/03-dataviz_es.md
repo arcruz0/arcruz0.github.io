@@ -113,8 +113,8 @@ ggplot(data    = datos_municipales,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-4-1.png" alt="Marco vacío" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-4)Marco vacío</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-4-1.png" alt="Marco vacío." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-4)Marco vacío.</p>
 </div>
 
 El resultado muestra un marco vacío. Esto se debe a que no le hemos dicho a R qué objeto geométrico usar.
@@ -131,8 +131,8 @@ ggplot(data    = datos_municipales,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-5-1.png" alt=" Añadiendo un objeto geométrico a su gráfica" width="480" />
-<p class="caption">(\#fig:unnamed-chunk-5) Añadiendo un objeto geométrico a su gráfica</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-5-1.png" alt=" Añadiendo un objeto geométrico a su gráfica." width="480" />
+<p class="caption">(\#fig:unnamed-chunk-5) Añadiendo un objeto geométrico a su gráfica.</p>
 </div>
 
 Lo primero que notamos es la ausencia de datos durante tres períodos. Desafortunadamente, no hay datos anteriores a 2002, por lo que no se encuentran entradas para esos años. Por ello, es una gran idea filtrar los datos y dejar sólo los años que contienen datos sobre la encuesta CASEN. Además de eso, nuestro gráfico no nos dice mucho sobre el porcentaje de pobreza y su distribución. Considerando la geografía de Chile, es una gran idea ver la distribución de la pobreza por zona de la región geográfica.
@@ -152,8 +152,8 @@ ggplot(data    = datos_municipales %>% filter(anio == c(2004, 2008, 2012)),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-6-1.png" alt=" Añadiendo una faceta a su gráfico" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-6) Añadiendo una faceta a su gráfico</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-6-1.png" alt=" Añadiendo una faceta a su gráfico." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-6) Añadiendo una faceta a su gráfico.</p>
 </div>
 
 Tanto con `facet_wrap()` como con `facet_grid()` podemos usar más de un argumento, pero los resultados son diferentes. `facet_wrap()` no sólo ordena los geoms, sino que es capaz de cruzarlos, creando gráficos con dos o más dimensiones usando variables categóricas. Mira los siguientes ejemplos:
@@ -167,8 +167,8 @@ ggplot(data    = datos_municipales%>% filter(anio == c(2004, 2008, 2012)),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-7-1.png" alt=" Comparando wraps y grillas, ejemplo A" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-7) Comparando wraps y grillas, ejemplo A</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-7-1.png" alt=" Comparando wraps y grillas, ejemplo A." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-7) Comparando wraps y grillas, ejemplo A.</p>
 </div>
 
 
@@ -180,8 +180,8 @@ ggplot(data    = datos_municipales %>% filter(anio == c(2004, 2008, 2012)),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-8-1.png" alt="Comparando wraps y grillas, ejemplo B" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-8)Comparando wraps y grillas, ejemplo B</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-8-1.png" alt="Comparando wraps y grillas, ejemplo B." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-8)Comparando wraps y grillas, ejemplo B.</p>
 </div>
 
 Este gráfico muestra que, por zonas, el porcentaje de pobreza ha variado considerablemente de 2004 a 2012, y que existe una gran variabilidad interregional. Además, nos muestra cómo `ggplot2` ofrece resultados de alta calidad sin mucha complejidad. La función `facet_wrap()` es una capa opcional dentro de las múltiples capas de "Una Gramática de Gráficos en Capas", pero es importante recordar que las otras tres deben estar presentes para cualquier tipo de resultados.
@@ -198,8 +198,8 @@ ggplot(data    = datos_municipales %>% filter(anio == c(2004, 2008, 2012)),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-9-1.png" alt=" Ejemplo de una gráfica en la que no utilizamos la escala" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-9) Ejemplo de una gráfica en la que no utilizamos la escala</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-9-1.png" alt=" Ejemplo de una gráfica en la que no utilizamos la escala." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-9) Ejemplo de una gráfica en la que no utilizamos la escala.</p>
 </div>
 
 Lo más frecuente es que cuando usamos una variable relacionada con el dinero, aplicamos una transformación logarítmica. Sin embargo, ¿cómo se traduce esto en nuestra figura?
@@ -213,8 +213,8 @@ ggplot(data    = datos_municipales %>% filter(anio == c(2004, 2008, 2012)),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-10-1.png" alt=" Ejemplo de una trama en la que reescalamos el eje y " width="672" />
-<p class="caption">(\#fig:unnamed-chunk-10) Ejemplo de una trama en la que reescalamos el eje y </p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-10-1.png" alt=" Ejemplo de una trama en la que reescalamos el eje y." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-10) Ejemplo de una trama en la que reescalamos el eje y.</p>
 </div>
 
 
@@ -246,8 +246,8 @@ plot_a +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-11-1.png" alt="Gráfica simple de barras" width="80%" />
-<p class="caption">(\#fig:unnamed-chunk-11)Gráfica simple de barras</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-11-1.png" alt="Gráfica simple de barras." width="80%" />
+<p class="caption">(\#fig:unnamed-chunk-11)Gráfica simple de barras.</p>
 </div>
 
 Como podemos ver, construir un gráfico de barras es una tarea fácil. Vemos que, a partir de 2004, más de 800 hombres fueron elegidos como alcaldes, un número que supera con creces el número de mujeres elegidas para el mismo cargo en el mismo período.
@@ -262,8 +262,8 @@ plot_a +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-12-1.png" alt=" Gráfico de barras con una faceta por año" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-12) Gráfico de barras con una faceta por año</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-12-1.png" alt="Gráfico de barras con una faceta por año." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-12)Gráfico de barras con una faceta por año.</p>
 </div>
  
 Como vemos, el número de mujeres alcaldesas parece aumentar, aunque es un aumento mucho menor del que se esperaría. Esto podría ser un problema sustantivo para hacer un análisis del gobierno local en Chile.
@@ -280,8 +280,8 @@ plot_a +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-13-1.png" alt=" Gráfico de barras con una faceta por zona" width="80%" />
-<p class="caption">(\#fig:unnamed-chunk-13) Gráfico de barras con una faceta por zona</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-13-1.png" alt=" Gráfico de barras con una faceta por zona." width="80%" />
+<p class="caption">(\#fig:unnamed-chunk-13) Gráfico de barras con una faceta por zona.</p>
 </div>
 
 ¿Pero por qué usamos `grupo=1`?
@@ -292,7 +292,7 @@ Ya lo hemos hecho! Vemos que no hay grandes diferencias, donde la zona del "Nort
 
 Ahora, podemos cambiar la presentación del gráfico. Todo buen gráfico debe contener, por ejemplo, un título claro, la fuente de los datos y el detalle de los ejes.
 
-> **Sugerencia.** El *Chicago Guide to Writing about Multivariate Analysis * [@millerChicagoGuideWriting2013] tiene muchos buenos consejos sobre cómo crear gráficos efectivos.
+> **Sugerencia.** El *Chicago Guide to Writing about Multivariate Analysis* [@millerChicagoGuideWriting2013] tiene muchos buenos consejos sobre cómo crear gráficos efectivos.
 
 
 ```r
@@ -306,8 +306,8 @@ plot_a +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-14-1.png" alt=" Gráfico de barras con título y fuentes" width="576" />
-<p class="caption">(\#fig:unnamed-chunk-14) Gráfico de barras con título y fuentes</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-14-1.png" alt=" Gráfico de barras con título y fuentes." width="576" />
+<p class="caption">(\#fig:unnamed-chunk-14) Gráfico de barras con título y fuentes.</p>
 </div>
 
 Ahora, sólo tenemos que añadir etiquetas para el eje X. Podemos hacerlo fácilmente con `scale_x_discrete()`. Tienes que considerar qué estética de `aes()` modificarás, ya que esto cambiará la `scale =` que necesitas. Si examináramos las etiquetas desde `fill =`, por ejemplo, tendríamos que usar `scale_fill_discrete()`. También hay que tener en cuenta el tipo de variable que se utiliza. `scale_x_discrete()` no tiene "discrete" al final sin motivo. Como comprenderás, depende totalmente del tipo de variable que estamos usando.
@@ -329,6 +329,7 @@ plot_a +
 </div>
 
 >**Consejo.** Con `labels =` podemos cambiar las etiquetas. Considera el número de valores de tu variable categórica para que coincidan con la variable, y no pierdas ninguna categoría.
+
 ### Gráfico de líneas
 
 En el último gráfico de la sección anterior vimos que, aunque la elección de mujeres como alcaldesas en Chile ha aumentado, este aumento no parece ser significativo: en 2012, sólo el 13% de los alcaldes elegidos eran mujeres. Tal vez esto se deba a que los cambios socioeconómicos no han afectado las percepciones de los roles de género en la sociedad. El examen de los datos económicos de los ingresos municipales o del porcentaje de pobreza según la CASEN podría ayudarnos a comprender por qué la elección de mujeres en las instancias municipales no ha aumentado sustancialmente. Para ello, podemos utilizar `geom_line`, el objeto geométrico que permite observar la evolución en el tiempo de nuestro sujeto de interés. La intuición sería hacer la figura de esta manera:
@@ -342,8 +343,8 @@ plot_b +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-16-1.png" alt=" Una especificación errónea para un gráfico de líneas" width="336" />
-<p class="caption">(\#fig:unnamed-chunk-16) Una especificación errónea para un gráfico de líneas</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-16-1.png" alt=" Una especificación errónea para un gráfico de líneas." width="336" />
+<p class="caption">(\#fig:unnamed-chunk-16) Una especificación errónea para un gráfico de líneas.</p>
 </div>
 
 El problema es que no da el resultado esperado. La intuición es correcta, pero tenemos que ayudar a `geom_line()` con algunas especificaciones. En este caso, se agrupa por lo que tiene más sentido: por año. Por eso tenemos que especificar cuál es la variable que agrupa toda la información y, como sabemos, la información que poseemos está agrupada por municipio. Cuando añadimos esta información, el resultado cambia y se parece a lo que buscamos:
@@ -354,8 +355,8 @@ plot_b +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-17-1.png" alt="Evolución anual de los ingresos por municipio" width="80%" />
-<p class="caption">(\#fig:unnamed-chunk-17)Evolución anual de los ingresos por municipio</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-17-1.png" alt="Evolución anual de los ingresos por municipio." width="80%" />
+<p class="caption">(\#fig:unnamed-chunk-17)Evolución anual de los ingresos por municipio.</p>
 </div>
 
 Una de las cuestiones que surge a primera vista es que, teniendo en cuenta que Chile tiene 345 municipios, parece imposible mostrarlos todos en un solo gráfico.
@@ -370,12 +371,13 @@ plot_b +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-18-1.png" alt=" Evolución anual de los ingresos por municipio enfrentado por zona" width="1152" />
-<p class="caption">(\#fig:unnamed-chunk-18) Evolución anual de los ingresos por municipio enfrentado por zona</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-18-1.png" alt=" Evolución anual de los ingresos por municipio enfrentado por zona." width="1152" />
+<p class="caption">(\#fig:unnamed-chunk-18) Evolución anual de los ingresos por municipio enfrentado por zona.</p>
 </div>
 
 Como nuestra muestra se compone de un pequeño número de años, no podemos ver mucha variabilidad y, a primera vista, los ingresos de todos los municipios han aumentado considerablemente. Tal vez, todavía podemos hacer algunos ajustes a nuestro gráfico. Lo más probable es que no estés familiarizado con la notación científica y te resulte mejor leer números grandes. Tal vez sepas que es mejor trabajar con una variable monetaria en su transformación logarítmica, como nos han enseñado en diferentes cursos de metodología. Además, puede que quieras añadir otro tipo de información en este gráfico, por ejemplo, los promedios.
 ¿Qué piensas de este gráfico?
+
 
 ```r
 medias <- datos_municipales %>% 
@@ -396,8 +398,8 @@ plot_b +
 ```
 
 <div class="figure" style="text-align: left">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-19-1.png" alt=" Versión completa de nuestro gráfico de líneas para los ingresos de los municipios en los años electorales" width="1344" />
-<p class="caption">(\#fig:unnamed-chunk-19) Versión completa de nuestro gráfico de líneas para los ingresos de los municipios en los años electorales</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-19-1.png" alt=" Versión completa de nuestro gráfico de líneas para los ingresos de los municipios en los años electorales." width="1344" />
+<p class="caption">(\#fig:unnamed-chunk-19) Versión completa de nuestro gráfico de líneas para los ingresos de los municipios en los años electorales.</p>
 </div>
 
 ¿Qué hemos especificado?
@@ -447,8 +449,8 @@ plot_c
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-21-1.png" alt=" Recuadro de ingresos del municipio por zona, facetado por año" width="1056" />
-<p class="caption">(\#fig:unnamed-chunk-21) Recuadro de ingresos del municipio por zona, facetado por año</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-21-1.png" alt=" Recuadro de ingresos del municipio por zona, facetado por año." width="1056" />
+<p class="caption">(\#fig:unnamed-chunk-21) Recuadro de ingresos del municipio por zona, facetado por año.</p>
 </div>
 
 Podemos ver valores atípicos muy claros. Tal vez, luego de mirar estos resultados, nos gustaría identificar qué municipalidades tienen mayores ingreso. Para esto podemos usar el mapeo estético `label =`, parte de `geom_text()`. Para etiquetas solo para los valores atípicos, debemos hacer un filtro en nuestra base:
@@ -474,8 +476,8 @@ plot_c +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-22-1.png" alt=" Podemos arreglar las etiquetas que se superponen usando el ggrepel" width="1152" />
-<p class="caption">(\#fig:unnamed-chunk-22) Podemos arreglar las etiquetas que se superponen usando el ggrepel</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-22-1.png" alt=" Podemos arreglar las etiquetas que se superponen usando el ggrepel." width="1152" />
+<p class="caption">(\#fig:unnamed-chunk-22) Podemos arreglar las etiquetas que se superponen usando el ggrepel.</p>
 </div>
 
 El límite puede estar en 50.000.000 de dólares o en números mayores o menores. Depende enteramente de lo que queramos observar. Además, con `geom_text` o `geom_text_repel` no sólo podemos cambiar el color, sino también el tipo de fuente del texto, o si debe estar en negrita, cursiva o subrayado. Para ver más opciones, puedes escribir `?geom_text` o llamar a un `help("geom_text")`.
@@ -497,8 +499,8 @@ plot_c +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-23-1.png" alt=" La versión pulida de nuestra gráfica de caja" width="1152" />
-<p class="caption">(\#fig:unnamed-chunk-23) La versión pulida de nuestra gráfica de caja</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-23-1.png" alt=" La versión pulida de nuestra gráfica de caja." width="1152" />
+<p class="caption">(\#fig:unnamed-chunk-23) La versión pulida de nuestra gráfica de caja.</p>
 </div>
 
 Algunas otras especificaciones:
@@ -526,8 +528,8 @@ ggplot(data    = datos_municipales,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-24-1.png" alt=" La versión más simple de un histograma de los ingresos fiscales del municipio" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-24) La versión más simple de un histograma de los ingresos fiscales del municipio</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-24-1.png" alt=" La versión más simple de un histograma de los ingresos fiscales del municipio." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-24) La versión más simple de un histograma de los ingresos fiscales del municipio.</p>
 </div>
 
 Como podemos ver, el gráfico da una "Advertencia" que indica la existencia de "738 filas que contienen valores no finitos". Esta advertencia ha estado presente a lo largo de todo este capítulo, y no significa nada más que "Hay valores desconocidos dentro de esta variable" y se debe a que no hay datos de los primeros años. Así que no te preocupes, si filtramos los datos con `filter(!is.na(ingreso))`, esta advertencia seguramente desaparecerá.
@@ -545,8 +547,8 @@ ggplot(data    = datos_municipales,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-25-1.png" alt=" Histograma de los ingresos fiscales del municipio con una escala corregida en x" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-25) Histograma de los ingresos fiscales del municipio con una escala corregida en x</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-25-1.png" alt=" Histograma de los ingresos fiscales del municipio con una escala corregida en x." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-25) Histograma de los ingresos fiscales del municipio con una escala corregida en x.</p>
 </div>
 
 > **Ejercicio 3B.** ¿Qué pasa si ponemos `bins = 15`de intervalos?
@@ -566,8 +568,8 @@ ggplot(data    = datos_municipales %>% filter(ingreso < 50000000),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-26-1.png" alt=" Versión pulida de nuestro histograma en el que haremos 'fill' por zona" width="960" />
-<p class="caption">(\#fig:unnamed-chunk-26) Versión pulida de nuestro histograma en el que haremos 'fill' por zona</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-26-1.png" alt=" Versión pulida de nuestro histograma en el que haremos 'fill' por zona." width="960" />
+<p class="caption">(\#fig:unnamed-chunk-26) Versión pulida de nuestro histograma en el que haremos 'fill' por zona.</p>
 </div>
 
 ### Relación entre las variables
@@ -588,8 +590,8 @@ plot_f +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-28-1.png" alt="Ajuste lineal de la pobreza en el log de ingresos" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-28)Ajuste lineal de la pobreza en el log de ingresos</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-28-1.png" alt="Ajuste lineal de la pobreza en el log de ingresos." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-28)Ajuste lineal de la pobreza en el log de ingresos.</p>
 </div>
 
 Parece vacía, ¿no? Normalmente, usamos `geom_smooth` con otras figuras geométricas, como `geom_point`, para indicar la posición de las columnas en el espacio. Usamos `alpha` para ver la superposición de los puntos. Como no son demasiados, no hay problemas para ver cómo se distribuyen.
@@ -602,8 +604,8 @@ plot_f +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-29-1.png" alt=" El ajuste lineal más las observaciones dispersas" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-29) El ajuste lineal más las observaciones dispersas</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-29-1.png" alt=" El ajuste lineal más las observaciones dispersas." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-29) El ajuste lineal más las observaciones dispersas.</p>
 </div>
  
 Ahora podemos hacer dos mejoras. Primero, insertaremos el título y el nombre de los ejes. Segundo, en `geom_x_continuous` especificaremos donde empieza y acaba nuestra gráfica. Ya habíamos usado esto con `geom_line`.
@@ -621,8 +623,8 @@ CASEN, Chile (2004-2012)",
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-30-1.png" alt=" La versión pulida de nuestra gráfica de ajuste lineal" width="710.4" />
-<p class="caption">(\#fig:unnamed-chunk-30) La versión pulida de nuestra gráfica de ajuste lineal</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-30-1.png" alt=" La versión pulida de nuestra gráfica de ajuste lineal." width="710.4" />
+<p class="caption">(\#fig:unnamed-chunk-30) La versión pulida de nuestra gráfica de ajuste lineal.</p>
 </div>
 
 Claramente, hay una correlación negativa entre ambas variables. ¡Esto es lo que esperábamos! Ahora, podemos calcular la correlación entre ambas variables, para estar más seguros de los resultados obtenidos visualmente:
@@ -651,8 +653,8 @@ CASEN, Chile (2004-2012)",
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-32-1.png" alt=" Añadimos la coeficiente de correlación usando `annotate`" width="710.4" />
-<p class="caption">(\#fig:unnamed-chunk-32) Añadimos la coeficiente de correlación usando `annotate`</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-32-1.png" alt=" Añadimos la coeficiente de correlación usando `annotate`." width="710.4" />
+<p class="caption">(\#fig:unnamed-chunk-32) Añadimos la coeficiente de correlación usando `annotate`.</p>
 </div>
 
 ## Para continuar aprendiendo
@@ -690,8 +692,8 @@ library(patchwork)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-dataviz_es_files/figure-html/unnamed-chunk-33-1.png" alt="Ejemplo de patchwork" width="60%" />
-<p class="caption">(\#fig:unnamed-chunk-33)Ejemplo de patchwork</p>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-33-1.png" alt="Ejemplo de patchwork." width="60%" />
+<p class="caption">(\#fig:unnamed-chunk-33)Ejemplo de patchwork.</p>
 </div>
 
 

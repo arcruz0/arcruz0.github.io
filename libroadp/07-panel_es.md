@@ -735,6 +735,7 @@ summary(fe)
 ```
 
 También es posible que quieras calcular los errores estándar corregidos para panel, equivalentes al comando `xtpcse` de Stata. Estos errores estándar se han popularizado en la ciencia política desde el clásico artículo de Beck y Katz (1995)^[@beckWhatNotTimeSeries1995]. En 2011 se publicó un paquete para calcularlos en R^[@baileyImplementingPanelCorrectedStandard2011]. En el artículo, los autores explican que estos errores estándar son útiles para aquellos que trabajan con paneles de "estados o naciones":
+
 >"Los datos de series temporales transversales (TSCS) se caracterizan por tener observaciones repetidas a lo largo del tiempo, como puede ser datos de estados o naciones a lo largo de los años. Los datos TSCS típicamente sufren de correlación contemporánea entre las unidades y de heteroscedasticidad a nivel de unidad, haciendo que la inferencia de los errores estándar producidos por MCO sea incorrecta. Los errores estándar corregidos para panel (PCSE) dan cuenta de estas desviaciones en los errores y permiten una mejor inferencia de los modelos lineales estimados a partir de datos de tipo TSCS".
 
 Para usar los errores estándar corregidos para Panel (PCSE) necesitas usar la opción `vcov = "vcovBK"` dentro de la función `coeftest()`. Debes fijar el argumento `cluster = "time"`.

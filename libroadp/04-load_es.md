@@ -14,29 +14,29 @@ A diferencia de los otros capítulos de este libro, aquí necesitarás descargar
 
 
 <div class="figure" style="text-align: center">
-<img src="00-images/load/folder_1.png" alt=" Carpeta con archivo .zip" width="65%" />
-<p class="caption">(\#fig:folder1) Carpeta con archivo .zip</p>
+<img src="00-images/load/folder_1.png" alt=" Carpeta con archivo .zip." width="65%" />
+<p class="caption">(\#fig:folder1) Carpeta con archivo .zip.</p>
 </div>
 
 Después, necesitas descomprimir el contenido del archivo .zip. La forma exacta de hacerlo dependerá de tu sistema operativo y sus programas, pero tiende a ser algo similar a `Haz clic derecho > Descomprimir aquí`. Ahora deberías tener una subcarpeta llamada "files":
 
 <div class="figure" style="text-align: center">
-<img src="00-images/load/folder_2.png" alt=" Carpeta con subcarpeta ya descomprimida" width="65%" />
-<p class="caption">(\#fig:folder-2) Carpeta con subcarpeta ya descomprimida</p>
+<img src="00-images/load/folder_2.png" alt=" Carpeta con subcarpeta ya descomprimida." width="65%" />
+<p class="caption">(\#fig:folder-2) Carpeta con subcarpeta ya descomprimida.</p>
 </div>
 
 Revisa la nueva subcarpeta. Aquí están las bases de datos que se van a utilizar en este capítulo. Como verás, aprenderemos a cargar y utilizar múltiples formatos comunes:
 
 <div class="figure" style="text-align: center">
-<img src="00-images/load/folder_3.png" alt=" Subcarpeta con archivos de datos" width="65%" />
-<p class="caption">(\#fig:folder-3) Subcarpeta con archivos de datos</p>
+<img src="00-images/load/folder_3.png" alt=" Subcarpeta con archivos de datos." width="65%" />
+<p class="caption">(\#fig:folder-3) Subcarpeta con archivos de datos.</p>
 </div>
 
 ¡Ya casi hemos terminado! Como se ha explicado con más detalle en el capítulo  \@ref(data), vamos a utilizar *Proyectos de RStudio* con el fin de ordenar nuestro trabajo. Vamos a crear un proyecto de RStudio haciendo clic en la esquina superior derecha de RStudio, "Proyecto...", y luego "Nuevo Proyecto". Seleccionando "Directorio Existente" en la siguiente ventana puedes vincular el proyecto a la carpeta que ya has creado (en este caso, `load-dataset`):
 
 <div class="figure" style="text-align: center">
-<img src="00-images/load/rstudio_projects.png" alt=" Creando un nuevo proyecto de RStudio en una carpeta ya existente" width="60%" />
-<p class="caption">(\#fig:rstudio-projects) Creando un nuevo proyecto de RStudio en una carpeta ya existente</p>
+<img src="00-images/load/rstudio_projects.png" alt="Creando un nuevo proyecto de RStudio en una carpeta ya existente." width="60%" />
+<p class="caption">(\#fig:rstudio-projects)Creando un nuevo proyecto de RStudio en una carpeta ya existente.</p>
 </div>
 
 ¡Perfecto! Ahora deberías tener un nuevo proyecto para empezar a trabajar de forma ordenada con los datos de este capítulo.
@@ -71,8 +71,8 @@ library(readr) # alternativa individual
 Comencemos presentando una de as bases de datos que se utilizarán en este capítulo, que proviene del proyecto [*Desiguales*]((https://www.desiguales.org/)) del PNUD - Programa de las Naciones Unidas para el Desarrollo. Este proyecto buscó mapear la complejidad de las desigualdades en Chile con la ayuda de una encuesta aplicada en 2016. Utilizaremos una pequeña subsección de esta base de datos, que contiene información para 300 encuestados a través de 20 variables. Como habrás notado, contamos con la base de datos en seis formatos diferentes para el desarrollo de este capítulo: 
  
 <div class="figure" style="text-align: center">
-<img src="00-images/load/folder_3.png" alt="Subcarpeta con bases de datos" width="65%" />
-<p class="caption">(\#fig:folder-3-2)Subcarpeta con bases de datos</p>
+<img src="00-images/load/folder_3.png" alt="Subcarpeta con bases de datos." width="65%" />
+<p class="caption">(\#fig:folder-3-2)Subcarpeta con bases de datos.</p>
 </div>
 
 ¿Cómo podemos cargar la base de datos en el formato .csv? Como puedes sospechar, empezaremos con la base de datos más simple de cargar. Gracias a la función `read_csv()` en `readr`, sólo tendremos que escribir la ruta del archivo dentro de nuestro proyecto:
@@ -87,8 +87,8 @@ df_desiguales_csv <- read_csv("data/desiguales.csv")
 Empezamos el nombre del objeto con "df" como abreviatura de *dataframe*. Para confirmar que nuestro archivo está en el sistema en forma como objeto, usaremos `ls()`. Con esta función se puede ver la lista de los objetos creados o cargados. También puedes comprobarlo en el panel "Environrment" de RStudio.
 
 <div class="figure" style="text-align: center">
-<img src="00-images/load/environment.png" alt="Panel de Environment, arriba a la derecha" width="60%" />
-<p class="caption">(\#fig:env-flap)Panel de Environment, arriba a la derecha</p>
+<img src="00-images/load/environment.png" alt="Panel de Environment, arriba a la derecha." width="60%" />
+<p class="caption">(\#fig:env-flap)Panel de Environment, arriba a la derecha.</p>
 </div>
 
 
@@ -314,15 +314,15 @@ Aunque la mayoría de las veces utilizaremos bases de datos que vienen en los fo
 La mayoría de las veces nos enfrentaremos a algo como esto:
 
 <div class="figure" style="text-align: center">
-<img src="00-images/load/sinim_example.png" alt="Base de datos del SINIM (*Sistema Nacional de Información Municipal*)" width="100%" />
-<p class="caption">(\#fig:excel-example-1)Base de datos del SINIM (*Sistema Nacional de Información Municipal*)</p>
+<img src="00-images/load/sinim_example.png" alt="Base de datos del SINIM (Sistema Nacional de Información Municipal)." width="100%" />
+<p class="caption">(\#fig:excel-example-1)Base de datos del SINIM (Sistema Nacional de Información Municipal).</p>
 </div>
 
 O como esto:
 
 <div class="figure" style="text-align: center">
-<img src="00-images/load/cead_example.png" alt="Base de datos del CEAD" width="100%" />
-<p class="caption">(\#fig:excel-example-2)Base de datos del CEAD</p>
+<img src="00-images/load/cead_example.png" alt="Base de datos del CEAD." width="100%" />
+<p class="caption">(\#fig:excel-example-2)Base de datos del CEAD.</p>
 </div>
 
 Aquí es donde surgen los problemas.
@@ -367,8 +367,8 @@ df_cead_excel %>% glimpse()
 Algo se ve mal. Si miramos de nuevo la imagen de la base de datos de la CEAD, nos daremos cuenta de lo que está pasando. Primero, el archivo de Excel tiene en sus filas iniciales información de la base de datos, pero estas no son observaciones.
 
 <div class="figure" style="text-align: center">
-<img src="00-images/load/cead_example.png" alt="Base de datos del CEAD (*Centro de Estudios y Análisis del Delito*)." width="100%" />
-<p class="caption">(\#fig:excel-example-3)Base de datos del CEAD (*Centro de Estudios y Análisis del Delito*).</p>
+<img src="00-images/load/cead_example.png" alt="Base de datos del CEAD (Centro de Estudios y Análisis del Delito)." width="100%" />
+<p class="caption">(\#fig:excel-example-3)Base de datos del CEAD (Centro de Estudios y Análisis del Delito).</p>
 </div>
 
 Para resolver esto, es necesario usar `skip =`. Este argumento nos ayudará a omitir las filas que no nos interesan, en este caso, las primeras 18:

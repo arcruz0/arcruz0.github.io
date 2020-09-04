@@ -129,8 +129,8 @@ ggcorrplot(corr_selected, type = "lower", lab = T, show.legend = F)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/unnamed-chunk-4-1.png" alt="Matriz de correlación entre las variables seleccionadas" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-4)Matriz de correlación entre las variables seleccionadas</p>
+<img src="05-linear_es_files/figure-html/unnamed-chunk-4-1.png" alt="Matriz de correlación entre las variables seleccionadas." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-4)Matriz de correlación entre las variables seleccionadas.</p>
 </div>
 
 Ahora que conocemos todas las variables que se incorporarán al modelo, y cómo se correlacionan entre sí, profundizaremos en las variables clave de interés: las dependientes y las independientes.
@@ -152,8 +152,8 @@ ggplot(bienestar, aes(x = gini, na.rm = T)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/hist1-1.png" alt=" Histograma de nuestra variable dependiente" width="70%" />
-<p class="caption">(\#fig:hist1) Histograma de nuestra variable dependiente</p>
+<img src="05-linear_es_files/figure-html/hist1-1.png" alt=" Histograma de nuestra variable dependiente." width="70%" />
+<p class="caption">(\#fig:hist1) Histograma de nuestra variable dependiente.</p>
 </div>
 
 La variable independiente: Gasto en educación (% del PIB)
@@ -186,8 +186,8 @@ ggplot(bienestar, aes(gasto_educ, gini)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/scatter1-1.png" alt="Scatter plot del gasto en educación y el índice de Gini" width="70%" />
-<p class="caption">(\#fig:scatter1)Scatter plot del gasto en educación y el índice de Gini</p>
+<img src="05-linear_es_files/figure-html/scatter1-1.png" alt="Scatter plot del gasto en educación y el índice de Gini." width="70%" />
+<p class="caption">(\#fig:scatter1)Scatter plot del gasto en educación y el índice de Gini.</p>
 </div>
 
 Esta es una primera visualización de la relación entre nuestras variables que nos permite observar si hay algún tipo de relación entre ellas. Aquí vemos claramente una relación positiva (cuanto más alto es el gasto en educación, más alto es el Gini). De todos modos, hasta ahora no podemos decir nada concluyente sobre el efecto del gasto en educación en los niveles de desigualdad. Para ello es necesario estimar un modelo. Hasta ahora sólo hemos explorado nuestros datos. ¡Pasemos a las regresiones!
@@ -365,8 +365,8 @@ ggplot(data = bienestar, # seleccionamos la base de datos
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/scatter2-1.png" alt=" Ajuste lineal entre el gasto en educación y la desigualdad " width="80%" />
-<p class="caption">(\#fig:scatter2) Ajuste lineal entre el gasto en educación y la desigualdad </p>
+<img src="05-linear_es_files/figure-html/scatter2-1.png" alt=" Ajuste lineal entre el gasto en educación y la desigualdad." width="80%" />
+<p class="caption">(\#fig:scatter2) Ajuste lineal entre el gasto en educación y la desigualdad.</p>
 </div>
 
 Por lo general, también es útil mostrar una representación gráfica del error de predicción de la línea. `ggplot2` nos permite editar un área sombreada donde los valores predichos con un cierto nivel de significación podrían haber sido localizados. Aunque el 95% de confianza es el valor por defecto, también podemos editar ese valor. El primer bloque muestra la línea de regresión y su error para un nivel de significancia estadística del 95%. Ten en cuenta que esta línea no representará el coeficiente que obtuviste a través de `lm` después de incluir controles a tu regresión.
@@ -578,8 +578,8 @@ ggplot(data = pred_model_2_restricted) + # los nuevos valores predichos
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/pred-model-2-1.png" alt=" Valores predichos por división étnica" width="80%" />
-<p class="caption">(\#fig:pred-model-2) Valores predichos por división étnica</p>
+<img src="05-linear_es_files/figure-html/pred-model-2-1.png" alt=" Valores predichos por división étnica." width="80%" />
+<p class="caption">(\#fig:pred-model-2) Valores predichos por división étnica.</p>
 </div>
 
 Como vemos claramente en el gráfico, el efecto del gasto en educación sobre la desigualdad es positivo porque, a medida que el gasto aumenta, el valor esperado del coeficiente de Gini también aumenta. Sin embargo, los países con minorías étnicas (valor de 1 en `diversidad_etnica`) tienen casi 7 puntos porcentuales más en su coeficiente de Gini en cualquier valor del gasto en educación. También se puede afirmar que el efecto medio de tener minorías étnicas en la desigualdad es de 6,82. Los modelos con más regresores (como el modelo 2 estimado anteriormente) son más complejos de graficar porque el valor predicho no sólo depende de dos variables (como en este gráfico), sino de todas las variables presentes en el modelo. En cualquier caso, como vimos anteriormente, la interpretación es la misma. 
@@ -675,8 +675,8 @@ ggplot(mapping = aes(x = model_1$fitted.values, y = model_1$residuals)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/abline-1.png" alt=" Prueba de linealidad en valores predichos " width="672" />
-<p class="caption">(\#fig:abline) Prueba de linealidad en valores predichos </p>
+<img src="05-linear_es_files/figure-html/abline-1.png" alt=" Prueba de linealidad en valores predichos." width="672" />
+<p class="caption">(\#fig:abline) Prueba de linealidad en valores predichos.</p>
 </div>
 
 También podemos hacer un gráfico de residuos parciales donde cada variable independiente del modelo se grafica contra los residuos. El objetivo es obtener un gráfico "parcial" para observar la relación entre la(s) variable(s) independiente(s) y la variable dependiente teniendo en cuenta (controlando) todas las demás variables del modelo. Una línea de puntos nos muestra la predicción del MCO, y otra línea (roja) nos muestra la relación "real". Si observamos que una de nuestras variables **no tiene una relación lineal** podemos hacer transformaciones (¡a las variables!) para que la forma funcional se aproxime a la empírica. Hay que señalar que, además de la justificación empírica, esta transformación lineal debe **siempre** estar apoyada por un argumento teórico de por qué la relación entre las dos variables toma tal forma.
@@ -739,8 +739,8 @@ crPlots(model_1)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/unnamed-chunk-23-1.png" alt="Test de linearidad" width="480" />
-<p class="caption">(\#fig:unnamed-chunk-23)Test de linearidad</p>
+<img src="05-linear_es_files/figure-html/unnamed-chunk-23-1.png" alt="Test de linearidad." width="480" />
+<p class="caption">(\#fig:unnamed-chunk-23)Test de linearidad.</p>
 </div>
 
 La relación de nuestra variable de interés con las variables dependientes parece ser cada vez más cuadrática. Entonces, es razonable hacer una transformación cuadrática a la variable. Evaluemos esto gráficamente:
@@ -757,8 +757,8 @@ crPlots(model_1_quadratic)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/unnamed-chunk-24-1.png" alt=" Prueba de linealidad alternativa" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-24) Prueba de linealidad alternativa</p>
+<img src="05-linear_es_files/figure-html/unnamed-chunk-24-1.png" alt=" Prueba de linealidad alternativa." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-24) Prueba de linealidad alternativa.</p>
 </div>
 
 Basándonos en un diagnóstico visual, observamos una tendencia creciente en los residuos a medida que avanza en los valores predichos. También detectamos una relación no lineal entre el gasto en educación y los niveles de desigualdad. Sospechamos que esta relación podría ser cuadrática (parábola cuadrática creciente) y, según la gráfica de residuos parciales, parece que la variable transformada está mucho más cerca de la relación lineal estimada por MCO (marcada por la línea punteada). Observa que la escala de la figura de la izquierda es de 0 a 15, mientras que la de la derecha es de 0 a 20, lo que denota una pendiente más pronunciada. 
@@ -821,8 +821,8 @@ ggcorrplot(corr_selected, type = "lower", lab = T, show.legend = F)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/unnamed-chunk-26-1.png" alt="Matriz de correlación, donde diagnosticaremos los problemas de multicolinealidad" width="1728" />
-<p class="caption">(\#fig:unnamed-chunk-26)Matriz de correlación, donde diagnosticaremos los problemas de multicolinealidad</p>
+<img src="05-linear_es_files/figure-html/unnamed-chunk-26-1.png" alt="Matriz de correlación, donde diagnosticaremos los problemas de multicolinealidad." width="1728" />
+<p class="caption">(\#fig:unnamed-chunk-26)Matriz de correlación, donde diagnosticaremos los problemas de multicolinealidad.</p>
 </div>
 
 Vemos que algunas de nuestras variables tienen fuertes correlaciones, como el gasto en seguridad social `gasto_segsocial` y la población (`poblacion`), que tiene una correlación negativa de 0,7. En cualquier caso, para detectar si la multicolinealidad es un problema, es necesario realizar un test de VIF (*variance inflation factor*), porque mirar los pares de correlaciones no nos ayuda a establecer si más de dos variables tienen una correlación lineal. Lo que el test VIF revela es cuánto "crecen" los errores de los coeficientes cuando el resto de las variables están presentes (cuánto aumenta la varianza del error).
@@ -901,8 +901,8 @@ ggplot(bienestar_no_na, aes(gasto_educ, gini)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/unnamed-chunk-29-1.png" alt=" Evaluación visual de la suposición de homoscedasticidad" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-29) Evaluación visual de la suposición de homoscedasticidad</p>
+<img src="05-linear_es_files/figure-html/unnamed-chunk-29-1.png" alt="Evaluación visual del supuesto de homoscedasticidad." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-29)Evaluación visual del supuesto de homoscedasticidad.</p>
 </div>
 
 Al parecer, en los niveles bajos de gasto en educación, la variabilidad de los niveles de desigualdad es significativamente mayor que en los niveles más altos de gasto en educación. Podemos hacer un mejor diagnóstico visual si utilizamos el modelo estimado (y no sólo la relación entre las dos variables) y graficamos los residuos. En primer lugar, lo hacemos para el modelo bivariante, simplemente usando `plot()` con el argumento `which = 1` (hay algunos otros diagnósticos disponibles, que no discutiremos aquí): 
@@ -949,8 +949,8 @@ car::residualPlots(model_2)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/unnamed-chunk-32-1.png" alt=" Análisis de residuos para cada covariable" width="1344" /><img src="05-linear_es_files/figure-html/unnamed-chunk-32-2.png" alt=" Análisis de residuos para cada covariable" width="1344" />
-<p class="caption">(\#fig:unnamed-chunk-32) Análisis de residuos para cada covariable</p>
+<img src="05-linear_es_files/figure-html/unnamed-chunk-32-1.png" alt=" Análisis de residuos para cada covariable." width="1344" /><img src="05-linear_es_files/figure-html/unnamed-chunk-32-2.png" alt=" Análisis de residuos para cada covariable." width="1344" />
+<p class="caption">(\#fig:unnamed-chunk-32) Análisis de residuos para cada covariable.</p>
 </div>
 
 ##### Diagnóstico estadístico 
@@ -1073,8 +1073,8 @@ ggplot(bienestar_no_na, aes(gasto_educ, gini)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/unnamed-chunk-35-1.png" alt=" Relación entre la educación y el Gini por país" width="576" />
-<p class="caption">(\#fig:unnamed-chunk-35) Relación entre la educación y el Gini por país</p>
+<img src="05-linear_es_files/figure-html/unnamed-chunk-35-1.png" alt=" Relación entre la educación y el Gini por país." width="576" />
+<p class="caption">(\#fig:unnamed-chunk-35) Relación entre la educación y el Gini por país.</p>
 </div>
 
 Parece que hay clusters por países. Es decir, el gasto en educación por país suele mantenerse dentro de un rango que varía ligeramente. Cuando lo observamos así no es obvio, ya que hay muchos países. Sin embargo, parece que todavía hay ciertos clusters por país (las observaciones se agrupan por país; no parecen ser independientes).
@@ -1086,8 +1086,8 @@ ggplot(bienestar_no_na, aes(gasto_educ, gini, color = pais)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/unnamed-chunk-36-1.png" alt=" Concretamos la figura anterior en una sola faceta" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-36) Concretamos la figura anterior en una sola faceta</p>
+<img src="05-linear_es_files/figure-html/unnamed-chunk-36-1.png" alt=" Concretamos la figura anterior en una sola faceta." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-36) Concretamos la figura anterior en una sola faceta.</p>
 </div>
 
 Para hacer la estimación de MCO con el error de cluster, usaremos el comando `lm.cluser` del paquete `miceadds`. Este comando agrupa los errores estándar según la variable de agrupación indicada. En resumen, lo que estamos haciendo es permitir la presencia de una correlación de errores dentro de los clusters, en este caso, países (aflojando la suposición de homoscedasticidad).
@@ -1138,8 +1138,8 @@ qqPlot(model_2$residuals)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/unnamed-chunk-38-1.png" alt=" La normalidad de los residuos. Obsérvese que los países 160 y 118 son valores extremos" width="480" />
-<p class="caption">(\#fig:unnamed-chunk-38) La normalidad de los residuos. Obsérvese que los países 160 y 118 son valores extremos</p>
+<img src="05-linear_es_files/figure-html/unnamed-chunk-38-1.png" alt=" La normalidad de los residuos. Obsérvese que los países 160 y 118 son valores extremos." width="480" />
+<p class="caption">(\#fig:unnamed-chunk-38) La normalidad de los residuos. Obsérvese que los países 160 y 118 son valores extremos.</p>
 </div>
 
 * El comando `ggdensity` del paquete `ggpubr` nos permite construir diagramas de densidad. Así, podemos trazar los residuos para evaluar visualmente si siguen una distribución aproximadamente normal.
@@ -1151,8 +1151,8 @@ ggdensity(model_2$residuals, main = " Gráfica de densidad de los residuos")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear_es_files/figure-html/unnamed-chunk-39-1.png" alt=" Normalidad de la prueba de residuos" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-39) Normalidad de la prueba de residuos</p>
+<img src="05-linear_es_files/figure-html/unnamed-chunk-39-1.png" alt=" Normalidad de la prueba de residuos." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-39) Normalidad de la prueba de residuos.</p>
 </div>
 
 Después de evaluar los supuestos y encontrar las soluciones (cuando sea necesario), podemos tener una mayor certeza en nuestra estimación y, como resultado, en la relación encontrada entre las variables. No obstante, una explicación completa de nuestro descubrimiento debe profundizar en el por qué y cómo se relacionan las dos variables entre sí. Todo lo que hemos aprendido será útil en el capítulo de selección de casos de estudio \@ref(case-sel). En el próximo capítulo, estimaremos modelos con variables dependientes binarias mediante la Estimación de Máxima Verosimilitud (EMV, por sus siglas en inglés).

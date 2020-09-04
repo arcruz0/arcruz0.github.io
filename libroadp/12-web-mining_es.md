@@ -450,9 +450,9 @@ head(pinera_tweets, n = 3)
 ## # A tibble: 3 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 331743… 12952068… 2020-08-17 03:52:26 paildad     "Si … Twitt…
-## 2 127019… 12952067… 2020-08-17 03:52:01 calle65     "#Pi… Twitt…
-## 3 521542… 12952064… 2020-08-17 03:50:50 Lgarciaja   "Si … Twitt…
+## 1 601103… 13017326… 2020-09-04 04:03:40 Guillerios… "Car… Twitt…
+## 2 399242… 13017302… 2020-09-04 03:54:14 maaggenta   "Des… Twitt…
+## 3 100148… 13017300… 2020-09-04 03:53:32 2018_enriq… "@se… Twitt…
 ## # … with 84 more variables
 ```
 
@@ -461,13 +461,13 @@ Para obtener información de los usuarios que están emitiendo tweets sobre #pi�
 
 ```r
 lookup_users(pinera_tweets$user_id)
-## # A tibble: 875 x 90
+## # A tibble: 814 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 331743… 12952068… 2020-08-17 03:52:26 paildad     "Si … Twitt…
-## 2 127019… 12952067… 2020-08-17 03:52:01 calle65     "#Pi… Twitt…
-## 3 521542… 12952069… 2020-08-17 03:52:52 Lgarciaja   "La … Twitt…
-## # … with 872 more rows, and 84 more variables
+## 1 601103… 13017326… 2020-09-04 04:03:40 Guillerios… "Car… Twitt…
+## 2 399242… 13017302… 2020-09-04 03:54:14 maaggenta   "Des… Twitt…
+## 3 100148… 13017300… 2020-09-04 03:53:32 2018_enriq… "@se… Twitt…
+## # … with 811 more rows, and 84 more variables
 ```
 
 
@@ -535,8 +535,8 @@ head(pinera_tweets, n = 2)
 ## # A tibble: 2 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 173969… 12952043… 2020-08-17 03:42:45 sir_emm     @lat… Twitt…
-## 2 671326… 12951957… 2020-08-17 03:08:20 nnnnico     Tant… Twitt…
+## 1 399242… 13017302… 2020-09-04 03:54:14 maaggenta   "Des… Twitt…
+## 2 100148… 13017300… 2020-09-04 03:53:32 2018_enriq… "@se… Twitt…
 ## # … with 84 more variables
 ```
 
@@ -546,18 +546,18 @@ Ahora veamos quién está twiteando sobre el hashtag "#piñera"
 ```r
 # Look at the column with the names - top 6
 head(pinera_tweets$screen_name)
-## [1] "sir_emm"   "nnnnico"   "nacido_aC" "nacido_aC" "nacido_aC"
-## [6] "nacido_aC"
+## [1] "maaggenta"    "2018_enrique" "2018_enrique" "2018_enrique"
+## [5] "2018_enrique" "2018_enrique"
 
 unique(pinera_tweets$screen_name)
-##  [1] "sir_emm"         "nnnnico"         "nacido_aC"      
-##  [4] "MolinavSeba"     "HSBnoticias"     "criticolunar"   
-##  [7] "alert_ve"        "CerroaIzquierda" "ElPobreHank"    
-## [10] "1_panchovilla"   "Rubencorsal"     "bullboss63"     
-## [13] "Thunder_Pantera" "cebef"           "villanomacul"   
-## [16] "LKatrileo"       "TIRSO48"         "nacioncl"       
-## [19] "minevargasg"     "_hexagram_"     
-##  [ reached getOption("max.print") -- omitted 339 entries ]
+##  [1] "maaggenta"       "2018_enrique"    "CristbalBarrie2"
+##  [4] "YorechazoN"      "tvalenzuelavt"   "AlejandroSig"   
+##  [7] "CarlosFaras"     "ZurdoKrlo"       "malaespinacheck"
+## [10] "asotomargas"     "RNahuel_XXI"     "cubanosypunto"  
+## [13] "melanocetus"     "yuryquiroz"      "AmericaElige"   
+## [16] "volandoraso1"    "hackpunk73"      "FundadrHumberto"
+## [19] "Eliana1Maipu"    "celularadio"    
+##  [ reached getOption("max.print") -- omitted 362 entries ]
 ```
 
 También podemos usar la función `search_users()` para explorar qué usuarios están twiteando usando un hashtag particular. Esta función extrae un data.frame de los usuarios e información sobre sus cuentas.
@@ -583,7 +583,7 @@ Aprendamos más sobre estas personas. ¿De dónde son? Como vemos, hay 304 lugar
 ```r
 # How many places are represented?
 length(unique(users$location))
-## [1] 227
+## [1] 218
 ## [1] 304
 
 users %>%
