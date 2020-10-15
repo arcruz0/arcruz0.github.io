@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>02A - Manejo de datos | Programación para las Ciencias Sociales</title>
   <meta name="description" content="Sitio web ICP0506" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="02A - Manejo de datos | Programación para las Ciencias Sociales" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2020-09-11" />
+<meta name="date" content="2020-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -198,6 +199,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#solucionar-problemas"><i class="fa fa-check"></i>Solucionar problemas</a></li>
 <li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#pedir-ayuda-con-ejemplos-reproducibles-reprex"><i class="fa fa-check"></i>Pedir ayuda con ejemplos reproducibles (reprex)</a></li>
 </ul></li>
+<li class="part"><span><b>V Manejo avanzado de datos</b></span></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i>05A - Manejo avanzado de datos</a><ul>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#inicio-cargar-paquetes-base-de-datos-2"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#pivotear-bases-de-datos-wide---long"><i class="fa fa-check"></i>Pivotear bases de datos (wide &lt;-&gt; long)</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#recodificar-variables"><i class="fa fa-check"></i>Recodificar variables</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#valores-perdidosmissingna"><i class="fa fa-check"></i>Valores perdidos/missing/NA</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#unir-bases-de-datos"><i class="fa fa-check"></i>Unir bases de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-av-ej.html"><a href="manejo-av-ej.html"><i class="fa fa-check"></i>05B - Manejo avanzado de datos (ejercicio)</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -367,25 +377,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001       4 Fernando de la Rúa            -23.2  male              0      14.0       -4.4  18.3 527807756979. 37471509
 ##  9 Argentina  2002       1 Eduardo Alberto Duhalde        -2.01 male              0      25.0      -10.9  17.9 470305820970. 37889370
 ## 10 Argentina  2002       2 Eduardo Alberto Duhalde       -20.1  male              0      25.0      -10.9  17.9 470305820970. 37889370
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 <p>Por cierto, podemos obtener un resumen similar clickeando nuestro objeto en el panel “Environment” (superior derecho) de RStudio. Esto es lo mismo que ocupar el comando <code>View()</code>:</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="manejo-2a.html#cb89-1"></a><span class="kw">View</span>(df_aprob)</span></code></pre></div>
 <p>Otro resumen útil es la función <code>glimpse()</code> del <code>tidyverse</code>, que nos da otra perspectiva:</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="manejo-2a.html#cb90-1"></a><span class="kw">glimpse</span>(df_aprob)</span></code></pre></div>
 <pre><code>## Rows: 1,020
 ## Columns: 12
-## $ country      &lt;chr&gt; &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Arge…
-## $ year         &lt;dbl&gt; 2000, 2000, 2000, 2000, 2001, 2001, 2001, 2001, 2002, 2002, 2002, 2002, 2003, 2003, 2003, 2003, 2004, 2004, 2004, 2004, 2005, 2005, 2005, 2005, 2006, 2006, 2006, 2006, 2007, 2007, 2007, 2007, 2008, 2008, 2008, 2008, 2009, 2009…
-## $ quarter      &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4…
-## $ president    &lt;chr&gt; &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Eduardo Alberto Duhalde&quot;, &quot;Eduardo Alberto Duhald…
-## $ net_approval &lt;dbl&gt; 40.126, 16.390, 23.968, -18.254, -6.973, -20.082, -19.384, -23.182, -2.006, -20.075, -24.965, -16.831, -2.775, 26.511, 53.679, 52.975, 57.142, 52.756, 39.078, 44.899, 45.691, 45.429, 40.584, 43.390, 48.887, 46.757, 44.563, 43.…
-## $ pres_sex     &lt;chr&gt; &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;m…
-## $ pres_sex_d   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-## $ exec_corr    &lt;dbl&gt; 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 25.00388, 25.00388, 25.00388, 25.00388, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.145…
-## $ gdp_growth   &lt;dbl&gt; -0.800000, -0.800000, -0.800000, -0.800000, -4.400000, -4.400000, -4.400000, -4.400000, -10.900000, -10.900000, -10.900000, -10.900000, 8.800000, 8.800000, 8.800000, 8.800000, 9.000000, 9.000000, 9.000000, 9.000000, 8.900000, …
-## $ unemp        &lt;dbl&gt; 15.0000, 15.0000, 15.0000, 15.0000, 18.3000, 18.3000, 18.3000, 18.3000, 17.9000, 17.9000, 17.9000, 17.9000, 19.9500, 17.4400, 16.1318, 14.4528, 14.2935, 14.6621, 13.1475, 11.9976, 12.9295, 11.9526, 11.1434, 10.0284, 11.3064, 1…
-## $ wdi_gdp      &lt;dbl&gt; 552151219031, 552151219031, 552151219031, 552151219031, 527807756979, 527807756979, 527807756979, 527807756979, 470305820970, 470305820970, 470305820970, 470305820970, 511866938234, 511866938234, 511866938234, 511866938234, 55…
-## $ wdi_pop      &lt;dbl&gt; 37057452, 37057452, 37057452, 37057452, 37471509, 37471509, 37471509, 37471509, 37889370, 37889370, 37889370, 37889370, 38309379, 38309379, 38309379, 38309379, 38728696, 38728696, 38728696, 38728696, 39145488, 39145488, 391454…</code></pre>
+## $ country      &lt;chr&gt; &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Ar...
+## $ year         &lt;dbl&gt; 2000, 2000, 2000, 2000, 2001, 2001, 2001, 2001, 2002, 2002, 2002, 2002, 2003, 2003, 2003, 2003, 2004, 2004, 2004, 2004, 2005, 2005, 2005, 2005, 2006, 2006, 2006, 2006, 2007, 2007, 2007, 2007, 2008, 2008, 2008, 2008, 2009, 20...
+## $ quarter      &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3,...
+## $ president    &lt;chr&gt; &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Eduardo Alberto Duhalde&quot;, &quot;Eduardo Alberto Duha...
+## $ net_approval &lt;dbl&gt; 40.126, 16.390, 23.968, -18.254, -6.973, -20.082, -19.384, -23.182, -2.006, -20.075, -24.965, -16.831, -2.775, 26.511, 53.679, 52.975, 57.142, 52.756, 39.078, 44.899, 45.691, 45.429, 40.584, 43.390, 48.887, 46.757, 44.563, 4...
+## $ pres_sex     &lt;chr&gt; &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, ...
+## $ pres_sex_d   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
+## $ exec_corr    &lt;dbl&gt; 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 25.00388, 25.00388, 25.00388, 25.00388, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.1...
+## $ gdp_growth   &lt;dbl&gt; -0.800000, -0.800000, -0.800000, -0.800000, -4.400000, -4.400000, -4.400000, -4.400000, -10.900000, -10.900000, -10.900000, -10.900000, 8.800000, 8.800000, 8.800000, 8.800000, 9.000000, 9.000000, 9.000000, 9.000000, 8.900000...
+## $ unemp        &lt;dbl&gt; 15.0000, 15.0000, 15.0000, 15.0000, 18.3000, 18.3000, 18.3000, 18.3000, 17.9000, 17.9000, 17.9000, 17.9000, 19.9500, 17.4400, 16.1318, 14.4528, 14.2935, 14.6621, 13.1475, 11.9976, 12.9295, 11.9526, 11.1434, 10.0284, 11.3064,...
+## $ wdi_gdp      &lt;dbl&gt; 552151219031, 552151219031, 552151219031, 552151219031, 527807756979, 527807756979, 527807756979, 527807756979, 470305820970, 470305820970, 470305820970, 470305820970, 511866938234, 511866938234, 511866938234, 511866938234, ...
+## $ wdi_pop      &lt;dbl&gt; 37057452, 37057452, 37057452, 37057452, 37471509, 37471509, 37471509, 37471509, 37889370, 37889370, 37889370, 37889370, 38309379, 38309379, 38309379, 38309379, 38728696, 38728696, 38728696, 38728696, 39145488, 39145488, 3914...</code></pre>
 <p>¿Qué significan las variables de esta base de datos? Completa la siguiente tabla:</p>
 <table>
 <colgroup>
@@ -471,7 +481,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina
 ##  9 Argentina
 ## 10 Argentina
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 <p>Recuerda que esto no creó ningún objeto nuevo, es solo un comando que estamos ejecutando en la consola. Si quisiéramos crear un objeto nuevo, tendríamos que asignarlo:</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="manejo-2a.html#cb94-1"></a>df_aprob_reducida &lt;-<span class="st"> </span><span class="kw">select</span>(df_aprob, country)</span>
 <span id="cb94-2"><a href="manejo-2a.html#cb94-2"></a>df_aprob_reducida</span></code></pre></div>
@@ -488,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina
 ##  9 Argentina
 ## 10 Argentina
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 <p>Podemos seleccionar múltiples columnas a la vez, separadas por comas:</p>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="manejo-2a.html#cb96-1"></a><span class="kw">select</span>(df_aprob, country, year, unemp)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 3
@@ -504,7 +514,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001  18.3
 ##  9 Argentina  2002  17.9
 ## 10 Argentina  2002  17.9
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 <p>Supongamos que queremos las primeras cinco variables de la base de datos. Las siguientes tres formas nos permitirán obtenerlas:</p>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="manejo-2a.html#cb98-1"></a><span class="kw">select</span>(df_aprob, country, year, quarter, president, net_approval)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 5
@@ -520,7 +530,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001       4 Fernando de la Rúa            -23.2 
 ##  9 Argentina  2002       1 Eduardo Alberto Duhalde        -2.01
 ## 10 Argentina  2002       2 Eduardo Alberto Duhalde       -20.1 
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="manejo-2a.html#cb100-1"></a><span class="kw">select</span>(df_aprob, country<span class="op">:</span>net_approval) <span class="co"># esta es la forma recomendada para la mayoría de los casos</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 5
 ##    country    year quarter president               net_approval
@@ -535,7 +545,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001       4 Fernando de la Rúa            -23.2 
 ##  9 Argentina  2002       1 Eduardo Alberto Duhalde        -2.01
 ## 10 Argentina  2002       2 Eduardo Alberto Duhalde       -20.1 
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="manejo-2a.html#cb102-1"></a><span class="kw">select</span>(df_aprob, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 5
 ##    country    year quarter president               net_approval
@@ -550,7 +560,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001       4 Fernando de la Rúa            -23.2 
 ##  9 Argentina  2002       1 Eduardo Alberto Duhalde        -2.01
 ## 10 Argentina  2002       2 Eduardo Alberto Duhalde       -20.1 
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 <p>El comando <code>select()</code> también nos sirve para reordenar las columnas. Supongamos que queremos que la variable <code>president</code> sea la primera. Podemos hacer algo como esto:</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="manejo-2a.html#cb104-1"></a><span class="kw">select</span>(df_aprob, president, country<span class="op">:</span>year, net_approval<span class="op">:</span>unemp)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 9
@@ -566,7 +576,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Fernando de la Rúa      Argentina  2001       -23.2  male              0      14.0       -4.4  18.3
 ##  9 Eduardo Alberto Duhalde Argentina  2002        -2.01 male              0      25.0      -10.9  17.9
 ## 10 Eduardo Alberto Duhalde Argentina  2002       -20.1  male              0      25.0      -10.9  17.9
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 <p>Esta forma es un poco tediosa. Hay una función de ayuda que nos será útil en este caso, se llama <code>everything()</code></p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="manejo-2a.html#cb106-1"></a><span class="kw">select</span>(df_aprob, president, <span class="kw">everything</span>()) <span class="co"># selecciona &quot;president&quot; y todo lo demás</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
@@ -582,7 +592,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Fernando de la Rúa      Argentina  2001       4       -23.2  male              0      14.0       -4.4  18.3 527807756979. 37471509
 ##  9 Eduardo Alberto Duhalde Argentina  2002       1        -2.01 male              0      25.0      -10.9  17.9 470305820970. 37889370
 ## 10 Eduardo Alberto Duhalde Argentina  2002       2       -20.1  male              0      25.0      -10.9  17.9 470305820970. 37889370
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 </div>
 <div id="renombrar-columnas-con-rename" class="section level3 unnumbered">
 <h3>Renombrar columnas con <code>rename()</code></h3>
@@ -601,7 +611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001        4 Fernando de la Rúa            -23.2  male              0      14.0       -4.4  18.3 527807756979. 37471509
 ##  9 Argentina  2002        1 Eduardo Alberto Duhalde        -2.01 male              0      25.0      -10.9  17.9 470305820970. 37889370
 ## 10 Argentina  2002        2 Eduardo Alberto Duhalde       -20.1  male              0      25.0      -10.9  17.9 470305820970. 37889370
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 </div>
 <div id="filtrar-observaciones-con-filter" class="section level3 unnumbered">
 <h3>Filtrar observaciones con <code>filter()</code></h3>
@@ -620,7 +630,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Chile    2001       4 Ricardo Lagos Escobar                      6.90 male              0      3.63        3.3   9.1 225709747742. 15444969
 ##  9 Chile    2002       1 Ricardo Lagos Escobar                      6.60 male              0      3.63        3.1   8.9 232722483093. 15623635
 ## 10 Chile    2002       2 Ricardo Lagos Escobar                      3.65 male              0      3.63        3.1   8.9 232722483093. 15623635
-## # … with 50 more rows</code></pre>
+## # ... with 50 more rows</code></pre>
 <p>Le estamos diciendo a <code>filter()</code>, por medio del segundo argumento, que solo se quede con observaciones en las que la variable country <em>es igual a </em> Chile. Este “es igual a” es un operador lógico, que se escribe como “==” en R. Aquí hay una lista de operadores lógicos comunes:</p>
 <table>
 <thead>
@@ -683,7 +693,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2004       2 Néstor Carlos Kirchner          52.8 male              0      50.1        9    14.7 558086338624. 38728696
 ##  9 Argentina  2004       3 Néstor Carlos Kirchner          39.1 male              0      50.1        9    13.1 558086338624. 38728696
 ## 10 Argentina  2004       4 Néstor Carlos Kirchner          44.9 male              0      50.1        9    12.0 558086338624. 38728696
-## # … with 699 more rows</code></pre>
+## # ... with 699 more rows</code></pre>
 <p>Podemos también realizar filtros más complejos. Obtengamos solo las observaciones del Cono Sur:</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="manejo-2a.html#cb114-1"></a><span class="kw">filter</span>(df_aprob, country <span class="op">==</span><span class="st"> &quot;Argentina&quot;</span> <span class="op">|</span><span class="st"> </span>country <span class="op">==</span><span class="st"> &quot;Chile&quot;</span> <span class="op">|</span><span class="st"> </span>country <span class="op">==</span><span class="st"> &quot;Uruguay&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 180 x 12
@@ -699,7 +709,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001       4 Fernando de la Rúa            -23.2  male              0      14.0       -4.4  18.3 527807756979. 37471509
 ##  9 Argentina  2002       1 Eduardo Alberto Duhalde        -2.01 male              0      25.0      -10.9  17.9 470305820970. 37889370
 ## 10 Argentina  2002       2 Eduardo Alberto Duhalde       -20.1  male              0      25.0      -10.9  17.9 470305820970. 37889370
-## # … with 170 more rows</code></pre>
+## # ... with 170 more rows</code></pre>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="manejo-2a.html#cb116-1"></a><span class="kw">filter</span>(df_aprob, country <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Argentina&quot;</span>, <span class="st">&quot;Chile&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) <span class="co"># lo mismo, con otro op. lógico</span></span></code></pre></div>
 <pre><code>## # A tibble: 180 x 12
 ##    country    year quarter president               net_approval pres_sex pres_sex_d exec_corr gdp_growth unemp       wdi_gdp  wdi_pop
@@ -714,7 +724,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001       4 Fernando de la Rúa            -23.2  male              0      14.0       -4.4  18.3 527807756979. 37471509
 ##  9 Argentina  2002       1 Eduardo Alberto Duhalde        -2.01 male              0      25.0      -10.9  17.9 470305820970. 37889370
 ## 10 Argentina  2002       2 Eduardo Alberto Duhalde       -20.1  male              0      25.0      -10.9  17.9 470305820970. 37889370
-## # … with 170 more rows</code></pre>
+## # ... with 170 more rows</code></pre>
 <p>Podemos también incluir pequeñas operaciones en nuestros filtros. Obtengamos todas las observaciones en las que la corrupción ejecutiva es mayor a la del promedio de toda la base:</p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="manejo-2a.html#cb118-1"></a><span class="kw">filter</span>(df_aprob, exec_corr <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(exec_corr))</span></code></pre></div>
 <pre><code>## # A tibble: 456 x 12
@@ -730,7 +740,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2004       4 Néstor Carlos Kirchner         44.9  male              0      50.1        9    12.0 558086338624. 38728696
 ##  9 Argentina  2005       1 Néstor Carlos Kirchner         45.7  male              0      50.1        8.9  12.9 607486243380. 39145488
 ## 10 Argentina  2005       2 Néstor Carlos Kirchner         45.4  male              0      50.1        8.9  12.0 607486243380. 39145488
-## # … with 446 more rows</code></pre>
+## # ... with 446 more rows</code></pre>
 </div>
 <div id="ejercicio-c-1" class="section level3 unnumbered">
 <h3>(Ejercicio C)</h3>
@@ -755,7 +765,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Uruguay  2001       4 Jorge Battle            14.5  male              0      2.13      -3.84  14.9 41116488580. 3327103
 ##  9 Uruguay  2002       1 Jorge Battle             6.36 male              0      2.13      -7.73  16.9 37937358718. 3327773
 ## 10 Uruguay  2002       2 Jorge Battle            -6.37 male              0      2.13      -7.73  16.9 37937358718. 3327773
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 <p>Si quisiéramos ordenarlo inversamente, tendríamos que añadir un - (signo menos) antes de la variable:</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="manejo-2a.html#cb122-1"></a><span class="kw">arrange</span>(df_aprob, <span class="op">-</span>exec_corr)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
@@ -771,7 +781,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Venezuela  2014       4 Nicolás Maduro        -24.9 male              0      94.4      -3.89  6.95 514714815230. 30738378
 ##  9 Venezuela  2007       1 Hugo Chávez           -10.2 male              0      93.5       8.75  7.47 478405261854. 27691965
 ## 10 Venezuela  2007       2 Hugo Chávez           -11.0 male              0      93.5       8.75  7.47 478405261854. 27691965
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 <p>Podemos ordenar por más de una variable. Esto es, ordenar a partir de una primera variable y luego ordenar los empates a partir de otra segunda variable. Veamos el siguiente ejemplo:</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="manejo-2a.html#cb124-1"></a><span class="kw">arrange</span>(df_aprob, pres_sex, <span class="op">-</span>net_approval)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
@@ -787,7 +797,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Brazil     2011       3 Dilma Vana Rousseff                    45.6 female            1      33.4        4    6    2.97e12 198686688
 ##  9 Brazil     2013       2 Dilma Vana Rousseff                    44.4 female            1      27.3        3    5.86 3.12e12 202408632
 ## 10 Argentina  2011       4 Cristina Fernández de Kirchner         44.3 female            1      52.4        6    6.75 8.18e11  41656879
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 </div>
 <div id="transformar-variables-con-mutate" class="section level3 unnumbered">
 <h3>Transformar variables con <code>mutate()</code></h3>
@@ -808,7 +818,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001       4 Fernando de la Rúa            -23.2  male              0      14.0       -4.4  18.3 527807756979. 37471509        27.0
 ##  9 Argentina  2002       1 Eduardo Alberto Duhalde        -2.01 male              0      25.0      -10.9  17.9 470305820970. 37889370        26.9
 ## 10 Argentina  2002       2 Eduardo Alberto Duhalde       -20.1  male              0      25.0      -10.9  17.9 470305820970. 37889370        26.9
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 <p>Podemos realizar cualquier tipo de operación en las variables. Por ejemplo, transformemos la escala de <code>wdi_pop</code> a millones:</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="manejo-2a.html#cb128-1"></a><span class="kw">mutate</span>(df_aprob, <span class="dt">wdi_pop_mill =</span> wdi_pop <span class="op">/</span><span class="st"> </span><span class="dv">1000000</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 13
@@ -824,7 +834,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001       4 Fernando de la Rúa            -23.2  male              0      14.0       -4.4  18.3 527807756979. 37471509         37.5
 ##  9 Argentina  2002       1 Eduardo Alberto Duhalde        -2.01 male              0      25.0      -10.9  17.9 470305820970. 37889370         37.9
 ## 10 Argentina  2002       2 Eduardo Alberto Duhalde       -20.1  male              0      25.0      -10.9  17.9 470305820970. 37889370         37.9
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 </div>
 <div id="transformaciones-con-múltiples-variables" class="section level4 unnumbered">
 <h4>Transformaciones con múltiples variables</h4>
@@ -843,7 +853,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001       4 Fernando de la Rúa            -23.2  male              0      14.0       -4.4  18.3 527807756979. 37471509     14086.
 ##  9 Argentina  2002       1 Eduardo Alberto Duhalde        -2.01 male              0      25.0      -10.9  17.9 470305820970. 37889370     12413.
 ## 10 Argentina  2002       2 Eduardo Alberto Duhalde       -20.1  male              0      25.0      -10.9  17.9 470305820970. 37889370     12413.
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 </div>
 <div id="varias-transformaciones-a-la-vez" class="section level4 unnumbered">
 <h4>Varias transformaciones a la vez:</h4>
@@ -864,7 +874,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001       4 Fernando de la Rúa            -23.2  male              0      14.0       -4.4  18.3 527807756979. 37471509         37.5     14086.
 ##  9 Argentina  2002       1 Eduardo Alberto Duhalde        -2.01 male              0      25.0      -10.9  17.9 470305820970. 37889370         37.9     12413.
 ## 10 Argentina  2002       2 Eduardo Alberto Duhalde       -20.1  male              0      25.0      -10.9  17.9 470305820970. 37889370         37.9     12413.
-## # … with 1,010 more rows</code></pre>
+## # ... with 1,010 more rows</code></pre>
 </div>
 <div id="ejercicio-d" class="section level4 unnumbered">
 <h4>(Ejercicio D)</h4>
@@ -899,18 +909,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Rows: 1,020
 ## Columns: 12
 ## Groups: country [17]
-## $ country      &lt;chr&gt; &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Arge…
-## $ year         &lt;dbl&gt; 2000, 2000, 2000, 2000, 2001, 2001, 2001, 2001, 2002, 2002, 2002, 2002, 2003, 2003, 2003, 2003, 2004, 2004, 2004, 2004, 2005, 2005, 2005, 2005, 2006, 2006, 2006, 2006, 2007, 2007, 2007, 2007, 2008, 2008, 2008, 2008, 2009, 2009…
-## $ quarter      &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4…
-## $ president    &lt;chr&gt; &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Eduardo Alberto Duhalde&quot;, &quot;Eduardo Alberto Duhald…
-## $ net_approval &lt;dbl&gt; 40.126, 16.390, 23.968, -18.254, -6.973, -20.082, -19.384, -23.182, -2.006, -20.075, -24.965, -16.831, -2.775, 26.511, 53.679, 52.975, 57.142, 52.756, 39.078, 44.899, 45.691, 45.429, 40.584, 43.390, 48.887, 46.757, 44.563, 43.…
-## $ pres_sex     &lt;chr&gt; &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;m…
-## $ pres_sex_d   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-## $ exec_corr    &lt;dbl&gt; 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 25.00388, 25.00388, 25.00388, 25.00388, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.145…
-## $ gdp_growth   &lt;dbl&gt; -0.800000, -0.800000, -0.800000, -0.800000, -4.400000, -4.400000, -4.400000, -4.400000, -10.900000, -10.900000, -10.900000, -10.900000, 8.800000, 8.800000, 8.800000, 8.800000, 9.000000, 9.000000, 9.000000, 9.000000, 8.900000, …
-## $ unemp        &lt;dbl&gt; 15.0000, 15.0000, 15.0000, 15.0000, 18.3000, 18.3000, 18.3000, 18.3000, 17.9000, 17.9000, 17.9000, 17.9000, 19.9500, 17.4400, 16.1318, 14.4528, 14.2935, 14.6621, 13.1475, 11.9976, 12.9295, 11.9526, 11.1434, 10.0284, 11.3064, 1…
-## $ wdi_gdp      &lt;dbl&gt; 552151219031, 552151219031, 552151219031, 552151219031, 527807756979, 527807756979, 527807756979, 527807756979, 470305820970, 470305820970, 470305820970, 470305820970, 511866938234, 511866938234, 511866938234, 511866938234, 55…
-## $ wdi_pop      &lt;dbl&gt; 37057452, 37057452, 37057452, 37057452, 37471509, 37471509, 37471509, 37471509, 37889370, 37889370, 37889370, 37889370, 38309379, 38309379, 38309379, 38309379, 38728696, 38728696, 38728696, 38728696, 39145488, 39145488, 391454…</code></pre>
+## $ country      &lt;chr&gt; &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Ar...
+## $ year         &lt;dbl&gt; 2000, 2000, 2000, 2000, 2001, 2001, 2001, 2001, 2002, 2002, 2002, 2002, 2003, 2003, 2003, 2003, 2004, 2004, 2004, 2004, 2005, 2005, 2005, 2005, 2006, 2006, 2006, 2006, 2007, 2007, 2007, 2007, 2008, 2008, 2008, 2008, 2009, 20...
+## $ quarter      &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3,...
+## $ president    &lt;chr&gt; &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Fernando de la Rúa&quot;, &quot;Eduardo Alberto Duhalde&quot;, &quot;Eduardo Alberto Duha...
+## $ net_approval &lt;dbl&gt; 40.126, 16.390, 23.968, -18.254, -6.973, -20.082, -19.384, -23.182, -2.006, -20.075, -24.965, -16.831, -2.775, 26.511, 53.679, 52.975, 57.142, 52.756, 39.078, 44.899, 45.691, 45.429, 40.584, 43.390, 48.887, 46.757, 44.563, 4...
+## $ pres_sex     &lt;chr&gt; &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, ...
+## $ pres_sex_d   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
+## $ exec_corr    &lt;dbl&gt; 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 14.01525, 25.00388, 25.00388, 25.00388, 25.00388, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.14544, 50.1...
+## $ gdp_growth   &lt;dbl&gt; -0.800000, -0.800000, -0.800000, -0.800000, -4.400000, -4.400000, -4.400000, -4.400000, -10.900000, -10.900000, -10.900000, -10.900000, 8.800000, 8.800000, 8.800000, 8.800000, 9.000000, 9.000000, 9.000000, 9.000000, 8.900000...
+## $ unemp        &lt;dbl&gt; 15.0000, 15.0000, 15.0000, 15.0000, 18.3000, 18.3000, 18.3000, 18.3000, 17.9000, 17.9000, 17.9000, 17.9000, 19.9500, 17.4400, 16.1318, 14.4528, 14.2935, 14.6621, 13.1475, 11.9976, 12.9295, 11.9526, 11.1434, 10.0284, 11.3064,...
+## $ wdi_gdp      &lt;dbl&gt; 552151219031, 552151219031, 552151219031, 552151219031, 527807756979, 527807756979, 527807756979, 527807756979, 470305820970, 470305820970, 470305820970, 470305820970, 511866938234, 511866938234, 511866938234, 511866938234, ...
+## $ wdi_pop      &lt;dbl&gt; 37057452, 37057452, 37057452, 37057452, 37471509, 37471509, 37471509, 37471509, 37889370, 37889370, 37889370, 37889370, 38309379, 38309379, 38309379, 38309379, 38728696, 38728696, 38728696, 38728696, 39145488, 39145488, 3914...</code></pre>
 <p>Hagamos una operación de resumen en esta nueva base:</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="manejo-2a.html#cb140-1"></a><span class="kw">summarize</span>(df_aprob_por_pais, </span>
 <span id="cb140-2"><a href="manejo-2a.html#cb140-2"></a>          <span class="dt">prom_desemp   =</span> <span class="kw">mean</span>(unemp),</span>
@@ -956,7 +966,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001       4 Fernando de la Rúa            -23.2  male              0      14.0       -4.4  18.3 527807756979. 37471509 14086.
 ##  9 Argentina  2002       1 Eduardo Alberto Duhalde        -2.01 male              0      25.0      -10.9  17.9 470305820970. 37889370 12413.
 ## 10 Argentina  2002       2 Eduardo Alberto Duhalde       -20.1  male              0      25.0      -10.9  17.9 470305820970. 37889370 12413.
-## # … with 482 more rows</code></pre>
+## # ... with 482 more rows</code></pre>
 <p>Esta misma cadena de operaciones se puede escribir de la siguiente forma:</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="manejo-2a.html#cb145-1"></a>df_aprob <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb145-2"><a href="manejo-2a.html#cb145-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pib_pc =</span> wdi_gdp <span class="op">/</span><span class="st"> </span>wdi_pop) <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -974,7 +984,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001       4 Fernando de la Rúa            -23.2  male              0      14.0       -4.4  18.3 527807756979. 37471509 14086.
 ##  9 Argentina  2002       1 Eduardo Alberto Duhalde        -2.01 male              0      25.0      -10.9  17.9 470305820970. 37889370 12413.
 ## 10 Argentina  2002       2 Eduardo Alberto Duhalde       -20.1  male              0      25.0      -10.9  17.9 470305820970. 37889370 12413.
-## # … with 482 more rows</code></pre>
+## # ... with 482 more rows</code></pre>
 <p>¡Este código es sorprendemente legible! Las pipes (<code>%&gt;%</code>) se leen como “luego” (o “pero luego”) y se insertan con Ctrl/Cmd + Shift + M en RStudio. Pueden ver todos los atajos de teclado en Help &gt; Keyboard Shortcuts Help.</p>
 <p>Uno de los usos más comunes de las pipes es el combo <code>group_by()</code> + <code>summarize()</code>. Repitamos nuestras operaciones de antes para hacer un resumen agrupado:</p>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="manejo-2a.html#cb147-1"></a>df_aprob <span class="op">%&gt;%</span><span class="st"> </span></span>

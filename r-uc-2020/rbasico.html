@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>01 - R básico | Programación para las Ciencias Sociales</title>
   <meta name="description" content="Sitio web ICP0506" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="01 - R básico | Programación para las Ciencias Sociales" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2020-09-11" />
+<meta name="date" content="2020-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,7 @@
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -198,6 +199,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#solucionar-problemas"><i class="fa fa-check"></i>Solucionar problemas</a></li>
 <li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#pedir-ayuda-con-ejemplos-reproducibles-reprex"><i class="fa fa-check"></i>Pedir ayuda con ejemplos reproducibles (reprex)</a></li>
 </ul></li>
+<li class="part"><span><b>V Manejo avanzado de datos</b></span></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i>05A - Manejo avanzado de datos</a><ul>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#inicio-cargar-paquetes-base-de-datos-2"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#pivotear-bases-de-datos-wide---long"><i class="fa fa-check"></i>Pivotear bases de datos (wide &lt;-&gt; long)</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#recodificar-variables"><i class="fa fa-check"></i>Recodificar variables</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#valores-perdidosmissingna"><i class="fa fa-check"></i>Valores perdidos/missing/NA</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#unir-bases-de-datos"><i class="fa fa-check"></i>Unir bases de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-av-ej.html"><a href="manejo-av-ej.html"><i class="fa fa-check"></i>05B - Manejo avanzado de datos (ejercicio)</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -364,7 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Barrasso   WY    R            91.2       46.3  
 ##  9 Bennet     CO    D            15.4       -4.91 
 ## 10 Blumenthal CT    D            11.8      -13.6  
-## # … with 90 more rows</code></pre>
+## # ... with 90 more rows</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="rbasico.html#cb61-1"></a><span class="kw">head</span>(df_trump_scores) <span class="co"># imprime solo las seis primeras filas</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   last_name state party trump_score trump_margin
@@ -449,7 +459,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Barrasso   WY    R            91.2       46.3  
 ##  9 Bennet     CO    D            15.4       -4.91 
 ## 10 Blumenthal CT    D            11.8      -13.6  
-## # … with 90 more rows</code></pre>
+## # ... with 90 more rows</code></pre>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="rbasico.html#cb74-1"></a>mi_lista[[<span class="dv">3</span>]]</span></code></pre></div>
 <pre><code>## # A tibble: 100 x 5
 ##    last_name  state party trump_score trump_margin
@@ -464,7 +474,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Barrasso   WY    R            91.2       46.3  
 ##  9 Bennet     CO    D            15.4       -4.91 
 ## 10 Blumenthal CT    D            11.8      -13.6  
-## # … with 90 more rows</code></pre>
+## # ... with 90 more rows</code></pre>
 <p>¿Cuál es la diferencia entre estos dos últimos comandos? El primero devuelve una nueva lista con solo un elemento, el tercero de la lista original. El segundo, en tanto, devuelve el contenido del tercer elemento de la lista.</p>
 </div>
 </div>
