@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>06A - Análisis de texto | Programación para las Ciencias Sociales</title>
+  <meta name="description" content="Sitio web ICP0506" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="06A - Análisis de texto | Programación para las Ciencias Sociales" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Sitio web ICP0506" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="06A - Análisis de texto | Programación para las Ciencias Sociales" />
+  
+  <meta name="twitter:description" content="Sitio web ICP0506" />
+  
+
+<meta name="author" content="Andrés Cruz" />
+
+
+<meta name="date" content="2020-10-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="part-análisis-de-texto.html"/>
+<link rel="next" href="texto-cadenas.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Prog. Cs. Sociales</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Inicio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#links-importantes"><i class="fa fa-check"></i>Links importantes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cronograma-y-materiales-del-curso"><i class="fa fa-check"></i>Cronograma y materiales del curso</a></li>
+</ul></li>
+<li class="part"><span><b>I Intro a R, RStudio y R Markdown</b></span></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html"><i class="fa fa-check"></i>01 - R básico</a><ul>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#introducción-comandos-y-código"><i class="fa fa-check"></i>Introducción: comandos y código</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#paquetes"><i class="fa fa-check"></i>Paquetes</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#comandos-básicos-y-tipos-de-objeto-en-r"><i class="fa fa-check"></i>Comandos básicos y tipos de objeto en R</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#sintaxis-de-r-markdown"><i class="fa fa-check"></i>Sintaxis de R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#siguiente-script"><i class="fa fa-check"></i>Siguiente script</a></li>
+</ul></li>
+<li class="part"><span><b>II Manejo de datos</b></span></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html"><i class="fa fa-check"></i>02A - Manejo de datos</a><ul>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#repaso-de-la-clase-pasada-r-markdown"><i class="fa fa-check"></i>Repaso de la clase pasada: R Markdown</a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#manejo-de-bases-de-datos"><i class="fa fa-check"></i>Manejo de bases de datos</a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#la-base-de-datos-ideal-tidy"><i class="fa fa-check"></i>La base de datos ideal: tidy</a></li>
+<li><a href="manejo-2a.html#operaciones-básicas-en-bases-de-datos-wickham-2014">Operaciones básicas en bases de datos <span>(Wickham, 2014)</span></a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#trabajo-con-r"><i class="fa fa-check"></i>Trabajo con R</a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#manejo-de-datos-operaciones-básicas"><i class="fa fa-check"></i>Manejo de datos: operaciones básicas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html"><i class="fa fa-check"></i>02B - Manejo de datos (ejercicio)</a><ul>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#contexto"><i class="fa fa-check"></i>Contexto</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#a."><i class="fa fa-check"></i>A.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#b."><i class="fa fa-check"></i>B.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#c."><i class="fa fa-check"></i>C.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#d."><i class="fa fa-check"></i>D.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#e."><i class="fa fa-check"></i>E.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#f."><i class="fa fa-check"></i>F.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2c.html"><a href="manejo-2c.html"><i class="fa fa-check"></i>02C - Manejo de datos (extras)</a><ul>
+<li class="chapter" data-level="" data-path="manejo-2c.html"><a href="manejo-2c.html#cargar-y-guardar-bases-de-datos"><i class="fa fa-check"></i>Cargar y guardar bases de datos</a></li>
+<li><a href="manejo-2c.html#versiones-iterativas-de-summarize-y-mutate">Versiones iterativas de <code>summarize()</code> y <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2d.html"><a href="manejo-2d.html"><i class="fa fa-check"></i>02D - Manejo de datos (ejercicio int.)</a></li>
+<li class="part"><span><b>III Visualización de datos</b></span></li>
+<li class="chapter" data-level="" data-path="visualizacion-preceptos.html"><a href="visualizacion-preceptos.html"><i class="fa fa-check"></i>03 - Visualización de datos (preceptos)</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html"><i class="fa fa-check"></i>03A - Visualización de datos (intro)</a><ul>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html#inicio-cargar-paquetes-base-de-datos"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html#gráficos-univariados"><i class="fa fa-check"></i>Gráficos univariados</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html#gráficos-bivariados"><i class="fa fa-check"></i>Gráficos bivariados</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html#un-poco-de-personalización-etiquetas"><i class="fa fa-check"></i>Un poco de personalización: etiquetas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html"><i class="fa fa-check"></i>03B - Visualización de datos (extensiones)</a><ul>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#cargar-paquetes-y-datos"><i class="fa fa-check"></i>Cargar paquetes y datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#gráfico-de-ránking"><i class="fa fa-check"></i>Gráfico de ránking</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#facetas"><i class="fa fa-check"></i>Facetas</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#gráficos-de-líneas"><i class="fa fa-check"></i>Gráficos de líneas</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#más-personalización"><i class="fa fa-check"></i>Más personalización</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html"><i class="fa fa-check"></i>03C - Visualización de datos (personalización)</a><ul>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#inicio-cargar-paquetes-base-de-datos-1"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#gráfico-de-ejemplo"><i class="fa fa-check"></i>Gráfico de ejemplo</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#gráficos-como-objetos-guardar-gráficos-en-el-disco"><i class="fa fa-check"></i>Gráficos como objetos / guardar gráficos en el disco</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#personalización-de-gráficos"><i class="fa fa-check"></i>Personalización de gráficos</a></li>
+</ul></li>
+<li class="part"><span><b>IV Búsqueda de ayuda</b></span></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html"><i class="fa fa-check"></i>04 - Guía búsqueda de ayuda</a><ul>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#leer-archivos-de-ayuda-de-r"><i class="fa fa-check"></i>Leer archivos de ayuda de R</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#encontrar-funciones-en-línea"><i class="fa fa-check"></i>Encontrar funciones en línea</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#solucionar-problemas"><i class="fa fa-check"></i>Solucionar problemas</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#pedir-ayuda-con-ejemplos-reproducibles-reprex"><i class="fa fa-check"></i>Pedir ayuda con ejemplos reproducibles (reprex)</a></li>
+</ul></li>
+<li class="part"><span><b>V Manejo avanzado de datos</b></span></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i>05A - Manejo avanzado de datos</a><ul>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#inicio-cargar-paquetes-base-de-datos-2"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#pivotear-bases-de-datos-wide---long"><i class="fa fa-check"></i>Pivotear bases de datos (wide &lt;-&gt; long)</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#recodificar-variables"><i class="fa fa-check"></i>Recodificar variables</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#valores-perdidosmissingna"><i class="fa fa-check"></i>Valores perdidos/missing/NA</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#unir-bases-de-datos"><i class="fa fa-check"></i>Unir bases de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-av-ej.html"><a href="manejo-av-ej.html"><i class="fa fa-check"></i>05B - Manejo avanzado de datos (ejercicio)</a></li>
+<li class="part"><span><b>VI Análisis de texto</b></span></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html"><i class="fa fa-check"></i>06A - Análisis de texto</a><ul>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#inicio-cargar-paquetes-base-de-datos-3"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#tokens-y-frecuencias"><i class="fa fa-check"></i>Tokens y frecuencias</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#separar-el-análisis-de-frecuencias-por-secciones"><i class="fa fa-check"></i>Separar el análisis de frecuencias por secciones</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#obtener-las-palabras-más-distintivas-al-comparar-documentos"><i class="fa fa-check"></i>Obtener las palabras más distintivas al comparar documentos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html"><i class="fa fa-check"></i>06B - Cadenas de texto</a><ul>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#inicio-cargar-paquetes-base-de-datos-4"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#cadenas-de-texto"><i class="fa fa-check"></i>Cadenas de texto</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#algunas-operaciones-simples-con-texto"><i class="fa fa-check"></i>Algunas operaciones simples con texto</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#funciones-para-trabajar-con-patrones"><i class="fa fa-check"></i>Funciones para trabajar con patrones</a></li>
+<li><a href="texto-cadenas.html#patrones-más-complejos-con-expresiones-regulares-regex">Patrones más complejos con expresiones regulares (<em>regex</em>)</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación para las Ciencias Sociales</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="texto-analisis" class="section level1 unnumbered">
+<h1>06A - Análisis de texto</h1>
+<blockquote>
+<p>Si quieres correr estos scripts localmente, acá puedes <a href="./static/06_analisis_texto.zip">descargar el proyecto comprimido en .zip</a>. Paquetes que necesitas tener instalados antes de comenzar con el proyecto (06A, 06B, 06C): <code>tidyverse</code>, <code>tidytext</code>, <code>stopwords</code>, <code>gutenbergr</code>.</p>
+</blockquote>
+<div id="inicio-cargar-paquetes-base-de-datos-3" class="section level2">
+<h2>Inicio: cargar paquetes, base de datos</h2>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="texto-analisis.html#cb309-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb309-2"><a href="texto-analisis.html#cb309-2"></a></span>
+<span id="cb309-3"><a href="texto-analisis.html#cb309-3"></a><span class="co"># install.packages(&quot;tidytext&quot;)</span></span>
+<span id="cb309-4"><a href="texto-analisis.html#cb309-4"></a><span class="co"># install.packages(&quot;stopwords&quot;)</span></span>
+<span id="cb309-5"><a href="texto-analisis.html#cb309-5"></a></span>
+<span id="cb309-6"><a href="texto-analisis.html#cb309-6"></a><span class="kw">library</span>(tidytext)</span>
+<span id="cb309-7"><a href="texto-analisis.html#cb309-7"></a><span class="kw">library</span>(SnowballC)  <span class="co"># se instala solo con tidytext</span></span>
+<span id="cb309-8"><a href="texto-analisis.html#cb309-8"></a><span class="kw">library</span>(stopwords)</span></code></pre></div>
+<p>Hoy trabajaremos con el texto de tres libros clásicos de teoría política: “Leviathan” de Hobbes (1651), “A Vindication of the Rights of Woman” de Mary Wollstonecraft (1792) y “On Liberty” de John Stuart Mill (1859). Como son libros antiguos, ya son parte del dominio público y se pueden descargar desde <a href="https://www.gutenberg.org/">Project Gutenberg</a>. Hay un paquete de R que ayuda a hacer esto automáticamente: pueden ver cómo descargué los libros y edité ligeramente las bases en el script 06c de este proyecto. Carguemos las bases:</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="texto-analisis.html#cb310-1"></a>leviathan &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;datos/leviathan.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   author = col_character(),
+##   book = col_character(),
+##   gutenberg_id = col_double(),
+##   chapter = col_double(),
+##   line = col_double(),
+##   text = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="texto-analisis.html#cb312-1"></a>rights &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;datos/rights_of_women.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   author = col_character(),
+##   book = col_character(),
+##   gutenberg_id = col_double(),
+##   chapter = col_double(),
+##   line = col_double(),
+##   text = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="texto-analisis.html#cb314-1"></a>on_liberty &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;datos/on_liberty.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   author = col_character(),
+##   book = col_character(),
+##   gutenberg_id = col_double(),
+##   chapter = col_double(),
+##   line = col_double(),
+##   text = col_character()
+## )</code></pre>
+<p>Vamos a comenzar trabajando con “Leviathan” y “A Vindication of the Rights of Woman”, dejando “On Liberty” para algunos ejercicios.</p>
+</div>
+<div id="tokens-y-frecuencias" class="section level2">
+<h2>Tokens y frecuencias</h2>
+<p>La unidad de análisis de estas bases de datos es la línea de texto. Esto es bastante común en los cuerpos de texto que provienen de libros / recursos impresos (la mayoría). Es probable que sea igual en, por ejemplo, programas de candidaturas políticas.</p>
+<p>Lo más común en análisis de texto, sin embargo, es analizar palabras o n-gramas (conjuntos de palabras). Esto no quita que a veces otras unidades de análisis sean interesantes (líneas, párrafos, capítulos, etc.), dependiendo de nuestras preguntas de investigación.</p>
+<p>Estas diferentes unidades de análisis de texto se llaman “tokens” en <code>tidytext</code>, y es posible pasar una base a una unidad de análisis más pequeña con la función <code>unnest_tokens()</code>. Obtengamos las palabras en “Leviathan”:</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="texto-analisis.html#cb316-1"></a>palabras_leviathan &lt;-<span class="st"> </span>leviathan <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb316-2"><a href="texto-analisis.html#cb316-2"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(<span class="dt">output =</span> word, <span class="dt">input =</span> text, <span class="dt">token =</span> <span class="st">&quot;words&quot;</span>)</span></code></pre></div>
+<p>¿Cuáles son las palabras más usadas en el libro?</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="texto-analisis.html#cb317-1"></a>palabras_leviathan <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb317-2"><a href="texto-analisis.html#cb317-2"></a><span class="st">  </span><span class="kw">count</span>(word, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 9,965 x 2
+##    word      n
+##    &lt;chr&gt; &lt;int&gt;
+##  1 the   14969
+##  2 of    10867
+##  3 and    7336
+##  4 to     7275
+##  5 is     4863
+##  6 that   4810
+##  7 in     4155
+##  8 a      3145
+##  9 by     2635
+## 10 for    2523
+## # ... with 9,955 more rows</code></pre>
+<div id="eliminar-palabras-vacías-stop-words-y-enraizar-stem" class="section level3">
+<h3>Eliminar palabras vacías (<em>stop words</em>) y enraizar (<em>stem</em>)</h3>
+<p>Que este tipo de palabras sean las más comunes es lógico. Sin embargo, no suelen darnos mucha información sobre los textos. Por suerte existen diccionarios de palabras vacías (<em>stop words</em>), que nos permitirán eliminarlas de nuestra base:</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="texto-analisis.html#cb319-1"></a>stop_words_en &lt;-<span class="st"> </span><span class="kw">stopwords</span>(<span class="dt">language =</span> <span class="st">&quot;en&quot;</span>, <span class="dt">source =</span> <span class="st">&quot;smart&quot;</span>)</span>
+<span id="cb319-2"><a href="texto-analisis.html#cb319-2"></a><span class="co"># si es que fuera en español...</span></span>
+<span id="cb319-3"><a href="texto-analisis.html#cb319-3"></a><span class="co"># stop_words_es &lt;- stopwords(language = &quot;es&quot;, source = &quot;snowball&quot;)</span></span>
+<span id="cb319-4"><a href="texto-analisis.html#cb319-4"></a></span>
+<span id="cb319-5"><a href="texto-analisis.html#cb319-5"></a>stop_words_en</span></code></pre></div>
+<pre><code>##   [1] &quot;a&quot;             &quot;a&#39;s&quot;           &quot;able&quot;          &quot;about&quot;         &quot;above&quot;         &quot;according&quot;     &quot;accordingly&quot;   &quot;across&quot;        &quot;actually&quot;      &quot;after&quot;         &quot;afterwards&quot;    &quot;again&quot;         &quot;against&quot;       &quot;ain&#39;t&quot;         &quot;all&quot;          
+##  [16] &quot;allow&quot;         &quot;allows&quot;        &quot;almost&quot;        &quot;alone&quot;         &quot;along&quot;         &quot;already&quot;       &quot;also&quot;          &quot;although&quot;      &quot;always&quot;        &quot;am&quot;            &quot;among&quot;         &quot;amongst&quot;       &quot;an&quot;            &quot;and&quot;           &quot;another&quot;      
+##  [31] &quot;any&quot;           &quot;anybody&quot;       &quot;anyhow&quot;        &quot;anyone&quot;        &quot;anything&quot;      &quot;anyway&quot;        &quot;anyways&quot;       &quot;anywhere&quot;      &quot;apart&quot;         &quot;appear&quot;        &quot;appreciate&quot;    &quot;appropriate&quot;   &quot;are&quot;           &quot;aren&#39;t&quot;        &quot;around&quot;       
+##  [46] &quot;as&quot;            &quot;aside&quot;         &quot;ask&quot;           &quot;asking&quot;        &quot;associated&quot;    &quot;at&quot;            &quot;available&quot;     &quot;away&quot;          &quot;awfully&quot;       &quot;b&quot;             &quot;be&quot;            &quot;became&quot;        &quot;because&quot;       &quot;become&quot;        &quot;becomes&quot;      
+##  [61] &quot;becoming&quot;      &quot;been&quot;          &quot;before&quot;        &quot;beforehand&quot;    &quot;behind&quot;        &quot;being&quot;         &quot;believe&quot;       &quot;below&quot;         &quot;beside&quot;        &quot;besides&quot;       &quot;best&quot;          &quot;better&quot;        &quot;between&quot;       &quot;beyond&quot;        &quot;both&quot;         
+##  [76] &quot;brief&quot;         &quot;but&quot;           &quot;by&quot;            &quot;c&quot;             &quot;c&#39;mon&quot;         &quot;c&#39;s&quot;           &quot;came&quot;          &quot;can&quot;           &quot;can&#39;t&quot;         &quot;cannot&quot;        &quot;cant&quot;          &quot;cause&quot;         &quot;causes&quot;        &quot;certain&quot;       &quot;certainly&quot;    
+##  [91] &quot;changes&quot;       &quot;clearly&quot;       &quot;co&quot;            &quot;com&quot;           &quot;come&quot;          &quot;comes&quot;         &quot;concerning&quot;    &quot;consequently&quot;  &quot;consider&quot;      &quot;considering&quot;   &quot;contain&quot;       &quot;containing&quot;    &quot;contains&quot;      &quot;corresponding&quot; &quot;could&quot;        
+## [106] &quot;couldn&#39;t&quot;      &quot;course&quot;        &quot;currently&quot;     &quot;d&quot;             &quot;definitely&quot;    &quot;described&quot;     &quot;despite&quot;       &quot;did&quot;           &quot;didn&#39;t&quot;        &quot;different&quot;     &quot;do&quot;            &quot;does&quot;          &quot;doesn&#39;t&quot;       &quot;doing&quot;         &quot;don&#39;t&quot;        
+## [121] &quot;done&quot;          &quot;down&quot;          &quot;downwards&quot;     &quot;during&quot;        &quot;e&quot;             &quot;each&quot;          &quot;edu&quot;           &quot;eg&quot;            &quot;eight&quot;         &quot;either&quot;        &quot;else&quot;          &quot;elsewhere&quot;     &quot;enough&quot;        &quot;entirely&quot;      &quot;especially&quot;   
+## [136] &quot;et&quot;            &quot;etc&quot;           &quot;even&quot;          &quot;ever&quot;          &quot;every&quot;         &quot;everybody&quot;     &quot;everyone&quot;      &quot;everything&quot;    &quot;everywhere&quot;    &quot;ex&quot;            &quot;exactly&quot;       &quot;example&quot;       &quot;except&quot;        &quot;f&quot;             &quot;far&quot;          
+## [151] &quot;few&quot;           &quot;fifth&quot;         &quot;first&quot;         &quot;five&quot;          &quot;followed&quot;      &quot;following&quot;     &quot;follows&quot;       &quot;for&quot;           &quot;former&quot;        &quot;formerly&quot;      &quot;forth&quot;         &quot;four&quot;          &quot;from&quot;          &quot;further&quot;       &quot;furthermore&quot;  
+## [166] &quot;g&quot;             &quot;get&quot;           &quot;gets&quot;          &quot;getting&quot;       &quot;given&quot;         &quot;gives&quot;         &quot;go&quot;            &quot;goes&quot;          &quot;going&quot;         &quot;gone&quot;          &quot;got&quot;           &quot;gotten&quot;        &quot;greetings&quot;     &quot;h&quot;             &quot;had&quot;          
+## [181] &quot;hadn&#39;t&quot;        &quot;happens&quot;       &quot;hardly&quot;        &quot;has&quot;           &quot;hasn&#39;t&quot;        &quot;have&quot;          &quot;haven&#39;t&quot;       &quot;having&quot;        &quot;he&quot;            &quot;he&#39;s&quot;          &quot;hello&quot;         &quot;help&quot;          &quot;hence&quot;         &quot;her&quot;           &quot;here&quot;         
+## [196] &quot;here&#39;s&quot;        &quot;hereafter&quot;     &quot;hereby&quot;        &quot;herein&quot;        &quot;hereupon&quot;      &quot;hers&quot;          &quot;herself&quot;       &quot;hi&quot;            &quot;him&quot;           &quot;himself&quot;       &quot;his&quot;           &quot;hither&quot;        &quot;hopefully&quot;     &quot;how&quot;           &quot;howbeit&quot;      
+## [211] &quot;however&quot;       &quot;i&quot;             &quot;i&#39;d&quot;           &quot;i&#39;ll&quot;          &quot;i&#39;m&quot;           &quot;i&#39;ve&quot;          &quot;ie&quot;            &quot;if&quot;            &quot;ignored&quot;       &quot;immediate&quot;     &quot;in&quot;            &quot;inasmuch&quot;      &quot;inc&quot;           &quot;indeed&quot;        &quot;indicate&quot;     
+## [226] &quot;indicated&quot;     &quot;indicates&quot;     &quot;inner&quot;         &quot;insofar&quot;       &quot;instead&quot;       &quot;into&quot;          &quot;inward&quot;        &quot;is&quot;            &quot;isn&#39;t&quot;         &quot;it&quot;            &quot;it&#39;d&quot;          &quot;it&#39;ll&quot;         &quot;it&#39;s&quot;          &quot;its&quot;           &quot;itself&quot;       
+## [241] &quot;j&quot;             &quot;just&quot;          &quot;k&quot;             &quot;keep&quot;          &quot;keeps&quot;         &quot;kept&quot;          &quot;know&quot;          &quot;knows&quot;         &quot;known&quot;         &quot;l&quot;             &quot;last&quot;          &quot;lately&quot;        &quot;later&quot;         &quot;latter&quot;        &quot;latterly&quot;     
+## [256] &quot;least&quot;         &quot;less&quot;          &quot;lest&quot;          &quot;let&quot;           &quot;let&#39;s&quot;         &quot;like&quot;          &quot;liked&quot;         &quot;likely&quot;        &quot;little&quot;        &quot;look&quot;          &quot;looking&quot;       &quot;looks&quot;         &quot;ltd&quot;           &quot;m&quot;             &quot;mainly&quot;       
+## [271] &quot;many&quot;          &quot;may&quot;           &quot;maybe&quot;         &quot;me&quot;            &quot;mean&quot;          &quot;meanwhile&quot;     &quot;merely&quot;        &quot;might&quot;         &quot;more&quot;          &quot;moreover&quot;      &quot;most&quot;          &quot;mostly&quot;        &quot;much&quot;          &quot;must&quot;          &quot;my&quot;           
+## [286] &quot;myself&quot;        &quot;n&quot;             &quot;name&quot;          &quot;namely&quot;        &quot;nd&quot;            &quot;near&quot;          &quot;nearly&quot;        &quot;necessary&quot;     &quot;need&quot;          &quot;needs&quot;         &quot;neither&quot;       &quot;never&quot;         &quot;nevertheless&quot;  &quot;new&quot;           &quot;next&quot;         
+## [301] &quot;nine&quot;          &quot;no&quot;            &quot;nobody&quot;        &quot;non&quot;           &quot;none&quot;          &quot;noone&quot;         &quot;nor&quot;           &quot;normally&quot;      &quot;not&quot;           &quot;nothing&quot;       &quot;novel&quot;         &quot;now&quot;           &quot;nowhere&quot;       &quot;o&quot;             &quot;obviously&quot;    
+## [316] &quot;of&quot;            &quot;off&quot;           &quot;often&quot;         &quot;oh&quot;            &quot;ok&quot;            &quot;okay&quot;          &quot;old&quot;           &quot;on&quot;            &quot;once&quot;          &quot;one&quot;           &quot;ones&quot;          &quot;only&quot;          &quot;onto&quot;          &quot;or&quot;            &quot;other&quot;        
+## [331] &quot;others&quot;        &quot;otherwise&quot;     &quot;ought&quot;         &quot;our&quot;           &quot;ours&quot;          &quot;ourselves&quot;     &quot;out&quot;           &quot;outside&quot;       &quot;over&quot;          &quot;overall&quot;       &quot;own&quot;           &quot;p&quot;             &quot;particular&quot;    &quot;particularly&quot;  &quot;per&quot;          
+## [346] &quot;perhaps&quot;       &quot;placed&quot;        &quot;please&quot;        &quot;plus&quot;          &quot;possible&quot;      &quot;presumably&quot;    &quot;probably&quot;      &quot;provides&quot;      &quot;q&quot;             &quot;que&quot;           &quot;quite&quot;         &quot;qv&quot;            &quot;r&quot;             &quot;rather&quot;        &quot;rd&quot;           
+## [361] &quot;re&quot;            &quot;really&quot;        &quot;reasonably&quot;    &quot;regarding&quot;     &quot;regardless&quot;    &quot;regards&quot;       &quot;relatively&quot;    &quot;respectively&quot;  &quot;right&quot;         &quot;s&quot;             &quot;said&quot;          &quot;same&quot;          &quot;saw&quot;           &quot;say&quot;           &quot;saying&quot;       
+## [376] &quot;says&quot;          &quot;second&quot;        &quot;secondly&quot;      &quot;see&quot;           &quot;seeing&quot;        &quot;seem&quot;          &quot;seemed&quot;        &quot;seeming&quot;       &quot;seems&quot;         &quot;seen&quot;          &quot;self&quot;          &quot;selves&quot;        &quot;sensible&quot;      &quot;sent&quot;          &quot;serious&quot;      
+## [391] &quot;seriously&quot;     &quot;seven&quot;         &quot;several&quot;       &quot;shall&quot;         &quot;she&quot;           &quot;should&quot;        &quot;shouldn&#39;t&quot;     &quot;since&quot;         &quot;six&quot;           &quot;so&quot;            &quot;some&quot;          &quot;somebody&quot;      &quot;somehow&quot;       &quot;someone&quot;       &quot;something&quot;    
+## [406] &quot;sometime&quot;      &quot;sometimes&quot;     &quot;somewhat&quot;      &quot;somewhere&quot;     &quot;soon&quot;          &quot;sorry&quot;         &quot;specified&quot;     &quot;specify&quot;       &quot;specifying&quot;    &quot;still&quot;         &quot;sub&quot;           &quot;such&quot;          &quot;sup&quot;           &quot;sure&quot;          &quot;t&quot;            
+## [421] &quot;t&#39;s&quot;           &quot;take&quot;          &quot;taken&quot;         &quot;tell&quot;          &quot;tends&quot;         &quot;th&quot;            &quot;than&quot;          &quot;thank&quot;         &quot;thanks&quot;        &quot;thanx&quot;         &quot;that&quot;          &quot;that&#39;s&quot;        &quot;thats&quot;         &quot;the&quot;           &quot;their&quot;        
+## [436] &quot;theirs&quot;        &quot;them&quot;          &quot;themselves&quot;    &quot;then&quot;          &quot;thence&quot;        &quot;there&quot;         &quot;there&#39;s&quot;       &quot;thereafter&quot;    &quot;thereby&quot;       &quot;therefore&quot;     &quot;therein&quot;       &quot;theres&quot;        &quot;thereupon&quot;     &quot;these&quot;         &quot;they&quot;         
+## [451] &quot;they&#39;d&quot;        &quot;they&#39;ll&quot;       &quot;they&#39;re&quot;       &quot;they&#39;ve&quot;       &quot;think&quot;         &quot;third&quot;         &quot;this&quot;          &quot;thorough&quot;      &quot;thoroughly&quot;    &quot;those&quot;         &quot;though&quot;        &quot;three&quot;         &quot;through&quot;       &quot;throughout&quot;    &quot;thru&quot;         
+## [466] &quot;thus&quot;          &quot;to&quot;            &quot;together&quot;      &quot;too&quot;           &quot;took&quot;          &quot;toward&quot;        &quot;towards&quot;       &quot;tried&quot;         &quot;tries&quot;         &quot;truly&quot;         &quot;try&quot;           &quot;trying&quot;        &quot;twice&quot;         &quot;two&quot;           &quot;u&quot;            
+## [481] &quot;un&quot;            &quot;under&quot;         &quot;unfortunately&quot; &quot;unless&quot;        &quot;unlikely&quot;      &quot;until&quot;         &quot;unto&quot;          &quot;up&quot;            &quot;upon&quot;          &quot;us&quot;            &quot;use&quot;           &quot;used&quot;          &quot;useful&quot;        &quot;uses&quot;          &quot;using&quot;        
+## [496] &quot;usually&quot;       &quot;uucp&quot;          &quot;v&quot;             &quot;value&quot;         &quot;various&quot;       &quot;very&quot;          &quot;via&quot;           &quot;viz&quot;           &quot;vs&quot;            &quot;w&quot;             &quot;want&quot;          &quot;wants&quot;         &quot;was&quot;           &quot;wasn&#39;t&quot;        &quot;way&quot;          
+## [511] &quot;we&quot;            &quot;we&#39;d&quot;          &quot;we&#39;ll&quot;         &quot;we&#39;re&quot;         &quot;we&#39;ve&quot;         &quot;welcome&quot;       &quot;well&quot;          &quot;went&quot;          &quot;were&quot;          &quot;weren&#39;t&quot;       &quot;what&quot;          &quot;what&#39;s&quot;        &quot;whatever&quot;      &quot;when&quot;          &quot;whence&quot;       
+## [526] &quot;whenever&quot;      &quot;where&quot;         &quot;where&#39;s&quot;       &quot;whereafter&quot;    &quot;whereas&quot;       &quot;whereby&quot;       &quot;wherein&quot;       &quot;whereupon&quot;     &quot;wherever&quot;      &quot;whether&quot;       &quot;which&quot;         &quot;while&quot;         &quot;whither&quot;       &quot;who&quot;           &quot;who&#39;s&quot;        
+## [541] &quot;whoever&quot;       &quot;whole&quot;         &quot;whom&quot;          &quot;whose&quot;         &quot;why&quot;           &quot;will&quot;          &quot;willing&quot;       &quot;wish&quot;          &quot;with&quot;          &quot;within&quot;        &quot;without&quot;       &quot;won&#39;t&quot;         &quot;wonder&quot;        &quot;would&quot;         &quot;would&quot;        
+## [556] &quot;wouldn&#39;t&quot;      &quot;x&quot;             &quot;y&quot;             &quot;yes&quot;           &quot;yet&quot;           &quot;you&quot;           &quot;you&#39;d&quot;         &quot;you&#39;ll&quot;        &quot;you&#39;re&quot;        &quot;you&#39;ve&quot;        &quot;your&quot;          &quot;yours&quot;         &quot;yourself&quot;      &quot;yourselves&quot;    &quot;z&quot;            
+## [571] &quot;zero&quot;</code></pre>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="texto-analisis.html#cb321-1"></a>palabras_leviathan_limpio &lt;-<span class="st"> </span>leviathan <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb321-2"><a href="texto-analisis.html#cb321-2"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(<span class="dt">output =</span> word, <span class="dt">input =</span> text, <span class="dt">token =</span> <span class="st">&quot;words&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb321-3"><a href="texto-analisis.html#cb321-3"></a><span class="st">  </span><span class="co"># filtrar stop words!</span></span>
+<span id="cb321-4"><a href="texto-analisis.html#cb321-4"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(word <span class="op">%in%</span><span class="st"> </span>stop_words_en))</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="texto-analisis.html#cb322-1"></a>palabras_leviathan_limpio</span></code></pre></div>
+<pre><code>## # A tibble: 79,118 x 6
+##    author        book      gutenberg_id chapter  line word     
+##    &lt;chr&gt;         &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    
+##  1 Thomas Hobbes Leviathan         3207       0     1 leviathan
+##  2 Thomas Hobbes Leviathan         3207       0     2 thomas   
+##  3 Thomas Hobbes Leviathan         3207       0     2 hobbes   
+##  4 Thomas Hobbes Leviathan         3207       0     3 1651     
+##  5 Thomas Hobbes Leviathan         3207       0     4 leviathan
+##  6 Thomas Hobbes Leviathan         3207       0     4 matter   
+##  7 Thomas Hobbes Leviathan         3207       0     4 forme    
+##  8 Thomas Hobbes Leviathan         3207       0     4 power    
+##  9 Thomas Hobbes Leviathan         3207       0     4 common   
+## 10 Thomas Hobbes Leviathan         3207       0     4 wealth   
+## # ... with 79,108 more rows</code></pre>
+<p>Ahora calculemos las frecuencias:</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="texto-analisis.html#cb324-1"></a>palabras_leviathan_limpio <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb324-2"><a href="texto-analisis.html#cb324-2"></a><span class="st">  </span><span class="kw">count</span>(word, <span class="dt">sort =</span> T)</span></code></pre></div>
+<pre><code>## # A tibble: 9,559 x 2
+##    word          n
+##    &lt;chr&gt;     &lt;int&gt;
+##  1 man        1071
+##  2 god        1068
+##  3 men         998
+##  4 power       745
+##  5 law         662
+##  6 common      632
+##  7 soveraign   497
+##  8 hath        446
+##  9 wealth      438
+## 10 nature      420
+## # ... with 9,549 more rows</code></pre>
+<p>Por cierto, otra herramienta útil para limpiar el análisis posterior es el <em>stemming</em>, el ejercicio de llevar las palabras a su raíz. Por ejemplo:</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="texto-analisis.html#cb326-1"></a>SnowballC<span class="op">::</span><span class="kw">wordStem</span>(<span class="kw">c</span>(<span class="st">&quot;caminaba&quot;</span>, <span class="st">&quot;caminó&quot;), language = &quot;</span>es<span class="st">&quot;)</span></span></code></pre></div>
+<pre><code>## [1] &quot;camin&quot; &quot;camin&quot;</code></pre>
+<p>Podríamos realizar esto para las palabras de nuestra base:</p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="texto-analisis.html#cb328-1"></a>palabras_leviathan_limpio_ej_stemming &lt;-<span class="st"> </span>palabras_leviathan_limpio <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb328-2"><a href="texto-analisis.html#cb328-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">word =</span> SnowballC<span class="op">::</span><span class="kw">wordStem</span>(word, <span class="dt">language =</span> <span class="st">&quot;en&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="texto-analisis.html#cb329-1"></a><span class="kw">length</span>(<span class="kw">unique</span>(palabras_leviathan_limpio<span class="op">$</span>word))</span></code></pre></div>
+<pre><code>## [1] 9559</code></pre>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="texto-analisis.html#cb331-1"></a><span class="kw">length</span>(<span class="kw">unique</span>(palabras_leviathan_limpio_ej_stemming<span class="op">$</span>word))</span></code></pre></div>
+<pre><code>## [1] 6351</code></pre>
+</div>
+<div id="ejercicio-a-5" class="section level3">
+<h3>(Ejercicio a)</h3>
+<p>¿Cuáles son las palabras más comunes en “A Vindication of the Rights of Woman” de Mary Wollstonecraft, eliminando <em>stop words</em>? Incluye una columna con la proporción de aparición de cada palabra en el libro. Crea una base “palabras_rights_limpio”, similar a la que hicimos antes, en el proceso. Tu código:</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="texto-analisis.html#cb333-1"></a>palabras_rights_limpio &lt;-<span class="st"> </span>rights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb333-2"><a href="texto-analisis.html#cb333-2"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(<span class="dt">output =</span> word, <span class="dt">input =</span> text, <span class="dt">token =</span> <span class="st">&quot;words&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb333-3"><a href="texto-analisis.html#cb333-3"></a><span class="st">  </span><span class="co"># filtrar stop words!</span></span>
+<span id="cb333-4"><a href="texto-analisis.html#cb333-4"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(word <span class="op">%in%</span><span class="st"> </span>stop_words_en))</span></code></pre></div>
+</div>
+<div id="hacer-un-ránking-de-las-palabras-más-comunes" class="section level3">
+<h3>Hacer un ránking de las palabras más comunes</h3>
+<p>Hagamos un gráfico de “ránking” para las diez palabras más comunes en el libro de Wollstonecraft:</p>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="texto-analisis.html#cb334-1"></a>rank_rights &lt;-<span class="st"> </span>palabras_rights_limpio <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb334-2"><a href="texto-analisis.html#cb334-2"></a><span class="st">  </span><span class="kw">count</span>(word, <span class="dt">sort =</span> T) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb334-3"><a href="texto-analisis.html#cb334-3"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="texto-analisis.html#cb335-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> rank_rights,</span>
+<span id="cb335-2"><a href="texto-analisis.html#cb335-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> n, <span class="dt">y =</span> <span class="kw">fct_reorder</span>(<span class="kw">as.factor</span>(word), n), <span class="dt">label =</span> n)) <span class="op">+</span></span>
+<span id="cb335-3"><a href="texto-analisis.html#cb335-3"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb335-4"><a href="texto-analisis.html#cb335-4"></a><span class="st">  </span><span class="kw">geom_label</span>() <span class="op">+</span></span>
+<span id="cb335-5"><a href="texto-analisis.html#cb335-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title    =</span> <span class="st">&quot;Palabras más comunes en el libro&quot;</span>,</span>
+<span id="cb335-6"><a href="texto-analisis.html#cb335-6"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;&#39;A Vindication of the Rights of Woman&#39; (1792)&quot;</span>,</span>
+<span id="cb335-7"><a href="texto-analisis.html#cb335-7"></a>       <span class="dt">x        =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb335-8"><a href="texto-analisis.html#cb335-8"></a>       <span class="dt">caption  =</span> <span class="st">&quot;Fuente: Elaboración propia en base a Wollstonecraft (1792)&quot;</span>)</span></code></pre></div>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+</div>
+<div id="ejercicio-b-4" class="section level3">
+<h3>(Ejercicio b)</h3>
+<p>Genera un gráfico con las palabras más comunes en “On Liberty” de John Stuart Mill. Tu código:</p>
+</div>
+</div>
+<div id="separar-el-análisis-de-frecuencias-por-secciones" class="section level2">
+<h2>Separar el análisis de frecuencias por secciones</h2>
+<p>Obtengamos las diez palabras más comunes de cada capítulo, con un combo de <code>count()</code>, <code>group_by()</code> y <code>slice()</code>:</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="texto-analisis.html#cb336-1"></a>rank_rights_caps &lt;-<span class="st"> </span>palabras_rights_limpio <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb336-2"><a href="texto-analisis.html#cb336-2"></a><span class="st">  </span><span class="kw">count</span>(word, chapter, <span class="dt">sort =</span> T) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb336-3"><a href="texto-analisis.html#cb336-3"></a><span class="st">  </span><span class="kw">group_by</span>(chapter) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb336-4"><a href="texto-analisis.html#cb336-4"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb336-5"><a href="texto-analisis.html#cb336-5"></a><span class="st">  </span><span class="kw">ungroup</span>()</span></code></pre></div>
+<p>Ahora podemos graficarlas con las “facetas” de <code>ggplot2</code>:</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="texto-analisis.html#cb337-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> rank_rights_caps <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(chapter <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>),</span>
+<span id="cb337-2"><a href="texto-analisis.html#cb337-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> n, </span>
+<span id="cb337-3"><a href="texto-analisis.html#cb337-3"></a>                     <span class="co"># permite ordenar las barras dentro de cada faceta:</span></span>
+<span id="cb337-4"><a href="texto-analisis.html#cb337-4"></a>                     <span class="dt">y =</span> <span class="kw">reorder_within</span>(<span class="kw">as.factor</span>(word), n, chapter))) <span class="op">+</span></span>
+<span id="cb337-5"><a href="texto-analisis.html#cb337-5"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb337-6"><a href="texto-analisis.html#cb337-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>chapter, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></span>
+<span id="cb337-7"><a href="texto-analisis.html#cb337-7"></a><span class="st">  </span><span class="co"># permite ordenar las barras dentro de cada faceta:</span></span>
+<span id="cb337-8"><a href="texto-analisis.html#cb337-8"></a><span class="st">  </span><span class="kw">scale_y_reordered</span>() <span class="op">+</span></span>
+<span id="cb337-9"><a href="texto-analisis.html#cb337-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb337-10"><a href="texto-analisis.html#cb337-10"></a>       <span class="dt">title    =</span> <span class="st">&quot;Palabras más comunes en cada capítulo&quot;</span>,</span>
+<span id="cb337-11"><a href="texto-analisis.html#cb337-11"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;&#39;A Vindication of the Rights of Woman&#39; (1792)&quot;</span>,</span>
+<span id="cb337-12"><a href="texto-analisis.html#cb337-12"></a>       <span class="dt">caption  =</span> <span class="st">&quot;Elaboración propia en base a Wollstonecraft (1792)&quot;</span>)</span></code></pre></div>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
+<p>Por cierto, cuando se separa el análisis decimos que este se realiza por “documentos”. Estos documentos pueden ser capítulos/secciones, como vimos ahora, o simplemente distintos textos/libros.</p>
+</div>
+<div id="obtener-las-palabras-más-distintivas-al-comparar-documentos" class="section level2">
+<h2>Obtener las palabras más distintivas al comparar documentos</h2>
+<p>Tal vez nuestro objetivo al comparar documentos es encontrar las palabras más distintivas de cada uno (¿por qué mirar las frecuencias puede no ser la mejor forma de hacer esto?). Un cálculo relativamente sencillo de esto es el llamado tf-idf (<em>term frequency - inverse document frequency</em>; <a href="https://www.tidytextmining.com/tfidf.html">Silge &amp; Robinson (2019, cap. 3)</a>).</p>
+<p><strong>El tf-idf busca medir la frecuencia relativa de un término en un documento (tf) ponderada por qué tan raro es ese término a lo largo de todos los documentos (idf).</strong> Tiene dos partes:</p>
+<p>tf: La frecuencia del término <span class="math inline">\(i\)</span> en el documento <span class="math inline">\(d\)</span> (<span class="math inline">\(\textit{tf}_{i,d}\)</span>) es simplemente el número de veces que este aparece en el documento divido el total de palabras en el documento. Esto espera ser una medida de qué tanto se repite la palabra en el documento:</p>
+<p><span class="math display">\[
+tf_{i,d} = \frac{n_{\ i\;en\;d}}{n_{\ total\ términos\ en\ d}}
+\]</span></p>
+<p>idf: Mientras tanto, la frecuencia inversa del término <span class="math inline">\(i\)</span> en los documentos (<span class="math inline">\(\textit{idf}_{i}\)</span>) es un poco más complicada. Busca ser una medida de qué tan poco común es el uso de una palabra a lo largo de varios documentos. Es el logaritmo natural de la división entre el número de documentos totales y el número de documentos que contienen el término <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[
+idf_i = ln(\frac{n_{\ docs}}{n_{\ docs\ que\ contienen\ i}})
+\]</span></p>
+<p>La tf-idf (<em>term frequency - inverse document frequency</em>) es simplemente la multiplicación de ambos números.</p>
+<p><span class="math display">\[
+\textit{tf-idf}_{i,d} = \textit{tf}_{i,d} \cdot \textit{idf}_i
+\]</span></p>
+<p>Por ejemplo:</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="texto-analisis.html#cb338-1"></a>(<span class="dv">10</span> <span class="op">/</span><span class="st"> </span><span class="dv">100</span>) <span class="op">*</span><span class="st"> </span><span class="co"># término que aparece en un 10% de los términos del doc.</span></span>
+<span id="cb338-2"><a href="texto-analisis.html#cb338-2"></a><span class="st">  </span><span class="kw">log</span>(<span class="dv">8</span> <span class="op">/</span><span class="st"> </span><span class="dv">8</span>) <span class="co"># está presente en todos los documentos</span></span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="texto-analisis.html#cb340-1"></a>(<span class="dv">10</span> <span class="op">/</span><span class="st"> </span><span class="dv">100</span>) <span class="op">*</span><span class="st"> </span><span class="co"># término que aparece en un 10% de los términos del doc.</span></span>
+<span id="cb340-2"><a href="texto-analisis.html#cb340-2"></a><span class="st">  </span><span class="kw">log</span>(<span class="dv">8</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>) <span class="co"># está presente en la mitad de los documentos</span></span></code></pre></div>
+<pre><code>## [1] 0.06931472</code></pre>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="texto-analisis.html#cb342-1"></a>(<span class="dv">10</span> <span class="op">/</span><span class="st"> </span><span class="dv">100</span>) <span class="op">*</span><span class="st"> </span><span class="co"># término que aparece en un 10% de los términos del doc.</span></span>
+<span id="cb342-2"><a href="texto-analisis.html#cb342-2"></a><span class="st">  </span><span class="kw">log</span>(<span class="dv">8</span> <span class="op">/</span><span class="st"> </span><span class="dv">1</span>) <span class="co"># está presente en un solo documento</span></span></code></pre></div>
+<pre><code>## [1] 0.2079442</code></pre>
+<p>La función <code>bind_tf_idf()</code> nos permite calcular rápidamente el tf_idf para un conteo de palabras. Obtengamos las diez palabras más distintivas de cada capítulo del libro de Wollstonecraft:</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="texto-analisis.html#cb344-1"></a>tf_idf_rights &lt;-<span class="st"> </span>palabras_rights_limpio <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb344-2"><a href="texto-analisis.html#cb344-2"></a><span class="st">  </span><span class="kw">filter</span>(chapter <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb344-3"><a href="texto-analisis.html#cb344-3"></a><span class="st">  </span><span class="kw">count</span>(word, chapter, <span class="dt">sort =</span> T) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb344-4"><a href="texto-analisis.html#cb344-4"></a><span class="st">  </span><span class="co"># fíjense en los argumentos:</span></span>
+<span id="cb344-5"><a href="texto-analisis.html#cb344-5"></a><span class="st">  </span><span class="kw">bind_tf_idf</span>(<span class="dt">term =</span> word, <span class="dt">document =</span> chapter, <span class="dt">n =</span> n)</span>
+<span id="cb344-6"><a href="texto-analisis.html#cb344-6"></a></span>
+<span id="cb344-7"><a href="texto-analisis.html#cb344-7"></a>tf_idf_rights</span></code></pre></div>
+<pre><code>## # A tibble: 18,020 x 6
+##    word   chapter     n      tf    idf   tf_idf
+##    &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+##  1 women        4    86 0.0183  0      0       
+##  2 reason       5    68 0.0104  0      0       
+##  3 man          5    61 0.00934 0      0       
+##  4 women       12    51 0.0124  0      0       
+##  5 women       13    51 0.0171  0      0       
+##  6 women        2    48 0.0140  0      0       
+##  7 men          4    47 0.0100  0.0800 0.000803
+##  8 woman        5    45 0.00689 0.167  0.00115 
+##  9 man          2    43 0.0126  0      0       
+## 10 man          4    43 0.00917 0      0       
+## # ... with 18,010 more rows</code></pre>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="texto-analisis.html#cb346-1"></a><span class="co"># ahora vamos a quedarnos solo con los diez tf-idf más altos por documento (capítulo): </span></span>
+<span id="cb346-2"><a href="texto-analisis.html#cb346-2"></a>rank_tf_idf_rights &lt;-<span class="st"> </span>tf_idf_rights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb346-3"><a href="texto-analisis.html#cb346-3"></a><span class="st">  </span><span class="kw">group_by</span>(chapter) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb346-4"><a href="texto-analisis.html#cb346-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>tf_idf) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb346-5"><a href="texto-analisis.html#cb346-5"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb346-6"><a href="texto-analisis.html#cb346-6"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
+<span id="cb346-7"><a href="texto-analisis.html#cb346-7"></a></span>
+<span id="cb346-8"><a href="texto-analisis.html#cb346-8"></a>rank_tf_idf_rights</span></code></pre></div>
+<pre><code>## # A tibble: 130 x 6
+##    word         chapter     n      tf   idf  tf_idf
+##    &lt;chr&gt;          &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1 profession         1     5 0.00382 1.47  0.00560
+##  2 barbarism          1     3 0.00229 1.87  0.00429
+##  3 thousands          1     3 0.00229 1.87  0.00429
+##  4 curate             1     2 0.00153 2.56  0.00392
+##  5 deformity          1     2 0.00153 2.56  0.00392
+##  6 monarchy           1     2 0.00153 2.56  0.00392
+##  7 pushes             1     2 0.00153 2.56  0.00392
+##  8 unsound            1     2 0.00153 2.56  0.00392
+##  9 perfection         1     5 0.00382 0.956 0.00365
+## 10 civilization       1     6 0.00458 0.773 0.00354
+## # ... with 120 more rows</code></pre>
+<p>Ahora podemos graficarlas:</p>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="texto-analisis.html#cb348-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> rank_tf_idf_rights,</span>
+<span id="cb348-2"><a href="texto-analisis.html#cb348-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> tf_idf, </span>
+<span id="cb348-3"><a href="texto-analisis.html#cb348-3"></a>                     <span class="co"># permite ordenar las barras dentro de cada faceta:</span></span>
+<span id="cb348-4"><a href="texto-analisis.html#cb348-4"></a>                     <span class="dt">y =</span> <span class="kw">reorder_within</span>(<span class="kw">as.factor</span>(word), tf_idf, chapter))) <span class="op">+</span></span>
+<span id="cb348-5"><a href="texto-analisis.html#cb348-5"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb348-6"><a href="texto-analisis.html#cb348-6"></a><span class="st">  </span><span class="co"># permite ordenar las barras dentro de cada faceta:</span></span>
+<span id="cb348-7"><a href="texto-analisis.html#cb348-7"></a><span class="st">  </span><span class="kw">scale_y_reordered</span>() <span class="op">+</span></span>
+<span id="cb348-8"><a href="texto-analisis.html#cb348-8"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb348-9"><a href="texto-analisis.html#cb348-9"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>chapter, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></span>
+<span id="cb348-10"><a href="texto-analisis.html#cb348-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;tf-idf&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb348-11"><a href="texto-analisis.html#cb348-11"></a>       <span class="dt">title    =</span> <span class="st">&quot;Palabras más distintivas de cada capítulo&quot;</span>,</span>
+<span id="cb348-12"><a href="texto-analisis.html#cb348-12"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;&#39;A Vindication of the Rights of Woman&#39; (1792)&quot;</span>,</span>
+<span id="cb348-13"><a href="texto-analisis.html#cb348-13"></a>       <span class="dt">caption  =</span> <span class="st">&quot;Elaboración propia en base a Wollstonecraft (1792)&quot;</span>)</span></code></pre></div>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-201-1.png" width="768" /></p>
+<div id="ejercicio-c-4" class="section level3">
+<h3>(Ejercicio c)</h3>
+<p>Grafica las palabras más distintivas al comparar los tres libros. Tip: un paso debería ser unir las tres bases. Hay varias formas de hacer esto, pero te recomiendo experimentar con <code>bind_rows()</code>. Tu código:</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="part-análisis-de-texto.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="texto-cadenas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

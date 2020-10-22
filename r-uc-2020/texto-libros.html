@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>04 - Guía búsqueda de ayuda | Programación para las Ciencias Sociales</title>
+  <title>06C - Descarga de libros | Programación para las Ciencias Sociales</title>
   <meta name="description" content="Sitio web ICP0506" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="04 - Guía búsqueda de ayuda | Programación para las Ciencias Sociales" />
+  <meta property="og:title" content="06C - Descarga de libros | Programación para las Ciencias Sociales" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="04 - Guía búsqueda de ayuda | Programación para las Ciencias Sociales" />
+  <meta name="twitter:title" content="06C - Descarga de libros | Programación para las Ciencias Sociales" />
   
   <meta name="twitter:description" content="Sitio web ICP0506" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="visualizacion-personalizacion.html"/>
-<link rel="next" href="manejo-av.html"/>
+<link rel="prev" href="texto-cadenas.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -243,158 +243,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="busqueda-ayuda" class="section level1 unnumbered">
-<h1>04 - Guía búsqueda de ayuda</h1>
-<p>En esta guía vamos a revisar algunos tips y recursos para buscar ayuda efectivamente, en el contexto de proyectos de análisis de datos.</p>
-<div id="leer-archivos-de-ayuda-de-r" class="section level2">
-<h2>Leer archivos de ayuda de R</h2>
-<p>Todas las funciones en R tienen un archivo de ayuda asociado. Podemos acceder a estos simplemente antecediendo el nombre de la función con un signo de interrogación:</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="busqueda-ayuda.html#cb248-1"></a>?mean</span>
-<span id="cb248-2"><a href="busqueda-ayuda.html#cb248-2"></a></span>
-<span id="cb248-3"><a href="busqueda-ayuda.html#cb248-3"></a>?<span class="st">`</span><span class="dt">%&gt;%</span><span class="st">`</span> <span class="co"># con estos tildes invertidos podemos ingresar funciones que tengan caracteres especiales</span></span>
-<span id="cb248-4"><a href="busqueda-ayuda.html#cb248-4"></a></span>
-<span id="cb248-5"><a href="busqueda-ayuda.html#cb248-5"></a>?<span class="st">`</span><span class="dt">%in%</span><span class="st">`</span></span></code></pre></div>
-<p>Podemos leer un archivo de ayuda de R de la siguiente forma:</p>
-<div class="figure"><span id="fig:unnamed-chunk-148"></span>
-<img src="imgs/trad-help-files.png" alt="Traducido de [Healy (2018)](https://socviz.co/appendix.html)." width="1418" />
-<p class="caption">
-Figure 1: Traducido de <a href="https://socviz.co/appendix.html">Healy (2018)</a>.
-</p>
-</div>
-</div>
-<div id="encontrar-funciones-en-línea" class="section level2">
-<h2>Encontrar funciones en línea</h2>
-<div id="cran-packages" class="section level3">
-<h3><a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN packages</a></h3>
-<p>CRAN es el sitio de los repositorios oficiales de R. La página web es un poco confusa, pero usualmente encontramos los paquetes que queremos buscando en Google <code>cran &lt;paquete&gt;</code>. Por ejemplo, este es el <a href="https://cran.r-project.org/web/packages/dplyr/">sitio para el paquete <code>dplyr</code></a>.</p>
-<p>Contiene información útil sobre el paquete. Tres campos muy importantes a mirar son (a) “URL”, que nos lleva al sitio oficial del paquete, usualmente en la página del autor/a, (B) “Vignettes”, que son pequeñas guías oficiales de cómo usarlo y (C) “Reference manual”, un manual con todos los archivos de ayuda de sus funciones.</p>
-</div>
-<div id="rdocumentation.org" class="section level3">
-<h3><a href="https://www.rdocumentation.org/">rdocumentation.org</a></h3>
-<p>En este sitio podemos buscar funciones y mirar sus archivos de ayuda en línea. Prueba a buscar alguna función conocida (por ejemplo, <code>mutate</code>, <code>arrange</code>, <code>select</code>, etc.). En la columna de la derecha aparecerán las funciones, mientras que la de la izquierda mostrará paquetes relacionados con nuestra búsqueda.</p>
-</div>
-<div id="cran-task-views" class="section level3">
-<h3><a href="https://cran.r-project.org/web/views/">CRAN Task Views</a></h3>
-<p>CRAN Task Views son guías muy completas sobre qué paquetes nos pueden ayudar a lidiar con tópicos específicos. Por ejemplo, veamos el <a href="https://cran.r-project.org/web/views/SocialSciences.html">CTV de “Estadística para las Ciencias Sociales”</a>.</p>
-</div>
-</div>
-<div id="solucionar-problemas" class="section level2">
-<h2>Solucionar problemas</h2>
-<div id="problemas-con-paréntesis-y-comas" class="section level3">
-<h3>Problemas con paréntesis y comas</h3>
-<p>Vamos a usar una base de ejemplo de <code>ggplot2</code>, llamada <code>midwest</code>. Contiene información demográfica sobre distintos condados en Estados Unidos, parte de la zona geográfica llamada “Midwest”.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="busqueda-ayuda.html#cb249-1"></a>midwest</span></code></pre></div>
-<pre><code>## # A tibble: 437 x 28
-##      PID county state  area poptotal popdensity popwhite popblack popamerindian popasian popother percwhite percblack percamerindan percasian percother popadults perchsd percollege percprof poppovertyknown percpovertyknown percbelowpoverty
-##    &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt;    &lt;int&gt;    &lt;int&gt;         &lt;int&gt;    &lt;int&gt;    &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;int&gt;   &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;           &lt;int&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-##  1   561 ADAMS  IL    0.052    66090      1271.    63917     1702            98      249      124      96.7    2.58          0.148     0.377     0.188      43298    75.1       19.6     4.36           63628             96.3            13.2 
-##  2   562 ALEXA~ IL    0.014    10626       759      7054     3496            19       48        9      66.4   32.9           0.179     0.452     0.0847      6724    59.7       11.2     2.87           10529             99.1            32.2 
-##  3   563 BOND   IL    0.022    14991       681.    14477      429            35       16       34      96.6    2.86          0.233     0.107     0.227       9669    69.3       17.0     4.49           14235             95.0            12.1 
-##  4   564 BOONE  IL    0.017    30806      1812.    29344      127            46      150     1139      95.3    0.412         0.149     0.487     3.70       19272    75.5       17.3     4.20           30337             98.5             7.21
-##  5   565 BROWN  IL    0.018     5836       324.     5264      547            14        5        6      90.2    9.37          0.240     0.0857    0.103       3979    68.9       14.5     3.37            4815             82.5            13.5 
-##  6   566 BUREAU IL    0.05     35688       714.    35157       50            65      195      221      98.5    0.140         0.182     0.546     0.619      23444    76.6       18.9     3.28           35107             98.4            10.4 
-##  7   567 CALHO~ IL    0.017     5322       313.     5298        1             8       15        0      99.5    0.0188        0.150     0.282     0           3583    62.8       11.9     3.21            5241             98.5            15.1 
-##  8   568 CARRO~ IL    0.027    16805       622.    16519      111            30       61       84      98.3    0.661         0.179     0.363     0.500      11323    76.0       16.2     3.06           16455             97.9            11.7 
-##  9   569 CASS   IL    0.024    13437       560.    13384       16             8       23        6      99.6    0.119         0.0595    0.171     0.0447      8825    72.3       14.1     3.21           13081             97.4            13.9 
-## 10   570 CHAMP~ IL    0.058   173025      2983.   146506    16559           331     8033     1596      84.7    9.57          0.191     4.64      0.922      95971    87.5       41.3    17.8           154934             89.5            15.6 
-## # ... with 427 more rows, and 5 more variables: percchildbelowpovert &lt;dbl&gt;, percadultpoverty &lt;dbl&gt;, percelderlypoverty &lt;dbl&gt;, inmetro &lt;int&gt;, category &lt;chr&gt;</code></pre>
-<p>Generemos un gráfico con ella:</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="busqueda-ayuda.html#cb251-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> midwest, </span>
-<span id="cb251-2"><a href="busqueda-ayuda.html#cb251-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(inmetro), <span class="dt">y =</span> percbelowpoverty)) <span class="op">+</span></span>
-<span id="cb251-3"><a href="busqueda-ayuda.html#cb251-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb251-4"><a href="busqueda-ayuda.html#cb251-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Relación entre carácter metropolitano y pobreza en los condados del Midwest&quot;</span>,</span>
-<span id="cb251-5"><a href="busqueda-ayuda.html#cb251-5"></a>       <span class="dt">caption =</span> <span class="st">&quot;Fuente: Wickham (2018)&quot;</span>,</span>
-<span id="cb251-6"><a href="busqueda-ayuda.html#cb251-6"></a>       <span class="dt">x =</span> <span class="st">&quot;Carácter metropolitano&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Porcentaje de pobreza&quot;</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
-<p>La gran mayoría de los errores que se cometen en R tienen que ver con sintaxis. Como hemos visto, R (como cualquier lenguaje de programación) espera instrucciones muy precisas de nuestra parte. Aquí algunos tips para detectar problemas de este tipo:</p>
-<ul>
-<li><strong>Revisar dónde abren/cierran paréntesis sospechosos</strong>. Si ponemos el teclado al lado de uno de ellos, RStudio resaltará el paréntesis par a este:</li>
-</ul>
-<p><img src="imgs/gif_parentesis.gif" width="125%" /></p>
-<ul>
-<li><p>Con respecto a las comas, debemos recordar que se utilizan para <strong>separar argumentos de funciones</strong>, por lo que siempre deben estar adentro de ellas. Fíjate en los argumentos de la función <code>labs()</code> en el código de arriba.</p></li>
-<li><p>Otro error de sintaxis es dejar cadenas de código (<code>%&gt;%</code> o <code>+</code>) abiertas. Esto es, dejar un pipe o “+” extra al final. R seguirá esperando la continuación de la cadena!</p></li>
-<li><p>Un truco para ver dónde está fallando nuestro código es <strong>“ponerle sangría” línea a línea</strong>. Si tenemos un código desordenado, podemos ir ordenándolo línea a línea con Ctrl + I. Probablemente esto nos dé una mejor perspectiva para encontrar errores de comas, pipes, etc:</p></li>
-</ul>
-<p><img src="imgs/gif_sangria.gif" width="125%" /></p>
-</div>
-<div id="leer-los-mensajes-de-error-de-r" class="section level3">
-<h3>Leer los mensajes de error de R</h3>
-<p>Veamos el siguiente error, cuando intentamos filtrar solo los condados de Illinois en la base de ejemplo:</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="busqueda-ayuda.html#cb252-1"></a>midwest <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb252-2"><a href="busqueda-ayuda.html#cb252-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="dt">state =</span> <span class="st">&quot;IL&quot;</span>)</span></code></pre></div>
-<pre><code>## Error: Problem with `filter()` input `..1`.
-## x Input `..1` is named.
-## i This usually means that you&#39;ve used `=` instead of `==`.
-## i Did you mean `state == &quot;IL&quot;`?</code></pre>
-<p>¿Cuál es la solución al problema? En este caso el mensaje de error es muy claro, teníamos que usar el operador lógico <code>==</code>, en vez de solo <code>=</code>.</p>
-</div>
-<div id="buscar-en-internet" class="section level3">
-<h3>Buscar en internet</h3>
-<p>La mayoría de la veces, los errores que devuelve R son difíciles de entender, a diferencia del ejemplo anterior. Una buena idea es buscar el error en Google (la mayoría de los errores ya han sido preguntados en línea), acompañado de la función y/o paquete.</p>
-<p>Para hacer estas búsquedas eficientemente, deberíamos <strong>eliminar cualquier información del error que sea específica de nuestra base de datos</strong> (“generalizándolo”). Por ejemplo, una buena búsqueda para el error anterior podría ser la siguiente. También eliminamos símbolos especiales (como <code>==</code>), que seguramente Google no tomará en cuenta.</p>
-<blockquote>
-<p>r dplyr filter must not be named, do you need</p>
-</blockquote>
-<p>En Google podemos poner una palabra o frase entre comillas para que los resultados deban necesariamente contenerla tal como está escrita. Podríamos buscar algo como esto:</p>
-<blockquote>
-<p>r dplyr filter “must not be named, do you need”</p>
-</blockquote>
-<p>Por lejos, los mejores resultados vienen de <a href="https://stackoverflow.com/">StackOverflow</a>, un sitio web de preguntas y respuestas de programación. En Google a menudo querrán clickear en “Más resultados de stackoverflow.com”, si es que no encuentran la solución en los primeros resultados. Podemos hacer nuestra búsqueda anterior directamente en StackOverflow a través de Google, de la siguiente forma:</p>
-<blockquote>
-<p>site:stackoverflow.com dplyr filter “must not be named, do you need”</p>
-</blockquote>
-</div>
-</div>
-<div id="pedir-ayuda-con-ejemplos-reproducibles-reprex" class="section level2">
-<h2>Pedir ayuda con ejemplos reproducibles (reprex)</h2>
-<p>Cuando tenemos un problema y queremos compartirlo con alguien (colegas, StackOverflow, etc.), lo ideal es que generemos un ejemplo mínimo que reproduzca nuestro problema (reprex).</p>
-<ul>
-<li><p>La idea es que la otra persona no tenga que lidiar con todo nuestro código, sino que solo con la parte que nos está dando problemas.</p></li>
-<li><p>Adicionalmente, no queremos que esa otra persona tenga que entender nuestra base de datos en particular, por lo que los <em>reprex</em> usualmente están hechos con bases de datos pequeñas creadas o con bases de datos que vienen por defecto con R o el tidyverse (<code>mtcars</code>, <code>midwest</code>, <code>mpg</code>, <code>diamonds</code>, etc.).</p></li>
-<li><p>Por último, queremos que esa otra persona pueda correr rápidamente nuestro código, sin tener que preocuparse de nada más aparte de nuestro problema.</p></li>
-</ul>
-<p>Nuestro problema de antes:</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="busqueda-ayuda.html#cb254-1"></a>midwest <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb254-2"><a href="busqueda-ayuda.html#cb254-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="dt">state =</span> <span class="st">&quot;IL&quot;</span>)</span></code></pre></div>
-<pre><code>## Error: Problem with `filter()` input `..1`.
-## x Input `..1` is named.
-## i This usually means that you&#39;ve used `=` instead of `==`.
-## i Did you mean `state == &quot;IL&quot;`?</code></pre>
-<p>Utilizar la base “midwest” está bien, pero vamos a generar nuestro reprex con otra de ejemplo en el paquete <code>ggplot2</code>, llamada <code>mpg</code>. Esta base se ve de la siguiente forma. No importa mucho su contenido, pero sí que tenemos variables categóricas por las que querríamos filtrar, como por ejemplo “model”.</p>
-<pre><code>## # A tibble: 234 x 11
-##    manufacturer model      displ  year   cyl trans      drv     cty   hwy fl    class  
-##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  
-##  1 audi         a4           1.8  1999     4 auto(l5)   f        18    29 p     compact
-##  2 audi         a4           1.8  1999     4 manual(m5) f        21    29 p     compact
-##  3 audi         a4           2    2008     4 manual(m6) f        20    31 p     compact
-##  4 audi         a4           2    2008     4 auto(av)   f        21    30 p     compact
-##  5 audi         a4           2.8  1999     6 auto(l5)   f        16    26 p     compact
-##  6 audi         a4           2.8  1999     6 manual(m5) f        18    26 p     compact
-##  7 audi         a4           3.1  2008     6 auto(av)   f        18    27 p     compact
-##  8 audi         a4 quattro   1.8  1999     4 manual(m5) 4        18    26 p     compact
-##  9 audi         a4 quattro   1.8  1999     4 auto(l5)   4        16    25 p     compact
-## 10 audi         a4 quattro   2    2008     4 manual(m6) 4        20    28 p     compact
-## # ... with 224 more rows</code></pre>
-<p>Debemos pensar hacer la misma operación con la nueva base, y que nos dé el mismo error. Además, el reprex debe incluir la carga de paquetes:</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="busqueda-ayuda.html#cb257-1"></a><span class="kw">library</span>(tidyverse) <span class="co"># carga filter() y mpg</span></span>
-<span id="cb257-2"><a href="busqueda-ayuda.html#cb257-2"></a></span>
-<span id="cb257-3"><a href="busqueda-ayuda.html#cb257-3"></a>mpg <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb257-4"><a href="busqueda-ayuda.html#cb257-4"></a><span class="st">  </span><span class="kw">filter</span>(<span class="dt">model =</span> <span class="st">&quot;a4&quot;</span>)</span>
-<span id="cb257-5"><a href="busqueda-ayuda.html#cb257-5"></a><span class="co"># Error: `model` (`model = &quot;a4&quot;`) must not be named, do you need `==`?</span></span></code></pre></div>
+<div id="texto-libros" class="section level1 unnumbered">
+<h1>06C - Descarga de libros</h1>
+<p>Como al principio de todo script, recomiendo reiniciar R. Esto lo conseguimos en RStudio Cloud con Session &gt; Restart R y clickeando en la escoba del panel de “Environment” (superior derecho).</p>
+<p>El siguiente código se utilizó para descargar los libros del script 06A:</p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="texto-libros.html#cb396-1"></a><span class="co"># Cargar paquetes ----</span></span>
+<span id="cb396-2"><a href="texto-libros.html#cb396-2"></a></span>
+<span id="cb396-3"><a href="texto-libros.html#cb396-3"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb396-4"><a href="texto-libros.html#cb396-4"></a></span>
+<span id="cb396-5"><a href="texto-libros.html#cb396-5"></a><span class="co"># install.packages(&quot;tidytext&quot;)</span></span>
+<span id="cb396-6"><a href="texto-libros.html#cb396-6"></a><span class="kw">library</span>(tidytext)</span>
+<span id="cb396-7"><a href="texto-libros.html#cb396-7"></a><span class="kw">library</span>(stopwords)</span>
+<span id="cb396-8"><a href="texto-libros.html#cb396-8"></a></span>
+<span id="cb396-9"><a href="texto-libros.html#cb396-9"></a><span class="co"># install.packages(&quot;gutenbergr&quot;)</span></span>
+<span id="cb396-10"><a href="texto-libros.html#cb396-10"></a><span class="kw">library</span>(gutenbergr) <span class="co"># descargar libros de dominio público desde Project Gutenberg </span></span>
+<span id="cb396-11"><a href="texto-libros.html#cb396-11"></a></span>
+<span id="cb396-12"><a href="texto-libros.html#cb396-12"></a></span>
+<span id="cb396-13"><a href="texto-libros.html#cb396-13"></a></span>
+<span id="cb396-14"><a href="texto-libros.html#cb396-14"></a><span class="co"># Leviathan ----</span></span>
+<span id="cb396-15"><a href="texto-libros.html#cb396-15"></a></span>
+<span id="cb396-16"><a href="texto-libros.html#cb396-16"></a>leviathan &lt;-<span class="st"> </span><span class="kw">gutenberg_download</span>(<span class="dv">3207</span>, <span class="dt">strip =</span> T) </span>
+<span id="cb396-17"><a href="texto-libros.html#cb396-17"></a></span>
+<span id="cb396-18"><a href="texto-libros.html#cb396-18"></a>leviathan2 &lt;-<span class="st"> </span>leviathan <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-19"><a href="texto-libros.html#cb396-19"></a><span class="st">  </span><span class="co"># eliminar las lineas sin info (espacios o separadores)</span></span>
+<span id="cb396-20"><a href="texto-libros.html#cb396-20"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">str_detect</span>(text, <span class="st">&quot;^[</span><span class="ch">\\</span><span class="st">s[:punct:]]*$&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-21"><a href="texto-libros.html#cb396-21"></a><span class="st">  </span><span class="co"># generar variable con capítulos</span></span>
+<span id="cb396-22"><a href="texto-libros.html#cb396-22"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">chapter =</span> <span class="kw">cumsum</span>(<span class="kw">str_detect</span>(text, <span class="st">&quot;(CHAPTER )&quot;</span>)),</span>
+<span id="cb396-23"><a href="texto-libros.html#cb396-23"></a>         <span class="dt">line    =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-24"><a href="texto-libros.html#cb396-24"></a><span class="st">  </span><span class="co"># incluir información sobre el libro</span></span>
+<span id="cb396-25"><a href="texto-libros.html#cb396-25"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">author =</span> <span class="st">&quot;Thomas Hobbes&quot;</span>,</span>
+<span id="cb396-26"><a href="texto-libros.html#cb396-26"></a>         <span class="dt">book   =</span> <span class="st">&quot;Leviathan&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-27"><a href="texto-libros.html#cb396-27"></a><span class="st">  </span><span class="co"># reordenar columnas</span></span>
+<span id="cb396-28"><a href="texto-libros.html#cb396-28"></a><span class="st">  </span><span class="kw">select</span>(author, book, gutenberg_id, chapter, line, text)</span>
+<span id="cb396-29"><a href="texto-libros.html#cb396-29"></a></span>
+<span id="cb396-30"><a href="texto-libros.html#cb396-30"></a><span class="kw">write_csv</span>(leviathan2, <span class="st">&quot;datos/leviathan.csv&quot;</span>)</span>
+<span id="cb396-31"><a href="texto-libros.html#cb396-31"></a></span>
+<span id="cb396-32"><a href="texto-libros.html#cb396-32"></a></span>
+<span id="cb396-33"><a href="texto-libros.html#cb396-33"></a></span>
+<span id="cb396-34"><a href="texto-libros.html#cb396-34"></a><span class="co"># On Liberty ----</span></span>
+<span id="cb396-35"><a href="texto-libros.html#cb396-35"></a></span>
+<span id="cb396-36"><a href="texto-libros.html#cb396-36"></a>on_liberty &lt;-<span class="st"> </span><span class="kw">gutenberg_download</span>(<span class="dv">34901</span>, <span class="dt">strip =</span> T)</span>
+<span id="cb396-37"><a href="texto-libros.html#cb396-37"></a></span>
+<span id="cb396-38"><a href="texto-libros.html#cb396-38"></a>on_liberty2 &lt;-<span class="st"> </span>on_liberty <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-39"><a href="texto-libros.html#cb396-39"></a><span class="st">  </span><span class="co"># eliminar las lineas sin info (espacios o separadores)</span></span>
+<span id="cb396-40"><a href="texto-libros.html#cb396-40"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">str_detect</span>(text, <span class="st">&quot;^[</span><span class="ch">\\</span><span class="st">s[:punct:]]*$&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-41"><a href="texto-libros.html#cb396-41"></a><span class="st">  </span><span class="co"># generar variable con caps. (es imposible no contar las del índice usando expr. regulares, por eso las arreglo ex post)</span></span>
+<span id="cb396-42"><a href="texto-libros.html#cb396-42"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">text =</span> <span class="kw">str_remove_all</span>(text, <span class="st">&quot;(&lt;i&gt;)|(&lt;/i&gt;)&quot;</span>),</span>
+<span id="cb396-43"><a href="texto-libros.html#cb396-43"></a>         <span class="dt">chapter =</span> <span class="kw">cumsum</span>(<span class="kw">str_detect</span>(text, <span class="st">&quot;(CHAPTER )&quot;</span>)),</span>
+<span id="cb396-44"><a href="texto-libros.html#cb396-44"></a>         <span class="dt">line    =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-45"><a href="texto-libros.html#cb396-45"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">chapter =</span> chapter <span class="op">-</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-46"><a href="texto-libros.html#cb396-46"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">chapter =</span> <span class="kw">if_else</span>(chapter <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, chapter)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-47"><a href="texto-libros.html#cb396-47"></a><span class="st">  </span><span class="co"># incluir información sobre el libro</span></span>
+<span id="cb396-48"><a href="texto-libros.html#cb396-48"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">author =</span> <span class="st">&quot;John Stuart Mill&quot;</span>,</span>
+<span id="cb396-49"><a href="texto-libros.html#cb396-49"></a>         <span class="dt">book   =</span> <span class="st">&quot;On Liberty&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-50"><a href="texto-libros.html#cb396-50"></a><span class="st">  </span><span class="co"># reordenar columnas</span></span>
+<span id="cb396-51"><a href="texto-libros.html#cb396-51"></a><span class="st">  </span><span class="kw">select</span>(author, book, gutenberg_id, chapter, line, text)</span>
+<span id="cb396-52"><a href="texto-libros.html#cb396-52"></a></span>
+<span id="cb396-53"><a href="texto-libros.html#cb396-53"></a><span class="kw">write_csv</span>(on_liberty2, <span class="st">&quot;datos/on_liberty.csv&quot;</span>)</span>
+<span id="cb396-54"><a href="texto-libros.html#cb396-54"></a></span>
+<span id="cb396-55"><a href="texto-libros.html#cb396-55"></a></span>
+<span id="cb396-56"><a href="texto-libros.html#cb396-56"></a></span>
+<span id="cb396-57"><a href="texto-libros.html#cb396-57"></a><span class="co"># A Vindication of the Rights of Women ----</span></span>
+<span id="cb396-58"><a href="texto-libros.html#cb396-58"></a></span>
+<span id="cb396-59"><a href="texto-libros.html#cb396-59"></a>rights_of_women &lt;-<span class="st"> </span><span class="kw">gutenberg_download</span>(<span class="dv">3420</span>, <span class="dt">strip =</span> T)</span>
+<span id="cb396-60"><a href="texto-libros.html#cb396-60"></a></span>
+<span id="cb396-61"><a href="texto-libros.html#cb396-61"></a>rights_of_women2 &lt;-<span class="st"> </span>rights_of_women <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-62"><a href="texto-libros.html#cb396-62"></a><span class="st">  </span><span class="co"># eliminar las lineas sin info (espacios o separadores)</span></span>
+<span id="cb396-63"><a href="texto-libros.html#cb396-63"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">str_detect</span>(text, <span class="st">&quot;^[</span><span class="ch">\\</span><span class="st">s[:punct:]]*$&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-64"><a href="texto-libros.html#cb396-64"></a><span class="st">  </span><span class="co"># generar variable con caps. (es muy difícil no contar las del índice usando expr. regulares, por eso las arreglo ex post)</span></span>
+<span id="cb396-65"><a href="texto-libros.html#cb396-65"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">text =</span> <span class="kw">str_remove_all</span>(text, <span class="st">&quot;(&lt;i&gt;)|(&lt;/i&gt;)&quot;</span>),</span>
+<span id="cb396-66"><a href="texto-libros.html#cb396-66"></a>         <span class="dt">chapter =</span> <span class="kw">cumsum</span>(<span class="kw">str_detect</span>(text, <span class="st">&quot;(CHAPTER )&quot;</span>)),</span>
+<span id="cb396-67"><a href="texto-libros.html#cb396-67"></a>         <span class="dt">line    =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-68"><a href="texto-libros.html#cb396-68"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">chapter =</span> chapter <span class="op">-</span><span class="st"> </span><span class="dv">13</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-69"><a href="texto-libros.html#cb396-69"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">chapter =</span> <span class="kw">if_else</span>(chapter <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, chapter)) <span class="op">%&gt;%</span></span>
+<span id="cb396-70"><a href="texto-libros.html#cb396-70"></a><span class="st">  </span><span class="co"># incluir información sobre el libro</span></span>
+<span id="cb396-71"><a href="texto-libros.html#cb396-71"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">author =</span> <span class="st">&quot;Mary Wollstonecraft&quot;</span>,</span>
+<span id="cb396-72"><a href="texto-libros.html#cb396-72"></a>         <span class="dt">book   =</span> <span class="st">&quot;A Vindication of the Rights of Woman&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb396-73"><a href="texto-libros.html#cb396-73"></a><span class="st">  </span><span class="co"># reordenar columnas</span></span>
+<span id="cb396-74"><a href="texto-libros.html#cb396-74"></a><span class="st">  </span><span class="kw">select</span>(author, book, gutenberg_id, chapter, line, text)</span>
+<span id="cb396-75"><a href="texto-libros.html#cb396-75"></a></span>
+<span id="cb396-76"><a href="texto-libros.html#cb396-76"></a><span class="kw">write_csv</span>(rights_of_women2, <span class="st">&quot;datos/rights_of_women.csv&quot;</span>)</span></code></pre></div>
 
 </div>
-</div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="visualizacion-personalizacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="manejo-av.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="texto-cadenas.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
