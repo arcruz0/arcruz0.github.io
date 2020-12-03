@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2020-11-26" />
+<meta name="date" content="2020-12-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -269,6 +269,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#ecuaciones"><i class="fa fa-check"></i>Ecuaciones</a></li>
 <li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#tipos-de-documento-generados-por-r-markdown"><i class="fa fa-check"></i>Tipos de documento generados por R Markdown</a></li>
 </ul></li>
+<li class="part"><span><b>XI Cierre</b></span></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html"><i class="fa fa-check"></i>Recursos adicionales</a><ul>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#instalación-local"><i class="fa fa-check"></i>Instalación local</a></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#guías-y-recursos"><i class="fa fa-check"></i>Guías y recursos</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -336,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb265-2"><a href="manejo-av.html#cb265-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(anio), <span class="dt">y =</span> tasa_robos, </span>
 <span id="cb265-3"><a href="manejo-av.html#cb265-3"></a>                     <span class="dt">color =</span> comuna, <span class="dt">group =</span> comuna)) <span class="op">+</span></span>
 <span id="cb265-4"><a href="manejo-av.html#cb265-4"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="co"># podríamos seguir añadiendo escalas, labs, etc...</span></span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
 <p>Noten que <code>pivot_longer()</code> tiene una función recíproca, <code>pivot_wider()</code>:</p>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="manejo-av.html#cb266-1"></a>df_tasa_robos_long <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb266-2"><a href="manejo-av.html#cb266-2"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;anio&quot;</span>, <span class="dt">values_from =</span> <span class="st">&quot;tasa_robos&quot;</span>)</span></code></pre></div>

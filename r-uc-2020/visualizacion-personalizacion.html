@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2020-11-26" />
+<meta name="date" content="2020-12-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -269,6 +269,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#ecuaciones"><i class="fa fa-check"></i>Ecuaciones</a></li>
 <li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#tipos-de-documento-generados-por-r-markdown"><i class="fa fa-check"></i>Tipos de documento generados por R Markdown</a></li>
 </ul></li>
+<li class="part"><span><b>XI Cierre</b></span></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html"><i class="fa fa-check"></i>Recursos adicionales</a><ul>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#instalación-local"><i class="fa fa-check"></i>Instalación local</a></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#guías-y-recursos"><i class="fa fa-check"></i>Guías y recursos</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -312,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb216-5"><a href="visualizacion-personalizacion.html#cb216-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Región&quot;, y = &quot;</span>% Pobreza multidimensional<span class="st">&quot;,</span></span>
 <span id="cb216-6"><a href="visualizacion-personalizacion.html#cb216-6"></a><span class="st">       title   = &quot;</span>% de pobreza en las comunas de Chile, separadas por región&quot;,</span>
 <span id="cb216-7"><a href="visualizacion-personalizacion.html#cb216-7"></a>       <span class="dt">caption =</span> <span class="st">&quot;Fuente: Casen (2017)&quot;</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
 </div>
 <div id="gráficos-como-objetos-guardar-gráficos-en-el-disco" class="section level2">
 <h2>Gráficos como objetos / guardar gráficos en el disco</h2>
@@ -326,11 +331,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb217-7"><a href="visualizacion-personalizacion.html#cb217-7"></a>       <span class="dt">caption =</span> <span class="st">&quot;Fuente: Casen (2017)&quot;</span>)</span></code></pre></div>
 <p>Para generarlos, los llamamos en la consola:</p>
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="visualizacion-personalizacion.html#cb218-1"></a>p_pobreza_sep_region</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
 <p>Podemos continuar con cadenas de <code>ggplot2</code> a partir de objetos:</p>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="visualizacion-personalizacion.html#cb219-1"></a>p_pobreza_sep_region <span class="op">+</span></span>
 <span id="cb219-2"><a href="visualizacion-personalizacion.html#cb219-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
 <p>También podemos guardar nuestros gráficos en el disco fácilmente, si es que son objetos:</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="visualizacion-personalizacion.html#cb220-1"></a><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;p_pobreza_sep_region.png&quot;</span>,</span>
 <span id="cb220-2"><a href="visualizacion-personalizacion.html#cb220-2"></a>       <span class="dt">plot     =</span> p_pobreza_sep_region)</span></code></pre></div>
@@ -359,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb223-4"><a href="visualizacion-personalizacion.html#cb223-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Coalición del alcalde&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Frecuencia&quot;</span>,</span>
 <span id="cb223-5"><a href="visualizacion-personalizacion.html#cb223-5"></a>       <span class="dt">title   =</span> <span class="st">&quot;Alcaldías por coalición, luego de las elecciones 2016&quot;</span>,</span>
 <span id="cb223-6"><a href="visualizacion-personalizacion.html#cb223-6"></a>       <span class="dt">caption =</span> <span class="st">&quot;Fuente: Emol (2016)&quot;</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
 <p>Algunos argumentos de <code>labs()</code> funcionan en cualquier gráfico (title, subtitle, caption, etc.), mientras otros dependen de los mapeos estéticos particulares de cada gráfico (x, y, color, shape, etc.).</p>
 </div>
 <div id="personalizar-escalas-numéricas" class="section level3">
@@ -371,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb224-4"><a href="visualizacion-personalizacion.html#cb224-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% de población rural&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Frecuencia&quot;</span>,</span>
 <span id="cb224-5"><a href="visualizacion-personalizacion.html#cb224-5"></a>       <span class="dt">title   =</span> <span class="st">&quot;Comunas chilenas según su porcentaje de población rural&quot;</span>,</span>
 <span id="cb224-6"><a href="visualizacion-personalizacion.html#cb224-6"></a>       <span class="dt">caption =</span> <span class="st">&quot;Fuente: Casen (2017)&quot;</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 <p>Podemos editar arbitrariamente qué se muestra en los ejes continuos con los comandos <code>scale_*_continuous()</code> y el argumento <code>breaks =</code>:</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="visualizacion-personalizacion.html#cb225-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> df_municipios,</span>
 <span id="cb225-2"><a href="visualizacion-personalizacion.html#cb225-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_rural)) <span class="op">+</span></span>
@@ -381,7 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb225-6"><a href="visualizacion-personalizacion.html#cb225-6"></a>       <span class="dt">caption =</span> <span class="st">&quot;Fuente: Casen (2017)&quot;</span>) <span class="op">+</span></span>
 <span id="cb225-7"><a href="visualizacion-personalizacion.html#cb225-7"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">100</span>, <span class="dt">by =</span> <span class="dv">10</span>)) <span class="op">+</span></span>
 <span id="cb225-8"><a href="visualizacion-personalizacion.html#cb225-8"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">60</span>, <span class="dt">by =</span> <span class="dv">10</span>))</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <div id="ejercicio-a-4" class="section level4">
 <h4>(Ejercicio A)</h4>
 <ol style="list-style-type: upper-alpha">
@@ -456,18 +461,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb232-2"><a href="visualizacion-personalizacion.html#cb232-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_desempleo, </span>
 <span id="cb232-3"><a href="visualizacion-personalizacion.html#cb232-3"></a>                     <span class="dt">y =</span> porc_en_trabajos_calificados, </span>
 <span id="cb232-4"><a href="visualizacion-personalizacion.html#cb232-4"></a>                     <span class="dt">color =</span> carrera_tipo1))</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 <p>Veamos el gráfico:</p>
 <div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="visualizacion-personalizacion.html#cb233-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> carreras_eeuu2,</span>
 <span id="cb233-2"><a href="visualizacion-personalizacion.html#cb233-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_desempleo, <span class="dt">y =</span> porc_en_trabajos_calificados, <span class="dt">color =</span> carrera_tipo1)) <span class="op">+</span></span>
 <span id="cb233-3"><a href="visualizacion-personalizacion.html#cb233-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
 <p>La paleta de colores categóricos por defecto de <code>ggplot2</code>, lamentablemente, es difícil de ver para los/as daltónicos/as. Podemos cambiarla por una de <a href="http://colorbrewer2.org/">ColorBrewer</a> con el comando <code>scale_color_brewer()</code>:</p>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="visualizacion-personalizacion.html#cb234-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> carreras_eeuu2,</span>
 <span id="cb234-2"><a href="visualizacion-personalizacion.html#cb234-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_desempleo, <span class="dt">y =</span> porc_en_trabajos_calificados, <span class="dt">color =</span> carrera_tipo1)) <span class="op">+</span></span>
 <span id="cb234-3"><a href="visualizacion-personalizacion.html#cb234-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb234-4"><a href="visualizacion-personalizacion.html#cb234-4"></a><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;PuOr&quot;</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 </div>
 <div id="escalas-de-colores-numéricas" class="section level4">
 <h4>Escalas de colores numéricas</h4>
@@ -476,13 +481,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb235-2"><a href="visualizacion-personalizacion.html#cb235-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_desempleo, <span class="dt">y =</span> porc_en_trabajos_calificados,</span>
 <span id="cb235-3"><a href="visualizacion-personalizacion.html#cb235-3"></a>                     <span class="dt">color =</span> porc_mujeres)) <span class="op">+</span></span>
 <span id="cb235-4"><a href="visualizacion-personalizacion.html#cb235-4"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 <p>De nuevo, la paleta de colores por defecto es subóptima. <a href="https://www.youtube.com/watch?v=xAoljeRJ3lU">La mejor paleta para visualizar escalas continuas en color es “viridis”</a>. Podemos utilizarla con el comando <code>scale_color_viridis_c()</code>:</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="visualizacion-personalizacion.html#cb236-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> carreras_eeuu2,</span>
 <span id="cb236-2"><a href="visualizacion-personalizacion.html#cb236-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_desempleo, <span class="dt">y =</span> porc_en_trabajos_calificados, <span class="dt">color =</span> porc_mujeres)) <span class="op">+</span></span>
 <span id="cb236-3"><a href="visualizacion-personalizacion.html#cb236-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb236-4"><a href="visualizacion-personalizacion.html#cb236-4"></a><span class="st">  </span><span class="kw">scale_color_viridis_c</span>() <span class="co"># de la escala</span></span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
 <div id="ejercicio-c-3" class="section level5">
 <h5>(Ejercicio C)</h5>
 <p>Genera un gráfico de dispersión para dos variables numéricas en la base de datos. Añade color a las observaciones de acuerdo al tipo de carrera (amplio). Utiliza una escala de ColorBrewer distinta a la de antes. Recuerda utilizar buenos labs (etiquetas). Tu código:</p>
@@ -500,7 +505,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb237-6"><a href="visualizacion-personalizacion.html#cb237-6"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb237-7"><a href="visualizacion-personalizacion.html#cb237-7"></a><span class="st">  </span><span class="kw">geom_label</span>() <span class="op">+</span><span class="st"> </span><span class="co"># esto genera los textos, ojo que necesita el mapeo de &quot;label&quot; antes!</span></span>
 <span id="cb237-8"><a href="visualizacion-personalizacion.html#cb237-8"></a><span class="st">  </span><span class="kw">scale_color_viridis_c</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 <p>Esto último es inútil, pues no se entiende nada. Podemos destacar solo una carrera si construimos <code>geom_label()</code> usando datos parciales. Coloquemos solo el texto para ciencia política:</p>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="visualizacion-personalizacion.html#cb238-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> carreras_eeuu2,</span>
 <span id="cb238-2"><a href="visualizacion-personalizacion.html#cb238-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_desempleo, </span>
@@ -512,7 +517,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb238-8"><a href="visualizacion-personalizacion.html#cb238-8"></a><span class="st">               </span><span class="kw">filter</span>(carrera <span class="op">==</span><span class="st"> &quot;Ciencia Política&quot;</span>),</span>
 <span id="cb238-9"><a href="visualizacion-personalizacion.html#cb238-9"></a>             <span class="dt">alpha =</span> <span class="fl">0.7</span>) <span class="op">+</span></span>
 <span id="cb238-10"><a href="visualizacion-personalizacion.html#cb238-10"></a><span class="st">  </span><span class="kw">scale_color_viridis_c</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
 <p>¿Cómo ponemos múltiples textos con claridad en un gráfico? Aquí nos será muy útil el paquete <code>ggrepel</code>:</p>
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="visualizacion-personalizacion.html#cb239-1"></a><span class="co">#install.packages(&quot;ggrepel&quot;)</span></span>
 <span id="cb239-2"><a href="visualizacion-personalizacion.html#cb239-2"></a><span class="kw">library</span>(ggrepel)</span></code></pre></div>
@@ -529,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb240-11"><a href="visualizacion-personalizacion.html#cb240-11"></a>                   <span class="co"># lo siguiente obliga a ggrepel a dibujar las líneas de guía:</span></span>
 <span id="cb240-12"><a href="visualizacion-personalizacion.html#cb240-12"></a>                   <span class="dt">min.segment.length =</span> <span class="dv">0</span>) <span class="op">+</span></span>
 <span id="cb240-13"><a href="visualizacion-personalizacion.html#cb240-13"></a><span class="st">  </span><span class="kw">scale_color_viridis_c</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
 <p>No parece que haya hecho demasiado. <code>ggrepel</code> es particularmente útil para visualizar <strong>varios</strong> textos dentro de un gráfico. Por ejemplo, ahora veamos todas las carreras de comunicaciones:</p>
 <div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="visualizacion-personalizacion.html#cb241-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> carreras_eeuu2,</span>
 <span id="cb241-2"><a href="visualizacion-personalizacion.html#cb241-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_desempleo, </span>
@@ -542,7 +547,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb241-9"><a href="visualizacion-personalizacion.html#cb241-9"></a>                   <span class="dt">min.segment.length =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="fl">0.7</span>,</span>
 <span id="cb241-10"><a href="visualizacion-personalizacion.html#cb241-10"></a>                   <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></span>
 <span id="cb241-11"><a href="visualizacion-personalizacion.html#cb241-11"></a><span class="st">  </span><span class="kw">scale_color_viridis_c</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
 <div id="texto-dentro-de-gráficos-de-columna" class="section level4">
 <h4>Texto dentro de gráficos de columna</h4>
 <p>Calculemos la mediana de porcentaje de desempleo por tipo (amplio) de carrera:</p>
@@ -552,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb242-4"><a href="visualizacion-personalizacion.html#cb242-4"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> carrera_tipo1, <span class="dt">y =</span> median_porc_desempleo)) <span class="op">+</span></span>
 <span id="cb242-5"><a href="visualizacion-personalizacion.html#cb242-5"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
 <p>Para añadir cajas de texto con los valores numéricos al gráfico, de nuevo podemos utilizar <code>geom_label()</code>, luego de haber indicado el mapeo estético para “label”:</p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="visualizacion-personalizacion.html#cb244-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> carreras_eeuu2 <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb244-2"><a href="visualizacion-personalizacion.html#cb244-2"></a><span class="st">         </span><span class="kw">group_by</span>(carrera_tipo1) <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -562,7 +567,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb244-6"><a href="visualizacion-personalizacion.html#cb244-6"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
 <span id="cb244-7"><a href="visualizacion-personalizacion.html#cb244-7"></a><span class="st">  </span><span class="kw">geom_label</span>()</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <p>Un tip: podemos redondear los números utilizando <code>round()</code> en el mapeo de label:</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="visualizacion-personalizacion.html#cb246-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> carreras_eeuu2 <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb246-2"><a href="visualizacion-personalizacion.html#cb246-2"></a><span class="st">         </span><span class="kw">group_by</span>(carrera_tipo1) <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -572,7 +577,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb246-6"><a href="visualizacion-personalizacion.html#cb246-6"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
 <span id="cb246-7"><a href="visualizacion-personalizacion.html#cb246-7"></a><span class="st">  </span><span class="kw">geom_label</span>()</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 <p>Por cierto, aparte de <code>geom_label()</code> está <code>geom_text()</code>, que no dibuja una caja alrededor del texto.</p>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="visualizacion-personalizacion.html#cb248-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> carreras_eeuu2 <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb248-2"><a href="visualizacion-personalizacion.html#cb248-2"></a><span class="st">         </span><span class="kw">group_by</span>(carrera_tipo1) <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -582,7 +587,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb248-6"><a href="visualizacion-personalizacion.html#cb248-6"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
 <span id="cb248-7"><a href="visualizacion-personalizacion.html#cb248-7"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">vjust =</span> <span class="fl">-0.4</span>) <span class="co"># solo esto cambió. vjust cambia ligeramente la posición del texto</span></span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
 </div>
 <div id="ejercicio-d-1" class="section level4">
 <h4>(Ejercicio D)</h4>

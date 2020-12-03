@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2020-11-26" />
+<meta name="date" content="2020-12-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -269,6 +269,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#ecuaciones"><i class="fa fa-check"></i>Ecuaciones</a></li>
 <li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#tipos-de-documento-generados-por-r-markdown"><i class="fa fa-check"></i>Tipos de documento generados por R Markdown</a></li>
 </ul></li>
+<li class="part"><span><b>XI Cierre</b></span></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html"><i class="fa fa-check"></i>Recursos adicionales</a><ul>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#instalación-local"><i class="fa fa-check"></i>Instalación local</a></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#guías-y-recursos"><i class="fa fa-check"></i>Guías y recursos</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -317,13 +322,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="visualizacion-intro.html#cb183-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> df_municipios,</span>
 <span id="cb183-2"><a href="visualizacion-intro.html#cb183-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> alcalde_coalicion)) <span class="op">+</span></span>
 <span id="cb183-3"><a href="visualizacion-intro.html#cb183-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
 <p>Si queremos invertir los ejes, podemos usar el mapeo estético <code>y =</code> en vez de
 <code>x =</code>:</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="visualizacion-intro.html#cb184-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> df_municipios,</span>
 <span id="cb184-2"><a href="visualizacion-intro.html#cb184-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> alcalde_coalicion)) <span class="op">+</span></span>
 <span id="cb184-3"><a href="visualizacion-intro.html#cb184-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 </div>
 <div id="gráfico-univariado-para-variable-continua-histograma" class="section level3">
 <h3>Gráfico univariado para variable continua (histograma)</h3>
@@ -332,7 +337,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb185-2"><a href="visualizacion-intro.html#cb185-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_rural)) <span class="op">+</span></span>
 <span id="cb185-3"><a href="visualizacion-intro.html#cb185-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <p>Podemos controlar cómo se arma el histograma en los argumentos de <code>geom_histogram()</code>:</p>
 <ul>
 <li><code>bindwidth = 5</code> hace que nuestros bins tengan un ancho de 5.</li>
@@ -342,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="visualizacion-intro.html#cb187-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> df_municipios,</span>
 <span id="cb187-2"><a href="visualizacion-intro.html#cb187-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_rural)) <span class="op">+</span></span>
 <span id="cb187-3"><a href="visualizacion-intro.html#cb187-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>, <span class="dt">boundary =</span> <span class="dv">0</span>, <span class="dt">closed =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 </div>
 <div id="ejercicio-a-2" class="section level3">
 <h3>(Ejercicio A)</h3>
@@ -357,13 +362,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="visualizacion-intro.html#cb188-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> df_municipios,</span>
 <span id="cb188-2"><a href="visualizacion-intro.html#cb188-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_mapuche, <span class="dt">y =</span> porc_pobres_md4)) <span class="op">+</span></span>
 <span id="cb188-3"><a href="visualizacion-intro.html#cb188-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 <p>Podemos añadir color y forma a los puntos según las coaliciones de los alcaldes:</p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="visualizacion-intro.html#cb189-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> df_municipios,</span>
 <span id="cb189-2"><a href="visualizacion-intro.html#cb189-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_mapuche, <span class="dt">y =</span> porc_pobres_md4,</span>
 <span id="cb189-3"><a href="visualizacion-intro.html#cb189-3"></a>                     <span class="dt">color =</span> alcalde_coalicion, <span class="dt">shape =</span> alcalde_coalicion)) <span class="op">+</span></span>
 <span id="cb189-4"><a href="visualizacion-intro.html#cb189-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 </div>
 <div id="gráfico-bivariado-para-x-discreta-y-continua-boxplotviolin" class="section level3">
 <h3>Gráfico bivariado para x discreta + y continua: boxplot/violin</h3>
@@ -371,11 +376,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="visualizacion-intro.html#cb190-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> df_municipios,</span>
 <span id="cb190-2"><a href="visualizacion-intro.html#cb190-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> alcalde_coalicion, <span class="dt">y =</span> porc_pobres_md4)) <span class="op">+</span></span>
 <span id="cb190-3"><a href="visualizacion-intro.html#cb190-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="visualizacion-intro.html#cb191-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> df_municipios,</span>
 <span id="cb191-2"><a href="visualizacion-intro.html#cb191-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> alcalde_coalicion, <span class="dt">y =</span> porc_pobres_md4)) <span class="op">+</span></span>
 <span id="cb191-3"><a href="visualizacion-intro.html#cb191-3"></a><span class="st">  </span><span class="kw">geom_violin</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 </div>
 <div id="gráfico-bivariado-para-x-discreta-y-continua-columnas-ránking" class="section level3">
 <h3>Gráfico bivariado para x discreta + y continua: columnas (ránking)</h3>
@@ -385,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb192-4"><a href="visualizacion-intro.html#cb192-4"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> alcalde_coalicion, <span class="dt">y =</span> porc_alcaldes_reelectos)) <span class="op">+</span></span>
 <span id="cb192-5"><a href="visualizacion-intro.html#cb192-5"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 <p>A veces queremos hacer estos gráficos de forma horizontal (“gráfico de ránking”). Podemos hacer un cambio similar al anterior, con los mapeos estéticos invertidos. Luego aprenderemos a ordenar las barras, para hacer ránkings.</p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="visualizacion-intro.html#cb194-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> df_municipios <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb194-2"><a href="visualizacion-intro.html#cb194-2"></a><span class="st">         </span><span class="kw">group_by</span>(alcalde_coalicion) <span class="op">%&gt;%</span></span>
@@ -393,7 +398,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb194-4"><a href="visualizacion-intro.html#cb194-4"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_alcaldes_reelectos, <span class="dt">y =</span> alcalde_coalicion)) <span class="op">+</span></span>
 <span id="cb194-5"><a href="visualizacion-intro.html#cb194-5"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
 </div>
 </div>
 <div id="un-poco-de-personalización-etiquetas" class="section level2">
@@ -403,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb196-2"><a href="visualizacion-intro.html#cb196-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_mapuche, <span class="dt">y =</span> porc_pobres_md4,</span>
 <span id="cb196-3"><a href="visualizacion-intro.html#cb196-3"></a>                     <span class="dt">color =</span> alcalde_coalicion, <span class="dt">shape =</span> alcalde_coalicion)) <span class="op">+</span></span>
 <span id="cb196-4"><a href="visualizacion-intro.html#cb196-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
 <p>Con el comando <code>labs()</code> dentro de la cadena de <code>ggplot2</code> podemos poner etiquetas que harán al gráfico más legible:</p>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="visualizacion-intro.html#cb197-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> df_municipios,</span>
 <span id="cb197-2"><a href="visualizacion-intro.html#cb197-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_mapuche, <span class="dt">y =</span> porc_pobres_md4,</span>
@@ -417,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb197-10"><a href="visualizacion-intro.html#cb197-10"></a>       <span class="dt">y =</span> <span class="st">&quot;% de población pobreza (multidimensional)&quot;</span>,</span>
 <span id="cb197-11"><a href="visualizacion-intro.html#cb197-11"></a>       <span class="dt">color =</span> <span class="st">&quot;Coalición del(la) edil&quot;</span>,</span>
 <span id="cb197-12"><a href="visualizacion-intro.html#cb197-12"></a>       <span class="dt">shape =</span> <span class="st">&quot;Coalición del(la) edil&quot;</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
 <div id="ejercicios-b-d" class="section level3">
 <h3>(Ejercicios B-D)</h3>
 <p>¡En todos los ejercicios genera buenas etiquetas para tus gráficos, utilizando <code>labs()</code>!</p>

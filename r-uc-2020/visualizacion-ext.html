@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2020-11-26" />
+<meta name="date" content="2020-12-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -269,6 +269,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#ecuaciones"><i class="fa fa-check"></i>Ecuaciones</a></li>
 <li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#tipos-de-documento-generados-por-r-markdown"><i class="fa fa-check"></i>Tipos de documento generados por R Markdown</a></li>
 </ul></li>
+<li class="part"><span><b>XI Cierre</b></span></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html"><i class="fa fa-check"></i>Recursos adicionales</a><ul>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#instalación-local"><i class="fa fa-check"></i>Instalación local</a></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#guías-y-recursos"><i class="fa fa-check"></i>Guías y recursos</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -305,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="visualizacion-ext.html#cb200-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df_municipios,</span>
 <span id="cb200-2"><a href="visualizacion-ext.html#cb200-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> edad_prom, <span class="dt">y =</span> comuna)) <span class="op">+</span></span>
 <span id="cb200-3"><a href="visualizacion-ext.html#cb200-3"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
 <p>(Al menos) dos cosas están mal con el gráfico anterior. Primero, son demasiadas observaciones. Segundo, las barras no están ordenadas. Podemos suplir ambas cosas y crear un gráfico de “ránking” que se entienda:</p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="visualizacion-ext.html#cb201-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df_municipios <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb201-2"><a href="visualizacion-ext.html#cb201-2"></a><span class="st">         </span><span class="kw">arrange</span>(<span class="op">-</span>edad_prom) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># ordenamos</span></span>
@@ -313,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb201-4"><a href="visualizacion-ext.html#cb201-4"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> edad_prom, </span>
 <span id="cb201-5"><a href="visualizacion-ext.html#cb201-5"></a>                     <span class="dt">y =</span> <span class="kw">fct_reorder</span>(comuna, edad_prom))) <span class="op">+</span><span class="st"> </span><span class="co"># ordenamos</span></span>
 <span id="cb201-6"><a href="visualizacion-ext.html#cb201-6"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 <div id="ejercicio-a-3" class="section level3">
 <h3>Ejercicio A</h3>
 <p>Genera un gráfico de ránking para las diez comunas con mayor población de la muestra.</p>
@@ -325,26 +330,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb202-2"><a href="visualizacion-ext.html#cb202-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_pobres_md4)) <span class="op">+</span></span>
 <span id="cb202-3"><a href="visualizacion-ext.html#cb202-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="visualizacion-ext.html#cb204-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df_municipios,</span>
 <span id="cb204-2"><a href="visualizacion-ext.html#cb204-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_pobres_md4)) <span class="op">+</span></span>
 <span id="cb204-3"><a href="visualizacion-ext.html#cb204-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></span>
 <span id="cb204-4"><a href="visualizacion-ext.html#cb204-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>alcalde_coalicion)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="visualizacion-ext.html#cb206-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df_municipios,</span>
 <span id="cb206-2"><a href="visualizacion-ext.html#cb206-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_pobres_md4)) <span class="op">+</span></span>
 <span id="cb206-3"><a href="visualizacion-ext.html#cb206-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></span>
 <span id="cb206-4"><a href="visualizacion-ext.html#cb206-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>alcalde_coalicion, <span class="dt">nrow =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 <p>Noten que los gráficos anteriores, por defecto, las facetas comparten escalas para las variables x e y. Podemos cambiar este default con el argumento <code>scales = "free"</code>, que también puede tomar los valores “free_x” o “free_y”. Qué queremos usar aquí dependerá de la naturaleza de nuestros datos, caso a caso…</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="visualizacion-ext.html#cb208-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df_municipios,</span>
 <span id="cb208-2"><a href="visualizacion-ext.html#cb208-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> porc_pobres_md4)) <span class="op">+</span></span>
 <span id="cb208-3"><a href="visualizacion-ext.html#cb208-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></span>
 <span id="cb208-4"><a href="visualizacion-ext.html#cb208-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>alcalde_coalicion, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
 <div id="ejercicio-b-2" class="section level3">
 <h3>Ejercicio B</h3>
 <p>Genera un gráfico de dispersión (con <code>geom_point()</code>) para dos variables de la base. Luego divídelo por facetas según la coalición del(la) edil.</p>
@@ -364,13 +369,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="visualizacion-ext.html#cb212-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder_muestra, </span>
 <span id="cb212-2"><a href="visualizacion-ext.html#cb212-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> anio, <span class="dt">y =</span> esperanza_de_vida, <span class="dt">color =</span> pais)) <span class="op">+</span></span>
 <span id="cb212-3"><a href="visualizacion-ext.html#cb212-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
 <p>Esto es difícil de leer, nos vendría bien tener líneas para seguir los patrones en el tiempo. Podemos hacer esto añadiendo <code>geom_line()</code> y el mapeo estético <code>group =</code> (a veces podemos omitir esto, <code>ggplot2</code> tratará de inferirlo, pero yo recomiendo utilizarlo explícitamente siempre).</p>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="visualizacion-ext.html#cb213-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder_muestra, </span>
 <span id="cb213-2"><a href="visualizacion-ext.html#cb213-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> anio, <span class="dt">y =</span> esperanza_de_vida, <span class="dt">color =</span> pais, <span class="dt">group =</span> pais)) <span class="op">+</span></span>
 <span id="cb213-3"><a href="visualizacion-ext.html#cb213-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb213-4"><a href="visualizacion-ext.html#cb213-4"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
 </div>
 <div id="más-personalización" class="section level2">
 <h2>Más personalización</h2>

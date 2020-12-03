@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2020-11-26" />
+<meta name="date" content="2020-12-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -269,6 +269,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#ecuaciones"><i class="fa fa-check"></i>Ecuaciones</a></li>
 <li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#tipos-de-documento-generados-por-r-markdown"><i class="fa fa-check"></i>Tipos de documento generados por R Markdown</a></li>
 </ul></li>
+<li class="part"><span><b>XI Cierre</b></span></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html"><i class="fa fa-check"></i>Recursos adicionales</a><ul>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#instalación-local"><i class="fa fa-check"></i>Instalación local</a></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#guías-y-recursos"><i class="fa fa-check"></i>Guías y recursos</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -373,12 +378,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>ggplot2</code> trae un geom especial para entidades geográficas, <code>geom_sf()</code>. Su uso es muy simple:</p>
 <div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="mapas.html#cb523-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> shp_comunas_<span class="dv">13</span>_info) <span class="op">+</span></span>
 <span id="cb523-2"><a href="mapas.html#cb523-2"></a><span class="st">  </span><span class="kw">geom_sf</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-297-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-298-1.png" width="672" /></p>
 <p>La gracia es que podemos especificar mapeos estéticos, como fill:</p>
 <div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="mapas.html#cb524-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> shp_comunas_<span class="dv">13</span>_info,</span>
 <span id="cb524-2"><a href="mapas.html#cb524-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> zona)) <span class="op">+</span></span>
 <span id="cb524-3"><a href="mapas.html#cb524-3"></a><span class="st">  </span><span class="kw">geom_sf</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-298-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-299-1.png" width="672" /></p>
 <div id="ejercicio-a-9" class="section level3">
 <h3>(Ejercicio a)</h3>
 <p>Colorea cada comuna según su porcentaje de pobreza (esto se llama “choropleth”). Solo considera comunas urbanas en el mapa y utiliza la escala de colores viridis con <code>scale_fill_viridis_c()</code>. Tu código:</p>
@@ -391,7 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb525-6"><a href="mapas.html#cb525-6"></a>       <span class="dt">caption =</span> <span class="st">&quot;Fuente: Censo 2017&quot;</span>) <span class="op">+</span></span>
 <span id="cb525-7"><a href="mapas.html#cb525-7"></a><span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
 <span id="cb525-8"><a href="mapas.html#cb525-8"></a><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">datum =</span> <span class="ot">NA</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-299-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-300-1.png" width="672" /></p>
 </div>
 </div>
 <div id="shape-de-cuarteles" class="section level2">
@@ -436,12 +441,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Este sería el gráfico solo con la información de los cuarteles:</p>
 <div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="mapas.html#cb528-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> shp_cuarteles_<span class="dv">13</span>) <span class="op">+</span></span>
 <span id="cb528-2"><a href="mapas.html#cb528-2"></a><span class="st">  </span><span class="kw">geom_sf</span>()</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-302-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-303-1.png" width="672" /></p>
 <p>Usualmente queremos contextualizar estos puntos. Hacerlo con <code>ggplot()</code> es simple, asignando distintos argumentos “data =” a nuestros geoms:</p>
 <div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="mapas.html#cb529-1"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
 <span id="cb529-2"><a href="mapas.html#cb529-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> shp_comunas_<span class="dv">13</span>) <span class="op">+</span></span>
 <span id="cb529-3"><a href="mapas.html#cb529-3"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> shp_cuarteles_<span class="dv">13</span>)</span></code></pre></div>
-<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-303-1.png" width="672" /></p>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-304-1.png" width="672" /></p>
 <p>Podríamos hacer filtros en las bases o añadir mapeos estéticos (argumento <code>mapping =</code>) en cada <code>geom_sf()</code>, también.</p>
 <div id="ejercicio-c-7" class="section level3">
 <h3>(Ejercicio c)</h3>
