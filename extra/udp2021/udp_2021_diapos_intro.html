@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Programación en Ciencias Sociales (UDP CPO3523)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andrés Cruz, 2021-03-08" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="https://use.fontawesome.com/5235085b15.js"></script>
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Programación en Ciencias Sociales (UDP CPO3523)
+## Clase Introductoria
+### Andrés Cruz, 2021-03-08
+
+---
+
+
+
+
+
+
+# Índice
+
+1. Introducción: ¿por qué hacer código en ciencias sociales?
+
+1. Aspectos formales
+
+1. R, RStudio y el `tidyverse`
+
+1. RStudio Cloud.
+
+1. Encuesta de cierre
+
+---
+
+class: inverse
+
+# ¿Por qué hacer código en ciencias sociales?
+
+&lt;div class="figure"&gt;
+&lt;img src="imgs/gui_vs_code.png" alt="Interfaz gráfica (PSPP) vs código (R en RStudio). Elaboración propia." width="1873" /&gt;
+&lt;p class="caption"&gt;Interfaz gráfica (PSPP) vs código (R en RStudio). Elaboración propia.&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# A. Flexibilidad y capacidad (I)
+
+&lt;div class="figure"&gt;
+&lt;img src="imgs/code_for_america.png" alt="Fuente: &amp;lt;a href='https://www.nbcnews.com/news/us-news/san-francisco-uses-tech-clear-more-8-000-pot-cases-n975866'&amp;gt;NBC News (2019)&amp;lt;/a&amp;gt;" width="1636" /&gt;
+&lt;p class="caption"&gt;Fuente: &lt;a href='https://www.nbcnews.com/news/us-news/san-francisco-uses-tech-clear-more-8-000-pot-cases-n975866'&gt;NBC News (2019)&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# A. Flexibilidad y capacidad (II)
+
+--
+
+* Las herramientas que veremos en este curso son de **código abierto** (software libre).
+
+--
+
+* Cualquier persona puede tomar cualquier herramienta, ver su código y adaptarlo como mejor e parezca y necesite.
+
+--
+
+* Resultados de esta comunidad de **software libre**: 
+
+--
+
+    + Acceso abierto.
+--
+    + Enorme flexibilidad. En los repositorios oficiales de R hay [más de 16 mil paquetes](https://cran.r-project.org/web/packages/). 
+    
+---
+
+# A. Flexibilidad y capacidad (III)  
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="imgs/tweet_gg.png" alt="Fuente: &amp;lt;a href='https://twitter.com/leonugo/status/1014298553500479489'&amp;gt;@leonugo, 2018&amp;lt;/a&amp;gt;" width="50%" /&gt;
+&lt;p class="caption"&gt;Fuente: &lt;a href='https://twitter.com/leonugo/status/1014298553500479489'&gt;@leonugo, 2018&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# B. Trayectorias tecnológicas (I)
+
+&lt;div class="figure"&gt;
+&lt;img src="imgs/gtrends.png" alt="Interés en Google para diferentes programas de estadística/econometría en Latinoamérica, 2004-2020. Fuente: &amp;lt;a href='https://arcruz0.github.io/libroadp/index.html#prefacio'&amp;gt;Urdinez &amp;amp; Cruz (2020).&amp;lt;/a&amp;gt;" width="110%" /&gt;
+&lt;p class="caption"&gt;Interés en Google para diferentes programas de estadística/econometría en Latinoamérica, 2004-2020. Fuente: &lt;a href='https://arcruz0.github.io/libroadp/index.html#prefacio'&gt;Urdinez &amp; Cruz (2020).&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# B. Trayectorias tecnológicas (II)
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="imgs/paper_ap.png" alt="Fuente: &amp;lt;a href='https://onlinelibrary.wiley.com/doi/10.1111/puar.12979'&amp;gt;Agarwal (2018)&amp;lt;/a&amp;gt;" width="85%" /&gt;
+&lt;p class="caption"&gt;Fuente: &lt;a href='https://onlinelibrary.wiley.com/doi/10.1111/puar.12979'&gt;Agarwal (2018)&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# C. Reproducibilidad (I)
+
+--
+
+* Gracias al código:
+
+--
+    + Podemos repetir nuestros análisis todas las veces que queramos, con las modificaciones ue queramos.
+--
+    + Podemos automatizar procesos tediosos.
+--
+    + Podemos compartir la totalidad de nuestro flujo de trabajo con colegas.
+--
+    + Podemos buscar ayuda con facilidad: nuestro código es igual de transparente que el de los/as demás, y los mensajes de error están estandarizados. 
+
+---
+
+# C. Reproducibilidad (II) - Ciencia social reproducible
+
+--
+
+- "La única forma de comprender y evaluar un análisis empírico en su totalidad es conociendo el proceso exacto por el cual se generaron los datos y se realizó el análisis" ([King, 1995, p. 444](https://gking.harvard.edu/files/gking/files/replication.pdf)).
+
+--
+
+- La existencia de código es crucial para la replicación de un análisis empírico cuantitativo.
+
+--
+
+- El código incluso ayuda a declarar diseños de investigación antes de que estos se realicen, como es la premisa del nuevo proyecto [DeclareDesign](https://declaredesign.org/declare.pdf).
+
+---
+
+class: center, middle, inverse
+
+# Aspectos formales
+
+---
+
+# Temas del curso (I)
+
+* `I.` Introducción (a R, RStudio y R Markdown)
+
+--
+
+
+* `II.` Manejo de bases de datos
+
+&lt;div class="figure"&gt;
+&lt;img src="imgs/cead_example.png" alt="Datos del CEAD en Excel. Fuente: &amp;lt;a href='https://arcruz0.github.io/libroadp/load.html'&amp;gt;Araya y Cruz (2020)&amp;lt;/a&amp;gt;" width="90%" /&gt;
+&lt;p class="caption"&gt;Datos del CEAD en Excel. Fuente: &lt;a href='https://arcruz0.github.io/libroadp/load.html'&gt;Araya y Cruz (2020)&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# Temas del curso (II)
+
+* `III.` Visualización de datos
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="imgs/esperanza.png" alt="Promedio de esperanza de vida por continente, 2007. Fuente: &amp;lt;a href='http://socviz.co/lookatdata.html#what-makes-bad-figures-bad)'&amp;gt;Healy, 2018&amp;lt;/a&amp;gt;" width="65%" /&gt;
+&lt;p class="caption"&gt;Promedio de esperanza de vida por continente, 2007. Fuente: &lt;a href='http://socviz.co/lookatdata.html#what-makes-bad-figures-bad)'&gt;Healy, 2018&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# Temas del curso (III)
+
+- `IV.` Búsqueda efectiva de ayuda
+
+--
+
+- `V.` Manejo avanzado de bases de datos
+
+--
+
+- `VI.` Análisis de texto
+
+---
+
+# Temas del curso (IV)
+
+- `VII.` Minería de datos web y R avanzado
+
+&lt;div class="figure"&gt;
+&lt;img src="imgs/trump_twitter.png" alt="Palabras más usadas en los tweets de D. Trump (&amp;lt;a href='http://varianceexplained.org/r/trump-tweets/'&amp;gt;Robison, 2016&amp;lt;/a&amp;gt;)" width="70%" /&gt;
+&lt;p class="caption"&gt;Palabras más usadas en los tweets de D. Trump (&lt;a href='http://varianceexplained.org/r/trump-tweets/'&gt;Robison, 2016&lt;/a&gt;)&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# Temas del curso (V)
+
+- `VIII.` Replicación y generación de reportes
+
+    + ¡Estas diapositivas son un ejemplo!
+
+---
+
+# Temas del curso (VI)
+
+- `IX.` Datos espaciales y mapas
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="imgs/grid_map.png" alt="Emisiones per capita en la OCDE, 1997-2011. Elaboración propia." width="70%" /&gt;
+&lt;p class="caption"&gt;Emisiones per capita en la OCDE, 1997-2011. Elaboración propia.&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# Temas del curso (VII)
+
+- `X.` Cierre (ciencia social computacional, comunidad de R)
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="imgs/rladies.png" alt="125 capítulos activos de &amp;lt;a href='https://rladies.org/'&amp;gt;R-Ladies&amp;lt;/a&amp;gt; alrededor del mundo (2021)." width="80%" /&gt;
+&lt;p class="caption"&gt;125 capítulos activos de &lt;a href='https://rladies.org/'&gt;R-Ladies&lt;/a&gt; alrededor del mundo (2021).&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# Metodología de trabajo
+
+--
+
+* Cátedras con enfoque práctico.
+
+--
+
+* Horas de oficina (email para fijar!)
+
+--
+
+* Ayudantías de ejercicios (por fijar).
+
+--
+
+    + La ayudante es Javiera Venegas [javiera.venegas1@mail.udp.cl](mailto:javiera.venegas1@mail.udp.cl)).
+
+--
+
+* Se subirán las grabaciones de todas las cátedras y ayudantías, más algunas cápsulas sincrónicas.
+
+--
+
+* Dos tipos de material: mínimo y "torpedos" (complementario).
+
+---
+
+# Evaluaciones
+
+--
+
+* **Dos pruebas solemnes** (30% c/u).
+
+--
+
+    + Una serie de ejercicios, tienen ~1 semana para la entrega.
+
+--
+
+* **Un ensayo breve** (10%).
+
+--
+
+    + Entre 600 y 1.000 palabras, que discuta un tema relacionado con el curso: eproducibilidad, ética y ciencia de datos, política y datos, economía y datos, etc.
+    
+--
+
+* **Proyecto final**. Individual o en parejas.
+
+--
+
+    + **Presentación flash** (10%).
+--
+    + **Informe final** (20%).
+
+--
+
+* Las pautas de evaluación siempre se entregarán en conjunto con las instrucciones. En el programa hay más detalles importantes (p.e., política de recorrección).
+
+---
+
+# Otros temas importantes en el programa
+
+* Política sobre discriminación arbitraria, acoso sexual y acoso laboral.
+
+* [Normativa de Prevención y Sanción de Acciones de Discriminación, Violencia sexual y/o de Género.](https://genero.udp.cl/por-una-cultura-libre-de-discriminacion-y-violencia-2-2/normativa-de-prevencion-y-sancion-de-acciones-de-discriminacion-violencia-sexual-y-o-de-genero/)
+
+* Política de Inclusión para Estudiantes, Académicos y Administrativos en Situación de Discapacidad.
+
+* [Plagio](https://guiastematicas.bibliotecas.uc.cl/plagio) e integridad académica.
+
+---
+
+class: middle, center
+
+# ¿Preguntas? ¿Comentarios?
+
+---
+
+class: middle, center, inverse
+
+# R, RStudio y el *tidyverse*
+
+---
+
+# Introducción: R, RStudio, paquetes
+
+--
+
+* [R](http://cran.r-project.org/) es un lenguaje de programación, especialmente desarrollado para estadística.
+
+--
+
+* [RStudio](https://www.rstudio.com/) es una "máscara" para R, que simplifica nuestro trabajo.
+
+--
+
+* La comunidad de R ha desarrollado [más de 17 mil paquetes](https://cran.r-project.org/web/packages/).
+
+--
+
+    + Añaden nuevas funciones a R (y, en muchos casos, lo simplifican).
+
+--
+    + Durante el curso utilizaremos varios, principalmente el [`tidyverse`](http://tidyverse.org/).
+
+---
+
+# R
+
+--
+
+* Es un lenguaje de programación especialmente diseñado para análisis de datos y estadística.
+
+--
+
+* Fue lanzado en 1995, bajo una licencia de software libre [(Morandat et al., 2012)](https://web.archive.org/web/20190402195556/http://r.cs.purdue.edu/pub/ecoop12.pdf).
+
+--
+
+* Su rango de aplicación es muy variado: ciencias sociales, finanzas, bioestadística, biología computacional, etcétera.
+
+--
+
+* Algunas características técnicas:
+
+--
+
+    + Es un lenguaje de "scripting": podemos correr una línea a la vez, no necesitamos compilar el archivo completo [(Li et al., 2011)](https://www.sciencedirect.com/science/article/pii/S0743731510001747). Otro ejemplo: Python. Contrajemplo: C++.
+
+--
+    + Está orientado a objetos: en R, prácticamente todo es un objeto, incluidas las funciones [(Morandat et al., 2012)](https://web.archive.org/web/20190402195556/http://r.cs.purdue.edu/pub/ecoop12.pdf)..
+
+---
+
+# RStudio
+
+--
+
+* Es una "máscara" para ejecutar R, con una interfaz gráfica que hace algunas cosas más encillas.
+
+--
+
+* Es desarrollado por una compañía privada (RStudio, PBC), recientemente [certificada como empresa B](https://blog.rstudio.com/2020/01/29/rstudio-pbc).
+
+--
+
+* La versión de escritorio del programa tiene licencia de software libre.
+
+---
+
+# RStudio: paneles
+
+&lt;div class="figure"&gt;
+&lt;img src="imgs/rstudio.png" alt="Paneles de RStudio. Fuente: Elaboración propia." width="1748" /&gt;
+&lt;p class="caption"&gt;Paneles de RStudio. Fuente: Elaboración propia.&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# Paquetes: `tidyverse`
+
+--
+
+* El [`tidyverse`](http://tidyverse.org/) es un ecosistema de paquetes, desarrollado para acer sentido entre sí.
+
+--
+
+* Incluye paquetes coherentes entre sí para hacer manejo de datos (`dplyr`, `tidyr`), isualización (`ggplot2`), trabajo con texto (`stringr`), minería de datos web (`rvest`, httr`), programación (`purrr`, `magrittr`), entre otras actividades generales.
+
+--
+
+* Tiene una comunidad muy grande de desarrollo y apoyo. Por ejemplo, veamos [http://tidytuesday.rocks/](http://tidytuesday.rocks/).
+
+---
+
+# RStudio Cloud
+
+--
+
+* Ahora ingresa a RStudio Cloud, a través de [este link](https://rstudio.cloud/spaces/127117/join?access_code=onrMCnevoWACUzEjKwwgJQe0KmZENgDK%2BufBgZ%2B9).
+
+--
+
+* Debes crear una cuenta con tu correo UDP.
+
+--
+
+* Tenemos un **espacio del curso**. Luego, trabajaremos en **proyectos** específicos. 
+
+---
+
+class: middle, center, inverse
+
+# Encuesta de cierre
+
+[Link a Google Forms](https://forms.gle/r7cNRHExTWnsH89U8)
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
