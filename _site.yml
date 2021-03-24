@@ -1,0 +1,20 @@
+name: "website_distill3"
+title: "Andrés Cruz"
+description: |
+  Andrés Cruz
+output_dir: "docs"
+base_url: https://arcruz0.github.io
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "R Resources"
+      href: r_resources.html
+    # - text: "Blog"
+    #   href: blog.html
+output:
+  distill::distill_article:
+    includes:
+      after_body: "_custom.html"
+favicon: imgs/favicon.ico
+theme: theme.css

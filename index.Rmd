@@ -1,0 +1,10 @@
+---
+title: "Andrés Cruz"
+description: |
+  I hold a BA and MA in Political Science from Pontificia Universidad Católica de Chile. My research interests are in political economy and quantitative methods.
+site: distill::distill_website
+---
+
+<a href="https://twitter.com/arcruz0/"><i class="fab fa-twitter-square fa-2x"></i></a>&nbsp;&nbsp;<a href="https://github.com/arcruz0/"><i class="fab fa-github-square fa-2x"></i></a>
+
+<small>Website built with [`distill`](https://rstudio.github.io/distill/).</small>

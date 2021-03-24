@@ -1,0 +1,27 @@
+---
+title: "R Resources"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### [R for Political Data Science](https://www.routledge.com/R-for-Political-Data-Science-A-Practical-Guide/Urdinez-Cruz/p/book/9780367818890) / [AnalizaR Datos Políticos](https://arcruz0.github.io/libroadp/)
+
+*Co-edited with [Francisco Urdinez](https://www.furdinez.com)* 
+
+A textbook that teaches R and the `tidyverse` from scratch using examples from Latin American political science. It was [published by CRC Press (Routledge)](https://www.routledge.com/R-for-Political-Data-Science-A-Practical-Guide/Urdinez-Cruz/p/book/9780367818890) in November 2020. The Spanish version is open-access and [freely available online](https://arcruz0.github.io/libroadp/).
+
+### [`inexact`](https://www.github.com/arcruz0/inexact)
+
+```{r, echo=F, out.width="65%", fig.align="center"}
+knitr::include_graphics("imgs/inexact.gif")
+```
+
+An R package to supervise fuzzy joins, i.e. a way to solve the common problem of non-standardized ID variables when joining data sets. A recording of my presentation about it at the Toronto Data Workshop on Reproducibility (2021) is [on Youtube](https://www.youtube.com/watch?v=HjdPDEACxmA). 
+
+### Programming for the Social Sciences (undergraduate class)
+
+<p style="font-size: 18px; color: #85144b; font-weight: 700;"> [2021 UDP (in progress)](https://arcruz0.github.io/r-udp-2021/) | [2020 PUC](https://arcruz0.github.io/r-uc-2020/)</p>
+
+Since 2019 I have taught a computational social science class for undergraduate students at [UDP](https://socialesehistoria.udp.cl/carreras/ciencia-politica/) and [PUC](http://cienciapolitica.uc.cl/). Syllabus and class materials are available in the links above (in Spanish).
