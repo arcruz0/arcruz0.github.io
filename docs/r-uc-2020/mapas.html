@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>09A - Generación de mapas | Programación para las Ciencias Sociales</title>
+  <meta name="description" content="Sitio web ICP0506" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="09A - Generación de mapas | Programación para las Ciencias Sociales" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Sitio web ICP0506" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="09A - Generación de mapas | Programación para las Ciencias Sociales" />
+  
+  <meta name="twitter:description" content="Sitio web ICP0506" />
+  
+
+<meta name="author" content="Andrés Cruz" />
+
+
+<meta name="date" content="2020-12-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="part-generación-de-mapas.html"/>
+<link rel="next" href="part-replicación-y-reportes.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Prog. Cs. Sociales</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Inicio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#links-importantes"><i class="fa fa-check"></i>Links importantes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cronograma-y-materiales-del-curso"><i class="fa fa-check"></i>Cronograma y materiales del curso</a></li>
+</ul></li>
+<li class="part"><span><b>I Intro a R, RStudio y R Markdown</b></span></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html"><i class="fa fa-check"></i>01 - R básico</a><ul>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#introducción-comandos-y-código"><i class="fa fa-check"></i>Introducción: comandos y código</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#paquetes"><i class="fa fa-check"></i>Paquetes</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#comandos-básicos-y-tipos-de-objeto-en-r"><i class="fa fa-check"></i>Comandos básicos y tipos de objeto en R</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#sintaxis-de-r-markdown"><i class="fa fa-check"></i>Sintaxis de R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#siguiente-script"><i class="fa fa-check"></i>Siguiente script</a></li>
+</ul></li>
+<li class="part"><span><b>II Manejo de datos</b></span></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html"><i class="fa fa-check"></i>02A - Manejo de datos</a><ul>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#repaso-de-la-clase-pasada-r-markdown"><i class="fa fa-check"></i>Repaso de la clase pasada: R Markdown</a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#manejo-de-bases-de-datos"><i class="fa fa-check"></i>Manejo de bases de datos</a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#la-base-de-datos-ideal-tidy"><i class="fa fa-check"></i>La base de datos ideal: tidy</a></li>
+<li><a href="manejo-2a.html#operaciones-básicas-en-bases-de-datos-wickham-2014">Operaciones básicas en bases de datos <span>(Wickham, 2014)</span></a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#trabajo-con-r"><i class="fa fa-check"></i>Trabajo con R</a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#manejo-de-datos-operaciones-básicas"><i class="fa fa-check"></i>Manejo de datos: operaciones básicas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html"><i class="fa fa-check"></i>02B - Manejo de datos (ejercicio)</a><ul>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#contexto"><i class="fa fa-check"></i>Contexto</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#a."><i class="fa fa-check"></i>A.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#b."><i class="fa fa-check"></i>B.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#c."><i class="fa fa-check"></i>C.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#d."><i class="fa fa-check"></i>D.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#e."><i class="fa fa-check"></i>E.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#f."><i class="fa fa-check"></i>F.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2c.html"><a href="manejo-2c.html"><i class="fa fa-check"></i>02C - Manejo de datos (extras)</a><ul>
+<li class="chapter" data-level="" data-path="manejo-2c.html"><a href="manejo-2c.html#cargar-y-guardar-bases-de-datos"><i class="fa fa-check"></i>Cargar y guardar bases de datos</a></li>
+<li><a href="manejo-2c.html#versiones-iterativas-de-summarize-y-mutate">Versiones iterativas de <code>summarize()</code> y <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2d.html"><a href="manejo-2d.html"><i class="fa fa-check"></i>02D - Manejo de datos (ejercicio int.)</a></li>
+<li class="part"><span><b>III Visualización de datos</b></span></li>
+<li class="chapter" data-level="" data-path="visualizacion-preceptos.html"><a href="visualizacion-preceptos.html"><i class="fa fa-check"></i>03 - Visualización de datos (preceptos)</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html"><i class="fa fa-check"></i>03A - Visualización de datos (intro)</a><ul>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html#inicio-cargar-paquetes-base-de-datos"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html#gráficos-univariados"><i class="fa fa-check"></i>Gráficos univariados</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html#gráficos-bivariados"><i class="fa fa-check"></i>Gráficos bivariados</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html#un-poco-de-personalización-etiquetas"><i class="fa fa-check"></i>Un poco de personalización: etiquetas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html"><i class="fa fa-check"></i>03B - Visualización de datos (extensiones)</a><ul>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#cargar-paquetes-y-datos"><i class="fa fa-check"></i>Cargar paquetes y datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#gráfico-de-ránking"><i class="fa fa-check"></i>Gráfico de ránking</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#facetas"><i class="fa fa-check"></i>Facetas</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#gráficos-de-líneas"><i class="fa fa-check"></i>Gráficos de líneas</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#más-personalización"><i class="fa fa-check"></i>Más personalización</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html"><i class="fa fa-check"></i>03C - Visualización de datos (personalización)</a><ul>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#inicio-cargar-paquetes-base-de-datos-1"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#gráfico-de-ejemplo"><i class="fa fa-check"></i>Gráfico de ejemplo</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#gráficos-como-objetos-guardar-gráficos-en-el-disco"><i class="fa fa-check"></i>Gráficos como objetos / guardar gráficos en el disco</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#personalización-de-gráficos"><i class="fa fa-check"></i>Personalización de gráficos</a></li>
+</ul></li>
+<li class="part"><span><b>IV Búsqueda de ayuda</b></span></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html"><i class="fa fa-check"></i>04 - Guía búsqueda de ayuda</a><ul>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#leer-archivos-de-ayuda-de-r"><i class="fa fa-check"></i>Leer archivos de ayuda de R</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#encontrar-funciones-en-línea"><i class="fa fa-check"></i>Encontrar funciones en línea</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#solucionar-problemas"><i class="fa fa-check"></i>Solucionar problemas</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#pedir-ayuda-con-ejemplos-reproducibles-reprex"><i class="fa fa-check"></i>Pedir ayuda con ejemplos reproducibles (reprex)</a></li>
+</ul></li>
+<li class="part"><span><b>V Manejo avanzado de datos</b></span></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i>05A - Manejo avanzado de datos</a><ul>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#inicio-cargar-paquetes-base-de-datos-2"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#pivotear-bases-de-datos-wide---long"><i class="fa fa-check"></i>Pivotear bases de datos (wide &lt;-&gt; long)</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#recodificar-variables"><i class="fa fa-check"></i>Recodificar variables</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#valores-perdidosmissingna"><i class="fa fa-check"></i>Valores perdidos/missing/NA</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#unir-bases-de-datos"><i class="fa fa-check"></i>Unir bases de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-av-ej.html"><a href="manejo-av-ej.html"><i class="fa fa-check"></i>05B - Manejo avanzado de datos (ejercicio)</a></li>
+<li class="part"><span><b>VI Análisis de texto</b></span></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html"><i class="fa fa-check"></i>06A - Análisis de texto</a><ul>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#inicio-cargar-paquetes-base-de-datos-3"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#tokens-y-frecuencias"><i class="fa fa-check"></i>Tokens y frecuencias</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#separar-el-análisis-de-frecuencias-por-secciones"><i class="fa fa-check"></i>Separar el análisis de frecuencias por secciones</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#obtener-las-palabras-más-distintivas-al-comparar-documentos"><i class="fa fa-check"></i>Obtener las palabras más distintivas al comparar documentos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html"><i class="fa fa-check"></i>06B - Cadenas de texto</a><ul>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#inicio-cargar-paquetes-base-de-datos-4"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#cadenas-de-texto"><i class="fa fa-check"></i>Cadenas de texto</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#algunas-operaciones-simples-con-texto"><i class="fa fa-check"></i>Algunas operaciones simples con texto</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#funciones-para-trabajar-con-patrones"><i class="fa fa-check"></i>Funciones para trabajar con patrones</a></li>
+<li><a href="texto-cadenas.html#patrones-más-complejos-con-expresiones-regulares-regex">Patrones más complejos con expresiones regulares (<em>regex</em>)</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
+<li class="part"><span><b>VII R avanzado</b></span></li>
+<li class="chapter" data-level="" data-path="r-avanzado.html"><a href="r-avanzado.html"><i class="fa fa-check"></i>07A - R avanzado</a><ul>
+<li class="chapter" data-level="" data-path="r-avanzado.html"><a href="r-avanzado.html#inicio-cargar-paquetes"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="r-avanzado.html"><a href="r-avanzado.html#funciones-personalizadas-y-control-de-flujo"><i class="fa fa-check"></i>Funciones personalizadas y control de flujo</a></li>
+<li><a href="r-avanzado.html#iteraciones-con-purrr">Iteraciones con <code>purrr</code></a></li>
+<li class="chapter" data-level="" data-path="r-avanzado.html"><a href="r-avanzado.html#aplicación-1-programas-presidenciales"><i class="fa fa-check"></i>Aplicación 1: programas presidenciales</a></li>
+<li class="chapter" data-level="" data-path="r-avanzado.html"><a href="r-avanzado.html#aplicación-2-varios-archivos-excel"><i class="fa fa-check"></i>Aplicación 2: varios archivos Excel</a></li>
+</ul></li>
+<li class="part"><span><b>VIII Minería de datos</b></span></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i>08A - Web scraping</a><ul>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#inicio-cargar-paquetes-1"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#web-scraping-1"><i class="fa fa-check"></i>Web scraping</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#descargar-múltiples-páginas-con-una-iteración"><i class="fa fa-check"></i>Descargar múltiples páginas con una iteración</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#generalizar-el-proceso-de-limpieza-de-los-datos-con-una-función"><i class="fa fa-check"></i>Generalizar el proceso de limpieza de los datos con una función</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-apis.html"><a href="web-apis.html"><i class="fa fa-check"></i>08B - Web APIs</a><ul>
+<li class="chapter" data-level="" data-path="web-apis.html"><a href="web-apis.html#inicio-cargar-paquetes-2"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="web-apis.html"><a href="web-apis.html#twitter"><i class="fa fa-check"></i>Twitter</a></li>
+<li><a href="web-apis.html#google-trends"><span>Google Trends</span></a></li>
+<li class="chapter" data-level="" data-path="web-apis.html"><a href="web-apis.html#google-scholar"><i class="fa fa-check"></i>Google Scholar</a></li>
+<li class="chapter" data-level="" data-path="web-apis.html"><a href="web-apis.html#otras-web-apis"><i class="fa fa-check"></i>Otras Web APIs</a></li>
+<li class="chapter" data-level="" data-path="web-apis.html"><a href="web-apis.html#ejercicios"><i class="fa fa-check"></i>Ejercicios</a></li>
+</ul></li>
+<li class="part"><span><b>IX Generación de mapas</b></span></li>
+<li class="chapter" data-level="" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i>09A - Generación de mapas</a><ul>
+<li class="chapter" data-level="" data-path="mapas.html"><a href="mapas.html#inicio-cargar-paquetes-3"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="mapas.html"><a href="mapas.html#objetos-geográficos-sf"><i class="fa fa-check"></i>Objetos geográficos (sf)</a></li>
+<li><a href="mapas.html#operaciones-de-dplyr-en-objetos-geográficos-sf">Operaciones de <code>dplyr</code> en objetos geográficos (sf)</a></li>
+<li><a href="mapas.html#primeros-mapas-con-la-sintaxis-de-ggplot2">Primeros mapas con la sintaxis de <code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="mapas.html"><a href="mapas.html#shape-de-cuarteles"><i class="fa fa-check"></i>Shape de cuarteles</a></li>
+<li class="chapter" data-level="" data-path="mapas.html"><a href="mapas.html#gráficos-con-más-de-una-fuente-de-datos-geográficos"><i class="fa fa-check"></i>Gráficos con más de una fuente de datos geográficos</a></li>
+</ul></li>
+<li class="part"><span><b>X Replicación y reportes</b></span></li>
+<li class="chapter" data-level="" data-path="replicacion.html"><a href="replicacion.html"><i class="fa fa-check"></i>10A - Replicación</a><ul>
+<li class="chapter" data-level="" data-path="replicacion.html"><a href="replicacion.html#replicación-en-las-ciencias-sociales"><i class="fa fa-check"></i>Replicación en las ciencias sociales</a></li>
+<li class="chapter" data-level="" data-path="replicacion.html"><a href="replicacion.html#el-rol-del-código-y-r-markdown-en-reproducibilidad-y-replicación"><i class="fa fa-check"></i>El rol del código (y R Markdown) en reproducibilidad y replicación</a></li>
+<li><a href="replicacion.html#r-markdown-avanzado-opciones-de-chunks">R Markdown avanzado: opciones de <em>chunks</em></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html"><i class="fa fa-check"></i>10B - Reportes en R Markdown</a><ul>
+<li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#inicio-1"><i class="fa fa-check"></i>Inicio</a></li>
+<li><a href="reportes.html#generación-de-tablas-desde-data-frames">Generación de tablas desde <em>data frames</em></a></li>
+<li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#imágenes-y-gráficos"><i class="fa fa-check"></i>Imágenes y gráficos</a></li>
+<li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#ecuaciones"><i class="fa fa-check"></i>Ecuaciones</a></li>
+<li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#tipos-de-documento-generados-por-r-markdown"><i class="fa fa-check"></i>Tipos de documento generados por R Markdown</a></li>
+</ul></li>
+<li class="part"><span><b>XI Cierre</b></span></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html"><i class="fa fa-check"></i>Recursos adicionales</a><ul>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#instalación-local"><i class="fa fa-check"></i>Instalación local</a></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#guías-y-recursos"><i class="fa fa-check"></i>Guías y recursos</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación para las Ciencias Sociales</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mapas" class="section level1 unnumbered">
+<h1>09A - Generación de mapas</h1>
+<blockquote>
+<p>Si quieres correr estos scripts localmente, acá puedes <a href="./static/09_generacion_de_mapas.zip">descargar el proyecto comprimido en .zip</a>. Paquetes que necesitas tener instalados antes de comenzar con el proyecto: <code>tidyverse</code>, <code>sf</code>, <code>janitor</code>.</p>
+</blockquote>
+<div id="inicio-cargar-paquetes-3" class="section level2">
+<h2>Inicio: cargar paquetes</h2>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="mapas.html#cb510-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb510-2"><a href="mapas.html#cb510-2"></a></span>
+<span id="cb510-3"><a href="mapas.html#cb510-3"></a><span class="co"># install.packages(&quot;sf&quot;)</span></span>
+<span id="cb510-4"><a href="mapas.html#cb510-4"></a><span class="kw">library</span>(sf) <span class="co"># datos espaciales</span></span></code></pre></div>
+<pre><code>## Warning: package &#39;sf&#39; was built under R version 4.0.3</code></pre>
+<pre><code>## Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</code></pre>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="mapas.html#cb513-1"></a><span class="kw">library</span>(janitor)</span></code></pre></div>
+</div>
+<div id="objetos-geográficos-sf" class="section level2">
+<h2>Objetos geográficos (sf)</h2>
+<ul>
+<li><p>El paquete <code>sf</code> permite trabajar con información geográfica en R. Lo que vamos a cargar a continuación, con la función <code>read_sf()</code>, es un “shapefile”, la forma más común de almacenar información geográfica.</p></li>
+<li><p>Noten que este shapefile está en nuestra carpeta “shapefile_comunas”: <strong>no es solo un archivo, sino que varios</strong>.</p></li>
+<li><p>Todos los shapefiles tienen por lo menos tres archivos: uno .shp (al que debemos apuntar con la función), otro .shx y otro .dbf. Es común que tengan también otros archivos: .sbx, .sbn, .shp.xml, .prj, etc.</p></li>
+<li><p>Estos múltiples archivos son necesarios para leer la información geográfica, y necesitamos que estén todos en una misma carpeta, con el mismo nombre de archivo (distinta extensión).</p></li>
+<li><p>Un consejo es que usualmente los shapefiles vendrán como una carpeta comprimida (.zip), y no queremos eliminar ninguno de los archivos dentro.</p></li>
+<li><p>Los shapefiles registran <strong>información vectorial</strong>: puntos, líneas o polígonos en el espacio.</p></li>
+</ul>
+<p>Vamos a cargar un shapefile con las comunas de Chile, cuya fuente es la <a href="https://www.bcn.cl/siit/mapas_vectoriales">Biblioteca del Congreso Nacional (2019)</a>:</p>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="mapas.html#cb514-1"></a>shp_comunas &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;shapefile_comunas/division_comunal.shp&quot;</span>)</span></code></pre></div>
+<p>Examinemos lo que cargamos con el visor de RStudio:</p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="mapas.html#cb515-1"></a><span class="kw">View</span>(shp_comunas) <span class="co"># lo mismo que clickear en la pestaña de &quot;Environment&quot;</span></span></code></pre></div>
+</div>
+<div id="operaciones-de-dplyr-en-objetos-geográficos-sf" class="section level2">
+<h2>Operaciones de <code>dplyr</code> en objetos geográficos (sf)</h2>
+<p>La maravilla de <code>sf</code> es que el objeto geográfico se interpreta como una base de datos (data frame) tradicional de R, por lo que podemos utilizar cualquier operación de <code>dplyr</code>:</p>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="mapas.html#cb516-1"></a>shp_comunas_<span class="dv">13</span> &lt;-<span class="st"> </span>shp_comunas <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb516-2"><a href="mapas.html#cb516-2"></a><span class="st">  </span><span class="kw">clean_names</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb516-3"><a href="mapas.html#cb516-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">comuna_id =</span> <span class="kw">as.numeric</span>(comuna_id)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb516-4"><a href="mapas.html#cb516-4"></a><span class="st">  </span><span class="kw">filter</span>(region_id <span class="op">==</span><span class="st"> &quot;13&quot;</span>)</span></code></pre></div>
+<p>De hecho, podemos cargar otros datos (no geográficos) y unirlos sin problemas. Carguemos una base con datos comunales, adaptada desde <a href="https://politicamente-chile.weebly.com/base-electoral-poliacuteticamente.html">Políticamente (2020)</a>:</p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="mapas.html#cb517-1"></a>datos_comunales_rm &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;datos/datos_comunales_rm.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   comuna_id = col_double(),
+##   comuna = col_character(),
+##   zona = col_character(),
+##   ine2017_poblacion = col_double(),
+##   casen2013_porc_pobreza = col_double(),
+##   ine2013_porc_ruralidad = col_double(),
+##   idh2003 = col_double(),
+##   idh2003_salud = col_double(),
+##   idh2003_ed = col_double(),
+##   idh2003_ing = col_double(),
+##   n_imm = col_double(),
+##   n_imm_pc = col_double(),
+##   n_imm_by1000 = col_double(),
+##   gini = col_double(),
+##   porc_indigena = col_double(),
+##   tasa_controles_identidad = col_double(),
+##   tasa_detenciones_robos = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="mapas.html#cb519-1"></a>datos_comunales_rm</span></code></pre></div>
+<pre><code>## # A tibble: 52 x 17
+##    comuna_id comuna      zona   ine2017_poblacion casen2013_porc_pobreza ine2013_porc_ruralidad idh2003 idh2003_salud idh2003_ed idh2003_ing n_imm n_imm_pc n_imm_by1000  gini porc_indigena tasa_controles_identidad tasa_detenciones_robos
+##        &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;              &lt;dbl&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;   &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;                    &lt;dbl&gt;                  &lt;dbl&gt;
+##  1     13124 Pudahuel    Urbana            237938                   9.31                    0     0.735         0.805      0.744       0.655  6731   0.0283         28.3 0.459          447.                    274.                    1.66
+##  2     13125 Quilicura   Urbana            224468                   9.24                    0     0.782         0.873      0.807       0.668 17089   0.0761         76.1 0.465          358.                     77.5                   3.16
+##  3     13301 Colina      Rural             128760                   7.28                   17.0   0.726         0.82       0.704       0.654  9132   0.0709         70.9 0.533          302.                     99.3                   2.84
+##  4     13302 Lampa       Rural              97124                   8.47                   33.7   0.697         0.78       0.699       0.613  2724   0.0280         28.0 0.493          314.                    123.                    2.10
+##  5     13303 Tiltil      Rural              17940                   9.84                   47.0   0.706         0.791      0.701       0.626   311   0.0173         17.3 0.464          191.                    250.                    1.70
+##  6     13104 Conchalí    Urbana            141225                  10.0                     0     0.707         0.709      0.746       0.667 12862   0.0911         91.1 0.466          274.                    338.                    5.14
+##  7     13107 Huechuraba  Urbana             99019                   5.20                    0     0.737         0.781      0.742       0.689  5053   0.0510         51.0 0.511          416.                    150.                    9.38
+##  8     13128 Renca       Urbana            153266                   8.99                    0     0.709         0.76       0.728       0.638  5207   0.0340         34.0 0.457          477.                    144.                    2.07
+##  9     13103 Cerro Navia Urbana            158641                  15.4                     0     0.683         0.735      0.693       0.622  6653   0.0419         41.9 0.453          664.                    266.                    1.49
+## 10     13117 Lo Prado    Urbana            113370                   7.11                    0     0.715         0.75       0.726       0.669  8762   0.0773         77.3 0.464          492.                    199.                    4.41
+## # ... with 42 more rows</code></pre>
+<p>Podemos agregar estos datos a nuestro objeto geográfico sin problemas, con <code>left_join()</code>:</p>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="mapas.html#cb521-1"></a>shp_comunas_<span class="dv">13</span>_info &lt;-<span class="st"> </span>shp_comunas_<span class="dv">13</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb521-2"><a href="mapas.html#cb521-2"></a><span class="st">  </span><span class="kw">left_join</span>(datos_comunales_rm, <span class="dt">by =</span> <span class="st">&quot;comuna_id&quot;</span>)</span></code></pre></div>
+<p>Veamos el archivo que tenemos hasta ahora:</p>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="mapas.html#cb522-1"></a><span class="kw">View</span>(shp_comunas_<span class="dv">13</span>_info)</span></code></pre></div>
+</div>
+<div id="primeros-mapas-con-la-sintaxis-de-ggplot2" class="section level2">
+<h2>Primeros mapas con la sintaxis de <code>ggplot2</code></h2>
+<p><code>ggplot2</code> trae un geom especial para entidades geográficas, <code>geom_sf()</code>. Su uso es muy simple:</p>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="mapas.html#cb523-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> shp_comunas_<span class="dv">13</span>_info) <span class="op">+</span></span>
+<span id="cb523-2"><a href="mapas.html#cb523-2"></a><span class="st">  </span><span class="kw">geom_sf</span>()</span></code></pre></div>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-298-1.png" width="672" /></p>
+<p>La gracia es que podemos especificar mapeos estéticos, como fill:</p>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="mapas.html#cb524-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> shp_comunas_<span class="dv">13</span>_info,</span>
+<span id="cb524-2"><a href="mapas.html#cb524-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> zona)) <span class="op">+</span></span>
+<span id="cb524-3"><a href="mapas.html#cb524-3"></a><span class="st">  </span><span class="kw">geom_sf</span>()</span></code></pre></div>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-299-1.png" width="672" /></p>
+<div id="ejercicio-a-9" class="section level3">
+<h3>(Ejercicio a)</h3>
+<p>Colorea cada comuna según su porcentaje de pobreza (esto se llama “choropleth”). Solo considera comunas urbanas en el mapa y utiliza la escala de colores viridis con <code>scale_fill_viridis_c()</code>. Tu código:</p>
+<p>Por cierto, con estas dos líneas de código finales podemos conseguir un mapa sin las grillas de <code>ggplot2</code> (también añadí un par de labs):</p>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="mapas.html#cb525-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> shp_comunas_<span class="dv">13</span>_info,</span>
+<span id="cb525-2"><a href="mapas.html#cb525-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> zona)) <span class="op">+</span></span>
+<span id="cb525-3"><a href="mapas.html#cb525-3"></a><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span></span>
+<span id="cb525-4"><a href="mapas.html#cb525-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Comunas de la RM según tipo de zona&quot;</span>,</span>
+<span id="cb525-5"><a href="mapas.html#cb525-5"></a>       <span class="dt">fill  =</span> <span class="st">&quot;Zona&quot;</span>,</span>
+<span id="cb525-6"><a href="mapas.html#cb525-6"></a>       <span class="dt">caption =</span> <span class="st">&quot;Fuente: Censo 2017&quot;</span>) <span class="op">+</span></span>
+<span id="cb525-7"><a href="mapas.html#cb525-7"></a><span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
+<span id="cb525-8"><a href="mapas.html#cb525-8"></a><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">datum =</span> <span class="ot">NA</span>)</span></code></pre></div>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-300-1.png" width="672" /></p>
+</div>
+</div>
+<div id="shape-de-cuarteles" class="section level2">
+<h2>Shape de cuarteles</h2>
+<div id="ejercicio-b-7" class="section level3">
+<h3>(Ejercicio b)</h3>
+<p>Carga el shapefile de la carpeta “shapefile_cuarteles”: llámalo “shp_cuarteles”. Su fuente es <a href="http://www.ide.cl/index.php/sociedad/item/1741-cuarteles-de-carabineros">Infraestructura de Datos Geoespaciales de Chile, 2019</a>. Examínalo y luego crea un nuevo objeto “shp_cuarteles_13”, con mejores nombres (<code>clean_names()</code>) y solo con información de la Región Metropolitana. Tu código:</p>
+<p>Crucialmente, estos datos son de <strong>puntos</strong>, mientras los anteriores eran polígonos.</p>
+<p>Según un <a href="http://www.carabineros.cl/transparencia/transparencia2009/reglamento3.pdf">Reglamento Oficial de Carabineros (2000, p. 33)</a>, en este shapefile tenemos unidades y destacamentos:</p>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="mapas.html#cb526-1"></a>shp_cuarteles_<span class="dv">13</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb526-2"><a href="mapas.html#cb526-2"></a><span class="st">  </span><span class="kw">count</span>(TIPO_DE_UN, <span class="dt">sort =</span> T)</span></code></pre></div>
+<pre><code>## Simple feature collection with 7 features and 2 fields
+## geometry type:  GEOMETRY
+## dimension:      XYZ
+## bbox:           xmin: -71.46973 ymin: -34.17152 xmax: -69.96611 ymax: -33.00525
+## z_range:        zmin: 0 zmax: 0
+## geographic CRS: WGS 84
+## # A tibble: 7 x 3
+##   TIPO_DE_UN              n                                                                                             geometry
+## * &lt;chr&gt;               &lt;int&gt;                                                                                       &lt;GEOMETRY [°]&gt;
+## 1 COMISARIA              58 MULTIPOINT Z ((-71.21539 -33.68794 0), (-71.12008 -33.40134 0), (-70.93879 -33.67065 0), (-70.901...
+## 2 TENENCIA               25 MULTIPOINT Z ((-71.45432 -33.89544 0), (-71.21137 -33.56896 0), (-71.11842 -33.51567 0), (-71.100...
+## 3 SUBCOMISARIA           22 MULTIPOINT Z ((-70.97904 -33.67892 0), (-70.81537 -33.569 0), (-70.78973 -33.55822 0), (-70.77475...
+## 4 RETEN                  16 MULTIPOINT Z ((-71.46973 -33.97633 0), (-71.32402 -33.75717 0), (-71.15118 -33.65074 0), (-71.053...
+## 5 TENENCIA CARRETERAS     5 MULTIPOINT Z ((-71.18889 -33.40567 0), (-71.03295 -33.69754 0), (-70.76079 -33.23231 0), (-70.735...
+## 6 AVANZADA                1                                                                      POINT Z (-69.96611 -34.17152 0)
+## 7 COMISARÍA               1                                                                      POINT Z (-70.66124 -33.41911 0)</code></pre>
+<blockquote>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Unidades. Estarán consideradas en esta clasificación las Comisarías, Subcomisarías, Grupos y Escuadrones de las Escuelas, Grupos de Instrucción y, en general, los organismos que cuenten con dotación depersonal operativo para efectuar servicios policiales.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Destacamentos. Se comprenderán dentro de esta clasificación a las Tenencias, Retenes, Garitas y Avanzadas.</li>
+</ol>
+</blockquote>
+</div>
+</div>
+<div id="gráficos-con-más-de-una-fuente-de-datos-geográficos" class="section level2">
+<h2>Gráficos con más de una fuente de datos geográficos</h2>
+<p>Este sería el gráfico solo con la información de los cuarteles:</p>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="mapas.html#cb528-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> shp_cuarteles_<span class="dv">13</span>) <span class="op">+</span></span>
+<span id="cb528-2"><a href="mapas.html#cb528-2"></a><span class="st">  </span><span class="kw">geom_sf</span>()</span></code></pre></div>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-303-1.png" width="672" /></p>
+<p>Usualmente queremos contextualizar estos puntos. Hacerlo con <code>ggplot()</code> es simple, asignando distintos argumentos “data =” a nuestros geoms:</p>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="mapas.html#cb529-1"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb529-2"><a href="mapas.html#cb529-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> shp_comunas_<span class="dv">13</span>) <span class="op">+</span></span>
+<span id="cb529-3"><a href="mapas.html#cb529-3"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> shp_cuarteles_<span class="dv">13</span>)</span></code></pre></div>
+<p><img src="uc_2020_bookdown_files/figure-html/unnamed-chunk-304-1.png" width="672" /></p>
+<p>Podríamos hacer filtros en las bases o añadir mapeos estéticos (argumento <code>mapping =</code>) en cada <code>geom_sf()</code>, también.</p>
+<div id="ejercicio-c-7" class="section level3">
+<h3>(Ejercicio c)</h3>
+<p>Grafica <strong>solo las comisarías</strong> en un mapa de las <strong>comunas urbanas</strong> de Santiago (coloreadas según alguna variable de interés en la base). Tu código:</p>
+</div>
+<div id="ejercicio-d-4" class="section level3">
+<h3>(Ejercicio d)</h3>
+<p>La fuente de los cuarteles es <a href="http://www.ide.cl/descarga/capas.html">IDE, la Infraestructura de Datos de Chile</a>. En dicho sitio hay muchos shapefiles públicos. Elige uno de tu interés, cárgalo en R y genera un gráfico (mapa).</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="part-generación-de-mapas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="part-replicación-y-reportes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

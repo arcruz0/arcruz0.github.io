@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>02B - Manejo de datos (ejercicio) | Programación para las Ciencias Sociales</title>
+  <meta name="description" content="Sitio web ICP0506" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="02B - Manejo de datos (ejercicio) | Programación para las Ciencias Sociales" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Sitio web ICP0506" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="02B - Manejo de datos (ejercicio) | Programación para las Ciencias Sociales" />
+  
+  <meta name="twitter:description" content="Sitio web ICP0506" />
+  
+
+<meta name="author" content="Andrés Cruz" />
+
+
+<meta name="date" content="2020-12-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="manejo-2a.html"/>
+<link rel="next" href="manejo-2c.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Prog. Cs. Sociales</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Inicio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#links-importantes"><i class="fa fa-check"></i>Links importantes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cronograma-y-materiales-del-curso"><i class="fa fa-check"></i>Cronograma y materiales del curso</a></li>
+</ul></li>
+<li class="part"><span><b>I Intro a R, RStudio y R Markdown</b></span></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html"><i class="fa fa-check"></i>01 - R básico</a><ul>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#introducción-comandos-y-código"><i class="fa fa-check"></i>Introducción: comandos y código</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#paquetes"><i class="fa fa-check"></i>Paquetes</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#comandos-básicos-y-tipos-de-objeto-en-r"><i class="fa fa-check"></i>Comandos básicos y tipos de objeto en R</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#sintaxis-de-r-markdown"><i class="fa fa-check"></i>Sintaxis de R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#siguiente-script"><i class="fa fa-check"></i>Siguiente script</a></li>
+</ul></li>
+<li class="part"><span><b>II Manejo de datos</b></span></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html"><i class="fa fa-check"></i>02A - Manejo de datos</a><ul>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#repaso-de-la-clase-pasada-r-markdown"><i class="fa fa-check"></i>Repaso de la clase pasada: R Markdown</a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#manejo-de-bases-de-datos"><i class="fa fa-check"></i>Manejo de bases de datos</a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#la-base-de-datos-ideal-tidy"><i class="fa fa-check"></i>La base de datos ideal: tidy</a></li>
+<li><a href="manejo-2a.html#operaciones-básicas-en-bases-de-datos-wickham-2014">Operaciones básicas en bases de datos <span>(Wickham, 2014)</span></a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#trabajo-con-r"><i class="fa fa-check"></i>Trabajo con R</a></li>
+<li class="chapter" data-level="" data-path="manejo-2a.html"><a href="manejo-2a.html#manejo-de-datos-operaciones-básicas"><i class="fa fa-check"></i>Manejo de datos: operaciones básicas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html"><i class="fa fa-check"></i>02B - Manejo de datos (ejercicio)</a><ul>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#contexto"><i class="fa fa-check"></i>Contexto</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#a."><i class="fa fa-check"></i>A.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#b."><i class="fa fa-check"></i>B.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#c."><i class="fa fa-check"></i>C.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#d."><i class="fa fa-check"></i>D.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#e."><i class="fa fa-check"></i>E.</a></li>
+<li class="chapter" data-level="" data-path="manejo-2b.html"><a href="manejo-2b.html#f."><i class="fa fa-check"></i>F.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2c.html"><a href="manejo-2c.html"><i class="fa fa-check"></i>02C - Manejo de datos (extras)</a><ul>
+<li class="chapter" data-level="" data-path="manejo-2c.html"><a href="manejo-2c.html#cargar-y-guardar-bases-de-datos"><i class="fa fa-check"></i>Cargar y guardar bases de datos</a></li>
+<li><a href="manejo-2c.html#versiones-iterativas-de-summarize-y-mutate">Versiones iterativas de <code>summarize()</code> y <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-2d.html"><a href="manejo-2d.html"><i class="fa fa-check"></i>02D - Manejo de datos (ejercicio int.)</a></li>
+<li class="part"><span><b>III Visualización de datos</b></span></li>
+<li class="chapter" data-level="" data-path="visualizacion-preceptos.html"><a href="visualizacion-preceptos.html"><i class="fa fa-check"></i>03 - Visualización de datos (preceptos)</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html"><i class="fa fa-check"></i>03A - Visualización de datos (intro)</a><ul>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html#inicio-cargar-paquetes-base-de-datos"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html#gráficos-univariados"><i class="fa fa-check"></i>Gráficos univariados</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html#gráficos-bivariados"><i class="fa fa-check"></i>Gráficos bivariados</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-intro.html"><a href="visualizacion-intro.html#un-poco-de-personalización-etiquetas"><i class="fa fa-check"></i>Un poco de personalización: etiquetas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html"><i class="fa fa-check"></i>03B - Visualización de datos (extensiones)</a><ul>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#cargar-paquetes-y-datos"><i class="fa fa-check"></i>Cargar paquetes y datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#gráfico-de-ránking"><i class="fa fa-check"></i>Gráfico de ránking</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#facetas"><i class="fa fa-check"></i>Facetas</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#gráficos-de-líneas"><i class="fa fa-check"></i>Gráficos de líneas</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#más-personalización"><i class="fa fa-check"></i>Más personalización</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html"><i class="fa fa-check"></i>03C - Visualización de datos (personalización)</a><ul>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#inicio-cargar-paquetes-base-de-datos-1"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#gráfico-de-ejemplo"><i class="fa fa-check"></i>Gráfico de ejemplo</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#gráficos-como-objetos-guardar-gráficos-en-el-disco"><i class="fa fa-check"></i>Gráficos como objetos / guardar gráficos en el disco</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#personalización-de-gráficos"><i class="fa fa-check"></i>Personalización de gráficos</a></li>
+</ul></li>
+<li class="part"><span><b>IV Búsqueda de ayuda</b></span></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html"><i class="fa fa-check"></i>04 - Guía búsqueda de ayuda</a><ul>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#leer-archivos-de-ayuda-de-r"><i class="fa fa-check"></i>Leer archivos de ayuda de R</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#encontrar-funciones-en-línea"><i class="fa fa-check"></i>Encontrar funciones en línea</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#solucionar-problemas"><i class="fa fa-check"></i>Solucionar problemas</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#pedir-ayuda-con-ejemplos-reproducibles-reprex"><i class="fa fa-check"></i>Pedir ayuda con ejemplos reproducibles (reprex)</a></li>
+</ul></li>
+<li class="part"><span><b>V Manejo avanzado de datos</b></span></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i>05A - Manejo avanzado de datos</a><ul>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#inicio-cargar-paquetes-base-de-datos-2"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#pivotear-bases-de-datos-wide---long"><i class="fa fa-check"></i>Pivotear bases de datos (wide &lt;-&gt; long)</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#recodificar-variables"><i class="fa fa-check"></i>Recodificar variables</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#valores-perdidosmissingna"><i class="fa fa-check"></i>Valores perdidos/missing/NA</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#unir-bases-de-datos"><i class="fa fa-check"></i>Unir bases de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-av-ej.html"><a href="manejo-av-ej.html"><i class="fa fa-check"></i>05B - Manejo avanzado de datos (ejercicio)</a></li>
+<li class="part"><span><b>VI Análisis de texto</b></span></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html"><i class="fa fa-check"></i>06A - Análisis de texto</a><ul>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#inicio-cargar-paquetes-base-de-datos-3"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#tokens-y-frecuencias"><i class="fa fa-check"></i>Tokens y frecuencias</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#separar-el-análisis-de-frecuencias-por-secciones"><i class="fa fa-check"></i>Separar el análisis de frecuencias por secciones</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#obtener-las-palabras-más-distintivas-al-comparar-documentos"><i class="fa fa-check"></i>Obtener las palabras más distintivas al comparar documentos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html"><i class="fa fa-check"></i>06B - Cadenas de texto</a><ul>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#inicio-cargar-paquetes-base-de-datos-4"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#cadenas-de-texto"><i class="fa fa-check"></i>Cadenas de texto</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#algunas-operaciones-simples-con-texto"><i class="fa fa-check"></i>Algunas operaciones simples con texto</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#funciones-para-trabajar-con-patrones"><i class="fa fa-check"></i>Funciones para trabajar con patrones</a></li>
+<li><a href="texto-cadenas.html#patrones-más-complejos-con-expresiones-regulares-regex">Patrones más complejos con expresiones regulares (<em>regex</em>)</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
+<li class="part"><span><b>VII R avanzado</b></span></li>
+<li class="chapter" data-level="" data-path="r-avanzado.html"><a href="r-avanzado.html"><i class="fa fa-check"></i>07A - R avanzado</a><ul>
+<li class="chapter" data-level="" data-path="r-avanzado.html"><a href="r-avanzado.html#inicio-cargar-paquetes"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="r-avanzado.html"><a href="r-avanzado.html#funciones-personalizadas-y-control-de-flujo"><i class="fa fa-check"></i>Funciones personalizadas y control de flujo</a></li>
+<li><a href="r-avanzado.html#iteraciones-con-purrr">Iteraciones con <code>purrr</code></a></li>
+<li class="chapter" data-level="" data-path="r-avanzado.html"><a href="r-avanzado.html#aplicación-1-programas-presidenciales"><i class="fa fa-check"></i>Aplicación 1: programas presidenciales</a></li>
+<li class="chapter" data-level="" data-path="r-avanzado.html"><a href="r-avanzado.html#aplicación-2-varios-archivos-excel"><i class="fa fa-check"></i>Aplicación 2: varios archivos Excel</a></li>
+</ul></li>
+<li class="part"><span><b>VIII Minería de datos</b></span></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i>08A - Web scraping</a><ul>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#inicio-cargar-paquetes-1"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#web-scraping-1"><i class="fa fa-check"></i>Web scraping</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#descargar-múltiples-páginas-con-una-iteración"><i class="fa fa-check"></i>Descargar múltiples páginas con una iteración</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#generalizar-el-proceso-de-limpieza-de-los-datos-con-una-función"><i class="fa fa-check"></i>Generalizar el proceso de limpieza de los datos con una función</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-apis.html"><a href="web-apis.html"><i class="fa fa-check"></i>08B - Web APIs</a><ul>
+<li class="chapter" data-level="" data-path="web-apis.html"><a href="web-apis.html#inicio-cargar-paquetes-2"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="web-apis.html"><a href="web-apis.html#twitter"><i class="fa fa-check"></i>Twitter</a></li>
+<li><a href="web-apis.html#google-trends"><span>Google Trends</span></a></li>
+<li class="chapter" data-level="" data-path="web-apis.html"><a href="web-apis.html#google-scholar"><i class="fa fa-check"></i>Google Scholar</a></li>
+<li class="chapter" data-level="" data-path="web-apis.html"><a href="web-apis.html#otras-web-apis"><i class="fa fa-check"></i>Otras Web APIs</a></li>
+<li class="chapter" data-level="" data-path="web-apis.html"><a href="web-apis.html#ejercicios"><i class="fa fa-check"></i>Ejercicios</a></li>
+</ul></li>
+<li class="part"><span><b>IX Generación de mapas</b></span></li>
+<li class="chapter" data-level="" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i>09A - Generación de mapas</a><ul>
+<li class="chapter" data-level="" data-path="mapas.html"><a href="mapas.html#inicio-cargar-paquetes-3"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="mapas.html"><a href="mapas.html#objetos-geográficos-sf"><i class="fa fa-check"></i>Objetos geográficos (sf)</a></li>
+<li><a href="mapas.html#operaciones-de-dplyr-en-objetos-geográficos-sf">Operaciones de <code>dplyr</code> en objetos geográficos (sf)</a></li>
+<li><a href="mapas.html#primeros-mapas-con-la-sintaxis-de-ggplot2">Primeros mapas con la sintaxis de <code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="mapas.html"><a href="mapas.html#shape-de-cuarteles"><i class="fa fa-check"></i>Shape de cuarteles</a></li>
+<li class="chapter" data-level="" data-path="mapas.html"><a href="mapas.html#gráficos-con-más-de-una-fuente-de-datos-geográficos"><i class="fa fa-check"></i>Gráficos con más de una fuente de datos geográficos</a></li>
+</ul></li>
+<li class="part"><span><b>X Replicación y reportes</b></span></li>
+<li class="chapter" data-level="" data-path="replicacion.html"><a href="replicacion.html"><i class="fa fa-check"></i>10A - Replicación</a><ul>
+<li class="chapter" data-level="" data-path="replicacion.html"><a href="replicacion.html#replicación-en-las-ciencias-sociales"><i class="fa fa-check"></i>Replicación en las ciencias sociales</a></li>
+<li class="chapter" data-level="" data-path="replicacion.html"><a href="replicacion.html#el-rol-del-código-y-r-markdown-en-reproducibilidad-y-replicación"><i class="fa fa-check"></i>El rol del código (y R Markdown) en reproducibilidad y replicación</a></li>
+<li><a href="replicacion.html#r-markdown-avanzado-opciones-de-chunks">R Markdown avanzado: opciones de <em>chunks</em></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html"><i class="fa fa-check"></i>10B - Reportes en R Markdown</a><ul>
+<li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#inicio-1"><i class="fa fa-check"></i>Inicio</a></li>
+<li><a href="reportes.html#generación-de-tablas-desde-data-frames">Generación de tablas desde <em>data frames</em></a></li>
+<li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#imágenes-y-gráficos"><i class="fa fa-check"></i>Imágenes y gráficos</a></li>
+<li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#ecuaciones"><i class="fa fa-check"></i>Ecuaciones</a></li>
+<li class="chapter" data-level="" data-path="reportes.html"><a href="reportes.html#tipos-de-documento-generados-por-r-markdown"><i class="fa fa-check"></i>Tipos de documento generados por R Markdown</a></li>
+</ul></li>
+<li class="part"><span><b>XI Cierre</b></span></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html"><i class="fa fa-check"></i>Recursos adicionales</a><ul>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#instalación-local"><i class="fa fa-check"></i>Instalación local</a></li>
+<li class="chapter" data-level="" data-path="recursos.html"><a href="recursos.html#guías-y-recursos"><i class="fa fa-check"></i>Guías y recursos</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación para las Ciencias Sociales</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manejo-2b" class="section level1 unnumbered">
+<h1>02B - Manejo de datos (ejercicio)</h1>
+<blockquote>
+<p>Si quieres correr este script localmente, debe haber descargado el proyecto, como se explica en el script 2A.</p>
+</blockquote>
+<p>Recomiendo reiniciar R antes de comenzar: Session &gt; Restart R y click en la escoba del panel de “Environment” (superior derecho).</p>
+<div id="contexto" class="section level2 unnumbered">
+<h2>Contexto</h2>
+<p>La base de datos de este ejercicio guarda relación con la política monetaria ante la Gran Depresión. En especial, trata sobre la crisis en Mississippi, donde la administración central de los bancos estaba en manos de Bancos Centrales con distintas políticas: “el Banco Central de Atlanta, encargado del Distrito 6, estuvo a favor de prestarle dinero a los bancos en problemas. En cambio, el Banco Central de St. Louis se encargó del Distrito 8 de acuerdo a la Doctrica de las Letras Reales’, que sostiene que los Bancos Centrales deben restringir el crédito durante una recesión económica” <a href="http://www.masteringmetrics.com/">(Angrist &amp; Pischke, 2014, cap. 5)</a></p>
+<p>¿Qué política monetaria fue más efectiva para combatir la crisis desde la perspectiva financiera? Podemos analizar cuántos bancos quebraron a cada lado de la política para entender mejor esto.</p>
+</div>
+<div id="a." class="section level2 unnumbered">
+<h2>A.</h2>
+<p>Comienza cargando el <code>tidyverse</code> y la base de datos, que se encuentra en la carpeta “datos” (recuerda ponerle un buen nombre). El nombre del archivo es “banks2.csv”. Tu código:</p>
+</div>
+<div id="b." class="section level2 unnumbered">
+<h2>B.</h2>
+<p>Analiza la base. ¿Qué información tiene? ¿Cuál es la unidad de análisis? Considera que “bib” significa “banks in business”. Tu respuesta:</p>
+</div>
+<div id="c." class="section level2 unnumbered">
+<h2>C.</h2>
+<p>Obtén solo las observaciones del primero de julio de cada año. Esto nos permitirá analizar patrones anuales. Crea una nueva base de datos con esta nueva unidad de análisis. Tu código:</p>
+</div>
+<div id="d." class="section level2 unnumbered">
+<h2>D.</h2>
+<p>Revisa el archivo de ayuda de la función <code>diff()</code>.</p>
+<p>Para cada zona de Banco Central, ¿cuál es la diferencia de bancos en operación al comparar 1929 con 1934? Tu código:</p>
+</div>
+<div id="e." class="section level2 unnumbered">
+<h2>E.</h2>
+<p>Repite el ejercicio anterior, pero calculando la diferencia en términos proporcionales. Tu código:</p>
+</div>
+<div id="f." class="section level2 unnumbered">
+<h2>F.</h2>
+<p>¿En qué mes del año (enero, febrero, etc.) fueron más pronunciados los cierres de bancos, en promedio?</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="manejo-2a.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manejo-2c.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
