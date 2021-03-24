@@ -5,6 +5,7 @@ description: |
 output_dir: "docs"
 base_url: https://arcruz0.github.io
 navbar:
+  search: false
   right:
     - text: "Home"
       href: index.html
