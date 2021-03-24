@@ -1,6 +1,7 @@
-extra/
-imgs/
 .Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
+
+/extra/
+/imgs/
