@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>02C - Manejo de datos (extras) | Programación en Ciencias Sociales</title>
+  <meta name="description" content="Sitio web CPO3523 (2021)" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="02C - Manejo de datos (extras) | Programación en Ciencias Sociales" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Sitio web CPO3523 (2021)" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="02C - Manejo de datos (extras) | Programación en Ciencias Sociales" />
+  
+  <meta name="twitter:description" content="Sitio web CPO3523 (2021)" />
+  
+
+<meta name="author" content="Andrés Cruz" />
+
+
+<meta name="date" content="2021-03-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="manejo-02b.html"/>
+<link rel="next" href="manejo-02d.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Prog. Cs. Sociales</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Inicio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#links-importantes"><i class="fa fa-check"></i>Links importantes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cronograma-y-materiales-del-curso"><i class="fa fa-check"></i>Cronograma y materiales del curso</a></li>
+</ul></li>
+<li class="part"><span><b>I Intro a R, RStudio y R Markdown</b></span></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html"><i class="fa fa-check"></i>01A - R básico</a>
+<ul>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#introducción-comandos-y-código"><i class="fa fa-check"></i>Introducción: comandos y código</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#paquetes"><i class="fa fa-check"></i>Paquetes</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#comandos-básicos-y-tipos-de-objeto-en-r"><i class="fa fa-check"></i>Comandos básicos y tipos de objeto en R</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#sintaxis-de-r-markdown"><i class="fa fa-check"></i>Sintaxis de R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#título-de-prueba"><i class="fa fa-check"></i>Título de prueba</a></li>
+<li class="chapter" data-level="" data-path="rbasico.html"><a href="rbasico.html#siguiente-script"><i class="fa fa-check"></i>Siguiente script</a></li>
+</ul></li>
+<li class="part"><span><b>II Manejo de datos</b></span></li>
+<li class="chapter" data-level="" data-path="manejo-02a.html"><a href="manejo-02a.html"><i class="fa fa-check"></i>02A - Manejo de datos</a>
+<ul>
+<li class="chapter" data-level="" data-path="manejo-02a.html"><a href="manejo-02a.html#manejo-de-bases-de-datos"><i class="fa fa-check"></i>Manejo de bases de datos</a></li>
+<li class="chapter" data-level="" data-path="manejo-02a.html"><a href="manejo-02a.html#la-base-de-datos-ideal-tidy"><i class="fa fa-check"></i>La base de datos ideal: tidy</a></li>
+<li><a href="manejo-02a.html#operaciones-básicas-en-bases-de-datos-wickham-2014">Operaciones básicas en bases de datos <span>(Wickham, 2014)</span></a></li>
+<li class="chapter" data-level="" data-path="manejo-02a.html"><a href="manejo-02a.html#trabajo-con-r"><i class="fa fa-check"></i>Trabajo con R</a></li>
+<li class="chapter" data-level="" data-path="manejo-02a.html"><a href="manejo-02a.html#manejo-de-datos-operaciones-básicas"><i class="fa fa-check"></i>Manejo de datos: operaciones básicas</a></li>
+<li><a href="manejo-02a.html#agregarcolapsar-con-summarize-hacer-operaciones-por-grupos-con-group_by">Agregar/colapsar con <code>summarize()</code> / hacer operaciones por grupos con <code>group_by()</code></a></li>
+<li><a href="manejo-02a.html#hacer-cadenas-de-operaciones-con-las-pipes">Hacer cadenas de operaciones con las pipes (<code>%&gt;%</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-02b.html"><a href="manejo-02b.html"><i class="fa fa-check"></i>02B - Manejo de datos (ejercicio)</a>
+<ul>
+<li class="chapter" data-level="" data-path="manejo-02b.html"><a href="manejo-02b.html#contexto"><i class="fa fa-check"></i>Contexto</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-02c.html"><a href="manejo-02c.html"><i class="fa fa-check"></i>02C - Manejo de datos (extras)</a>
+<ul>
+<li class="chapter" data-level="" data-path="manejo-02c.html"><a href="manejo-02c.html#cargar-y-guardar-bases-de-datos"><i class="fa fa-check"></i>Cargar y guardar bases de datos</a></li>
+<li><a href="manejo-02c.html#versiones-iterativas-de-summarize-y-mutate">Versiones iterativas de <code>summarize()</code> y <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-02d.html"><a href="manejo-02d.html"><i class="fa fa-check"></i>02D - Manejo de datos (ejercicio int.)</a></li>
+<li class="part"><span><b>III Visualización de datos</b></span></li>
+<li class="chapter" data-level="" data-path="visualizacion.html"><a href="visualizacion.html"><i class="fa fa-check"></i>03A - Visualización de datos</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación en Ciencias Sociales</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manejo-02c" class="section level1 unnumbered">
+<h1>02C - Manejo de datos (extras)</h1>
+<blockquote>
+<p>Si quieres correr este script localmente, debe haber descargado el proyecto, como se explica en el script 02A.</p>
+</blockquote>
+<p>Como al principio de todo script, recomiendo reiniciar R. Esto lo conseguimos con Session &gt; Restart R y clickeando en la escoba del panel de “Environment” (superior derecho).</p>
+<p>Ahora carguemos los paquetes que usaremos:</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="manejo-02c.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb150-2"><a href="manejo-02c.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)  <span class="co"># leer datos de Excel</span></span>
+<span id="cb150-3"><a href="manejo-02c.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages(c(&quot;janitor&quot;, &quot;writexl&quot;))</span></span>
+<span id="cb150-4"><a href="manejo-02c.html#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) <span class="co"># limpiar bases</span></span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="manejo-02c.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)  <span class="co"># guardar bases de Excel</span></span></code></pre></div>
+<div id="cargar-y-guardar-bases-de-datos" class="section level2">
+<h2>Cargar y guardar bases de datos</h2>
+<div id="cargar-desde-múltiples-formatos" class="section level4">
+<h4>Cargar desde múltiples formatos</h4>
+<p>Hay múltiples formatos en los podemos encontrar bases de datos tabulares. Por suerte, la consistencia del tidyverse nos permite usar funciones muy similares para trabajar con ellas en R <a href="https://arcruz0.github.io/libroadp/carga.html">(Araya y Cruz, 2019)</a>.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Extensión</th>
+<th>Descripción</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>.csv</td>
+<td>Archivo delimitado por comas</td>
+<td><code>read_csv()</code></td>
+</tr>
+<tr class="even">
+<td>.dta</td>
+<td>Stata (suele incluir etiquetas)</td>
+<td><code>haven::read_stata()</code></td>
+</tr>
+<tr class="odd">
+<td>.Rdata</td>
+<td>R (puede tener múltiples objetos)</td>
+<td><code>load()</code></td>
+</tr>
+<tr class="even">
+<td>.rds</td>
+<td>R (un solo objeto)</td>
+<td><code>read_rds()</code></td>
+</tr>
+<tr class="odd">
+<td>.sav</td>
+<td>SPSS (suele incluir etiquetas)</td>
+<td><code>haven::read_spss()</code></td>
+</tr>
+<tr class="even">
+<td>.xlsx</td>
+<td>Excel 2007-</td>
+<td><code>writexl::read_excel()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="limpiar-nombres-de-columnas" class="section level4">
+<h4>Limpiar nombres de columnas</h4>
+<p>En esta ocasión cargaremos unos datos en formato Excel. Es muy común encontrar datos que tienen este tipo de extensión, y en general no vienen demasiado limpios (el trabajo con planillas no necesariamente se hace pensando en el procesamiento con código).</p>
+<p><a href="https://drive.google.com/a/uc.cl/file/d/14lmi6SnIn30KbOgm1t1RdPNtpdPeQcD9/view?usp=drivesdk">Inspeccionémoslos visualmente</a>. Son datos de casos policiales en 2016 para 340 comunas de Chile, recolectados desde la <a href="http://www.fnsp.gob.cl/estadisticas-delictuales-por-comuna/">Subsecretaría de Prevención del Delito (2017)</a>.</p>
+<p>Habiendo cargando el paquete <code>readxl</code> antes, la sintaxis para cargar los datos será familiar:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="manejo-02c.html#cb154-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;datos/casos_delitos_por_comuna.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="manejo-02c.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_casos_policiales)</span></code></pre></div>
+<pre><code>## Rows: 340
+## Columns: 17
+## $ Comuna                                       &lt;chr&gt; ...
+## $ `Comuna ID`                                  &lt;dbl&gt; ...
+## $ `Región ID`                                  &lt;dbl&gt; ...
+## $ `Población (INE 2017)`                       &lt;dbl&gt; ...
+## $ `Robos con violencia o intimidación`         &lt;dbl&gt; ...
+## $ `Robos por sorpresa`                         &lt;dbl&gt; ...
+## $ `Robos de vehículo motorizado`               &lt;dbl&gt; ...
+## $ `Robos de objeto de o desde vehículo`        &lt;dbl&gt; ...
+## $ `Robos en lugar habitado`                    &lt;dbl&gt; ...
+## $ `Robos en lugar no habitado`                 &lt;dbl&gt; ...
+## $ `Otros robos con fuerza`                     &lt;dbl&gt; ...
+## $ Hurtos                                       &lt;dbl&gt; ...
+## $ `Lesiones menos graves, graves o gravísimas` &lt;dbl&gt; ...
+## $ `Lesiones leves`                             &lt;dbl&gt; ...
+## $ Homicidios                                   &lt;dbl&gt; ...
+## $ Violaciones                                  &lt;dbl&gt; ...
+## $ VIF                                          &lt;dbl&gt; ...</code></pre>
+<p>Los nombres de las columnas en la base tienen mayúsculas, espacios y tildes, lo que nos puede generar problemas en el análisis. La <a href="https://style.tidyverse.org/">convención en el <code>tidyverse</code></a> es nombrar utilizando snake_case (nombre_de_mi_objeto), sin mayúsculas, espacios ni tildes. Esto nos ahorrará muchos problemas.</p>
+<p>Si ya tenemos una base de datos y queremos estandarizar sus variables, el paquete <code>janitor</code> provee la función <code>clean_names()</code> para esto:</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="manejo-02c.html#cb157-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="ot">&lt;-</span> df_casos_policiales <span class="sc">%&gt;%</span> </span>
+<span id="cb157-2"><a href="manejo-02c.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="manejo-02c.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_casos_policiales_l)</span></code></pre></div>
+<pre><code>## Rows: 340
+## Columns: 17
+## $ comuna                                    &lt;chr&gt; ...
+## $ comuna_id                                 &lt;dbl&gt; ...
+## $ region_id                                 &lt;dbl&gt; ...
+## $ poblacion_ine_2017                        &lt;dbl&gt; ...
+## $ robos_con_violencia_o_intimidacion        &lt;dbl&gt; ...
+## $ robos_por_sorpresa                        &lt;dbl&gt; ...
+## $ robos_de_vehiculo_motorizado              &lt;dbl&gt; ...
+## $ robos_de_objeto_de_o_desde_vehiculo       &lt;dbl&gt; ...
+## $ robos_en_lugar_habitado                   &lt;dbl&gt; ...
+## $ robos_en_lugar_no_habitado                &lt;dbl&gt; ...
+## $ otros_robos_con_fuerza                    &lt;dbl&gt; ...
+## $ hurtos                                    &lt;dbl&gt; ...
+## $ lesiones_menos_graves_graves_o_gravisimas &lt;dbl&gt; ...
+## $ lesiones_leves                            &lt;dbl&gt; ...
+## $ homicidios                                &lt;dbl&gt; ...
+## $ violaciones                               &lt;dbl&gt; ...
+## $ vif                                       &lt;dbl&gt; ...</code></pre>
+<div id="ejercicios-a-b" class="section level6">
+<h6>(Ejercicios A-B)</h6>
+<p>A. ¿Cuál fue la comuna con más homicidios en Chile en el año 2016? Tu código:</p>
+<p>B. ¿Cuál fue la comuna con más casos de violencia intrafamiliar por cada 1000 habitantes? Tu código:</p>
+</div>
+</div>
+<div id="crear-bases-de-datos-a-mano" class="section level4">
+<h4>Crear bases de datos “a mano”</h4>
+<p>A veces queremos crear un data frame arbitrariamente a partir de vectores. Para esto, la funcióm <code>tibble()</code> es simple y útil:</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="manejo-02c.html#cb160-1" aria-hidden="true" tabindex="-1"></a>df_ejemplo <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb160-2"><a href="manejo-02c.html#cb160-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),</span>
+<span id="cb160-3"><a href="manejo-02c.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>)</span>
+<span id="cb160-4"><a href="manejo-02c.html#cb160-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="manejo-02c.html#cb161-1" aria-hidden="true" tabindex="-1"></a>df_ejemplo</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 2
+##        x     y
+##    &lt;int&gt; &lt;dbl&gt;
+##  1     1     9
+##  2     2    10
+##  3     3     1
+##  4     4     2
+##  5     5     3
+##  6     6     4
+##  7     7     5
+##  8     8     6
+##  9     9     7
+## 10    10     8</code></pre>
+</div>
+<div id="guardar-bases-de-datos" class="section level4">
+<h4>Guardar bases de datos</h4>
+<p>Guardar una base de datos es necesario para compartirla con colegas o usarla en otros proyectos. La mayoría de las funciones que vimos, que comienzan con <code>read_</code>, tienen su versión <code>write_</code> para este propósito. Por ejemplo, <code>read_csv()</code> -&gt; <code>write_csv()</code>. El único par de comandos en los que hay algo distinto es <code>readxl::read_excel()</code> -&gt; <code>writexl::write_xlsx()</code>.</p>
+<p>En general, los mejores formatos para guardar bases son .csv (muy universal) y .rds (nos aseguramos de que cualquier cosa extraña en nuestros datos pueda volver bien a R).</p>
+<p>Guardemos los datos en formatos .csv, .rds y .xlsx (Excel). Recuerda que ya cargamos antes el paquete <code>writexl</code>, que nos permite hacer esto último.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="manejo-02c.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(df_ejemplo, <span class="st">&quot;datos/df_ejemplo.csv&quot;</span>)</span>
+<span id="cb163-2"><a href="manejo-02c.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(df_ejemplo, <span class="st">&quot;datos/df_ejemplo.rds&quot;</span>)</span>
+<span id="cb163-3"><a href="manejo-02c.html#cb163-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(df_ejemplo, <span class="st">&quot;datos/df_ejemplo.xlsx&quot;</span>)</span></code></pre></div>
+<p>Podríamos volver a cargarlo con <code>read_excel()</code>:</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="manejo-02c.html#cb164-1" aria-hidden="true" tabindex="-1"></a>df_ejemplo_comprob <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;datos/df_ejemplo.xlsx&quot;</span>)</span>
+<span id="cb164-2"><a href="manejo-02c.html#cb164-2" aria-hidden="true" tabindex="-1"></a>df_ejemplo_comprob</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 2
+##        x     y
+##    &lt;dbl&gt; &lt;dbl&gt;
+##  1     1     9
+##  2     2    10
+##  3     3     1
+##  4     4     2
+##  5     5     3
+##  6     6     4
+##  7     7     5
+##  8     8     6
+##  9     9     7
+## 10    10     8</code></pre>
+<div id="ejercicio" class="section level6">
+<h6>(Ejercicio)</h6>
+<p>Guarda una versión de la base de datos de delitos, en formato csv. Utiliza la versión con los nombres de columnas limpios y excluye la variable de región. Tu código:</p>
+</div>
+</div>
+</div>
+<div id="versiones-iterativas-de-summarize-y-mutate" class="section level2">
+<h2>Versiones iterativas de <code>summarize()</code> y <code>mutate()</code></h2>
+<p>Es común necesitar hacer una misma operación en múltiples columnas de una base. Por ejemplo, podríamos querer los totales de delitos específicos por región, como muestra el siguiente chunk.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="manejo-02c.html#cb166-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb166-2"><a href="manejo-02c.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb166-3"><a href="manejo-02c.html#cb166-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">lesiones_leves_total =</span> <span class="fu">sum</span>(lesiones_leves),</span>
+<span id="cb166-4"><a href="manejo-02c.html#cb166-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">hurtos_total =</span> <span class="fu">sum</span>(hurtos))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 16 x 3
+##    region_id lesiones_leves_total hurtos_total
+##        &lt;dbl&gt;                &lt;dbl&gt;        &lt;dbl&gt;
+##  1         1                 1523         3935
+##  2         2                 3014         8257
+##  3         3                 1253         2953
+##  4         4                 2830         6613
+##  5         5                 6955        19537
+##  6         6                 3347         8553
+##  7         7                 2368         7371
+##  8         8                 4549        13698
+##  9         9                 3227         9808
+## 10        10                 2824         9575
+## 11        11                  486         1169
+## 12        12                  525         1568
+## 13        13                22796        65621
+## 14        14                 1269         3783
+## 15        15                  733         1762
+## 16        16                 1250         3644</code></pre>
+<p>Sin embargo, hacer este código para los 13 tipos de delito es una pérdida de tiempo: generaría código particularmente difícil de leer. Podemos aplicar la función <code>summarize_at()</code> para usar la función de suma en múltiples variables. Noten cómo en el código siguiente “.” reemplazará a la variable en la definición de la operación (gracias al operador “~”).</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="manejo-02c.html#cb169-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb169-2"><a href="manejo-02c.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb169-3"><a href="manejo-02c.html#cb169-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
+<span id="cb169-4"><a href="manejo-02c.html#cb169-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="sc">~</span><span class="fu">sum</span>(.))</span></code></pre></div>
+<pre><code>## # A tibble: 16 x 14
+##    region_id robos_con_viole~ robos_por_sorpr~
+##        &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+##  1         1             1554             1499
+##  2         2             1930             1173
+##  3         3              832              379
+##  4         4             1667             1106
+##  5         5             5777             4537
+##  6         6             1629             1011
+##  7         7             1108              852
+##  8         8             4646             2664
+##  9         9             1547             1331
+## 10        10             1025              728
+## 11        11               71               26
+## 12        12              112               29
+## 13        13            41541            19168
+## 14        14              424              339
+## 15        15              618              451
+## 16        16              605              513
+## # ... with 11 more variables:
+## #   robos_de_vehiculo_motorizado &lt;dbl&gt;,
+## #   robos_de_objeto_de_o_desde_vehiculo &lt;dbl&gt;,
+## #   robos_en_lugar_habitado &lt;dbl&gt;,
+## #   robos_en_lugar_no_habitado &lt;dbl&gt;,
+## #   otros_robos_con_fuerza &lt;dbl&gt;,
+## #   hurtos &lt;dbl&gt;,
+## #   lesiones_menos_graves_graves_o_gravisimas &lt;dbl&gt;,
+## #   lesiones_leves &lt;dbl&gt;, homicidios &lt;dbl&gt;,
+## #   violaciones &lt;dbl&gt;, vif &lt;dbl&gt;</code></pre>
+<p>Incluso podemos editar un poco los nombres de los resúmenes, asignándolos como elementos en una lista. Noten cómo van a cambiar dichos nombres, terminando ahora en "_total":</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="manejo-02c.html#cb171-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb171-2"><a href="manejo-02c.html#cb171-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb171-3"><a href="manejo-02c.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
+<span id="cb171-4"><a href="manejo-02c.html#cb171-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">total =</span> <span class="sc">~</span><span class="fu">sum</span>(.)))</span></code></pre></div>
+<pre><code>## # A tibble: 16 x 14
+##    region_id robos_con_viole~ robos_por_sorpr~
+##        &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+##  1         1             1554             1499
+##  2         2             1930             1173
+##  3         3              832              379
+##  4         4             1667             1106
+##  5         5             5777             4537
+##  6         6             1629             1011
+##  7         7             1108              852
+##  8         8             4646             2664
+##  9         9             1547             1331
+## 10        10             1025              728
+## 11        11               71               26
+## 12        12              112               29
+## 13        13            41541            19168
+## 14        14              424              339
+## 15        15              618              451
+## 16        16              605              513
+## # ... with 11 more variables:
+## #   robos_de_vehiculo_motorizado_total &lt;dbl&gt;,
+## #   robos_de_objeto_de_o_desde_vehiculo_total &lt;dbl&gt;,
+## #   robos_en_lugar_habitado_total &lt;dbl&gt;,
+## #   robos_en_lugar_no_habitado_total &lt;dbl&gt;,
+## #   otros_robos_con_fuerza_total &lt;dbl&gt;,
+## #   hurtos_total &lt;dbl&gt;,
+## #   lesiones_menos_graves_graves_o_gravisimas_total &lt;dbl&gt;,
+## #   lesiones_leves_total &lt;dbl&gt;,
+## #   homicidios_total &lt;dbl&gt;,
+## #   violaciones_total &lt;dbl&gt;, vif_total &lt;dbl&gt;</code></pre>
+<p>También podemos utilizar más de una función de resumen a la vez en nuestros datos:</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="manejo-02c.html#cb173-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb173-2"><a href="manejo-02c.html#cb173-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb173-3"><a href="manejo-02c.html#cb173-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
+<span id="cb173-4"><a href="manejo-02c.html#cb173-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">total =</span> <span class="sc">~</span><span class="fu">sum</span>(.), <span class="at">max =</span> <span class="sc">~</span><span class="fu">max</span>(.)))</span></code></pre></div>
+<pre><code>## # A tibble: 16 x 27
+##    region_id robos_con_viole~ robos_por_sorpr~
+##        &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+##  1         1             1554             1499
+##  2         2             1930             1173
+##  3         3              832              379
+##  4         4             1667             1106
+##  5         5             5777             4537
+##  6         6             1629             1011
+##  7         7             1108              852
+##  8         8             4646             2664
+##  9         9             1547             1331
+## 10        10             1025              728
+## 11        11               71               26
+## 12        12              112               29
+## 13        13            41541            19168
+## 14        14              424              339
+## 15        15              618              451
+## 16        16              605              513
+## # ... with 24 more variables:
+## #   robos_de_vehiculo_motorizado_total &lt;dbl&gt;,
+## #   robos_de_objeto_de_o_desde_vehiculo_total &lt;dbl&gt;,
+## #   robos_en_lugar_habitado_total &lt;dbl&gt;,
+## #   robos_en_lugar_no_habitado_total &lt;dbl&gt;,
+## #   otros_robos_con_fuerza_total &lt;dbl&gt;,
+## #   hurtos_total &lt;dbl&gt;,
+## #   lesiones_menos_graves_graves_o_gravisimas_total &lt;dbl&gt;,
+## #   lesiones_leves_total &lt;dbl&gt;,
+## #   homicidios_total &lt;dbl&gt;,
+## #   violaciones_total &lt;dbl&gt;, vif_total &lt;dbl&gt;,
+## #   robos_con_violencia_o_intimidacion_max &lt;dbl&gt;,
+## #   robos_por_sorpresa_max &lt;dbl&gt;,
+## #   robos_de_vehiculo_motorizado_max &lt;dbl&gt;,
+## #   robos_de_objeto_de_o_desde_vehiculo_max &lt;dbl&gt;,
+## #   robos_en_lugar_habitado_max &lt;dbl&gt;,
+## #   robos_en_lugar_no_habitado_max &lt;dbl&gt;,
+## #   otros_robos_con_fuerza_max &lt;dbl&gt;,
+## #   hurtos_max &lt;dbl&gt;,
+## #   lesiones_menos_graves_graves_o_gravisimas_max &lt;dbl&gt;,
+## #   lesiones_leves_max &lt;dbl&gt;,
+## #   homicidios_max &lt;dbl&gt;,
+## #   violaciones_max &lt;dbl&gt;, vif_max &lt;dbl&gt;</code></pre>
+<p>Aparte de hacer resúmenes, crear múltiples variables según una misma operación es bastante común.</p>
+<p>Supongamos que queremos las cifras relativas (tasas) para cada tipo de delito, como en el siguiente ejemplo:</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="manejo-02c.html#cb175-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb175-2"><a href="manejo-02c.html#cb175-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lesiones_leves_c1000 =</span> lesiones_leves <span class="sc">*</span> <span class="dv">1000</span> <span class="sc">/</span> poblacion_ine_2017) <span class="sc">%&gt;%</span> </span>
+<span id="cb175-3"><a href="manejo-02c.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(comuna, poblacion_ine_2017, lesiones_leves, lesiones_leves_c1000) <span class="co"># solo para legibilidad</span></span></code></pre></div>
+<pre><code>## # A tibble: 340 x 4
+##    comuna poblacion_ine_2~ lesiones_leves
+##    &lt;chr&gt;             &lt;dbl&gt;          &lt;dbl&gt;
+##  1 Algar~            10700             52
+##  2 Alhué              5916             26
+##  3 Alto-~             5957             24
+##  4 Alto-~             6519              8
+##  5 Alto-~           124872            523
+##  6 Ancud             44249            132
+##  7 Andac~            11555             77
+##  8 Angol             55845            244
+##  9 Antár~              202              0
+## 10 Antof~           389812           1528
+## # ... with 330 more rows, and 1 more
+## #   variable: lesiones_leves_c1000 &lt;dbl&gt;</code></pre>
+<p>Podemos utilizar <code>mutate_at()</code> para repetir esta operación en todas nuestras variables de interés.</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="manejo-02c.html#cb177-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb177-2"><a href="manejo-02c.html#cb177-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
+<span id="cb177-3"><a href="manejo-02c.html#cb177-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">c1000 =</span> <span class="sc">~</span> . <span class="sc">*</span> <span class="dv">1000</span> <span class="sc">/</span> poblacion_ine_2017))</span></code></pre></div>
+<pre><code>## # A tibble: 340 x 30
+##    comuna comuna_id region_id poblacion_ine_2~
+##    &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Algar~      5602         5            10700
+##  2 Alhué      13502        13             5916
+##  3 Alto-~      8314         8             5957
+##  4 Alto-~      3302         3             6519
+##  5 Alto-~      1107         1           124872
+##  6 Ancud      10202        10            44249
+##  7 Andac~      4103         4            11555
+##  8 Angol       9201         9            55845
+##  9 Antár~     12202        12              202
+## 10 Antof~      2101         2           389812
+## # ... with 330 more rows, and 26 more
+## #   variables:
+## #   robos_con_violencia_o_intimidacion &lt;dbl&gt;,
+## #   robos_por_sorpresa &lt;dbl&gt;,
+## #   robos_de_vehiculo_motorizado &lt;dbl&gt;,
+## #   robos_de_objeto_de_o_desde_vehiculo &lt;dbl&gt;,
+## #   robos_en_lugar_habitado &lt;dbl&gt;,
+## #   robos_en_lugar_no_habitado &lt;dbl&gt;,
+## #   otros_robos_con_fuerza &lt;dbl&gt;,
+## #   hurtos &lt;dbl&gt;,
+## #   lesiones_menos_graves_graves_o_gravisimas &lt;dbl&gt;,
+## #   lesiones_leves &lt;dbl&gt;, homicidios &lt;dbl&gt;,
+## #   violaciones &lt;dbl&gt;, vif &lt;dbl&gt;,
+## #   robos_con_violencia_o_intimidacion_c1000 &lt;dbl&gt;,
+## #   robos_por_sorpresa_c1000 &lt;dbl&gt;,
+## #   robos_de_vehiculo_motorizado_c1000 &lt;dbl&gt;,
+## #   robos_de_objeto_de_o_desde_vehiculo_c1000 &lt;dbl&gt;,
+## #   robos_en_lugar_habitado_c1000 &lt;dbl&gt;,
+## #   robos_en_lugar_no_habitado_c1000 &lt;dbl&gt;,
+## #   otros_robos_con_fuerza_c1000 &lt;dbl&gt;,
+## #   hurtos_c1000 &lt;dbl&gt;,
+## #   lesiones_menos_graves_graves_o_gravisimas_c1000 &lt;dbl&gt;,
+## #   lesiones_leves_c1000 &lt;dbl&gt;,
+## #   homicidios_c1000 &lt;dbl&gt;,
+## #   violaciones_c1000 &lt;dbl&gt;, vif_c1000 &lt;dbl&gt;</code></pre>
+<div id="ejercicio-c-1" class="section level4">
+<h4>(Ejercicio C)</h4>
+<p>Si queremos obtener un promedio por región en datos como estos, debemos calcular un <strong>promedio ponderado</strong>: si es que no hacemos esto, comunas con pocos habitantes estarán sobrerrepresentadas en los promedios. Un ejemplo a continuación:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="manejo-02c.html#cb179-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb179-2"><a href="manejo-02c.html#cb179-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb179-3"><a href="manejo-02c.html#cb179-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prom_hurtos =</span> <span class="fu">weighted.mean</span>(hurtos, <span class="at">w =</span> poblacion_ine_2017))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 16 x 2
+##    region_id prom_hurtos
+##        &lt;dbl&gt;       &lt;dbl&gt;
+##  1         1       1968.
+##  2         2       3941.
+##  3         3       1216.
+##  4         4       1543.
+##  5         5       2039.
+##  6         6       1139.
+##  7         7       1305.
+##  8         8       1304.
+##  9         9       1608.
+## 10        10       1826.
+## 11        11        513.
+## 12        12        990.
+## 13        13       2329.
+## 14        14       1064.
+## 15        15       1711.
+## 16        16        938.</code></pre>
+<p>Para cada tipo de delito, obtén el promedio ponderado por región. Tu código:</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="manejo-02b.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manejo-02d.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

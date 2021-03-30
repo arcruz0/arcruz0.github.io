@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-03-15" />
+<meta name="date" content="2021-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -171,6 +171,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="manejo-02c.html#versiones-iterativas-de-summarize-y-mutate">Versiones iterativas de <code>summarize()</code> y <code>mutate()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="manejo-02d.html"><a href="manejo-02d.html"><i class="fa fa-check"></i>02D - Manejo de datos (ejercicio int.)</a></li>
+<li class="part"><span><b>III Visualización de datos</b></span></li>
+<li class="chapter" data-level="" data-path="visualizacion.html"><a href="visualizacion.html"><i class="fa fa-check"></i>03A - Visualización de datos</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -192,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="rbasico" class="section level1 unnumbered">
 <h1>01A - R básico</h1>
-<p><a href="https://arcruz0.github.io/extra/uc2020/uc_2020_diapos_1.html#/">Diapositivas de introducción</a></p>
+<p><a href="https://arcruz0.github.io/extra/udp2021/udp_2021_diapos_intro.html">Diapositivas de introducción</a></p>
 <blockquote>
 <p>Si quieres correr este script localmente, acá puedes <a href="./static/01_r_basico.zip">descargar el proyecto comprimido en .zip</a>. Paquetes que necesitas tener instalados antes de comenzar: <code>tidyverse</code>.</p>
 </blockquote>
@@ -319,29 +321,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Fuente: <a href="https://projects.fivethirtyeight.com/congress-trump-score/">FiveThirtyEight (2020)</a>. Descargado el 11 de marzo de 2020.</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="rbasico.html#cb60-1" aria-hidden="true" tabindex="-1"></a>df_trump_scores       <span class="co"># imprime un vistazo rápido</span></span></code></pre></div>
 <pre><code>## # A tibble: 100 x 5
-##    last_name state party trump_score trump_margin
-##    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
-##  1 Alexander TN    R            80         26.0  
-##  2 Blunt     MO    R            84.8       18.6  
-##  3 Brown     OH    D            14.7        8.13 
-##  4 Burr      NC    R            90.3        3.66 
-##  5 Baldwin   WI    D            14.7        0.764
-##  6 Boozman   AR    R            88.2       26.9  
-##  7 Blackburn TN    R            93.9       26.0  
-##  8 Barrasso  WY    R            91.2       46.3  
-##  9 Bennet    CO    D            15.4       -4.91 
-## 10 Blumenth~ CT    D            11.8      -13.6  
-## # ... with 90 more rows</code></pre>
+##    last_name state party trump_score
+##    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
+##  1 Alexander TN    R            80  
+##  2 Blunt     MO    R            84.8
+##  3 Brown     OH    D            14.7
+##  4 Burr      NC    R            90.3
+##  5 Baldwin   WI    D            14.7
+##  6 Boozman   AR    R            88.2
+##  7 Blackburn TN    R            93.9
+##  8 Barrasso  WY    R            91.2
+##  9 Bennet    CO    D            15.4
+## 10 Blumenth~ CT    D            11.8
+## # ... with 90 more rows, and 1 more variable:
+## #   trump_margin &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="rbasico.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_trump_scores) <span class="co"># imprime solo las seis primeras filas</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
-##   last_name state party trump_score trump_margin
-##   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Alexander TN    R            80         26.0  
-## 2 Blunt     MO    R            84.8       18.6  
-## 3 Brown     OH    D            14.7        8.13 
-## 4 Burr      NC    R            90.3        3.66 
-## 5 Baldwin   WI    D            14.7        0.764
-## 6 Boozman   AR    R            88.2       26.9</code></pre>
+##   last_name state party trump_score
+##   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
+## 1 Alexander TN    R            80  
+## 2 Blunt     MO    R            84.8
+## 3 Brown     OH    D            14.7
+## 4 Burr      NC    R            90.3
+## 5 Baldwin   WI    D            14.7
+## 6 Boozman   AR    R            88.2
+## # ... with 1 more variable:
+## #   trump_margin &lt;dbl&gt;</code></pre>
 <p>También podemos inspeccionar un data frame clickeando su nombre en el panel superior derecho, pestaña Environment.</p>
 <p>Las columnas de un data frame son vectores!</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="rbasico.html#cb64-1" aria-hidden="true" tabindex="-1"></a>df_trump_scores<span class="sc">$</span>last_name</span></code></pre></div>
@@ -396,31 +401,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [97] &quot;Whitehouse&quot;   &quot;Warner&quot;      
 ##  [99] &quot;Warren&quot;       &quot;Young&quot;</code></pre>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="rbasico.html#cb66-1" aria-hidden="true" tabindex="-1"></a>df_trump_scores<span class="sc">$</span>trump_score</span></code></pre></div>
-<pre><code>##   [1]  80.000000  84.848485  14.705882  90.322581
-##   [5]  14.705882  88.235294  93.939394  91.176471
-##   [9]  15.384615  11.764706   4.166667  94.117647
-##  [13]  15.151515  15.151515  11.764706  93.548387
-##  [17]  41.176471  93.939394  91.176471  20.588235
-##  [21]  84.848485  14.705882  82.352941  90.909091
-##  [25]  93.750000  11.764706  18.181818  79.411765
-##  [29]  16.129032  90.909091  91.176471  14.705882
-##  [33]  88.235294  76.666667  91.176471   7.692308
-##  [37]  83.870968  14.705882  20.588235  91.176471
-##  [41]   4.545455  14.705882  91.176471  85.294118
-##  [45]  90.909091  91.176471  21.212121   7.692308
-##  [49]  17.647059  14.705882  88.235294  14.705882
-##  [53]  88.235294  63.636364 100.000000   8.823529
-##  [57]  91.176471  11.764706  57.575758  14.705882
-##  [61]  56.250000  17.647059  11.764706  32.352941
-##  [65]  91.176471  84.848485  14.705882  60.714286
-##  [69]  92.857143   8.823529  91.176471  90.625000
-##  [73]  81.250000  92.857143  12.500000  79.411765
-##  [77]   5.263158  11.764706  91.176471  14.705882
-##  [81]  14.705882  87.500000  24.242424  11.764706
-##  [85]  87.500000  90.322581  17.647059  91.176471
-##  [89]  91.176471  84.375000  11.764706  88.235294
-##  [93]  17.647059  14.705882  85.294118   8.823529
-##  [97]   9.375000  14.705882   9.090909  64.705882</code></pre>
+<pre><code>##   [1]  80.000000  84.848485  14.705882
+##   [4]  90.322581  14.705882  88.235294
+##   [7]  93.939394  91.176471  15.384615
+##  [10]  11.764706   4.166667  94.117647
+##  [13]  15.151515  15.151515  11.764706
+##  [16]  93.548387  41.176471  93.939394
+##  [19]  91.176471  20.588235  84.848485
+##  [22]  14.705882  82.352941  90.909091
+##  [25]  93.750000  11.764706  18.181818
+##  [28]  79.411765  16.129032  90.909091
+##  [31]  91.176471  14.705882  88.235294
+##  [34]  76.666667  91.176471   7.692308
+##  [37]  83.870968  14.705882  20.588235
+##  [40]  91.176471   4.545455  14.705882
+##  [43]  91.176471  85.294118  90.909091
+##  [46]  91.176471  21.212121   7.692308
+##  [49]  17.647059  14.705882  88.235294
+##  [52]  14.705882  88.235294  63.636364
+##  [55] 100.000000   8.823529  91.176471
+##  [58]  11.764706  57.575758  14.705882
+##  [61]  56.250000  17.647059  11.764706
+##  [64]  32.352941  91.176471  84.848485
+##  [67]  14.705882  60.714286  92.857143
+##  [70]   8.823529  91.176471  90.625000
+##  [73]  81.250000  92.857143  12.500000
+##  [76]  79.411765   5.263158  11.764706
+##  [79]  91.176471  14.705882  14.705882
+##  [82]  87.500000  24.242424  11.764706
+##  [85]  87.500000  90.322581  17.647059
+##  [88]  91.176471  91.176471  84.375000
+##  [91]  11.764706  88.235294  17.647059
+##  [94]  14.705882  85.294118   8.823529
+##  [97]   9.375000  14.705882   9.090909
+## [100]  64.705882</code></pre>
 <p>Producto de esto, podemos operar en ellas usando las funciones que aprendimos antes.</p>
 <div id="ejercicio-c" class="section level6">
 <h6>(Ejercicio C)</h6>
@@ -472,34 +486,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="rbasico.html#cb73-1" aria-hidden="true" tabindex="-1"></a>mi_lista[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [[1]]
 ## # A tibble: 100 x 5
-##    last_name state party trump_score trump_margin
-##    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
-##  1 Alexander TN    R            80         26.0  
-##  2 Blunt     MO    R            84.8       18.6  
-##  3 Brown     OH    D            14.7        8.13 
-##  4 Burr      NC    R            90.3        3.66 
-##  5 Baldwin   WI    D            14.7        0.764
-##  6 Boozman   AR    R            88.2       26.9  
-##  7 Blackburn TN    R            93.9       26.0  
-##  8 Barrasso  WY    R            91.2       46.3  
-##  9 Bennet    CO    D            15.4       -4.91 
-## 10 Blumenth~ CT    D            11.8      -13.6  
-## # ... with 90 more rows</code></pre>
+##    last_name state party trump_score
+##    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
+##  1 Alexander TN    R            80  
+##  2 Blunt     MO    R            84.8
+##  3 Brown     OH    D            14.7
+##  4 Burr      NC    R            90.3
+##  5 Baldwin   WI    D            14.7
+##  6 Boozman   AR    R            88.2
+##  7 Blackburn TN    R            93.9
+##  8 Barrasso  WY    R            91.2
+##  9 Bennet    CO    D            15.4
+## 10 Blumenth~ CT    D            11.8
+## # ... with 90 more rows, and 1 more variable:
+## #   trump_margin &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="rbasico.html#cb75-1" aria-hidden="true" tabindex="-1"></a>mi_lista[[<span class="dv">3</span>]]</span></code></pre></div>
 <pre><code>## # A tibble: 100 x 5
-##    last_name state party trump_score trump_margin
-##    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
-##  1 Alexander TN    R            80         26.0  
-##  2 Blunt     MO    R            84.8       18.6  
-##  3 Brown     OH    D            14.7        8.13 
-##  4 Burr      NC    R            90.3        3.66 
-##  5 Baldwin   WI    D            14.7        0.764
-##  6 Boozman   AR    R            88.2       26.9  
-##  7 Blackburn TN    R            93.9       26.0  
-##  8 Barrasso  WY    R            91.2       46.3  
-##  9 Bennet    CO    D            15.4       -4.91 
-## 10 Blumenth~ CT    D            11.8      -13.6  
-## # ... with 90 more rows</code></pre>
+##    last_name state party trump_score
+##    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
+##  1 Alexander TN    R            80  
+##  2 Blunt     MO    R            84.8
+##  3 Brown     OH    D            14.7
+##  4 Burr      NC    R            90.3
+##  5 Baldwin   WI    D            14.7
+##  6 Boozman   AR    R            88.2
+##  7 Blackburn TN    R            93.9
+##  8 Barrasso  WY    R            91.2
+##  9 Bennet    CO    D            15.4
+## 10 Blumenth~ CT    D            11.8
+## # ... with 90 more rows, and 1 more variable:
+## #   trump_margin &lt;dbl&gt;</code></pre>
 <p>¿Cuál es la diferencia entre estos dos últimos comandos? El primero devuelve una nueva lista con solo un elemento, el tercero de la lista original. El segundo, en tanto, devuelve el contenido del tercer elemento de la lista.</p>
 </div>
 </div>
@@ -526,8 +542,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>O a partir de un data frame, con código:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="rbasico.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb77-2"><a href="rbasico.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(df_trump_scores))</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="rbasico.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div>
+<pre><code>## Warning: package &#39;knitr&#39; was built under R
+## version 4.0.4</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="rbasico.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(df_trump_scores))</span></code></pre></div>
 <table>
 <thead>
 <tr>

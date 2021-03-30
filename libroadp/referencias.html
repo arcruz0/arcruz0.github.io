@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 17 Referencias | AnalizaR Datos Políticos</title>
+  <meta name="description" content="Capítulo 17 Referencias | AnalizaR Datos Políticos" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 17 Referencias | AnalizaR Datos Políticos" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 17 Referencias | AnalizaR Datos Políticos" />
+  
+  
+  
+
+<meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (Editores)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="prev" href="maps.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script>
+% https://stackoverflow.com/a/4425214/8242291
+var links = document.links;
+
+for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+
+}
+</script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><b><a href="./index.html"><img style="float: left; margin-right: 5px;" src="favicon.ico"></img>AnalizaR datos políticos</a></b></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introducción</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#inicio"><i class="fa fa-check"></i>Inicio</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cómo-contribuir"><i class="fa fa-check"></i>¿Cómo contribuir?</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#sobre-los-autores-y-autoras"><i class="fa fa-check"></i>Sobre los autores y autoras</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prefacio"><i class="fa fa-check"></i>Prefacio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#qué-esperar-del-libro"><i class="fa fa-check"></i>Qué esperar del libro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura-del-libro"><i class="fa fa-check"></i>Estructura del libro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cómo-utilizar-el-libro-en-un-curso-de-métodos"><i class="fa fa-check"></i>¿Cómo utilizar el libro en un curso de métodos?</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#primera-opción-curso-semestral-de-análisis-de-datos-políticos"><i class="fa fa-check"></i>Primera opción: Curso semestral de análisis de datos políticos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#segunda-opción-curso-semestral-de-introducción-a-métodos-cuantitativos"><i class="fa fa-check"></i>Segunda opción: Curso semestral de introducción a métodos cuantitativos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerrequisitos"><i class="fa fa-check"></i>Prerrequisitos</a></li>
+</ul></li>
+<li class="part"><span><b>I Introducción a R</b></span></li>
+<li class="chapter" data-level="1" data-path="basic-r.html"><a href="basic-r.html"><i class="fa fa-check"></i><b>1</b> R Básico</a><ul>
+<li class="chapter" data-level="1.1" data-path="basic-r.html"><a href="basic-r.html#instalación"><i class="fa fa-check"></i><b>1.1</b> Instalación</a><ul>
+<li class="chapter" data-level="" data-path="basic-r.html"><a href="basic-r.html#r"><i class="fa fa-check"></i>R</a></li>
+<li class="chapter" data-level="" data-path="basic-r.html"><a href="basic-r.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="basic-r.html"><a href="basic-r.html#consola"><i class="fa fa-check"></i><b>1.2</b> Consola</a></li>
+<li class="chapter" data-level="1.3" data-path="basic-r.html"><a href="basic-r.html#script"><i class="fa fa-check"></i><b>1.3</b> Script</a></li>
+<li class="chapter" data-level="1.4" data-path="basic-r.html"><a href="basic-r.html#objetos-y-funciones"><i class="fa fa-check"></i><b>1.4</b> Objetos (y funciones)</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="basic-r.html"><a href="basic-r.html#vectores"><i class="fa fa-check"></i><b>1.4.1</b> Vectores</a></li>
+<li class="chapter" data-level="1.4.2" data-path="basic-r.html"><a href="basic-r.html#basic-r-functions"><i class="fa fa-check"></i><b>1.4.2</b> Functions</a></li>
+<li class="chapter" data-level="1.4.3" data-path="basic-r.html"><a href="basic-r.html#archivos-gráficos-paquetes-ayuda"><i class="fa fa-check"></i><b>1.4.3</b> Archivos / gráficos / paquetes / ayuda</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Manejo de datos</a><ul>
+<li class="chapter" data-level="" data-path="data.html"><a href="data.html#los-paquetes-que-necesitas-instalar"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#introducción-al-manejo-de-datos"><i class="fa fa-check"></i><b>2.1</b> Introducción al manejo de datos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>2.1.1</b> Nuestra base de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#describiendo-una-base-de-datos"><i class="fa fa-check"></i><b>2.2</b> Describiendo una base de datos</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#operaciones-básicas"><i class="fa fa-check"></i><b>2.3</b> Operaciones básicas</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data.html"><a href="data.html#seleccionar-columnas"><i class="fa fa-check"></i><b>2.3.1</b> Seleccionar columnas</a></li>
+<li class="chapter" data-level="2.3.2" data-path="data.html"><a href="data.html#renombra-las-columnas"><i class="fa fa-check"></i><b>2.3.2</b> Renombra las columnas</a></li>
+<li class="chapter" data-level="2.3.3" data-path="data.html"><a href="data.html#filtrar-las-observaciones"><i class="fa fa-check"></i><b>2.3.3</b> Filtrar las observaciones</a></li>
+<li class="chapter" data-level="2.3.4" data-path="data.html"><a href="data.html#cambiar-el-orden-de-una-base-de-datos"><i class="fa fa-check"></i><b>2.3.4</b> Cambiar el orden de una base de datos</a></li>
+<li class="chapter" data-level="2.3.5" data-path="data.html"><a href="data.html#transformar-y-crear-variables"><i class="fa fa-check"></i><b>2.3.5</b> Transformar y crear variables</a></li>
+<li class="chapter" data-level="2.3.6" data-path="data.html"><a href="data.html#resúmenes"><i class="fa fa-check"></i><b>2.3.6</b> Resúmenes</a></li>
+<li class="chapter" data-level="2.3.7" data-path="data.html"><a href="data.html#resúmenes-por-grupo"><i class="fa fa-check"></i><b>2.3.7</b> Resúmenes por grupo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#comandos-en-cadena"><i class="fa fa-check"></i><b>2.4</b> Comandos en cadena</a></li>
+<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#data-recodificar"><i class="fa fa-check"></i><b>2.5</b> Recodificar valores</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#pivoteo-de-datos-data-pivot"><i class="fa fa-check"></i><b>2.5.1</b> Pivoteo de datos {data-pivot}</a></li>
+<li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#bases-de-datos-anchas-con-más-de-una-variable-de-interés"><i class="fa fa-check"></i><b>2.5.2</b> Bases de datos anchas con más de una variable de interés</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>3</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#lecturas-sugeridas"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#los-paquetes-que-necesitas-instalar-1"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="3.1" data-path="dataviz.html"><a href="dataviz.html#por-qué-visualizar-mis-datos"><i class="fa fa-check"></i><b>3.1</b> ¿Por qué visualizar mis datos?</a></li>
+<li class="chapter" data-level="3.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>3.2</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-universo-ggplotiano"><i class="fa fa-check"></i><b>3.2.1</b> Las capas del “universo ggplotiano”</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dataviz.html"><a href="dataviz.html#ejemplo-aplicado-elecciones-locales-y-visualización-de-datos"><i class="fa fa-check"></i><b>3.3</b> Ejemplo aplicado: Elecciones locales y visualización de datos</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-barras"><i class="fa fa-check"></i><b>3.3.1</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-líneas"><i class="fa fa-check"></i><b>3.3.2</b> Gráfico de líneas</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-caja"><i class="fa fa-check"></i><b>3.3.3</b> Gráfico de caja</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataviz.html"><a href="dataviz.html#histograma"><i class="fa fa-check"></i><b>3.3.4</b> Histograma</a></li>
+<li class="chapter" data-level="3.3.5" data-path="dataviz.html"><a href="dataviz.html#relación-entre-las-variables"><i class="fa fa-check"></i><b>3.3.5</b> Relación entre las variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="dataviz.html"><a href="dataviz.html#para-continuar-aprendiendo"><i class="fa fa-check"></i><b>3.4</b> Para continuar aprendiendo</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="load.html"><a href="load.html"><i class="fa fa-check"></i><b>4</b> Carga de bases</a><ul>
+<li class="chapter" data-level="" data-path="load.html"><a href="load.html#los-paquetes-que-necesitas-instalar-2"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="4.1" data-path="load.html"><a href="load.html#load-intro"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="load.html"><a href="load.html#carga-formatos"><i class="fa fa-check"></i><b>4.2</b> Diferentes formatos de bases de datos</a></li>
+<li class="chapter" data-level="4.3" data-path="load.html"><a href="load.html#los-archivos-separados-por-delimitadores-.csv-y-.tsv"><i class="fa fa-check"></i><b>4.3</b> Los archivos separados por delimitadores (.csv y .tsv)</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="load.html"><a href="load.html#r-básico-utils"><i class="fa fa-check"></i><b>4.3.1</b> R básico: <code>utils</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="load.html"><a href="load.html#load-r"><i class="fa fa-check"></i><b>4.3.2</b> Archivos creados con R (.Rdata y .rds)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="load.html"><a href="load.html#load-labels"><i class="fa fa-check"></i><b>4.3.3</b> Bases de datos con etiquetas (de Stata or SPSS)</a></li>
+<li class="chapter" data-level="4.3.4" data-path="load.html"><a href="load.html#load-excel"><i class="fa fa-check"></i><b>4.3.4</b> Archivos de Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="load.html"><a href="load.html#load-large"><i class="fa fa-check"></i><b>4.4</b> Grandes bases de datos tabulares</a></li>
+</ul></li>
+<li class="part"><span><b>II Modelos</b></span></li>
+<li class="chapter" data-level="5" data-path="linear.html"><a href="linear.html"><i class="fa fa-check"></i><b>5</b> Modelos lineales</a><ul>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#lecturas-sugeridas-1"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#los-paquetes-que-necesitas-instalar-3"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#introducción-1"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="5.1" data-path="linear.html"><a href="linear.html#mínimos-cuadrados-ordinarios-en-r"><i class="fa fa-check"></i><b>5.1</b> Mínimos cuadrados ordinarios en R</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="linear.html"><a href="linear.html#cómo-obtener-estadísticas-descriptivas"><i class="fa fa-check"></i><b>5.1.1</b> Cómo obtener estadísticas descriptivas</a></li>
+<li class="chapter" data-level="5.1.2" data-path="linear.html"><a href="linear.html#estadísticas-descriptivas-y-distribución-de-las-variables-en-el-modelo"><i class="fa fa-check"></i><b>5.1.2</b> Estadísticas descriptivas y distribución de las variables en el modelo</a></li>
+<li class="chapter" data-level="5.1.3" data-path="linear.html"><a href="linear.html#matriz-de-correlación-de-variables-independientes"><i class="fa fa-check"></i><b>5.1.3</b> Matriz de correlación de variables independientes</a></li>
+<li class="chapter" data-level="5.1.4" data-path="linear.html"><a href="linear.html#distribución-de-las-variables-de-interés"><i class="fa fa-check"></i><b>5.1.4</b> Distribución de las variables de interés</a></li>
+<li class="chapter" data-level="5.1.5" data-path="linear.html"><a href="linear.html#relación-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>5.1.5</b> Relación entre la variable dependiente e independiente</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="linear.html"><a href="linear.html#modelo-bivariado-regresión-lineal-simple"><i class="fa fa-check"></i><b>5.2</b> Modelo bivariado: regresión lineal simple</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="linear.html"><a href="linear.html#la-función-lm"><i class="fa fa-check"></i><b>5.2.1</b> La función <code>lm</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="linear.html"><a href="linear.html#representación-gráfica"><i class="fa fa-check"></i><b>5.2.2</b> Representación gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="linear.html"><a href="linear.html#modelo-multivariado-regresión-múltiple"><i class="fa fa-check"></i><b>5.3</b> Modelo multivariado: regresión múltiple</a></li>
+<li class="chapter" data-level="5.4" data-path="linear.html"><a href="linear.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Ajuste del modelo</a></li>
+<li class="chapter" data-level="5.5" data-path="linear.html"><a href="linear.html#inferencia-en-los-modelos-lineales-múltiples"><i class="fa fa-check"></i><b>5.5</b> Inferencia en los modelos lineales múltiples</a></li>
+<li class="chapter" data-level="5.6" data-path="linear.html"><a href="linear.html#testeando-los-supuestos-de-mco"><i class="fa fa-check"></i><b>5.6</b> Testeando los supuestos de MCO</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="case-sel.html"><a href="case-sel.html"><i class="fa fa-check"></i><b>6</b> Selección de casos basada en regresiones</a><ul>
+<li class="chapter" data-level="" data-path="case-sel.html"><a href="case-sel.html#lecturas-sugeridas-2"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="case-sel.html"><a href="case-sel.html#los-paquetes-que-necesitas-instalar-4"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="6.1" data-path="case-sel.html"><a href="case-sel.html#selección-de-estudios-de-casos"><i class="fa fa-check"></i><b>6.1</b> Selección de estudios de casos</a></li>
+<li class="chapter" data-level="6.2" data-path="case-sel.html"><a href="case-sel.html#qué-estudio-de-caso-debería-seleccionar-para-la-investigación-cualitativa"><i class="fa fa-check"></i><b>6.2</b> ¿Qué estudio de caso debería seleccionar para la investigación cualitativa?</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="case-sel.html"><a href="case-sel.html#casos-típicos"><i class="fa fa-check"></i><b>6.2.1</b> Casos típicos</a></li>
+<li class="chapter" data-level="6.2.2" data-path="case-sel.html"><a href="case-sel.html#los-valores-atípicos"><i class="fa fa-check"></i><b>6.2.2</b> Los valores atípicos</a></li>
+<li class="chapter" data-level="6.2.3" data-path="case-sel.html"><a href="case-sel.html#casos-influyentes"><i class="fa fa-check"></i><b>6.2.3</b> Casos influyentes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="case-sel.html"><a href="case-sel.html#casos-extremos"><i class="fa fa-check"></i><b>6.2.4</b> Casos extremos</a></li>
+<li class="chapter" data-level="6.2.5" data-path="case-sel.html"><a href="case-sel.html#casos-más-similares"><i class="fa fa-check"></i><b>6.2.5</b> Casos más similares</a></li>
+<li class="chapter" data-level="6.2.6" data-path="case-sel.html"><a href="case-sel.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>6.2.6</b> Casos mas diferentes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="case-sel.html"><a href="case-sel.html#la-importancia-de-la-combinación-de-métodos"><i class="fa fa-check"></i><b>6.3</b> La importancia de la combinación de métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="panel.html"><a href="panel.html"><i class="fa fa-check"></i><b>7</b> Modelos de panel</a><ul>
+<li class="chapter" data-level="" data-path="panel.html"><a href="panel.html#lecturas-sugeridas-3"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="panel.html"><a href="panel.html#los-paquetes-que-necesitas-instalar-5"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="7.1" data-path="panel.html"><a href="panel.html#introducción-2"><i class="fa fa-check"></i><b>7.1</b> Introducción</a></li>
+<li class="chapter" data-level="7.2" data-path="panel.html"><a href="panel.html#describiendo-la-base-de-datos-en-panel"><i class="fa fa-check"></i><b>7.2</b> Describiendo la base de datos en panel</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="panel.html"><a href="panel.html#opción-a.-gráfico-de-líneas"><i class="fa fa-check"></i><b>7.2.1</b> Opción A. Gráfico de líneas</a></li>
+<li class="chapter" data-level="7.2.2" data-path="panel.html"><a href="panel.html#option-b.-gráfico-de-cajas"><i class="fa fa-check"></i><b>7.2.2</b> Option B. Gráfico de cajas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="panel.html"><a href="panel.html#modelización-de-la-variación-a-nivel-de-grupo"><i class="fa fa-check"></i><b>7.3</b> Modelización de la variación a nivel de grupo</a></li>
+<li class="chapter" data-level="7.4" data-path="panel.html"><a href="panel.html#efectos-fijos-vs.-efectos-aleatorios"><i class="fa fa-check"></i><b>7.4</b> Efectos fijos vs. efectos aleatorios</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="panel.html"><a href="panel.html#test-de-hausman"><i class="fa fa-check"></i><b>7.4.1</b> Test de Hausman</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="panel.html"><a href="panel.html#testeando-raíces-unitarias"><i class="fa fa-check"></i><b>7.5</b> Testeando raíces unitarias</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="panel.html"><a href="panel.html#creación-de-variables-rezagadas-lags-y-variables-prospectivas-leads"><i class="fa fa-check"></i><b>7.5.1</b> Creación de variables rezagadas (<em>lags</em>) y variables prospectivas (<em>leads</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="panel.html"><a href="panel.html#errores-estándar-robustos-corregidos-para-panel"><i class="fa fa-check"></i><b>7.6</b> Errores estándar robustos corregidos para panel</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="panel.html"><a href="panel.html#errores-estándar-robustos-1"><i class="fa fa-check"></i><b>7.6.1</b> Errores estándar robustos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>8</b> Modelos logísticos</a><ul>
+<li class="chapter" data-level="" data-path="logit.html"><a href="logit.html#lecturas-sugeridas-4"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="logit.html"><a href="logit.html#los-paquetes-que-necesitas-instalar-6"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="8.1" data-path="logit.html"><a href="logit.html#introducción-3"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
+<li class="chapter" data-level="8.2" data-path="logit.html"><a href="logit.html#uso-de-los-modelos-logísticos"><i class="fa fa-check"></i><b>8.2</b> Uso de los modelos logísticos</a></li>
+<li class="chapter" data-level="8.3" data-path="logit.html"><a href="logit.html#cómo-se-estiman-las-probabilidades"><i class="fa fa-check"></i><b>8.3</b> ¿Cómo se estiman las probabilidades?</a></li>
+<li class="chapter" data-level="8.4" data-path="logit.html"><a href="logit.html#estimación-de-los-modelos"><i class="fa fa-check"></i><b>8.4</b> Estimación de los modelos</a></li>
+<li class="chapter" data-level="8.5" data-path="logit.html"><a href="logit.html#creando-tablas"><i class="fa fa-check"></i><b>8.5</b> Creando tablas</a></li>
+<li class="chapter" data-level="8.6" data-path="logit.html"><a href="logit.html#representación-visual-de-los-resultados"><i class="fa fa-check"></i><b>8.6</b> Representación visual de los resultados</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="logit.html"><a href="logit.html#visualización-de-las-interacciones-entre-las-variables"><i class="fa fa-check"></i><b>8.6.1</b> Visualización de las interacciones entre las variables</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="logit.html"><a href="logit.html#medidas-para-evaluar-el-ajuste-de-los-modelos"><i class="fa fa-check"></i><b>8.7</b> Medidas para evaluar el ajuste de los modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>9</b> Modelos de supervivencia</a><ul>
+<li class="chapter" data-level="" data-path="surv.html"><a href="surv.html#lecturas-sugeridas-5"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="surv.html"><a href="surv.html#los-paquetes-que-necesitas-instalar-7"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="9.1" data-path="surv.html"><a href="surv.html#introducción-4"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="surv.html"><a href="surv.html#cómo-interpretamos-las-tasas-de-riesgo"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo interpretamos las tasas de riesgo?</a></li>
+<li class="chapter" data-level="9.3" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>9.3</b> El modelo Cox de riesgos proporcionales</a></li>
+<li class="chapter" data-level="9.4" data-path="surv.html"><a href="surv.html#estimación-de-los-modelos-de-cox-en-r"><i class="fa fa-check"></i><b>9.4</b> Estimación de los modelos de Cox en R</a></li>
+<li class="chapter" data-level="9.5" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretación-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>9.5</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="causal-inf.html"><a href="causal-inf.html"><i class="fa fa-check"></i><b>10</b> Inferencia causal</a><ul>
+<li class="chapter" data-level="" data-path="causal-inf.html"><a href="causal-inf.html#lecturas-sugeridas-6"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="causal-inf.html"><a href="causal-inf.html#los-paquetes-que-necesitas-instalar-8"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="10.1" data-path="causal-inf.html"><a href="causal-inf.html#introducción-5"><i class="fa fa-check"></i><b>10.1</b> Introducción</a></li>
+<li class="chapter" data-level="10.2" data-path="causal-inf.html"><a href="causal-inf.html#causalidad-y-gráficos-causales"><i class="fa fa-check"></i><b>10.2</b> Causalidad y gráficos causales</a></li>
+<li class="chapter" data-level="10.3" data-path="causal-inf.html"><a href="causal-inf.html#midiendo-efectos-causales"><i class="fa fa-check"></i><b>10.3</b> Midiendo efectos causales</a></li>
+<li class="chapter" data-level="10.4" data-path="causal-inf.html"><a href="causal-inf.html#dags-y-asociaciones-estadísticas"><i class="fa fa-check"></i><b>10.4</b> DAGs y asociaciones estadísticas</a></li>
+<li class="chapter" data-level="10.5" data-path="causal-inf.html"><a href="causal-inf.html#puertas-traseras-y-cálculos-hacer"><i class="fa fa-check"></i><b>10.5</b> Puertas traseras y cálculos “<em>hacer</em>”</a></li>
+<li class="chapter" data-level="10.6" data-path="causal-inf.html"><a href="causal-inf.html#dibujar-y-analizar-dags"><i class="fa fa-check"></i><b>10.6</b> Dibujar y analizar DAGs</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="causal-inf.html"><a href="causal-inf.html#dibujar-un-dag-con-dagitty"><i class="fa fa-check"></i><b>10.6.1</b> Dibujar un DAG con DAGitty</a></li>
+<li class="chapter" data-level="10.6.2" data-path="causal-inf.html"><a href="causal-inf.html#encontrar-sets-de-ajuste-con-dagitty"><i class="fa fa-check"></i><b>10.6.2</b> Encontrar sets de ajuste con DAGitty</a></li>
+<li class="chapter" data-level="10.6.3" data-path="causal-inf.html"><a href="causal-inf.html#diseñar-dags-en-r"><i class="fa fa-check"></i><b>10.6.3</b> Diseñar DAGs en R</a></li>
+<li class="chapter" data-level="10.6.4" data-path="causal-inf.html"><a href="causal-inf.html#encontrar-caminos-y-sets-de-ajustes-con-r"><i class="fa fa-check"></i><b>10.6.4</b> Encontrar caminos y sets de ajustes con R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="causal-inf.html"><a href="causal-inf.html#haciendo-ajustes-causales"><i class="fa fa-check"></i><b>10.7</b> Haciendo ajustes causales</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="causal-inf.html"><a href="causal-inf.html#datos-de-redes-para-mosquitos"><i class="fa fa-check"></i><b>10.7.1</b> Datos de redes para mosquitos</a></li>
+<li class="chapter" data-level="10.7.2" data-path="causal-inf.html"><a href="causal-inf.html#verificar-las-independencias-condicionales"><i class="fa fa-check"></i><b>10.7.2</b> Verificar las independencias condicionales</a></li>
+<li class="chapter" data-level="10.7.3" data-path="causal-inf.html"><a href="causal-inf.html#encuentra-el-set-de-ajuste"><i class="fa fa-check"></i><b>10.7.3</b> Encuentra el set de ajuste</a></li>
+<li class="chapter" data-level="10.7.4" data-path="causal-inf.html"><a href="causal-inf.html#estimación-ingenua-no-ajustada"><i class="fa fa-check"></i><b>10.7.4</b> Estimación ingenua no ajustada</a></li>
+<li class="chapter" data-level="10.7.5" data-path="causal-inf.html"><a href="causal-inf.html#regresiones"><i class="fa fa-check"></i><b>10.7.5</b> Regresiones</a></li>
+<li class="chapter" data-level="10.7.6" data-path="causal-inf.html"><a href="causal-inf.html#matching"><i class="fa fa-check"></i><b>10.7.6</b> Matching</a></li>
+<li class="chapter" data-level="10.7.7" data-path="causal-inf.html"><a href="causal-inf.html#ponderación-de-probabilidad-inversa"><i class="fa fa-check"></i><b>10.7.7</b> Ponderación de probabilidad inversa</a></li>
+<li class="chapter" data-level="10.7.8" data-path="causal-inf.html"><a href="causal-inf.html#comparando-todos-los-métodos"><i class="fa fa-check"></i><b>10.7.8</b> Comparando todos los métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="causal-inf.html"><a href="causal-inf.html#consejos-finales"><i class="fa fa-check"></i><b>10.8</b> Consejos finales</a></li>
+</ul></li>
+<li class="part"><span><b>III Aplicaciones</b></span></li>
+<li class="chapter" data-level="11" data-path="adv-data.html"><a href="adv-data.html"><i class="fa fa-check"></i><b>11</b> Manejo avanzado de datos políticos</a><ul>
+<li class="chapter" data-level="" data-path="adv-data.html"><a href="adv-data.html#lecturas-sugeridas-7"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="adv-data.html"><a href="adv-data.html#los-paquetes-que-necesitas-instalar-9"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="11.1" data-path="adv-data.html"><a href="adv-data.html#introducción-6"><i class="fa fa-check"></i><b>11.1</b> Introducción</a></li>
+<li class="chapter" data-level="11.2" data-path="adv-data.html"><a href="adv-data.html#uniendo-bases-de-datos"><i class="fa fa-check"></i><b>11.2</b> Uniendo bases de datos</a></li>
+<li class="chapter" data-level="11.3" data-path="adv-data.html"><a href="adv-data.html#estandarizando-los-códigos-de-país"><i class="fa fa-check"></i><b>11.3</b> Estandarizando los códigos de país</a></li>
+<li class="chapter" data-level="11.4" data-path="adv-data.html"><a href="adv-data.html#la-unión-borrosa-o-inexacta-de-los-datos"><i class="fa fa-check"></i><b>11.4</b> La unión borrosa o inexacta de los datos</a></li>
+<li class="chapter" data-level="11.5" data-path="adv-data.html"><a href="adv-data.html#gestión-de-valores-perdidos"><i class="fa fa-check"></i><b>11.5</b> Gestión de valores perdidos</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="adv-data.html"><a href="adv-data.html#tipos-de-valores-perdidos"><i class="fa fa-check"></i><b>11.5.1</b> Tipos de valores perdidos</a></li>
+<li class="chapter" data-level="11.5.2" data-path="adv-data.html"><a href="adv-data.html#descripción-de-los-valores-que-faltan-en-la-base-de-datos"><i class="fa fa-check"></i><b>11.5.2</b> Descripción de los valores que faltan en la base de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="adv-data.html"><a href="adv-data.html#imputación-de-valores-perdidos"><i class="fa fa-check"></i><b>11.6</b> Imputación de valores perdidos</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="adv-data.html"><a href="adv-data.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>11.6.1</b> Regresiones luego de imputar datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Minería de datos web</a><ul>
+<li class="chapter" data-level="" data-path="web-mining.html"><a href="web-mining.html#lecturas-sugeridas-8"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="web-mining.html"><a href="web-mining.html#los-paquetes-que-necesitas-instalar-10"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="12.1" data-path="web-mining.html"><a href="web-mining.html#introducción-7"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
+<li class="chapter" data-level="12.2" data-path="web-mining.html"><a href="web-mining.html#formas-de-hacer-web-scraping"><i class="fa fa-check"></i><b>12.2</b> Formas de hacer web scraping</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="web-mining.html"><a href="web-mining.html#estándar-de-exclusión-de-robot"><i class="fa fa-check"></i><b>12.2.1</b> Estándar de exclusión de robot</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="web-mining.html"><a href="web-mining.html#web-scraping-en-r"><i class="fa fa-check"></i><b>12.3</b> Web scraping en R</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="web-mining.html"><a href="web-mining.html#ejemplo-aplicado-los-comunicados-de-prensa-de-la-organización-de-estados-americanos-oea"><i class="fa fa-check"></i><b>12.3.1</b> Ejemplo aplicado: los comunicados de prensa de la Organización de Estados Americanos (OEA)</a></li>
+<li class="chapter" data-level="12.3.2" data-path="web-mining.html"><a href="web-mining.html#caraga-el-html-para-trabajar-con-r"><i class="fa fa-check"></i><b>12.3.2</b> Caraga el html para trabajar con R</a></li>
+<li class="chapter" data-level="12.3.3" data-path="web-mining.html"><a href="web-mining.html#extraer-la-información-con-html_nodes-html_text"><i class="fa fa-check"></i><b>12.3.3</b> Extraer la información con <code>html_nodes()</code> + <code>html_text()</code></a></li>
+<li class="chapter" data-level="12.3.4" data-path="web-mining.html"><a href="web-mining.html#iteraciones"><i class="fa fa-check"></i><b>12.3.4</b> Iteraciones</a></li>
+<li class="chapter" data-level="12.3.5" data-path="web-mining.html"><a href="web-mining.html#funciones-personalizadas-recetas"><i class="fa fa-check"></i><b>12.3.5</b> Funciones personalizadas (recetas)</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="web-mining.html"><a href="web-mining.html#usando-apis-y-extrayendo-datos-de-twitter"><i class="fa fa-check"></i><b>12.4</b> Usando APIs y extrayendo datos de Twitter</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="web-mining.html"><a href="web-mining.html#buscar-una-palabra-clave"><i class="fa fa-check"></i><b>12.4.1</b> Buscar una palabra clave</a></li>
+<li class="chapter" data-level="12.4.2" data-path="web-mining.html"><a href="web-mining.html#buscar-una-frase"><i class="fa fa-check"></i><b>12.4.2</b> Buscar una frase</a></li>
+<li class="chapter" data-level="12.4.3" data-path="web-mining.html"><a href="web-mining.html#descargando-características-relacionadas-con-los-usuarios-de-twitter"><i class="fa fa-check"></i><b>12.4.3</b> Descargando características relacionadas con los usuarios de Twitter</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>13</b> Análisis cuantitativo de textos políticos</a><ul>
+<li class="chapter" data-level="" data-path="qta.html"><a href="qta.html#lecturas-recomendadas"><i class="fa fa-check"></i>Lecturas recomendadas</a></li>
+<li class="chapter" data-level="" data-path="qta.html"><a href="qta.html#paquetes-que-necesitas-instalar"><i class="fa fa-check"></i>Paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="13.1" data-path="qta.html"><a href="qta.html#sqta1"><i class="fa fa-check"></i><b>13.1</b> Análisis de hashtags políticos</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="qta.html"><a href="qta.html#exploración-de-datos-de-twitter"><i class="fa fa-check"></i><b>13.1.1</b> Exploración de datos de Twitter</a></li>
+<li class="chapter" data-level="13.1.2" data-path="qta.html"><a href="qta.html#diagnóstico-visual"><i class="fa fa-check"></i><b>13.1.2</b> Diagnóstico visual</a></li>
+<li class="chapter" data-level="13.1.3" data-path="qta.html"><a href="qta.html#hashtags-más-utilizados"><i class="fa fa-check"></i><b>13.1.3</b> Hashtags más utilizados</a></li>
+<li class="chapter" data-level="13.1.4" data-path="qta.html"><a href="qta.html#wordclouds-nubes-de-palabras"><i class="fa fa-check"></i><b>13.1.4</b> Wordclouds (Nubes de palabras)</a></li>
+<li class="chapter" data-level="13.1.5" data-path="qta.html"><a href="qta.html#nubes-de-palabras-por-grupos"><i class="fa fa-check"></i><b>13.1.5</b> Nubes de palabras por grupos</a></li>
+<li class="chapter" data-level="13.1.6" data-path="qta.html"><a href="qta.html#gráficos-de-barras"><i class="fa fa-check"></i><b>13.1.6</b> Gráficos de barras</a></li>
+<li class="chapter" data-level="13.1.7" data-path="qta.html"><a href="qta.html#variación-temporal-en-el-uso-de-hashtags"><i class="fa fa-check"></i><b>13.1.7</b> Variación temporal en el uso de hashtags</a></li>
+<li class="chapter" data-level="13.1.8" data-path="qta.html"><a href="qta.html#para-resumir"><i class="fa fa-check"></i><b>13.1.8</b> Para resumir</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="qta.html"><a href="qta.html#wordfish"><i class="fa fa-check"></i><b>13.2</b> Wordfish</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="qta.html"><a href="qta.html#inspección-y-limpieza-de-datos"><i class="fa fa-check"></i><b>13.2.1</b> Inspección y limpieza de datos</a></li>
+<li class="chapter" data-level="13.2.2" data-path="qta.html"><a href="qta.html#pre-procesamiento"><i class="fa fa-check"></i><b>13.2.2</b> Pre-procesamiento</a></li>
+<li class="chapter" data-level="13.2.3" data-path="qta.html"><a href="qta.html#sqta2"><i class="fa fa-check"></i><b>13.2.3</b> Wordfish</a></li>
+<li class="chapter" data-level="13.2.4" data-path="qta.html"><a href="qta.html#qué-aprendimos-de-wordfish"><i class="fa fa-check"></i><b>13.2.4</b> ¿Qué aprendimos de Wordfish?</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="qta.html"><a href="qta.html#sqta3"><i class="fa fa-check"></i><b>13.3</b> Structural Topic Modeling (STM)</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="qta.html"><a href="qta.html#pre-procesamiento-1"><i class="fa fa-check"></i><b>13.3.1</b> Pre-procesamiento</a></li>
+<li class="chapter" data-level="13.3.2" data-path="qta.html"><a href="qta.html#diagnósticos"><i class="fa fa-check"></i><b>13.3.2</b> Diagnósticos</a></li>
+<li class="chapter" data-level="13.3.3" data-path="qta.html"><a href="qta.html#análisis"><i class="fa fa-check"></i><b>13.3.3</b> Análisis</a></li>
+<li class="chapter" data-level="13.3.4" data-path="qta.html"><a href="qta.html#observaciones-finales"><i class="fa fa-check"></i><b>13.3.4</b> Observaciones finales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="networks.html"><a href="networks.html"><i class="fa fa-check"></i><b>14</b> Análisis de redes</a><ul>
+<li class="chapter" data-level="" data-path="networks.html"><a href="networks.html#lecturas-sugeridas-9"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="networks.html"><a href="networks.html#los-paquetes-que-necesitas-instalar-11"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="14.1" data-path="networks.html"><a href="networks.html#introducción-8"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
+<li class="chapter" data-level="14.2" data-path="networks.html"><a href="networks.html#conceptos-básicos-en-una-red"><i class="fa fa-check"></i><b>14.2</b> Conceptos básicos en una red</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="networks.html"><a href="networks.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>14.2.1</b> Nodos y enlaces</a></li>
+<li class="chapter" data-level="14.2.2" data-path="networks.html"><a href="networks.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>14.2.2</b> Matriz de adyacencia</a></li>
+<li class="chapter" data-level="14.2.3" data-path="networks.html"><a href="networks.html#pesos-y-direcciones"><i class="fa fa-check"></i><b>14.2.3</b> Pesos y direcciones</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="networks.html"><a href="networks.html#bases-de-datos-de-la-red"><i class="fa fa-check"></i><b>14.3</b> Bases de datos de la red</a></li>
+<li class="chapter" data-level="14.4" data-path="networks.html"><a href="networks.html#presentación-gráfica-de-una-red"><i class="fa fa-check"></i><b>14.4</b> Presentación gráfica de una red</a></li>
+<li class="chapter" data-level="14.5" data-path="networks.html"><a href="networks.html#medidas-de-centralidad"><i class="fa fa-check"></i><b>14.5</b> Medidas de centralidad</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="networks.html"><a href="networks.html#grado"><i class="fa fa-check"></i><b>14.5.1</b> Grado</a></li>
+<li class="chapter" data-level="14.5.2" data-path="networks.html"><a href="networks.html#centralidad-del-eigenvector"><i class="fa fa-check"></i><b>14.5.2</b> Centralidad del eigenvector</a></li>
+<li class="chapter" data-level="14.5.3" data-path="networks.html"><a href="networks.html#centralidad-de-intermediación-betweenness"><i class="fa fa-check"></i><b>14.5.3</b> Centralidad de intermediación (<em>betweenness</em>)</a></li>
+<li class="chapter" data-level="14.5.4" data-path="networks.html"><a href="networks.html#cercanía"><i class="fa fa-check"></i><b>14.5.4</b> Cercanía</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="networks.html"><a href="networks.html#aplicación-en-r"><i class="fa fa-check"></i><b>14.6</b> Aplicación en R</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="indexes.html"><a href="indexes.html"><i class="fa fa-check"></i><b>15</b> Análisis de componentes principales</a><ul>
+<li class="chapter" data-level="" data-path="indexes.html"><a href="indexes.html#lecturas-sugeridas-10"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="indexes.html"><a href="indexes.html#los-paquetes-que-necesitas-instalar-12"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="15.1" data-path="indexes.html"><a href="indexes.html#introducción-9"><i class="fa fa-check"></i><b>15.1</b> Introducción</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="indexes.html"><a href="indexes.html#conceptos-medidas-y-validez"><i class="fa fa-check"></i><b>15.1.1</b> Conceptos, medidas y validez</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="indexes.html"><a href="indexes.html#cómo-funciona-el-análisis-de-componentes-principales"><i class="fa fa-check"></i><b>15.2</b> Cómo funciona el Análisis de Componentes Principales</a></li>
+<li class="chapter" data-level="15.3" data-path="indexes.html"><a href="indexes.html#nociones-básicas-en-r"><i class="fa fa-check"></i><b>15.3</b> Nociones básicas en R</a></li>
+<li class="chapter" data-level="15.4" data-path="indexes.html"><a href="indexes.html#dimensionalidad-del-concepto"><i class="fa fa-check"></i><b>15.4</b> Dimensionalidad del concepto</a></li>
+<li class="chapter" data-level="15.5" data-path="indexes.html"><a href="indexes.html#variación-del-concepto"><i class="fa fa-check"></i><b>15.5</b> Variación del concepto</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="maps.html"><a href="maps.html"><i class="fa fa-check"></i><b>16</b> Mapas y datos espaciales</a><ul>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#lecturas-sugeridas-11"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#los-paquetes-que-necesitas-instalar-13"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="16.1" data-path="maps.html"><a href="maps.html#introducción-10"><i class="fa fa-check"></i><b>16.1</b> Introducción</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="maps.html"><a href="maps.html#datos-espaciales-qué-son"><i class="fa fa-check"></i><b>16.1.1</b> Datos espaciales: ¿qué son?</a></li>
+<li class="chapter" data-level="16.1.2" data-path="maps.html"><a href="maps.html#estructura-de-datos-espaciales"><i class="fa fa-check"></i><b>16.1.2</b> Estructura de datos espaciales</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="maps.html"><a href="maps.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>16.2</b> Datos espaciales en R</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="maps.html"><a href="maps.html#características-simples-en-r"><i class="fa fa-check"></i><b>16.2.1</b> Características simples en R</a></li>
+<li class="chapter" data-level="16.2.2" data-path="maps.html"><a href="maps.html#estructura"><i class="fa fa-check"></i><b>16.2.2</b> Estructura</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="maps.html"><a href="maps.html#gestión-de-datos-espaciales"><i class="fa fa-check"></i><b>16.3</b> Gestión de Datos Espaciales</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="maps.html"><a href="maps.html#modificaciones"><i class="fa fa-check"></i><b>16.3.1</b> Modificaciones</a></li>
+<li class="chapter" data-level="16.3.2" data-path="maps.html"><a href="maps.html#añade-datos-de-otras-bases-de-datos-con-left_join"><i class="fa fa-check"></i><b>16.3.2</b> Añade datos de otras bases de datos con <code>left_join()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="maps.html"><a href="maps.html#mapeo"><i class="fa fa-check"></i><b>16.4</b> Mapeo</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="maps.html"><a href="maps.html#generando-centroides"><i class="fa fa-check"></i><b>16.4.1</b> Generando centroides</a></li>
+<li class="chapter" data-level="16.4.2" data-path="maps.html"><a href="maps.html#mapeando-variables"><i class="fa fa-check"></i><b>16.4.2</b> Mapeando variables</a></li>
+<li class="chapter" data-level="16.4.3" data-path="maps.html"><a href="maps.html#mapeando-puntos"><i class="fa fa-check"></i><b>16.4.3</b> Mapeando puntos</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="maps.html"><a href="maps.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>16.5</b> Inferencia a partir de datos espaciales</a><ul>
+<li class="chapter" data-level="16.5.1" data-path="maps.html"><a href="maps.html#indicador-local-de-asociación-espacial-lisa-por-sus-siglas-en-inglés"><i class="fa fa-check"></i><b>16.5.1</b> Indicador local de asociación espacial (LISA, por sus siglas en inglés)</a></li>
+<li class="chapter" data-level="16.5.2" data-path="maps.html"><a href="maps.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>16.5.2</b> Matriz de pesos espaciales</a></li>
+<li class="chapter" data-level="16.5.3" data-path="maps.html"><a href="maps.html#i-de-moran"><i class="fa fa-check"></i><b>16.5.3</b> I de Moran</a></li>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#comentarios-finales-referencias-para-un-mejor-análisis-de-datos-espaciales"><i class="fa fa-check"></i>Comentarios finales: Referencias para un mejor análisis de datos espaciales</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Referencias</b></span></li>
+<li class="chapter" data-level="17" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i><b>17</b> Referencias</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="referencias" class="section level1">
+<h1><span class="header-section-number">Capítulo 17</span> Referencias</h1>
+<!-- Vacío -->
+
+<div id="refs" class="references">
+<div id="ref-abeyasekeraMultivariateMethodsIndex2005">
+<p>Abeyasekera, Savitri. 2005. “Multivariate Methods for Index Construction.” In <em>Household Sample Surveys in Developing and Transition Countries</em>, 367–87. New York, NY: United Nations.</p>
+</div>
+<div id="ref-R-ff">
+<p>Adler, Daniel, Christian Gläser, Oleg Nenadic, Jens Oehlschlägel, and Walter Zucchini. 2020. <em>Ff: Memory-Efficient Storage of Large Data on Disk and Fast Access Functions</em>. <a href="https://CRAN.R-project.org/package=ff">https://CRAN.R-project.org/package=ff</a>.</p>
+</div>
+<div id="ref-agrestiIntroductionCategoricalData2007">
+<p>Agresti, Alan. 2007. <em>An Introduction to Categorical Data Analysis</em>. 2nd ed. Hoboken, NJ: Wiley-Interscience.</p>
+</div>
+<div id="ref-alemanComparingCosponsorshipRollCall2009">
+<p>Alemán, Eduardo, Ernesto Calvo, Mark P. Jones, and Noah Kaplan. 2009. “Comparing Cosponsorship and Roll-Call Ideal Points.” <em>Legislative Studies Quarterly</em> 34 (1): 87–116. <a href="https://doi.org/10.3162/036298009787500358">https://doi.org/10.3162/036298009787500358</a>.</p>
+</div>
+<div id="ref-allisonEventHistorySurvival2014">
+<p>Allison, Paul David. 2014. <em>Event History and Survival Analysis</em>. 2nd ed. Thousand Oaks, CA: SAGE.</p>
+</div>
+<div id="ref-altmanCitizenshipContemporaryDirect2019">
+<p>Altman, David. 2019. <em>Citizenship and Contemporary Direct Democracy</em>. Cambridge: Cambridge University Press.</p>
+</div>
+<div id="ref-amorimnetoDutraLulaConducao2012">
+<p>Amorim Neto, Octavio. 2012. <em>De Dutra a Lula: A Condução E Os Determinantes Da Política Externa Brasileira</em>. Rio de Janeiro: Elsevier / Konrad Adenauer Stiftung / Campus.</p>
+</div>
+<div id="ref-masteringmetrics">
+<p>Angrist, Joshua D., and Jörn-Steffen Pischke. 2015. <em>Mastering ’Metrics: The Path from Cause to Effect</em>. Princeton, NJ: Princeton University Press.</p>
+</div>
+<div id="ref-angristMostlyHarmlessEconometrics2008">
+<p>———. 2008. <em>Mostly Harmless Econometrics: An Empiricist’s Companion</em>. Princeton, NJ: Princeton University Press.</p>
+</div>
+<div id="ref-anselinLocalIndicatorsSpatial1995">
+<p>Anselin, Luc. 1995. “Local Indicators of Spatial Association-LISA.” <em>Geographical Analysis</em> 27 (2): 93–115. <a href="https://doi.org/10.1111/j.1538-4632.1995.tb00338.x">https://doi.org/10.1111/j.1538-4632.1995.tb00338.x</a>.</p>
+</div>
+<div id="ref-R-countrycode">
+<p>Arel-Bundock, Vincent. 2020. <em>Countrycode: Convert Country Names and Country Codes</em>. <a href="https://CRAN.R-project.org/package=countrycode">https://CRAN.R-project.org/package=countrycode</a>.</p>
+</div>
+<div id="ref-R-gridExtra">
+<p>Auguie, Baptiste. 2017. <em>GridExtra: Miscellaneous Functions for "Grid" Graphics</em>. <a href="https://CRAN.R-project.org/package=gridExtra">https://CRAN.R-project.org/package=gridExtra</a>.</p>
+</div>
+<div id="ref-baileyImplementingPanelCorrectedStandard2011">
+<p>Bailey, Delia, and Jonathan N. Katz. 2011. “Implementing Panel-Corrected Standard Errors in R: The Pcse Package.” <em>Journal of Statistical Software</em> 42 (1): 1–11. <a href="https://doi.org/10.18637/jss.v042.c01">https://doi.org/10.18637/jss.v042.c01</a>.</p>
+</div>
+<div id="ref-barberaBirdsSameFeather2015">
+<p>Barberá, Pablo. 2015. “Birds of the Same Feather Tweet Together: Bayesian Ideal Point Estimation Using Twitter Data.” <em>Political Analysis</em> 23 (1): 76–91. <a href="https://doi.org/10.1093/pan/mpu011">https://doi.org/10.1093/pan/mpu011</a>.</p>
+</div>
+<div id="ref-beckTimeseriesCrosssectionMethods2008">
+<p>Beck, Nathaniel. 2008. “Time-Series Cross-Section Methods.” In <em>The Oxford Handbook of Political Methodology</em>, edited by Janet M. Box-Steffensmeier, Henry E. Brady, and David Collier, 475–93. Oxford: Oxford University Press.</p>
+</div>
+<div id="ref-beckTimeSeriesCrossSectionDataWhat2001">
+<p>———. 2001. “Time-Series-Cross-Section Data : What Have We Learned in the Past Few Years?” <em>Annual Review of Political Science</em> 4 (1): 271–93. <a href="https://doi.org/10.1146/annurev.polisci.4.1.271">https://doi.org/10.1146/annurev.polisci.4.1.271</a>.</p>
+</div>
+<div id="ref-beckWhatNotTimeSeries1995">
+<p>Beck, Nathaniel, and Jonathan N. Katz. 1995. “What to Do (and Not to Do) with Time-Series Cross-Section Data.” <em>American Political Science Review</em> 89 (3): 634–47. <a href="https://doi.org/10.2307/2082979">https://doi.org/10.2307/2082979</a>.</p>
+</div>
+<div id="ref-beckModelingDynamicsTimeSeries2011">
+<p>———. 2011. “Modeling Dynamics in Time-SeriesCross-Section Political Economy Data.” <em>Annual Review of Political Science</em> 14 (1): 331–52. <a href="https://doi.org/10.1146/annurev-polisci-071510-103222">https://doi.org/10.1146/annurev-polisci-071510-103222</a>.</p>
+</div>
+<div id="ref-R-stopwords">
+<p>Benoit, Kenneth, David Muhr, and Kohei Watanabe. 2020. <em>Stopwords: Multilingual Stopword Lists</em>. <a href="https://CRAN.R-project.org/package=stopwords">https://CRAN.R-project.org/package=stopwords</a>.</p>
+</div>
+<div id="ref-R-quanteda.textmodels">
+<p>Benoit, Kenneth, Kohei Watanabe, Haiyan Wang, Stefan Müller, Patrick O. Perry, Benjamin Lauderdale, and William Lowe. 2020. <em>Quanteda.textmodels: Scaling Models and Classifiers for Textual Data</em>. <a href="https://CRAN.R-project.org/package=quanteda.textmodels">https://CRAN.R-project.org/package=quanteda.textmodels</a>.</p>
+</div>
+<div id="ref-R-quanteda">
+<p>Benoit, Kenneth, Kohei Watanabe, Haiyan Wang, Paul Nulty, Adam Obeng, Stefan Müller, Akitaka Matsuo, Jiong Wei Lua, Jouni Kuha, and William Lowe. 2020. <em>Quanteda: Quantitative Analysis of Textual Data</em>. <a href="https://CRAN.R-project.org/package=quanteda">https://CRAN.R-project.org/package=quanteda</a>.</p>
+</div>
+<div id="ref-berryTestingInteractionBinary2010">
+<p>Berry, William D., Jacqueline H. R. DeMeritt, and Justin Esarey. 2010. “Testing for Interaction in Binary Logit and Probit Models: Is a Product Term Essential?” <em>American Journal of Political Science</em> 54 (1): 248–66. <a href="https://doi.org/10.1111/j.1540-5907.2009.00429.x">https://doi.org/10.1111/j.1540-5907.2009.00429.x</a>.</p>
+</div>
+<div id="ref-R-spdep">
+<p>Bivand, Roger. 2019. <em>Spdep: Spatial Dependence: Weighting Schemes, Statistics</em>. <a href="https://CRAN.R-project.org/package=spdep">https://CRAN.R-project.org/package=spdep</a>.</p>
+</div>
+<div id="ref-bivandAppliedSpatialData2013">
+<p>Bivand, Roger S., Edzer Pebesma, and Virgilio Gómez-Rubio. 2013. <em>Applied Spatial Data Analysis with R</em>. 2nd ed. New York, NY: Springer. <a href="https://www.springer.com/gp/book/9781461476177">https://www.springer.com/gp/book/9781461476177</a>.</p>
+</div>
+<div id="ref-bleiLatentDirichletAllocation2003">
+<p>Blei, David M., Andrew Y. Ng, and Michael I. Jordan. 2003. “Latent Dirichlet Allocation.” <em>Journal of Machine Learning Research</em> 3 (Jan): 993–1022. <a href="http://www.jmlr.org/papers/v3/blei03a">http://www.jmlr.org/papers/v3/blei03a</a>.</p>
+</div>
+<div id="ref-box-steffensmeierEventHistoryModeling2004">
+<p>Box-Steffensmeier, Janet M., and Bradford S. Jones. 2004. <em>Event History Modeling: A Guide for Social Scientists</em>. Cambridge: Cambridge University Press.</p>
+</div>
+<div id="ref-bramborUnderstandingInteractionModels2006">
+<p>Brambor, Thomas, William Roberts Clark, and Matt Golder. 2006. “Understanding Interaction Models: Improving Empirical Analyses.” <em>Political Analysis</em> 14 (1): 63–82. <a href="https://www.jstor.org/stable/25791835">https://www.jstor.org/stable/25791835</a>.</p>
+</div>
+<div id="ref-brostromEventHistoryAnalysis2012">
+<p>Broström, Göran. 2012. <em>Event History Analysis with R</em>. Boca Raton, FL: CRC Press.</p>
+</div>
+<div id="ref-brunsdonIntroductionSpatialAnalysis2015">
+<p>Brunsdon, Chris, and Lex Comber. 2015. <em>An Introduction to R for Spatial Analysis and Mapping</em>. Thousand Oaks, CA: SAGE.</p>
+</div>
+<div id="ref-bryantAssessingValidityMeasurement2000">
+<p>Bryant, Fred B. 2000. “Assessing the Validity of Measurement.” In <em>Reading and Understanding MORE Multivariate Statistics</em>, edited by Laurence G. Grimm and Paul R. Yarnold, 99–146. Washington, DC: American Psychological Association.</p>
+</div>
+<div id="ref-calvoAnatomiaPoliticaTwitter2015">
+<p>Calvo, Ernesto. 2015. <em>Anatomía Política de Twitter En Argentina: Tuiteando #Nisman</em>. Buenos Aires, Argentina: Capital Intelectual.</p>
+</div>
+<div id="ref-ceronIntrapartyPolitics1402017">
+<p>Ceron, Andrea. 2017. “Intra-Party Politics in 140 Characters.” <em>Party Politics</em> 23 (1): 7–17. <a href="https://doi.org/10.1177/1354068816654325">https://doi.org/10.1177/1354068816654325</a>.</p>
+</div>
+<div id="ref-chanTherePowerTransition2005">
+<p>Chan, Steve. 2005. “Is There a Power Transition Between the U.S. And China? The Different Faces of National Power.” <em>Asian Survey</em> 45 (5): 687–701. <a href="https://doi.org/10.1525/as.2005.45.5.687">https://doi.org/10.1525/as.2005.45.5.687</a>.</p>
+</div>
+<div id="ref-clarkShouldUseFixed2015">
+<p>Clark, Tom S., and Drew A. Linzer. 2015. “Should I Use Fixed or Random Effects?” <em>Political Science Research and Methods</em> 3 (2): 399–408. <a href="https://doi.org/10.1017/psrm.2014.32">https://doi.org/10.1017/psrm.2014.32</a>.</p>
+</div>
+<div id="ref-collierTypologiesFormingConcepts2008">
+<p>Collier, David, Jody Laporte, and Jason Seawright. 2008. “Typologies: Forming Concepts and Creating Categorical Variables.” In <em>The Oxford Handbook of Political Methodology</em>, edited by Janet M. Box-Steffensmeier, Henry E. Brady, and David Collier, 152–73. Oxford: Oxford University Press.</p>
+</div>
+<div id="ref-croissantPanelDataEconometrics2018">
+<p>Croissant, Yves, and Giovanni Millo. 2018. <em>Panel Data Econometrics with R</em>. Hoboken, NJ: John Wiley &amp; Sons.</p>
+</div>
+<div id="ref-R-plm">
+<p>Croissant, Yves, Giovanni Millo, and Kevin Tappe. 2020. <em>Plm: Linear Models for Panel Data</em>. <a href="https://CRAN.R-project.org/package=plm">https://CRAN.R-project.org/package=plm</a>.</p>
+</div>
+<div id="ref-R-inexact">
+<p>Cruz, Andrés. 2020. <em>Inexact: Fuzzy Join Supervisor</em>.</p>
+</div>
+<div id="ref-csiss">
+<p>CSISS. 2004. <em>Spatial Social Science–for Research, Teaching, Application, and Policy</em>. <a href="https://escholarship.org/uc/item/0qb4f7sb">https://escholarship.org/uc/item/0qb4f7sb</a>.</p>
+</div>
+<div id="ref-mixtape">
+<p>Cunningham, Scott. 2018. <em>Causal Inference: The Mixtape</em>. <a href="https://www.scunning.com/mixtape.html">https://www.scunning.com/mixtape.html</a>.</p>
+</div>
+<div id="ref-R-data.table">
+<p>Dowle, Matt, and Arun Srinivasan. 2019. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table">https://CRAN.R-project.org/package=data.table</a>.</p>
+</div>
+<div id="ref-dunningNaturalExperimentsSocial2012">
+<p>Dunning, Thad. 2012. <em>Natural Experiments in the Social Sciences: A Design-Based Approach</em>. Cambridge: Cambridge University Press.</p>
+</div>
+<div id="ref-Elwert:2013">
+<p>Elwert, Felix. 2013. “Graphical Causal Models.” In <em>Handbook of Causal Analysis for Social Research</em>, edited by Stephen L. Morgan, 245–73. New York: Springer. <a href="https://doi.org/10.1007/978-94-007-6094-3_13">https://doi.org/10.1007/978-94-007-6094-3_13</a>.</p>
+</div>
+<div id="ref-fowlerConnectingCongressStudy2006">
+<p>Fowler, James H. 2006. “Connecting the Congress: A Study of Cosponsorship Networks.” <em>Political Analysis</em> 14 (4): 456–87. <a href="https://doi.org/10.1093/pan/mpl002">https://doi.org/10.1093/pan/mpl002</a>.</p>
+</div>
+<div id="ref-R-car">
+<p>Fox, John, Sanford Weisberg, and Brad Price. 2020. <em>Car: Companion to Applied Regression</em>. <a href="https://CRAN.R-project.org/package=car">https://CRAN.R-project.org/package=car</a>.</p>
+</div>
+<div id="ref-freireEvaluatingEffectHomicide2018">
+<p>Freire, Danilo. 2018. “Evaluating the Effect of Homicide Prevention Strategies in São Paulo, Brazil: A Synthetic Control Approach.” <em>Latin American Research Review</em> 53 (2): 231. <a href="https://doi.org/10.25222/larr.334">https://doi.org/10.25222/larr.334</a>.</p>
+</div>
+<div id="ref-freireDeathsDisappearancesPinochet2019">
+<p>Freire, Danilo, David Skarbek, John Meadowcroft, and Eugenia Guerrero. 2019. “Deaths and Disappearances in the Pinochet Regime: A New Dataset.” Preprint. SocArXiv. <a href="https://osf.io/vqnwu">https://osf.io/vqnwu</a>.</p>
+</div>
+<div id="ref-fruchtermanGraphDrawingForcedirected1991a">
+<p>Fruchterman, Thomas M. J., and Edward M. Reingold. 1991. “Graph Drawing by Force-Directed Placement.” <em>Software: Practice and Experience</em> 21 (11): 1129–64. <a href="https://doi.org/10.1002/spe.4380211102">https://doi.org/10.1002/spe.4380211102</a>.</p>
+</div>
+<div id="ref-gerberFieldExperimentsDesign2012">
+<p>Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. New York: W. W. Norton.</p>
+</div>
+<div id="ref-gerringCaseStudyResearch2006">
+<p>Gerring, John. 2006. <em>Case Study Research: Principles and Practices</em>. Cambridge: Cambridge University Press.</p>
+</div>
+<div id="ref-gimpelPoliticalParticipationAccessibility2003">
+<p>Gimpel, J. G., and J. E. Schuknecht. 2003. “Political Participation and the Accessibility of the Ballot Box.” <em>Political Geography</em> 22 (5): 471–88. <a href="https://doi.org/10.1016/S0962-6298(03)00029-5">https://doi.org/10.1016/S0962-6298(03)00029-5</a>.</p>
+</div>
+<div id="ref-glasgowDiscreteChoiceMethods2008">
+<p>Glasgow, Garrett, and R. Michael Alvarez. 2008. “Discrete Choice Methods.” In <em>The Oxford Handbook of Political Methodology</em>, edited by Janet M. Box-Steffensmeier, Henry E. Brady, and David Collier, 513–29. Oxford: Oxford University Press.</p>
+</div>
+<div id="ref-goertzSocialScienceConcepts2006">
+<p>Goertz, Gary. 2006. <em>Social Science Concepts: A User’s Guide</em>. Princeton, NJ: Princeton University Press.</p>
+</div>
+<div id="ref-grahamInternationalPoliticalEconomy2019">
+<p>Graham, Benjamin A. T., and Jacob R. Tucker. 2019. “The International Political Economy Data Resource.” <em>The Review of International Organizations</em> 14 (1): 149–61. <a href="https://doi.org/10.1007/s11558-017-9285-0">https://doi.org/10.1007/s11558-017-9285-0</a>.</p>
+</div>
+<div id="ref-R-separationplot">
+<p>Greenhill, Brian D., Michael D. Ward, and Audrey Sacks. 2020. <em>Separationplot: Separation Plots</em>. <a href="https://CRAN.R-project.org/package=separationplot">https://CRAN.R-project.org/package=separationplot</a>.</p>
+</div>
+<div id="ref-greenhillSeparationPlotNew2011">
+<p>Greenhill, Brian, Michael D. Ward, and Audrey Sacks. 2011. “The Separation Plot: A New Visual Method for Evaluating the Fit of Binary Models.” <em>American Journal of Political Science</em> 55 (4): 991–1002. <a href="https://doi.org/10.1111/j.1540-5907.2011.00525.x">https://doi.org/10.1111/j.1540-5907.2011.00525.x</a>.</p>
+</div>
+<div id="ref-hansenAnalyzingSocialMedia2019">
+<p>Hansen, Derek, Ben Shneiderman, Marc A. Smith, and Itai Himelboim. 2019. <em>Analyzing Social Media Networks with NodeXL: Insights from a Connected World</em>. 2nd ed. Burlington, MA: Morgan Kaufmann Publishers.</p>
+</div>
+<div id="ref-henningsenAnalysisPanelData2019">
+<p>Henningsen, Arne, and Géraldine Henningsen. 2019. “Analysis of Panel Data Using R.” In <em>Panel Data Econometrics: Theory</em>, edited by Mike Tsionas, 345–96. London: Academic Press.</p>
+</div>
+<div id="ref-henshawDataAnalysisData2018">
+<p>Henshaw, Alexis Leanna, and Scott R. Meinke. 2018. “Data Analysis and Data Visualization as Active Learning in Political Science.” <em>Journal of Political Science Education</em> 14 (4): 423–39. <a href="https://doi.org/10.1080/15512169.2017.1419875">https://doi.org/10.1080/15512169.2017.1419875</a>.</p>
+</div>
+<div id="ref-HernanRobbins:2020">
+<p>Hernán, Miguel A., and James M. Robbins. 2020. <em>Causal Inference: What If</em>. Boca Raton, Florida: CRC Press.</p>
+</div>
+<div id="ref-R-glue">
+<p>Hester, Jim. 2020. <em>Glue: Interpreted String Literals</em>. <a href="https://CRAN.R-project.org/package=glue">https://CRAN.R-project.org/package=glue</a>.</p>
+</div>
+<div id="ref-R-remotes">
+<p>Hester, Jim, Gábor Csárdi, Hadley Wickham, Winston Chang, Martin Morgan, and Dan Tenenbaum. 2020. <em>Remotes: R Package Installation from Remote Repositories, Including ’Github’</em>. <a href="https://CRAN.R-project.org/package=remotes">https://CRAN.R-project.org/package=remotes</a>.</p>
+</div>
+<div id="ref-honakerWhatMissingValues2010">
+<p>Honaker, James, and Gary King. 2010. “What to Do About Missing Values in Time-Series Cross-Section Data.” <em>American Journal of Political Science</em> 54 (2): 561–81. <a href="https://doi.org/10.1111/j.1540-5907.2010.00447.x">https://doi.org/10.1111/j.1540-5907.2010.00447.x</a>.</p>
+</div>
+<div id="ref-R-lmtest">
+<p>Hothorn, Torsten, Achim Zeileis, Richard W. Farebrother, and Clint Cummins. 2019. <em>Lmtest: Testing Linear Regression Models</em>. <a href="https://CRAN.R-project.org/package=lmtest">https://CRAN.R-project.org/package=lmtest</a>.</p>
+</div>
+<div id="ref-huberPoliticsInequalityLatin2006">
+<p>Huber, Evelyne, François Nielsen, Jenny Pribble, and John D. Stephens. 2006. “Politics and Inequality in Latin America and the Caribbean.” <em>American Sociological Review</em> 71 (6): 943–63. <a href="https://doi.org/10.1177/000312240607100604">https://doi.org/10.1177/000312240607100604</a>.</p>
+</div>
+<div id="ref-R-FactoMineR">
+<p>Husson, Francois, Julie Josse, Sebastien Le, and Jeremy Mazet. 2020. <em>FactoMineR: Multivariate Exploratory Data Analysis and Data Mining</em>. <a href="https://CRAN.R-project.org/package=FactoMineR">https://CRAN.R-project.org/package=FactoMineR</a>.</p>
+</div>
+<div id="ref-imTestingUnitRoots2003">
+<p>Im, Kyung So, M.Hashem Pesaran, and Yongcheol Shin. 2003. “Testing for Unit Roots in Heterogeneous Panels.” <em>Journal of Econometrics</em> 115 (1): 53–74. <a href="https://doi.org/10.1016/S0304-4076(03)00092-7">https://doi.org/10.1016/S0304-4076(03)00092-7</a>.</p>
+</div>
+<div id="ref-inceSocialMediaResponse2017">
+<p>Ince, Jelani, Fabio Rojas, and Clayton A. Davis. 2017. “The Social Media Response to Black Lives Matter: How Twitter Users Interact with Black Lives Matter Through Hashtag Use.” <em>Ethnic and Racial Studies</em> 40 (11): 1814–30. <a href="https://doi.org/10.1080/01419870.2017.1334931">https://doi.org/10.1080/01419870.2017.1334931</a>.</p>
+</div>
+<div id="ref-jackmanMeasurement2008">
+<p>Jackman, Simon. 2008. “Measurement.” In <em>The Oxford Handbook of Political Methodology</em>, edited by Janet M. Box-Steffensmeier, Henry E. Brady, and David Collier, 119–51. Oxford: Oxford University Press.</p>
+</div>
+<div id="ref-R-pscl">
+<p>Jackman, Simon, with contributions from Alex Tahk, Achim Zeileis, Christina Maimone, Jim Fearon, and Zoe Meers. 2020. <em>Pscl: Political Science Computational Laboratory</em>. <a href="https://CRAN.R-project.org/package=pscl">https://CRAN.R-project.org/package=pscl</a>.</p>
+</div>
+<div id="ref-R-tidystm">
+<p>Johannesson, Mikael. 2020. <em>Tidystm: Extract Effect from estimateEffect in the Stm Package</em>.</p>
+</div>
+<div id="ref-R-ggcorrplot">
+<p>Kassambara, Alboukadel. 2019. <em>Ggcorrplot: Visualization of a Correlation Matrix Using ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggcorrplot">https://CRAN.R-project.org/package=ggcorrplot</a>.</p>
+</div>
+<div id="ref-R-survminer">
+<p>Kassambara, Alboukadel, Marcin Kosinski, and Przemyslaw Biecek. 2020. <em>Survminer: Drawing Survival Curves Using ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=survminer">https://CRAN.R-project.org/package=survminer</a>.</p>
+</div>
+<div id="ref-R-factoextra">
+<p>Kassambara, Alboukadel, and Fabian Mundt. 2020. <em>Factoextra: Extract and Visualize the Results of Multivariate Data Analyses</em>. <a href="https://CRAN.R-project.org/package=factoextra">https://CRAN.R-project.org/package=factoextra</a>.</p>
+</div>
+<div id="ref-kastellecUsingGraphsInstead2007">
+<p>Kastellec, Jonathan P., and Eduardo L. Leoni. 2007. “Using Graphs Instead of Tables in Political Science.” <em>Perspectives on Politics</em> 5 (4). <a href="https://doi.org/10.1017/S1537592707072209">https://doi.org/10.1017/S1537592707072209</a>.</p>
+</div>
+<div id="ref-R-rtweet">
+<p>Kearney, Michael W. 2020. <em>Rtweet: Collecting Twitter Data</em>. <a href="https://CRAN.R-project.org/package=rtweet">https://CRAN.R-project.org/package=rtweet</a>.</p>
+</div>
+<div id="ref-kingSolutionEcologicalInference1997">
+<p>King, Gary. 1997. <em>A Solution to the Ecological Inference Problem: Reconstructing Individual Behavior from Aggregate Data.</em> Princeton, NJ: Princeton University Press. <a href="http://public.eblib.com/choice/publicfullrecord.aspx?p=1358582">http://public.eblib.com/choice/publicfullrecord.aspx?p=1358582</a>.</p>
+</div>
+<div id="ref-KingNielsen:2019">
+<p>King, Gary, and Richard Nielsen. 2019. “Why Propensity Scores Should Not Be Used for Matching.” <em>Political Analysis</em> 27 (4): 435–54. <a href="https://doi.org/10.1017/pan.2019.11">https://doi.org/10.1017/pan.2019.11</a>.</p>
+</div>
+<div id="ref-lallHowMultipleImputation2016">
+<p>Lall, Ranjit. 2016. “How Multiple Imputation Makes a Difference.” <em>Political Analysis</em> 24 (4): 414–33. <a href="https://doi.org/10.1093/pan/mpw020">https://doi.org/10.1093/pan/mpw020</a>.</p>
+</div>
+<div id="ref-lansleyIntroductionSpatialData2016">
+<p>Lansley, Guy, and James Cheshire. 2016. <em>An Introduction to Spatial Data Analysis and Visualisation in R</em>. Consumer Data Research Centre. <a href="https://www.spatialanalysisonline.com/An\%20Introduction\%20to\%20Spatial\%20Data\%20Analysis\%20in\%20R.pdf">https://www.spatialanalysisonline.com/An\%20Introduction\%20to\%20Spatial\%20Data\%20Analysis\%20in\%20R.pdf</a>.</p>
+</div>
+<div id="ref-R-margins">
+<p>Leeper, Thomas J. 2018. <em>Margins: Marginal Effects for Model Objects</em>. <a href="https://CRAN.R-project.org/package=margins">https://CRAN.R-project.org/package=margins</a>.</p>
+</div>
+<div id="ref-R-prediction">
+<p>———. 2019. <em>Prediction: Tidy, Type-Safe ’Prediction()’ Methods</em>. <a href="https://CRAN.R-project.org/package=prediction">https://CRAN.R-project.org/package=prediction</a>.</p>
+</div>
+<div id="ref-R-texreg">
+<p>Leifeld, Philip. 2020. <em>Texreg: Conversion of R Regression Output to Latex or Html Tables</em>. <a href="https://CRAN.R-project.org/package=texreg">https://CRAN.R-project.org/package=texreg</a>.</p>
+</div>
+<div id="ref-R-ggwordcloud">
+<p>Le Pennec, Erwan, and Kamil Slowikowski. 2019. <em>Ggwordcloud: A Word Cloud Geom for ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggwordcloud">https://CRAN.R-project.org/package=ggwordcloud</a>.</p>
+</div>
+<div id="ref-levinUnitRootTests2002">
+<p>Levin, Andrew, Chien-Fu Lin, and Chia-Shang James Chu. 2002. “Unit Root Tests in Panel Data: Asymptotic and Finite-Sample Properties.” <em>Journal of Econometrics</em> 108 (1): 1–24. <a href="https://doi.org/10.1016/S0304-4076(01)00098-7">https://doi.org/10.1016/S0304-4076(01)00098-7</a>.</p>
+</div>
+<div id="ref-lewis-beckAppliedRegressionIntroduction2016">
+<p>Lewis-Beck, Colin, and Michael Lewis-Beck. 2016. <em>Applied Regression: An Introduction</em>. Thousand Oaks, CA: SAGE. <a href="http://methods.sagepub.com/book/applied-regression-an-introduction-second-edition">http://methods.sagepub.com/book/applied-regression-an-introduction-second-edition</a>.</p>
+</div>
+<div id="ref-liebermanNestedAnalysisMixedMethod2005">
+<p>Lieberman, Evan S. 2005. “Nested Analysis as a Mixed-Method Strategy for Comparative Research.” <em>American Political Science Review</em> 99 (3): 435–52. <a href="https://doi.org/10.1017/S0003055405051762">https://doi.org/10.1017/S0003055405051762</a>.</p>
+</div>
+<div id="ref-R-jtools">
+<p>Long, Jacob A. 2020. <em>Jtools: Analysis and Presentation of Social Scientific Data</em>. <a href="https://CRAN.R-project.org/package=jtools">https://CRAN.R-project.org/package=jtools</a>.</p>
+</div>
+<div id="ref-longRegressionModelsCategorical1997">
+<p>Long, J. Scott. 1997. <em>Regression Models for Categorical and Limited Dependent Variables</em>. Thousand Oaks, CA: SAGE.</p>
+</div>
+<div id="ref-lovelaceGeocomputation2019">
+<p>Lovelace, Robin, Jakub Nowosad, and Jannes Münchow. 2019. <em>Geocomputation with R</em>. Boca Raton, FL: CRC Press.</p>
+</div>
+<div id="ref-mainwaringDemocraciesDictatorshipsLatin2013">
+<p>Mainwaring, Scott, and Aníbal Pérez-Liñán. 2013. <em>Democracies and Dictatorships in Latin America: Emergence, Survival, and Fall</em>. Cambridge: Cambridge University Press.</p>
+</div>
+<div id="ref-millerChicagoGuideWriting2013">
+<p>Miller, Jane E. 2013. <em>The Chicago Guide to Writing About Multivariate Analysis</em>. 2nd ed. Chicago, IL: University of Chicago Press.</p>
+</div>
+<div id="ref-monoganPoliticalAnalysisUsing2015">
+<p>Monogan, James E. 2015. <em>Political Analysis Using R</em>. New York, NY: Springer.</p>
+</div>
+<div id="ref-MorganWinship:2007">
+<p>Morgan, Stephen L., and Christopher Winship. 2007. <em>Counterfactuals and Causal Inference: Methods and Principles for Social Research</em>. Cambridge: Cambridge University Press.</p>
+</div>
+<div id="ref-netoWhatDeterminesForeign2015">
+<p>Neto, Octavio Amorim, and Andrés Malamud. 2015. “What Determines Foreign Policy in Latin America? Systemic Versus Domestic Factors in Argentina, Brazil, and Mexico, 19462008.” <em>Latin American Politics and Society</em> 57 (4): 1–27. <a href="https://doi.org/10.1111/j.1548-2456.2015.00286.x">https://doi.org/10.1111/j.1548-2456.2015.00286.x</a>.</p>
+</div>
+<div id="ref-newmanNetworks2018">
+<p>Newman, Mark. 2018. <em>Networks</em>. 2nd ed. Oxford: Oxford University Press.</p>
+</div>
+<div id="ref-newmanScientificCollaborationNetworks2001">
+<p>Newman, M. E. J. 2001. “Scientific Collaboration Networks. II. Shortest Paths, Weighted Networks, and Centrality.” <em>Physical Review E</em> 64 (1): 016132. <a href="https://doi.org/10.1103/PhysRevE.64.016132">https://doi.org/10.1103/PhysRevE.64.016132</a>.</p>
+</div>
+<div id="ref-opsahlNodeCentralityWeighted2010">
+<p>Opsahl, Tore, Filip Agneessens, and John Skvoretz. 2010. “Node Centrality in Weighted Networks: Generalizing Degree and Shortest Paths.” <em>Social Networks</em> 32 (3): 245–51. <a href="https://doi.org/10.1016/j.socnet.2010.03.006">https://doi.org/10.1016/j.socnet.2010.03.006</a>.</p>
+</div>
+<div id="ref-pattyNetworkTheoryPolitical2016">
+<p>Patty, John W., and Elizabeth Maggie Penn. 2016. “Network Theory and Political Science.” In <em>The Oxford Handbook of Political Networks</em>, edited by Jennifer Nicoll Victor, Alexander H. Montgomery, and Mark Lubell. Oxford: Oxford University Press. <a href="http://oxfordhandbooks.com/view/10.1093/oxfordhb/9780190228217.001.0001/oxfordhb-9780190228217-e-12">http://oxfordhandbooks.com/view/10.1093/oxfordhb/9780190228217.001.0001/oxfordhb-9780190228217-e-12</a>.</p>
+</div>
+<div id="ref-PearlGlymourJewell:2016">
+<p>Pearl, Judea, Madelyn Glymour, and Nicholas P. Jewell. 2016. <em>Causal Inference in Statistics: A Primer</em>. Hoboken, New Jersey: Wiley.</p>
+</div>
+<div id="ref-PearlMackenzie:2018">
+<p>Pearl, Judea, and Dana Mackenzie. 2018. <em>The Book of Why: The New Science of Cause and Effect</em>. New York: Basic Books.</p>
+</div>
+<div id="ref-pebesmaSimpleFeaturesStandardized2018">
+<p>Pebesma, Edzer. 2018. “Simple Features for R: Standardized Support for Spatial Vector Data.” <em>The R Journal</em> 10 (1): 439–46. <a href="https://journal.r-project.org/archive/2018/RJ-2018-009/index.html">https://journal.r-project.org/archive/2018/RJ-2018-009/index.html</a>.</p>
+</div>
+<div id="ref-R-sf">
+<p>———. 2020. <em>Sf: Simple Features for R</em>.</p>
+</div>
+<div id="ref-R-ggraph">
+<p>Pedersen, Thomas Lin. 2020a. <em>Ggraph: An Implementation of Grammar of Graphics for Graphs and Networks</em>. <a href="https://CRAN.R-project.org/package=ggraph">https://CRAN.R-project.org/package=ggraph</a>.</p>
+</div>
+<div id="ref-R-tidygraph">
+<p>———. 2020b. <em>Tidygraph: A Tidy Api for Graph Manipulation</em>. <a href="https://CRAN.R-project.org/package=tidygraph">https://CRAN.R-project.org/package=tidygraph</a>.</p>
+</div>
+<div id="ref-pfefferVisualizationPoliticalNetworks2017">
+<p>Pfeffer, Jürgen. 2017. “Visualization of Political Networks.” In <em>The Oxford Handbook of Political Networks</em>, edited by Jennifer Nicoll Victor, Alexander H. Montgomery, and Mark Lubell. Oxford: Oxford University Press. <a href="http://oxfordhandbooks.com/view/10.1093/oxfordhb/9780190228217.001.0001/oxfordhb-9780190228217-e-13">http://oxfordhandbooks.com/view/10.1093/oxfordhb/9780190228217.001.0001/oxfordhb-9780190228217-e-13</a>.</p>
+</div>
+<div id="ref-prokschPositionTakingEuropean2010">
+<p>Proksch, Sven-Oliver, and Jonathan B. Slapin. 2010. “Position Taking in European Parliament Speeches.” <em>British Journal of Political Science</em> 40 (3): 587–611. <a href="https://doi.org/10.1017/S0007123409990299">https://doi.org/10.1017/S0007123409990299</a>.</p>
+</div>
+<div id="ref-raineyCompressionConditionalEffects2016">
+<p>Rainey, Carlisle. 2016. “Compression and Conditional Effects: A Product Term Is Essential When Using Logistic Regression to Test for Interaction.” <em>Political Science Research and Methods</em> 4 (3): 621–39. <a href="https://doi.org/10.1017/psrm.2015.59">https://doi.org/10.1017/psrm.2015.59</a>.</p>
+</div>
+<div id="ref-reyes-housholderTheoryGenderRole2019">
+<p>Reyes-Housholder, Catherine. 2019. “A Theory of Gender’s Role on Presidential Approval Ratings in Corrupt Times.” <em>Political Research Quarterly</em> OnlineFirst (April). <a href="https://doi.org/10.1177/1065912919838626">https://doi.org/10.1177/1065912919838626</a>.</p>
+</div>
+<div id="ref-R-qdapRegex">
+<p>Rinker, Tyler. 2017. <em>QdapRegex: Regular Expression Removal, Extraction, and Replacement Tools</em>. <a href="https://CRAN.R-project.org/package=qdapRegex">https://CRAN.R-project.org/package=qdapRegex</a>.</p>
+</div>
+<div id="ref-robertsStmPackageStructural2019">
+<p>Roberts, Margaret E., Brandon M. Stewart, and Dustin Tingley. 2019. “Stm: An R Package for Structural Topic Models.” <em>Journal of Statistical Software</em> 91 (1): 1–40. <a href="https://doi.org/10.18637/jss.v091.i02">https://doi.org/10.18637/jss.v091.i02</a>.</p>
+</div>
+<div id="ref-roberts_structural_2014">
+<p>Roberts, Margaret E., Brandon M. Stewart, Dustin Tingley, Christopher Lucas, Jetson Leder-Luis, Shana Kushner Gadarian, Bethany Albertson, and David G. Rand. 2014. “Structural Topic Models for Open-Ended Survey Responses.” <em>American Journal of Political Science</em> 58 (4): 1064–82. <a href="https://doi.org/10.1111/ajps.12103">https://doi.org/10.1111/ajps.12103</a>.</p>
+</div>
+<div id="ref-R-stm">
+<p>Roberts, Margaret, Brandon Stewart, and Dustin Tingley. 2019. <em>Stm: Estimation of the Structural Topic Model</em>. <a href="https://CRAN.R-project.org/package=stm">https://CRAN.R-project.org/package=stm</a>.</p>
+</div>
+<div id="ref-R-unvotes">
+<p>Robinson, David. 2017. <em>Unvotes: United Nations General Assembly Voting Data</em>. <a href="https://CRAN.R-project.org/package=unvotes">https://CRAN.R-project.org/package=unvotes</a>.</p>
+</div>
+<div id="ref-R-broom">
+<p>Robinson, David, and Alex Hayes. 2020. <em>Broom: Convert Statistical Analysis Objects into Tidy Tibbles</em>. <a href="https://CRAN.R-project.org/package=broom">https://CRAN.R-project.org/package=broom</a>.</p>
+</div>
+<div id="ref-R-tidytext">
+<p>Robinson, David, and Julia Silge. 2020. <em>Tidytext: Text Mining Using ’Dplyr’, ’Ggplot2’, and Other Tidy Tools</em>. <a href="http://github.com/juliasilge/tidytext">http://github.com/juliasilge/tidytext</a>.</p>
+</div>
+<div id="ref-R-miceadds">
+<p>Robitzsch, Alexander, Simon Grund, and Thorsten Henke. 2020. <em>Miceadds: Some Additional Multiple Imputation Functions, Especially for ’Mice’</em>. <a href="https://CRAN.R-project.org/package=miceadds">https://CRAN.R-project.org/package=miceadds</a>.</p>
+</div>
+<div id="ref-rodriguesMeasuringInternationalEngagement2019">
+<p>Rodrigues, Pietro, Francisco Urdinez, and Amâncio de Oliveira. 2019. “Measuring International Engagement: Systemic and Domestic Factors in Brazilian Foreign Policy from 1998 to 2014.” <em>Foreign Policy Analysis</em> 15 (3): 370–91. <a href="https://doi.org/10.1093/fpa/orz010">https://doi.org/10.1093/fpa/orz010</a>.</p>
+</div>
+<div id="ref-Rohrer:2018">
+<p>Rohrer, Julia M. 2018. “Thinking Clearly About Correlations and Causation: Graphical Causal Models for Observational Data.” <em>Advances in Methods and Practices in Psychological Science</em> 1 (1): 27–42. <a href="https://doi.org/10.1177/2515245917745629">https://doi.org/10.1177/2515245917745629</a>.</p>
+</div>
+<div id="ref-R-ggalt">
+<p>Rudis, Bob, Ben Bolker, and Jan Schulz. 2017. <em>Ggalt: Extra Coordinate Systems, ’Geoms’, Statistical Transformations, Scales and Fonts for ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggalt">https://CRAN.R-project.org/package=ggalt</a>.</p>
+</div>
+<div id="ref-R-plotROC">
+<p>Sachs, Michael C. 2018. <em>PlotROC: Generate Useful Roc Curve Charts for Print and Interactive Use</em>. <a href="https://CRAN.R-project.org/package=plotROC">https://CRAN.R-project.org/package=plotROC</a>.</p>
+</div>
+<div id="ref-salganikBitBitSocial2017">
+<p>Salganik, Matthew J. 2017. <em>Bit by Bit: Social Research in the Digital Age</em>. Princeton, NJ: Princeton University Press. <a href="https://www.bitbybitbook.com/en/1st-ed/preface/">https://www.bitbybitbook.com/en/1st-ed/preface/</a>.</p>
+</div>
+<div id="ref-R-GGally">
+<p>Schloerke, Barret, Di Cook, Joseph Larmarange, Francois Briatte, Moritz Marbach, Edwin Thoen, Amos Elberg, and Jason Crowley. 2020. <em>GGally: Extension to ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=GGally">https://CRAN.R-project.org/package=GGally</a>.</p>
+</div>
+<div id="ref-scottSocialNetworkAnalysis2013">
+<p>Scott, John. 2013. <em>Social Network Analysis</em>. 3rd ed. Thousand Oaks, CA: SAGE.</p>
+</div>
+<div id="ref-seawrightMultiMethodSocialScience2016">
+<p>Seawright, Jason. 2016. <em>Multi-Method Social Science: Combining Qualitative and Quantitative Tools</em>. Cambridge: Cambridge University Press. <a href="http://public.ebookcentral.proquest.com/choice/publicfullrecord.aspx?p=4659428">http://public.ebookcentral.proquest.com/choice/publicfullrecord.aspx?p=4659428</a>.</p>
+</div>
+<div id="ref-Shalizi:2019">
+<p>Shalizi, Cosma Rohilla. 2019. <em>Advanced Data Analysis from an Elementary Point of View</em>. <a href="https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf">https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf</a>.</p>
+</div>
+<div id="ref-ShpitserPearl:2008">
+<p>Shpitser, Ilya, and Judea Pearl. 2008. “Complete Identification Methods for the Causal Hierarchy.” <em>Journal of Machine Learning Research</em> 9: 1941–79.</p>
+</div>
+<div id="ref-shugartPresidentsAssembliesConstitutional1992">
+<p>Shugart, Matthew Soberg, and John M. Carey. 1992. <em>Presidents and Assemblies: Constitutional Design and Electoral Dynamics</em>. Cambridge: Cambridge University Press.</p>
+</div>
+<div id="ref-R-DescTools">
+<p>Signorell, Andri. 2020. <em>DescTools: Tools for Descriptive Statistics</em>. <a href="https://CRAN.R-project.org/package=DescTools">https://CRAN.R-project.org/package=DescTools</a>.</p>
+</div>
+<div id="ref-singerCapabilityDistributionUncertainty1972">
+<p>Singer, J. David, Stuart Bremer, and John Stuckey. 1972. “Capability Distribution, Uncertainty, and Major Power War, 1820-1965.” In <em>Peace, War, and Numbers</em>, edited by Bruce Russett, 19–48. Thousand Oaks, CA: SAGE.</p>
+</div>
+<div id="ref-skocpolStatesSocialRevolutions1979">
+<p>Skocpol, Theda. 1979. <em>States and Social Revolutions: A Comparative Analysis of France, Russia, and China</em>. Cambridge: Cambridge University Press.</p>
+</div>
+<div id="ref-slapinScalingModelEstimating2008">
+<p>Slapin, Jonathan B., and Sven-Oliver Proksch. 2008. “A Scaling Model for Estimating Time-Series Party Positions from Texts.” <em>American Journal of Political Science</em> 52 (3): 705–22. <a href="https://doi.org/10.1111/j.1540-5907.2008.00338.x">https://doi.org/10.1111/j.1540-5907.2008.00338.x</a>.</p>
+</div>
+<div id="ref-R-ggrepel">
+<p>Slowikowski, Kamil. 2020. <em>Ggrepel: Automatically Position Non-Overlapping Text Labels with ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggrepel">https://CRAN.R-project.org/package=ggrepel</a>.</p>
+</div>
+<div id="ref-R-rnaturalearthhires">
+<p>South, Andy. 2020. <em>Rnaturalearthhires: High Resolution World Vector Map Data from Natural Earth Used in Rnaturalearth</em>.</p>
+</div>
+<div id="ref-R-lubridate">
+<p>Spinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2020. <em>Lubridate: Make Dealing with Dates a Little Easier</em>. <a href="https://CRAN.R-project.org/package=lubridate">https://CRAN.R-project.org/package=lubridate</a>.</p>
+</div>
+<div id="ref-steinert-threlkeldTwitterData2018">
+<p>Steinert-Threlkeld, Zachary C. 2018. <em>Twitter as Data</em>. Cambridge: Cambridge University Press. <a href="https://www.cambridge.org/core/product/identifier/9781108529327/type/element">https://www.cambridge.org/core/product/identifier/9781108529327/type/element</a>.</p>
+</div>
+<div id="ref-stockIntroductionEconometrics2019">
+<p>Stock, James H., and Mark W. Watson. 2019. <em>Introduction to Econometrics</em>. 4th ed. New York, NY: Pearson.</p>
+</div>
+<div id="ref-R-survival">
+<p>Therneau, Terry M. 2020. <em>Survival: Survival Analysis</em>. <a href="https://CRAN.R-project.org/package=survival">https://CRAN.R-project.org/package=survival</a>.</p>
+</div>
+<div id="ref-R-naniar">
+<p>Tierney, Nicholas, Di Cook, Miles McBain, and Colin Fay. 2020. <em>Naniar: Data Structures, Summaries, and Visualisations for Missing Data</em>. <a href="https://CRAN.R-project.org/package=naniar">https://CRAN.R-project.org/package=naniar</a>.</p>
+</div>
+<div id="ref-trottConnectedFeministsForegrounding2018">
+<p>Trott, Verity. 2018. “Connected Feminists: Foregrounding the Interpersonal in Connective Action.” <em>Australian Journal of Political Science</em> 53 (1): 116–29. <a href="https://doi.org/10.1080/10361146.2017.1416583">https://doi.org/10.1080/10361146.2017.1416583</a>.</p>
+</div>
+<div id="ref-tufteBeautifulEvidence2006">
+<p>Tufte, Edward R. 2006. <em>Beautiful Evidence</em>. Cheshire, Conn: Graphics Press.</p>
+</div>
+<div id="ref-R-paqueteadp">
+<p>Urdinez, Francisco, and Andrés Cruz. 2020. <em>Paqueteadp: Paquete Del Libro ’Analizar Datos Políticos’</em>.</p>
+</div>
+<div id="ref-R-mice">
+<p>van Buuren, Stef, and Karin Groothuis-Oudshoorn. 2020. <em>Mice: Multivariate Imputation by Chained Equations</em>. <a href="https://CRAN.R-project.org/package=mice">https://CRAN.R-project.org/package=mice</a>.</p>
+</div>
+<div id="ref-R-stringdist">
+<p>van der Loo, Mark. 2019. <em>Stringdist: Approximate String Matching and String Distance Functions</em>. <a href="https://CRAN.R-project.org/package=stringdist">https://CRAN.R-project.org/package=stringdist</a>.</p>
+</div>
+<div id="ref-R-skimr">
+<p>Waring, Elin, Michael Quinn, Amelia McNamara, Eduardo Arino de la Rubia, Hao Zhu, and Shannon Ellis. 2020. <em>Skimr: Compact and Flexible Summaries of Data</em>. <a href="https://CRAN.R-project.org/package=skimr">https://CRAN.R-project.org/package=skimr</a>.</p>
+</div>
+<div id="ref-welbersTextAnalysis2017">
+<p>Welbers, Kasper, Wouter Van Atteveldt, and Kenneth Benoit. 2017. “Text Analysis in R.” <em>Communication Methods and Measures</em> 11 (4): 245–65. <a href="https://doi.org/10.1080/19312458.2017.1387238">https://doi.org/10.1080/19312458.2017.1387238</a>.</p>
+</div>
+<div id="ref-R-rvest">
+<p>Wickham, Hadley. 2019a. <em>Rvest: Easily Harvest (Scrape) Web Pages</em>. <a href="https://CRAN.R-project.org/package=rvest">https://CRAN.R-project.org/package=rvest</a>.</p>
+</div>
+<div id="ref-R-tidyverse">
+<p>———. 2019b. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div id="ref-wickhamTidyData2014">
+<p>———. 2014. “Tidy Data.” <em>Journal of Statistical Software</em> 59 (1): 1–23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.</p>
+</div>
+<div id="ref-R-readxl">
+<p>Wickham, Hadley, and Jennifer Bryan. 2019. <em>Readxl: Read Excel Files</em>. <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a>.</p>
+</div>
+<div id="ref-wickhamDataScienceImport2016">
+<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. Sebastopol, CA: O’Reilly.</p>
+</div>
+<div id="ref-R-haven">
+<p>Wickham, Hadley, and Evan Miller. 2020. <em>Haven: Import and Export ’Spss’, ’Stata’ and ’Sas’ Files</em>. <a href="https://CRAN.R-project.org/package=haven">https://CRAN.R-project.org/package=haven</a>.</p>
+</div>
+<div id="ref-wooldridgeIntroductoryEconometricsModern2016">
+<p>Wooldridge, Jeffrey M. 2016. <em>Introductory Econometrics: A Modern Approach</em>. 6th ed. Boston, MA: Cengage Learning.</p>
+</div>
+<div id="ref-xuetongRiseChinaIts2006">
+<p>Xuetong, Y. 2006. “The Rise of China and Its Power Status.” <em>The Chinese Journal of International Politics</em> 1 (1): 5–33. <a href="https://doi.org/10.1093/cjip/pol002">https://doi.org/10.1093/cjip/pol002</a>.</p>
+</div>
+<div id="ref-R-sandwich">
+<p>Zeileis, Achim, and Thomas Lumley. 2019. <em>Sandwich: Robust Covariance Matrix Estimators</em>. <a href="https://CRAN.R-project.org/package=sandwich">https://CRAN.R-project.org/package=sandwich</a>.</p>
+</div>
+<div id="ref-zeranMayoFeministaRebelion2018">
+<p>Zerán, Faride. 2018. <em>Mayo Feminista: La Rebelión Contra El Patriarcado</em>. Santiago: LOM Ediciones.</p>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="maps.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/arcruz0/libroadp/edit/master/17-biblio_es.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

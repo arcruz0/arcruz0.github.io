@@ -1,0 +1,12 @@
+.pull-left-narrower {
+  float: left;
+  width: 30%;
+}
+.pull-right-wider {
+  float: right;
+  width: 64%;
+}
+
+.pull-right-wider ~ * {
+  clear: both;
+}

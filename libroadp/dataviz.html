@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 3 Visualización de datos | AnalizaR Datos Políticos</title>
+  <meta name="description" content="Capítulo 3 Visualización de datos | AnalizaR Datos Políticos" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 3 Visualización de datos | AnalizaR Datos Políticos" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 3 Visualización de datos | AnalizaR Datos Políticos" />
+  
+  
+  
+
+<meta name="author" content="Francisco Urdinez y Andrés Cruz Labrín (Editores)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="prev" href="data.html"/>
+<link rel="next" href="load.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script>
+% https://stackoverflow.com/a/4425214/8242291
+var links = document.links;
+
+for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+
+}
+</script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><b><a href="./index.html"><img style="float: left; margin-right: 5px;" src="favicon.ico"></img>AnalizaR datos políticos</a></b></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introducción</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#inicio"><i class="fa fa-check"></i>Inicio</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cómo-contribuir"><i class="fa fa-check"></i>¿Cómo contribuir?</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#sobre-los-autores-y-autoras"><i class="fa fa-check"></i>Sobre los autores y autoras</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prefacio"><i class="fa fa-check"></i>Prefacio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#agradecimientos"><i class="fa fa-check"></i>Agradecimientos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#qué-esperar-del-libro"><i class="fa fa-check"></i>Qué esperar del libro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura-del-libro"><i class="fa fa-check"></i>Estructura del libro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cómo-utilizar-el-libro-en-un-curso-de-métodos"><i class="fa fa-check"></i>¿Cómo utilizar el libro en un curso de métodos?</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#primera-opción-curso-semestral-de-análisis-de-datos-políticos"><i class="fa fa-check"></i>Primera opción: Curso semestral de análisis de datos políticos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#segunda-opción-curso-semestral-de-introducción-a-métodos-cuantitativos"><i class="fa fa-check"></i>Segunda opción: Curso semestral de introducción a métodos cuantitativos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerrequisitos"><i class="fa fa-check"></i>Prerrequisitos</a></li>
+</ul></li>
+<li class="part"><span><b>I Introducción a R</b></span></li>
+<li class="chapter" data-level="1" data-path="basic-r.html"><a href="basic-r.html"><i class="fa fa-check"></i><b>1</b> R Básico</a><ul>
+<li class="chapter" data-level="1.1" data-path="basic-r.html"><a href="basic-r.html#instalación"><i class="fa fa-check"></i><b>1.1</b> Instalación</a><ul>
+<li class="chapter" data-level="" data-path="basic-r.html"><a href="basic-r.html#r"><i class="fa fa-check"></i>R</a></li>
+<li class="chapter" data-level="" data-path="basic-r.html"><a href="basic-r.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="basic-r.html"><a href="basic-r.html#consola"><i class="fa fa-check"></i><b>1.2</b> Consola</a></li>
+<li class="chapter" data-level="1.3" data-path="basic-r.html"><a href="basic-r.html#script"><i class="fa fa-check"></i><b>1.3</b> Script</a></li>
+<li class="chapter" data-level="1.4" data-path="basic-r.html"><a href="basic-r.html#objetos-y-funciones"><i class="fa fa-check"></i><b>1.4</b> Objetos (y funciones)</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="basic-r.html"><a href="basic-r.html#vectores"><i class="fa fa-check"></i><b>1.4.1</b> Vectores</a></li>
+<li class="chapter" data-level="1.4.2" data-path="basic-r.html"><a href="basic-r.html#basic-r-functions"><i class="fa fa-check"></i><b>1.4.2</b> Functions</a></li>
+<li class="chapter" data-level="1.4.3" data-path="basic-r.html"><a href="basic-r.html#archivos-gráficos-paquetes-ayuda"><i class="fa fa-check"></i><b>1.4.3</b> Archivos / gráficos / paquetes / ayuda</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Manejo de datos</a><ul>
+<li class="chapter" data-level="" data-path="data.html"><a href="data.html#los-paquetes-que-necesitas-instalar"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#introducción-al-manejo-de-datos"><i class="fa fa-check"></i><b>2.1</b> Introducción al manejo de datos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#nuestra-base-de-datos"><i class="fa fa-check"></i><b>2.1.1</b> Nuestra base de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#describiendo-una-base-de-datos"><i class="fa fa-check"></i><b>2.2</b> Describiendo una base de datos</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#operaciones-básicas"><i class="fa fa-check"></i><b>2.3</b> Operaciones básicas</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data.html"><a href="data.html#seleccionar-columnas"><i class="fa fa-check"></i><b>2.3.1</b> Seleccionar columnas</a></li>
+<li class="chapter" data-level="2.3.2" data-path="data.html"><a href="data.html#renombra-las-columnas"><i class="fa fa-check"></i><b>2.3.2</b> Renombra las columnas</a></li>
+<li class="chapter" data-level="2.3.3" data-path="data.html"><a href="data.html#filtrar-las-observaciones"><i class="fa fa-check"></i><b>2.3.3</b> Filtrar las observaciones</a></li>
+<li class="chapter" data-level="2.3.4" data-path="data.html"><a href="data.html#cambiar-el-orden-de-una-base-de-datos"><i class="fa fa-check"></i><b>2.3.4</b> Cambiar el orden de una base de datos</a></li>
+<li class="chapter" data-level="2.3.5" data-path="data.html"><a href="data.html#transformar-y-crear-variables"><i class="fa fa-check"></i><b>2.3.5</b> Transformar y crear variables</a></li>
+<li class="chapter" data-level="2.3.6" data-path="data.html"><a href="data.html#resúmenes"><i class="fa fa-check"></i><b>2.3.6</b> Resúmenes</a></li>
+<li class="chapter" data-level="2.3.7" data-path="data.html"><a href="data.html#resúmenes-por-grupo"><i class="fa fa-check"></i><b>2.3.7</b> Resúmenes por grupo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#comandos-en-cadena"><i class="fa fa-check"></i><b>2.4</b> Comandos en cadena</a></li>
+<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#data-recodificar"><i class="fa fa-check"></i><b>2.5</b> Recodificar valores</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#pivoteo-de-datos-data-pivot"><i class="fa fa-check"></i><b>2.5.1</b> Pivoteo de datos {data-pivot}</a></li>
+<li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#bases-de-datos-anchas-con-más-de-una-variable-de-interés"><i class="fa fa-check"></i><b>2.5.2</b> Bases de datos anchas con más de una variable de interés</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>3</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#lecturas-sugeridas"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#los-paquetes-que-necesitas-instalar-1"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="3.1" data-path="dataviz.html"><a href="dataviz.html#por-qué-visualizar-mis-datos"><i class="fa fa-check"></i><b>3.1</b> ¿Por qué visualizar mis datos?</a></li>
+<li class="chapter" data-level="3.2" data-path="dataviz.html"><a href="dataviz.html#primeros-pasos"><i class="fa fa-check"></i><b>3.2</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="dataviz.html"><a href="dataviz.html#las-capas-del-universo-ggplotiano"><i class="fa fa-check"></i><b>3.2.1</b> Las capas del “universo ggplotiano”</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dataviz.html"><a href="dataviz.html#ejemplo-aplicado-elecciones-locales-y-visualización-de-datos"><i class="fa fa-check"></i><b>3.3</b> Ejemplo aplicado: Elecciones locales y visualización de datos</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-barras"><i class="fa fa-check"></i><b>3.3.1</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-líneas"><i class="fa fa-check"></i><b>3.3.2</b> Gráfico de líneas</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataviz.html"><a href="dataviz.html#gráfico-de-caja"><i class="fa fa-check"></i><b>3.3.3</b> Gráfico de caja</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataviz.html"><a href="dataviz.html#histograma"><i class="fa fa-check"></i><b>3.3.4</b> Histograma</a></li>
+<li class="chapter" data-level="3.3.5" data-path="dataviz.html"><a href="dataviz.html#relación-entre-las-variables"><i class="fa fa-check"></i><b>3.3.5</b> Relación entre las variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="dataviz.html"><a href="dataviz.html#para-continuar-aprendiendo"><i class="fa fa-check"></i><b>3.4</b> Para continuar aprendiendo</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="load.html"><a href="load.html"><i class="fa fa-check"></i><b>4</b> Carga de bases</a><ul>
+<li class="chapter" data-level="" data-path="load.html"><a href="load.html#los-paquetes-que-necesitas-instalar-2"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="4.1" data-path="load.html"><a href="load.html#load-intro"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="load.html"><a href="load.html#carga-formatos"><i class="fa fa-check"></i><b>4.2</b> Diferentes formatos de bases de datos</a></li>
+<li class="chapter" data-level="4.3" data-path="load.html"><a href="load.html#los-archivos-separados-por-delimitadores-.csv-y-.tsv"><i class="fa fa-check"></i><b>4.3</b> Los archivos separados por delimitadores (.csv y .tsv)</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="load.html"><a href="load.html#r-básico-utils"><i class="fa fa-check"></i><b>4.3.1</b> R básico: <code>utils</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="load.html"><a href="load.html#load-r"><i class="fa fa-check"></i><b>4.3.2</b> Archivos creados con R (.Rdata y .rds)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="load.html"><a href="load.html#load-labels"><i class="fa fa-check"></i><b>4.3.3</b> Bases de datos con etiquetas (de Stata or SPSS)</a></li>
+<li class="chapter" data-level="4.3.4" data-path="load.html"><a href="load.html#load-excel"><i class="fa fa-check"></i><b>4.3.4</b> Archivos de Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="load.html"><a href="load.html#load-large"><i class="fa fa-check"></i><b>4.4</b> Grandes bases de datos tabulares</a></li>
+</ul></li>
+<li class="part"><span><b>II Modelos</b></span></li>
+<li class="chapter" data-level="5" data-path="linear.html"><a href="linear.html"><i class="fa fa-check"></i><b>5</b> Modelos lineales</a><ul>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#lecturas-sugeridas-1"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#los-paquetes-que-necesitas-instalar-3"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="" data-path="linear.html"><a href="linear.html#introducción-1"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="5.1" data-path="linear.html"><a href="linear.html#mínimos-cuadrados-ordinarios-en-r"><i class="fa fa-check"></i><b>5.1</b> Mínimos cuadrados ordinarios en R</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="linear.html"><a href="linear.html#cómo-obtener-estadísticas-descriptivas"><i class="fa fa-check"></i><b>5.1.1</b> Cómo obtener estadísticas descriptivas</a></li>
+<li class="chapter" data-level="5.1.2" data-path="linear.html"><a href="linear.html#estadísticas-descriptivas-y-distribución-de-las-variables-en-el-modelo"><i class="fa fa-check"></i><b>5.1.2</b> Estadísticas descriptivas y distribución de las variables en el modelo</a></li>
+<li class="chapter" data-level="5.1.3" data-path="linear.html"><a href="linear.html#matriz-de-correlación-de-variables-independientes"><i class="fa fa-check"></i><b>5.1.3</b> Matriz de correlación de variables independientes</a></li>
+<li class="chapter" data-level="5.1.4" data-path="linear.html"><a href="linear.html#distribución-de-las-variables-de-interés"><i class="fa fa-check"></i><b>5.1.4</b> Distribución de las variables de interés</a></li>
+<li class="chapter" data-level="5.1.5" data-path="linear.html"><a href="linear.html#relación-entre-la-variable-dependiente-e-independiente"><i class="fa fa-check"></i><b>5.1.5</b> Relación entre la variable dependiente e independiente</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="linear.html"><a href="linear.html#modelo-bivariado-regresión-lineal-simple"><i class="fa fa-check"></i><b>5.2</b> Modelo bivariado: regresión lineal simple</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="linear.html"><a href="linear.html#la-función-lm"><i class="fa fa-check"></i><b>5.2.1</b> La función <code>lm</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="linear.html"><a href="linear.html#representación-gráfica"><i class="fa fa-check"></i><b>5.2.2</b> Representación gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="linear.html"><a href="linear.html#modelo-multivariado-regresión-múltiple"><i class="fa fa-check"></i><b>5.3</b> Modelo multivariado: regresión múltiple</a></li>
+<li class="chapter" data-level="5.4" data-path="linear.html"><a href="linear.html#ajuste-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Ajuste del modelo</a></li>
+<li class="chapter" data-level="5.5" data-path="linear.html"><a href="linear.html#inferencia-en-los-modelos-lineales-múltiples"><i class="fa fa-check"></i><b>5.5</b> Inferencia en los modelos lineales múltiples</a></li>
+<li class="chapter" data-level="5.6" data-path="linear.html"><a href="linear.html#testeando-los-supuestos-de-mco"><i class="fa fa-check"></i><b>5.6</b> Testeando los supuestos de MCO</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="case-sel.html"><a href="case-sel.html"><i class="fa fa-check"></i><b>6</b> Selección de casos basada en regresiones</a><ul>
+<li class="chapter" data-level="" data-path="case-sel.html"><a href="case-sel.html#lecturas-sugeridas-2"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="case-sel.html"><a href="case-sel.html#los-paquetes-que-necesitas-instalar-4"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="6.1" data-path="case-sel.html"><a href="case-sel.html#selección-de-estudios-de-casos"><i class="fa fa-check"></i><b>6.1</b> Selección de estudios de casos</a></li>
+<li class="chapter" data-level="6.2" data-path="case-sel.html"><a href="case-sel.html#qué-estudio-de-caso-debería-seleccionar-para-la-investigación-cualitativa"><i class="fa fa-check"></i><b>6.2</b> ¿Qué estudio de caso debería seleccionar para la investigación cualitativa?</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="case-sel.html"><a href="case-sel.html#casos-típicos"><i class="fa fa-check"></i><b>6.2.1</b> Casos típicos</a></li>
+<li class="chapter" data-level="6.2.2" data-path="case-sel.html"><a href="case-sel.html#los-valores-atípicos"><i class="fa fa-check"></i><b>6.2.2</b> Los valores atípicos</a></li>
+<li class="chapter" data-level="6.2.3" data-path="case-sel.html"><a href="case-sel.html#casos-influyentes"><i class="fa fa-check"></i><b>6.2.3</b> Casos influyentes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="case-sel.html"><a href="case-sel.html#casos-extremos"><i class="fa fa-check"></i><b>6.2.4</b> Casos extremos</a></li>
+<li class="chapter" data-level="6.2.5" data-path="case-sel.html"><a href="case-sel.html#casos-más-similares"><i class="fa fa-check"></i><b>6.2.5</b> Casos más similares</a></li>
+<li class="chapter" data-level="6.2.6" data-path="case-sel.html"><a href="case-sel.html#casos-mas-diferentes"><i class="fa fa-check"></i><b>6.2.6</b> Casos mas diferentes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="case-sel.html"><a href="case-sel.html#la-importancia-de-la-combinación-de-métodos"><i class="fa fa-check"></i><b>6.3</b> La importancia de la combinación de métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="panel.html"><a href="panel.html"><i class="fa fa-check"></i><b>7</b> Modelos de panel</a><ul>
+<li class="chapter" data-level="" data-path="panel.html"><a href="panel.html#lecturas-sugeridas-3"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="panel.html"><a href="panel.html#los-paquetes-que-necesitas-instalar-5"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="7.1" data-path="panel.html"><a href="panel.html#introducción-2"><i class="fa fa-check"></i><b>7.1</b> Introducción</a></li>
+<li class="chapter" data-level="7.2" data-path="panel.html"><a href="panel.html#describiendo-la-base-de-datos-en-panel"><i class="fa fa-check"></i><b>7.2</b> Describiendo la base de datos en panel</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="panel.html"><a href="panel.html#opción-a.-gráfico-de-líneas"><i class="fa fa-check"></i><b>7.2.1</b> Opción A. Gráfico de líneas</a></li>
+<li class="chapter" data-level="7.2.2" data-path="panel.html"><a href="panel.html#option-b.-gráfico-de-cajas"><i class="fa fa-check"></i><b>7.2.2</b> Option B. Gráfico de cajas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="panel.html"><a href="panel.html#modelización-de-la-variación-a-nivel-de-grupo"><i class="fa fa-check"></i><b>7.3</b> Modelización de la variación a nivel de grupo</a></li>
+<li class="chapter" data-level="7.4" data-path="panel.html"><a href="panel.html#efectos-fijos-vs.-efectos-aleatorios"><i class="fa fa-check"></i><b>7.4</b> Efectos fijos vs. efectos aleatorios</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="panel.html"><a href="panel.html#test-de-hausman"><i class="fa fa-check"></i><b>7.4.1</b> Test de Hausman</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="panel.html"><a href="panel.html#testeando-raíces-unitarias"><i class="fa fa-check"></i><b>7.5</b> Testeando raíces unitarias</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="panel.html"><a href="panel.html#creación-de-variables-rezagadas-lags-y-variables-prospectivas-leads"><i class="fa fa-check"></i><b>7.5.1</b> Creación de variables rezagadas (<em>lags</em>) y variables prospectivas (<em>leads</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="panel.html"><a href="panel.html#errores-estándar-robustos-corregidos-para-panel"><i class="fa fa-check"></i><b>7.6</b> Errores estándar robustos corregidos para panel</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="panel.html"><a href="panel.html#errores-estándar-robustos-1"><i class="fa fa-check"></i><b>7.6.1</b> Errores estándar robustos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="logit.html"><a href="logit.html"><i class="fa fa-check"></i><b>8</b> Modelos logísticos</a><ul>
+<li class="chapter" data-level="" data-path="logit.html"><a href="logit.html#lecturas-sugeridas-4"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="logit.html"><a href="logit.html#los-paquetes-que-necesitas-instalar-6"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="8.1" data-path="logit.html"><a href="logit.html#introducción-3"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
+<li class="chapter" data-level="8.2" data-path="logit.html"><a href="logit.html#uso-de-los-modelos-logísticos"><i class="fa fa-check"></i><b>8.2</b> Uso de los modelos logísticos</a></li>
+<li class="chapter" data-level="8.3" data-path="logit.html"><a href="logit.html#cómo-se-estiman-las-probabilidades"><i class="fa fa-check"></i><b>8.3</b> ¿Cómo se estiman las probabilidades?</a></li>
+<li class="chapter" data-level="8.4" data-path="logit.html"><a href="logit.html#estimación-de-los-modelos"><i class="fa fa-check"></i><b>8.4</b> Estimación de los modelos</a></li>
+<li class="chapter" data-level="8.5" data-path="logit.html"><a href="logit.html#creando-tablas"><i class="fa fa-check"></i><b>8.5</b> Creando tablas</a></li>
+<li class="chapter" data-level="8.6" data-path="logit.html"><a href="logit.html#representación-visual-de-los-resultados"><i class="fa fa-check"></i><b>8.6</b> Representación visual de los resultados</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="logit.html"><a href="logit.html#visualización-de-las-interacciones-entre-las-variables"><i class="fa fa-check"></i><b>8.6.1</b> Visualización de las interacciones entre las variables</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="logit.html"><a href="logit.html#medidas-para-evaluar-el-ajuste-de-los-modelos"><i class="fa fa-check"></i><b>8.7</b> Medidas para evaluar el ajuste de los modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="surv.html"><a href="surv.html"><i class="fa fa-check"></i><b>9</b> Modelos de supervivencia</a><ul>
+<li class="chapter" data-level="" data-path="surv.html"><a href="surv.html#lecturas-sugeridas-5"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="surv.html"><a href="surv.html#los-paquetes-que-necesitas-instalar-7"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="9.1" data-path="surv.html"><a href="surv.html#introducción-4"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="surv.html"><a href="surv.html#cómo-interpretamos-las-tasas-de-riesgo"><i class="fa fa-check"></i><b>9.2</b> ¿Cómo interpretamos las tasas de riesgo?</a></li>
+<li class="chapter" data-level="9.3" data-path="surv.html"><a href="surv.html#el-modelo-cox-de-riesgos-proporcionales"><i class="fa fa-check"></i><b>9.3</b> El modelo Cox de riesgos proporcionales</a></li>
+<li class="chapter" data-level="9.4" data-path="surv.html"><a href="surv.html#estimación-de-los-modelos-de-cox-en-r"><i class="fa fa-check"></i><b>9.4</b> Estimación de los modelos de Cox en R</a></li>
+<li class="chapter" data-level="9.5" data-path="surv.html"><a href="surv.html#modelos-de-supervivencia-e-interpretación-sus-coeficientes-como-hazard-ratios."><i class="fa fa-check"></i><b>9.5</b> Modelos de supervivencia e interpretación sus coeficientes como Hazard Ratios.</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="causal-inf.html"><a href="causal-inf.html"><i class="fa fa-check"></i><b>10</b> Inferencia causal</a><ul>
+<li class="chapter" data-level="" data-path="causal-inf.html"><a href="causal-inf.html#lecturas-sugeridas-6"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="causal-inf.html"><a href="causal-inf.html#los-paquetes-que-necesitas-instalar-8"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="10.1" data-path="causal-inf.html"><a href="causal-inf.html#introducción-5"><i class="fa fa-check"></i><b>10.1</b> Introducción</a></li>
+<li class="chapter" data-level="10.2" data-path="causal-inf.html"><a href="causal-inf.html#causalidad-y-gráficos-causales"><i class="fa fa-check"></i><b>10.2</b> Causalidad y gráficos causales</a></li>
+<li class="chapter" data-level="10.3" data-path="causal-inf.html"><a href="causal-inf.html#midiendo-efectos-causales"><i class="fa fa-check"></i><b>10.3</b> Midiendo efectos causales</a></li>
+<li class="chapter" data-level="10.4" data-path="causal-inf.html"><a href="causal-inf.html#dags-y-asociaciones-estadísticas"><i class="fa fa-check"></i><b>10.4</b> DAGs y asociaciones estadísticas</a></li>
+<li class="chapter" data-level="10.5" data-path="causal-inf.html"><a href="causal-inf.html#puertas-traseras-y-cálculos-hacer"><i class="fa fa-check"></i><b>10.5</b> Puertas traseras y cálculos “<em>hacer</em>”</a></li>
+<li class="chapter" data-level="10.6" data-path="causal-inf.html"><a href="causal-inf.html#dibujar-y-analizar-dags"><i class="fa fa-check"></i><b>10.6</b> Dibujar y analizar DAGs</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="causal-inf.html"><a href="causal-inf.html#dibujar-un-dag-con-dagitty"><i class="fa fa-check"></i><b>10.6.1</b> Dibujar un DAG con DAGitty</a></li>
+<li class="chapter" data-level="10.6.2" data-path="causal-inf.html"><a href="causal-inf.html#encontrar-sets-de-ajuste-con-dagitty"><i class="fa fa-check"></i><b>10.6.2</b> Encontrar sets de ajuste con DAGitty</a></li>
+<li class="chapter" data-level="10.6.3" data-path="causal-inf.html"><a href="causal-inf.html#diseñar-dags-en-r"><i class="fa fa-check"></i><b>10.6.3</b> Diseñar DAGs en R</a></li>
+<li class="chapter" data-level="10.6.4" data-path="causal-inf.html"><a href="causal-inf.html#encontrar-caminos-y-sets-de-ajustes-con-r"><i class="fa fa-check"></i><b>10.6.4</b> Encontrar caminos y sets de ajustes con R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="causal-inf.html"><a href="causal-inf.html#haciendo-ajustes-causales"><i class="fa fa-check"></i><b>10.7</b> Haciendo ajustes causales</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="causal-inf.html"><a href="causal-inf.html#datos-de-redes-para-mosquitos"><i class="fa fa-check"></i><b>10.7.1</b> Datos de redes para mosquitos</a></li>
+<li class="chapter" data-level="10.7.2" data-path="causal-inf.html"><a href="causal-inf.html#verificar-las-independencias-condicionales"><i class="fa fa-check"></i><b>10.7.2</b> Verificar las independencias condicionales</a></li>
+<li class="chapter" data-level="10.7.3" data-path="causal-inf.html"><a href="causal-inf.html#encuentra-el-set-de-ajuste"><i class="fa fa-check"></i><b>10.7.3</b> Encuentra el set de ajuste</a></li>
+<li class="chapter" data-level="10.7.4" data-path="causal-inf.html"><a href="causal-inf.html#estimación-ingenua-no-ajustada"><i class="fa fa-check"></i><b>10.7.4</b> Estimación ingenua no ajustada</a></li>
+<li class="chapter" data-level="10.7.5" data-path="causal-inf.html"><a href="causal-inf.html#regresiones"><i class="fa fa-check"></i><b>10.7.5</b> Regresiones</a></li>
+<li class="chapter" data-level="10.7.6" data-path="causal-inf.html"><a href="causal-inf.html#matching"><i class="fa fa-check"></i><b>10.7.6</b> Matching</a></li>
+<li class="chapter" data-level="10.7.7" data-path="causal-inf.html"><a href="causal-inf.html#ponderación-de-probabilidad-inversa"><i class="fa fa-check"></i><b>10.7.7</b> Ponderación de probabilidad inversa</a></li>
+<li class="chapter" data-level="10.7.8" data-path="causal-inf.html"><a href="causal-inf.html#comparando-todos-los-métodos"><i class="fa fa-check"></i><b>10.7.8</b> Comparando todos los métodos</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="causal-inf.html"><a href="causal-inf.html#consejos-finales"><i class="fa fa-check"></i><b>10.8</b> Consejos finales</a></li>
+</ul></li>
+<li class="part"><span><b>III Aplicaciones</b></span></li>
+<li class="chapter" data-level="11" data-path="adv-data.html"><a href="adv-data.html"><i class="fa fa-check"></i><b>11</b> Manejo avanzado de datos políticos</a><ul>
+<li class="chapter" data-level="" data-path="adv-data.html"><a href="adv-data.html#lecturas-sugeridas-7"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="adv-data.html"><a href="adv-data.html#los-paquetes-que-necesitas-instalar-9"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="11.1" data-path="adv-data.html"><a href="adv-data.html#introducción-6"><i class="fa fa-check"></i><b>11.1</b> Introducción</a></li>
+<li class="chapter" data-level="11.2" data-path="adv-data.html"><a href="adv-data.html#uniendo-bases-de-datos"><i class="fa fa-check"></i><b>11.2</b> Uniendo bases de datos</a></li>
+<li class="chapter" data-level="11.3" data-path="adv-data.html"><a href="adv-data.html#estandarizando-los-códigos-de-país"><i class="fa fa-check"></i><b>11.3</b> Estandarizando los códigos de país</a></li>
+<li class="chapter" data-level="11.4" data-path="adv-data.html"><a href="adv-data.html#la-unión-borrosa-o-inexacta-de-los-datos"><i class="fa fa-check"></i><b>11.4</b> La unión borrosa o inexacta de los datos</a></li>
+<li class="chapter" data-level="11.5" data-path="adv-data.html"><a href="adv-data.html#gestión-de-valores-perdidos"><i class="fa fa-check"></i><b>11.5</b> Gestión de valores perdidos</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="adv-data.html"><a href="adv-data.html#tipos-de-valores-perdidos"><i class="fa fa-check"></i><b>11.5.1</b> Tipos de valores perdidos</a></li>
+<li class="chapter" data-level="11.5.2" data-path="adv-data.html"><a href="adv-data.html#descripción-de-los-valores-que-faltan-en-la-base-de-datos"><i class="fa fa-check"></i><b>11.5.2</b> Descripción de los valores que faltan en la base de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="adv-data.html"><a href="adv-data.html#imputación-de-valores-perdidos"><i class="fa fa-check"></i><b>11.6</b> Imputación de valores perdidos</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="adv-data.html"><a href="adv-data.html#regresiones-luego-de-imputar-datos"><i class="fa fa-check"></i><b>11.6.1</b> Regresiones luego de imputar datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="web-mining.html"><a href="web-mining.html"><i class="fa fa-check"></i><b>12</b> Minería de datos web</a><ul>
+<li class="chapter" data-level="" data-path="web-mining.html"><a href="web-mining.html#lecturas-sugeridas-8"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="web-mining.html"><a href="web-mining.html#los-paquetes-que-necesitas-instalar-10"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="12.1" data-path="web-mining.html"><a href="web-mining.html#introducción-7"><i class="fa fa-check"></i><b>12.1</b> Introducción</a></li>
+<li class="chapter" data-level="12.2" data-path="web-mining.html"><a href="web-mining.html#formas-de-hacer-web-scraping"><i class="fa fa-check"></i><b>12.2</b> Formas de hacer web scraping</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="web-mining.html"><a href="web-mining.html#estándar-de-exclusión-de-robot"><i class="fa fa-check"></i><b>12.2.1</b> Estándar de exclusión de robot</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="web-mining.html"><a href="web-mining.html#web-scraping-en-r"><i class="fa fa-check"></i><b>12.3</b> Web scraping en R</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="web-mining.html"><a href="web-mining.html#ejemplo-aplicado-los-comunicados-de-prensa-de-la-organización-de-estados-americanos-oea"><i class="fa fa-check"></i><b>12.3.1</b> Ejemplo aplicado: los comunicados de prensa de la Organización de Estados Americanos (OEA)</a></li>
+<li class="chapter" data-level="12.3.2" data-path="web-mining.html"><a href="web-mining.html#caraga-el-html-para-trabajar-con-r"><i class="fa fa-check"></i><b>12.3.2</b> Caraga el html para trabajar con R</a></li>
+<li class="chapter" data-level="12.3.3" data-path="web-mining.html"><a href="web-mining.html#extraer-la-información-con-html_nodes-html_text"><i class="fa fa-check"></i><b>12.3.3</b> Extraer la información con <code>html_nodes()</code> + <code>html_text()</code></a></li>
+<li class="chapter" data-level="12.3.4" data-path="web-mining.html"><a href="web-mining.html#iteraciones"><i class="fa fa-check"></i><b>12.3.4</b> Iteraciones</a></li>
+<li class="chapter" data-level="12.3.5" data-path="web-mining.html"><a href="web-mining.html#funciones-personalizadas-recetas"><i class="fa fa-check"></i><b>12.3.5</b> Funciones personalizadas (recetas)</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="web-mining.html"><a href="web-mining.html#usando-apis-y-extrayendo-datos-de-twitter"><i class="fa fa-check"></i><b>12.4</b> Usando APIs y extrayendo datos de Twitter</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="web-mining.html"><a href="web-mining.html#buscar-una-palabra-clave"><i class="fa fa-check"></i><b>12.4.1</b> Buscar una palabra clave</a></li>
+<li class="chapter" data-level="12.4.2" data-path="web-mining.html"><a href="web-mining.html#buscar-una-frase"><i class="fa fa-check"></i><b>12.4.2</b> Buscar una frase</a></li>
+<li class="chapter" data-level="12.4.3" data-path="web-mining.html"><a href="web-mining.html#descargando-características-relacionadas-con-los-usuarios-de-twitter"><i class="fa fa-check"></i><b>12.4.3</b> Descargando características relacionadas con los usuarios de Twitter</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="qta.html"><a href="qta.html"><i class="fa fa-check"></i><b>13</b> Análisis cuantitativo de textos políticos</a><ul>
+<li class="chapter" data-level="" data-path="qta.html"><a href="qta.html#lecturas-recomendadas"><i class="fa fa-check"></i>Lecturas recomendadas</a></li>
+<li class="chapter" data-level="" data-path="qta.html"><a href="qta.html#paquetes-que-necesitas-instalar"><i class="fa fa-check"></i>Paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="13.1" data-path="qta.html"><a href="qta.html#sqta1"><i class="fa fa-check"></i><b>13.1</b> Análisis de hashtags políticos</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="qta.html"><a href="qta.html#exploración-de-datos-de-twitter"><i class="fa fa-check"></i><b>13.1.1</b> Exploración de datos de Twitter</a></li>
+<li class="chapter" data-level="13.1.2" data-path="qta.html"><a href="qta.html#diagnóstico-visual"><i class="fa fa-check"></i><b>13.1.2</b> Diagnóstico visual</a></li>
+<li class="chapter" data-level="13.1.3" data-path="qta.html"><a href="qta.html#hashtags-más-utilizados"><i class="fa fa-check"></i><b>13.1.3</b> Hashtags más utilizados</a></li>
+<li class="chapter" data-level="13.1.4" data-path="qta.html"><a href="qta.html#wordclouds-nubes-de-palabras"><i class="fa fa-check"></i><b>13.1.4</b> Wordclouds (Nubes de palabras)</a></li>
+<li class="chapter" data-level="13.1.5" data-path="qta.html"><a href="qta.html#nubes-de-palabras-por-grupos"><i class="fa fa-check"></i><b>13.1.5</b> Nubes de palabras por grupos</a></li>
+<li class="chapter" data-level="13.1.6" data-path="qta.html"><a href="qta.html#gráficos-de-barras"><i class="fa fa-check"></i><b>13.1.6</b> Gráficos de barras</a></li>
+<li class="chapter" data-level="13.1.7" data-path="qta.html"><a href="qta.html#variación-temporal-en-el-uso-de-hashtags"><i class="fa fa-check"></i><b>13.1.7</b> Variación temporal en el uso de hashtags</a></li>
+<li class="chapter" data-level="13.1.8" data-path="qta.html"><a href="qta.html#para-resumir"><i class="fa fa-check"></i><b>13.1.8</b> Para resumir</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="qta.html"><a href="qta.html#wordfish"><i class="fa fa-check"></i><b>13.2</b> Wordfish</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="qta.html"><a href="qta.html#inspección-y-limpieza-de-datos"><i class="fa fa-check"></i><b>13.2.1</b> Inspección y limpieza de datos</a></li>
+<li class="chapter" data-level="13.2.2" data-path="qta.html"><a href="qta.html#pre-procesamiento"><i class="fa fa-check"></i><b>13.2.2</b> Pre-procesamiento</a></li>
+<li class="chapter" data-level="13.2.3" data-path="qta.html"><a href="qta.html#sqta2"><i class="fa fa-check"></i><b>13.2.3</b> Wordfish</a></li>
+<li class="chapter" data-level="13.2.4" data-path="qta.html"><a href="qta.html#qué-aprendimos-de-wordfish"><i class="fa fa-check"></i><b>13.2.4</b> ¿Qué aprendimos de Wordfish?</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="qta.html"><a href="qta.html#sqta3"><i class="fa fa-check"></i><b>13.3</b> Structural Topic Modeling (STM)</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="qta.html"><a href="qta.html#pre-procesamiento-1"><i class="fa fa-check"></i><b>13.3.1</b> Pre-procesamiento</a></li>
+<li class="chapter" data-level="13.3.2" data-path="qta.html"><a href="qta.html#diagnósticos"><i class="fa fa-check"></i><b>13.3.2</b> Diagnósticos</a></li>
+<li class="chapter" data-level="13.3.3" data-path="qta.html"><a href="qta.html#análisis"><i class="fa fa-check"></i><b>13.3.3</b> Análisis</a></li>
+<li class="chapter" data-level="13.3.4" data-path="qta.html"><a href="qta.html#observaciones-finales"><i class="fa fa-check"></i><b>13.3.4</b> Observaciones finales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="networks.html"><a href="networks.html"><i class="fa fa-check"></i><b>14</b> Análisis de redes</a><ul>
+<li class="chapter" data-level="" data-path="networks.html"><a href="networks.html#lecturas-sugeridas-9"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="networks.html"><a href="networks.html#los-paquetes-que-necesitas-instalar-11"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="14.1" data-path="networks.html"><a href="networks.html#introducción-8"><i class="fa fa-check"></i><b>14.1</b> Introducción</a></li>
+<li class="chapter" data-level="14.2" data-path="networks.html"><a href="networks.html#conceptos-básicos-en-una-red"><i class="fa fa-check"></i><b>14.2</b> Conceptos básicos en una red</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="networks.html"><a href="networks.html#nodos-y-enlaces"><i class="fa fa-check"></i><b>14.2.1</b> Nodos y enlaces</a></li>
+<li class="chapter" data-level="14.2.2" data-path="networks.html"><a href="networks.html#matriz-de-adyacencia"><i class="fa fa-check"></i><b>14.2.2</b> Matriz de adyacencia</a></li>
+<li class="chapter" data-level="14.2.3" data-path="networks.html"><a href="networks.html#pesos-y-direcciones"><i class="fa fa-check"></i><b>14.2.3</b> Pesos y direcciones</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="networks.html"><a href="networks.html#bases-de-datos-de-la-red"><i class="fa fa-check"></i><b>14.3</b> Bases de datos de la red</a></li>
+<li class="chapter" data-level="14.4" data-path="networks.html"><a href="networks.html#presentación-gráfica-de-una-red"><i class="fa fa-check"></i><b>14.4</b> Presentación gráfica de una red</a></li>
+<li class="chapter" data-level="14.5" data-path="networks.html"><a href="networks.html#medidas-de-centralidad"><i class="fa fa-check"></i><b>14.5</b> Medidas de centralidad</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="networks.html"><a href="networks.html#grado"><i class="fa fa-check"></i><b>14.5.1</b> Grado</a></li>
+<li class="chapter" data-level="14.5.2" data-path="networks.html"><a href="networks.html#centralidad-del-eigenvector"><i class="fa fa-check"></i><b>14.5.2</b> Centralidad del eigenvector</a></li>
+<li class="chapter" data-level="14.5.3" data-path="networks.html"><a href="networks.html#centralidad-de-intermediación-betweenness"><i class="fa fa-check"></i><b>14.5.3</b> Centralidad de intermediación (<em>betweenness</em>)</a></li>
+<li class="chapter" data-level="14.5.4" data-path="networks.html"><a href="networks.html#cercanía"><i class="fa fa-check"></i><b>14.5.4</b> Cercanía</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="networks.html"><a href="networks.html#aplicación-en-r"><i class="fa fa-check"></i><b>14.6</b> Aplicación en R</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="indexes.html"><a href="indexes.html"><i class="fa fa-check"></i><b>15</b> Análisis de componentes principales</a><ul>
+<li class="chapter" data-level="" data-path="indexes.html"><a href="indexes.html#lecturas-sugeridas-10"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="indexes.html"><a href="indexes.html#los-paquetes-que-necesitas-instalar-12"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="15.1" data-path="indexes.html"><a href="indexes.html#introducción-9"><i class="fa fa-check"></i><b>15.1</b> Introducción</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="indexes.html"><a href="indexes.html#conceptos-medidas-y-validez"><i class="fa fa-check"></i><b>15.1.1</b> Conceptos, medidas y validez</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="indexes.html"><a href="indexes.html#cómo-funciona-el-análisis-de-componentes-principales"><i class="fa fa-check"></i><b>15.2</b> Cómo funciona el Análisis de Componentes Principales</a></li>
+<li class="chapter" data-level="15.3" data-path="indexes.html"><a href="indexes.html#nociones-básicas-en-r"><i class="fa fa-check"></i><b>15.3</b> Nociones básicas en R</a></li>
+<li class="chapter" data-level="15.4" data-path="indexes.html"><a href="indexes.html#dimensionalidad-del-concepto"><i class="fa fa-check"></i><b>15.4</b> Dimensionalidad del concepto</a></li>
+<li class="chapter" data-level="15.5" data-path="indexes.html"><a href="indexes.html#variación-del-concepto"><i class="fa fa-check"></i><b>15.5</b> Variación del concepto</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="maps.html"><a href="maps.html"><i class="fa fa-check"></i><b>16</b> Mapas y datos espaciales</a><ul>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#lecturas-sugeridas-11"><i class="fa fa-check"></i>Lecturas sugeridas</a></li>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#los-paquetes-que-necesitas-instalar-13"><i class="fa fa-check"></i>Los paquetes que necesitas instalar</a></li>
+<li class="chapter" data-level="16.1" data-path="maps.html"><a href="maps.html#introducción-10"><i class="fa fa-check"></i><b>16.1</b> Introducción</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="maps.html"><a href="maps.html#datos-espaciales-qué-son"><i class="fa fa-check"></i><b>16.1.1</b> Datos espaciales: ¿qué son?</a></li>
+<li class="chapter" data-level="16.1.2" data-path="maps.html"><a href="maps.html#estructura-de-datos-espaciales"><i class="fa fa-check"></i><b>16.1.2</b> Estructura de datos espaciales</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="maps.html"><a href="maps.html#datos-espaciales-en-r"><i class="fa fa-check"></i><b>16.2</b> Datos espaciales en R</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="maps.html"><a href="maps.html#características-simples-en-r"><i class="fa fa-check"></i><b>16.2.1</b> Características simples en R</a></li>
+<li class="chapter" data-level="16.2.2" data-path="maps.html"><a href="maps.html#estructura"><i class="fa fa-check"></i><b>16.2.2</b> Estructura</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="maps.html"><a href="maps.html#gestión-de-datos-espaciales"><i class="fa fa-check"></i><b>16.3</b> Gestión de Datos Espaciales</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="maps.html"><a href="maps.html#modificaciones"><i class="fa fa-check"></i><b>16.3.1</b> Modificaciones</a></li>
+<li class="chapter" data-level="16.3.2" data-path="maps.html"><a href="maps.html#añade-datos-de-otras-bases-de-datos-con-left_join"><i class="fa fa-check"></i><b>16.3.2</b> Añade datos de otras bases de datos con <code>left_join()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="maps.html"><a href="maps.html#mapeo"><i class="fa fa-check"></i><b>16.4</b> Mapeo</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="maps.html"><a href="maps.html#generando-centroides"><i class="fa fa-check"></i><b>16.4.1</b> Generando centroides</a></li>
+<li class="chapter" data-level="16.4.2" data-path="maps.html"><a href="maps.html#mapeando-variables"><i class="fa fa-check"></i><b>16.4.2</b> Mapeando variables</a></li>
+<li class="chapter" data-level="16.4.3" data-path="maps.html"><a href="maps.html#mapeando-puntos"><i class="fa fa-check"></i><b>16.4.3</b> Mapeando puntos</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="maps.html"><a href="maps.html#inferencia-a-partir-de-datos-espaciales"><i class="fa fa-check"></i><b>16.5</b> Inferencia a partir de datos espaciales</a><ul>
+<li class="chapter" data-level="16.5.1" data-path="maps.html"><a href="maps.html#indicador-local-de-asociación-espacial-lisa-por-sus-siglas-en-inglés"><i class="fa fa-check"></i><b>16.5.1</b> Indicador local de asociación espacial (LISA, por sus siglas en inglés)</a></li>
+<li class="chapter" data-level="16.5.2" data-path="maps.html"><a href="maps.html#matriz-de-pesos-espaciales"><i class="fa fa-check"></i><b>16.5.2</b> Matriz de pesos espaciales</a></li>
+<li class="chapter" data-level="16.5.3" data-path="maps.html"><a href="maps.html#i-de-moran"><i class="fa fa-check"></i><b>16.5.3</b> I de Moran</a></li>
+<li class="chapter" data-level="" data-path="maps.html"><a href="maps.html#comentarios-finales-referencias-para-un-mejor-análisis-de-datos-espaciales"><i class="fa fa-check"></i>Comentarios finales: Referencias para un mejor análisis de datos espaciales</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Referencias</b></span></li>
+<li class="chapter" data-level="17" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i><b>17</b> Referencias</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnalizaR Datos Políticos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dataviz" class="section level1">
+<h1><span class="header-section-number">Capítulo 3</span> Visualización de datos</h1>
+<p>Soledad Araya<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+<div id="lecturas-sugeridas" class="section level3 unnumbered">
+<h3>Lecturas sugeridas</h3>
+<ul>
+<li><p>Henshaw, A. L., &amp; Meinke, S. R. (2018). Data analysis and data visualization as active learning in political science. <em>Journal of Political Science Education, 14</em>(4), 423-439.</p></li>
+<li><p>Kastellec, J. P., &amp; Leoni, E. L. (2007). Using graphs instead of tables in political science. <em>Perspectives on Politics, 5</em>(4), 755-771.</p></li>
+<li><p>Tufte, E. R. (2006). <em>Beautiful evidence</em>. Graphics Press.</p></li>
+</ul>
+</div>
+<div id="los-paquetes-que-necesitas-instalar-1" class="section level3 unnumbered">
+<h3>Los paquetes que necesitas instalar</h3>
+<ul>
+<li><code>tidyverse</code> <span class="citation">(Wickham <a href="referencias.html#ref-R-tidyverse" role="doc-biblioref">2019</a><a href="referencias.html#ref-R-tidyverse" role="doc-biblioref">b</a>)</span>, <code>paqueteadp</code> <span class="citation">(Urdinez and Cruz <a href="referencias.html#ref-R-paqueteadp" role="doc-biblioref">2020</a>)</span>, <code>ggrepel</code> <span class="citation">(Slowikowski <a href="referencias.html#ref-R-ggrepel" role="doc-biblioref">2020</a>)</span>.</li>
+</ul>
+</div>
+<div id="por-qué-visualizar-mis-datos" class="section level2">
+<h2><span class="header-section-number">3.1</span> ¿Por qué visualizar mis datos?</h2>
+<p>Ya has aprendido a usar los comandos de Tidyverse, y probablemente quieras sumergirte en el mundo de los gráficos, y aplicar todo lo que has aprendido a tu propios datos. Con <code>tidyverse</code> y <code>ggplot2</code>, la visualización de datos se convierte en una tarea fácil, pero hay algunos pasos que debes seguir antes de escribir tu código. Por ejemplo, conocer tus variables. ¿Son variables continuas o categóricas? Cuando son categóricas, ¿tienen dos o más niveles? Además, esos niveles, ¿están en orden o no? Estas no son las únicas preguntas que tienes que considerar. Parece una tarea fácil, pero si no consideras este paso en tu trabajo con <code>ggplot2</code> las cosas pueden ponerse feas bastante rápido. Se pueden encontrar ejemplos divertidos de esto en <a href="https://twitter.com/accidental__aRt">accidental aRt</a>.</p>
+<p>Una pregunta rápida: ¿Por qué representar nuestros datos gráficamente?</p>
+<p>En primer lugar, sé que muchos de nosotros estamos interesados en representar nuestros datos gráficamente porque es una forma atractiva de hacerlo. Sin embargo, tener un buen o mal sentido de la estética no significa mucho si nuestros datos no son claros. Por lo tanto, es necesario <em>comprender</em> lo que queremos expresar, lo cual puede ser una tarea difícil si no reflexionamos sobre por qué estamos haciendo este tipo de representación. A veces, podemos utilizar tablas para resumir cantidades y/o patrones, pero la gran gestión de datos de hoy en día hace que esto sea una tarea compleja e ineficiente. Por lo tanto, volvamos a la pregunta principal: ¿por qué visualizar? ¿Por qué no hacer simplemente tablas que expresen lo que queremos decir? A través de la visualización de datos podemos entender otros tipos de problemas que los números por sí solos no pueden mostrar. Mediante la visualización, queremos explorar y <em>comprender</em> nuestros datos. Además, la representación gráfica puede ayudarnos a interpretar patrones, tendencias, distribuciones y a comunicarlos mejor a nuestros lectores.</p>
+<div class="figure" style="text-align: center"><span id="fig:florence-nightingale"></span>
+<img src="00-images/dataviz/florence_nightingale.jpg" alt="Estadística Florence Nightingale (1820-1910)." width="40%" />
+<p class="caption">
+Figura 3.1: Estadística Florence Nightingale (1820-1910).
+</p>
+</div>
+Florence Nightgale (1820-1910) fue una enfermera y estadística que ayudó a reorganizar la administración de los hospitales cívicos y militares de Gran Bretaña. Ella, con la ayuda de un equipo, logró hacer un registro de las muertes y enfermedades en los hospitales militares durante la Guerra de Crimea. Para su sorpresa, la gran mayoría de las muertes eran evitables, y la razón principal de ellas eran las malas condiciones del sistema de salud. Uno de sus informes para el gobierno británico fue el siguiente diagrama:
+<div class="figure" style="text-align: center"><span id="fig:mortality-nightingale1"></span>
+<img src="00-images/dataviz/nightingale_mortality.jpg" alt=" Diagrama de las causas de muerte en el ejército británico" width="60%" />
+<p class="caption">
+Figura 3.2:  Diagrama de las causas de muerte en el ejército británico
+</p>
+</div>
+<p>En rojo se destacan las muertes por heridas de guerra, en azul las muertes debidas a enfermedades evitables, y en negro, las muertes causadas por otro tipo de causas. Este gráfico no sólo proporciona información cuantitativa sobre las muertes, sino que también señala un problema sustancial en el sistema de salud de los militares en ese momento.</p>
+<p>El diagrama de Nightingale reveló el problema, que fue el paso inicial para una serie de reformas. Así, la visualización se convierte en una herramienta que puede ser aplicada en todas las etapas de la investigación. En una etapa inicial, es importante para la exploración de los datos, y para entender cómo se relacionan las variables entre sí, sus distribuciones y frecuencias. Al interpretar los datos, la visualización es útil para mostrar posibles tendencias o patrones en los datos. Por último, la visualización es una gran herramienta para la difusión del conocimiento. Pero recuerde, con un gran poder viene una gran responsabilidad, y las relaciones espurias dejan de ser graciosas cuando la gente se las toma demasiado en serio<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>.
+<span class="citation">Monogan (<a href="referencias.html#ref-monoganPoliticalAnalysisUsing2015" role="doc-biblioref">2015</a> cap. 3)</span> ya había explicado de forma sencilla para los científicos sociales, por qué la visualización de datos es importante cuando se trabaja con datos cuantitativos. En la introducción del capítulo, Monogan afirma la importancia y las ventajas de trabajar con cifras, desde la simple distribución de variables, valores atípicos o sesgos, hasta las tendencias a lo largo del tiempo. Por esta razón, la visualización de datos es una herramienta crucial para cualquiera que trabaje con datos. No es, de ninguna manera, un “movimiento estético”, la gráfica es extremadamente útil.</p>
+<p>Sin embargo, para algunas personas, la visualización de datos es tanto un elemento funcional para el análisis como un elemento estético por excelencia. Para Edward Tufte <span class="citation">(<a href="referencias.html#ref-tufteBeautifulEvidence2006" role="doc-biblioref">2006</a>)</span>, visualizar los datos de manera efectiva tiene un componente artístico inevitable. Con formación de estadístico y un doctorado en Ciencias Políticas de la Universidad de Yale, Edward Tufte se dedicó a entender y explicar cómo la ciencia y el arte tienen en común una <em>observación a ojos abierto que genera información empírica</em>. Su libro <em>Beautiful Evidence</em> <span class="citation">(Tufte <a href="referencias.html#ref-tufteBeautifulEvidence2006" role="doc-biblioref">2006</a>)</span> describe el proceso de cómo <em>observar</em> se transforma en <em>mostrar</em>, y cómo la observación empírica se convierte en explicaciones y pruebas.</p>
+<p>Necesitamos entender que la visualización de datos es un lenguaje como cualquier otro. Como emisores, necesitamos conocer nuestra audiencia: quiénes son los receptores de nuestro mensaje, si es una audiencia experta o sólo el público en general. En cualquier circunstancia, ajustaríamos nuestro mensaje al tipo de audiencia. Lo mismo ocurre cuando visualizamos los datos. Los gráficos que hacemos deben adaptarse a nuestro público. Sin embargo, incluso con las personas más conocedoras no debemos entusiasmarnos demasiado. No se trata de aplicar todo lo que sabemos inmediatamente, sino de entender lo que estamos tratando de comunicar. Comprender las funciones de este lenguaje es esencial.</p>
+<p>En la siguiente subsección hablaremos de cómo funciona <code>ggplot2</code>. A partir de ahora, comenzaremos con ejemplos aplicados. Los tipos de representación visual más comunes son el histograma, el gráfico de barras, el gráfico de densidad y el gráfico de líneas. Además, introduciremos otros paquetes de utilidades para hacer gráficos más sofisticados. Finalmente, aprenderemos sobre otros paquetes que pueden ser útiles dentro de las ciencias sociales, y en particular, las ciencias políticas, como son <code>sf</code> y <code>ggparliament</code>.</p>
+<blockquote>
+<p><strong>Consejo:</strong> Después de este capítulo, si quieres aprender más sobre la visualización de datos, consulta <a href="http://socviz.co">Data Visualization: A Practical introduction</a> de Kieran Healy, un libro disponible de forma gratuita que es divertido y útil para aprender <code>ggplot2</code> paso a paso. En este libro no sólo encontrará una parte teórica, sino también una práctica. Por otro lado, la página web <a href="https://www.data-to-viz.com/">From Data to Viz</a> puede ayudarte a aprender a presentar tus datos, pero no sólo eso: tanto si trabajas con R como con Python, puedes encontrar los paquetes y códigos para su aplicación.</p>
+</blockquote>
+</div>
+<div id="primeros-pasos" class="section level2">
+<h2><span class="header-section-number">3.2</span> Primeros pasos</h2>
+<p>Ahora que entendemos el proceso antes de construir un gráfico, tenemos que familiarizarnos con <code>ggplot2</code>, el paquete para crear gráficos que es parte del <code>tidyverse</code>. <a href="https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf">A Layered Grammar of Graphics</a>, de Hadley Wickham, explica en detalle cómo funciona esta nueva “gramática” para hacer gráficos. Recomendamos que se lea de la fuente original cómo se creó este paquete para entender más tarde el uso de las capas en la construcción de los gráficos.</p>
+<p>Aunque el uso de <code>ggplot2</code> se expandió rápidamente, dentro de la comunidad R hay constantes discusiones sobre la enseñanza de <code>ggplot2</code> como primera opción sobre los gráficos base de R. Por ejemplo, <a href="http://varianceexplained.org/r/why-I-use-ggplot2/">David Robinson</a> tiene en su blog diferentes entradas sobre este tema, donde explica en detalle las ventajas de <code>ggplot2</code> sobre otras opciones. Si eres un principiante en R, empezar con <code>ggplot2</code> te dará una herramienta poderosa, y su curva de aprendizaje no es tan empinada como las R básico.
+Algunas ventajas que David Robinson menciona en “Por qué uso <code>ggplot2</code>”<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> son:</p>
+<ul>
+<li>Subtítulos. R básico requiere más conocimiento de los usuarios para poder añadir subtítulos en los gráficos. Nuestro amigo <code>ggplot2</code> lo hace automáticamente.</li>
+<li>¡Facetas! Básicamente, podemos crear subgráficos con una tercera o cuarta variable y superponerlos, lo que nos permitirá una mejor comprensión del comportamiento de nuestros datos.</li>
+<li>Funciona junto con <code>tidyverse</code>. Esto significa que podemos hacer más con menos. Al final de este capítulo entenderán lo que quiero decir. Hay atajos para todo.</li>
+<li>Estéticamente, es mejor. Hay miles de opciones de paletas cromáticas, temas y fuentes. Si no te gusta, hay una forma de cambiarlo.</li>
+</ul>
+<p>Con esto en consideración, empecemos con lo práctico.</p>
+<div id="las-capas-del-universo-ggplotiano" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Las capas del “universo ggplotiano”</h3>
+<p>Empecemos con nuestro tema de interés: ¿Cómo funciona <code>ggplot2</code>? Este paquete está incluido en el <code>tidyverse</code>, por lo que no es necesario cargarlo por separado. Además, utilizaremos las herramientas de ambos paquetes a lo largo de todo el capítulo. Así, el primer paso es cargar el paquete:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="dataviz.html#cb79-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>La intuición detrás de <code>ggplot2</code> es directa. La construcción de los datos se basa en <strong>capas</strong> que contienen un cierto tipo de información.</p>
+<div id="datos" class="section level4">
+<h4><span class="header-section-number">3.2.1.1</span> Datos</h4>
+<p>La primera capa corresponde a los datos que usaremos. Para hacerlo más demostrativo, cargaremos la base datos que se utilizarán a lo largo del capítulo.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="dataviz.html#cb80-1"></a><span class="kw">library</span>(paqueteadp)</span>
+<span id="cb80-2"><a href="dataviz.html#cb80-2"></a><span class="kw">data</span>(<span class="st">&quot;datos_municipales&quot;</span>)</span></code></pre></div>
+<p>El conjunto de datos debería estar ahora en nuestro ambiente. Estos datos corresponden a la información de los municipios chilenos. Algunos son del <a href="http://www.servel.cl">Servicio Electoral</a> y otros del <a href="http://datos.sinim.gov.cl/datos_municipales.php">Sistema Nacional de Información Municipal</a> de Chile. En la primera base de datos, encontramos los resultados electorales de las elecciones locales, regionales y nacionales del país; mientras que en la segunda encontramos las características económicas, sociales y demográficas de los municipios chilenos. En este caso, tenemos los datos electorales comunales de 1992 a 2012, con datos descriptivos como la población, el ingreso total del municipio, el gasto en asistencia social y el porcentaje de personas en situación de pobreza en base al total comunal de la Encuesta de Caracterización Socioeconómica Nacional (CASEN).</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="dataviz.html#cb81-1"></a><span class="kw">glimpse</span>(datos_municipales)</span>
+<span id="cb81-2"><a href="dataviz.html#cb81-2"></a><span class="co">## Rows: 1,011</span></span>
+<span id="cb81-3"><a href="dataviz.html#cb81-3"></a><span class="co">## Columns: 6</span></span>
+<span id="cb81-4"><a href="dataviz.html#cb81-4"></a><span class="co">## $ anio          &lt;chr&gt; &quot;2004&quot;, &quot;2004&quot;, &quot;2004&quot;, &quot;2004&quot;, &quot;2004&quot;, &quot;2004&quot;, …</span></span>
+<span id="cb81-5"><a href="dataviz.html#cb81-5"></a><span class="co">## $ zona          &lt;chr&gt; &quot;Norte Grande&quot;, &quot;Norte Grande&quot;, &quot;Norte Grande&quot;, …</span></span>
+<span id="cb81-6"><a href="dataviz.html#cb81-6"></a><span class="co">## $ municipalidad &lt;chr&gt; &quot;Alto Hospicio&quot;, &quot;Arica&quot;, &quot;Camarones&quot;, &quot;Camina&quot;,…</span></span>
+<span id="cb81-7"><a href="dataviz.html#cb81-7"></a><span class="co">## $ genero        &lt;chr&gt; &quot;0&quot;, &quot;0&quot;, &quot;1&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;…</span></span>
+<span id="cb81-8"><a href="dataviz.html#cb81-8"></a><span class="co">## $ ingreso       &lt;int&gt; 1908611, 12041351, 723407, 981023, 768355, 55806…</span></span>
+<span id="cb81-9"><a href="dataviz.html#cb81-9"></a><span class="co">## $ pobreza       &lt;dbl&gt; NA, 23.5, 10.6, 37.3, 58.3, 38.8, 31.3, 7.7, 23.…</span></span></code></pre></div>
+<p>Al mirar a la base de datos, encontramos que hay variables continuas (numéricas) y categóricas (de texto). Saber con qué tipo de variable estamos trabajando es esencial para el siguiente paso.</p>
+</div>
+<div id="mapeos-estéticos" class="section level4">
+<h4><span class="header-section-number">3.2.1.2</span> Mapeos estéticos</h4>
+<p>La segunda capa corresponde al mapeo de las variables dentro del espacio. En este paso, usamos <code>mapping=aes()</code>, que contendrá la variable que tendremos en nuestros ejes x e y. Para <code>aes()</code>, hay muchas opciones que veremos a lo largo del capítulo: algunas de ellas son, por ejemplo, <code>fill</code>, <code>color</code>, <code>shape</code>, y <code>alpha</code>. Todas estas opciones son un conjunto de señales que nos permitirán traducir mejor lo que queremos decir a través de nuestro gráfico. Normalmente, estas opciones se llaman <em>estéticas</em> o <code>aes()</code>.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="dataviz.html#cb82-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales, </span>
+<span id="cb82-2"><a href="dataviz.html#cb82-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> anio, <span class="dt">y =</span> pobreza))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-4-1.png" alt="Marco vacío." width="672" />
+<p class="caption">
+Figura 3.3: Marco vacío.
+</p>
+</div>
+<p>El resultado muestra un marco vacío. Esto se debe a que no le hemos dicho a R qué objeto geométrico usar.</p>
+</div>
+<div id="objeto-geométrico" class="section level4">
+<h4><span class="header-section-number">3.2.1.3</span> Objeto geométrico</h4>
+<p>Suena extraño, pero cuando hablamos del objeto geométrico o <code>geom</code>, nos referimos al tipo de gráfico que queremos hacer, ya sea un gráfico lineal, un gráfico de barras, un histograma, un gráfico de densidad, o un gráfico de puntos, o si queremos hacer un gráfico de cajas. Esto corresponde a la tercera capa. En este caso, ya que tenemos datos de la encuesta CASEN, haremos un gráfico de caja para ver cómo se distribuyen los municipios en nuestra muestra.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="dataviz.html#cb83-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales, </span>
+<span id="cb83-2"><a href="dataviz.html#cb83-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> anio, <span class="dt">y =</span> pobreza)) <span class="op">+</span></span>
+<span id="cb83-3"><a href="dataviz.html#cb83-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-5-1.png" alt=" Añadiendo un objeto geométrico a su gráfica." width="480" />
+<p class="caption">
+Figura 3.4:  Añadiendo un objeto geométrico a su gráfica.
+</p>
+</div>
+<p>Lo primero que notamos es la ausencia de datos durante tres períodos. Desafortunadamente, no hay datos anteriores a 2002, por lo que no se encuentran entradas para esos años. Por ello, es una gran idea filtrar los datos y dejar sólo los años que contienen datos sobre la encuesta CASEN. Además de eso, nuestro gráfico no nos dice mucho sobre el porcentaje de pobreza y su distribución. Considerando la geografía de Chile, es una gran idea ver la distribución de la pobreza por zona de la región geográfica.</p>
+</div>
+<div id="facetas" class="section level4">
+<h4><span class="header-section-number">3.2.1.4</span> Facetas</h4>
+<p>Ahora, usaremos nuestras nuevas habilidades para hacer dos cosas: primero, usaremos <code>filter()</code> para conservar sólo los años que nos interesan. Segundo, dividiremos los resultados por zonas usando <code>facet_wrap()</code>, que corresponde a la cuarta capa que podemos usar para construir un gráfico con <code>ggplot2</code>. Cuando usamos esta capa, lo que queremos es organizar las “geoms” que estamos usando en función de una variable categórica. En este caso, la zona. Sin embargo, las facetas, como acción, son mucho más que eso. <code>facet_wrap()</code> y <code>facet_grid()</code> pueden adoptar una serie de argumentos, siendo el primero el más importante. En este caso, la sintaxis que utilizamos es la misma que se usa para las fórmulas en R, y denotamos el primer argumento con un signo “~”. Con los argumentos <code>nrow =</code> y <code>ncol =</code> podemos especificar cómo queremos ordenar nuestro gráfico.</p>
+<p>Finalmente, añadimos dos líneas de código, una para filtrar y otra para subdividir nuestra información. Esto es lo que logramos:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="dataviz.html#cb84-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(anio <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</span>
+<span id="cb84-2"><a href="dataviz.html#cb84-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> anio, <span class="dt">y =</span> pobreza)) <span class="op">+</span></span>
+<span id="cb84-3"><a href="dataviz.html#cb84-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb84-4"><a href="dataviz.html#cb84-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-6-1.png" alt=" Añadiendo una faceta a su gráfico." width="672" />
+<p class="caption">
+Figura 3.5:  Añadiendo una faceta a su gráfico.
+</p>
+</div>
+<p>Tanto con <code>facet_wrap()</code> como con <code>facet_grid()</code> podemos usar más de un argumento, pero los resultados son diferentes. <code>facet_wrap()</code> no sólo ordena los geoms, sino que es capaz de cruzarlos, creando gráficos con dos o más dimensiones usando variables categóricas. Mira los siguientes ejemplos:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="dataviz.html#cb85-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales<span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(anio <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</span>
+<span id="cb85-2"><a href="dataviz.html#cb85-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> anio, <span class="dt">y =</span> pobreza)) <span class="op">+</span></span>
+<span id="cb85-3"><a href="dataviz.html#cb85-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb85-4"><a href="dataviz.html#cb85-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(zona <span class="op">~</span><span class="st"> </span>genero)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-7-1.png" alt=" Comparando wraps y grillas, ejemplo A." width="672" />
+<p class="caption">
+Figura 3.6:  Comparando wraps y grillas, ejemplo A.
+</p>
+</div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="dataviz.html#cb86-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(anio <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</span>
+<span id="cb86-2"><a href="dataviz.html#cb86-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> anio, <span class="dt">y =</span> pobreza)) <span class="op">+</span></span>
+<span id="cb86-3"><a href="dataviz.html#cb86-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb86-4"><a href="dataviz.html#cb86-4"></a><span class="st">  </span><span class="kw">facet_grid</span>(zona <span class="op">~</span><span class="st"> </span>genero)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-8-1.png" alt="Comparando wraps y grillas, ejemplo B." width="672" />
+<p class="caption">
+Figura 3.7: Comparando wraps y grillas, ejemplo B.
+</p>
+</div>
+<p>Este gráfico muestra que, por zonas, el porcentaje de pobreza ha variado considerablemente de 2004 a 2012, y que existe una gran variabilidad interregional. Además, nos muestra cómo <code>ggplot2</code> ofrece resultados de alta calidad sin mucha complejidad. La función <code>facet_wrap()</code> es una capa opcional dentro de las múltiples capas de “Una Gramática de Gráficos en Capas”, pero es importante recordar que las otras tres deben estar presentes para cualquier tipo de resultados.</p>
+</div>
+<div id="transformaciones" class="section level4">
+<h4><span class="header-section-number">3.2.1.5</span> Transformaciones</h4>
+<p>Otra capa que se puede usar es la que nos permite hacer transformaciones de escala en las variables. Normalmente, aparecerá con el nombre <code>scale_x_discrete()</code>, que variará dependiendo de la estética utilizada dentro de nuestro mapeo. Así, podemos encontrarnos con <code>scale_fill_continous()</code> o <code>scale_y_log10()</code>. Por ejemplo, podemos ver cómo se distribuyen los ingresos de los municipios según la tasa de pobreza de nuestra muestra. Normalmente, haríamos esto de la siguiente manera:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="dataviz.html#cb87-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(anio <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</span>
+<span id="cb87-2"><a href="dataviz.html#cb87-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> pobreza, <span class="dt">y =</span> ingreso)) <span class="op">+</span></span>
+<span id="cb87-3"><a href="dataviz.html#cb87-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-9-1.png" alt=" Ejemplo de una gráfica en la que no utilizamos la escala." width="672" />
+<p class="caption">
+Figura 3.8:  Ejemplo de una gráfica en la que no utilizamos la escala.
+</p>
+</div>
+<p>Lo más frecuente es que cuando usamos una variable relacionada con el dinero, aplicamos una transformación logarítmica. Sin embargo, ¿cómo se traduce esto en nuestra figura?</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="dataviz.html#cb88-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(anio <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</span>
+<span id="cb88-2"><a href="dataviz.html#cb88-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> pobreza, <span class="dt">y =</span> ingreso)) <span class="op">+</span></span>
+<span id="cb88-3"><a href="dataviz.html#cb88-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb88-4"><a href="dataviz.html#cb88-4"></a><span class="st">  </span><span class="kw">scale_y_log10</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-10-1.png" alt=" Ejemplo de una trama en la que reescalamos el eje y." width="672" />
+<p class="caption">
+Figura 3.9:  Ejemplo de una trama en la que reescalamos el eje y.
+</p>
+</div>
+</div>
+<div id="sistema-de-coordenadas" class="section level4">
+<h4><span class="header-section-number">3.2.1.6</span> Sistema de coordenadas</h4>
+<p>Por lo general, trabajaremos con un eje X y un eje Y. Hay funciones en <code>ggplot2</code>, como <code>coord_flip</code>, que nos permiten cambiar la dirección de nuestra gráfica. Sin embargo, también podemos utilizar este tipo de capa cuando trabajamos con datos geográficos, o cuando, por ejemplo, queremos hacer un gráfico de torta. Sin embargo, normalmente, <a href="https://www.datapine.com/blog/common-data-visualization-mistakes/">no queremos hacer gráficos de pastel</a>. Cuanto más se utilice <code>ggplot2</code>, más se aprenderá sobre cada opción.</p>
+</div>
+<div id="temas" class="section level4">
+<h4><span class="header-section-number">3.2.1.7</span> Temas</h4>
+<p>Cuando hacemos un mapeo de datos, usamos opciones estéticas. Cuando queremos cambiar el aspecto de un gráfico, cambiamos el tema. Esto se puede hacer a través de <code>theme()</code>, que permite modificar cosas que no están relacionadas con el contenido del gráfico. Por ejemplo, los colores de fondo o la fuente de las letras en los ejes. También puedes cambiar el lugar donde se ubicará la leyenda o el título. Por último, también puedes cambiar el título, el nombre de los ejes, añadir anotaciones, etcétera. Sólo tienes que saber <code>labs()</code> y <code>annotate()</code>.</p>
+<p>Ahora es el momento de aplicar todo lo que “aparentemente” ya entendemos.</p>
+</div>
+</div>
+</div>
+<div id="ejemplo-aplicado-elecciones-locales-y-visualización-de-datos" class="section level2">
+<h2><span class="header-section-number">3.3</span> Ejemplo aplicado: Elecciones locales y visualización de datos</h2>
+<p>Como hemos mencionado anteriormente, la cuestión principal es entender que la visualización nos permite explorar nuestros datos y responder a preguntas sustantivas de nuestra investigación. Normalmente, los medios, las desviaciones estándar u otro tipo de parámetros no nos dicen mucho. Podemos expresar los mismos datos visualizándolos. Por ejemplo, un diagrama de caja puede ser útil para representar la distribución de los datos y ver sus posibles valores atípicos, mientras que un gráfico de barras puede ayudarnos a observar la frecuencia de nuestros datos categóricos, y un gráfico lineal es práctico para comprender el cambio a lo largo del tiempo. Estos son sólo algunos ejemplos dentro de una variedad de posibilidades.
+En esta tercera sección, aprenderemos a visualizar diferentes tipos de gráficos con datos de la reelección municipal en Chile. Para contextualizar, la división político-administrativa más pequeña de Chile es la comuna o municipio, que cada cuatro años elige a sus autoridades locales: un alcalde y un consejo municipal. Desde 1992 a 2000, los alcaldes fueron elegidos indirectamente, y desde 2004 comenzaron a ser elegidos directamente por los ciudadanos.</p>
+<p>Como ya conocemos nuestros datos, podemos empezar con los más simples. Una buena idea, por ejemplo, es ver el número de mujeres elegidas como alcaldes en comparación con el número de hombres elegidos. Para ello, podemos utilizar un gráfico de barras. Como aprendimos en la sección anterior, para construir cualquier tipo de gráfico necesitamos saber la(s) variable(s) que queremos usar y qué geometría o <code>geom</code> nos permite representarla. En este caso, usaremos <code>geom_bar()</code> para ver cuántos hombres y mujeres han sido elegidos desde 1992.</p>
+<div id="gráfico-de-barras" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Gráfico de barras</h3>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="dataviz.html#cb89-1"></a>plot_a &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos_municipales, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> genero))</span>
+<span id="cb89-2"><a href="dataviz.html#cb89-2"></a></span>
+<span id="cb89-3"><a href="dataviz.html#cb89-3"></a>plot_a <span class="op">+</span><span class="st"> </span></span>
+<span id="cb89-4"><a href="dataviz.html#cb89-4"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-11"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-11-1.png" alt="Gráfica simple de barras." width="80%" />
+<p class="caption">
+Figura 3.10: Gráfica simple de barras.
+</p>
+</div>
+<p>Como podemos ver, construir un gráfico de barras es una tarea fácil. Vemos que, a partir de 2004, más de 800 hombres fueron elegidos como alcaldes, un número que supera con creces el número de mujeres elegidas para el mismo cargo en el mismo período.</p>
+<p>Tal vez, este número ha cambiado con el tiempo, y no podemos verlo en este tipo de gráfico? Esto parece ser una buena razón para usar <code>facet_wrap</code>.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="dataviz.html#cb90-1"></a>plot_a <span class="op">+</span><span class="st"> </span></span>
+<span id="cb90-2"><a href="dataviz.html#cb90-2"></a><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb90-3"><a href="dataviz.html#cb90-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>anio, <span class="dt">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-12-1.png" alt="Gráfico de barras con una faceta por año." width="672" />
+<p class="caption">
+Figura 3.11: Gráfico de barras con una faceta por año.
+</p>
+</div>
+<p>Como vemos, el número de mujeres alcaldesas parece aumentar, aunque es un aumento mucho menor del que se esperaría. Esto podría ser un problema sustantivo para hacer un análisis del gobierno local en Chile.</p>
+<p>Geometrías como <code>geom_bar</code>, <code>geom_col</code>, <code>geom_density</code> y <code>geom_histogram</code> tienden a no llevar un eje Y explícito en su estética, ya que son un recuento en el eje horizontal. Sin embargo, uno puede modificar el eje vertical en estas geometrías aplicando algún tipo de transformación. Por ejemplo, al especificar <code>y=..prop..</code> como una estética dentro del objeto geométrico, estamos ordenando el cálculo de la proporción, no el conteo. Normalmente, usaremos <code>aes()</code> además de los datos en <code>ggplot()</code>, pero dependiendo de tus
+preferencias, también es posible usarlo con <code>geom</code>. Esta última es más común cuando ocupamos más de una base de datos o cuando queremos hacer una transformación.</p>
+<p>Por ejemplo, podríamos estar interesados en el número de autoridades locales por zona geográfica. Para ello, sería útil utilizar una proporción, ya que cada zona geográfica está formada por un número diferente de municipios. De esta manera, será más fácil comparar la situación entre las zonas.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="dataviz.html#cb91-1"></a>plot_a <span class="op">+</span><span class="st"> </span></span>
+<span id="cb91-2"><a href="dataviz.html#cb91-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> ..prop.., <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb91-3"><a href="dataviz.html#cb91-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-13-1.png" alt=" Gráfico de barras con una faceta por zona." width="80%" />
+<p class="caption">
+Figura 3.12:  Gráfico de barras con una faceta por zona.
+</p>
+</div>
+<p>¿Pero por qué usamos <code>grupo=1</code>?</p>
+<p>Cuando queremos calcular una proporción con <code>y=..prop..</code>, tenemos que tomar algunas precauciones si estamos usando <code>facet_wrap</code>. Esta función no calcula la proporción basada en la suma de ambos géneros por zona. Por ejemplo, esta función registra que hay 89 hombres y 13 mujeres elegidos en la zona del Gran Norte. Concluye que “en el Gran Norte, los 89 hombres corresponden al 100% de los hombres elegidos y las 13 mujeres al 100% de las mujeres elegidas”. Claramente, esto no es lo que intentamos representar en el gráfico. Por eso usamos <code>group=1</code>. Intenta ver el resultado sin <code>group=1</code> para comprobar lo que sucede.</p>
+<p>Ya lo hemos hecho! Vemos que no hay grandes diferencias, donde la zona del “Norte Pequeño” es la que tiene más mujeres en la alcaldía que hombres. Sin embargo, no hay grandes diferencias entre las zonas, y los resultados del primer gráfico de barras se replican en este.</p>
+<p>Ahora, podemos cambiar la presentación del gráfico. Todo buen gráfico debe contener, por ejemplo, un título claro, la fuente de los datos y el detalle de los ejes.</p>
+<blockquote>
+<p><strong>Sugerencia.</strong> El <em>Chicago Guide to Writing about Multivariate Analysis</em> <span class="citation">(Miller <a href="referencias.html#ref-millerChicagoGuideWriting2013" role="doc-biblioref">2013</a>)</span> tiene muchos buenos consejos sobre cómo crear gráficos efectivos.</p>
+</blockquote>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="dataviz.html#cb92-1"></a>plot_a <span class="op">+</span><span class="st"> </span></span>
+<span id="cb92-2"><a href="dataviz.html#cb92-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> ..prop.., <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb92-3"><a href="dataviz.html#cb92-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb92-4"><a href="dataviz.html#cb92-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot; Proporción de hombres y mujeres elegidos como alcaldes </span></span>
+<span id="cb92-5"><a href="dataviz.html#cb92-5"></a><span class="st">       (2004-2012)</span><span class="ch">\n</span><span class="st"> Por zonas económicas de Chile&quot;</span>, </span>
+<span id="cb92-6"><a href="dataviz.html#cb92-6"></a>       <span class="dt">x =</span> <span class="st">&quot;Género&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proporción&quot;, </span></span>
+<span id="cb92-7"><a href="dataviz.html#cb92-7"></a><span class="st">       caption = &quot;</span> Fuente<span class="op">:</span><span class="st"> </span>Basado en datos de SERVEL y <span class="kw">SINIM</span> (<span class="dv">2018</span>)<span class="st">&quot;) </span></span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-14-1.png" alt=" Gráfico de barras con título y fuentes." width="576" />
+<p class="caption">
+Figura 3.13:  Gráfico de barras con título y fuentes.
+</p>
+</div>
+<p>Ahora, sólo tenemos que añadir etiquetas para el eje X. Podemos hacerlo fácilmente con <code>scale_x_discrete()</code>. Tienes que considerar qué estética de <code>aes()</code> modificarás, ya que esto cambiará la <code>scale =</code> que necesitas. Si examináramos las etiquetas desde <code>fill =</code>, por ejemplo, tendríamos que usar <code>scale_fill_discrete()</code>. También hay que tener en cuenta el tipo de variable que se utiliza. <code>scale_x_discrete()</code> no tiene “discrete” al final sin motivo. Como comprenderás, depende totalmente del tipo de variable que estamos usando.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="dataviz.html#cb93-1"></a>plot_a <span class="op">+</span><span class="st"> </span></span>
+<span id="cb93-2"><a href="dataviz.html#cb93-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> ..prop.., <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb93-3"><a href="dataviz.html#cb93-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb93-4"><a href="dataviz.html#cb93-4"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Hombres&quot;</span>, <span class="st">&quot;Mujeres&quot;</span>)) <span class="op">+</span></span>
+<span id="cb93-5"><a href="dataviz.html#cb93-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot; Proporción de hombres y mujeres elegidos como alcaldes</span></span>
+<span id="cb93-6"><a href="dataviz.html#cb93-6"></a><span class="st">       (2004-2012)</span><span class="ch">\n</span><span class="st"> Por zonas económicas de Chile &quot;</span>, </span>
+<span id="cb93-7"><a href="dataviz.html#cb93-7"></a>       <span class="dt">x =</span> <span class="st">&quot;Género&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Proporción&quot;, </span></span>
+<span id="cb93-8"><a href="dataviz.html#cb93-8"></a><span class="st">       caption = &quot;</span> Fuente<span class="op">:</span><span class="st"> </span>Basado en datos de SERVEL y <span class="kw">SINIM</span> (<span class="dv">2018</span>)<span class="st">&quot;) </span></span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-15-1.png" alt=" Gráfica con etiquetas de grupo" width="576" />
+<p class="caption">
+Figura 3.14:  Gráfica con etiquetas de grupo
+</p>
+</div>
+<blockquote>
+<p><strong>Consejo.</strong> Con <code>labels =</code> podemos cambiar las etiquetas. Considera el número de valores de tu variable categórica para que coincidan con la variable, y no pierdas ninguna categoría.</p>
+</blockquote>
+</div>
+<div id="gráfico-de-líneas" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Gráfico de líneas</h3>
+<p>En el último gráfico de la sección anterior vimos que, aunque la elección de mujeres como alcaldesas en Chile ha aumentado, este aumento no parece ser significativo: en 2012, sólo el 13% de los alcaldes elegidos eran mujeres. Tal vez esto se deba a que los cambios socioeconómicos no han afectado las percepciones de los roles de género en la sociedad. El examen de los datos económicos de los ingresos municipales o del porcentaje de pobreza según la CASEN podría ayudarnos a comprender por qué la elección de mujeres en las instancias municipales no ha aumentado sustancialmente. Para ello, podemos utilizar <code>geom_line</code>, el objeto geométrico que permite observar la evolución en el tiempo de nuestro sujeto de interés. La intuición sería hacer la figura de esta manera:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="dataviz.html#cb94-1"></a>plot_b &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales, </span>
+<span id="cb94-2"><a href="dataviz.html#cb94-2"></a>                 <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> anio, <span class="dt">y =</span> ingreso)) </span>
+<span id="cb94-3"><a href="dataviz.html#cb94-3"></a></span>
+<span id="cb94-4"><a href="dataviz.html#cb94-4"></a>plot_b <span class="op">+</span><span class="st"> </span></span>
+<span id="cb94-5"><a href="dataviz.html#cb94-5"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-16"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-16-1.png" alt=" Una especificación errónea para un gráfico de líneas." width="336" />
+<p class="caption">
+Figura 3.15:  Una especificación errónea para un gráfico de líneas.
+</p>
+</div>
+<p>El problema es que no da el resultado esperado. La intuición es correcta, pero tenemos que ayudar a <code>geom_line()</code> con algunas especificaciones. En este caso, se agrupa por lo que tiene más sentido: por año. Por eso tenemos que especificar cuál es la variable que agrupa toda la información y, como sabemos, la información que poseemos está agrupada por municipio. Cuando añadimos esta información, el resultado cambia y se parece a lo que buscamos:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="dataviz.html#cb95-1"></a>plot_b <span class="op">+</span><span class="st"> </span></span>
+<span id="cb95-2"><a href="dataviz.html#cb95-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">group =</span> municipalidad))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-17"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-17-1.png" alt="Evolución anual de los ingresos por municipio." width="80%" />
+<p class="caption">
+Figura 3.16: Evolución anual de los ingresos por municipio.
+</p>
+</div>
+<p>Una de las cuestiones que surge a primera vista es que, teniendo en cuenta que Chile tiene 345 municipios, parece imposible mostrarlos todos en un solo gráfico.</p>
+<p>Ahora, podemos separar el gráfico como lo hemos hecho antes. Se puede hacer por zonas o regiones, considerando sus intereses. Ya hemos visto resultados diferentes por zonas, por lo que valdría la pena ver los ingresos de la misma manera:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="dataviz.html#cb96-1"></a>plot_b <span class="op">+</span><span class="st"> </span></span>
+<span id="cb96-2"><a href="dataviz.html#cb96-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> municipalidad)) <span class="op">+</span></span>
+<span id="cb96-3"><a href="dataviz.html#cb96-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-18"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-18-1.png" alt=" Evolución anual de los ingresos por municipio enfrentado por zona." width="1152" />
+<p class="caption">
+Figura 3.17:  Evolución anual de los ingresos por municipio enfrentado por zona.
+</p>
+</div>
+<p>Como nuestra muestra se compone de un pequeño número de años, no podemos ver mucha variabilidad y, a primera vista, los ingresos de todos los municipios han aumentado considerablemente. Tal vez, todavía podemos hacer algunos ajustes a nuestro gráfico. Lo más probable es que no estés familiarizado con la notación científica y te resulte mejor leer números grandes. Tal vez sepas que es mejor trabajar con una variable monetaria en su transformación logarítmica, como nos han enseñado en diferentes cursos de metodología. Además, puede que quieras añadir otro tipo de información en este gráfico, por ejemplo, los promedios.
+¿Qué piensas de este gráfico?</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="dataviz.html#cb97-1"></a>medias &lt;-<span class="st"> </span>datos_municipales <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb97-2"><a href="dataviz.html#cb97-2"></a><span class="st">  </span><span class="kw">group_by</span>(zona) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb97-3"><a href="dataviz.html#cb97-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">media_ingreso =</span> <span class="kw">mean</span>(ingreso, <span class="dt">na.rm =</span> T))</span>
+<span id="cb97-4"><a href="dataviz.html#cb97-4"></a></span>
+<span id="cb97-5"><a href="dataviz.html#cb97-5"></a>plot_b <span class="op">+</span><span class="st"> </span></span>
+<span id="cb97-6"><a href="dataviz.html#cb97-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&quot;gray70&quot;</span>, <span class="kw">aes</span>(<span class="dt">group =</span> municipalidad)) <span class="op">+</span></span>
+<span id="cb97-7"><a href="dataviz.html#cb97-7"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> media_ingreso), </span>
+<span id="cb97-8"><a href="dataviz.html#cb97-8"></a>             <span class="dt">data =</span> medias, <span class="dt">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>) <span class="op">+</span></span>
+<span id="cb97-9"><a href="dataviz.html#cb97-9"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb97-10"><a href="dataviz.html#cb97-10"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
+<span id="cb97-11"><a href="dataviz.html#cb97-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>zona, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb97-12"><a href="dataviz.html#cb97-12"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot; Ingresos municipales en los años electorales (2004-2012)&quot;</span>,</span>
+<span id="cb97-13"><a href="dataviz.html#cb97-13"></a>       <span class="dt">y =</span> <span class="st">&quot; Ingresos&quot;</span>,</span>
+<span id="cb97-14"><a href="dataviz.html#cb97-14"></a>       <span class="dt">x =</span> <span class="st">&quot;Año&quot;</span>) <span class="op">+</span></span>
+<span id="cb97-15"><a href="dataviz.html#cb97-15"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;lines&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-19"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-19-1.png" alt=" Versión completa de nuestro gráfico de líneas para los ingresos de los municipios en los años electorales." width="1344" />
+<p class="caption">
+Figura 3.18:  Versión completa de nuestro gráfico de líneas para los ingresos de los municipios en los años electorales.
+</p>
+</div>
+<p>¿Qué hemos especificado?</p>
+<ol style="list-style-type: decimal">
+<li>Primero, creamos un conjunto de datos (“promedio”) que contiene los ingresos medios de cada zona. Lo hicimos usando <code>group_by()</code> y <code>summarize()</code> del <code>tidyverse</code>.</li>
+</ol>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="dataviz.html#cb98-1"></a>datos_municipales <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb98-2"><a href="dataviz.html#cb98-2"></a><span class="st">  </span><span class="kw">group_by</span>(zona) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb98-3"><a href="dataviz.html#cb98-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">media_ingreso =</span> <span class="kw">mean</span>(ingreso, <span class="dt">na.rm =</span> T))</span>
+<span id="cb98-4"><a href="dataviz.html#cb98-4"></a><span class="co">## # A tibble: 5 x 2</span></span>
+<span id="cb98-5"><a href="dataviz.html#cb98-5"></a><span class="co">##   zona        media_ingreso</span></span>
+<span id="cb98-6"><a href="dataviz.html#cb98-6"></a><span class="co">##   &lt;chr&gt;               &lt;dbl&gt;</span></span>
+<span id="cb98-7"><a href="dataviz.html#cb98-7"></a><span class="co">## 1 Austral          2609648.</span></span>
+<span id="cb98-8"><a href="dataviz.html#cb98-8"></a><span class="co">## 2 Central          7302625.</span></span>
+<span id="cb98-9"><a href="dataviz.html#cb98-9"></a><span class="co">## 3 Norte Chico      4816249.</span></span>
+<span id="cb98-10"><a href="dataviz.html#cb98-10"></a><span class="co">## # … with 2 more rows</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Luego, especificamos el color de la <code>geom_line()</code>.</p></li>
+<li><p>Después de eso, añadimos a nuestro código <code>geom_hline()</code>. Este objeto geométrico, como <code>geom_vline()</code> o <code>geom_abline()</code>, nos permite añadir líneas con información. En este caso, lo usé para agregar el ingreso promedio de cada zona. Especificamos la variable que contiene la media <code>yintercept = mean</code>, la base de datos <code>means</code>, y el color con <code>color = "dodgerblue3"</code>.</p></li>
+<li><p>A continuación, usamos <code>scale_x_discrete()</code> para especificar la expansión de los paneles. Si antes veíamos un espacio gris sin información, lo eliminamos. Esto es estético.</p></li>
+<li><p>Luego, usamos <code>scale_x_discrete()</code> para escalar nuestros datos. Esta es una transformación logarítmica que se hace normalmente cuando trabajamos con modelos lineales que contienen datos monetarios. Además, cambiamos las etiquetas del eje y: ya no aparece con notación científica. Esto se hizo con un paquete llamado <code>scales</code>. Aquí llamamos a la función directamente con <code>scales::dollar</code>.</p></li>
+<li><p>Añadimos el título y los nombres de los ejes x e y con <code>labs()</code>.</p></li>
+<li><p>Finalmente, especificamos la información sobre el tema. Sin ella, los años entre un panel y otro se colapsarían. Para eso, lo especificamos con <code>panel.spacing = unit(2, "lines")</code> en la capa de <code>theme()</code>.</p></li>
+</ol>
+</div>
+<div id="gráfico-de-caja" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Gráfico de caja</h3>
+<p>Ya vimos que los ingresos de los municipios en Chile aumentaron entre 2004 y 2012. Si bien miramos el gráfico sin transformaciones funcionales, observamos que algunos municipios tenían ingresos muy superiores al promedio y se destacaban dentro de sus zonas. La intuición es que probablemente son extravagantes. Pudimos verlo claramente con un gráfico de caja, que nos permite graficar diversos datos descriptivos en nuestras variables como la mediana, el mínimo y el máximo. En este caso, lo utilizaremos para observar si nuestra intuición es correcta o no<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>.</p>
+<p>Comencemos filtrando los datos como lo hicimos en el gráfico anterior. En nuestro eje x colocaremos las zonas de Chile y en el eje y los ingresos:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="dataviz.html#cb99-1"></a>plot_c &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb99-2"><a href="dataviz.html#cb99-2"></a><span class="st">                   </span><span class="kw">filter</span>(anio <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>)),</span>
+<span id="cb99-3"><a href="dataviz.html#cb99-3"></a>                 <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> zona, <span class="dt">y =</span> ingreso, <span class="dt">color =</span> zona)) <span class="op">+</span></span>
+<span id="cb99-4"><a href="dataviz.html#cb99-4"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb99-5"><a href="dataviz.html#cb99-5"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>anio, <span class="dt">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb99-6"><a href="dataviz.html#cb99-6"></a></span>
+<span id="cb99-7"><a href="dataviz.html#cb99-7"></a>plot_c</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-21"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-21-1.png" alt=" Recuadro de ingresos del municipio por zona, facetado por año." width="1056" />
+<p class="caption">
+Figura 3.19:  Recuadro de ingresos del municipio por zona, facetado por año.
+</p>
+</div>
+<p>Podemos ver valores atípicos muy claros. Tal vez, luego de mirar estos resultados, nos gustaría identificar qué municipalidades tienen mayores ingreso. Para esto podemos usar el mapeo estético <code>label =</code>, parte de <code>geom_text()</code>. Para etiquetas solo para los valores atípicos, debemos hacer un filtro en nuestra base:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="dataviz.html#cb100-1"></a>plot_c <span class="op">+</span><span class="st"> </span></span>
+<span id="cb100-2"><a href="dataviz.html#cb100-2"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data    =</span> municipal_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(income <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000000</span>),</span>
+<span id="cb100-3"><a href="dataviz.html#cb100-3"></a>            <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> municipality))</span></code></pre></div>
+<p>Desafortunadamente, las etiquetas están sobre los puntos y, en algunos casos, estos se superponen cuando están cerca uno del otro. Podemos resolver esto con el paquete <code>ggrepel</code>, que tiene un elemento geométrico <code>geom_text()</code> “mejorado” que evita la coalición de las etiquetas:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="dataviz.html#cb101-1"></a><span class="kw">library</span>(ggrepel)</span>
+<span id="cb101-2"><a href="dataviz.html#cb101-2"></a></span>
+<span id="cb101-3"><a href="dataviz.html#cb101-3"></a>plot_c <span class="op">+</span><span class="st"> </span></span>
+<span id="cb101-4"><a href="dataviz.html#cb101-4"></a><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb101-5"><a href="dataviz.html#cb101-5"></a><span class="st">                    </span><span class="kw">filter</span>(ingreso <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000000</span>),</span>
+<span id="cb101-6"><a href="dataviz.html#cb101-6"></a>                  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> municipalidad))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-22"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-22-1.png" alt=" Podemos arreglar las etiquetas que se superponen usando el ggrepel." width="1152" />
+<p class="caption">
+Figura 3.20:  Podemos arreglar las etiquetas que se superponen usando el ggrepel.
+</p>
+</div>
+<p>El límite puede estar en 50.000.000 de dólares o en números mayores o menores. Depende enteramente de lo que queramos observar. Además, con <code>geom_text</code> o <code>geom_text_repel</code> no sólo podemos cambiar el color, sino también el tipo de fuente del texto, o si debe estar en negrita, cursiva o subrayado. Para ver más opciones, puedes escribir <code>?geom_text</code> o llamar a un <code>help("geom_text")</code>.</p>
+<p>También podríamos añadir otra información o cambiar la forma en que se presenta actualmente el gráfico.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="dataviz.html#cb102-1"></a>plot_c <span class="op">+</span><span class="st"> </span></span>
+<span id="cb102-2"><a href="dataviz.html#cb102-2"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb102-3"><a href="dataviz.html#cb102-3"></a><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="dt">data =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb102-4"><a href="dataviz.html#cb102-4"></a><span class="st">                  </span><span class="kw">filter</span>(ingreso <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000000</span>), </span>
+<span id="cb102-5"><a href="dataviz.html#cb102-5"></a>                  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> municipalidad), </span>
+<span id="cb102-6"><a href="dataviz.html#cb102-6"></a>                  <span class="dt">color   =</span> <span class="st">&quot;black&quot;</span>, </span>
+<span id="cb102-7"><a href="dataviz.html#cb102-7"></a>                  <span class="dt">size    =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb102-8"><a href="dataviz.html#cb102-8"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
+<span id="cb102-9"><a href="dataviz.html#cb102-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Ingresos municipales por zona (2004-2012)&quot;</span>,</span>
+<span id="cb102-10"><a href="dataviz.html#cb102-10"></a>       <span class="dt">x =</span> <span class="st">&quot;Ingresos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Zona&quot;</span>, </span>
+<span id="cb102-11"><a href="dataviz.html#cb102-11"></a>       <span class="dt">caption =</span> <span class="st">&quot; Fuente: Basado en datos del SINIM (2018)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-23"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-23-1.png" alt=" La versión pulida de nuestra gráfica de caja." width="1152" />
+<p class="caption">
+Figura 3.21:  La versión pulida de nuestra gráfica de caja.
+</p>
+</div>
+<p>Algunas otras especificaciones:</p>
+<ol style="list-style-type: decimal">
+<li>Hemos añadido la información descriptiva en el gráfico.</li>
+<li>Cambiamos el tamaño de la fuente. Esto era importante debido a la cantidad de municipios que están por encima de 50.000.000 dólares de ingresos.</li>
+<li>De nuevo, cambiamos las etiquetas del eje y con <code>scales::dollar</code>.</li>
+<li>Por último, con <code>guides</code>, y especificando las <code>aes()</code> que queríamos dirigir, escribimos el código <code>color=F</code> para eliminar la etiqueta, ya que era información repetida dentro del gráfico.</li>
+</ol>
+<blockquote>
+<p><strong>Ejercicio 3A.</strong> Te invitamos a jugar con <code>geom_text</code>: cambiar los colores, el tamaño, las fuentes, etcétera. También te animamos a instalar paquetes que te permitan personalizar aún más tus gráficos: <code>ggthemes</code> de <a href="https://github.com/jrnold/ggthemes">jrnorl</a> tiene temas para gráficos de programas y revistas conocidas como Excel o The Economist. Por otro lado, <code>hrbrthemes</code> de <a href="https://github.com/hrbrmstr/hrbrthemes">hrbrmstr</a> ha elaborado algunos temas minimalistas y elegantes que harán que todos tus gráficos se vean mejor. Si te gustan los colores, puedes consultar el paquete <code>wespalette</code> de <a href="https://github.com/karthik/wesanderson">karthik</a>, una paleta cromática basada en las películas de Wes Anderson, o crear tus propias paletas basadas en imágenes con <code>colorfindr</code>. Puedes encontrar más sobre esto último en el siguiente <a href="https://github.com/zumbov2/colorfindr">link</a>.</p>
+</blockquote>
+</div>
+<div id="histograma" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> Histograma</h3>
+<p>Como observamos en nuestro boxplot, muchos municipios, especialmente los de la zona central, están muy por encima de la media de ingresos por zona. Podemos ver la distribución de estos datos a través de un histograma. Construir un histograma es una tarea fácil, y como se mencionó anteriormente, <code>geom_histogram</code> no tiene un eje y explícito, ya que cuenta la frecuencia de un evento dentro de un intervalo.</p>
+<p>Al crear el histograma según nuestra intuición, el resultado es el siguiente:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="dataviz.html#cb103-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales, </span>
+<span id="cb103-2"><a href="dataviz.html#cb103-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ingreso)) <span class="op">+</span></span>
+<span id="cb103-3"><a href="dataviz.html#cb103-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span>
+<span id="cb103-4"><a href="dataviz.html#cb103-4"></a><span class="co">## Warning: Removed 7 rows containing non-finite values (stat_bin).</span></span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-24"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-24-1.png" alt=" La versión más simple de un histograma de los ingresos fiscales del municipio." width="672" />
+<p class="caption">
+Figura 3.22:  La versión más simple de un histograma de los ingresos fiscales del municipio.
+</p>
+</div>
+<p>Como podemos ver, el gráfico da una “Advertencia” que indica la existencia de “738 filas que contienen valores no finitos”. Esta advertencia ha estado presente a lo largo de todo este capítulo, y no significa nada más que “Hay valores desconocidos dentro de esta variable” y se debe a que no hay datos de los primeros años. Así que no te preocupes, si filtramos los datos con <code>filter(!is.na(ingreso))</code>, esta advertencia seguramente desaparecerá.</p>
+<p>Además, la consola da el siguiente mensaje: <code>stat_bin()</code> usando <code>bins = 30</code>. Elija mejores valores con <code>binwidth</code>. Simplemente, dice que es posible modificar los intervalos para el histograma.</p>
+<p>El siguiente paso es modificar el eje x. Personalmente, nunca he sido buena leyendo números con notación científica. Por otro lado, intentaremos cambiar el número de intervalos con <code>bins</code>.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="dataviz.html#cb104-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales, </span>
+<span id="cb104-2"><a href="dataviz.html#cb104-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ingreso)) <span class="op">+</span></span>
+<span id="cb104-3"><a href="dataviz.html#cb104-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span></span>
+<span id="cb104-4"><a href="dataviz.html#cb104-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) </span>
+<span id="cb104-5"><a href="dataviz.html#cb104-5"></a><span class="co">## Warning: Removed 7 rows containing non-finite values (stat_bin).</span></span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-25"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-25-1.png" alt=" Histograma de los ingresos fiscales del municipio con una escala corregida en x." width="672" />
+<p class="caption">
+Figura 3.23:  Histograma de los ingresos fiscales del municipio con una escala corregida en x.
+</p>
+</div>
+<blockquote>
+<p><strong>Ejercicio 3B.</strong> ¿Qué pasa si ponemos <code>bins = 15</code>de intervalos?</p>
+</blockquote>
+<p>A continuación haremos un subconjunto de los datos. Considerando el número de valores atípicos que encontramos, eliminaremos los municipios con ingresos superiores a 50.000.000 dólares. También podemos examinar la frecuencia por zona. Como cuando usamos <code>color</code> con <code>geom_boxplot</code>, usaremos <code>fill</code> con <code>geom_histogram</code>.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="dataviz.html#cb105-1"></a><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ingreso <span class="op">&lt;</span><span class="st"> </span><span class="dv">50000000</span>), </span>
+<span id="cb105-2"><a href="dataviz.html#cb105-2"></a>       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ingreso, <span class="dt">fill =</span> zona)) <span class="op">+</span></span>
+<span id="cb105-3"><a href="dataviz.html#cb105-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span></span>
+<span id="cb105-4"><a href="dataviz.html#cb105-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
+<span id="cb105-5"><a href="dataviz.html#cb105-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Número de municipios según sus ingresos anuales</span></span>
+<span id="cb105-6"><a href="dataviz.html#cb105-6"></a><span class="st">       (2004-2012)&quot;</span>,</span>
+<span id="cb105-7"><a href="dataviz.html#cb105-7"></a>       <span class="dt">x =</span> <span class="st">&quot;Ingreso&quot;</span>, <span class="dt">y =</span> <span class="st">&quot; Número de municipios&quot;</span>, </span>
+<span id="cb105-8"><a href="dataviz.html#cb105-8"></a>       <span class="dt">caption =</span> <span class="st">&quot; Fuente: Basado en los datos del SINIM (2018)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-26"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-26-1.png" alt=" Versión pulida de nuestro histograma en el que haremos 'fill' por zona." width="960" />
+<p class="caption">
+Figura 3.24:  Versión pulida de nuestro histograma en el que haremos ‘fill’ por zona.
+</p>
+</div>
+</div>
+<div id="relación-entre-las-variables" class="section level3">
+<h3><span class="header-section-number">3.3.5</span> Relación entre las variables</h3>
+<p>Es probable que una de tus mayores preocupaciones sea si las dos variables que estás estudiando están relacionadas de alguna manera. Con <code>ggplot2</code> esto es fácil de verificar. En este caso, tenemos dos variables continuas: la tasa de pobreza, del conjunto de datos de CASEN, y los ingresos municipales. Siguiendo la teoría, debería haber algún tipo de correlación: cuanto mayor sea el ingreso municipal, menor será la tasa de pobreza en el municipio. Creamos nuestros datos:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="dataviz.html#cb106-1"></a>plot_f &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data    =</span> datos_municipales, </span>
+<span id="cb106-2"><a href="dataviz.html#cb106-2"></a>                 <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> pobreza, <span class="dt">y =</span> <span class="kw">log</span>(ingreso)))</span></code></pre></div>
+<p>Para este tipo de gráfico, usaremos<code>geom_smooth</code>. Con este objeto, puedes modificar la forma en que las variables se relacionan con <code>method</code>. También puedes introducir tus propias fórmulas. Por defecto, se especifica una relación lineal entre las variables, por lo que no es necesario escribirla.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="dataviz.html#cb107-1"></a>plot_f <span class="op">+</span><span class="st"> </span></span>
+<span id="cb107-2"><a href="dataviz.html#cb107-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>) </span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-28"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-28-1.png" alt="Ajuste lineal de la pobreza en el log de ingresos." width="672" />
+<p class="caption">
+Figura 3.25: Ajuste lineal de la pobreza en el log de ingresos.
+</p>
+</div>
+<p>Parece vacía, ¿no? Normalmente, usamos <code>geom_smooth</code> con otras figuras geométricas, como <code>geom_point</code>, para indicar la posición de las columnas en el espacio. Usamos <code>alpha</code> para ver la superposición de los puntos. Como no son demasiados, no hay problemas para ver cómo se distribuyen.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="dataviz.html#cb108-1"></a>plot_f <span class="op">+</span><span class="st"> </span></span>
+<span id="cb108-2"><a href="dataviz.html#cb108-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb108-3"><a href="dataviz.html#cb108-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>) </span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-29"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-29-1.png" alt=" El ajuste lineal más las observaciones dispersas." width="672" />
+<p class="caption">
+Figura 3.26:  El ajuste lineal más las observaciones dispersas.
+</p>
+</div>
+<p>Ahora podemos hacer dos mejoras. Primero, insertaremos el título y el nombre de los ejes. Segundo, en <code>geom_x_continuous</code> especificaremos donde empieza y acaba nuestra gráfica. Ya habíamos usado esto con <code>geom_line</code>.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="dataviz.html#cb109-1"></a>plot_f <span class="op">+</span><span class="st"> </span></span>
+<span id="cb109-2"><a href="dataviz.html#cb109-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb109-3"><a href="dataviz.html#cb109-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>) <span class="op">+</span></span>
+<span id="cb109-4"><a href="dataviz.html#cb109-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb109-5"><a href="dataviz.html#cb109-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot; Relación entre los ingresos del municipio y la tasa de pobreza de </span></span>
+<span id="cb109-6"><a href="dataviz.html#cb109-6"></a><span class="st">CASEN, Chile (2004-2012)&quot;</span>, </span>
+<span id="cb109-7"><a href="dataviz.html#cb109-7"></a>       <span class="dt">x =</span> <span class="st">&quot;Tasa de pobreza de CASEN&quot;</span>, <span class="dt">y =</span> <span class="st">&quot; Ingresos&quot;</span>, </span>
+<span id="cb109-8"><a href="dataviz.html#cb109-8"></a>       <span class="dt">caption =</span> <span class="st">&quot; Fuente: Basado en los datos del SINIM (2018)&quot;</span>) </span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-30"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-30-1.png" alt=" La versión pulida de nuestra gráfica de ajuste lineal." width="710.4" />
+<p class="caption">
+Figura 3.27:  La versión pulida de nuestra gráfica de ajuste lineal.
+</p>
+</div>
+<p>Claramente, hay una correlación negativa entre ambas variables. ¡Esto es lo que esperábamos! Ahora, podemos calcular la correlación entre ambas variables, para estar más seguros de los resultados obtenidos visualmente:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="dataviz.html#cb110-1"></a><span class="kw">cor</span>(datos_municipales <span class="op">$</span>pobreza, datos_municipales<span class="op">$</span>ingreso, </span>
+<span id="cb110-2"><a href="dataviz.html#cb110-2"></a>    <span class="dt">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
+<span id="cb110-3"><a href="dataviz.html#cb110-3"></a><span class="co">## [1] -0.27</span></span></code></pre></div>
+<p>La correlación entre ambas variables es de -0,27. Sería interesante añadir esta información en el gráfico. Podemos hacer esto con <code>annotate()</code>. Sólo necesitamos especificar el tipo de objeto geométrico que queremos generar. En este caso, lo que queremos crear es el texto <code>geom = "text"</code>, pero podría ser una caja que resalte un punto específico en el gráfico <code>geom = "rect"</code> o una línea <code>geom = "segment"</code>. Especificamos dónde queremos ubicarlo y, finalmente, anotamos lo que queremos anotar.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="dataviz.html#cb111-1"></a>plot_f <span class="op">+</span><span class="st"> </span></span>
+<span id="cb111-2"><a href="dataviz.html#cb111-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb111-3"><a href="dataviz.html#cb111-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>) <span class="op">+</span></span>
+<span id="cb111-4"><a href="dataviz.html#cb111-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb111-5"><a href="dataviz.html#cb111-5"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb111-6"><a href="dataviz.html#cb111-6"></a>    <span class="dt">title =</span> <span class="st">&quot; Relación entre los ingresos del municipio y la tasa de pobreza de </span></span>
+<span id="cb111-7"><a href="dataviz.html#cb111-7"></a><span class="st">CASEN, Chile (2004-2012)&quot;</span>, </span>
+<span id="cb111-8"><a href="dataviz.html#cb111-8"></a>    <span class="dt">x =</span> <span class="st">&quot;Tasa de pobreza de CASEN &quot;</span>, <span class="dt">y =</span> <span class="st">&quot; Ingresos&quot;</span>, </span>
+<span id="cb111-9"><a href="dataviz.html#cb111-9"></a>    <span class="dt">caption =</span> <span class="st">&quot; Fuente: Basado en los datos del SINIM (2018)&quot;</span>) <span class="op">+</span></span>
+<span id="cb111-10"><a href="dataviz.html#cb111-10"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">50</span>, <span class="dt">y =</span> <span class="dv">15</span>, <span class="dt">label =</span> <span class="st">&quot;Correlación:</span><span class="ch">\n</span><span class="st">-0.27&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-32"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-32-1.png" alt=" Añadimos la coeficiente de correlación usando `annotate`." width="710.4" />
+<p class="caption">
+Figura 3.28:  Añadimos la coeficiente de correlación usando <code>annotate</code>.
+</p>
+</div>
+</div>
+</div>
+<div id="para-continuar-aprendiendo" class="section level2">
+<h2><span class="header-section-number">3.4</span> Para continuar aprendiendo</h2>
+<p>Hay muchos caminos para visualizar sus datos. En este capítulo, aprendiste las principales funciones de <code>ggplot2</code>, un paquete dentro de <code>tidyverse</code>, pero hay muchos más paquetes que pueden ser de gran ayuda para otros tipos de visualizaciones. Aunque <code>ggplot2</code> puede no tener todos los objetos geométricos que necesitas, hay paquetes para visualizar otros tipos de datos que funcionan bajo <code>ggplot2</code> y las capas que constituyen su estructura “gramatical”.
+### Otros paquetes:</p>
+<div id="sf" class="section level4">
+<h4><span class="header-section-number">3.4.0.1</span> <code>sf</code></h4>
+<p>Permite visualizar elementos espaciales. Para <code>ggplot2</code> funciona con <code>geom_sf</code>. Permite la creación de figuras geométricas con diferentes tipos de datos espaciales. En el capítulo <a href="maps.html#maps">16</a> de datos espaciales, Andrea y Gabriel entregan las herramientas para trabajar con <code>sf</code>, sus principales funciones y directrices. <a href="https://github.com/r-spatial/sf">Aquí</a> puede encontrar más detalles sobre cómo instalarlo y su rendimiento dependiendo de su ordenador.</p>
+</div>
+<div id="ggparliament" class="section level4">
+<h4><span class="header-section-number">3.4.0.2</span> <code>ggparliament</code></h4>
+<p>Todos los politólogos deberían conocer este paquete. Permite visualizar la composición del poder legislativo. Es un sueño para aquellos que trabajan con este tipo de información. Te permite especificar el número de escaños, el color de cada partido, y añadir diferentes características a tu gráfico. <a href="https://github.com/RobWHickman/ggparliament">Aquí</a> puedes encontrar más detalles sobre las herramientas de <code>ggparliament</code>.</p>
+
+<div class="figure" style="text-align: center"><span id="fig:ggparl"></span>
+<img src="00-images/dataviz/tweet_ggparl.png" alt="Ejemplo de una gráfica construida con ggparliament con datos del Parlamento Mexicano.^[Source: (“@leonugo”, Twitter)[https://twitter.com/leonugo/status/1014298553500479489?lang=es]" width="50%" />
+<p class="caption">
+Figura 3.29: Ejemplo de una gráfica construida con ggparliament con datos del Parlamento Mexicano.^[Source: (“@leonugo”, Twitter)[<a href="https://twitter.com/leonugo/status/1014298553500479489?lang=es" class="uri">https://twitter.com/leonugo/status/1014298553500479489?lang=es</a>]
+</p>
+</div>
+</div>
+<div id="ggraph" class="section level4">
+<h4><span class="header-section-number">3.4.0.3</span> <code>ggraph</code></h4>
+<p>Si estudias redes y sabes cómo funciona <code>ggplot2</code>, este paquete puede convertirse en tu nuevo mejor amigo. Está hecho para todo tipo de datos relacionales, y aunque funciona bajo la lógica de <code>ggplot2</code>, tiene sus propios objetos geométricos, <em>facetas</em>, entre otros. <a href="https://github.com/thomasp85/ggraph">Aquí</a> puedes encontrar más información. El Capítulo <a href="networks.html#networks">14</a> te mostrará cómo usar este paquete en profundidad.</p>
+</div>
+<div id="patchwork" class="section level4">
+<h4><span class="header-section-number">3.4.0.4</span> <code>patchwork</code></h4>
+<p>Esta es una gran herramienta para combinar diferentes ggplots en el mismo gráfico. Usarás <code>+</code>, <code>|</code> y <code>/</code> para organizarlos.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="dataviz.html#cb112-1"></a><span class="kw">library</span>(patchwork)</span>
+<span id="cb112-2"><a href="dataviz.html#cb112-2"></a>(plot_f <span class="op">|</span><span class="st"> </span>plot_b) <span class="op">/</span><span class="st"> </span>plot_c</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-33"></span>
+<img src="03-dataviz_es_files/figure-html/unnamed-chunk-33-1.png" alt="Ejemplo de patchwork." width="60%" />
+<p class="caption">
+Figura 3.30: Ejemplo de patchwork.
+</p>
+</div>
+<blockquote>
+<p><strong>Ejercicio 3C.</strong> Ya hemos aprendido a hacer un histograma, sin embargo, los gráficos de densidad tienden a ser más utilizados para mirar la distribución de una variable. Usando las mismas variables, haz una gráfica de densidad con <code>geom_density</code>.</p>
+<p><strong>Ejercicio 3D.</strong> Normalmente, los gráficos de barras se presentan con la frecuencia o proporción dentro de la barra. También podemos hacer esto con el <code>ggplot2</code>. Usando <code>geom_bar</code> y <code>geom_text</code>, apunta el número de alcaldes por área geográfica. Un consejo: tienes que hacer algunos cálculos con <code>tidyverse</code> antes de añadir esa información en la gráfica.</p>
+<p><strong>Ejercicio 3E.</strong> Escogiendo sólo un año, haz un gráfico de líneas con <code>geom_smooth</code> que indique la relación entre los ingresos y la tasa de pobreza. Ahora, con <code>annotate</code>, haz ungráfico de caja que contenga los municipios con mayor índice de pobreza y, encima de él, escribe el nombre del municipio correspondiente.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="11">
+<li id="fn11"><p>E-mail: <a href="mailto:snaraya@uc.cl" class="email">snaraya@uc.cl</a><a href="dataviz.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>Aun así, siempre es entretenido observar cómo existe una correlación entre <a href="http://tylervigen.com/spurious-correlations">el consumo de queso per cápita y el número de personas estranguladas hasta la muerte por sus sábanas en los Estados Unidos</a>!<a href="dataviz.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p><a href="http://varianceexplained.org/r/why-I-use-ggplot2/" class="uri">http://varianceexplained.org/r/why-I-use-ggplot2/</a><a href="dataviz.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>El capítulo <a href="maps.html#maps">16</a> será muy útil si desea detectar los valores atípicos a través de los mapas<a href="dataviz.html#fnref14" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="load.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/arcruz0/libroadp/edit/master/03-dataviz_es.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
