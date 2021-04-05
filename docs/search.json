@@ -5,7 +5,7 @@
       "title": "Blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-30T19:53:25-03:00"
+      "last_modified": "2021-04-05T01:55:35-04:00"
     },
     {
       "path": "index.html",
@@ -13,14 +13,14 @@
       "description": "I hold a BA and MA in Political Science from Pontificia Universidad Católica de Chile. My research interests are in political economy and quantitative methods.\n",
       "author": [],
       "contents": "\r\n  \r\nWebsite built with distill.\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-30T19:53:28-03:00"
+      "last_modified": "2021-04-05T01:55:37-04:00"
     },
     {
       "path": "r_resources.html",
       "title": "R Resources",
       "author": [],
       "contents": "\r\nR for Political Data Science / AnalizaR Datos Políticos\r\nCo-edited with Francisco Urdinez\r\nA textbook that teaches R and the tidyverse from scratch using examples from Latin American political science. It was published by CRC Press (Routledge) in November 2020. The Spanish version is open-access and freely available online.\r\ninexact\r\n\r\n\r\n\r\nAn R package to supervise fuzzy joins, i.e. a way to solve the common problem of non-standardized ID variables when joining data sets. A recording of my presentation about it at the Toronto Data Workshop on Reproducibility (2021) is on Youtube.\r\nProgramming for the Social Sciences (undergraduate class)\r\n\r\n2021 UDP (in progress) | 2020 PUC\r\n\r\nSince 2019 I have taught a computational social science class for undergraduate students at UDP and PUC. Syllabus and class materials are available in the links above (in Spanish).\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-30T19:53:33-03:00"
+      "last_modified": "2021-04-05T01:55:43-04:00"
     }
   ],
   "collections": ["posts/posts.json"]

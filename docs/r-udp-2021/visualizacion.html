@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>03A - Visualización de datos | Programación en Ciencias Sociales</title>
+  <title>03A - Visualización de datos (intro) | Programación en Ciencias Sociales</title>
   <meta name="description" content="Sitio web CPO3523 (2021)" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="03A - Visualización de datos | Programación en Ciencias Sociales" />
+  <meta property="og:title" content="03A - Visualización de datos (intro) | Programación en Ciencias Sociales" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="03A - Visualización de datos | Programación en Ciencias Sociales" />
+  <meta name="twitter:title" content="03A - Visualización de datos (intro) | Programación en Ciencias Sociales" />
   
   <meta name="twitter:description" content="Sitio web CPO3523 (2021)" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-03-30" />
+<meta name="date" content="2021-04-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="manejo-02d.html"/>
-
+<link rel="next" href="visualizacion-ext.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -172,7 +172,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="manejo-02d.html"><a href="manejo-02d.html"><i class="fa fa-check"></i>02D - Manejo de datos (ejercicio int.)</a></li>
 <li class="part"><span><b>III Visualización de datos</b></span></li>
-<li class="chapter" data-level="" data-path="visualizacion.html"><a href="visualizacion.html"><i class="fa fa-check"></i>03A - Visualización de datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion.html"><a href="visualizacion.html"><i class="fa fa-check"></i>03A - Visualización de datos (intro)</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizacion.html"><a href="visualizacion.html#inicio-cargar-paquetes-base-de-datos"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion.html"><a href="visualizacion.html#gráficos-univariados"><i class="fa fa-check"></i>Gráficos univariados</a></li>
+<li class="chapter" data-level="" data-path="visualizacion.html"><a href="visualizacion.html#gráficos-bivariados"><i class="fa fa-check"></i>Gráficos bivariados</a></li>
+<li class="chapter" data-level="" data-path="visualizacion.html"><a href="visualizacion.html#un-poco-de-personalización-etiquetas"><i class="fa fa-check"></i>Un poco de personalización: etiquetas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html"><i class="fa fa-check"></i>03B - Visualización de datos (extensiones)</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#cargar-paquetes-y-datos"><i class="fa fa-check"></i>Cargar paquetes y datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#gráfico-de-ránking"><i class="fa fa-check"></i>Gráfico de ránking</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#facetas"><i class="fa fa-check"></i>Facetas</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#gráficos-de-líneas"><i class="fa fa-check"></i>Gráficos de líneas</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-ext.html"><a href="visualizacion-ext.html#más-personalización"><i class="fa fa-check"></i>Más personalización</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html"><i class="fa fa-check"></i>03C - Visualización de datos (personalización)</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#inicio-cargar-paquetes-base-de-datos-1"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#gráfico-de-ejemplo"><i class="fa fa-check"></i>Gráfico de ejemplo</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#gráficos-como-objetos-guardar-gráficos-en-el-disco"><i class="fa fa-check"></i>Gráficos como objetos / guardar gráficos en el disco</a></li>
+<li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#personalización-de-gráficos"><i class="fa fa-check"></i>Personalización de gráficos</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -193,17 +214,158 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="visualizacion" class="section level1 unnumbered">
-<h1>03A - Visualización de datos</h1>
+<h1>03A - Visualización de datos (intro)</h1>
 <p><a href="https://arcruz0.github.io/extra/udp2021/udp_2021_diapos_vis.html">Diapositivas de visualización de datos</a></p>
+<blockquote>
+<p>Si quieres correr estos scripts localmente, acá puedes <a href="./static/03_visualizacion_datos.zip">descargar el proyecto comprimido en .zip</a>. Paquetes que necesitas tener instalados antes de comenzar con el proyecto (3A, 3B, 3C): <code>tidyverse</code>.</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork-ES/ggplot2_obra_maestra.png" /></p>
+<p>Ilustración de <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a>.</p>
+<div id="inicio-cargar-paquetes-base-de-datos" class="section level2">
+<h2>Inicio: cargar paquetes, base de datos</h2>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="visualizacion.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div id="carga-de-base-en-formato-rds" class="section level4">
+<h4>Carga de base en formato rds</h4>
+<p>Hoy tenemos una base de datos con información de los municipios, construida a partir de dos fuentes: la <a href="http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/casen_2017.php">encuesta Casen 2017</a> y los <a href="https://www.emol.com/noticias/Nacional/2016/10/24/828043/Revisa-el-listado-de-todos-los-alcaldes-y-concejales-electos-en-el-pais.html">resultados de las elecciones municipales del año 2016</a>.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="visualizacion.html#cb178-1" aria-hidden="true" tabindex="-1"></a>df_municipios <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">&quot;datos/datos_municipios.rds&quot;</span>)</span></code></pre></div>
+<p>¿Te queda claro la información que registra cada variable? Si es que no, haz tus apuntes aquí:</p>
+<ul>
+<li></li>
+<li></li>
+</ul>
+</div>
+</div>
+<div id="gráficos-univariados" class="section level2">
+<h2>Gráficos univariados</h2>
+<div id="gráfico-univariado-para-variable-categórica-barras" class="section level4">
+<h4>Gráfico univariado para variable categórica (barras)</h4>
+<p>Veamos la distribución de las coaliciones de los alcaldes en las comunas:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="visualizacion.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb179-2"><a href="visualizacion.html#cb179-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alcalde_coalicion)) <span class="sc">+</span></span>
+<span id="cb179-3"><a href="visualizacion.html#cb179-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+<p>Si queremos invertir los ejes, podemos usar el mapeo estético <code>y =</code> en vez de
+<code>x =</code>:</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="visualizacion.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb180-2"><a href="visualizacion.html#cb180-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> alcalde_coalicion)) <span class="sc">+</span></span>
+<span id="cb180-3"><a href="visualizacion.html#cb180-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+</div>
+<div id="gráfico-univariado-para-variable-continua-histograma" class="section level4">
+<h4>Gráfico univariado para variable continua (histograma)</h4>
+<p>Veamos la distribución del % de población rural en las comunas:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="visualizacion.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb181-2"><a href="visualizacion.html#cb181-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_rural)) <span class="sc">+</span></span>
+<span id="cb181-3"><a href="visualizacion.html#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<p>Podemos controlar cómo se arma el histograma en los argumentos de <code>geom_histogram()</code>:</p>
+<ul>
+<li><code>bindwidth = 5</code> hace que nuestros bins tengan un ancho de 5.</li>
+<li><code>boundary = 0</code> asegura que los bins partan en 0, en vez de intentar centrarse en los números enteros (el defecto).</li>
+<li><code>closed = "left"</code> ayuda a <code>ggplot2</code> a decidir qué hacer con los valores que caen exactamente en los límites del bin. El valor “left” determina que los bins están cerrados a la izquierda, es decir, un valor intermedio caerá en la barra de la derecha. El valor “right”, el defecto, dirá que los bins están cerrados a la derecha, es decir, un valor intermedio caerá en la barra de la izquierda.</li>
+</ul>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="visualizacion.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb183-2"><a href="visualizacion.html#cb183-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_rural)) <span class="sc">+</span></span>
+<span id="cb183-3"><a href="visualizacion.html#cb183-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">boundary =</span> <span class="dv">0</span>, <span class="at">closed =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+</div>
+<div id="ejercicio-a-2" class="section level4">
+<h4>(Ejercicio A)</h4>
+<p>Genera un gráfico univariado para alguna de la variables de la base de datos. ¿Hay algún patrón interesante? Tu código (recuerda, los chunks se insertan con Ctrl/Cmd+Shift+i):</p>
+</div>
+</div>
+<div id="gráficos-bivariados" class="section level2">
+<h2>Gráficos bivariados</h2>
+<div id="gráfico-bivariado-para-dos-variables-continuas-dispersión" class="section level4">
+<h4>Gráfico bivariado para dos variables continuas (dispersión)</h4>
+<p>Observemos la relación entre la variable de población mapuche en la comuna y su índice de pobreza multidimensional:</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="visualizacion.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb184-2"><a href="visualizacion.html#cb184-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_mapuche, <span class="at">y =</span> porc_pobres_md4)) <span class="sc">+</span></span>
+<span id="cb184-3"><a href="visualizacion.html#cb184-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<p>Podemos añadir color y forma a los puntos según las coaliciones de los alcaldes:</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="visualizacion.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb185-2"><a href="visualizacion.html#cb185-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_mapuche, <span class="at">y =</span> porc_pobres_md4,</span>
+<span id="cb185-3"><a href="visualizacion.html#cb185-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> alcalde_coalicion, <span class="at">shape =</span> alcalde_coalicion)) <span class="sc">+</span></span>
+<span id="cb185-4"><a href="visualizacion.html#cb185-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+</div>
+<div id="gráfico-bivariado-para-x-discreta-y-continua-boxplotviolin" class="section level4">
+<h4>Gráfico bivariado para x discreta + y continua: boxplot/violin</h4>
+<p>Veamos la relación entre la coalición del edil y la pobreza de la comuna:</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="visualizacion.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb186-2"><a href="visualizacion.html#cb186-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alcalde_coalicion, <span class="at">y =</span> porc_pobres_md4)) <span class="sc">+</span></span>
+<span id="cb186-3"><a href="visualizacion.html#cb186-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="visualizacion.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb187-2"><a href="visualizacion.html#cb187-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alcalde_coalicion, <span class="at">y =</span> porc_pobres_md4)) <span class="sc">+</span></span>
+<span id="cb187-3"><a href="visualizacion.html#cb187-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+</div>
+<div id="gráfico-bivariado-para-x-discreta-y-continua-columnas-ránking" class="section level4">
+<h4>Gráfico bivariado para x discreta + y continua: columnas (ránking)</h4>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="visualizacion.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios <span class="sc">%&gt;%</span> </span>
+<span id="cb188-2"><a href="visualizacion.html#cb188-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(alcalde_coalicion) <span class="sc">%&gt;%</span></span>
+<span id="cb188-3"><a href="visualizacion.html#cb188-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarize</span>(<span class="at">porc_alcaldes_reelectos =</span> <span class="fu">sum</span>(alcalde_reelecto) <span class="sc">/</span> <span class="fu">n</span>()),</span>
+<span id="cb188-4"><a href="visualizacion.html#cb188-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alcalde_coalicion, <span class="at">y =</span> porc_alcaldes_reelectos)) <span class="sc">+</span></span>
+<span id="cb188-5"><a href="visualizacion.html#cb188-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p>A veces queremos hacer estos gráficos de forma horizontal (“gráfico de ránking”). Podemos hacer un cambio similar al anterior, con los mapeos estéticos invertidos. Luego aprenderemos a ordenar las barras, para hacer ránkings.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="visualizacion.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios <span class="sc">%&gt;%</span> </span>
+<span id="cb190-2"><a href="visualizacion.html#cb190-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(alcalde_coalicion) <span class="sc">%&gt;%</span></span>
+<span id="cb190-3"><a href="visualizacion.html#cb190-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarize</span>(<span class="at">porc_alcaldes_reelectos =</span> <span class="fu">sum</span>(alcalde_reelecto) <span class="sc">/</span> <span class="fu">n</span>()),</span>
+<span id="cb190-4"><a href="visualizacion.html#cb190-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_alcaldes_reelectos, <span class="at">y =</span> alcalde_coalicion)) <span class="sc">+</span></span>
+<span id="cb190-5"><a href="visualizacion.html#cb190-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+</div>
+</div>
+<div id="un-poco-de-personalización-etiquetas" class="section level2">
+<h2>Un poco de personalización: etiquetas</h2>
+<p>Volvamos a uno de los gráficos que hicimos antes:</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="visualizacion.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb192-2"><a href="visualizacion.html#cb192-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_mapuche, <span class="at">y =</span> porc_pobres_md4,</span>
+<span id="cb192-3"><a href="visualizacion.html#cb192-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> alcalde_coalicion, <span class="at">shape =</span> alcalde_coalicion)) <span class="sc">+</span></span>
+<span id="cb192-4"><a href="visualizacion.html#cb192-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p>Con el comando <code>labs()</code> dentro de la cadena de <code>ggplot2</code> podemos poner etiquetas que harán al gráfico más legible:</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="visualizacion.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb193-2"><a href="visualizacion.html#cb193-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_mapuche, <span class="at">y =</span> porc_pobres_md4,</span>
+<span id="cb193-3"><a href="visualizacion.html#cb193-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> alcalde_coalicion, <span class="at">shape =</span> alcalde_coalicion)) <span class="sc">+</span></span>
+<span id="cb193-4"><a href="visualizacion.html#cb193-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb193-5"><a href="visualizacion.html#cb193-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Relación entre porcentaje de población mapuche y porcentaje de pobreza&quot;</span>,</span>
+<span id="cb193-6"><a href="visualizacion.html#cb193-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;por comunas, año 2017&quot;</span>,</span>
+<span id="cb193-7"><a href="visualizacion.html#cb193-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Fuente: Casen (2017).&quot;</span>,</span>
+<span id="cb193-8"><a href="visualizacion.html#cb193-8" aria-hidden="true" tabindex="-1"></a>       <span class="co"># ahora para los mapeos estéticos:</span></span>
+<span id="cb193-9"><a href="visualizacion.html#cb193-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;% de población mapuche&quot;</span>,</span>
+<span id="cb193-10"><a href="visualizacion.html#cb193-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;% de población pobreza (multidimensional)&quot;</span>,</span>
+<span id="cb193-11"><a href="visualizacion.html#cb193-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Coalición del(la) edil&quot;</span>,</span>
+<span id="cb193-12"><a href="visualizacion.html#cb193-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="st">&quot;Coalición del(la) edil&quot;</span>)</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<div id="ejercicios-b-d" class="section level4">
+<h4>(Ejercicios B-D)</h4>
+<p>¡En todos los ejercicios genera buenas etiquetas para tus gráficos, utilizando <code>labs()</code>!</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Genera un plot de violín para la relación entre una variable x discreta y una variable y continua en la base. Tu código:</p></li>
+<li><p>Genera un gráfico de dispersión entre dos variables continuas de la base. Cambia el color y/o forma de los puntos de acuerdo a una de las variables categóricas de la base (si es que vas a utilizar una variable dummy para esto, ingrésala como <code>as.factor(variable)</code> en el mapeo estético).</p></li>
+<li><p>Ayudándote del torpedo para hoy, genera dos gráficos que incluya geoms que no hayamos visto hasta ahora.</p></li>
+</ol>
+<p>d1. Tu código:</p>
+<p>d2. Tu código:</p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="manejo-02d.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="manejo-02d.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizacion-ext.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
