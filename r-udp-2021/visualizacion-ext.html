@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Programación en Ciencias Sociales</title>
+  <title>03B - Visualización de datos (extensiones) | Programación en Ciencias Sociales</title>
   <meta name="description" content="Sitio web CPO3523 (2021)" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Programación en Ciencias Sociales" />
+  <meta property="og:title" content="03B - Visualización de datos (extensiones) | Programación en Ciencias Sociales" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Programación en Ciencias Sociales" />
+  <meta name="twitter:title" content="03B - Visualización de datos (extensiones) | Programación en Ciencias Sociales" />
   
   <meta name="twitter:description" content="Sitio web CPO3523 (2021)" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="rbasico.html"/>
+<link rel="prev" href="visualizacion.html"/>
+<link rel="next" href="visualizacion-personalizacion.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -213,412 +213,107 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Programación en Ciencias Sociales</h1>
-<p class="author"><em>Andrés Cruz</em></p>
-<p class="date"><em>2021-04-05</em></p>
+<div id="visualizacion-ext" class="section level1 unnumbered">
+<h1>03B - Visualización de datos (extensiones)</h1>
+<blockquote>
+<p>Si quieres correr este script localmente, debe haber descargado el proyecto, como se explica al comienzo del script 3A.</p>
+</blockquote>
+<p>Como al principio de todo script, recomiendo reiniciar R. Esto lo conseguimos con Session &gt; Restart R y clickeando en la escoba del panel de “Environment” (superior derecho).</p>
+<div id="cargar-paquetes-y-datos" class="section level2">
+<h2>Cargar paquetes y datos</h2>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="visualizacion-ext.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="visualizacion-ext.html#cb195-1" aria-hidden="true" tabindex="-1"></a>df_municipios <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">&quot;datos/datos_municipios.rds&quot;</span>)</span></code></pre></div>
 </div>
-<div id="inicio" class="section level1 unnumbered">
-<h1>Inicio</h1>
-<p>Este es el sitio web del curso “Programación en Ciencias Sociales” (CPO3523), dictado en el <a href="https://socialesehistoria.udp.cl/">Escuela de Ciencia Política UDP</a> durante el primer semestre de 2021.</p>
-<p>El objetivo del sitio es servir como material de consulta. Todos los proyectos que ejecutemos en RStudio Cloud estarán también compilados aquí, para facilitar su revisión.</p>
-<div id="links-importantes" class="section level2 unnumbered">
-<h2>Links importantes</h2>
-<ul>
-<li><p><a href="https://drive.google.com/file/d/1NJq-xlqF-fk_eWjK_bP_UlQlyMjsRunP/view?usp=sharing">Programa del curso</a></p></li>
-<li><p><a href="https://drive.google.com/drive/folders/1tPlfk8bFc6M8P1H8_6ooDGNDU-Pyqm1F?usp=sharing">Clases grabadas (acceso con cuenta UDP)</a></p></li>
-<li><p><a href="https://rstudio.cloud/spaces/127117/projects/">RStudio Cloud (acceso con cuenta UDP)</a></p></li>
-</ul>
+<div id="gráfico-de-ránking" class="section level2">
+<h2>Gráfico de ránking</h2>
+<p>Supongamos que queremos rankear a las comunas según su edad promedio. Podríamos hacer un gráfico de columnas:</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="visualizacion-ext.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_municipios,</span>
+<span id="cb196-2"><a href="visualizacion-ext.html#cb196-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> edad_prom, <span class="at">y =</span> comuna)) <span class="sc">+</span></span>
+<span id="cb196-3"><a href="visualizacion-ext.html#cb196-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<p>(Al menos) dos cosas están mal con el gráfico anterior. Primero, son demasiadas observaciones. Segundo, las barras no están ordenadas. Podemos suplir ambas cosas y crear un gráfico de “ránking” que se entienda:</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="visualizacion-ext.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_municipios <span class="sc">%&gt;%</span> </span>
+<span id="cb197-2"><a href="visualizacion-ext.html#cb197-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">arrange</span>(<span class="sc">-</span>edad_prom) <span class="sc">%&gt;%</span> <span class="co"># ordenamos</span></span>
+<span id="cb197-3"><a href="visualizacion-ext.html#cb197-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),            <span class="co"># seleccionamos las diez primeras</span></span>
+<span id="cb197-4"><a href="visualizacion-ext.html#cb197-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> edad_prom, </span>
+<span id="cb197-5"><a href="visualizacion-ext.html#cb197-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> <span class="fu">fct_reorder</span>(comuna, edad_prom))) <span class="sc">+</span> <span class="co"># ordenamos</span></span>
+<span id="cb197-6"><a href="visualizacion-ext.html#cb197-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<div id="ejercicio-a-3" class="section level4">
+<h4>Ejercicio A</h4>
+<p>Genera un gráfico de ránking para las diez comunas con mayor población de la muestra.</p>
 </div>
-<div id="cronograma-y-materiales-del-curso" class="section level2 unnumbered">
-<h2>Cronograma y materiales del curso</h2>
-<div id="i.-introducción" class="section level3 unnumbered">
-<h3>I. Introducción</h3>
-<p>L 2021-03-08</p>
-<ul>
-<li>Presentación del programa</li>
-<li>Ciencia de datos y programación</li>
-<li>Introducción a R, RStudio y R Markdown</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Material mínimo
-</th>
-<th style="text-align:left;">
-Material complementario
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 50%; ">
-</td>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://docs.google.com/viewer?url=https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/introduccion-a-r.pdf">RStudio. 2018a. Introducción al Lenguaje R: Guía Rápida.</a>
-</li>
-<li>
-<a href="https://docs.google.com/viewer?url=https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/rstudio-entorno.pdf">RStudio. 2018b. RStudio IDE: Guía Rápida.</a>
-</li>
-<li>
-<a href="https://docs.google.com/viewer?url=https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/rmarkdown_Spanish.pdf">RStudio. 2014. RMarkdown: Hoja de Referencia.</a>
-</li>
-</td>
-</tr>
-</tbody>
-</table>
 </div>
-<div id="ii.-manejo-de-bases-de-datos" class="section level3 unnumbered">
-<h3>II. Manejo de bases de datos</h3>
-<p>L 2021-03-15, L 2021-03-22</p>
-<ul>
-<li>Introducción al <code>tidyverse</code></li>
-<li>Carga de bases de datos</li>
-<li>Manejo de bases de datos</li>
-<li>Limpieza de bases</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Material mínimo
-</th>
-<th style="text-align:left;">
-Material complementario
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://arcruz0.github.io/libroadp/data.html">Cruz, A. 2020. Manejo de Datos.</a>
-</li>
-</td>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://docs.google.com/viewer?url=https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/data-import-cheatsheet_Spanish.pdf">RStudio. 2017. Importar Datos: Guía Rápida</a>
-</li>
-<li>
-<a href="https://docs.google.com/viewer?url=https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/data-transformation_Spanish.pdf">RStudio. 2018. Transformación de Datos con dplyr: Hoja de referencia.</a>
-</li>
-</td>
-</tr>
-</tbody>
-</table>
+<div id="facetas" class="section level2">
+<h2>Facetas</h2>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="visualizacion-ext.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_municipios,</span>
+<span id="cb198-2"><a href="visualizacion-ext.html#cb198-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_pobres_md4)) <span class="sc">+</span></span>
+<span id="cb198-3"><a href="visualizacion-ext.html#cb198-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="visualizacion-ext.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_municipios,</span>
+<span id="cb200-2"><a href="visualizacion-ext.html#cb200-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_pobres_md4)) <span class="sc">+</span></span>
+<span id="cb200-3"><a href="visualizacion-ext.html#cb200-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb200-4"><a href="visualizacion-ext.html#cb200-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>alcalde_coalicion)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="visualizacion-ext.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_municipios,</span>
+<span id="cb202-2"><a href="visualizacion-ext.html#cb202-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_pobres_md4)) <span class="sc">+</span></span>
+<span id="cb202-3"><a href="visualizacion-ext.html#cb202-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb202-4"><a href="visualizacion-ext.html#cb202-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>alcalde_coalicion, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<p>Noten que los gráficos anteriores, por defecto, las facetas comparten escalas para las variables x e y. Podemos cambiar este default con el argumento <code>scales = "free"</code>, que también puede tomar los valores “free_x” o “free_y”. Qué queremos usar aquí dependerá de la naturaleza de nuestros datos, caso a caso…</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="visualizacion-ext.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_municipios,</span>
+<span id="cb204-2"><a href="visualizacion-ext.html#cb204-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_pobres_md4)) <span class="sc">+</span></span>
+<span id="cb204-3"><a href="visualizacion-ext.html#cb204-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb204-4"><a href="visualizacion-ext.html#cb204-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>alcalde_coalicion, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+<div id="ejercicio-b-2" class="section level4">
+<h4>Ejercicio B</h4>
+<p>Genera un gráfico de dispersión (con <code>geom_point()</code>) para dos variables de la base. Luego divídelo por facetas según la coalición del(la) edil.</p>
 </div>
-<div id="iii.-visualización-de-datos" class="section level3 unnumbered">
-<h3>III. Visualización de datos</h3>
-<p>L 2021-03-29, L 2021-04-05</p>
-<ul>
-<li>Principios de visualización de datos</li>
-<li>Introducción a la gramática de gráficos</li>
-<li>Generación de gráficos en <code>ggplot2</code></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Material mínimo
-</th>
-<th style="text-align:left;">
-Material complementario
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="http://socviz.co/lookatdata.html">Healy, K. 2018. Data Visualization: A Practical Introduction. <strong>Cap. 1.</strong></a>
-</li>
-<li>
-<a href="https://arcruz0.github.io/libroadp/dataviz.html">Araya, S. 2020. Visualización de Datos.</a>
-</li>
-</td>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://docs.google.com/viewer?url=https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/ggplot2.pdf">RStudio. 2016. Visualización de Datos usando ggplot2: Guía Rápida.</a>
-</li>
-</td>
-</tr>
-</tbody>
-</table>
 </div>
-<div id="semana-de-receso-1-l-2021-04-12" class="section level3 unnumbered">
-<h3><mark style="background-color: #7FDBFF">Semana de receso 1: L 2021-04-12</mark></h3>
+<div id="gráficos-de-líneas" class="section level2">
+<h2>Gráficos de líneas</h2>
+<p>Vamos a cargar datos desde Gapminder (2010), compilados por <a href="https://github.com/cienciadedatos/datos-de-miercoles/tree/master/datos/2019/2019-04-24">Edgar Ruiz, Riva Quiroga y Mauricio ‘Pacha’ Vargas</a>:</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="visualizacion-ext.html#cb206-1" aria-hidden="true" tabindex="-1"></a>gapminder_muestra <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/gapminder_muestra_es.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   pais = col_character(),
+##   anio = col_double(),
+##   esperanza_de_vida = col_double()
+## )</code></pre>
+<p>Podríamos querer graficar las tendencias en el tiempo para los tres países. Con las herramientas que hemos visto ahora ahora, podríamos hacer algo como lo siguiente:</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="visualizacion-ext.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder_muestra, </span>
+<span id="cb208-2"><a href="visualizacion-ext.html#cb208-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> anio, <span class="at">y =</span> esperanza_de_vida, <span class="at">color =</span> pais)) <span class="sc">+</span></span>
+<span id="cb208-3"><a href="visualizacion-ext.html#cb208-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<p>Esto es difícil de leer, nos vendría bien tener líneas para seguir los patrones en el tiempo. Podemos hacer esto añadiendo <code>geom_line()</code> y el mapeo estético <code>group =</code> (a veces podemos omitir esto, <code>ggplot2</code> tratará de inferirlo, pero yo recomiendo utilizarlo explícitamente siempre).</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="visualizacion-ext.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder_muestra, </span>
+<span id="cb209-2"><a href="visualizacion-ext.html#cb209-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> anio, <span class="at">y =</span> esperanza_de_vida, <span class="at">color =</span> pais, <span class="at">group =</span> pais)) <span class="sc">+</span></span>
+<span id="cb209-3"><a href="visualizacion-ext.html#cb209-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb209-4"><a href="visualizacion-ext.html#cb209-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
 </div>
-<div id="iv.-búsqueda-efectiva-de-ayuda" class="section level3 unnumbered">
-<h3>IV. Búsqueda efectiva de ayuda</h3>
-<p>L 2021-04-19</p>
-<ul>
-<li>Archivos de ayuda en R.</li>
-<li>Recursos de apoyo: Google, StackOverflow, GitHub.</li>
-<li>Construcción de ejemplos mínimos reproducibles (reprex).</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Material mínimo
-</th>
-<th style="text-align:left;">
-Material complementario
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="http://socviz.co/appendix.html#a-little-more-about-r">Healy, K. 2018. Data Visualization: A Practical Introduction. <strong>Anexo 1.1</strong></a>
-</li>
-<li>
-<a href="https://r4ds.had.co.nz/introduction.html#getting-help-and-learning-more">Wickham, H. y Grolemund, G. 2017. R for Data Science. <strong>Sección 1.6.</strong></a>
-</li>
-<li>
-<a href="https://www.jessemaegan.com/post/so-you-ve-been-asked-to-make-a-reprex/">Mostipak, J. 2018. So You’ve Been Asked to Make a Reprex.</a>
-</li>
-</td>
-<td style="text-align:left;width: 50%; ">
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="entrega-solemne-1-l-2021-04-26" class="section level3 unnumbered">
-<h3><mark>Entrega Solemne 1: L 2021-04-26</mark></h3>
-</div>
-<div id="v.-manejo-avanzado-de-bases-de-datos" class="section level3 unnumbered">
-<h3>V. Manejo avanzado de bases de datos</h3>
-<p>L 2021-05-03</p>
-<ul>
-<li>Reformulación (<em>pivot</em>) de bases de datos.</li>
-<li>Recodificación de variables.</li>
-<li>Combinación (<em>merge</em>) de bases.</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Material mínimo
-</th>
-<th style="text-align:left;">
-Material complementario
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://arcruz0.github.io/libroadp/adv-data.html">Urdinez, F. y Cruz, A. 2020. Manejo Avanzado de Datos Políticos.</a>
-</li>
-</td>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/rstudio/cheatsheets/master/translations/spanish/data-import-Spanish_translation-2019.pdf">RStudio. 2017b. Importar Datos: Guía Rápida. <strong>Pág. 2.</strong></a>
-</li>
-<li>
-<a href="https://stat545.com/join-cheatsheet.html">Bryan, J. 2018. Cheatsheet for dplyr join functions.</a>
-</li>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="vi.-análisis-de-texto" class="section level3 unnumbered">
-<h3>VI. Análisis de texto</h3>
-<p>L 2021-05-10, L 2021-05-17</p>
-<ul>
-<li>Manipulación de cadenas de texto.</li>
-<li>Expresiones regulares.</li>
-<li>Introducción al análisis cuantitativo de textos (QTA).</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Material mínimo
-</th>
-<th style="text-align:left;">
-Material complementario
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://r4ds.had.co.nz/strings.html">Wickham, H., y Grolemund, G. 2017. R for Data Science. <strong>Cap. 14.</strong></a>
-</li>
-<li>
-<a href="https://www.tidytextmining.com/">Silge, J. y Robinson, D. 2018. Text Mining with R. <strong>Caps. 1-3.</strong></a>
-</li>
-</td>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/rstudio/cheatsheets/master/translations/spanish/strings_Spanish.pdf">RStudio. 2017c. Trabajar con Cadenas con stringr: Guía Rápida</a>
-</li>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="vii.-minería-de-datos-web-y-r-avanzado" class="section level3 unnumbered">
-<h3>VII. Minería de datos web y R avanzado</h3>
-<p>L 2021-05-24</p>
-<ul>
-<li>Tipos de objeto en R</li>
-<li>Funciones personalizadas.</li>
-<li>Iteraciones</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Material mínimo
-</th>
-<th style="text-align:left;">
-Material complementario
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 50%; ">
-<li>
-Wickham, H., y Grolemund, G. 2017. R for Data Science. Caps. <a href="https://r4ds.had.co.nz/functions.html">19</a> y <a href="https://r4ds.had.co.nz/iteration.html">21</a>.
-</li>
-<li>
-<a href="https://arcruz0.github.io/libroadp/web-mining.html">Barría, G. 2021. Minería de Datos Web.</a>
-</li>
-<li>
-<a href="https://towardsdatascience.com/ethics-in-web-scraping-b96b18136f01">Densmore, J. 2017. Ethics in web scraping.</a>
-</li>
-</td>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/rstudio/cheatsheets/master/translations/spanish/purrr_COrtega_Spanish.pdf">RStudio. 2017a. Aplicar Funciones con purrr: Guía Rápida.</a>
-</li>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="entrega-ensayo-breve-l-2021-05-24" class="section level3 unnumbered">
-<h3><mark>Entrega Ensayo Breve: L 2021-05-24</mark></h3>
-</div>
-<div id="semana-de-receso-2-l-2021-05-31" class="section level3 unnumbered">
-<h3><mark style="background-color: #7FDBFF">Semana de receso 2: L 2021-05-31</mark></h3>
-</div>
-<div id="viii.-replicación-y-generación-de-reportes" class="section level3 unnumbered">
-<h3>VIII. Replicación y generación de reportes</h3>
-<p>L 2021-06-07</p>
-<ul>
-<li>Replicación en ciencias sociales.</li>
-<li>R Markdown para reportes y presentaciones.</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Material mínimo
-</th>
-<th style="text-align:left;">
-Material complementario
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://gking.harvard.edu/files/replication.pdf">King, G. 1995. Replication, Replication.</a>
-</li>
-</td>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://docs.google.com/viewer?url=https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/rmarkdown_Spanish.pdf">RStudio. 2014. RMarkdown: Hoja de Referencia.</a>
-</li>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="entrega-solemne-2-l-2021-06-14" class="section level3 unnumbered">
-<h3><mark>Entrega Solemne 2: L 2021-06-14</mark></h3>
-</div>
-<div id="presentaciones-y-retroalimentación-para-el-trabajo-final-l-2021-06-21" class="section level3 unnumbered">
-<h3><mark>Presentaciones y retroalimentación para el trabajo final: L 2021-06-21</mark></h3>
-</div>
-<div id="feriado-l-2021-06-28" class="section level3 unnumbered">
-<h3><mark style="background-color: #7FDBFF">Feriado: L 2021-06-28</mark></h3>
-</div>
-<div id="prueba-recuperativa-a-fijar-entre-m-2021-06-29-y-v-2021-07-02" class="section level3 unnumbered">
-<h3><mark>Prueba recuperativa: A fijar entre M 2021-06-29 y V 2021-07-02</mark></h3>
-</div>
-<div id="ix.-datos-espaciales-y-mapas-x.-cierre" class="section level3 unnumbered">
-<h3>IX. Datos espaciales y mapas / X. Cierre</h3>
-<p>L 2021-07-05</p>
-<ul>
-<li>Introducción a los datos espaciales con <code>sf</code>. Mapas en <code>ggplot2</code>.</li>
-<li>Ciencia social computacional. La comunidad de R. RStudio de escritorio.</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Material mínimo
-</th>
-<th style="text-align:left;">
-Material complementario
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://arcruz0.github.io/libroadp/maps.html">Escobar, A. y Ortiz, G. 2021. Mapas y Datos Espaciales.</a>
-</li>
-<li>
-<a href="https://stanford.edu/~jgrimmer/bd_2.pdf">Grimmer, J. 2015. We Are All Social Scientists Now.</a>
-</li>
-<li>
-<a href="https://channel9.msdn.com/Events/useR-international-R-User-conferences/useR-International-R-User-2017-Conference/R-Ladies-Global-Community?ocid=player">Frick, H., y Daish, A. 2017. R-Ladies Global Community.</a>
-</li>
-</td>
-<td style="text-align:left;width: 50%; ">
-<li>
-<a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/rstudio/cheatsheets/master/sf.pdf">Garnett, R. 2018. Spatial Manipulation with sf: Cheatsheet.</a>
-</li>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="entrega-del-trabajo-escrito-final-m-2021-07-06" class="section level3 unnumbered">
-<h3><mark>Entrega del trabajo escrito final: M 2021-07-06</mark></h3>
-</div>
-<div id="examen-l-2021-07-12" class="section level3 unnumbered">
-<h3><mark>Examen: L 2021-07-12</mark></h3>
+<div id="más-personalización" class="section level2">
+<h2>Más personalización</h2>
+<p>Vamos a ver cómo añadir texto dentro de los gráficos, editar las escalas (ejes y colores), etcétera, el próximo script.</p>
 
 </div>
 </div>
-</div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="rbasico.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="visualizacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizacion-personalizacion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
