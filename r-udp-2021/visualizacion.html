@@ -223,11 +223,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Ilustración de <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a>.</p>
 <div id="inicio-cargar-paquetes-base-de-datos" class="section level2">
 <h2>Inicio: cargar paquetes, base de datos</h2>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="visualizacion.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="visualizacion.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <div id="carga-de-base-en-formato-rds" class="section level4">
 <h4>Carga de base en formato rds</h4>
 <p>Hoy tenemos una base de datos con información de los municipios, construida a partir de dos fuentes: la <a href="http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/casen_2017.php">encuesta Casen 2017</a> y los <a href="https://www.emol.com/noticias/Nacional/2016/10/24/828043/Revisa-el-listado-de-todos-los-alcaldes-y-concejales-electos-en-el-pais.html">resultados de las elecciones municipales del año 2016</a>.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="visualizacion.html#cb178-1" aria-hidden="true" tabindex="-1"></a>df_municipios <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">&quot;datos/datos_municipios.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="visualizacion.html#cb183-1" aria-hidden="true" tabindex="-1"></a>df_municipios <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">&quot;datos/datos_municipios.rds&quot;</span>)</span></code></pre></div>
 <p>¿Te queda claro la información que registra cada variable? Si es que no, haz tus apuntes aquí:</p>
 <ul>
 <li></li>
@@ -240,23 +240,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="gráfico-univariado-para-variable-categórica-barras" class="section level4">
 <h4>Gráfico univariado para variable categórica (barras)</h4>
 <p>Veamos la distribución de las coaliciones de los alcaldes en las comunas:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="visualizacion.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
-<span id="cb179-2"><a href="visualizacion.html#cb179-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alcalde_coalicion)) <span class="sc">+</span></span>
-<span id="cb179-3"><a href="visualizacion.html#cb179-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="visualizacion.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb184-2"><a href="visualizacion.html#cb184-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alcalde_coalicion)) <span class="sc">+</span></span>
+<span id="cb184-3"><a href="visualizacion.html#cb184-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
 <p>Si queremos invertir los ejes, podemos usar el mapeo estético <code>y =</code> en vez de
 <code>x =</code>:</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="visualizacion.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
-<span id="cb180-2"><a href="visualizacion.html#cb180-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> alcalde_coalicion)) <span class="sc">+</span></span>
-<span id="cb180-3"><a href="visualizacion.html#cb180-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="visualizacion.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb185-2"><a href="visualizacion.html#cb185-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> alcalde_coalicion)) <span class="sc">+</span></span>
+<span id="cb185-3"><a href="visualizacion.html#cb185-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 </div>
 <div id="gráfico-univariado-para-variable-continua-histograma" class="section level4">
 <h4>Gráfico univariado para variable continua (histograma)</h4>
 <p>Veamos la distribución del % de población rural en las comunas:</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="visualizacion.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
-<span id="cb181-2"><a href="visualizacion.html#cb181-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_rural)) <span class="sc">+</span></span>
-<span id="cb181-3"><a href="visualizacion.html#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="visualizacion.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb186-2"><a href="visualizacion.html#cb186-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_rural)) <span class="sc">+</span></span>
+<span id="cb186-3"><a href="visualizacion.html#cb186-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
 ## `binwidth`.</code></pre>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
@@ -266,9 +266,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>boundary = 0</code> asegura que los bins partan en 0, en vez de intentar centrarse en los números enteros (el defecto).</li>
 <li><code>closed = "left"</code> ayuda a <code>ggplot2</code> a decidir qué hacer con los valores que caen exactamente en los límites del bin. El valor “left” determina que los bins están cerrados a la izquierda, es decir, un valor intermedio caerá en la barra de la derecha. El valor “right”, el defecto, dirá que los bins están cerrados a la derecha, es decir, un valor intermedio caerá en la barra de la izquierda.</li>
 </ul>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="visualizacion.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
-<span id="cb183-2"><a href="visualizacion.html#cb183-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_rural)) <span class="sc">+</span></span>
-<span id="cb183-3"><a href="visualizacion.html#cb183-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">boundary =</span> <span class="dv">0</span>, <span class="at">closed =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="visualizacion.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb188-2"><a href="visualizacion.html#cb188-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_rural)) <span class="sc">+</span></span>
+<span id="cb188-3"><a href="visualizacion.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">boundary =</span> <span class="dv">0</span>, <span class="at">closed =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 </div>
 <div id="ejercicio-a-2" class="section level4">
@@ -281,44 +281,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="gráfico-bivariado-para-dos-variables-continuas-dispersión" class="section level4">
 <h4>Gráfico bivariado para dos variables continuas (dispersión)</h4>
 <p>Observemos la relación entre la variable de población mapuche en la comuna y su índice de pobreza multidimensional:</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="visualizacion.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
-<span id="cb184-2"><a href="visualizacion.html#cb184-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_mapuche, <span class="at">y =</span> porc_pobres_md4)) <span class="sc">+</span></span>
-<span id="cb184-3"><a href="visualizacion.html#cb184-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="visualizacion.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb189-2"><a href="visualizacion.html#cb189-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_mapuche, <span class="at">y =</span> porc_pobres_md4)) <span class="sc">+</span></span>
+<span id="cb189-3"><a href="visualizacion.html#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <p>Podemos añadir color y forma a los puntos según las coaliciones de los alcaldes:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="visualizacion.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
-<span id="cb185-2"><a href="visualizacion.html#cb185-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_mapuche, <span class="at">y =</span> porc_pobres_md4,</span>
-<span id="cb185-3"><a href="visualizacion.html#cb185-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> alcalde_coalicion, <span class="at">shape =</span> alcalde_coalicion)) <span class="sc">+</span></span>
-<span id="cb185-4"><a href="visualizacion.html#cb185-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="visualizacion.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb190-2"><a href="visualizacion.html#cb190-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_mapuche, <span class="at">y =</span> porc_pobres_md4,</span>
+<span id="cb190-3"><a href="visualizacion.html#cb190-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> alcalde_coalicion, <span class="at">shape =</span> alcalde_coalicion)) <span class="sc">+</span></span>
+<span id="cb190-4"><a href="visualizacion.html#cb190-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 </div>
 <div id="gráfico-bivariado-para-x-discreta-y-continua-boxplotviolin" class="section level4">
 <h4>Gráfico bivariado para x discreta + y continua: boxplot/violin</h4>
 <p>Veamos la relación entre la coalición del edil y la pobreza de la comuna:</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="visualizacion.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
-<span id="cb186-2"><a href="visualizacion.html#cb186-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alcalde_coalicion, <span class="at">y =</span> porc_pobres_md4)) <span class="sc">+</span></span>
-<span id="cb186-3"><a href="visualizacion.html#cb186-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="visualizacion.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb191-2"><a href="visualizacion.html#cb191-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alcalde_coalicion, <span class="at">y =</span> porc_pobres_md4)) <span class="sc">+</span></span>
+<span id="cb191-3"><a href="visualizacion.html#cb191-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="visualizacion.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
-<span id="cb187-2"><a href="visualizacion.html#cb187-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alcalde_coalicion, <span class="at">y =</span> porc_pobres_md4)) <span class="sc">+</span></span>
-<span id="cb187-3"><a href="visualizacion.html#cb187-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="visualizacion.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb192-2"><a href="visualizacion.html#cb192-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alcalde_coalicion, <span class="at">y =</span> porc_pobres_md4)) <span class="sc">+</span></span>
+<span id="cb192-3"><a href="visualizacion.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 </div>
 <div id="gráfico-bivariado-para-x-discreta-y-continua-columnas-ránking" class="section level4">
 <h4>Gráfico bivariado para x discreta + y continua: columnas (ránking)</h4>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="visualizacion.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios <span class="sc">%&gt;%</span> </span>
-<span id="cb188-2"><a href="visualizacion.html#cb188-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(alcalde_coalicion) <span class="sc">%&gt;%</span></span>
-<span id="cb188-3"><a href="visualizacion.html#cb188-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarize</span>(<span class="at">porc_alcaldes_reelectos =</span> <span class="fu">sum</span>(alcalde_reelecto) <span class="sc">/</span> <span class="fu">n</span>()),</span>
-<span id="cb188-4"><a href="visualizacion.html#cb188-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alcalde_coalicion, <span class="at">y =</span> porc_alcaldes_reelectos)) <span class="sc">+</span></span>
-<span id="cb188-5"><a href="visualizacion.html#cb188-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="visualizacion.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios <span class="sc">%&gt;%</span> </span>
+<span id="cb193-2"><a href="visualizacion.html#cb193-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(alcalde_coalicion) <span class="sc">%&gt;%</span></span>
+<span id="cb193-3"><a href="visualizacion.html#cb193-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarize</span>(<span class="at">porc_alcaldes_reelectos =</span> <span class="fu">sum</span>(alcalde_reelecto) <span class="sc">/</span> <span class="fu">n</span>()),</span>
+<span id="cb193-4"><a href="visualizacion.html#cb193-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> alcalde_coalicion, <span class="at">y =</span> porc_alcaldes_reelectos)) <span class="sc">+</span></span>
+<span id="cb193-5"><a href="visualizacion.html#cb193-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
 <p>A veces queremos hacer estos gráficos de forma horizontal (“gráfico de ránking”). Podemos hacer un cambio similar al anterior, con los mapeos estéticos invertidos. Luego aprenderemos a ordenar las barras, para hacer ránkings.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="visualizacion.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios <span class="sc">%&gt;%</span> </span>
-<span id="cb190-2"><a href="visualizacion.html#cb190-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(alcalde_coalicion) <span class="sc">%&gt;%</span></span>
-<span id="cb190-3"><a href="visualizacion.html#cb190-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarize</span>(<span class="at">porc_alcaldes_reelectos =</span> <span class="fu">sum</span>(alcalde_reelecto) <span class="sc">/</span> <span class="fu">n</span>()),</span>
-<span id="cb190-4"><a href="visualizacion.html#cb190-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_alcaldes_reelectos, <span class="at">y =</span> alcalde_coalicion)) <span class="sc">+</span></span>
-<span id="cb190-5"><a href="visualizacion.html#cb190-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="visualizacion.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios <span class="sc">%&gt;%</span> </span>
+<span id="cb195-2"><a href="visualizacion.html#cb195-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(alcalde_coalicion) <span class="sc">%&gt;%</span></span>
+<span id="cb195-3"><a href="visualizacion.html#cb195-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarize</span>(<span class="at">porc_alcaldes_reelectos =</span> <span class="fu">sum</span>(alcalde_reelecto) <span class="sc">/</span> <span class="fu">n</span>()),</span>
+<span id="cb195-4"><a href="visualizacion.html#cb195-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_alcaldes_reelectos, <span class="at">y =</span> alcalde_coalicion)) <span class="sc">+</span></span>
+<span id="cb195-5"><a href="visualizacion.html#cb195-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 </div>
@@ -326,24 +326,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="un-poco-de-personalización-etiquetas" class="section level2">
 <h2>Un poco de personalización: etiquetas</h2>
 <p>Volvamos a uno de los gráficos que hicimos antes:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="visualizacion.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
-<span id="cb192-2"><a href="visualizacion.html#cb192-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_mapuche, <span class="at">y =</span> porc_pobres_md4,</span>
-<span id="cb192-3"><a href="visualizacion.html#cb192-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> alcalde_coalicion, <span class="at">shape =</span> alcalde_coalicion)) <span class="sc">+</span></span>
-<span id="cb192-4"><a href="visualizacion.html#cb192-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="visualizacion.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb197-2"><a href="visualizacion.html#cb197-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_mapuche, <span class="at">y =</span> porc_pobres_md4,</span>
+<span id="cb197-3"><a href="visualizacion.html#cb197-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> alcalde_coalicion, <span class="at">shape =</span> alcalde_coalicion)) <span class="sc">+</span></span>
+<span id="cb197-4"><a href="visualizacion.html#cb197-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 <p>Con el comando <code>labs()</code> dentro de la cadena de <code>ggplot2</code> podemos poner etiquetas que harán al gráfico más legible:</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="visualizacion.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
-<span id="cb193-2"><a href="visualizacion.html#cb193-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_mapuche, <span class="at">y =</span> porc_pobres_md4,</span>
-<span id="cb193-3"><a href="visualizacion.html#cb193-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> alcalde_coalicion, <span class="at">shape =</span> alcalde_coalicion)) <span class="sc">+</span></span>
-<span id="cb193-4"><a href="visualizacion.html#cb193-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb193-5"><a href="visualizacion.html#cb193-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Relación entre porcentaje de población mapuche y porcentaje de pobreza&quot;</span>,</span>
-<span id="cb193-6"><a href="visualizacion.html#cb193-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;por comunas, año 2017&quot;</span>,</span>
-<span id="cb193-7"><a href="visualizacion.html#cb193-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Fuente: Casen (2017).&quot;</span>,</span>
-<span id="cb193-8"><a href="visualizacion.html#cb193-8" aria-hidden="true" tabindex="-1"></a>       <span class="co"># ahora para los mapeos estéticos:</span></span>
-<span id="cb193-9"><a href="visualizacion.html#cb193-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;% de población mapuche&quot;</span>,</span>
-<span id="cb193-10"><a href="visualizacion.html#cb193-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;% de población pobreza (multidimensional)&quot;</span>,</span>
-<span id="cb193-11"><a href="visualizacion.html#cb193-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Coalición del(la) edil&quot;</span>,</span>
-<span id="cb193-12"><a href="visualizacion.html#cb193-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="st">&quot;Coalición del(la) edil&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="visualizacion.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
+<span id="cb198-2"><a href="visualizacion.html#cb198-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_mapuche, <span class="at">y =</span> porc_pobres_md4,</span>
+<span id="cb198-3"><a href="visualizacion.html#cb198-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> alcalde_coalicion, <span class="at">shape =</span> alcalde_coalicion)) <span class="sc">+</span></span>
+<span id="cb198-4"><a href="visualizacion.html#cb198-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb198-5"><a href="visualizacion.html#cb198-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Relación entre porcentaje de población mapuche y porcentaje de pobreza&quot;</span>,</span>
+<span id="cb198-6"><a href="visualizacion.html#cb198-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;por comunas, año 2017&quot;</span>,</span>
+<span id="cb198-7"><a href="visualizacion.html#cb198-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Fuente: Casen (2017).&quot;</span>,</span>
+<span id="cb198-8"><a href="visualizacion.html#cb198-8" aria-hidden="true" tabindex="-1"></a>       <span class="co"># ahora para los mapeos estéticos:</span></span>
+<span id="cb198-9"><a href="visualizacion.html#cb198-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;% de población mapuche&quot;</span>,</span>
+<span id="cb198-10"><a href="visualizacion.html#cb198-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;% de población pobreza (multidimensional)&quot;</span>,</span>
+<span id="cb198-11"><a href="visualizacion.html#cb198-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Coalición del(la) edil&quot;</span>,</span>
+<span id="cb198-12"><a href="visualizacion.html#cb198-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="st">&quot;Coalición del(la) edil&quot;</span>)</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
 <div id="ejercicios-b-d" class="section level4">
 <h4>(Ejercicios B-D)</h4>

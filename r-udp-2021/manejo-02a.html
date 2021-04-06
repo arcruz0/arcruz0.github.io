@@ -300,7 +300,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="trabajo-con-r" class="section level2">
 <h2>Trabajo con R</h2>
 <p>Comenzaremos cargando el <code>tidyverse</code>:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="manejo-02a.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="manejo-02a.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <div id="base-de-datos-aprobación-de-presidentesas-en-latinoamérica" class="section level4">
 <h4>Base de datos: aprobación de presidentes/as en Latinoamérica</h4>
 <ul>
@@ -317,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="carga-de-base-en-formato-csv" class="section level4">
 <h4>Carga de base en formato csv</h4>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="manejo-02a.html#cb79-1" aria-hidden="true" tabindex="-1"></a>df_aprob <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/base_aprob_reyes-housholder.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="manejo-02a.html#cb81-1" aria-hidden="true" tabindex="-1"></a>df_aprob <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/base_aprob_reyes-housholder.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   country = col_character(),
@@ -337,7 +337,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="resúmenes-simples-para-data-frames" class="section level4">
 <h4>Resúmenes simples para <em>data frames</em></h4>
 <p>El resumen más simple de un objeto en R suele poder obtenerse con su nombre comando. Nota cómo debajo de cada nombre, algunas variables tienen <code>&lt;dbl&gt;</code> y otras <code>&lt;chr&gt;</code>. ¿Qué significa esto?</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="manejo-02a.html#cb81-1" aria-hidden="true" tabindex="-1"></a>df_aprob</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="manejo-02a.html#cb83-1" aria-hidden="true" tabindex="-1"></a>df_aprob</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -355,9 +355,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   pres_sex_d &lt;dbl&gt;, exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
 ## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Por cierto, podemos obtener un resumen similar clickeando nuestro objeto en el panel “Environment” (superior derecho) de RStudio. Esto es lo mismo que ocupar el comando <code>View()</code>:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="manejo-02a.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(df_aprob)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="manejo-02a.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(df_aprob)</span></code></pre></div>
 <p>Otro resumen útil es la función <code>glimpse()</code> del <code>tidyverse</code>, que nos da otra perspectiva:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="manejo-02a.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_aprob)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="manejo-02a.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_aprob)</span></code></pre></div>
 <pre><code>## Rows: 1,020
 ## Columns: 12
 ## $ country      &lt;chr&gt; &quot;Argentina&quot;, &quot;Argentina&quot;, &quot;Argentina&quot;~
@@ -443,7 +443,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="seleccionar-columnas-con-select" class="section level4">
 <h4>Seleccionar columnas con <code>select()</code></h4>
 <p>Seleccionemos solo la columna de países:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="manejo-02a.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, country)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="manejo-02a.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, country)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 1
 ##    country  
 ##    &lt;chr&gt;    
@@ -459,8 +459,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Argentina
 ## # ... with 1,010 more rows</code></pre>
 <p>Recuerda que esto no creó ningún objeto nuevo, es solo un comando que estamos ejecutando en la consola. Si quisiéramos crear un objeto nuevo, tendríamos que asignarlo:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="manejo-02a.html#cb88-1" aria-hidden="true" tabindex="-1"></a>df_aprob_reducida <span class="ot">&lt;-</span> <span class="fu">select</span>(df_aprob, country)</span>
-<span id="cb88-2"><a href="manejo-02a.html#cb88-2" aria-hidden="true" tabindex="-1"></a>df_aprob_reducida</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="manejo-02a.html#cb90-1" aria-hidden="true" tabindex="-1"></a>df_aprob_reducida <span class="ot">&lt;-</span> <span class="fu">select</span>(df_aprob, country)</span>
+<span id="cb90-2"><a href="manejo-02a.html#cb90-2" aria-hidden="true" tabindex="-1"></a>df_aprob_reducida</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 1
 ##    country  
 ##    &lt;chr&gt;    
@@ -476,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Argentina
 ## # ... with 1,010 more rows</code></pre>
 <p>Podemos seleccionar múltiples columnas a la vez, separadas por comas:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="manejo-02a.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, country, year, unemp)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="manejo-02a.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, country, year, unemp)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 3
 ##    country    year unemp
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
@@ -492,7 +492,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Argentina  2002  17.9
 ## # ... with 1,010 more rows</code></pre>
 <p>Supongamos que queremos las primeras cinco variables de la base de datos. Las siguientes tres formas nos permitirán obtenerlas:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="manejo-02a.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, country, year, quarter, president, net_approval)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="manejo-02a.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, country, year, quarter, president, net_approval)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 5
 ##    country    year quarter president            net_approval
 ##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
@@ -507,7 +507,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 Argentina  2002       1 Eduardo Alberto Duh~        -2.01
 ## 10 Argentina  2002       2 Eduardo Alberto Duh~       -20.1 
 ## # ... with 1,010 more rows</code></pre>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="manejo-02a.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, country<span class="sc">:</span>net_approval) <span class="co"># esta es la forma recomendada para la mayoría de los casos</span></span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="manejo-02a.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, country<span class="sc">:</span>net_approval) <span class="co"># esta es la forma recomendada para la mayoría de los casos</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 5
 ##    country    year quarter president            net_approval
 ##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
@@ -522,7 +522,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 Argentina  2002       1 Eduardo Alberto Duh~        -2.01
 ## 10 Argentina  2002       2 Eduardo Alberto Duh~       -20.1 
 ## # ... with 1,010 more rows</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="manejo-02a.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="manejo-02a.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 5
 ##    country    year quarter president            net_approval
 ##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
@@ -538,7 +538,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Argentina  2002       2 Eduardo Alberto Duh~       -20.1 
 ## # ... with 1,010 more rows</code></pre>
 <p>El comando <code>select()</code> también nos sirve para reordenar las columnas. Supongamos que queremos que la variable <code>president</code> sea la primera. Podemos hacer algo como esto:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="manejo-02a.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, president, country<span class="sc">:</span>year, net_approval<span class="sc">:</span>unemp)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="manejo-02a.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, president, country<span class="sc">:</span>year, net_approval<span class="sc">:</span>unemp)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 9
 ##    president country  year net_approval pres_sex pres_sex_d
 ##    &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
@@ -555,7 +555,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ... with 1,010 more rows, and 3 more variables:
 ## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;</code></pre>
 <p>Esta forma es un poco tediosa. Hay una función de ayuda que nos será útil en este caso, se llama <code>everything()</code></p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="manejo-02a.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, president, <span class="fu">everything</span>()) <span class="co"># selecciona &quot;president&quot; y todo lo demás</span></span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="manejo-02a.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, president, <span class="fu">everything</span>()) <span class="co"># selecciona &quot;president&quot; y todo lo demás</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
 ##    president country  year quarter net_approval pres_sex
 ##    &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;   
@@ -573,7 +573,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   pres_sex_d &lt;dbl&gt;, exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
 ## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Finalmente, también podemos excluir variables con un signo <code>-</code>:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="manejo-02a.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, <span class="sc">-</span>president)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="manejo-02a.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, <span class="sc">-</span>president)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 11
 ##    country  year quarter net_approval pres_sex pres_sex_d
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
@@ -594,7 +594,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="renombrar-columnas-con-rename" class="section level4">
 <h4>Renombrar columnas con <code>rename()</code></h4>
 <p>Podemos cambiar el nombre de una columna con el comando <code>rename()</code>. Por ejemplo:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="manejo-02a.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(df_aprob, <span class="at">trimeste =</span> quarter) <span class="co"># noten que no estoy modificando la base, solo imprimiéndola!</span></span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="manejo-02a.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(df_aprob, <span class="at">trimeste =</span> quarter) <span class="co"># noten que no estoy modificando la base, solo imprimiéndola!</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
 ##    country  year trimeste president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -615,7 +615,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="filtrar-observaciones-con-filter" class="section level4">
 <h4>Filtrar observaciones con <code>filter()</code></h4>
 <p>A menudo queremos quedarnos solo con algunas observaciones de nuestra base de datos, filtrando de acuerdo a características específicas. Podemos hacer esto gracias a la función <code>filter()</code> y algo llamado “operadores lógicos”. Para comenzar, quedémonos solo con las observaciones de Chile:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="manejo-02a.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, country <span class="sc">==</span> <span class="st">&quot;Chile&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="manejo-02a.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, country <span class="sc">==</span> <span class="st">&quot;Chile&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 60 x 12
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -680,7 +680,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Por ejemplo, podemos obtener todas las observaciones (país-año-trimestre) en las que la aprobación presidencial neta es positiva:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="manejo-02a.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, net_approval <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="manejo-02a.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, net_approval <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 709 x 12
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -698,7 +698,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   pres_sex_d &lt;dbl&gt;, exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
 ## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Podemos también realizar filtros más complejos. Obtengamos solo las observaciones del Cono Sur:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="manejo-02a.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, country <span class="sc">==</span> <span class="st">&quot;Argentina&quot;</span> <span class="sc">|</span> country <span class="sc">==</span> <span class="st">&quot;Chile&quot;</span> <span class="sc">|</span> country <span class="sc">==</span> <span class="st">&quot;Uruguay&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="manejo-02a.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, country <span class="sc">==</span> <span class="st">&quot;Argentina&quot;</span> <span class="sc">|</span> country <span class="sc">==</span> <span class="st">&quot;Chile&quot;</span> <span class="sc">|</span> country <span class="sc">==</span> <span class="st">&quot;Uruguay&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 180 x 12
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -715,7 +715,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ... with 170 more rows, and 6 more variables:
 ## #   pres_sex_d &lt;dbl&gt;, exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
 ## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="manejo-02a.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Argentina&quot;</span>, <span class="st">&quot;Chile&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) <span class="co"># lo mismo, con otro op. lógico</span></span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="manejo-02a.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Argentina&quot;</span>, <span class="st">&quot;Chile&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) <span class="co"># lo mismo, con otro op. lógico</span></span></code></pre></div>
 <pre><code>## # A tibble: 180 x 12
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -733,7 +733,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   pres_sex_d &lt;dbl&gt;, exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
 ## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Podemos también incluir pequeñas operaciones en nuestros filtros. Obtengamos todas las observaciones en las que la corrupción ejecutiva es mayor a la del promedio de toda la base:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="manejo-02a.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, exec_corr <span class="sc">&gt;</span> <span class="fu">mean</span>(exec_corr))</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="manejo-02a.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, exec_corr <span class="sc">&gt;</span> <span class="fu">mean</span>(exec_corr))</span></code></pre></div>
 <pre><code>## # A tibble: 456 x 12
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -760,7 +760,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ordenar-el-data-frame-con-arrange" class="section level4">
 <h4>Ordenar el <em>data frame</em> con <code>arrange()</code></h4>
 <p>Podemos cambiar el orden de las observaciones con el comando <code>arrange()</code>. Por ejemplo, ordenémoslas desde el país-año-trimestre menos corrupto al más corrupto:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="manejo-02a.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df_aprob, exec_corr)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="manejo-02a.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df_aprob, exec_corr)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -778,7 +778,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   pres_sex_d &lt;dbl&gt;, exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
 ## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Si quisiéramos ordenarlo inversamente, tendríamos que añadir un - (signo menos) antes de la variable:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="manejo-02a.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df_aprob, <span class="sc">-</span>exec_corr)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="manejo-02a.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df_aprob, <span class="sc">-</span>exec_corr)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -796,7 +796,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   pres_sex_d &lt;dbl&gt;, exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
 ## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Atención, lo anterior solo sirve en columnas numéricas. Para ordenar una categórica inversamente, debemos usar el comando <code>desc()</code>:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="manejo-02a.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df_aprob, <span class="fu">desc</span>(country))</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="manejo-02a.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df_aprob, <span class="fu">desc</span>(country))</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -814,7 +814,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   pres_sex_d &lt;dbl&gt;, exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
 ## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Podemos ordenar por más de una variable. Esto es, ordenar a partir de una primera variable y luego ordenar los empates a partir de otra segunda variable. Veamos el siguiente ejemplo:</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="manejo-02a.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df_aprob, pres_sex, <span class="sc">-</span>net_approval)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="manejo-02a.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df_aprob, pres_sex, <span class="sc">-</span>net_approval)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -837,7 +837,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="transformaciones-con-una-variable" class="section level6">
 <h6>Transformaciones con una variable</h6>
 <p>Supongamos que queremos crear una variable con el PIB en versión logarítmica:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="manejo-02a.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_aprob, <span class="at">wdi_gdp_log =</span> <span class="fu">log</span>(wdi_gdp))</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="manejo-02a.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_aprob, <span class="at">wdi_gdp_log =</span> <span class="fu">log</span>(wdi_gdp))</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 13
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -856,7 +856,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;,
 ## #   wdi_gdp_log &lt;dbl&gt;</code></pre>
 <p>Podemos realizar cualquier tipo de operación en las variables. Por ejemplo, transformemos la escala de <code>wdi_pop</code> a millones:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="manejo-02a.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_aprob, <span class="at">wdi_pop_mill =</span> wdi_pop <span class="sc">/</span> <span class="dv">1000000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="manejo-02a.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_aprob, <span class="at">wdi_pop_mill =</span> wdi_pop <span class="sc">/</span> <span class="dv">1000000</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 13
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -878,7 +878,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="transformaciones-con-múltiples-variables" class="section level6">
 <h6>Transformaciones con múltiples variables</h6>
 <p>Crucialmente, podemos generar operaciones entre las variables. Por ejemplo, calculemos el GDP <em>per capita</em>:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="manejo-02a.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_aprob, <span class="at">wdi_gdp_pc =</span> wdi_gdp <span class="sc">/</span> wdi_pop)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="manejo-02a.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_aprob, <span class="at">wdi_gdp_pc =</span> wdi_gdp <span class="sc">/</span> wdi_pop)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 13
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -900,9 +900,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="varias-transformaciones-a-la-vez" class="section level6">
 <h6>Varias transformaciones a la vez:</h6>
 <p>Algo como lo siguiente funcionará:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="manejo-02a.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_aprob, </span>
-<span id="cb130-2"><a href="manejo-02a.html#cb130-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">wdi_pop_mill =</span> wdi_pop <span class="sc">/</span> <span class="dv">1000000</span>,</span>
-<span id="cb130-3"><a href="manejo-02a.html#cb130-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">wdi_gdp_pc   =</span> wdi_gdp <span class="sc">/</span> wdi_pop)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="manejo-02a.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_aprob, </span>
+<span id="cb132-2"><a href="manejo-02a.html#cb132-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">wdi_pop_mill =</span> wdi_pop <span class="sc">/</span> <span class="dv">1000000</span>,</span>
+<span id="cb132-3"><a href="manejo-02a.html#cb132-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">wdi_gdp_pc   =</span> wdi_gdp <span class="sc">/</span> wdi_pop)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 14
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -932,16 +932,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="agregarcolapsar-con-summarize-hacer-operaciones-por-grupos-con-group_by" class="section level2">
 <h2>Agregar/colapsar con <code>summarize()</code> / hacer operaciones por grupos con <code>group_by()</code></h2>
 <p>Podemos hacer resúmenes para la base de datos con <code>summarize</code>:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="manejo-02a.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(df_aprob, <span class="at">prom_desemp =</span> <span class="fu">mean</span>(unemp))</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="manejo-02a.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(df_aprob, <span class="at">prom_desemp =</span> <span class="fu">mean</span>(unemp))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   prom_desemp
 ##         &lt;dbl&gt;
 ## 1        7.04</code></pre>
 <p>Como antes, podemos hacer varios a la vez:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="manejo-02a.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(df_aprob, </span>
-<span id="cb134-2"><a href="manejo-02a.html#cb134-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_desemp   =</span> <span class="fu">mean</span>(unemp),</span>
-<span id="cb134-3"><a href="manejo-02a.html#cb134-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_crec     =</span> <span class="fu">mean</span>(gdp_growth),</span>
-<span id="cb134-4"><a href="manejo-02a.html#cb134-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_aprob    =</span> <span class="fu">mean</span>(net_approval))</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="manejo-02a.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(df_aprob, </span>
+<span id="cb136-2"><a href="manejo-02a.html#cb136-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_desemp   =</span> <span class="fu">mean</span>(unemp),</span>
+<span id="cb136-3"><a href="manejo-02a.html#cb136-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_crec     =</span> <span class="fu">mean</span>(gdp_growth),</span>
+<span id="cb136-4"><a href="manejo-02a.html#cb136-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_aprob    =</span> <span class="fu">mean</span>(net_approval))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 3
 ##   prom_desemp prom_crec prom_aprob
 ##         &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
@@ -949,8 +949,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="resúmenes-agrupados" class="section level4">
 <h4>Resúmenes agrupados</h4>
 <p>Lo realmente interesante es hacer resúmenes por grupos. Primero debemos tener una versión “agrupada” de la base de datos. Esta es igual que nuestra base original, pero R sabe que las siguientes operaciones que realicemos en ella deberán ser agrupadas (veamos la ligera diferencia cuando hacemos un resumen con <code>glimpse()</code>)</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="manejo-02a.html#cb136-1" aria-hidden="true" tabindex="-1"></a>df_aprob_por_pais <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df_aprob, country)</span>
-<span id="cb136-2"><a href="manejo-02a.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_aprob_por_pais)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="manejo-02a.html#cb138-1" aria-hidden="true" tabindex="-1"></a>df_aprob_por_pais <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df_aprob, country)</span>
+<span id="cb138-2"><a href="manejo-02a.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_aprob_por_pais)</span></code></pre></div>
 <pre><code>## Rows: 1,020
 ## Columns: 12
 ## Groups: country [17]
@@ -967,10 +967,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ wdi_gdp      &lt;dbl&gt; 552151219031, 552151219031, 552151219~
 ## $ wdi_pop      &lt;dbl&gt; 37057452, 37057452, 37057452, 3705745~</code></pre>
 <p>Hagamos una operación de resumen en esta nueva base:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="manejo-02a.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(df_aprob_por_pais, </span>
-<span id="cb138-2"><a href="manejo-02a.html#cb138-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_desemp   =</span> <span class="fu">mean</span>(unemp),</span>
-<span id="cb138-3"><a href="manejo-02a.html#cb138-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_crec     =</span> <span class="fu">mean</span>(gdp_growth),</span>
-<span id="cb138-4"><a href="manejo-02a.html#cb138-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_aprob    =</span> <span class="fu">mean</span>(net_approval))</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="manejo-02a.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(df_aprob_por_pais, </span>
+<span id="cb140-2"><a href="manejo-02a.html#cb140-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_desemp   =</span> <span class="fu">mean</span>(unemp),</span>
+<span id="cb140-3"><a href="manejo-02a.html#cb140-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_crec     =</span> <span class="fu">mean</span>(gdp_growth),</span>
+<span id="cb140-4"><a href="manejo-02a.html#cb140-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_aprob    =</span> <span class="fu">mean</span>(net_approval))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 17 x 4
 ##    country     prom_desemp prom_crec prom_aprob
@@ -997,8 +997,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="hacer-cadenas-de-operaciones-con-las-pipes" class="section level2">
 <h2>Hacer cadenas de operaciones con las pipes (<code>%&gt;%</code>)</h2>
 <p>La mayor parte del tiempo queremos hacer <strong>más de una operación</strong> en una base de datos. Por ejemplo, podríamos querer (1) crear una nueva variable con PIB per capita, y luego (2) filtrar las observaciones con valores iguales o mayores a la media de PIB per capita en toda la base:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="manejo-02a.html#cb141-1" aria-hidden="true" tabindex="-1"></a>df_aprob_con_pib_pc <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df_aprob, <span class="at">pib_pc =</span> wdi_gdp <span class="sc">/</span> wdi_pop)</span>
-<span id="cb141-2"><a href="manejo-02a.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob_con_pib_pc, pib_pc <span class="sc">&gt;</span> <span class="fu">mean</span>(pib_pc))</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="manejo-02a.html#cb143-1" aria-hidden="true" tabindex="-1"></a>df_aprob_con_pib_pc <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df_aprob, <span class="at">pib_pc =</span> wdi_gdp <span class="sc">/</span> wdi_pop)</span>
+<span id="cb143-2"><a href="manejo-02a.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob_con_pib_pc, pib_pc <span class="sc">&gt;</span> <span class="fu">mean</span>(pib_pc))</span></code></pre></div>
 <pre><code>## # A tibble: 492 x 13
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -1016,9 +1016,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   pres_sex_d &lt;dbl&gt;, exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
 ## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;, pib_pc &lt;dbl&gt;</code></pre>
 <p>Esta misma cadena de operaciones se puede escribir de la siguiente forma:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="manejo-02a.html#cb143-1" aria-hidden="true" tabindex="-1"></a>df_aprob <span class="sc">%&gt;%</span> </span>
-<span id="cb143-2"><a href="manejo-02a.html#cb143-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pib_pc =</span> wdi_gdp <span class="sc">/</span> wdi_pop) <span class="sc">%&gt;%</span> </span>
-<span id="cb143-3"><a href="manejo-02a.html#cb143-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pib_pc <span class="sc">&gt;</span> <span class="fu">mean</span>(pib_pc))</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="manejo-02a.html#cb145-1" aria-hidden="true" tabindex="-1"></a>df_aprob <span class="sc">%&gt;%</span> </span>
+<span id="cb145-2"><a href="manejo-02a.html#cb145-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pib_pc =</span> wdi_gdp <span class="sc">/</span> wdi_pop) <span class="sc">%&gt;%</span> </span>
+<span id="cb145-3"><a href="manejo-02a.html#cb145-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pib_pc <span class="sc">&gt;</span> <span class="fu">mean</span>(pib_pc))</span></code></pre></div>
 <pre><code>## # A tibble: 492 x 13
 ##    country  year quarter president net_approval pres_sex
 ##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   
@@ -1037,11 +1037,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;, pib_pc &lt;dbl&gt;</code></pre>
 <p>¡Este código es sorprendemente legible! Las pipes (<code>%&gt;%</code>) se leen como “luego” (o “pero luego”) y se insertan con Ctrl/Cmd + Shift + M en RStudio. Pueden ver todos los atajos de teclado en Help &gt; Keyboard Shortcuts Help.</p>
 <p>Uno de los usos más comunes de las pipes es el combo <code>group_by()</code> + <code>summarize()</code>. Repitamos nuestras operaciones de antes para hacer un resumen agrupado:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="manejo-02a.html#cb145-1" aria-hidden="true" tabindex="-1"></a>df_aprob <span class="sc">%&gt;%</span> </span>
-<span id="cb145-2"><a href="manejo-02a.html#cb145-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
-<span id="cb145-3"><a href="manejo-02a.html#cb145-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prom_desemp   =</span> <span class="fu">mean</span>(unemp),</span>
-<span id="cb145-4"><a href="manejo-02a.html#cb145-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">prom_crec     =</span> <span class="fu">mean</span>(gdp_growth),</span>
-<span id="cb145-5"><a href="manejo-02a.html#cb145-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">prom_aprob    =</span> <span class="fu">mean</span>(net_approval))</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="manejo-02a.html#cb147-1" aria-hidden="true" tabindex="-1"></a>df_aprob <span class="sc">%&gt;%</span> </span>
+<span id="cb147-2"><a href="manejo-02a.html#cb147-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb147-3"><a href="manejo-02a.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prom_desemp   =</span> <span class="fu">mean</span>(unemp),</span>
+<span id="cb147-4"><a href="manejo-02a.html#cb147-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">prom_crec     =</span> <span class="fu">mean</span>(gdp_growth),</span>
+<span id="cb147-5"><a href="manejo-02a.html#cb147-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">prom_aprob    =</span> <span class="fu">mean</span>(net_approval))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 17 x 4
 ##    country     prom_desemp prom_crec prom_aprob

@@ -220,11 +220,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Como al principio de todo script, recomiendo reiniciar R. Esto lo conseguimos con Session &gt; Restart R y clickeando en la escoba del panel de “Environment” (superior derecho).</p>
 <p>Ahora carguemos los paquetes que usaremos:</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="manejo-02c.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb148-2"><a href="manejo-02c.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)  <span class="co"># leer datos de Excel</span></span>
-<span id="cb148-3"><a href="manejo-02c.html#cb148-3" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages(c(&quot;janitor&quot;, &quot;writexl&quot;))</span></span>
-<span id="cb148-4"><a href="manejo-02c.html#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) <span class="co"># limpiar bases</span></span>
-<span id="cb148-5"><a href="manejo-02c.html#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)  <span class="co"># guardar bases de Excel</span></span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="manejo-02c.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb150-2"><a href="manejo-02c.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)  <span class="co"># leer datos de Excel</span></span>
+<span id="cb150-3"><a href="manejo-02c.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages(c(&quot;janitor&quot;, &quot;writexl&quot;))</span></span>
+<span id="cb150-4"><a href="manejo-02c.html#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) <span class="co"># limpiar bases</span></span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="manejo-02c.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)  <span class="co"># guardar bases de Excel</span></span></code></pre></div>
 <div id="cargar-y-guardar-bases-de-datos" class="section level2">
 <h2>Cargar y guardar bases de datos</h2>
 <div id="cargar-desde-múltiples-formatos" class="section level4">
@@ -277,8 +282,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>En esta ocasión cargaremos unos datos en formato Excel. Es muy común encontrar datos que tienen este tipo de extensión, y en general no vienen demasiado limpios (el trabajo con planillas no necesariamente se hace pensando en el procesamiento con código).</p>
 <p><a href="https://drive.google.com/a/uc.cl/file/d/14lmi6SnIn30KbOgm1t1RdPNtpdPeQcD9/view?usp=drivesdk">Inspeccionémoslos visualmente</a>. Son datos de casos policiales en 2016 para 340 comunas de Chile, recolectados desde la <a href="http://www.fnsp.gob.cl/estadisticas-delictuales-por-comuna/">Subsecretaría de Prevención del Delito (2017)</a>.</p>
 <p>Habiendo cargando el paquete <code>readxl</code> antes, la sintaxis para cargar los datos será familiar:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="manejo-02c.html#cb149-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;datos/casos_delitos_por_comuna.xlsx&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="manejo-02c.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_casos_policiales)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="manejo-02c.html#cb154-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;datos/casos_delitos_por_comuna.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="manejo-02c.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_casos_policiales)</span></code></pre></div>
 <pre><code>## Rows: 340
 ## Columns: 17
 ## $ Comuna                                       &lt;chr&gt; &quot;Alga~
@@ -300,9 +305,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ VIF                                          &lt;dbl&gt; 129, ~</code></pre>
 <p>Los nombres de las columnas en la base tienen mayúsculas, espacios y tildes, lo que nos puede generar problemas en el análisis. La <a href="https://style.tidyverse.org/">convención en el <code>tidyverse</code></a> es nombrar utilizando snake_case (nombre_de_mi_objeto), sin mayúsculas, espacios ni tildes. Esto nos ahorrará muchos problemas.</p>
 <p>Si ya tenemos una base de datos y queremos estandarizar sus variables, el paquete <code>janitor</code> provee la función <code>clean_names()</code> para esto:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="manejo-02c.html#cb152-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="ot">&lt;-</span> df_casos_policiales <span class="sc">%&gt;%</span> </span>
-<span id="cb152-2"><a href="manejo-02c.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="manejo-02c.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_casos_policiales_l)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="manejo-02c.html#cb157-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="ot">&lt;-</span> df_casos_policiales <span class="sc">%&gt;%</span> </span>
+<span id="cb157-2"><a href="manejo-02c.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="manejo-02c.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_casos_policiales_l)</span></code></pre></div>
 <pre><code>## Rows: 340
 ## Columns: 17
 ## $ comuna                                    &lt;chr&gt; &quot;Algarro~
@@ -331,11 +336,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="crear-bases-de-datos-a-mano" class="section level4">
 <h4>Crear bases de datos “a mano”</h4>
 <p>A veces queremos crear un data frame arbitrariamente a partir de vectores. Para esto, la funcióm <code>tibble()</code> es simple y útil:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="manejo-02c.html#cb155-1" aria-hidden="true" tabindex="-1"></a>df_ejemplo <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb155-2"><a href="manejo-02c.html#cb155-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),</span>
-<span id="cb155-3"><a href="manejo-02c.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>)</span>
-<span id="cb155-4"><a href="manejo-02c.html#cb155-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="manejo-02c.html#cb156-1" aria-hidden="true" tabindex="-1"></a>df_ejemplo</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="manejo-02c.html#cb160-1" aria-hidden="true" tabindex="-1"></a>df_ejemplo <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb160-2"><a href="manejo-02c.html#cb160-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),</span>
+<span id="cb160-3"><a href="manejo-02c.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>)</span>
+<span id="cb160-4"><a href="manejo-02c.html#cb160-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="manejo-02c.html#cb161-1" aria-hidden="true" tabindex="-1"></a>df_ejemplo</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 2
 ##        x     y
 ##    &lt;int&gt; &lt;dbl&gt;
@@ -355,12 +360,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Guardar una base de datos es necesario para compartirla con colegas o usarla en otros proyectos. La mayoría de las funciones que vimos, que comienzan con <code>read_</code>, tienen su versión <code>write_</code> para este propósito. Por ejemplo, <code>read_csv()</code> -&gt; <code>write_csv()</code>. El único par de comandos en los que hay algo distinto es <code>readxl::read_excel()</code> -&gt; <code>writexl::write_xlsx()</code>.</p>
 <p>En general, los mejores formatos para guardar bases son .csv (muy universal) y .rds (nos aseguramos de que cualquier cosa extraña en nuestros datos pueda volver bien a R).</p>
 <p>Guardemos los datos en formatos .csv, .rds y .xlsx (Excel). Recuerda que ya cargamos antes el paquete <code>writexl</code>, que nos permite hacer esto último.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="manejo-02c.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(df_ejemplo, <span class="st">&quot;datos/df_ejemplo.csv&quot;</span>)</span>
-<span id="cb158-2"><a href="manejo-02c.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(df_ejemplo, <span class="st">&quot;datos/df_ejemplo.rds&quot;</span>)</span>
-<span id="cb158-3"><a href="manejo-02c.html#cb158-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(df_ejemplo, <span class="st">&quot;datos/df_ejemplo.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="manejo-02c.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(df_ejemplo, <span class="st">&quot;datos/df_ejemplo.csv&quot;</span>)</span>
+<span id="cb163-2"><a href="manejo-02c.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(df_ejemplo, <span class="st">&quot;datos/df_ejemplo.rds&quot;</span>)</span>
+<span id="cb163-3"><a href="manejo-02c.html#cb163-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(df_ejemplo, <span class="st">&quot;datos/df_ejemplo.xlsx&quot;</span>)</span></code></pre></div>
 <p>Podríamos volver a cargarlo con <code>read_excel()</code>:</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="manejo-02c.html#cb159-1" aria-hidden="true" tabindex="-1"></a>df_ejemplo_comprob <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;datos/df_ejemplo.xlsx&quot;</span>)</span>
-<span id="cb159-2"><a href="manejo-02c.html#cb159-2" aria-hidden="true" tabindex="-1"></a>df_ejemplo_comprob</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="manejo-02c.html#cb164-1" aria-hidden="true" tabindex="-1"></a>df_ejemplo_comprob <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;datos/df_ejemplo.xlsx&quot;</span>)</span>
+<span id="cb164-2"><a href="manejo-02c.html#cb164-2" aria-hidden="true" tabindex="-1"></a>df_ejemplo_comprob</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 2
 ##        x     y
 ##    &lt;dbl&gt; &lt;dbl&gt;
@@ -383,10 +388,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="versiones-iterativas-de-summarize-y-mutate" class="section level2">
 <h2>Versiones iterativas de <code>summarize()</code> y <code>mutate()</code></h2>
 <p>Es común necesitar hacer una misma operación en múltiples columnas de una base. Por ejemplo, podríamos querer los totales de delitos específicos por región, como muestra el siguiente chunk.</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="manejo-02c.html#cb161-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
-<span id="cb161-2"><a href="manejo-02c.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb161-3"><a href="manejo-02c.html#cb161-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">lesiones_leves_total =</span> <span class="fu">sum</span>(lesiones_leves),</span>
-<span id="cb161-4"><a href="manejo-02c.html#cb161-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">hurtos_total =</span> <span class="fu">sum</span>(hurtos))</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="manejo-02c.html#cb166-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb166-2"><a href="manejo-02c.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb166-3"><a href="manejo-02c.html#cb166-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">lesiones_leves_total =</span> <span class="fu">sum</span>(lesiones_leves),</span>
+<span id="cb166-4"><a href="manejo-02c.html#cb166-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">hurtos_total =</span> <span class="fu">sum</span>(hurtos))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 16 x 3
 ##    region_id lesiones_leves_total hurtos_total
@@ -408,10 +413,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 15        15                  733         1762
 ## 16        16                 1250         3644</code></pre>
 <p>Sin embargo, hacer este código para los 13 tipos de delito es una pérdida de tiempo: generaría código particularmente difícil de leer. Podemos aplicar la función <code>summarize_at()</code> para usar la función de suma en múltiples variables. Noten cómo en el código siguiente “.” reemplazará a la variable en la definición de la operación (gracias al operador “~”).</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="manejo-02c.html#cb164-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
-<span id="cb164-2"><a href="manejo-02c.html#cb164-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb164-3"><a href="manejo-02c.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
-<span id="cb164-4"><a href="manejo-02c.html#cb164-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="sc">~</span><span class="fu">sum</span>(.))</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="manejo-02c.html#cb169-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb169-2"><a href="manejo-02c.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb169-3"><a href="manejo-02c.html#cb169-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
+<span id="cb169-4"><a href="manejo-02c.html#cb169-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="sc">~</span><span class="fu">sum</span>(.))</span></code></pre></div>
 <pre><code>## # A tibble: 16 x 14
 ##    region_id robos_con_viole~ robos_por_sorpr~
 ##        &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
@@ -441,10 +446,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   lesiones_leves &lt;dbl&gt;, homicidios &lt;dbl&gt;,
 ## #   violaciones &lt;dbl&gt;, vif &lt;dbl&gt;</code></pre>
 <p>Incluso podemos editar un poco los nombres de los resúmenes, asignándolos como elementos en una lista. Noten cómo van a cambiar dichos nombres, terminando ahora en "_total":</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="manejo-02c.html#cb166-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
-<span id="cb166-2"><a href="manejo-02c.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb166-3"><a href="manejo-02c.html#cb166-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
-<span id="cb166-4"><a href="manejo-02c.html#cb166-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">total =</span> <span class="sc">~</span><span class="fu">sum</span>(.)))</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="manejo-02c.html#cb171-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb171-2"><a href="manejo-02c.html#cb171-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb171-3"><a href="manejo-02c.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
+<span id="cb171-4"><a href="manejo-02c.html#cb171-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">total =</span> <span class="sc">~</span><span class="fu">sum</span>(.)))</span></code></pre></div>
 <pre><code>## # A tibble: 16 x 14
 ##    region_id robos_con_viole~ robos_por_sorpr~
 ##        &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
@@ -474,10 +479,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   lesiones_leves_total &lt;dbl&gt;, homicidios_total &lt;dbl&gt;,
 ## #   violaciones_total &lt;dbl&gt;, vif_total &lt;dbl&gt;</code></pre>
 <p>También podemos utilizar más de una función de resumen a la vez en nuestros datos:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="manejo-02c.html#cb168-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
-<span id="cb168-2"><a href="manejo-02c.html#cb168-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb168-3"><a href="manejo-02c.html#cb168-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
-<span id="cb168-4"><a href="manejo-02c.html#cb168-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">total =</span> <span class="sc">~</span><span class="fu">sum</span>(.), <span class="at">max =</span> <span class="sc">~</span><span class="fu">max</span>(.)))</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="manejo-02c.html#cb173-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb173-2"><a href="manejo-02c.html#cb173-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb173-3"><a href="manejo-02c.html#cb173-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
+<span id="cb173-4"><a href="manejo-02c.html#cb173-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">total =</span> <span class="sc">~</span><span class="fu">sum</span>(.), <span class="at">max =</span> <span class="sc">~</span><span class="fu">max</span>(.)))</span></code></pre></div>
 <pre><code>## # A tibble: 16 x 27
 ##    region_id robos_con_viole~ robos_por_sorpr~
 ##        &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
@@ -518,9 +523,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   violaciones_max &lt;dbl&gt;, vif_max &lt;dbl&gt;</code></pre>
 <p>Aparte de hacer resúmenes, crear múltiples variables según una misma operación es bastante común.</p>
 <p>Supongamos que queremos las cifras relativas (tasas) para cada tipo de delito, como en el siguiente ejemplo:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="manejo-02c.html#cb170-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
-<span id="cb170-2"><a href="manejo-02c.html#cb170-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lesiones_leves_c1000 =</span> lesiones_leves <span class="sc">*</span> <span class="dv">1000</span> <span class="sc">/</span> poblacion_ine_2017) <span class="sc">%&gt;%</span> </span>
-<span id="cb170-3"><a href="manejo-02c.html#cb170-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(comuna, poblacion_ine_2017, lesiones_leves, lesiones_leves_c1000) <span class="co"># solo para legibilidad</span></span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="manejo-02c.html#cb175-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb175-2"><a href="manejo-02c.html#cb175-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lesiones_leves_c1000 =</span> lesiones_leves <span class="sc">*</span> <span class="dv">1000</span> <span class="sc">/</span> poblacion_ine_2017) <span class="sc">%&gt;%</span> </span>
+<span id="cb175-3"><a href="manejo-02c.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(comuna, poblacion_ine_2017, lesiones_leves, lesiones_leves_c1000) <span class="co"># solo para legibilidad</span></span></code></pre></div>
 <pre><code>## # A tibble: 340 x 4
 ##    comuna   poblacion_ine_2~ lesiones_leves lesiones_leves_~
 ##    &lt;chr&gt;               &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
@@ -536,9 +541,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Antofag~           389812           1528             3.92
 ## # ... with 330 more rows</code></pre>
 <p>Podemos utilizar <code>mutate_at()</code> para repetir esta operación en todas nuestras variables de interés.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="manejo-02c.html#cb172-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
-<span id="cb172-2"><a href="manejo-02c.html#cb172-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
-<span id="cb172-3"><a href="manejo-02c.html#cb172-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">c1000 =</span> <span class="sc">~</span> . <span class="sc">*</span> <span class="dv">1000</span> <span class="sc">/</span> poblacion_ine_2017))</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="manejo-02c.html#cb177-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb177-2"><a href="manejo-02c.html#cb177-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
+<span id="cb177-3"><a href="manejo-02c.html#cb177-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">c1000 =</span> <span class="sc">~</span> . <span class="sc">*</span> <span class="dv">1000</span> <span class="sc">/</span> poblacion_ine_2017))</span></code></pre></div>
 <pre><code>## # A tibble: 340 x 30
 ##    comuna comuna_id region_id poblacion_ine_2~
 ##    &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
@@ -576,9 +581,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ejercicio-c-1" class="section level4">
 <h4>(Ejercicio C)</h4>
 <p>Si queremos obtener un promedio por región en datos como estos, debemos calcular un <strong>promedio ponderado</strong>: si es que no hacemos esto, comunas con pocos habitantes estarán sobrerrepresentadas en los promedios. Un ejemplo a continuación:</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="manejo-02c.html#cb174-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
-<span id="cb174-2"><a href="manejo-02c.html#cb174-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb174-3"><a href="manejo-02c.html#cb174-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prom_hurtos =</span> <span class="fu">weighted.mean</span>(hurtos, <span class="at">w =</span> poblacion_ine_2017))</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="manejo-02c.html#cb179-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
+<span id="cb179-2"><a href="manejo-02c.html#cb179-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb179-3"><a href="manejo-02c.html#cb179-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prom_hurtos =</span> <span class="fu">weighted.mean</span>(hurtos, <span class="at">w =</span> poblacion_ine_2017))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 16 x 2
 ##    region_id prom_hurtos
