@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-04-05" />
+<meta name="date" content="2021-04-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="visualizacion-ext.html"/>
-
+<link rel="next" href="busqueda-ayuda.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -194,6 +194,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#gráficos-como-objetos-guardar-gráficos-en-el-disco"><i class="fa fa-check"></i>Gráficos como objetos / guardar gráficos en el disco</a></li>
 <li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#personalización-de-gráficos"><i class="fa fa-check"></i>Personalización de gráficos</a></li>
 </ul></li>
+<li class="part"><span><b>IV Búsqueda de ayuda</b></span></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html"><i class="fa fa-check"></i>04 - Guía búsqueda de ayuda</a>
+<ul>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#leer-archivos-de-ayuda-de-r"><i class="fa fa-check"></i>Leer archivos de ayuda de R</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#encontrar-funciones-en-línea"><i class="fa fa-check"></i>Encontrar funciones en línea</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#solucionar-problemas"><i class="fa fa-check"></i>Solucionar problemas</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#pedir-ayuda-con-ejemplos-reproducibles-reprex"><i class="fa fa-check"></i>Pedir ayuda con ejemplos reproducibles (reprex)</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -333,21 +341,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="visualizacion-personalizacion.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(carreras_eeuu)</span></code></pre></div>
 <pre><code>## Rows: 171
 ## Columns: 15
-## $ carrera_codigo             &lt;dbl&gt; 1100, 1101, 1102, 1103,~
-## $ carrera                    &lt;chr&gt; &quot;Agricultura (General)&quot;~
-## $ carrera_tipo1              &lt;chr&gt; &quot;STEM&quot;, &quot;STEM&quot;, &quot;STEM&quot;,~
-## $ carrera_tipo2              &lt;chr&gt; &quot;Agricultura y Recursos~
-## $ estudiantes_total          &lt;dbl&gt; 10399, 14240, 2439, 215~
-## $ estudiantes_muj            &lt;dbl&gt; 6053, 9658, 1749, 5347,~
-## $ estudiantes_hom            &lt;dbl&gt; 4346, 4582, 690, 16226,~
-## $ salario_mediana            &lt;dbl&gt; 40000, 40000, 40000, 30~
-## $ salario_q1                 &lt;dbl&gt; 30000, 25000, 27000, 22~
-## $ salario_q3                 &lt;dbl&gt; 50000, 50000, 54000, 40~
-## $ en_part_time               &lt;dbl&gt; 2031, 2196, 620, 5353, ~
-## $ en_trabajos_calificados    &lt;dbl&gt; 2418, 1925, 535, 5443, ~
-## $ en_trabajos_no_calificados &lt;dbl&gt; 4717, 6221, 893, 9571, ~
-## $ en_trabajos_sueldo_min     &lt;dbl&gt; 839, 1362, 94, 2125, 12~
-## $ desempleados               &lt;dbl&gt; 178, 649, 182, 917, 314~</code></pre>
+## $ carrera_codigo             &lt;dbl&gt; 1100, 1101, 1102, 1103, 1105, 11~
+## $ carrera                    &lt;chr&gt; &quot;Agricultura (General)&quot;, &quot;Produc~
+## $ carrera_tipo1              &lt;chr&gt; &quot;STEM&quot;, &quot;STEM&quot;, &quot;STEM&quot;, &quot;STEM&quot;, ~
+## $ carrera_tipo2              &lt;chr&gt; &quot;Agricultura y Recursos Naturale~
+## $ estudiantes_total          &lt;dbl&gt; 10399, 14240, 2439, 21573, 7416,~
+## $ estudiantes_muj            &lt;dbl&gt; 6053, 9658, 1749, 5347, 4897, 47~
+## $ estudiantes_hom            &lt;dbl&gt; 4346, 4582, 690, 16226, 2519, 20~
+## $ salario_mediana            &lt;dbl&gt; 40000, 40000, 40000, 30000, 3200~
+## $ salario_q1                 &lt;dbl&gt; 30000, 25000, 27000, 22000, 2290~
+## $ salario_q3                 &lt;dbl&gt; 50000, 50000, 54000, 40000, 4000~
+## $ en_part_time               &lt;dbl&gt; 2031, 2196, 620, 5353, 1246, 185~
+## $ en_trabajos_calificados    &lt;dbl&gt; 2418, 1925, 535, 5443, 2089, 355~
+## $ en_trabajos_no_calificados &lt;dbl&gt; 4717, 6221, 893, 9571, 3545, 144~
+## $ en_trabajos_sueldo_min     &lt;dbl&gt; 839, 1362, 94, 2125, 1231, 0, 31~
+## $ desempleados               &lt;dbl&gt; 178, 649, 182, 917, 314, 0, 82, ~</code></pre>
 <div id="ejercicio-a-4" class="section level6">
 <h6>(Ejercicio A)</h6>
 <p>Antes de comenzar a trabajar con los datos, crea una nueva base de datos llamada “carreras_eeuu2” que tenga tres nuevas variables: porc_mujeres, porc_desempleo, porc_en_trabajos_calificados (todas calculadas con respecto al total de cada carrera). Tu código:</p>
@@ -469,13 +477,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="visualizacion-ext.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="visualizacion-ext.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="busqueda-ayuda.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

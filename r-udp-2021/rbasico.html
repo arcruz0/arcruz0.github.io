@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-04-05" />
+<meta name="date" content="2021-04-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,6 +193,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#gráfico-de-ejemplo"><i class="fa fa-check"></i>Gráfico de ejemplo</a></li>
 <li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#gráficos-como-objetos-guardar-gráficos-en-el-disco"><i class="fa fa-check"></i>Gráficos como objetos / guardar gráficos en el disco</a></li>
 <li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#personalización-de-gráficos"><i class="fa fa-check"></i>Personalización de gráficos</a></li>
+</ul></li>
+<li class="part"><span><b>IV Búsqueda de ayuda</b></span></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html"><i class="fa fa-check"></i>04 - Guía búsqueda de ayuda</a>
+<ul>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#leer-archivos-de-ayuda-de-r"><i class="fa fa-check"></i>Leer archivos de ayuda de R</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#encontrar-funciones-en-línea"><i class="fa fa-check"></i>Encontrar funciones en línea</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#solucionar-problemas"><i class="fa fa-check"></i>Solucionar problemas</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#pedir-ayuda-con-ejemplos-reproducibles-reprex"><i class="fa fa-check"></i>Pedir ayuda con ejemplos reproducibles (reprex)</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -368,40 +376,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>También podemos inspeccionar un data frame clickeando su nombre en el panel superior derecho, pestaña Environment.</p>
 <p>Las columnas de un data frame son vectores!</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="rbasico.html#cb64-1" aria-hidden="true" tabindex="-1"></a>df_trump_scores<span class="sc">$</span>last_name</span></code></pre></div>
-<pre><code>##   [1] &quot;Alexander&quot;    &quot;Blunt&quot;        &quot;Brown&quot;       
-##   [4] &quot;Burr&quot;         &quot;Baldwin&quot;      &quot;Boozman&quot;     
-##   [7] &quot;Blackburn&quot;    &quot;Barrasso&quot;     &quot;Bennet&quot;      
-##  [10] &quot;Blumenthal&quot;   &quot;Booker&quot;       &quot;Braun&quot;       
-##  [13] &quot;Cantwell&quot;     &quot;Cardin&quot;       &quot;Carper&quot;      
-##  [16] &quot;Crapo&quot;        &quot;Collins&quot;      &quot;Capito&quot;      
-##  [19] &quot;Cornyn&quot;       &quot;Casey&quot;        &quot;Cassidy&quot;     
-##  [22] &quot;Coons&quot;        &quot;Cotton&quot;       &quot;Cramer&quot;      
-##  [25] &quot;Cruz&quot;         &quot;Cortez Masto&quot; &quot;Durbin&quot;      
-##  [28] &quot;Daines&quot;       &quot;Duckworth&quot;    &quot;Enzi&quot;        
-##  [31] &quot;Ernst&quot;        &quot;Feinstein&quot;    &quot;Fischer&quot;     
-##  [34] &quot;Graham&quot;       &quot;Grassley&quot;     &quot;Gillibrand&quot;  
-##  [37] &quot;Gardner&quot;      &quot;Hirono&quot;       &quot;Heinrich&quot;    
-##  [40] &quot;Hoeven&quot;       &quot;Harris&quot;       &quot;Hassan&quot;      
-##  [43] &quot;Hyde-Smith&quot;   &quot;Hawley&quot;       &quot;Inhofe&quot;      
-##  [46] &quot;Johnson&quot;      &quot;Jones&quot;        &quot;Klobuchar&quot;   
-##  [49] &quot;King&quot;         &quot;Kaine&quot;        &quot;Kennedy&quot;     
-##  [52] &quot;Leahy&quot;        &quot;Lankford&quot;     &quot;Lee&quot;         
-##  [55] &quot;Loeffler&quot;     &quot;Markey&quot;       &quot;McConnell&quot;   
-##  [58] &quot;Menendez&quot;     &quot;Moran&quot;        &quot;Murray&quot;      
-##  [61] &quot;Murkowski&quot;    &quot;Murphy&quot;       &quot;Merkley&quot;     
-##  [64] &quot;Manchin&quot;      &quot;McSally&quot;      &quot;Portman&quot;     
-##  [67] &quot;Peters&quot;       &quot;Paul&quot;         &quot;Perdue&quot;      
-##  [70] &quot;Reed&quot;         &quot;Roberts&quot;      &quot;Risch&quot;       
-##  [73] &quot;Rubio&quot;        &quot;Rounds&quot;       &quot;Rosen&quot;       
-##  [76] &quot;Romney&quot;       &quot;Sanders&quot;      &quot;Schumer&quot;     
-##  [79] &quot;Shelby&quot;       &quot;Stabenow&quot;     &quot;Shaheen&quot;     
-##  [82] &quot;Scott&quot;        &quot;Sinema&quot;       &quot;Schatz&quot;      
-##  [85] &quot;Sasse&quot;        &quot;Sullivan&quot;     &quot;Smith&quot;       
-##  [88] &quot;Scott&quot;        &quot;Thune&quot;        &quot;Toomey&quot;      
-##  [91] &quot;Tester&quot;       &quot;Tillis&quot;       &quot;Udall&quot;       
-##  [94] &quot;Van Hollen&quot;   &quot;Wicker&quot;       &quot;Wyden&quot;       
-##  [97] &quot;Whitehouse&quot;   &quot;Warner&quot;       &quot;Warren&quot;      
-## [100] &quot;Young&quot;</code></pre>
+<pre><code>##   [1] &quot;Alexander&quot;    &quot;Blunt&quot;        &quot;Brown&quot;        &quot;Burr&quot;        
+##   [5] &quot;Baldwin&quot;      &quot;Boozman&quot;      &quot;Blackburn&quot;    &quot;Barrasso&quot;    
+##   [9] &quot;Bennet&quot;       &quot;Blumenthal&quot;   &quot;Booker&quot;       &quot;Braun&quot;       
+##  [13] &quot;Cantwell&quot;     &quot;Cardin&quot;       &quot;Carper&quot;       &quot;Crapo&quot;       
+##  [17] &quot;Collins&quot;      &quot;Capito&quot;       &quot;Cornyn&quot;       &quot;Casey&quot;       
+##  [21] &quot;Cassidy&quot;      &quot;Coons&quot;        &quot;Cotton&quot;       &quot;Cramer&quot;      
+##  [25] &quot;Cruz&quot;         &quot;Cortez Masto&quot; &quot;Durbin&quot;       &quot;Daines&quot;      
+##  [29] &quot;Duckworth&quot;    &quot;Enzi&quot;         &quot;Ernst&quot;        &quot;Feinstein&quot;   
+##  [33] &quot;Fischer&quot;      &quot;Graham&quot;       &quot;Grassley&quot;     &quot;Gillibrand&quot;  
+##  [37] &quot;Gardner&quot;      &quot;Hirono&quot;       &quot;Heinrich&quot;     &quot;Hoeven&quot;      
+##  [41] &quot;Harris&quot;       &quot;Hassan&quot;       &quot;Hyde-Smith&quot;   &quot;Hawley&quot;      
+##  [45] &quot;Inhofe&quot;       &quot;Johnson&quot;      &quot;Jones&quot;        &quot;Klobuchar&quot;   
+##  [49] &quot;King&quot;         &quot;Kaine&quot;        &quot;Kennedy&quot;      &quot;Leahy&quot;       
+##  [53] &quot;Lankford&quot;     &quot;Lee&quot;          &quot;Loeffler&quot;     &quot;Markey&quot;      
+##  [57] &quot;McConnell&quot;    &quot;Menendez&quot;     &quot;Moran&quot;        &quot;Murray&quot;      
+##  [61] &quot;Murkowski&quot;    &quot;Murphy&quot;       &quot;Merkley&quot;      &quot;Manchin&quot;     
+##  [65] &quot;McSally&quot;      &quot;Portman&quot;      &quot;Peters&quot;       &quot;Paul&quot;        
+##  [69] &quot;Perdue&quot;       &quot;Reed&quot;         &quot;Roberts&quot;      &quot;Risch&quot;       
+##  [73] &quot;Rubio&quot;        &quot;Rounds&quot;       &quot;Rosen&quot;        &quot;Romney&quot;      
+##  [77] &quot;Sanders&quot;      &quot;Schumer&quot;      &quot;Shelby&quot;       &quot;Stabenow&quot;    
+##  [81] &quot;Shaheen&quot;      &quot;Scott&quot;        &quot;Sinema&quot;       &quot;Schatz&quot;      
+##  [85] &quot;Sasse&quot;        &quot;Sullivan&quot;     &quot;Smith&quot;        &quot;Scott&quot;       
+##  [89] &quot;Thune&quot;        &quot;Toomey&quot;       &quot;Tester&quot;       &quot;Tillis&quot;      
+##  [93] &quot;Udall&quot;        &quot;Van Hollen&quot;   &quot;Wicker&quot;       &quot;Wyden&quot;       
+##  [97] &quot;Whitehouse&quot;   &quot;Warner&quot;       &quot;Warren&quot;       &quot;Young&quot;</code></pre>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="rbasico.html#cb66-1" aria-hidden="true" tabindex="-1"></a>df_trump_scores<span class="sc">$</span>trump_score</span></code></pre></div>
 <pre><code>##   [1]  80.000000  84.848485  14.705882  90.322581  14.705882
 ##   [6]  88.235294  93.939394  91.176471  15.384615  11.764706
@@ -455,8 +454,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## trump_margin  0.17650    0.06248   2.825  0.00574 ** 
 ## partyR       66.13619    2.50530  26.399  &lt; 2e-16 ***
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 8.623 on 97 degrees of freedom
 ## Multiple R-squared:  0.9463, Adjusted R-squared:  0.9452 

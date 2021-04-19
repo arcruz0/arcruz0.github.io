@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-04-05" />
+<meta name="date" content="2021-04-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -194,6 +194,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#gráficos-como-objetos-guardar-gráficos-en-el-disco"><i class="fa fa-check"></i>Gráficos como objetos / guardar gráficos en el disco</a></li>
 <li class="chapter" data-level="" data-path="visualizacion-personalizacion.html"><a href="visualizacion-personalizacion.html#personalización-de-gráficos"><i class="fa fa-check"></i>Personalización de gráficos</a></li>
 </ul></li>
+<li class="part"><span><b>IV Búsqueda de ayuda</b></span></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html"><i class="fa fa-check"></i>04 - Guía búsqueda de ayuda</a>
+<ul>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#leer-archivos-de-ayuda-de-r"><i class="fa fa-check"></i>Leer archivos de ayuda de R</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#encontrar-funciones-en-línea"><i class="fa fa-check"></i>Encontrar funciones en línea</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#solucionar-problemas"><i class="fa fa-check"></i>Solucionar problemas</a></li>
+<li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#pedir-ayuda-con-ejemplos-reproducibles-reprex"><i class="fa fa-check"></i>Pedir ayuda con ejemplos reproducibles (reprex)</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -257,8 +265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="visualizacion.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> df_municipios,</span>
 <span id="cb186-2"><a href="visualizacion.html#cb186-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> porc_rural)) <span class="sc">+</span></span>
 <span id="cb186-3"><a href="visualizacion.html#cb186-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
 <p>Podemos controlar cómo se arma el histograma en los argumentos de <code>geom_histogram()</code>:</p>
 <ul>
