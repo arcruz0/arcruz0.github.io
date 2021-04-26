@@ -1,7 +1,7 @@
 --- 
 title: "AnalizaR Datos Políticos"
 author: "Francisco Urdinez y Andrés Cruz Labrín (Editores)"
-date: "Versión 1.0 compilada el 2020-08-21"
+date: "Versión 1.1, compilada el 2021-04-17"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -19,6 +19,8 @@ favicon: "favicon.ico"
 ---
 
 # Introducción {-}
+
+> **NUEVO:** Esta versión 1.1 incluye [respuestas a los ejercicios del libro](https://arcruz0.github.io/libroadp/respuestas-ejercicios.html), realizadas por Eliana Jung.
 
 ## Inicio {-}
 
@@ -114,84 +116,84 @@ El libro se alimenta del avance enorme que se ha hecho en los últimos años a p
 <tbody>
   <tr grouplength="4"><td colspan="3" style="text-align:center"><strong>I. Introducción a R</strong></td></tr>
 <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 1 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 1 </td>
    <td style="text-align:left;"> R básico </td>
    <td style="text-align:left;"> Andrés Cruz </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 2 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 2 </td>
    <td style="text-align:left;"> Manejo de datos </td>
    <td style="text-align:left;"> Andrés Cruz </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 3 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 3 </td>
    <td style="text-align:left;"> Visualización de datos </td>
    <td style="text-align:left;"> Soledad Araya </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 4 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 4 </td>
    <td style="text-align:left;"> Carga de bases </td>
    <td style="text-align:left;"> Soledad Araya y Andrés Cruz </td>
   </tr>
   <tr grouplength="6"><td colspan="3" style="text-align:center"><strong>II. Modelos</strong></td></tr>
 <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 5 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 5 </td>
    <td style="text-align:left;"> Modelos lineales </td>
    <td style="text-align:left;"> Inés Fynn y Lihuen Nocetto </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 6 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 6 </td>
    <td style="text-align:left;"> Selección de casos basada en regresiones </td>
    <td style="text-align:left;"> Inés Fynn y Lihuen Nocetto </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 7 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 7 </td>
    <td style="text-align:left;"> Modelos de panel </td>
    <td style="text-align:left;"> Francisco Urdinez </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 8 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 8 </td>
    <td style="text-align:left;"> Modelos logísticos </td>
    <td style="text-align:left;"> Francisco Urdinez </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 9 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 9 </td>
    <td style="text-align:left;"> Modelos de supervivencia </td>
    <td style="text-align:left;"> Francisco Urdinez </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 10 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 10 </td>
    <td style="text-align:left;"> Inferencia causal </td>
    <td style="text-align:left;"> Andrew Heiss </td>
   </tr>
   <tr grouplength="6"><td colspan="3" style="text-align:center"><strong>III. Aplicaciones</strong></td></tr>
 <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 11 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 11 </td>
    <td style="text-align:left;"> Manejo avanzado de datos políticos </td>
    <td style="text-align:left;"> Andrés Cruz y Francisco Urdinez </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 12 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 12 </td>
    <td style="text-align:left;"> Minería de datos web </td>
    <td style="text-align:left;"> Gonzalo Barría </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 13 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 13 </td>
    <td style="text-align:left;"> Análisis cuantitativo de textos políticos </td>
    <td style="text-align:left;"> Sebastián Huneeus </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 14 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 14 </td>
    <td style="text-align:left;"> Análisis de redes </td>
    <td style="text-align:left;"> Andrés Cruz </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 15 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 15 </td>
    <td style="text-align:left;"> Análisis de componentes principales </td>
    <td style="text-align:left;"> Caterina Labrin y Francisco Urdinez </td>
   </tr>
   <tr>
-   <td style="text-align:right; padding-left: 2em;" indentlevel="1"> 16 </td>
+   <td style="text-align:right; padding-left:  2em;" indentlevel="1"> 16 </td>
    <td style="text-align:left;"> Mapas y datos espaciales </td>
    <td style="text-align:left;"> Andrea Escobar y Gabriel Ortiz </td>
   </tr>

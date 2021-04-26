@@ -24,7 +24,7 @@ El segundo problema es que, en la mayoría de los casos, nuestras bases de datos
 
 La decisión de imputar o no es una decisión del investigador. La imputación será adecuada dependiendo de si los datos faltan de forma **aleatoria** o no. Este dilema está presente cuando los datos se usan para hacer gráficos de tendencia temporal y no queremos que estén incompletos. Además, en algunos modelos avanzados, como los espaciales, el hecho de tener valores perdidos puede inhibirnos de usar comandos. Para estos casos, podemos considerar la imputación de datos. Hacer esto tiene un costo ya que, como toda solución, no es perfecta.
 
-A lo largo de este capítulo utilizaremos la base de datos de tratados internacionales creada por [Carsten Schulz](https://www.carstenschulz.eu/) basada en el [repositorio de tratados internacionales existentes de las Naciones Unidas] (https://tratados.un.org/). Este repositorio alberga todos los tratados internacionales celebrados entre Estados, con sus textos e información sobre los firmantes. La base de datos del ejemplo se simplifica, ya que sólo tiene cuatro tratados internacionales en lugar de los cientos que utiliza Schulz para estudiar las razones que motivan la decisión de un país de adherirse a un acuerdo internacional. 
+A lo largo de este capítulo utilizaremos la base de datos de tratados internacionales creada por [Carsten Schulz](https://www.carstenschulz.eu/) basada en el [repositorio de tratados internacionales existentes de las Naciones Unidas](https://tratados.un.org/). Este repositorio alberga todos los tratados internacionales celebrados entre Estados, con sus textos e información sobre los firmantes. La base de datos del ejemplo se simplifica, ya que sólo tiene cuatro tratados internacionales en lugar de los cientos que utiliza Schulz para estudiar las razones que motivan la decisión de un país de adherirse a un acuerdo internacional. 
 
 Comencemos cargando la base de datos de nuestro paquete, `paqueteadp`:
 
@@ -58,11 +58,11 @@ La unidad de análisis de la base de datos es el país del tratado. Cada observa
 glimpse(tratados)
 ## Rows: 248
 ## Columns: 5
-## $ nombre_tratado <chr> "Tratado de Prohibición Completa de los Ensayos…
-## $ anio_adopcion  <dbl> 1996, 1996, 1996, 1996, 1996, 1996, 1996, 1996,…
-## $ pais_nombre    <chr> "Antigua y Barbuda", "Antigua y Barbuda", "Arge…
-## $ accion_tipo    <chr> "Ratificación", "Firma", "Ratificación", "Firma…
-## $ accion_anio    <dbl> 2006, 1997, 1998, 1996, 2007, 2005, 2008, 2008,…
+## $ nombre_tratado <chr> "Tratado de Prohibición Completa de los Ensayos ~
+## $ anio_adopcion  <dbl> 1996, 1996, 1996, 1996, 1996, 1996, 1996, 1996, ~
+## $ pais_nombre    <chr> "Antigua y Barbuda", "Antigua y Barbuda", "Argen~
+## $ accion_tipo    <chr> "Ratificación", "Firma", "Ratificación", "Firma"~
+## $ accion_anio    <dbl> 2006, 1997, 1998, 1996, 2007, 2005, 2008, 2008, ~
 ```
 
 Nuestra base de datos sólo contiene información de 31 países americanos y sus respuestas (firma, ratificación) a cuatro tratados pertinentes de los años 90. 
@@ -84,10 +84,10 @@ tratados %>%
 ## # A tibble: 4 x 2
 ##   nombre_tratado                                                        n
 ##   <chr>                                                             <int>
-## 1 "Convenio de Rotterdam sobre el Procedimiento de Consentimiento …    62
+## 1 "Convenio de Rotterdam sobre el Procedimiento de Consentimiento ~    62
 ## 2 "Estatuto de Roma de la Corte Penal Internacional"                   62
-## 3 "Protocolo de Kioto de la Convención Marco de las Naciones Unida…    62
-## # … with 1 more row
+## 3 "Protocolo de Kioto de la Convención Marco de las Naciones Unida~    62
+## # ... with 1 more row
 ```
 
 ## Uniendo bases de datos
@@ -111,7 +111,7 @@ resumen_tratados
 ## 1 Antigua y Barbuda          3         3
 ## 2 Argentina                  4         4
 ## 3 Bahamas                    2         1
-## # … with 28 more rows
+## # ... with 28 more rows
 ```
 
 Al explorar la base de datos, un caso interesante es el de los Estados Unidos, que firmó los cuatro tratados pero no los ratificó:
@@ -121,7 +121,7 @@ Al explorar la base de datos, un caso interesante es el de los Estados Unidos, q
 resumen_tratados %>% 
   filter(pais_nombre == "Estados Unidos")
 ## # A tibble: 0 x 3
-## # … with 3 variables
+## # ... with 3 variables
 ```
 
 Sería interesante explorar la relación entre las respuestas de los países a los tratados y algunas otras variables sobre ellos. A modo de ejemplo, cargaremos datos en panel con información sobre el PIB per cápita con paridad de cambio, según el Banco Mundial.
@@ -143,7 +143,7 @@ pib_pc_america %>%
 ## 1 Antigua and Barbuda     3
 ## 2 Argentina               3
 ## 3 Bahamas (the)           3
-## # … with 28 more rows
+## # ... with 28 more rows
 
 pib_pc_america %>% 
   count(anio)
@@ -193,7 +193,7 @@ resumen_completo
 ## 1 Antigua y Barbuda          3         3         NA 
 ## 2 Argentina                  4         4      15362.
 ## 3 Bahamas                    2         1         NA 
-## # … with 28 more rows
+## # ... with 28 more rows
 ```
 
 También es posible unir bases de datos utilizando más de una variable de identificación. Por ejemplo, podríamos unir nuestras bases de datos originales, `tratados` y `pib_pc_america`, ambos con la unidad de observación del año del país. Sin embargo, hay una particularidad. En ambos casos, la variable país se llama `pais_nombre`, pero el nombre de la variable año no es el mismo: en el primero, el nombre es `anio_adopcion` (para la fecha original del tratado), y en el segundo es `anio`. Podemos proporcionar fácilmente esta información a `left_join()` con el argumento `by =`:
@@ -213,10 +213,10 @@ tratados_con_pib
 ## # A tibble: 248 x 6
 ##   nombre_tratado anio_adopcion pais_nombre accion_tipo accion_anio pib_pc
 ##   <chr>                  <dbl> <chr>       <chr>             <dbl>  <dbl>
-## 1 Tratado de Pr…          1996 Antigua y … Ratificaci…        2006    NA 
-## 2 Tratado de Pr…          1996 Antigua y … Firma              1997    NA 
-## 3 Tratado de Pr…          1996 Argentina   Ratificaci…        1998 14557.
-## # … with 245 more rows
+## 1 Tratado de Pr~          1996 Antigua y ~ Ratificaci~        2006    NA 
+## 2 Tratado de Pr~          1996 Antigua y ~ Firma              1997    NA 
+## 3 Tratado de Pr~          1996 Argentina   Ratificaci~        1998 14557.
+## # ... with 245 more rows
 ```
 
 > **Ejercicio 11A.** Descargue el [World Economics and Politics (WEP) Dataverse](https://ncgg.princeton.edu/wep/dataverse.html) y elija diez variables de país-año, incluyendo tanto las características institucionales como económicas de los estados como nuevas variables que se añadirán a `tratados_con_pib` y unirlas. ¿Fue fácil encontrar los identificadores únicos (códigos, nombres)?
@@ -262,7 +262,7 @@ resumen_completo_con_codigos %>%
 ## 1 Antigua y Barbuda AG                311
 ## 2 Argentina         AR                213
 ## 3 Bahamas           BS                313
-## # … with 28 more rows
+## # ... with 28 more rows
 ```
 
 Tener una base de datos con al menos un código de normalización es particularmente útil, ya que a menudo reduce la fricción de unir nuestros datos con otros. El `countrycode`, entonces, es una buena herramienta para pre-procesar las bases de datos con la información del país antes de unirlos.
@@ -303,7 +303,7 @@ resumen_tratados %>%
 ## 1 Antigua y Barbuda          3         3         NA 
 ## 2 Argentina                  4         4      15362.
 ## 3 Bahamas                    2         1      29530.
-## # … with 28 more rows
+## # ... with 28 more rows
 ```
 
 Como pueden observar, la unión falla para las observaciones múltiples porque no se encuentra una coincidencia exacta para la variable de identificación. Ese es el caso de "Antigua y Barbuda" en la base de datos original, y "Antigua & Barbuda" en el adicional. R considera que son unidades diferentes. Intuitivamente, estos valores son similares, pero R no puede adivinar o asumir sin nuestras instrucciones precisas. 
@@ -680,10 +680,10 @@ Podemos mirar los datos imputados, guardados dentro de `imp`:
 ```r
 imputacion_mice$imp$indice_capacidades
 ##     1  2  3  4  5
-## 91 21 22 19 26 29
-## 92 23 27 24 22 22
-## 93 16 33 18 26 25
-## 94 14 28 25 26 28
+## 91 20 22 19 26 25
+## 92 23 27 24 22 19
+## 93 16 33 18 26 22
+## 94 14 28 25 26 25
 ##  [ reached 'max' / getOption("max.print") -- omitted 17 rows ]
 ```
 
@@ -818,15 +818,15 @@ texreg::screenreg(
 ## =====================================================================================
 ##                M incomp    M imp 1     M imp 2     M imp 3     M imp 4     M imp 5   
 ## -------------------------------------------------------------------------------------
-## (Intercept)     15.32 ***   15.02 ***   15.87 ***   15.26 ***   15.81 ***   15.25 ***
+## (Intercept)     15.32 ***   15.05 ***   15.87 ***   15.26 ***   15.81 ***   15.29 ***
 ##                 (0.54)      (0.37)      (0.46)      (0.39)      (0.44)      (0.39)   
 ## cons_energia     0.00 **     0.00 ***    0.00 ***    0.00 ***    0.00 ***    0.00 ***
 ##                 (0.00)      (0.00)      (0.00)      (0.00)      (0.00)      (0.00)   
-## poblacion_urb   -0.01 *     -0.01 **    -0.01 **    -0.01 **    -0.01 ***   -0.01 ** 
+## poblacion_urb   -0.01 *     -0.01 **    -0.01 **    -0.01 **    -0.01 ***   -0.01 *  
 ##                 (0.00)      (0.00)      (0.00)      (0.00)      (0.00)      (0.00)   
 ## -------------------------------------------------------------------------------------
-## R^2              0.04        0.06        0.07        0.07        0.08        0.07    
-## Adj. R^2         0.03        0.06        0.07        0.06        0.08        0.06    
+## R^2              0.04        0.06        0.07        0.07        0.08        0.05    
+## Adj. R^2         0.03        0.06        0.07        0.06        0.08        0.05    
 ## Num. obs.      217         306         306         306         306         306       
 ## =====================================================================================
 ## *** p < 0.001; ** p < 0.01; * p < 0.05
@@ -848,9 +848,9 @@ modelo_combinado <- summary(pool(modelo_combinado_form))
 ```r
 modelo_combinado
 ##            term estimate std.error statistic  df p.value
-## 1   (Intercept)  15.4407   0.58274      26.5  14 1.4e-13
-## 2  cons_energia   0.0015   0.00036       4.1  59 1.4e-04
-## 3 poblacion_urb  -0.0103   0.00355      -2.9 214 4.1e-03
+## 1   (Intercept)  15.4553   0.57258      27.0  15 2.0e-14
+## 2  cons_energia   0.0014   0.00035       4.0  59 1.9e-04
+## 3 poblacion_urb  -0.0099   0.00358      -2.8 162 6.1e-03
 ```
 
 Mostrar los resultados con `texreg` será un poco más complicado, pues no hay una implementación por defecto. Crearemos una personalizada usando `texreg::createTexreg()`, especificando manualmente los coeficientes, errores estándar, $R^2$, etc.
@@ -880,8 +880,8 @@ texreg::screenreg(tr_modelo_combinado)
 ## =========================
 ##                Model 1   
 ## -------------------------
-## (Intercept)     15.44 ***
-##                 (0.58)   
+## (Intercept)     15.46 ***
+##                 (0.57)   
 ## cons_energia     0.00 ***
 ##                 (0.00)   
 ## poblacion_urb   -0.01 ** 
@@ -903,8 +903,8 @@ texreg::screenreg(list(modelo_incompleto, tr_modelo_combinado),
 ## ======================================
 ##                M incomp    M combinado
 ## --------------------------------------
-## (Intercept)     15.32 ***   15.44 *** 
-##                 (0.54)      (0.58)    
+## (Intercept)     15.32 ***   15.46 *** 
+##                 (0.54)      (0.57)    
 ## cons_energia     0.00 **     0.00 *** 
 ##                 (0.00)      (0.00)    
 ## poblacion_urb   -0.01 *     -0.01 **  

@@ -19,15 +19,24 @@ Francisco Urdinez^[E-mail: furdinez\@uc.cl]
 ## Introducción
 
 Hay una serie de cuestiones recurrentes en relación con el análisis de datos políticos que aún no hemos abordado. En muchas ocasiones estamos interesados en saber por qué ciertos eventos duran lo que duran, o por qué tardan más que otros en ocurrir. ¿Por qué la paz es tan duradera en ciertos países, mientras que otros están en guerra constante? ¿Cuál era la posibilidad de que se produjeran disturbios sociales en Venezuela en 2018?  ¿Por qué algunos legisladores permanecen en el cargo durante muchos períodos consecutivos, mientras que otros ni siquiera son reelegidos una vez?  ¿Cuánto tiempo tarda un sindicato en hacer huelga durante una crisis económica?
-Todas estas preguntas son sobre la duración de un evento. El momento de ocurrencia de un evento es parte de la respuesta que buscamos, necesitamos de un modelo que nos permita llegar a esta respuesta. [-@box-steffensmeierEventHistoryModeling2004], una de las principales referencias en Ciencia Política de este método, se refiere a ellos como “modelos de eventos históricos” aunque buena parte de la literatura los llama modelos de supervivencia o modelos de duración. Si bien en la Ciencia Política no son modelos tan utilizados como uno creería (en el fondo, casi todas las preguntas que nos hacemos pueden ser reformuladas en una pregunta sobre la duración del evento), las ciencias médicas han explorado estos métodos en profundidad, y muchas las referencias que uno encuentra en `R` sobre paquetes accesorios a estos modelos son de departamentos bioestadísticos y médicos. De allí que “modelos de supervivencia” sea el nombre más frecuentemente utilizado para estos modelos, ya que en medicina comenzó a utilizárselos para modelar qué variables afectaban la sobrevida de sus pacientes enfermos.  
+
+Todas estas preguntas son sobre la duración de un evento. El momento de ocurrencia de un evento es parte de la respuesta que buscamos, necesitamos de un modelo que nos permita llegar a esta respuesta [@box-steffensmeierEventHistoryModeling2004], una de las principales referencias en Ciencia Política de este método, se refiere a ellos como “modelos de eventos históricos” aunque buena parte de la literatura los llama modelos de supervivencia o modelos de duración. Si bien en la Ciencia Política no son modelos tan utilizados como uno creería (en el fondo, casi todas las preguntas que nos hacemos pueden ser reformuladas en una pregunta sobre la duración del evento), las ciencias médicas han explorado estos métodos en profundidad, y muchas las referencias que uno encuentra en `R` sobre paquetes accesorios a estos modelos son de departamentos bioestadísticos y médicos. De allí que “modelos de supervivencia” sea el nombre más frecuentemente utilizado para estos modelos, ya que en medicina comenzó a utilizárselos para modelar qué variables afectaban la sobrevida de sus pacientes enfermos.  
 
 Podemos tener dos tipos de bases de datos para estos problemas. Por un lado, podemos tener una base en formato de panel en el que para un momento dado nuestra variable dependiente codifica si el evento ha ocurrido (`=1`) o no (`=0`). Así, por ejemplo, podemos tener una muestra de veinte países para cincuenta años (1965-2015) en los que nuestra variable de interés es si el país ha implementado una reforma constitucional. La variable independiente asumirá el valor 1 para el año [1994 en Argentina](https://es.wikipedia.org/wiki/Reforma_constitucional_argentina_de_1994), pero será 0 para el resto de los años en este país. Por otro lado, podemos tener una base de datos transversal en la que cada observación aparece codificada apenas una vez. En este caso necesitamos, además de la variable que nos dirá si en el periodo de interés el evento ocurrió o no para cada observación (por ejemplo, Argentina debería ser codificada como “1”), una variable extra que codifique el tiempo de “supervivencia” de cada observación, es decir, cuánto tiempo pasó hasta que finalmente el evento sucedió. Para el caso de Argentina, esta variable codificará 29 (años), que es lo que demoró en implementarse una reforma constitucional desde 1965. La elección del año de partida, como podrá sospechar, es decisión del investigador, pero tiene un efecto enorme sobre nuestros resultados. Además, muchas veces la fecha de inicio acaba determinada por la disponibilidad de datos y se alejan del ideal que quisiéramos modelar. 
 
 Supongamos que nos hacemos la pregunta que se hizo David Altman [-@altmanCitizenshipContemporaryDirect2019] “¿Por qué algunos países demoran menos que otros en implementar instancias de democracia directa?”. Para ello tenemos una base de datos en formato de panel que parte del año 1900 y que llega a 2016 para 202 países (algunas observaciones, como la Unión Soviética se transforman en otras observaciones a partir de un determinado año en que dejan de existir). Al observar sus datos uno nota algo que probablemente también te suceda en tu base de datos. Para el año 2016 apenas un pequeño porcentaje de países había implementado este tipo de mecanismos (27% para ser más precisos) pero la base está censurada ya que a partir de ese año no sabemos que ha ocurrido con los países que aún no habían implementado mecanismos de democracia directa. No todas las observaciones han “muerto” aún, ¿cómo saber cuándo lo harán? Ésta es una pregunta válida, que podremos responder con este tipo de modelos, ya que podemos calcular el tiempo que demorará cada uno de los países censurados en nuestra muestra (con la información que le damos al modelo, que siempre es incompleta). 
 
-En nuestra base de datos tendremos, al menos, cuatro tipos de observaciones (ver figura \@ref(fig:surv-ex-obs)): (a) aquellas que, para el momento en que tenemos datos ya estaban en la muestra, aunque no siempre sabremos hace cuanto que “existen”. Son, en la figura, las observaciones B y C. En la base de datos de Altman, por ejemplo, México ya existía como entidad política en 1900, cuando su base de datos parte (sabemos que la Primera República Federal existió como entidad política desde octubre de 1824, por lo que México sería codificado como existente a partir de esa fecha). También sabemos que en 2012, por primera vez, México implementó una iniciativa de democracia directa, lo que define como positiva la ocurrencia del evento que nos interesa medir. Así, México sería como la observación B de la figura; (b) Algunas observaciones estarán desde el comienzo de la muestra, y existirán hasta el último momento sin haber registrado el evento de interés. Tal es el caso, de la observación C en la figura. En la muestra de Altman un ejemplo sería Argentina, que desde 1900 está registrado en la base (ya había "nacido"), y hasta el último año de la muestra no había registrado instancias de democracia directa (no "murió"), lo que la transforma en una observación censurada.
+En nuestra base de datos tendremos, al menos, cuatro tipos de observaciones (ver figura \@ref(fig:surv-ex-obs)): 
 
- Por razones prácticas, no cambia saber qué ocurrió a partir del año en que nuestra base termina. Por ejemplo, en la figura, nuestra base cubre hast $t_7$, y sabemos que en $t_8$ la observación C aún no había muerto, y la observación D lo había hecho en $t_8$. En nuestra base, C y D serán ambas observaciones censuradas en $t_7$; (c) Algunas observaciones pueden entrar “tarde” en la muestra, como es el caso de las observaciones A y D. Por ejemplo, Eslovenia entra a la muestra de Altman en 1991, que es cuando se independiza de Yugoslavia y "nace" como país; (d) Algunas observaciones, independientemente de cuando entren a la muestra, "moriran" durante el periodo analizado. Por ejemplo, A y B mueren dentro del periodo que hemos medido entrte $t_1$ y $t_7$. Ya para la observación D, no registramos su muerte. Hay un caso no considerado en el ejemplo, de observaciones que nacen y mueren sucesivamente a lo largo del periodo de estudio. Para ellas, deberemos decidir si las tratamos como observaciones independientes, o si modelamos la posibilidad de morir más de una vez. Si es así, la probabilidad de morir por segunda vez deberá estar condicionada por la probabilidad de haber muerto (y cuando!) por primera vez. Este es un tipo de caso algo más complejo que no cubriremos en este capítulo.
+- (a) aquellas que, para el momento en que tenemos datos ya estaban en la muestra, aunque no siempre sabremos hace cuanto que “existen”. Son, en la figura, las observaciones B y C. En la base de datos de Altman, por ejemplo, México ya existía como entidad política en 1900, cuando su base de datos parte (sabemos que la Primera República Federal existió como entidad política desde octubre de 1824, por lo que México sería codificado como existente a partir de esa fecha). También sabemos que en 2012, por primera vez, México implementó una iniciativa de democracia directa, lo que define como positiva la ocurrencia del evento que nos interesa medir. Así, México sería como la observación B de la figura.
+
+- (b) Algunas observaciones estarán desde el comienzo de la muestra, y existirán hasta el último momento sin haber registrado el evento de interés. Tal es el caso, de la observación C en la figura. En la muestra de Altman un ejemplo sería Argentina, que desde 1900 está registrado en la base (ya había "nacido"), y hasta el último año de la muestra no había registrado instancias de democracia directa (no "murió"), lo que la transforma en una observación censurada.
+
+Por razones prácticas, no cambia saber qué ocurrió a partir del año en que nuestra base termina. Por ejemplo, en la figura, nuestra base cubre hast $t_7$, y sabemos que en $t_8$ la observación C aún no había muerto, y la observación D lo había hecho en $t_8$. En nuestra base, C y D serán ambas observaciones censuradas en $t_7$.
+
+- (c) Algunas observaciones pueden entrar “tarde” en la muestra, como es el caso de las observaciones A y D. Por ejemplo, Eslovenia entra a la muestra de Altman en 1991, que es cuando se independiza de Yugoslavia y "nace" como país.
+
+- (d) Algunas observaciones, independientemente de cuando entren a la muestra, "moriran" durante el periodo analizado. Por ejemplo, A y B mueren dentro del periodo que hemos medido entrte $t_1$ y $t_7$. Ya para la observación D, no registramos su muerte. Hay un caso no considerado en el ejemplo, de observaciones que nacen y mueren sucesivamente a lo largo del periodo de estudio. Para ellas, deberemos decidir si las tratamos como observaciones independientes, o si modelamos la posibilidad de morir más de una vez. Si es así, la probabilidad de morir por segunda vez deberá estar condicionada por la probabilidad de haber muerto (y cuando!) por primera vez. Este es un tipo de caso algo más complejo que no cubriremos en este capítulo.
 
 
 <div class="figure" style="text-align: center">
@@ -133,19 +142,17 @@ Los países ""entran" a la base cuando comienzan a existir como países independ
 democracia_directa %>%
   filter(pais_nombre == "Albania")
 ## # A tibble: 105 x 23
-##   pais_nombre  anio dem_directa dem_rapida_posi… dem_rapida_nega… memoria
+##   pais_nombre  anio dem_directa dem_rapida_posi~ dem_rapida_nega~ memoria
 ##   <chr>       <dbl>       <dbl>            <dbl>            <dbl>   <dbl>
 ## 1 Albania      1912           0                0                0       0
 ## 2 Albania      1913           0                0                0       0
 ## 3 Albania      1914           0                0                0       0
-## # … with 102 more rows, and 17 more variables
+## # ... with 102 more rows, and 17 more variables
 ```
 
-For the correct functioning of the models in R, countries should exit the analysis (and the dataset!) when they "die". In this case, death occurs when countries adopt mechanisms of direct democracy. Albania, following the example, should stop existing in 1998, and do not last until 2016 as it does in the dataset. Thus, we need to create a second version of our dataset where this has already been corrected:
+> Nota: Si tus datos están ya en este formato, puedes omitir este paso.
 
-> Note: If your dataset is in this format since the beginning, you can skip this step.
-
-Para que los modelos funcionen correctamente en `R`, los países deberían salir del análisis (¡y de la base!) cuando "mueren". En este caso la muerte se da cuando los países adoptan mecanismos de democracia directa. Albania, siguiendo el ejemplo, debería dejar de existir en 1998, y no perdurar en la base hasta 2016 como sucede ahora. Entonces crearemos una segunda versión de nuestra base de datos donde esto ya ha sido corregido: 
+Para que los modelos funcionen correctamente en R, los países deberían salir del análisis (¡y de la base!) cuando "mueren". En este caso la muerte se da cuando los países adoptan mecanismos de democracia directa. Albania, siguiendo el ejemplo, debería dejar de existir en 1998, y no perdurar en la base hasta 2016 como sucede ahora. Entonces crearemos una segunda versión de nuestra base de datos donde esto ya ha sido corregido: 
 
 <div class="figure" style="text-align: center">
 <img src="00-images/surv/ex_data.png" alt="Cómo debe verse tu base de datos" width="70%" />
@@ -167,20 +174,20 @@ Lo que estamos haciendo es filtrar los datos para que cuando ocurra eñ evento d
 democracia_directa %>%
   filter(pais_nombre == "Albania" & dem_directa == 1)
 ## # A tibble: 19 x 23
-##   pais_nombre  anio dem_directa dem_rapida_posi… dem_rapida_nega… memoria
+##   pais_nombre  anio dem_directa dem_rapida_posi~ dem_rapida_nega~ memoria
 ##   <chr>       <dbl>       <dbl>            <dbl>            <dbl>   <dbl>
 ## 1 Albania      1998           1                0                0       1
 ## 2 Albania      1999           1                0                0       1
 ## 3 Albania      2000           1                0                0       1
-## # … with 16 more rows, and 17 more variables
+## # ... with 16 more rows, and 17 more variables
 
 democracia_directa_b %>%
   filter(pais_nombre == "Albania" & dem_directa == 1)
 ## # A tibble: 1 x 23
-##   pais_nombre  anio dem_directa dem_rapida_posi… dem_rapida_nega… memoria
+##   pais_nombre  anio dem_directa dem_rapida_posi~ dem_rapida_nega~ memoria
 ##   <chr>       <dbl>       <dbl>            <dbl>            <dbl>   <dbl>
 ## 1 Albania      1998           1                0                0       1
-## # … with 17 more variables
+## # ... with 17 more variables
 ```
 
 En resumen, ahora tenemos un panel desbalanceado, en el que los países entran a la base cuando comienzan a existir como tales y salen, o bien cuando adoptan mecanismos de democracia directa, o bien cuando la base termina en su extensión temporal (en 2016). De esta forma nuestra base se acerca mucho a la figura \@ref(fig:surv-ex-obs) con la que ejemplificamos los distintos tipos de observaciones. 
@@ -212,10 +219,11 @@ gantt_chart_df
 ## 1 Afganistán         1919       2016           0
 ## 2 Albania            1912       1998           1
 ## 3 Andorra            1900       2016           0
-## # … with 190 more rows
+## # ... with 190 more rows
 ```
 
 Los países que salen debido a la democracia directa ("mueren") son:
+
 
 ```r
 gantt_chart_df %>% filter(exits_bc_dd == 1)
@@ -225,7 +233,7 @@ gantt_chart_df %>% filter(exits_bc_dd == 1)
 ## 1 Albania            1912       1998           1
 ## 2 Belarús            1991       1995           1
 ## 3 Belice             1981       2008           1
-## # … with 45 more rows
+## # ... with 45 more rows
 ```
 
 Podemos identificar en una nueva variable la región geopolítica de cada país, gracias a la función `countrycode::countrycode()` (Esto lo explicamos en detalle en el Capítulo \@ref(adv-data)). Este paquete es de gran utilidad para quienes hacen política comparada o relaciones internacionales porque facilita mucho darle códigos a los países. Lo que nos permite el paquete es asignar a cada país su región de pertenencia de manera casi automática:
@@ -238,14 +246,14 @@ gantt_chart_df_region <- gantt_chart_df %>%
   mutate(region = countrycode(pais_nombre,
                               origin = "country.name", dest = "region"))
 ## Warning: Problem with `mutate()` input `region`.
-## ℹ Some values were not matched unambiguously: Afganistán, Arabia Saudita, Argelia, Azerbaiyán, Bahrein, Belarús, Bélgica, Belice, Bhután, Brasil, Camboya, Camerún, Canadá, Chipre, Comoras, Corea del Norte, Corea del Sur, Costa de Marfil, Croacia, Dinamarca, Egipto, Emiratos Árabes Unidos, Eslovaquia, España, Estados Unidos, Etiopía, Filipinas, Francia, Gabón, Gran Bretaña, Granada, Grecia, Haití, Hungría, Irán, Irlanda, Islandia, Islas Salomón, Italia, Japón, Kazajstán, Kirguistán, Letonia, Líbano, Libia, Lituania, Lituania 2, Malasia, Maldivas, Malí, Marruecos, Mauricio, México, Mónaco, Noruega, Nueva Zelandia, Omán, Países Bajos, Pakistán, Panamá, Papua Nueva Guinea, Perú, Polonia, República Centroafricana, República Checa, República Dominicana, Rusia, San Vicente y las Granadinas, Santa Lucía, Singapur, Siria, Suazilandia, Sudáfrica, Sudán, Sudán del Sur, Suecia, Tailandia, Taiwán, Tayikistán, Timor Oriental, Túnez, Turquía, Ucrania
+## i Some values were not matched unambiguously: Afganistán, Arabia Saudita, Argelia, Azerbaiyán, Bahrein, Belarús, Bélgica, Belice, Bhután, Brasil, Camboya, Camerún, Canadá, Chipre, Comoras, Corea del Norte, Corea del Sur, Costa de Marfil, Croacia, Dinamarca, Egipto, Emiratos Árabes Unidos, Eslovaquia, España, Estados Unidos, Etiopía, Filipinas, Francia, Gabón, Gran Bretaña, Granada, Grecia, Haití, Hungría, Irán, Irlanda, Islandia, Islas Salomón, Italia, Japón, Kazajstán, Kirguistán, Letonia, Líbano, Libia, Lituania, Lituania 2, Malasia, Maldivas, Malí, Marruecos, Mauricio, México, Mónaco, Noruega, Nueva Zelandia, Omán, Países Bajos, Pakistán, Panamá, Papua Nueva Guinea, Perú, Polonia, República Centroafricana, República Checa, República Dominicana, Rusia, San Vicente y las Granadinas, Santa Lucía, Singapur, Siria, Suazilandia, Sudáfrica, Sudán, Sudán del Sur, Suecia, Tailandia, Taiwán, Tayikistán, Timor Oriental, Túnez, Turquía, Ucrania
 ## 
-## ℹ Input `region` is `countrycode(pais_nombre, origin = "country.name", dest = "region")`.
+## i Input `region` is `countrycode(pais_nombre, origin = "country.name", dest = "region")`.
 ## Warning in countrycode(pais_nombre, origin = "country.name", dest = "region"): Some values were not matched unambiguously: Afganistán, Arabia Saudita, Argelia, Azerbaiyán, Bahrein, Belarús, Bélgica, Belice, Bhután, Brasil, Camboya, Camerún, Canadá, Chipre, Comoras, Corea del Norte, Corea del Sur, Costa de Marfil, Croacia, Dinamarca, Egipto, Emiratos Árabes Unidos, Eslovaquia, España, Estados Unidos, Etiopía, Filipinas, Francia, Gabón, Gran Bretaña, Granada, Grecia, Haití, Hungría, Irán, Irlanda, Islandia, Islas Salomón, Italia, Japón, Kazajstán, Kirguistán, Letonia, Líbano, Libia, Lituania, Lituania 2, Malasia, Maldivas, Malí, Marruecos, Mauricio, México, Mónaco, Noruega, Nueva Zelandia, Omán, Países Bajos, Pakistán, Panamá, Papua Nueva Guinea, Perú, Polonia, República Centroafricana, República Checa, República Dominicana, Rusia, San Vicente y las Granadinas, Santa Lucía, Singapur, Siria, Suazilandia, Sudáfrica, Sudán, Sudán del Sur, Suecia, Tailandia, Taiwán, Tayikistán, Timor Oriental, Túnez, Turquía, Ucrania
 ## Warning: Problem with `mutate()` input `region`.
-## ℹ Some strings were matched more than once, and therefore set to <NA> in the result: Papua Nueva Guinea,Sub-Saharan Africa,East Asia & Pacific
+## i Some strings were matched more than once, and therefore set to <NA> in the result: Papua Nueva Guinea,Sub-Saharan Africa,East Asia & Pacific
 ## 
-## ℹ Input `region` is `countrycode(pais_nombre, origin = "country.name", dest = "region")`.
+## i Input `region` is `countrycode(pais_nombre, origin = "country.name", dest = "region")`.
 ## Warning in countrycode(pais_nombre, origin = "country.name", dest = "region"): Some strings were matched more than once, and therefore set to <NA> in the result: Papua Nueva Guinea,Sub-Saharan Africa,East Asia & Pacific
 
 gantt_chart_df_region
@@ -255,7 +263,7 @@ gantt_chart_df_region
 ## 1 Afganistán         1919       2016           0 <NA>                 
 ## 2 Albania            1912       1998           1 Europe & Central Asia
 ## 3 Andorra            1900       2016           0 Europe & Central Asia
-## # … with 190 more rows
+## # ... with 190 more rows
 ```
 
 Como dice el warning, algunos países no fueron encontrados. Estos son los países que `countrycode` no pudo encontrar, seguramente porque los países están escritos de otra manera:
@@ -270,7 +278,7 @@ gantt_chart_df_region %>%
 ## 1 Afganistán            1919       2016           0 <NA>  
 ## 2 Arabia Saudita        1946       2016           0 <NA>  
 ## 3 Argelia               1962       2016           0 <NA>  
-## # … with 80 more rows
+## # ... with 80 more rows
 ```
 
 Podemos corregir esto a mano ex-post o correr `countrycode::countrycode()` de nuevo, pero con el argumento `custom_match`:
@@ -289,14 +297,14 @@ gantt_chart_df_region <- gantt_chart_df %>%
                      Asia",
                      "Vietnam, Republic of" = "South-Eastern Asia")))
 ## Warning: Problem with `mutate()` input `region`.
-## ℹ Some values were not matched unambiguously: Afganistán, Arabia Saudita, Argelia, Azerbaiyán, Bahrein, Belarús, Bélgica, Belice, Bhután, Brasil, Camboya, Camerún, Canadá, Chipre, Comoras, Corea del Norte, Corea del Sur, Costa de Marfil, Croacia, Dinamarca, Egipto, Emiratos Árabes Unidos, Eslovaquia, España, Estados Unidos, Etiopía, Filipinas, Francia, Gabón, Gran Bretaña, Granada, Grecia, Haití, Hungría, Irán, Irlanda, Islandia, Islas Salomón, Italia, Japón, Kazajstán, Kirguistán, Letonia, Líbano, Libia, Lituania, Lituania 2, Malasia, Maldivas, Malí, Marruecos, Mauricio, México, Mónaco, Noruega, Nueva Zelandia, Omán, Países Bajos, Pakistán, Panamá, Papua Nueva Guinea, Perú, Polonia, República Centroafricana, República Checa, República Dominicana, Rusia, San Vicente y las Granadinas, Santa Lucía, Singapur, Siria, Suazilandia, Sudáfrica, Sudán, Sudán del Sur, Suecia, Tailandia, Taiwán, Tayikistán, Timor Oriental, Túnez, Turquía, Ucrania
+## i Some values were not matched unambiguously: Afganistán, Arabia Saudita, Argelia, Azerbaiyán, Bahrein, Belarús, Bélgica, Belice, Bhután, Brasil, Camboya, Camerún, Canadá, Chipre, Comoras, Corea del Norte, Corea del Sur, Costa de Marfil, Croacia, Dinamarca, Egipto, Emiratos Árabes Unidos, Eslovaquia, España, Estados Unidos, Etiopía, Filipinas, Francia, Gabón, Gran Bretaña, Granada, Grecia, Haití, Hungría, Irán, Irlanda, Islandia, Islas Salomón, Italia, Japón, Kazajstán, Kirguistán, Letonia, Líbano, Libia, Lituania, Lituania 2, Malasia, Maldivas, Malí, Marruecos, Mauricio, México, Mónaco, Noruega, Nueva Zelandia, Omán, Países Bajos, Pakistán, Panamá, Papua Nueva Guinea, Perú, Polonia, República Centroafricana, República Checa, República Dominicana, Rusia, San Vicente y las Granadinas, Santa Lucía, Singapur, Siria, Suazilandia, Sudáfrica, Sudán, Sudán del Sur, Suecia, Tailandia, Taiwán, Tayikistán, Timor Oriental, Túnez, Turquía, Ucrania
 ## 
-## ℹ Input `region` is `countrycode(...)`.
+## i Input `region` is `countrycode(...)`.
 ## Warning in countrycode(pais_nombre, origin = "country.name", dest = "region", : Some values were not matched unambiguously: Afganistán, Arabia Saudita, Argelia, Azerbaiyán, Bahrein, Belarús, Bélgica, Belice, Bhután, Brasil, Camboya, Camerún, Canadá, Chipre, Comoras, Corea del Norte, Corea del Sur, Costa de Marfil, Croacia, Dinamarca, Egipto, Emiratos Árabes Unidos, Eslovaquia, España, Estados Unidos, Etiopía, Filipinas, Francia, Gabón, Gran Bretaña, Granada, Grecia, Haití, Hungría, Irán, Irlanda, Islandia, Islas Salomón, Italia, Japón, Kazajstán, Kirguistán, Letonia, Líbano, Libia, Lituania, Lituania 2, Malasia, Maldivas, Malí, Marruecos, Mauricio, México, Mónaco, Noruega, Nueva Zelandia, Omán, Países Bajos, Pakistán, Panamá, Papua Nueva Guinea, Perú, Polonia, República Centroafricana, República Checa, República Dominicana, Rusia, San Vicente y las Granadinas, Santa Lucía, Singapur, Siria, Suazilandia, Sudáfrica, Sudán, Sudán del Sur, Suecia, Tailandia, Taiwán, Tayikistán, Timor Oriental, Túnez, Turquía, Ucrania
 ## Warning: Problem with `mutate()` input `region`.
-## ℹ Some strings were matched more than once, and therefore set to <NA> in the result: Papua Nueva Guinea,Sub-Saharan Africa,East Asia & Pacific
+## i Some strings were matched more than once, and therefore set to <NA> in the result: Papua Nueva Guinea,Sub-Saharan Africa,East Asia & Pacific
 ## 
-## ℹ Input `region` is `countrycode(...)`.
+## i Input `region` is `countrycode(...)`.
 ## Warning in countrycode(pais_nombre, origin = "country.name", dest = "region", : Some strings were matched more than once, and therefore set to <NA> in the result: Papua Nueva Guinea,Sub-Saharan Africa,East Asia & Pacific
 
 gantt_chart_df_region
@@ -306,7 +314,7 @@ gantt_chart_df_region
 ## 1 Afganistán         1919       2016           0 <NA>                 
 ## 2 Albania            1912       1998           1 Europe & Central Asia
 ## 3 Andorra            1900       2016           0 Europe & Central Asia
-## # … with 190 more rows
+## # ... with 190 more rows
 ```
 
 Ahora no tenemos NA! Hemos logrado asignar una región a cada país de la muestra.
@@ -321,7 +329,7 @@ gantt_chart_df_region %>%
 ## 1 Afganistán            1919       2016           0 <NA>  
 ## 2 Arabia Saudita        1946       2016           0 <NA>  
 ## 3 Argelia               1962       2016           0 <NA>  
-## # … with 80 more rows
+## # ... with 80 more rows
 ```
 
 Con nuestra base ya armada, podemos hacer el plot con facilidad, gracias a `ggalt::geom_dumbbell()`:
@@ -527,6 +535,10 @@ cox_m2 <- coxph(Surv(risk_time_at_start, risk_time_at_end, dem_directa) ~
 
 Y su test de riesgo proporcional:
 
+
+
+
+
 ```r
 cox.zph(cox_m2)
 ##                      chisq df      p
@@ -561,7 +573,7 @@ cox.zph(cox_m3)
 ## vdem                 4.515  1 0.034
 ## difusion_cap         4.264  1 0.039
 ## difusion_ocurr       2.089  1 0.148
-##  [ reached getOption("max.print") -- omitted 1 row ]
+## GLOBAL              12.785  6 0.047
 ```
 
 Aquí, el test revela un escenario similar al del primer modelo, es decir, sin problemas.
@@ -587,7 +599,8 @@ cox.zph(cox_m4)
 ## vdem                 4.533  1 0.033
 ## difusion_cap         4.224  1 0.040
 ## difusion_ocurr       2.059  1 0.151
-##  [ reached getOption("max.print") -- omitted 2 rows ]
+## log_poblacion        2.817  1 0.093
+## GLOBAL              17.867  7 0.013
 ```
 
 Note como el p-valor global está muy cerca del punto de corte pero aún se mantiene sobre `0.05`. Las variables `vdem` y `log_poblacion` están violando el presupuesto de proporcionalidad de los riesgos, pues sus p-valores son menores a `0.05`. 
@@ -614,7 +627,9 @@ cox.zph(cox_m5)
 ## vdem                 4.640  1 0.031
 ## difusion_cap         3.960  1 0.047
 ## difusion_ocurr       1.798  1 0.180
-##  [ reached getOption("max.print") -- omitted 3 rows ]
+## log_poblacion        2.227  1 0.136
+## colonia_gb           0.119  1 0.730
+## GLOBAL              16.833  8 0.032
 ```
 
 El quinto modelo presenta el mismo escenario que el cuarto modelo. Tenemos dos variables violando el presupuesto de proporcionalidad. El test global tiene un p-valor de `0.16` por lo que no deberíamos preocuparnos por resolver la violación. Sin embargo, caso que en tu trabajo tengas un p-valor global menor a `0.05` te mostramos como abordar el problema tal como recomienda el texto del *Oxford Handbook* sobre el que basamos la discusión teórica al inicio del capítulo. Una forma de resolverlo es interactuando las variables problemáticas con el logaritmo natural de la variable temporal que creamos anteriormente.
@@ -630,6 +645,8 @@ cox_m5_int <- coxph(Surv(risk_time_at_start, risk_time_at_end, dem_directa) ~
                       log_poblacion:log(risk_time_at_end),
                     data   = democracia_directa_c,
                     method = "breslow")
+## Warning in coxph(Surv(risk_time_at_start, risk_time_at_end, dem_directa)
+## ~ : a variable appears on both the left and right sides of the formula
 ```
 
 Verás que el test ya no muestra problemas con la proporcionalidad de los riesgos.
@@ -644,7 +661,11 @@ cox.zph(cox_m5_int)
 ## vdem                                5.88e-05  1 0.994
 ## difusion_cap                        4.16e+00  1 0.041
 ## difusion_ocurr                      1.15e+00  1 0.284
-##  [ reached getOption("max.print") -- omitted 5 rows ]
+## log_poblacion                       6.80e-01  1 0.410
+## colonia_gb                          5.27e-02  1 0.818
+## vdem:log(risk_time_at_end)          4.75e-02  1 0.828
+## log_poblacion:log(risk_time_at_end) 9.49e-01  1 0.330
+## GLOBAL                              1.35e+01 10 0.195
 ```
 
 Veamos todos los modelos juntos con `texreg`:
@@ -655,6 +676,9 @@ library(texreg)
 ```
 
 Para obtener *hazard ratios* en `R` necesitamos exponenciar los coeficientes y luego calcular los errores estándar y valores-p a partir de una transformación de la matriz varianza-covarianza del modelo. En el Capítulo \@ref(logit) vimos cómo hacer esto para modelos logísticos cuando queremos *odds ratios* (utilizando las opciones `override.coef`, `override.se` y `override.pvalues` de `texreg`). Para los modelos de supervivencia este paso es idéntico. La única diferencia para nuestro caso actual es la siguiente: ahora tenemos varios modelos para los que queremos *hazard ratios*, por lo que utilizaremos la función de iteración `map()` para que las transformaciones de coeficientes, errores estándar y valores-p se apliquen en cada modelo:
+
+
+
 
 
 ```r

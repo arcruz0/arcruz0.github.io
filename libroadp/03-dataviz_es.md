@@ -91,12 +91,12 @@ El conjunto de datos debería estar ahora en nuestro ambiente. Estos datos corre
 glimpse(datos_municipales)
 ## Rows: 1,011
 ## Columns: 6
-## $ anio          <chr> "2004", "2004", "2004", "2004", "2004", "2004", …
-## $ zona          <chr> "Norte Grande", "Norte Grande", "Norte Grande", …
-## $ municipalidad <chr> "Alto Hospicio", "Arica", "Camarones", "Camina",…
-## $ genero        <chr> "0", "0", "1", "0", "0", "0", "0", "0", "0", "0"…
-## $ ingreso       <int> 1908611, 12041351, 723407, 981023, 768355, 55806…
-## $ pobreza       <dbl> NA, 23.5, 10.6, 37.3, 58.3, 38.8, 31.3, 7.7, 23.…
+## $ anio          <chr> "2004", "2004", "2004", "2004", "2004", "2004", "~
+## $ zona          <chr> "Norte Grande", "Norte Grande", "Norte Grande", "~
+## $ municipalidad <chr> "Alto Hospicio", "Arica", "Camarones", "Camina", ~
+## $ genero        <chr> "0", "0", "1", "0", "0", "0", "0", "0", "0", "0",~
+## $ ingreso       <int> 1908611, 12041351, 723407, 981023, 768355, 558068~
+## $ pobreza       <dbl> NA, 23.5, 10.6, 37.3, 58.3, 38.8, 31.3, 7.6, 23.6~
 ```
 
 Al mirar a la base de datos, encontramos que hay variables continuas (numéricas) y categóricas (de texto). Saber con qué tipo de variable estamos trabajando es esencial para el siguiente paso.
@@ -417,7 +417,7 @@ datos_municipales %>%
 ## 1 Austral          2609648.
 ## 2 Central          7302625.
 ## 3 Norte Chico      4816249.
-## # … with 2 more rows
+## # ... with 2 more rows
 ```
 
 2. Luego, especificamos el color de la `geom_line()`.
@@ -698,8 +698,8 @@ library(patchwork)
 
 
 
-> **Ejercicio 3C.** Ya hemos aprendido a hacer un histograma, sin embargo, los gráficos de densidad tienden a ser más utilizados para mirar la distribución de una variable. Usando las mismas variables, haz una gráfica de densidad con `geom_density`.
+> **Ejercicio 3C.** Ya hemos aprendido a hacer un histograma, sin embargo, los gráficos de densidad tienden a ser más utilizados para mirar la distribución de una variable. Usando las mismas variables, haz una gráfica de densidad con `geom_density()`.
 >
-> **Ejercicio 3D.** Normalmente, los gráficos de barras se presentan con la frecuencia o proporción dentro de la barra. También podemos hacer esto con el `ggplot2`. Usando `geom_bar` y `geom_text`, apunta el número de alcaldes por área geográfica. Un consejo: tienes que hacer algunos cálculos con `tidyverse` antes de añadir esa información en la gráfica.
+> **Ejercicio 3D.** Normalmente, los gráficos de barras se presentan con la frecuencia o proporción dentro de la barra. También podemos hacer esto con el `ggplot2`. Usando `geom_bar()` y `geom_text()`, apunta el número de alcaldes por área geográfica. Un consejo: tienes que hacer algunos cálculos con `tidyverse` antes de añadir esa información en la gráfica.
 >
-> **Ejercicio 3E.** Escogiendo sólo un año, haz un gráfico de líneas con `geom_smooth` que indique la relación entre los ingresos y la tasa de pobreza. Ahora, con `annotate`, haz ungráfico de caja que contenga los municipios con mayor índice de pobreza y, encima de él, escribe el nombre del municipio correspondiente.
+> **Ejercicio 3E.** Escogiendo solo un año, haz un gráfico de líneas con `geom_smooth()` que indique la relación entre los ingresos y la tasa de pobreza. Ahora, con `annotate()`, haz ungráfico de caja que contenga los municipios con mayor índice de pobreza y, encima de él, escribe el nombre del municipio correspondiente.

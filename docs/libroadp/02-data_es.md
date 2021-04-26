@@ -140,12 +140,12 @@ Para aproximarnos a los datos recién cargados tenemos varias opciones. Podemos,
 ```r
 aprobacion
 ## # A tibble: 1,020 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Arge…  2000         1 Fernando … Masculino                   40.1  14.0
-## 2 Arge…  2000         2 Fernando … Masculino                   16.4  14.0
-## 3 Arge…  2000         3 Fernando … Masculino                   24.0  14.0
-## # … with 1,017 more rows, and 4 more variables
+## 1 Arge~  2000         1 Fernando ~ Masculino                   40.1  14.0
+## 2 Arge~  2000         2 Fernando ~ Masculino                   16.4  14.0
+## 3 Arge~  2000         3 Fernando ~ Masculino                   24.0  14.0
+## # ... with 1,017 more rows, and 4 more variables
 ```
 
 También podemos usar la función `glimpse()` para obtener un resumen desde otra perspectiva, mirando las primeras observaciones en cada variable:
@@ -155,17 +155,17 @@ También podemos usar la función `glimpse()` para obtener un resumen desde otra
 glimpse(aprobacion)
 ## Rows: 1,020
 ## Columns: 11
-## $ pais              <chr> "Argentina", "Argentina", "Argentina", "Arge…
-## $ anio              <dbl> 2000, 2000, 2000, 2000, 2001, 2001, 2001, 20…
-## $ trimestre         <dbl> 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3,…
-## $ presidente        <chr> "Fernando de la Rúa", "Fernando de la Rúa", …
-## $ presidente_genero <chr> "Masculino", "Masculino", "Masculino", "Masc…
-## $ aprobacion_neta   <dbl> 40.1, 16.4, 24.0, -18.3, -7.0, -20.1, -19.4,…
-## $ pib               <dbl> 14, 14, 14, 14, 14, 14, 14, 14, 25, 25, 25, …
-## $ corrupcion        <dbl> 5.5e+11, 5.5e+11, 5.5e+11, 5.5e+11, 5.3e+11,…
-## $ poblacion         <dbl> 3.7e+07, 3.7e+07, 3.7e+07, 3.7e+07, 3.7e+07,…
-## $ desempleo         <dbl> 15, 15, 15, 15, 18, 18, 18, 18, 18, 18, 18, …
-## $ crecimiento_pib   <dbl> -0.8, -0.8, -0.8, -0.8, -4.4, -4.4, -4.4, -4…
+## $ pais              <chr> "Argentina", "Argentina", "Argentina", "Argen~
+## $ anio              <dbl> 2000, 2000, 2000, 2000, 2001, 2001, 2001, 200~
+## $ trimestre         <dbl> 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, ~
+## $ presidente        <chr> "Fernando de la Rúa", "Fernando de la Rúa", "~
+## $ presidente_genero <chr> "Masculino", "Masculino", "Masculino", "Mascu~
+## $ aprobacion_neta   <dbl> 40.1, 16.4, 24.0, -18.3, -7.0, -20.1, -19.4, ~
+## $ pib               <dbl> 14, 14, 14, 14, 14, 14, 14, 14, 25, 25, 25, 2~
+## $ corrupcion        <dbl> 5.5e+11, 5.5e+11, 5.5e+11, 5.5e+11, 5.3e+11, ~
+## $ poblacion         <dbl> 3.7e+07, 3.7e+07, 3.7e+07, 3.7e+07, 3.7e+07, ~
+## $ desempleo         <dbl> 15, 15, 15, 15, 18, 18, 18, 18, 18, 18, 18, 1~
+## $ crecimiento_pib   <dbl> -0.8, -0.8, -0.8, -0.8, -4.4, -4.4, -4.4, -4.~
 ```
 
 Una alternativa que nos permite la base completa es la función `View()`, similar a hacer clic en nuestro objeto en la pestaña "Ambiente" en RStudio:
@@ -215,7 +215,7 @@ select(aprobacion, pais)
 ## 1 Argentina
 ## 2 Argentina
 ## 3 Argentina
-## # … with 1,017 more rows
+## # ... with 1,017 more rows
 ```
 
 El primer argumento de la función anterior (`aprobacion`) es la base de datos en la que queremos ejecutar la operación. El siguiente argumento indica qué columnas seleccionar (`pais`). Todas las funciones para operaciones básicas que veremos en esta subsección siguen la misma lógica: el primer argumento es siempre la base de datos en la que operaremos, mientras que el resto designa cómo queremos ejecutar la operación.
@@ -232,7 +232,7 @@ aprobacion_reducida
 ## 1 Argentina
 ## 2 Argentina
 ## 3 Argentina
-## # … with 1,017 more rows
+## # ... with 1,017 more rows
 ```
 
 Podemos seleccionar varias columnas a la vez, separadas por comas:
@@ -246,7 +246,7 @@ select(aprobacion, pais, anio, desempleo)
 ## 1 Argentina  2000        15
 ## 2 Argentina  2000        15
 ## 3 Argentina  2000        15
-## # … with 1,017 more rows
+## # ... with 1,017 more rows
 ```
 
 Supongamos que queremos las primeras cinco variables de nuestra base. A continuación se presentan tres formas de obtener el mismo resultado, aunque recomendamos la segunda, ya que es breve y clara:
@@ -261,12 +261,12 @@ select(aprobacion, 1:5)
 
 ```
 ## # A tibble: 1,020 x 6
-##   pais     anio trimestre presidente     presidente_gene… aprobacion_neta
+##   pais     anio trimestre presidente     presidente_gene~ aprobacion_neta
 ##   <chr>   <dbl>     <dbl> <chr>          <chr>                      <dbl>
-## 1 Argent…  2000         1 Fernando de l… Masculino                   40.1
-## 2 Argent…  2000         2 Fernando de l… Masculino                   16.4
-## 3 Argent…  2000         3 Fernando de l… Masculino                   24.0
-## # … with 1,017 more rows
+## 1 Argent~  2000         1 Fernando de l~ Masculino                   40.1
+## 2 Argent~  2000         2 Fernando de l~ Masculino                   16.4
+## 3 Argent~  2000         3 Fernando de l~ Masculino                   24.0
+## # ... with 1,017 more rows
 ```
 
 El comando `select()` también puede ayudarnos a reordenar las columnas. Supongamos que quisiéramos que la variable `presidente` fuera la primera. Podemos reordenar las variables, obteniendo la misma base con un nuevo orden para las columnas:
@@ -277,10 +277,10 @@ select(aprobacion, presidente, pais:anio, aprobacion_neta:desempleo)
 ## # A tibble: 1,020 x 8
 ##   presidente pais   anio aprobacion_neta   pib corrupcion poblacion
 ##   <chr>      <chr> <dbl>           <dbl> <dbl>      <dbl>     <dbl>
-## 1 Fernando … Arge…  2000            40.1  14.0    5.52e11  37057452
-## 2 Fernando … Arge…  2000            16.4  14.0    5.52e11  37057452
-## 3 Fernando … Arge…  2000            24.0  14.0    5.52e11  37057452
-## # … with 1,017 more rows, and 1 more variable
+## 1 Fernando ~ Arge~  2000            40.1  14.0    5.52e11  37057452
+## 2 Fernando ~ Arge~  2000            16.4  14.0    5.52e11  37057452
+## 3 Fernando ~ Arge~  2000            24.0  14.0    5.52e11  37057452
+## # ... with 1,017 more rows, and 1 more variable
 ```
 
 Este método es tedioso, especialmente para las bases de datos con múltiples variables. Hay una función que puede ser útil para estos escenarios, llamada `everything()`.  En este caso, seleccionará la columna `presidente` y "todo lo demás":
@@ -289,12 +289,12 @@ Este método es tedioso, especialmente para las bases de datos con múltiples va
 ```r
 select(aprobacion, presidente, everything())
 ## # A tibble: 1,020 x 11
-##   presidente pais   anio trimestre presidente_gene… aprobacion_neta   pib
+##   presidente pais   anio trimestre presidente_gene~ aprobacion_neta   pib
 ##   <chr>      <chr> <dbl>     <dbl> <chr>                      <dbl> <dbl>
-## 1 Fernando … Arge…  2000         1 Masculino                   40.1  14.0
-## 2 Fernando … Arge…  2000         2 Masculino                   16.4  14.0
-## 3 Fernando … Arge…  2000         3 Masculino                   24.0  14.0
-## # … with 1,017 more rows, and 4 more variables
+## 1 Fernando ~ Arge~  2000         1 Masculino                   40.1  14.0
+## 2 Fernando ~ Arge~  2000         2 Masculino                   16.4  14.0
+## 3 Fernando ~ Arge~  2000         3 Masculino                   24.0  14.0
+## # ... with 1,017 more rows, and 4 more variables
 ```
 
 Otra función útil para `select()` es `starts_with()`, que nos permite seleccionar las columnas según los patrones en sus nombres. Por ejemplo, a continuación se seleccionarán todas las columnas que empiecen con el prefijo "pib".
@@ -308,7 +308,7 @@ select(aprobacion, starts_with("pib"))
 ## 1  14.0
 ## 2  14.0
 ## 3  14.0
-## # … with 1,017 more rows
+## # ... with 1,017 more rows
 ```
 
 ### Renombra las columnas
@@ -319,12 +319,12 @@ Podemos cambiar los nombres de las columnas de una base con el comando `rename()
 ```r
 rename(aprobacion, pib_ppp_c2011 = pib)
 ## # A tibble: 1,020 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl>
-## 1 Arge…  2000         1 Fernando … Masculino                   40.1
-## 2 Arge…  2000         2 Fernando … Masculino                   16.4
-## 3 Arge…  2000         3 Fernando … Masculino                   24.0
-## # … with 1,017 more rows, and 5 more variables
+## 1 Arge~  2000         1 Fernando ~ Masculino                   40.1
+## 2 Arge~  2000         2 Fernando ~ Masculino                   16.4
+## 3 Arge~  2000         3 Fernando ~ Masculino                   24.0
+## # ... with 1,017 more rows, and 5 more variables
 ```
 
 También es posible cambiar varios nombres a la vez. Observa cómo modificamos tres nombres con un solo comando:
@@ -336,12 +336,12 @@ rename(aprobacion,
        desempleo_porcentaje       = desempleo,
        crecimiento_pib_porcentaje = crecimiento_pib)
 ## # A tibble: 1,020 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl>
-## 1 Arge…  2000         1 Fernando … Masculino                   40.1
-## 2 Arge…  2000         2 Fernando … Masculino                   16.4
-## 3 Arge…  2000         3 Fernando … Masculino                   24.0
-## # … with 1,017 more rows, and 5 more variables
+## 1 Arge~  2000         1 Fernando ~ Masculino                   40.1
+## 2 Arge~  2000         2 Fernando ~ Masculino                   16.4
+## 3 Arge~  2000         3 Fernando ~ Masculino                   24.0
+## # ... with 1,017 more rows, and 5 more variables
 ```
 
 ### Filtrar las observaciones
@@ -352,12 +352,12 @@ A menudo queremos mantener sólo algunas observaciones de nuestra base de datos,
 ```r
 filter(aprobacion, pais == "Chile")
 ## # A tibble: 60 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Chile  2000         1 Eduardo F… Masculino                   6.22  3.63
-## 2 Chile  2000         2 Ricardo L… Masculino                  19.8   3.63
-## 3 Chile  2000         3 Ricardo L… Masculino                  19.5   3.63
-## # … with 57 more rows, and 4 more variables
+## 1 Chile  2000         1 Eduardo F~ Masculino                   6.22  3.63
+## 2 Chile  2000         2 Ricardo L~ Masculino                  19.8   3.63
+## 3 Chile  2000         3 Ricardo L~ Masculino                  19.5   3.63
+## # ... with 57 more rows, and 4 more variables
 ```
 
 Le decimos `filter()`, a través del segundo argumento, sólo para retener las observaciones en las que la variable país *es igual a* "Chile". Esta *es igual a* es un operador lógico, que se escribe como "==" en R ^[Los usuarios de Stata encontrarán esto familiar.] Aquí hay una lista de operadores lógicos comunes:
@@ -380,12 +380,12 @@ Por ejemplo, podemos obtener todas las observaciones (país-año-cuatrimestre) e
 ```r
 filter(aprobacion, aprobacion_neta > 0)
 ## # A tibble: 709 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Arge…  2000         1 Fernando … Masculino                   40.1  14.0
-## 2 Arge…  2000         2 Fernando … Masculino                   16.4  14.0
-## 3 Arge…  2000         3 Fernando … Masculino                   24.0  14.0
-## # … with 706 more rows, and 4 more variables
+## 1 Arge~  2000         1 Fernando ~ Masculino                   40.1  14.0
+## 2 Arge~  2000         2 Fernando ~ Masculino                   16.4  14.0
+## 3 Arge~  2000         3 Fernando ~ Masculino                   24.0  14.0
+## # ... with 706 more rows, and 4 more variables
 ```
 
 También es posible ejecutar filtros más complejos. Filtremos sólo las observaciones para el Cono Sur:
@@ -395,24 +395,24 @@ También es posible ejecutar filtros más complejos. Filtremos sólo las observa
 filter(aprobacion, 
        pais == "Argentina" | pais == "Chile" | pais == "Uruguay")
 ## # A tibble: 180 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Arge…  2000         1 Fernando … Masculino                   40.1  14.0
-## 2 Arge…  2000         2 Fernando … Masculino                   16.4  14.0
-## 3 Arge…  2000         3 Fernando … Masculino                   24.0  14.0
-## # … with 177 more rows, and 4 more variables
+## 1 Arge~  2000         1 Fernando ~ Masculino                   40.1  14.0
+## 2 Arge~  2000         2 Fernando ~ Masculino                   16.4  14.0
+## 3 Arge~  2000         3 Fernando ~ Masculino                   24.0  14.0
+## # ... with 177 more rows, and 4 more variables
 ```
 
 ```r
 # Lo mismo, pero con otro operador lógico:
 filter(aprobacion, pais %in% c("Argentina", "Chile", "Uruguay"))
 ## # A tibble: 180 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Arge…  2000         1 Fernando … Masculino                   40.1  14.0
-## 2 Arge…  2000         2 Fernando … Masculino                   16.4  14.0
-## 3 Arge…  2000         3 Fernando … Masculino                   24.0  14.0
-## # … with 177 more rows, and 4 more variables
+## 1 Arge~  2000         1 Fernando ~ Masculino                   40.1  14.0
+## 2 Arge~  2000         2 Fernando ~ Masculino                   16.4  14.0
+## 3 Arge~  2000         3 Fernando ~ Masculino                   24.0  14.0
+## # ... with 177 more rows, and 4 more variables
 ```
 
 También podemos incluir pequeñas operaciones en nuestros filtros. Obtengamos todas las observaciones en las que la corrupción del ejecutivo sea mayor que la media de la muestra:
@@ -421,12 +421,12 @@ También podemos incluir pequeñas operaciones en nuestros filtros. Obtengamos t
 ```r
 filter(aprobacion, corrupcion > mean(corrupcion))
 ## # A tibble: 252 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Arge…  2000         1 Fernando … Masculino                   40.1  14.0
-## 2 Arge…  2000         2 Fernando … Masculino                   16.4  14.0
-## 3 Arge…  2000         3 Fernando … Masculino                   24.0  14.0
-## # … with 249 more rows, and 4 more variables
+## 1 Arge~  2000         1 Fernando ~ Masculino                   40.1  14.0
+## 2 Arge~  2000         2 Fernando ~ Masculino                   16.4  14.0
+## 3 Arge~  2000         3 Fernando ~ Masculino                   24.0  14.0
+## # ... with 249 more rows, and 4 more variables
 ```
 
 > Tip: Una advertencia práctica: no puedes buscar valores perdidos (NAs) con el intuitivo `== NA`. Necesitas usar la función `is.na()` que revisamos brevemente en la sección  \@ref(basic-r-packages). Nuestra base de datos no tiene valores perdidos, y por lo tanto un filtro como el siguiente no devolverá ninguna fila:
@@ -435,7 +435,7 @@ filter(aprobacion, corrupcion > mean(corrupcion))
 ```r
 filter(aprobacion, is.na(corrupcion))
 ## # A tibble: 0 x 11
-## # … with 11 variables
+## # ... with 11 variables
 ```
 
 > **Ejercicio 2A.** Seleccione sólo las dos columnas que registran el género del presidentee en la base de datos.
@@ -450,12 +450,12 @@ Una de las operaciones más comunes con los bases de datos es clasificarlas seg�
 ```r
 arrange(aprobacion, corrupcion)
 ## # A tibble: 1,020 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Nica…  2000         1 Arnoldo A… Masculino                   7.60  85.7
-## 2 Nica…  2000         2 Arnoldo A… Masculino                   7.57  85.7
-## 3 Nica…  2000         3 Arnoldo A… Masculino                   3.87  85.7
-## # … with 1,017 more rows, and 4 more variables
+## 1 Nica~  2000         1 Arnoldo A~ Masculino                   7.60  85.7
+## 2 Nica~  2000         2 Arnoldo A~ Masculino                   7.57  85.7
+## 3 Nica~  2000         3 Arnoldo A~ Masculino                   3.87  85.7
+## # ... with 1,017 more rows, and 4 more variables
 ```
 
 Si quisiéramos ordenarlas a la inversa, tendríamos que añadir un - (signo menos) antes de la variable:
@@ -464,12 +464,12 @@ Si quisiéramos ordenarlas a la inversa, tendríamos que añadir un - (signo men
 ```r
 arrange(aprobacion, -corrupcion)
 ## # A tibble: 1,020 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Bras…  2014         1 Dilma Van… Femenino                    22.6  27.3
-## 2 Bras…  2014         2 Dilma Van… Femenino                    12.6  27.3
-## 3 Bras…  2014         3 Dilma Van… Femenino                    16.2  27.3
-## # … with 1,017 more rows, and 4 more variables
+## 1 Bras~  2014         1 Dilma Van~ Femenino                    22.6  27.3
+## 2 Bras~  2014         2 Dilma Van~ Femenino                    12.6  27.3
+## 3 Bras~  2014         3 Dilma Van~ Femenino                    16.2  27.3
+## # ... with 1,017 more rows, and 4 more variables
 ```
 
 Para utilizar un orden alfabético inverso (de la Z a la A), tenemos que utilizar la función `desc()`.
@@ -478,12 +478,12 @@ Para utilizar un orden alfabético inverso (de la Z a la A), tenemos que utiliza
 ```r
 arrange(aprobacion, desc(presidente))
 ## # A tibble: 1,020 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Méxi…  2001         1 Vicente F… Masculino                   53.8  37.6
-## 2 Méxi…  2001         2 Vicente F… Masculino                   40.7  37.6
-## 3 Méxi…  2001         3 Vicente F… Masculino                   40.1  37.6
-## # … with 1,017 more rows, and 4 more variables
+## 1 Méxi~  2001         1 Vicente F~ Masculino                   53.8  37.6
+## 2 Méxi~  2001         2 Vicente F~ Masculino                   40.7  37.6
+## 3 Méxi~  2001         3 Vicente F~ Masculino                   40.1  37.6
+## # ... with 1,017 more rows, and 4 more variables
 ```
 
 Por último, podemos clasificar la base de datos por más de una variable. Esto es, ordenar los datos según la primera variable, y luego ordenarla según una segunda variable. Examinemos el siguiente ejemplo:
@@ -492,12 +492,12 @@ Por último, podemos clasificar la base de datos por más de una variable. Esto 
 ```r
 arrange(aprobacion, presidente_genero, -aprobacion_neta)
 ## # A tibble: 1,020 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Bras…  2013         1 Dilma Van… Femenino                    62.5  27.3
-## 2 Bras…  2012         4 Dilma Van… Femenino                    60.9  33.4
-## 3 Bras…  2012         2 Dilma Van… Femenino                    60.5  33.4
-## # … with 1,017 more rows, and 4 more variables
+## 1 Bras~  2013         1 Dilma Van~ Femenino                    62.5  27.3
+## 2 Bras~  2012         4 Dilma Van~ Femenino                    60.9  33.4
+## 3 Bras~  2012         2 Dilma Van~ Femenino                    60.5  33.4
+## # ... with 1,017 more rows, and 4 more variables
 ```
 
 ### Transformar y crear variables
@@ -508,12 +508,12 @@ La mayoría de las veces queremos crear nuevas variables a partir de las que ya 
 ```r
 mutate(aprobacion, poblacion_mill = poblacion / 1000000)
 ## # A tibble: 1,020 x 12
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Arge…  2000         1 Fernando … Masculino                   40.1  14.0
-## 2 Arge…  2000         2 Fernando … Masculino                   16.4  14.0
-## 3 Arge…  2000         3 Fernando … Masculino                   24.0  14.0
-## # … with 1,017 more rows, and 5 more variables
+## 1 Arge~  2000         1 Fernando ~ Masculino                   40.1  14.0
+## 2 Arge~  2000         2 Fernando ~ Masculino                   16.4  14.0
+## 3 Arge~  2000         3 Fernando ~ Masculino                   24.0  14.0
+## # ... with 1,017 more rows, and 5 more variables
 ```
 
 El comando anterior genera una nueva variable en la base de datos, `pop_mill`, que es `poblacion` pero en la escala de millones. Podemos ejecutar todo tipo de operaciones en nuestras columnas, como crear una variable PIB en una escala logarítmica:
@@ -522,12 +522,12 @@ El comando anterior genera una nueva variable en la base de datos, `pop_mill`, q
 ```r
 mutate(aprobacion, log_gdp = log(pib))
 ## # A tibble: 1,020 x 12
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Arge…  2000         1 Fernando … Masculino                   40.1  14.0
-## 2 Arge…  2000         2 Fernando … Masculino                   16.4  14.0
-## 3 Arge…  2000         3 Fernando … Masculino                   24.0  14.0
-## # … with 1,017 more rows, and 5 more variables
+## 1 Arge~  2000         1 Fernando ~ Masculino                   40.1  14.0
+## 2 Arge~  2000         2 Fernando ~ Masculino                   16.4  14.0
+## 3 Arge~  2000         3 Fernando ~ Masculino                   24.0  14.0
+## # ... with 1,017 more rows, and 5 more variables
 ```
 
 También podemos crear nuevas variables a partir de operaciones entre variables. Por ejemplo, calculamos el PIB *per cápita*, lo que nos permite comparar mejor los países con diferentes poblaciones:
@@ -536,12 +536,12 @@ También podemos crear nuevas variables a partir de operaciones entre variables.
 ```r
 mutate(aprobacion, pib_pc = pib / poblacion)
 ## # A tibble: 1,020 x 12
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Arge…  2000         1 Fernando … Masculino                   40.1  14.0
-## 2 Arge…  2000         2 Fernando … Masculino                   16.4  14.0
-## 3 Arge…  2000         3 Fernando … Masculino                   24.0  14.0
-## # … with 1,017 more rows, and 5 more variables
+## 1 Arge~  2000         1 Fernando ~ Masculino                   40.1  14.0
+## 2 Arge~  2000         2 Fernando ~ Masculino                   16.4  14.0
+## 3 Arge~  2000         3 Fernando ~ Masculino                   24.0  14.0
+## # ... with 1,017 more rows, and 5 more variables
 ```
 
 Por último, también podemos generar más de una transformación a la vez con `mutate()`, utilizando múltiples argumentos:
@@ -552,12 +552,12 @@ mutate(aprobacion,
        pop_mill = poblacion / 1000000,
        pib_pc = pib / poblacion)
 ## # A tibble: 1,020 x 13
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Arge…  2000         1 Fernando … Masculino                   40.1  14.0
-## 2 Arge…  2000         2 Fernando … Masculino                   16.4  14.0
-## 3 Arge…  2000         3 Fernando … Masculino                   24.0  14.0
-## # … with 1,017 more rows, and 6 more variables
+## 1 Arge~  2000         1 Fernando ~ Masculino                   40.1  14.0
+## 2 Arge~  2000         2 Fernando ~ Masculino                   16.4  14.0
+## 3 Arge~  2000         3 Fernando ~ Masculino                   24.0  14.0
+## # ... with 1,017 more rows, and 6 more variables
 ```
 
 > **Ejercicio 2C.** Crear una nueva base, que está ordenada por país-trimestre del año con menos aprobación presidencial al de más alto nivel (recuerde crear un nuevo objeto y darle un nombre descriptivo). En tu nuevo objeto, conserva sólo las observaciones con mujeres como presidenteas.
@@ -634,7 +634,7 @@ summarize(aprobacion_por_pais,
 ## 1 Argentina          11.0                  2.72        16.7
 ## 2 Bolivia             3.70                 4.24        11.3
 ## 3 Brasil              8.35                 3.4         34.2
-## # … with 14 more rows
+## # ... with 14 more rows
 ```
 
 Por cierto, podemos desagrupar un conjunto de datos con `ungroup()`. Es una gran idea si no queremos seguir ejecutando operaciones agrupadas, evitando errores:
@@ -644,12 +644,12 @@ Por cierto, podemos desagrupar un conjunto de datos con `ungroup()`. Es una gran
 aprobacion_por_pais_anio %>%
   ungroup() # nota que ya no hay "grupos" en el resumen de datos
 ## # A tibble: 1,020 x 11
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Arge…  2000         1 Fernando … Masculino                   40.1  14.0
-## 2 Arge…  2000         2 Fernando … Masculino                   16.4  14.0
-## 3 Arge…  2000         3 Fernando … Masculino                   24.0  14.0
-## # … with 1,017 more rows, and 4 more variables
+## 1 Arge~  2000         1 Fernando ~ Masculino                   40.1  14.0
+## 2 Arge~  2000         2 Fernando ~ Masculino                   16.4  14.0
+## 3 Arge~  2000         3 Fernando ~ Masculino                   24.0  14.0
+## # ... with 1,017 more rows, and 4 more variables
 ```
 
 ## Comandos en cadena
@@ -663,12 +663,12 @@ aprobacion_con_pib_pc <- mutate(aprobacion,
 
 filter(aprobacion_con_pib_pc, pib_pc > mean(pib_pc))
 ## # A tibble: 344 x 12
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Boli…  2000         1 Hugo Banz… Masculino                  -19.0  60.5
-## 2 Boli…  2000         2 Hugo Banz… Masculino                  -19.0  60.5
-## 3 Boli…  2000         3 Hugo Banz… Masculino                  -23.8  60.5
-## # … with 341 more rows, and 5 more variables
+## 1 Boli~  2000         1 Hugo Banz~ Masculino                  -19.0  60.5
+## 2 Boli~  2000         2 Hugo Banz~ Masculino                  -19.0  60.5
+## 3 Boli~  2000         3 Hugo Banz~ Masculino                  -23.8  60.5
+## # ... with 341 more rows, and 5 more variables
 ```
 
 La misma cadena de operaciones puede escribirse de la siguiente manera en lenguaje “tidy”:
@@ -679,12 +679,12 @@ aprobacion %>%
   mutate(pib_pc = pib / poblacion) %>%
   filter(pib_pc > mean(pib_pc)) 
 ## # A tibble: 344 x 12
-##   pais   anio trimestre presidente presidente_gene… aprobacion_neta   pib
+##   pais   anio trimestre presidente presidente_gene~ aprobacion_neta   pib
 ##   <chr> <dbl>     <dbl> <chr>      <chr>                      <dbl> <dbl>
-## 1 Boli…  2000         1 Hugo Banz… Masculino                  -19.0  60.5
-## 2 Boli…  2000         2 Hugo Banz… Masculino                  -19.0  60.5
-## 3 Boli…  2000         3 Hugo Banz… Masculino                  -23.8  60.5
-## # … with 341 more rows, and 5 more variables
+## 1 Boli~  2000         1 Hugo Banz~ Masculino                  -19.0  60.5
+## 2 Boli~  2000         2 Hugo Banz~ Masculino                  -19.0  60.5
+## 3 Boli~  2000         3 Hugo Banz~ Masculino                  -23.8  60.5
+## # ... with 341 more rows, and 5 more variables
 ```
 
 ¡Este código es sorprendentemente legible! Las pipas (`%>%`) se leen como "entonces" (o "pero entonces"), y se pueden insertar con Ctrl o Cmd + Shift + M en RStudio^[Puedes ver todos los atajos de teclado en RStudio en Ayuda > Ayuda de los atajos de teclado]. A continuación se reproduce nuestro código anterior en español:
@@ -706,14 +706,14 @@ aprobacion %>%
 ## 1 Argentina           11.0               2.72             16.7
 ## 2 Bolivia              3.70              4.24             11.3
 ## 3 Brasil               8.35              3.4              34.2
-## # … with 14 more rows
+## # ... with 14 more rows
 ```
 
-> **Ejercicio 3E.** Calcular, con la ayuda de las pipas, la corrupción del ejecutivo medio y el PIB por país. Recuerde que puede insertar tuberías con Ctrl o Cmd + Shift + M.
+> **Ejercicio 2E.** Calcular, con la ayuda de las pipes, la corrupción del ejecutivo medio y el PIB por país. Recuerde que puede insertar pipes con Ctrl o Cmd + Shift + M.
 >
-> **Ejercicio 3F.** Una vez más, utilizando pipas, clasifique los países de la base de datos desde el que obtuvo el mayor promedio de PIB per cápita en el período 2010-2014 hasta el más bajo.
+> **Ejercicio 2F.** Una vez más, utilizando pipes, clasifique los países de la base de datos desde el que obtuvo el mayor promedio de PIB per cápita en el período 2010-2014 hasta el más bajo.
 >
-> **Ejercicio 3G.** ¿Qué cuatrimestre del año, entre los gobernados por mujeres presidenteas, tuvo la corrupción más alta? ¿Y la mayor aprobación neta?
+> **Ejercicio 2G.** ¿Qué cuatrimestre del año, entre los gobernados por mujeres presidenteas, tuvo la corrupción más alta? ¿Y la mayor aprobación neta?
 
 ## Recodificar valores {#data-recodificar}
 
@@ -727,12 +727,12 @@ aprobacion %>%
                                 false     = 0)) %>%
   select(pais:presidente, presidente_genero, d_pres_mujer) # para legibilidad
 ## # A tibble: 1,020 x 6
-##   pais      anio trimestre presidente       presidente_gene… d_pres_mujer
+##   pais      anio trimestre presidente       presidente_gene~ d_pres_mujer
 ##   <chr>    <dbl>     <dbl> <chr>            <chr>                   <dbl>
-## 1 Argenti…  2000         1 Fernando de la … Masculino                   0
-## 2 Argenti…  2000         2 Fernando de la … Masculino                   0
-## 3 Argenti…  2000         3 Fernando de la … Masculino                   0
-## # … with 1,017 more rows
+## 1 Argenti~  2000         1 Fernando de la ~ Masculino                   0
+## 2 Argenti~  2000         2 Fernando de la ~ Masculino                   0
+## 3 Argenti~  2000         3 Fernando de la ~ Masculino                   0
+## # ... with 1,017 more rows
 ```
 
 Es posible especificar condiciones lógicas más complejas, como en `filter()`. Por ejemplo, generemos una variable *dummy* para los países-años-cuatrimestre en crisis económica, definida como: el crecimiento del PIB es negativo y/o la tasa de desempleo es superior al 20%. Bajo esta simple clasificación, Argentina estaría en crisis en 2001 y en 2010:
@@ -751,7 +751,7 @@ aprobacion %>%
 ## 1 Argentina  2001         1            -4.4      18.3           1
 ## 2 Argentina  2001         2            -4.4      18.3           1
 ## 3 Argentina  2001         3            -4.4      18.3           1
-## # … with 5 more rows
+## # ... with 5 more rows
 ```
 
 Sin embargo, `if_else()` a menudo no es lo suficientemente flexible, ya que sólo permite asignar dos valores basados en una condición lógica. ¿Qué pasa si la variable que queremos crear puede asumir más de dos valores? Por ejemplo, podríamos querer una variable que divida nuestras observaciones en tres categorías, según el país: "Cono Sur" (Argentina, Chile, Uruguay), "Centroamérica" y "Resto de AL". Para empezar, examinemos los valores que la variable "pais" puede asumir:
@@ -786,7 +786,7 @@ filter(anio == 2000 & trimestre == 1) %>%
 ## 1 Argentina Cono Sur       
 ## 2 Bolivia   Resto de AL    
 ## 3 Brasil    Resto de AL    
-## # … with 14 more rows
+## # ... with 14 more rows
 ```
 
 La nueva variable (`grupo_de_paises`) se construye sobre la base de múltiples condiciones lógicas, que se evalúan en orden. Si se cumple la primera condición (`pais %in% c("Argentina", "Chile", "Uruguay")`), se asigna el valor "Cono Sur" a la nueva variable. La condición lógica y el valor asignado se separan por un "~"^[Aprendí que algunos usuarios de R nombran este símbolo una "colita de chancho"!], que se puede leer como "por lo tanto". Lo mismo ocurrirá con la siguiente condición, que asignará "Centroamérica" si se cumple. Nuestro último argumento para `case_when()` tiene una condición lógica de gran alcance: *en todos los demás casos*, se aplicará el valor "Resto de AL".
@@ -796,7 +796,7 @@ La nueva variable (`grupo_de_paises`) se construye sobre la base de múltiples c
 >
 > **Ejercicio 2I.** Crea una nueva variable que separa los países en tres grupos: "América del Norte", "América Central" y "América del Sur".
 
-### Pivoteo de datos {data-pivot}
+### Pivoteo de datos {#data-pivot}
 
 La estructura de la base anterior, donde las filas son las observaciones, las variables son las columnas, y la base de datos tiene sólo una unidad de observación, es la *estructura tidy* de la presentación de datos [@wickhamTidyData2014]. En general, R y el `tidyverse` funcionan muy bien bajo este formato, así que querremos usarlo cuando sea posible.
 
@@ -816,7 +816,7 @@ aprobacion_anual
 ## 1 Argentina  2000            15.6
 ## 2 Argentina  2001           -17.4
 ## 3 Argentina  2002           -16.0
-## # … with 252 more rows
+## # ... with 252 more rows
 ```
 
 Este conjunto de datos *tidy* puede ser presentado en diferentes formatos. El más común de ellos es el formato *ancho* o *wide*^[A veces se utiliza el término *largo* (opuesto a ancho) en lugar de lo que llamamos *tidy*.], en el que una de las variables de identificación se distribuye entre las columnas (en este caso, "anio"). Ahora cargaremos el conjunto de datos en formato *ancho*, desde paquete del libro:
@@ -833,10 +833,10 @@ aprobacion_wide1
 ## # A tibble: 17 x 16
 ##   pais  `2000` `2001` `2002` `2003` `2004` `2005` `2006` `2007` `2008`
 ##   <chr>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
-## 1 Arge…  15.6  -17.4  -16.0    32.6 48.5     43.8   45.9   34.3   9.52
-## 2 Boli… -18.8  -14.1   -5.77  -16.8 -0.301   24.5   34.7   28.1  16.9 
-## 3 Bras…  -8.72  -2.87   3.51   45.8 26.3     21.3   30.8   40.1  58.3 
-## # … with 14 more rows, and 6 more variables
+## 1 Arge~  15.6  -17.4  -16.0    32.6 48.5     43.8   45.9   34.3   9.52
+## 2 Boli~ -18.8  -14.1   -5.77  -16.8 -0.301   24.5   34.7   28.1  16.9 
+## 3 Bras~  -8.72  -2.87   3.51   45.8 26.3     21.3   30.8   40.1  58.3 
+## # ... with 14 more rows, and 6 more variables
 ```
 
 Esta base de datos contiene la misma información que la que creamos manualmente, sólo cambia su forma de presentación. Esta estructura *ancha* tiene algunos beneficios, el más destacado es su brevedad: los años no se repiten en múltiples celdas, como sucede en un conjunto de datos *tidy*. Para un codificador manual, este ahorro de espacio (y tiempo) resulta atractivo. Sin embargo, el formato *wide* tiene una mayor desventaja en comparación con el formato *tidy*: en su forma tradicional, sólo es posible registrar información para una variable por base de datos. En el caso del ejemplo, no hay una forma posible de añadir, por ejemplo, información sobre la corrupción de los años-país. Como hemos visto, este ejercicio es trivial en un conjunto de datos *tidy*, donde las variables pueden ser añadidas como columnas. Tener múltiples variables en nuestra base de datos es exactamente lo que necesitamos para generar análisis de datos sociales, donde exploramos las diferentes dimensiones de nuestros fenómenos de estudio.
@@ -853,7 +853,7 @@ aprobacion_wide1 %>%
 ## 1 Argentina 2000             15.6
 ## 2 Argentina 2001            -17.4
 ## 3 Argentina 2002            -16.0
-## # … with 252 more rows
+## # ... with 252 more rows
 ```
 
 El primer argumento en `pivot_longer()`, `cols =`, nos pide que seleccionemos las columnas para transformarlas en una variable de identificación, utilizando la sintaxis `select()` que aprendimos antes en este capítulo. En este caso, estamos indicando `pivot_longer()` para transformar todas las variables, excepto `país`, en una variable de identificación. Entonces, el argumento `names_to()` nos pregunta cómo queremos llamar a la nueva variable de identificación, que se crea cuando se transforma el conjunto de datos. Por último, `values_to =` requiere nombrar la nueva variable que se crea, basándose en los valores de las celdas de los datos originales.
@@ -867,10 +867,10 @@ aprobacion_anual %>%
 ## # A tibble: 17 x 16
 ##   pais  `2000` `2001` `2002` `2003` `2004` `2005` `2006` `2007` `2008`
 ##   <chr>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
-## 1 Arge…  15.6  -17.4  -16.0    32.6 48.5     43.8   45.9   34.3   9.52
-## 2 Boli… -18.8  -14.1   -5.77  -16.8 -0.301   24.5   34.7   28.1  16.9 
-## 3 Bras…  -8.72  -2.87   3.51   45.8 26.3     21.3   30.8   40.1  58.3 
-## # … with 14 more rows, and 6 more variables
+## 1 Arge~  15.6  -17.4  -16.0    32.6 48.5     43.8   45.9   34.3   9.52
+## 2 Boli~ -18.8  -14.1   -5.77  -16.8 -0.301   24.5   34.7   28.1  16.9 
+## 3 Bras~  -8.72  -2.87   3.51   45.8 26.3     21.3   30.8   40.1  58.3 
+## # ... with 14 more rows, and 6 more variables
 ```
 
 Los argumentos, en este caso, son prácticamente espejos de los anteriores. Aquí lo que queremos es que la base de datos tome de "año" sus nombres de columna a lo ancho (`names_from="anio" `), mientras que los valores se toman de nuestra variable de interés "aprobacion_neta" (`values_from = "aprobacion_neta "`).
@@ -886,10 +886,10 @@ aprobacion_wide1 %>%
 ## # A tibble: 17 x 16
 ##   pais  `2000` `2001` `2002` `2003` `2004` `2005` `2006` `2007` `2008`
 ##   <chr>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
-## 1 Arge…  15.6  -17.4  -16.0    32.6 48.5     43.8   45.9   34.3   9.52
-## 2 Boli… -18.8  -14.1   -5.77  -16.8 -0.301   24.5   34.7   28.1  16.9 
-## 3 Bras…  -8.72  -2.87   3.51   45.8 26.3     21.3   30.8   40.1  58.3 
-## # … with 14 more rows, and 6 more variables
+## 1 Arge~  15.6  -17.4  -16.0    32.6 48.5     43.8   45.9   34.3   9.52
+## 2 Boli~ -18.8  -14.1   -5.77  -16.8 -0.301   24.5   34.7   28.1  16.9 
+## 3 Bras~  -8.72  -2.87   3.51   45.8 26.3     21.3   30.8   40.1  58.3 
+## # ... with 14 more rows, and 6 more variables
 ```
 
 > **Ejercicio 2J.** Genera una base en formato *tidy* con el crecimiento medio del PIB por país-año. Convierte estos datos a un formato *ancho/wide*, moviendo los años a las columnas.
@@ -918,7 +918,7 @@ aprobacion_wide2 %>%
 ## 1 Argentina pib      2000  552151219031.
 ## 2 Argentina pib      2001  527807756979.
 ## 3 Argentina pib      2002  470305820970.
-## # … with 507 more rows
+## # ... with 507 more rows
 ```
 
 Entonces, podemos pivotar las variables a través del ancho para obtener nuestra base datos de destino, como lo hicimos antes, con `pivot_wider()`. Hagamos todo en una cadena:
@@ -935,7 +935,7 @@ aprobacion_wide2 %>%
 ## 1 Argentina 2000  552151219031.  37057452
 ## 2 Argentina 2001  527807756979.  37471509
 ## 3 Argentina 2002  470305820970.  37889370
-## # … with 252 more rows
+## # ... with 252 more rows
 ```
 
 

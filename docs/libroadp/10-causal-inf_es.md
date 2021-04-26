@@ -149,7 +149,7 @@ Conocer la dirección de las flechas entre los nodos de un DAG, por lo tanto, pr
 
 ## Puertas traseras y cálculos "*hacer*"
 
-Following the fundamental problem of causal inference (i.e. due the the fact that we do not have a time machine), answering causal questions without an experiment appears impossible. However, if we apply a special set of logical rules called *do*-calculus to our causal graph, we can strip away any confounding relationships between our tratamiento and outcome nodes and isolate the causal effect between them using only observational data.
+De acuerdo al problema fundamental de la inferencia causal (es decir, debido al hecho de que no tenemos una máquina del tiempo), responder a preguntas causales sin un experimento parece una tarea imposible. Sin embargo, si aplicamos a nuestro grafo causal un conjunto especial de reglas lógicas denominado *cálculo hacer*, podemos eliminar cualquier confusión entre nuestros nodos de tratamiento y resultado, aislando así el efecto causal entre ellos utilizando solamente datos observacionales.
 
 <div class="figure" style="text-align: center">
 <img src="00-images/causal-inf/rct-dag.png" alt="Las flechas en un DAG se borran cuando usamos el operador $hacer(\cdot)$" width="60%" />
@@ -211,9 +211,9 @@ Como los DAGs son un conjunto de nodos y flechas, son fáciles de dibujar. Recom
 
 ### Dibujar un DAG con DAGitty
 
-[DAGitty](https://www.dagitty.red) es un editor gráfico online para crear y analizar diagramas causales. Con el mouse, y sin código, puede crear nodos y vincularlos con flechas. También puede asignar nodos específicos para que sean tratamiento, resultado o variables latentes / no observadas, y a cada una darle su propia escala de colores. Puedes exportar los DAGs como archivos PNG, JPG y SVG para incluirlos en otros documentos. La figura \@ref(fig:example-dagitty) muestra un ejemplo de un gráfico causal realizado en DAGitty por mí. 
+[DAGitty](https://www.dagitty.net) es un editor gráfico online para crear y analizar diagramas causales. Con el mouse, y sin código, puede crear nodos y vincularlos con flechas. También puede asignar nodos específicos para que sean tratamiento, resultado o variables latentes / no observadas, y a cada una darle su propia escala de colores. Puedes exportar los DAGs como archivos PNG, JPG y SVG para incluirlos en otros documentos. La figura \@ref(fig:example-dagitty) muestra un ejemplo de un gráfico causal realizado en DAGitty por mí. 
 
-> **Ejercicio 10A.** Consulta [el manual en línea](http://dagitty.red/manual-3.x.png) para obtener más detalles sobre las características de DAGitty, o pasa unos minutos jugando para acostumbrarte a agregar y conectar nodos.
+> **Ejercicio 10A.** Consulta [el manual en línea](http://www.dagitty.net/learn/index.html) para obtener más detalles sobre las características de DAGitty, o pasa unos minutos jugando para acostumbrarte a agregar y conectar nodos.
 
 
 <div class="figure" style="text-align: center">
@@ -277,6 +277,20 @@ ggdag_status(simple_dag) +
   theme_dag()
 ```
 
+
+```
+## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font
+## family not found in Windows font database
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+```
+
 <div class="figure" style="text-align: center">
 <img src="10-causal-inf_es_files/figure-html/status-dag-1.png" alt="DAG con nodos coloreados por estatus" width="55%" />
 <p class="caption">(\#fig:status-dag)DAG con nodos coloreados por estatus</p>
@@ -304,6 +318,21 @@ ggdag_status(simple_dag_with_coords) +
   theme_dag()
 ```
 
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+```
+
 <div class="figure" style="text-align: center">
 <img src="10-causal-inf_es_files/figure-html/coords-dag-1.png" alt="DAG con coordenadas manuales" width="55%" />
 <p class="caption">(\#fig:coords-dag)DAG con coordenadas manuales</p>
@@ -325,6 +354,21 @@ dag_with_var_names <- dagify(
 ```r
 ggdag_status(dag_with_var_names) + 
   theme_dag()
+```
+
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
 ```
 
 <div class="figure" style="text-align: center">
@@ -393,6 +437,25 @@ ggdag_paths(simple_dag_with_coords) +
   theme_dag()
 ```
 
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : font family not found in Windows font database
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+```
+
 <div class="figure" style="text-align: center">
 <img src="10-causal-inf_es_files/figure-html/plot-dag-paths-1.png" alt="Todos los caminos posibles entre \texttt{x} e \texttt{y}" width="70%" />
 <p class="caption">(\#fig:plot-dag-paths)Todos los caminos posibles entre \texttt{x} e \texttt{y}</p>
@@ -403,7 +466,7 @@ En vez de enumerar todos los caminos posibles e identificar puertas traseras a m
 
 ```r
 adjustmentSets(simple_dag)
-##  { a, b }
+## { a, b }
 ```
 
 También puedes visualizar los sets de ajustes con `ggdag_adjustment_set ()` en el paquete `ggdag`. Asegúrate de establecer `shadow = TRUE` para dibujar las flechas que salen de los nodos ajustados ya que de manera predeterminada, no están incluidos.
@@ -412,6 +475,31 @@ También puedes visualizar los sets de ajustes con `ggdag_adjustment_set ()` en 
 ```r
 ggdag_adjustment_set(simple_dag_with_coords, shadow = TRUE) +
   theme_dag()
+```
+
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : font family not found in Windows font database
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
 ```
 
 <div class="figure" style="text-align: center">
@@ -505,16 +593,16 @@ data(red_mosquitos)
 glimpse(red_mosquitos)
 ## Rows: 1,752
 ## Columns: 10
-## $ codigo         <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, …
-## $ red            <lgl> TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, F…
-## $ red_cant       <dbl> 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1,…
-## $ riesgo_malaria <dbl> 33, 42, 80, 34, 44, 25, 19, 35, 32, 40, 30, 14,…
-## $ ingreso        <dbl> 781, 974, 502, 671, 728, 1050, 1146, 1093, 1037…
-## $ salud          <dbl> 56, 57, 15, 20, 17, 48, 65, 75, 60, 36, 75, 62,…
-## $ hogar          <dbl> 2, 4, 3, 5, 5, 1, 3, 5, 3, 3, 6, 3, 4, 3, 1, 5,…
-## $ elegible       <lgl> FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE,…
-## $ temperatura    <dbl> 21, 26, 26, 21, 19, 25, 27, 30, 28, 21, 17, 19,…
-## $ resistencia    <dbl> 59, 73, 65, 46, 54, 34, 45, 65, 55, 54, 33, 39,…
+## $ codigo         <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1~
+## $ red            <lgl> TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FA~
+## $ red_cant       <dbl> 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, ~
+## $ riesgo_malaria <dbl> 33, 42, 80, 34, 44, 25, 19, 35, 32, 40, 30, 14, ~
+## $ ingreso        <dbl> 781, 974, 502, 671, 728, 1050, 1146, 1093, 1037,~
+## $ salud          <dbl> 56, 57, 15, 20, 17, 48, 65, 75, 60, 36, 75, 62, ~
+## $ hogar          <dbl> 2, 4, 3, 5, 5, 1, 3, 5, 3, 3, 6, 3, 4, 3, 1, 5, ~
+## $ elegible       <lgl> FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, ~
+## $ temperatura    <dbl> 21, 26, 26, 21, 19, 25, 27, 30, 28, 21, 17, 19, ~
+## $ resistencia    <dbl> 59, 73, 65, 46, 54, 34, 45, 65, 55, 54, 33, 39, ~
 ```
 
 ### Verificar las independencias condicionales
@@ -524,21 +612,21 @@ Antes de proceder a identificar la relación causal entre el uso de mosquiteros 
 
 ```r
 impliedConditionalIndependencies(mosquito_dag)
-## elegible _||_ resistencia
-## elegible _||_ riesgo_malaria | ingreso, red, salud, temperatura
-## elegible _||_ salud | ingreso
-## elegible _||_ temperatura
-## hogar _||_ ingreso
-## hogar _||_ resistencia
-## hogar _||_ riesgo_malaria | ingreso, red, salud, temperatura
-## hogar _||_ salud
-## hogar _||_ temperatura
-## ingreso _||_ resistencia
-## ingreso _||_ temperatura
-## red _||_ resistencia
-## resistencia _||_ salud
-## resistencia _||_ temperatura
-## salud _||_ temperatura
+## elgb _||_ rsst
+## elgb _||_ rsg_ | ingr, red, sald, tmpr
+## elgb _||_ sald | ingr
+## elgb _||_ tmpr
+## hogr _||_ ingr
+## hogr _||_ rsst
+## hogr _||_ rsg_ | ingr, red, sald, tmpr
+## hogr _||_ sald
+## hogr _||_ tmpr
+## ingr _||_ rsst
+## ingr _||_ tmpr
+## red _||_ rsst
+## rsst _||_ sald
+## rsst _||_ tmpr
+## sald _||_ tmpr
 ```
 
 Por motivos de espacio aquí, no verificaremos todas estas independencias implícitas, pero podemos probar algunas de ellas:
@@ -572,7 +660,7 @@ Por motivos de espacio aquí, no verificaremos todas estas independencias implí
     ## 1 (Intercept)  76.2       0.966     78.9   0.      
     ## 2 hogar        -0.0155    0.0893    -0.173 8.63e- 1
     ## 3 salud         0.148     0.0107    13.9   9.75e-42
-    ## # … with 3 more rows
+    ## # ... with 3 more rows
     ```
 
 Después de comprobar todas las demás dependencias condicionales, podemos saber si nuestro DAG captura la realidad del sistema completo de factores que influyen en el uso de mosquiteros y el riesgo de malaria. Si hay correlaciones sustanciales y significativas entre los nodos que deberían ser independientes, es probable que haya un problema con la especificación del DAG. Si es así, vuelves a la teoría y refinas más tu DAG.
@@ -585,7 +673,7 @@ Existe una vía directa entre el uso de mosquiteros y el riesgo de contraer mala
 
 ```r
 adjustmentSets(mosquito_dag)
-##  { ingreso, salud, temperatura }
+## { ingreso, salud, temperatura }
 ```
 
 Basándose en las relaciones entre todos los nodos del DAG, el ajuste por salud, ingresos y temperatura es suficiente para cerrar todas las puertas traseras e identificar la relación entre el uso de la red y el riesgo de malaria (ver Figura \@ref(fig:mosquito-dag-adjusted)). Es importante destacar que no tenemos que preocuparnos por ninguno de los nodos relacionados con el programa gubernamental de redes gratuitas, ya que esos nodos no están *d* conectados con el riesgo de malaria. Sólo tenemos que preocuparnos por las relaciones de confusión.
@@ -612,6 +700,30 @@ Como base de referencia para los otros enfoques de ajuste que intentaremos, pode
 ggplot(red_mosquitos, aes(x = red , y = riesgo_malaria)) +
   geom_boxplot() +
   cowplot::theme_cowplot(font_size = 11, font_family = "LM Roman 10")
+## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font
+## family not found in Windows font database
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : font family not found in Windows font database
 ```
 
 <div class="figure" style="text-align: center">
@@ -723,11 +835,13 @@ matched
 ##         method = "nearest", distance = "mahalanobis", replace = TRUE)
 ## 
 ## Sample sizes:
-##           Control Treated
-## All          1071     681
-## Matched       439     681
-## Unmatched     632       0
-## Discarded       0       0
+##               Control Treated
+## All (ESS)        1071     681
+## All              1071     681
+## Matched (ESS)     323     681
+## Matched           439     681
+## Unmatched         632       0
+## Discarded           0       0
 ```
 
 
@@ -741,19 +855,18 @@ red_mosquitos_matched <- match.data(matched)
 
 glimpse(red_mosquitos_matched)
 ## Rows: 1,120
-## Columns: 12
-## $ codigo         <dbl> 1, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 16, 17, 20…
-## $ red            <lgl> TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, F…
-## $ red_cant       <dbl> 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0,…
-## $ riesgo_malaria <dbl> 33, 80, 34, 44, 25, 19, 35, 30, 14, 31, 34, 54,…
-## $ ingreso        <dbl> 781, 502, 671, 728, 1050, 1146, 1093, 889, 1133…
-## $ salud          <dbl> 56, 15, 20, 17, 48, 65, 75, 75, 62, 42, 53, 29,…
-## $ hogar          <dbl> 2, 3, 5, 5, 1, 3, 5, 6, 3, 4, 3, 5, 2, 6, 4, 3,…
-## $ elegible       <lgl> FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE,…
-## $ temperatura    <dbl> 21, 26, 21, 19, 25, 27, 30, 17, 19, 28, 24, 26,…
-## $ resistencia    <dbl> 59, 65, 46, 54, 34, 45, 65, 33, 39, 37, 53, 55,…
-## $ distance       <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ weights        <dbl> 1.00, 0.64, 1.00, 0.64, 1.29, 1.00, 1.93, 0.64,…
+## Columns: 11
+## $ codigo         <dbl> 1, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 16, 17, 20,~
+## $ red            <lgl> TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FA~
+## $ red_cant       <dbl> 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, ~
+## $ riesgo_malaria <dbl> 33, 80, 34, 44, 25, 19, 35, 30, 14, 31, 34, 54, ~
+## $ ingreso        <dbl> 781, 502, 671, 728, 1050, 1146, 1093, 889, 1133,~
+## $ salud          <dbl> 56, 15, 20, 17, 48, 65, 75, 75, 62, 42, 53, 29, ~
+## $ hogar          <dbl> 2, 3, 5, 5, 1, 3, 5, 6, 3, 4, 3, 5, 2, 6, 4, 3, ~
+## $ elegible       <lgl> FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, ~
+## $ temperatura    <dbl> 21, 26, 21, 19, 25, 27, 30, 17, 19, 28, 24, 26, ~
+## $ resistencia    <dbl> 59, 65, 46, 54, 34, 45, 65, 33, 39, 37, 53, 55, ~
+## $ weights        <dbl> 1.00, 0.64, 1.00, 0.64, 1.29, 1.00, 1.93, 0.64, ~
 ```
 
 Por último, podemos hacer una regresión usando los datos emparejados:
@@ -941,7 +1054,7 @@ texreg::screenreg(list(model_naive, model_regression, model_matched, model_peso_
 ```
 
 
-> **Ejercicio 10B**: En el ejercicio 10A, dibujaste un DAG que modeló la relación causal entre la diversidad étnica y la desigualdad social. En este ejercicio utilizarás el set de ajustes de ese DAG para intentar estimar el efecto causal de esa relación. Haz lo siguiente:
+> **Ejercicio 10C**: En el ejercicio 10A, dibujaste un DAG que modeló la relación causal entre la diversidad étnica y la desigualdad social. En este ejercicio utilizarás el set de ajustes de ese DAG para intentar estimar el efecto causal de esa relación. Haz lo siguiente:
 > 
 > 1. Carga la base de datos de `bienestar` del paquete del libro:
 >

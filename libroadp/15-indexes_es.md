@@ -62,13 +62,13 @@ En América Latina, dado el pasado de gobiernos dictatoriales y el reciente debi
 
 El Proyecto de Opinión Pública Latinoamericana (LAPOP por sus siglas en inglés) - coordinado desde la Universidad de Vanderbilt - se especializa en la realización de estudios de evaluación de impacto y en la producción de informes sobre las actitudes, evaluaciones y experiencias de los individuos en los países de América Latina. Este proyecto proporciona a los investigadores diferentes preguntas que, en conjunto, podrían ayudarnos a aproximar el grado de confianza que existe en la región respecto de las instituciones democráticas del país correspondiente a cada individuo.
 
-> **Ejercicio 15A.** Asumamos que se te pide que midas el antiamericanismo en América Latina. ¿Cómo medirías este concepto? Elije 5 o más preguntas de la encuesta LAPOP (puedes consultar el libro de códigos [aquí](https://www.vanderbilt.edu/lapop/ab2016/AB2017-v18.0-Spa-170202_W.pdf)) que usarías para medir el antiamericanismo. 
+> **Ejercicio 15A.** Asumamos que se te pide que midas el antiamericanismo en América Latina. ¿Cómo medirías este concepto? Elige 5 o más preguntas de la encuesta LAPOP (puedes consultar el libro de códigos [aquí](https://www.vanderbilt.edu/lapop/ab2016/AB2017-v18.0-Spa-170202_W.pdf)) que usarías para medir el antiamericanismo. 
 
-Como primer paso, es importante seleccionar las variables que se utilizarán para llevar a cabo el LAPOP, dejando de lado todo lo que no queremos utilizar en el índice final. Estos datos contienen doce preguntas de la encuesta LAPOP, realizada a una muestra de alrededor de 7000 personas en 10 países de América Latina. Se puede acceder al cuestionario completo en este [link](https://www.vanderbilt.edu/lapop/ab2016/AB2017-v18.0-Spa-170202_W.pdf). Este primer paso es esencial. Es el paso que implica más trabajo teórico para el investigador, ya que a partir de aquí se definen las variables que se integrarán en el análisis (y que se dejarán fuera). En nuestro análisis, las variables que dejamos fuera son las siguientes:
+Como primer paso, es importante seleccionar las variables que se utilizarán para llevar a cabo el LAPOP, dejando de lado todo lo que no queremos utilizar en el índice final. Estos datos contienen doce preguntas de la encuesta LAPOP, realizada a una muestra de alrededor de 7000 personas en 10 países de América Latina. Se puede acceder al cuestionario completo en este [link](https://www.vanderbilt.edu/lapop/ab2016/AB2017-v18.0-Spa-170202_W.pdf). Este primer paso es esencial. Es el paso que implica más trabajo teórico para el investigador, ya que a partir de aquí se definen las variables que se integrarán en el análisis (y que se dejarán fuera). En nuestro análisis, las variables que usamos son las siguientes:
 
 | Nombre   | Descripción                                 | Fuente                          |
 | -------------| ----------------------------------------|-----------------------------| 
-|**justifica_golpe** |**Variable dicotómica que mide el nivel de justificación de los golpes de estado militares en el país del encuestado contra un gran número de delitos.|  *Basada en la pregunta "jc10" de la encuesta del LAPOP.*|
+|**justifica_golpe** | Variable dicotómica que mide el nivel de justificación de los golpes de estado militares en el país del encuestado contra un gran número de delitos.|  *Basada en la pregunta "jc10" de la encuesta del LAPOP.*|
 |**justifica_cierre_cong**|Variable dicotómica que mide el nivel de justificación del cierre del congreso en situaciones difíciles por el presidente. |*Basada en la pregunta "jc15a" de la encuesta del LAPOP.*|
 |**conf_cortes**|Mide en una escala del 1 al 7 el nivel de confianza en los tribunales en el país del encuestado.|*Encuesta LAPOP.*|
 |**conf_instit**|Mide en una escala del 1 al 7 el nivel de respeto a las instituciones políticas en el país del encuestado.|*Encuesta LAPOP.*|
@@ -94,6 +94,18 @@ library(paqueteadp)
 data("lapop")
 ```
 
+
+```r
+lapop
+## # A tibble: 7,655 x 14
+##      id pais_nombre justifica_golpe justifica_cierr~ conf_cortes
+##   <dbl> <chr>                 <dbl>            <dbl>       <dbl>
+## 1     1 Argentina                 0                1           6
+## 2     2 Argentina                 1                0           4
+## 3     3 Argentina                 0                0           4
+## # ... with 7,652 more rows, and 9 more variables
+```
+
 Estas variables pueden ser exploradas gráficamente. Por ejemplo, podemos ver -por país- la confianza que tienen sus ciudadanos en las elecciones:  
 
 
@@ -113,8 +125,8 @@ ggplot(lapop, aes(x = conf_elecciones)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="15-indexes_es_files/figure-html/unnamed-chunk-3-1.png" alt=" Histogramas de confianza en las elecciones por país. En azul, los promedios nacionales" width="768" />
-<p class="caption">(\#fig:unnamed-chunk-3) Histogramas de confianza en las elecciones por país. En azul, los promedios nacionales</p>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-4-1.png" alt=" Histogramas de confianza en las elecciones por país. En azul, los promedios nacionales" width="768" />
+<p class="caption">(\#fig:unnamed-chunk-4) Histogramas de confianza en las elecciones por país. En azul, los promedios nacionales</p>
 </div>
 
 Seleccionemos nuestras variables de interés, esto significa que dejamos fuera cualquier variable que no sea representativa de la democracia, por ejemplo la variable 'pais' que indica el país de cada individuo no debe ser incorporada. Para ello, generamos una nueva base de datos que contiene sólo las variables que queremos utilizar, en este caso, para saber cuál es la opinión que los latinoamericanos tienen de sus instituciones democráticas.
@@ -128,12 +140,12 @@ lapop_num <- lapop %>%
 
 lapop
 ## # A tibble: 7,655 x 15
-##      id pais_nombre justifica_golpe justifica_cierr… conf_cortes
+##      id pais_nombre justifica_golpe justifica_cierr~ conf_cortes
 ##   <dbl> <chr>                 <dbl>            <dbl>       <dbl>
 ## 1     1 Argentina                 0                1           6
 ## 2     2 Argentina                 1                0           4
 ## 3     3 Argentina                 0                0           4
-## # … with 7,652 more rows, and 10 more variables
+## # ... with 7,652 more rows, and 10 more variables
 ```
 
 Habiendo ya seleccionado las variables, el primer paso es estandarizarlas. La técnica PCA acepta variables de diferentes tipos, pero es importante omitir o imputar a los promedios los valores perdidos. En este caso, omitiremos los posibles NA que tenga la base de datos.
@@ -163,8 +175,8 @@ ggcorrplot(corr_lapop, type = "lower", lab = T, show.legend = F)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="15-indexes_es_files/figure-html/unnamed-chunk-6-1.png" alt="Matriz de correlación de las variables que usaremos en nuestro análisis" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-6)Matriz de correlación de las variables que usaremos en nuestro análisis</p>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-7-1.png" alt="Matriz de correlación de las variables que usaremos en nuestro análisis" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-7)Matriz de correlación de las variables que usaremos en nuestro análisis</p>
 </div>
 
 Lo que vemos es que las variables de confianza están positivamente correlacionadas. Es decir, los que confían en el presidente tienden a confiar en los medios de comunicación, las elecciones, por ejemplo.   
@@ -223,8 +235,8 @@ fviz_eig(pca, addlabels = T, ylim = c(0, 50))
 ```
 
 <div class="figure" style="text-align: center">
-<img src="15-indexes_es_files/figure-html/unnamed-chunk-9-1.png" alt=" Porcentaje de la varianza explicada de cada componente" width="480" />
-<p class="caption">(\#fig:unnamed-chunk-9) Porcentaje de la varianza explicada de cada componente</p>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-10-1.png" alt=" Porcentaje de la varianza explicada de cada componente" width="480" />
+<p class="caption">(\#fig:unnamed-chunk-10) Porcentaje de la varianza explicada de cada componente</p>
 </div>
 
 Un pequeño cambio en el comando, también nos da un gráfico con los valores propios de cada uno de los componentes:   
@@ -235,8 +247,8 @@ fviz_eig(pca, choice = c("eigenvalue"), addlabels = T, ylim = c(0, 3))
 ```
 
 <div class="figure" style="text-align: center">
-<img src="15-indexes_es_files/figure-html/unnamed-chunk-10-1.png" alt=" Eigenvalor de cada componente" width="480" />
-<p class="caption">(\#fig:unnamed-chunk-10) Eigenvalor de cada componente</p>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-11-1.png" alt=" Eigenvalor de cada componente" width="480" />
+<p class="caption">(\#fig:unnamed-chunk-11) Eigenvalor de cada componente</p>
 </div>
 
 Para saber cómo está compuesto cada uno de estos componentes, podemos generar un Biplot. Este tipo de gráfico nos aparecerá como vectores en dos dimensiones (que serán los dos primeros componentes del análisis).
@@ -247,8 +259,8 @@ fviz_pca_biplot(pca, repel = F, col.var = "black", col.ind = "gray")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="15-indexes_es_files/figure-html/unnamed-chunk-11-1.png" alt="Biplot con las dimensiones 1 y 2" width="576" />
-<p class="caption">(\#fig:unnamed-chunk-11)Biplot con las dimensiones 1 y 2</p>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-12-1.png" alt="Biplot con las dimensiones 1 y 2" width="576" />
+<p class="caption">(\#fig:unnamed-chunk-12)Biplot con las dimensiones 1 y 2</p>
 </div>
 
 Este gráfico bidimensional muestra claramente que tenemos tres grupos de variables. Estos conjuntos de variables son los que se reducen precisamente a tres componentes, que pueden representar tres dimensiones de opinión sobre las instituciones políticas que queremos medir en América Latina.    
@@ -262,8 +274,8 @@ fviz_contrib(pca, choice = "var", axes = 3, top = 10)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="15-indexes_es_files/figure-html/unnamed-chunk-12-1.png" alt="Las variables que contribuyen a cada dimensión en el PCA" width="672" /><img src="15-indexes_es_files/figure-html/unnamed-chunk-12-2.png" alt="Las variables que contribuyen a cada dimensión en el PCA" width="672" /><img src="15-indexes_es_files/figure-html/unnamed-chunk-12-3.png" alt="Las variables que contribuyen a cada dimensión en el PCA" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-12)Las variables que contribuyen a cada dimensión en el PCA</p>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-13-1.png" alt="Las variables que contribuyen a cada dimensión en el PCA" width="672" /><img src="15-indexes_es_files/figure-html/unnamed-chunk-13-2.png" alt="Las variables que contribuyen a cada dimensión en el PCA" width="672" /><img src="15-indexes_es_files/figure-html/unnamed-chunk-13-3.png" alt="Las variables que contribuyen a cada dimensión en el PCA" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-13)Las variables que contribuyen a cada dimensión en el PCA</p>
 </div>
 
 Por ejemplo, el primer componente es el más diverso, pero se alimenta en gran medida de variables de confianza. Si recuerdas la matriz de correlación que hicimos con `GGally`, todas estas variables tenían altas correlaciones entre sí. El segundo componente se alimenta de la fuerte correlación entre `manifestaciones` y `voto_opositor`. La línea punteada roja expresa el valor que supondría un escenario en el que todas las variables contribuyen por igual, es decir, 1/12 (8,33%), y sirve sólo como referencia visual.   
@@ -341,8 +353,8 @@ fviz_eig(pca_1, choice = "eigenvalue", addlabels = T, ylim = c(0, 3))
 ```
 
 <div class="figure" style="text-align: center">
-<img src="15-indexes_es_files/figure-html/unnamed-chunk-16-1.png" alt=" Eigenvalores de los componentes. Como regla general, retenemos los componentes con valores mayores que 1" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-16) Eigenvalores de los componentes. Como regla general, retenemos los componentes con valores mayores que 1</p>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-17-1.png" alt=" Eigenvalores de los componentes. Como regla general, retenemos los componentes con valores mayores que 1" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-17) Eigenvalores de los componentes. Como regla general, retenemos los componentes con valores mayores que 1</p>
 </div>
 
 Como pudimos ver de antemano, los componentes mayores de 1 son los tres primeros. Dejaremos en este caso el componente 4 para añadir más variables a nuestro índice. Hay un enorme grado de discrecionalidad en todo este proceso.
@@ -398,8 +410,8 @@ index_density
 ```
 
 <div class="figure" style="text-align: center">
-<img src="15-indexes_es_files/figure-html/unnamed-chunk-20-1.png" alt=" Gráfica de densidad de nuestro índice" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-20) Gráfica de densidad de nuestro índice</p>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-21-1.png" alt=" Gráfica de densidad de nuestro índice" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-21) Gráfica de densidad de nuestro índice</p>
 </div>
 
  Ahora que tenemos el índice listo, podemos hacer todo tipo de análisis. Por ejemplo, podemos hacer comparaciones por país. Si tuviéramos variables individuales, podríamos proceder a modelos de regresión con controles para el género, la ideología, los ingresos, el nivel de educación. Para hacer esto, puedes usar lo que aprendiste en los capítulos 7 y 8.  
@@ -423,8 +435,8 @@ ggplot(lapop, aes(x = democracy_index)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="15-indexes_es_files/figure-html/unnamed-chunk-21-1.png" alt=" Gráficos de densidad de nuestro índice de confianza en la democracia por país. En azul, la media nacional" width="576" />
-<p class="caption">(\#fig:unnamed-chunk-21) Gráficos de densidad de nuestro índice de confianza en la democracia por país. En azul, la media nacional</p>
+<img src="15-indexes_es_files/figure-html/unnamed-chunk-22-1.png" alt=" Gráficos de densidad de nuestro índice de confianza en la democracia por país. En azul, la media nacional" width="576" />
+<p class="caption">(\#fig:unnamed-chunk-22) Gráficos de densidad de nuestro índice de confianza en la democracia por país. En azul, la media nacional</p>
 </div>
 
 > **Ejercicio 15C.** Utilizando el índice de confianza en la democracia en América Latina que acabamos de crear, analiza con modelos de regresión lineal qué variables tienen un alto poder explicativo sobre esta variable, son las variables de ideología, ingresos o edad importantes?

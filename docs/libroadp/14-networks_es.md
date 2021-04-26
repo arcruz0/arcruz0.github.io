@@ -6,7 +6,7 @@ Andrés Cruz^[Correo electrónico: arcruz\@uc.cl]
 
 - Newman, M. (2018). *Networks: An Introduction* (2nd ed). New York: Oxford University Press.
 
-- Scott, J. (2013). *Social Network Analysis (3rd ed.). London: Sage Publications.
+- Scott, J. (2013). *Social Network Analysis* (3rd ed.). London: Sage Publications.
 
 ### Los paquetes que necesitas instalar {-}
 
@@ -190,7 +190,7 @@ senadores_arg
 ## 1      1 RAMON A ALMENDRA SANTA CRUZ JUSTICIALISTA  
 ## 2      2 JULIO AMOEDO     CATAMARCA  JUSTICIALISTA  
 ## 3      3 RAMON A ARAUJO   TUCUMAN    JUSTICIALISTA  
-## # … with 43 more rows
+## # ... with 43 more rows
 ```
 
 Mientras tanto, nuestra segunda base de datos contiene información sobre los enlaces, en este caso, el copatrocinio de leyes entre los senadores. En esta base de datos, se registran los pesos y direcciones. Por lo tanto, tiene tres variables: dos variables de identificación (que vinculan las identificaciones de los senadores) y el número de leyes copatrocinadas en el par. Por ejemplo, la primera observación indica que el Legislador 1 firmó un proyecto de ley del Legislador 2.
@@ -204,7 +204,7 @@ copatrocinio_arg
 ## 1            1            2              1
 ## 2            1            9              1
 ## 3            1           30              1
-## # … with 214 more rows
+## # ... with 214 more rows
 ```
 
 Una vez que tengamos dos bases de datos, podemos unirlas en un solo objeto de `tidygraph` para empezar a trabajar con ellos:
@@ -235,7 +235,7 @@ tg_copatrocinio_arg
 ## 4      4 ALFREDO L BENITEZ         JUJUY      JUSTICIALISTA  
 ## 5      5 ANTONIO TOMAS BERHONGARAY LA PAMPA   UCR            
 ## 6      6 DEOLINDO FELIPE BITTEL    CHACO      JUSTICIALISTA  
-## # … with 40 more rows
+## # ... with 40 more rows
 ## #
 ## # Edge Data: 217 x 3
 ##    from    to n_copatrocinio
@@ -243,7 +243,7 @@ tg_copatrocinio_arg
 ## 1     1     2              1
 ## 2     1     9              1
 ## 3     1    30              1
-## # … with 214 more rows
+## # ... with 214 more rows
 ```
 
 Podemos editar el contenido de cualquiera de las dos bases de datos, activando cualquiera de sus nodos o enlaces con `activate()`. Vamos a crear dos variables que serán de utilidad más adelante. Primero, una variable binaria para el copatrocinio usando `if_else()`, llamada "d_copatrocinio". Segundo, una variable invertida para los pesos (número de proyectos de ley), que nombraremos "n_copatrocinio_inv".
@@ -274,7 +274,7 @@ tg_copatrocinio_arg
 ## 4     1    34              1              1              1    
 ## 5     1    36              3              1              0.333
 ## 6     1    37              1              1              1    
-## # … with 211 more rows
+## # ... with 211 more rows
 ## #
 ## # Node Data: 46 x 4
 ##   id_sen nombre_sen       provincia  bloque_politico
@@ -282,7 +282,7 @@ tg_copatrocinio_arg
 ## 1      1 RAMON A ALMENDRA SANTA CRUZ JUSTICIALISTA  
 ## 2      2 JULIO AMOEDO     CATAMARCA  JUSTICIALISTA  
 ## 3      3 RAMON A ARAUJO   TUCUMAN    JUSTICIALISTA  
-## # … with 43 more rows
+## # ... with 43 more rows
 ```
 
 ## Presentación gráfica de una red
@@ -334,7 +334,7 @@ ggraph(layout_fr) +
 <p class="caption">(\#fig:unnamed-chunk-16) Red de copatrocinio en el Senado argentino (1983), con nodos y enlaces</p>
 </div>
 
-> **Ejercicio 14A.** Prueba la función `geom_edge_link()` en lugar de `geom_edge_arc()`. ¿Cuál es la diferencia? ¿Qué visualización crees que es más clara?
+> **Ejercicio 14A.** Prueba la función `geom_edge_arc()` en lugar de `geom_edge_link()`. ¿Cuál es la diferencia? ¿Qué visualización crees que es más clara?
 
 Debemos recordar que nuestra red tiene pesos. Esto se tuvo en cuenta en el diseño gráfico cuando usamos el argumento `weights = n_copatrocinio` para `create_layout()`. Podemos incorporar esta información explícitamente en nuestros enlaces gráficos, usando el ahora familiar argumento `mapping = aes()` en nuestra geom. En este caso, graficaremos la intensidad del color en los enlaces, usando el argumento `alpha =`:
 
@@ -434,14 +434,14 @@ tg_copatrocinio_arg_centr <- tg_copatrocinio_arg %>%
     c_closeness_w = centrality_closeness(weights = n_copatrocinio_inv)
   )
 ## Warning: Problem with `mutate()` input `c_closeness`.
-## ℹ At centrality.c:2784 :closeness centrality is not well-defined for disconnected graphs
-## ℹ Input `c_closeness` is `centrality_closeness()`.
+## i At centrality.c:2784 :closeness centrality is not well-defined for disconnected graphs
+## i Input `c_closeness` is `centrality_closeness()`.
 ## Warning in closeness(graph = graph, vids = V(graph), mode = mode, weights
 ## = weights, : At centrality.c:2784 :closeness centrality is not well-
 ## defined for disconnected graphs
 ## Warning: Problem with `mutate()` input `c_closeness_w`.
-## ℹ At centrality.c:2617 :closeness centrality is not well-defined for disconnected graphs
-## ℹ Input `c_closeness_w` is `centrality_closeness(weights = n_copatrocinio_inv)`.
+## i At centrality.c:2617 :closeness centrality is not well-defined for disconnected graphs
+## i Input `c_closeness_w` is `centrality_closeness(weights = n_copatrocinio_inv)`.
 ## Warning in closeness(graph = graph, vids = V(graph), mode = mode, weights
 ## = weights, : At centrality.c:2617 :closeness centrality is not well-
 ## defined for disconnected graphs
@@ -459,13 +459,13 @@ tg_copatrocinio_arg_centr
 ## # Node Data: 46 x 13 (active)
 ##   id_sen nombre_sen provincia bloque_politico c_in_degree c_out_degree
 ##    <int> <chr>      <chr>     <chr>                 <dbl>        <dbl>
-## 1      1 RAMON A A… SANTA CR… JUSTICIALISTA             8            6
-## 2      2 JULIO AMO… CATAMARCA JUSTICIALISTA            25            4
-## 3      3 RAMON A A… TUCUMAN   JUSTICIALISTA             1            4
-## 4      4 ALFREDO L… JUJUY     JUSTICIALISTA             1            4
-## 5      5 ANTONIO T… LA PAMPA  UCR                      14            6
-## 6      6 DEOLINDO … CHACO     JUSTICIALISTA             9            7
-## # … with 40 more rows, and 7 more variables
+## 1      1 RAMON A A~ SANTA CR~ JUSTICIALISTA             8            6
+## 2      2 JULIO AMO~ CATAMARCA JUSTICIALISTA            25            4
+## 3      3 RAMON A A~ TUCUMAN   JUSTICIALISTA             1            4
+## 4      4 ALFREDO L~ JUJUY     JUSTICIALISTA             1            4
+## 5      5 ANTONIO T~ LA PAMPA  UCR                      14            6
+## 6      6 DEOLINDO ~ CHACO     JUSTICIALISTA             9            7
+## # ... with 40 more rows, and 7 more variables
 ## #
 ## # Edge Data: 217 x 5
 ##    from    to n_copatrocinio d_copatrocinio n_copatrocinio_inv
@@ -473,7 +473,7 @@ tg_copatrocinio_arg_centr
 ## 1     1     2              1              1                  1
 ## 2     1     9              1              1                  1
 ## 3     1    30              1              1                  1
-## # … with 214 more rows
+## # ... with 214 more rows
 ```
 
 Comencemos construyendo un simple diagrama de correlación con las medidas de centralidad:
@@ -519,7 +519,7 @@ tg_copatrocinio_arg_centr %>%
 ## 4      9 ORALDO N BRITOS                    19
 ## 5     31 ANTONIO O NAPOLI                   17
 ## 6      5 ANTONIO TOMAS BERHONGARAY          14
-## # … with 40 more rows
+## # ... with 40 more rows
 ## #
 ## # Edge Data: 217 x 5
 ##    from    to n_copatrocinio d_copatrocinio n_copatrocinio_inv
@@ -527,7 +527,7 @@ tg_copatrocinio_arg_centr %>%
 ## 1     9     1              1              1                  1
 ## 2     9     4              1              1                  1
 ## 3     9     8              1              1                  1
-## # … with 214 more rows
+## # ... with 214 more rows
 ```
 
 
@@ -548,7 +548,7 @@ tg_copatrocinio_arg_centr %>%
 ## 4     10 JORGE A CASTRO                          7
 ## 5     23 MARGARITA MALHARRO DE TORRES            7
 ## 6     28 FAUSTINO M MAZZUCCO                     7
-## # … with 40 more rows
+## # ... with 40 more rows
 ## #
 ## # Edge Data: 217 x 5
 ##    from    to n_copatrocinio d_copatrocinio n_copatrocinio_inv
@@ -556,7 +556,7 @@ tg_copatrocinio_arg_centr %>%
 ## 1     8    28              1              1                  1
 ## 2     8    34              1              1                  1
 ## 3     8    24              1              1                  1
-## # … with 214 more rows
+## # ... with 214 more rows
 ```
 
 La escala de esas dos medidas es notable. El senador de mayor rango, Julio Amoedo, recibió el patrocinio de 25 legisladores diferentes (¡más de la mitad del Senado!). En cambio, el senador de mayor grado de salida, Pedro Conchez, patrocinó los proyectos de ley de sólo 8 legisladores distintos. Esto podría indicar que, si bien el papel de un "patrocinador principal" está bien definido, el de un "apoyador" no lo está.

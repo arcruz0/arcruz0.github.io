@@ -154,7 +154,7 @@ eeuu_latam %>%
 ## 1 Argentina    38
 ## 2 Bolivia      38
 ## 3 Brazil       38
-## # … with 7 more rows
+## # ... with 7 more rows
 ```
 
 Observemos la generalizabilidad de la hipótesis. El libro sólo analiza un caso, pero queremos saber si un panel de once países puede ayudarnos a fortalecer esos hallazgos y ganar validez externa. Si observamos el comportamiento de voto de estos once países latinoamericanos en las Naciones Unidas, notaremos un patrón similar entre ellos. Parece que la convergencia de votos con EE.UU. cayó entre 1945 y 1990, luego subió durante los 90, y luego volvió a caer a principios de los 2000. Siempre se recomienda hacer este paso antes de pasar a las regresiones. Hay dos formas de trazar las variables independientes y dependientes a lo largo del tiempo usando "ggplot2", como ya has aprendido.
@@ -262,7 +262,7 @@ summary(pooled)
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)    0.381      0.012   31.67   <2e-16 ***
+## (Intercept)    0.380      0.012   31.67   <2e-16 ***
 ## poder_pais    -3.564      1.473   -2.42    0.016 *  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -443,7 +443,7 @@ phtest(fe, re)
 ```
 Bajo la especificación actual, nuestra hipótesis inicial de que los efectos a nivel individual son modelados adecuadamente con un modelo de efectos aleatorios es claramente rechazada, con un valor p inferior al umbral de 0,05. En este caso, debemos quedarnos con el modelo de efectos fijos.
 
-> **Ejercicio 7B.** Utilice la base de datos del capítulo de la MCO (Latin America Welfare Dataset, 1960-2014, de Evelyne Huber y John D. Stephens) para estimar un modelo de efectos fijos y otro de efectos aleatorios en el que su variable dependiente sea el índice de Gini (`gini_slc`) A continuación, realice un test de especificación de Hausman.
+> **Ejercicio 7B.** Utilice la base de datos del capítulo de la MCO (Latin America Welfare Dataset, 1960-2014, de Evelyne Huber y John D. Stephens) para estimar un modelo de efectos fijos y otro de efectos aleatorios en el que su variable dependiente sea el índice de Gini (`gini_slc`) y la variable independiente sea el gasto en educación (`gasto_educ`). A continuación, realice un test de especificación de Hausman.
 
 ## Testeando raíces unitarias 
 
@@ -480,7 +480,7 @@ summary(fe)
 ## F-statistic: 39.5215 on 1 and 369 DF, p-value: 9.17e-10
 ```
 
-Si exploramos cuán altamente correlacionadas están nuestras variables dependientes e independientes con nuestra variable de tiempo, podríamos tener una idea de cómo tendencias en el tiempo pueden sesgar nuestros hallazgos. La figura que creamos con `ggcorrplot` muestra que `poder_pais` tiene una correlación positiva muy fuerte con `anio`, mientras que la variable `anio` tiene una correlación muy negativa con la variable `anio`. 
+Si exploramos cuán altamente correlacionadas están nuestras variables dependientes e independientes con nuestra variable de tiempo, podríamos tener una idea de cómo tendencias en el tiempo pueden sesgar nuestros hallazgos. La figura que creamos con `ggcorrplot` muestra que `poder_pais` tiene una correlación positiva muy fuerte con `anio`, mientras que la variable `anio` tiene una correlación muy negativa con la variable `voto`. 
 
 
 ```r
@@ -681,6 +681,7 @@ Obviamente hemos cubierto estos contenidos sin entrar en muchos detalles o expli
 > **Ejercicio 7C.** Utiliza el Latin America Welfare Dataset para crear variables rezagadas en t-1 y t-10 del Índice Gini (`gini_slc`). Incorpore ambas variables en tu modelo y diagnostica las raíces unitarias.
 
 ## Errores estándar robustos corregidos para panel
+
 ### Errores estándar robustos
 
 Quizás has utilizado Stata en algún momento para hacer análisis de datos en panel, o tal vez uno de tus coautores quiere replicar tus resultados en Stata. Si deseas reportar errores estándar robustos equivalentes a los de la opción "robust" de Stata, usted necesita calcularlos con `coeftest` y definir `type"sss"`, que corresponde a la misma corrección de muestra pequeña para datos de panel que hace Stata.

@@ -53,7 +53,7 @@ Podemos raspar (scrape) los datos, es decir, obtenerlos, de diferentes maneras:
 
 ### Estándar de exclusión de robot
 
-Antes de entrar en la práctica del *web scraping* tenemos que entender mejor qué es y cómo funciona el archivo *robots.txt* presente en la mayoría de los sitios web. Este archivo contiene el llamado *estándar de exclusión de robot* que es una serie de instrucciones especialmente dirigidas a los programas que buscan indexar el contenido de estas páginas (por ejemplo el bot de Google que "guarda" las nuevas páginas que se crean en Internet). Este método se utiliza para evitar que ciertos bots que analizan sitios de Internet añadan información "innecesaria" a los resultados de las búsquedas. Un archivo *robots.txt* en una página web funcionará como una petición para que ciertos bots ignoren archivos o directorios específicos en su búsqueda. Esto es importante cuando hablamos de *web scraping* ya que siempre es aconsejable revisar el archivo *robots.txt* de una página web antes de iniciar el scraping ya que puede incluir información que necesitaremos más adelante. Un ejemplo de cómo es uno de estos archivos se puede encontrar en el archivo *robots.txt* de Google https://www.google.com/robots.txt
+Antes de entrar en la práctica del *web scraping* tenemos que entender mejor qué es y cómo funciona el archivo *robots.txt* presente en la mayoría de los sitios web. Este archivo contiene el llamado *estándar de exclusión de robot* que es una serie de instrucciones especialmente dirigidas a los programas que buscan indexar el contenido de estas páginas (por ejemplo el bot de Google que "guarda" las nuevas páginas que se crean en Internet). Este método se utiliza para evitar que ciertos bots que analizan sitios de Internet añadan información "innecesaria" a los resultados de las búsquedas. Un archivo *robots.txt* en una página web funcionará como una petición para que ciertos bots ignoren archivos o directorios específicos en su búsqueda. Esto es importante cuando hablamos de *web scraping* ya que siempre es aconsejable revisar el archivo *robots.txt* de una página web antes de iniciar el scraping ya que puede incluir información que necesitaremos más adelante. Un ejemplo de cómo es uno de estos archivos se puede encontrar en el archivo *robots.txt* de Google (https://www.google.com/robots.txt).
 
 <div class="figure" style="text-align: center">
 <img src="00-images/web-mining/web-mining4.png" alt="Vistazo a los estándares de exclusión de Google" width="70%" />
@@ -77,15 +77,15 @@ library(rvest)
 
 Para "leer" datos de diferentes sitios web necesitaremos la ayuda de una herramienta de código abierto (open source tool), un plugin llamado "selectorgadget". Este se utiliza para extraer información de un sitio web. En este caso lo usaremos para seleccionar y resaltar las partes del sitio web que queremos extraer.
 
-Se puede encontrar más información en este enlace https://selectorgadget.com/ y aquí https://cran.r-project.org/web/packages/rvest/vignettes/selectorgadget.html
+Se puede encontrar más información en este [enlace](https://selectorgadget.com/) y [aquí](https://cran.r-project.org/web/packages/rvest/vignettes/selectorgadget.html)
 
 ### Ejemplo aplicado: los comunicados de prensa de la Organización de Estados Americanos (OEA)
 
-Como primer ejemplo haremos un web scraping de un sitio estático. Es decir, un sitio web que tiene texto en HTML y que no cambia. Supongamos que estamos trabajando en un proyecto de diplomacia y relaciones internacionales en el que debemos sistematizar la información sobre la interacción entre los países de América Latina. Uno de los repositorios más útiles para iniciar este tipo de investigación es el sitio web de la Organización de Estados Americanos (OEA). Se puede encontrar en el siguiente link: https://www.oas.org/es/. 
+Como primer ejemplo haremos un web scraping de un sitio estático. Es decir, un sitio web que tiene texto en HTML y que no cambia. Supongamos que estamos trabajando en un proyecto de diplomacia y relaciones internacionales en el que debemos sistematizar la información sobre la interacción entre los países de América Latina. Uno de los repositorios más útiles para iniciar este tipo de investigación es el sitio web de la Organización de Estados Americanos (OEA). Se puede encontrar en el [siguiente link](https://www.oas.org/es/). 
 
 Este sitio ofrece información muy pertinente para los analistas de datos políticos, ya que se trata de datos no estructurados que permiten identificar, por ejemplo, las redes de países, las alianzas, las fuentes de conflicto y las cuestiones que los ministerios de relaciones exteriores consideran pertinentes.
 
-Antes de comenzar con el *web scraping* en sí mismo analizaremos el archivo *robots-txt* del sitio web de la OEA http://oas.org/robots.txt
+Antes de comenzar con el *web scraping* en sí mismo analizaremos el archivo *robots-txt* del [sitio web de la OEA](http://oas.org/robots.txt).
 
 <div class="figure" style="text-align: center">
 <img src="00-images/web-mining/web-mining3.png" alt="Vistazo al archivo robots.txt de la OEA" width="100%" />
@@ -94,7 +94,7 @@ Antes de comenzar con el *web scraping* en sí mismo analizaremos el archivo *ro
 
 Encontramos que algunos directorios están prohibidos de ser indexados, pero todos los bots y usuarios están autorizados a visitar el sitio. Lo más importante es la expresión *Crawl-delay: 3* que básicamente nos dice que por cada petición hecha por un robot es aconsejable esperar 3 segundos entre una consulta y otra para no saturar el sitio, lo que puede resultar en que te bloquee.
 
-En este ejemplo en particular, queremos extraer los títulos de los comunicados de prensa que se encuentran en este sitio web. Para simplificar, se recomienda utilizar Google Chrome (https://chrome.google.com/) y la extensión Selector Gadget para este buscador.^[Se puede instalar desde este enlace https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb.] La extensión Selector Gadget también funciona en Firefox y en Safari (así como en otros navegadores), sólo tienes que arrastrar el marcador a tu barra de marcadores.
+En este ejemplo en particular, queremos extraer los títulos de los comunicados de prensa que se encuentran en este sitio web. Para simplificar, se recomienda utilizar [Google Chrome](https://chrome.google.com/) y la extensión Selector Gadget para este buscador.^[Se puede instalar desde [este enlace](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb). La extensión Selector Gadget también funciona en Firefox y en Safari (así como en otros navegadores), sólo tienes que arrastrar el marcador a tu barra de marcadores.
 
 Primero cargamos la página como un objeto para que luego podamos leerla como un archivo html. En este caso queremos que los títulos de los comunicados de prensa de la Organización de Estados Americanos (OEA) para octubre de 2019
 
@@ -146,16 +146,6 @@ Ahora revisaremos los primeros 10 resultados para ver cómo se clasificaron los 
 
 ```r
 head(titulos_web_comunicados_10_2019, n = 10)
-##  [1] "Ministros de Seguridad de las AmÃ©ricas adoptan recomendaciones de Quito para fortalecer la prevenciÃ³n y lucha contra la delincuencia organizada"                  
-##  [2] "La SecretarÃ­a General de la OEA inicia hoy el anÃ¡lisis de integridad electoral y auditorÃ­a del cÃ³mputo oficial en Bolivia"                                      
-##  [3] "El Salvador serÃ¡ sede de la VIII ReuniÃ³n de Ministros de Seguridad PÃºblica de la OEA en 2021"                                                                    
-##  [4] "Pronunciamiento de los Ministros en Materia de Seguridad PÃºblica de las AmÃ©ricas"                                                                                 
-##  [5] "Recomendaciones de Quito para el Fortalecimiento de la CooperaciÃ³n Internacional en Materia de Seguridad PÃºblica en la PrevenciÃ³n y Lucha Contra la Delincuencia"
-##  [6] "Secretario General de la OEA rechaza masacre de indÃ­genas en Cauca, Colombia"                                                                                      
-##  [7] "Â¿QuÃ© es la ReuniÃ³n de Ministros en Materia de Seguridad PÃºblica de las AmÃ©ricas (MISPA)?"                                                                      
-##  [8] "Informe Preliminar de la MisiÃ³n de VeedurÃ­a Electoral de la OEA para las Elecciones de Autoridades Territoriales en Colombia"                                     
-##  [9] "OEA recibe contribuciÃ³n de Estados Unidos al Programa de CapacitaciÃ³n sobre Delito CibernÃ©tico"                                                                  
-## [10] "Consejo Permanente de la OEA celebra DÃ­a de la Visibilidad Intersexual y recibe Informe de la Ombudsperson"
 ```
 
 Para eliminar los enlaces de un elemento, en lugar de su texto, debemos sustituir `html_text()`por `html_attr("href")`:
@@ -201,10 +191,10 @@ df_web_comunicados_10_2019
 ## # A tibble: 39 x 2
 ##   titulo                               link                              
 ##   <chr>                                <chr>                             
-## 1 Ministros de Seguridad de las AmÃ©r… https://www.oas.org/es/centro_not…
-## 2 La SecretarÃ­a General de la OEA in…  https://www.oas.org/es/centro_not…
-## 3 El Salvador serÃ¡ sede de la VIII R… https://www.oas.org/es/centro_not…
-## # … with 36 more rows
+## 1 Ministros de Seguridad de las AmÃ©r~ https://www.oas.org/es/centro_not~
+## 2 La SecretarÃ­a General de la OEA in~  https://www.oas.org/es/centro_not~
+## 3 El Salvador serÃ¡ sede de la VIII R~ https://www.oas.org/es/centro_not~
+## # ... with 36 more rows
 ```
 
 > **Ejercicio 12A.** Consigue la fecha de cada comunicado de prensa de la OEA para octubre de 2019. Llama al vector "web_date_releases_10_2019". 
@@ -312,10 +302,10 @@ f_procesar_sitio(file = "webs/comunicados_oea_10_2016.html")
 ## # A tibble: 24 x 2
 ##   titulo                               link                              
 ##   <chr>                                <chr>                             
-## 1 "Asamblea General Extraordinaria de… https://www.oas.org/es/centro_not…
-## 2 "ATENCIÃ\u0093N - ACTUALIZA FECHA Y… https://www.oas.org/es/centro_not…
-## 3 "La OEA y la UNESCO buscan reducir … https://www.oas.org/es/centro_not…
-## # … with 21 more rows
+## 1 "Asamblea General Extraordinaria de~ https://www.oas.org/es/centro_not~
+## 2 "ATENCIÃ\u0093N - ACTUALIZA FECHA Y~ https://www.oas.org/es/centro_not~
+## 3 "La OEA y la UNESCO buscan reducir ~ https://www.oas.org/es/centro_not~
+## # ... with 21 more rows
 ```
 
 Así, podemos iterar esta función en nuestros 37 archivos para crear una base de datos completo. En este caso no usaremos `walk()`, sino `map_dfr()` --esta función espera que cada iteración devuelva un *marco de datos*, y (debajo) los pega en orden con `bind_rows()`.
@@ -323,27 +313,27 @@ Así, podemos iterar esta función en nuestros 37 archivos para crear una base d
 ```r
 archivos <- list.files("webs/", full.names = T)
 archivos
-##  [1] "webs//comunicados_oea_1_2016.html" 
-##  [2] "webs//comunicados_oea_1_2017.html" 
-##  [3] "webs//comunicados_oea_1_2018.html" 
-##  [4] "webs//comunicados_oea_10_2016.html"
-##  [5] "webs//comunicados_oea_10_2017.html"
-##  [6] "webs//comunicados_oea_10_2018.html"
-##  [7] "webs//comunicados_oea_10_2019.html"
-##  [8] "webs//comunicados_oea_11_2016.html"
-##  [9] "webs//comunicados_oea_11_2017.html"
-## [10] "webs//comunicados_oea_11_2018.html"
-## [11] "webs//comunicados_oea_12_2016.html"
-## [12] "webs//comunicados_oea_12_2017.html"
-## [13] "webs//comunicados_oea_12_2018.html"
-## [14] "webs//comunicados_oea_2_2016.html" 
-## [15] "webs//comunicados_oea_2_2017.html" 
-## [16] "webs//comunicados_oea_2_2018.html" 
-## [17] "webs//comunicados_oea_3_2016.html" 
-## [18] "webs//comunicados_oea_3_2017.html" 
-## [19] "webs//comunicados_oea_3_2018.html" 
-## [20] "webs//comunicados_oea_4_2016.html" 
-##  [ reached getOption("max.print") -- omitted 53 entries ]
+##  [1] "webs/comunicados_oea_1_2016.html" 
+##  [2] "webs/comunicados_oea_1_2017.html" 
+##  [3] "webs/comunicados_oea_1_2018.html" 
+##  [4] "webs/comunicados_oea_10_2016.html"
+##  [5] "webs/comunicados_oea_10_2017.html"
+##  [6] "webs/comunicados_oea_10_2018.html"
+##  [7] "webs/comunicados_oea_10_2019.html"
+##  [8] "webs/comunicados_oea_11_2016.html"
+##  [9] "webs/comunicados_oea_11_2017.html"
+## [10] "webs/comunicados_oea_11_2018.html"
+## [11] "webs/comunicados_oea_12_2016.html"
+## [12] "webs/comunicados_oea_12_2017.html"
+## [13] "webs/comunicados_oea_12_2018.html"
+## [14] "webs/comunicados_oea_2_2016.html" 
+## [15] "webs/comunicados_oea_2_2017.html" 
+## [16] "webs/comunicados_oea_2_2018.html" 
+## [17] "webs/comunicados_oea_3_2016.html" 
+## [18] "webs/comunicados_oea_3_2017.html" 
+## [19] "webs/comunicados_oea_3_2018.html" 
+## [20] "webs/comunicados_oea_4_2016.html" 
+##  [ reached getOption("max.print") -- omitted 54 entries ]
 
 df_web_comunicados_2016_2018 <- map_dfr(.x = archivos,
                                  .f = ~ {
@@ -353,10 +343,10 @@ df_web_comunicados_2016_2018
 ## # A tibble: 1,397 x 2
 ##   titulo                               link                              
 ##   <chr>                                <chr>                             
-## 1 "MisiÃ³n Especial de la OEA llegarÃ… https://www.oas.org/es/centro_not…
-## 2 "OEA enviarÃ¡ MisiÃ³n Especial a Ha… https://www.oas.org/es/centro_not…
-## 3 "ATENCIÃ\u0093N CAMBIO DE HORA: Con… https://www.oas.org/es/centro_not…
-## # … with 1,394 more rows
+## 1 "MisiÃ³n Especial de la OEA llegarÃ~ https://www.oas.org/es/centro_not~
+## 2 "OEA enviarÃ¡ MisiÃ³n Especial a Ha~ https://www.oas.org/es/centro_not~
+## 3 "ATENCIÃ\u0093N CAMBIO DE HORA: Con~ https://www.oas.org/es/centro_not~
+## # ... with 1,394 more rows
 ```
 
 ## Usando APIs y extrayendo datos de Twitter 
@@ -365,7 +355,7 @@ Twitter es una red social fundada en 2006 que permite a los usuarios interactuar
 
 Si has leído la sección anterior, ya conoces los paquetes R que se utilizarán en esta sección del libro. Para hacer la extracción de datos de Twitter la mejor opción en mano es `Rtweet`, que permite acceder gratuitamente al API de Twitter para descargar información de los usuarios, temas de tendencias y hashtags. Para extraer datos de Twitter con R se recomienda consultar *Twitter as Data*, que contiene algunas rutinas estandarizadas para descargar datos de esta plataforma.
 
-##Algunos antecedentes en APIs
+### Algunos antecedentes en APIs
 
 La interfaz de programación de aplicaciones *Application Program Interfaces* (APIs en inglés) son un set de protocolos y funciones que gobiernan ciertas interacciones entre aplicaciones web y usuarios.
 
@@ -377,12 +367,12 @@ las APIs son similares a los navegadores web pero cumplen diferentes propósitos
 Para que las APIs públicas sean utilizadas muchos sitios solo permiten a usuarios autorizados (por ejemplo aquellos que tienen una cuenta en la plataforma). Este es el caso para Twitter, Facebook, Instagram and Github.
     
 
-Si bien estas APIs son ampliamente conocidas no está demás mencionar algunas creadas por la misma comunidad de R especializada en datos políticos. Por ejemplo el paquete `lobbyR` creado por Daniel Alcatruz ^[https://github.com/Dalcatruz/lobbyR] que permite cargar y estructurar datos desde la API lobby que se encuentra en la plataforma de Ley de Lobby (https://www.leylobby.gob.cl/) implementada para el Gobierno de Chile, que permite realizar consultas por ejemplo sobre audiencias en determinados servicios públicos y organismos del estado como el congreso y los municipios. Otro paquete que es necesario mencionar es `inegiR` creado por Eduardo Flores que permite interactuar con la API del INEGI (Instituto Nacional de Estadística y Geografía de México) para realizar consultas específicas. http://enelmargen.org/ds/inegiR/vignette_spa.html
+Si bien estas APIs son ampliamente conocidas no está demás mencionar algunas creadas por la misma comunidad de R especializada en datos políticos. Por ejemplo el paquete `lobbyR` creado por Daniel Alcatruz^[https://github.com/Dalcatruz/lobbyR] que permite cargar y estructurar datos desde la API lobby que se encuentra en la [plataforma de Ley de Lobby](https://www.leylobby.gob.cl/) implementada para el Gobierno de Chile, que permite realizar consultas por ejemplo sobre audiencias en determinados servicios públicos y organismos del estado como el congreso y los municipios. Otro paquete que es necesario mencionar es `inegiR` creado por Eduardo Flores que permite interactuar con la API del INEGI (Instituto Nacional de Estadística y Geografía de México) para [realizar consultas específicas](http://enelmargen.org/ds/inegiR/vignette_spa.html).
 
 
-#Extraer los datos
+### Extraer los datos
 
-Lo primero es no depender de la API oficial de Twitter, y por lo tanto deberías tener tu propia cuenta de Twitter que puedes crear en (https://twitter.com/i/flow/signup). 
+Lo primero es no depender de la API oficial de Twitter, y por lo tanto deberías tener tu propia cuenta de Twitter que [puedes crear en este link](https://twitter.com/i/flow/signup). 
 Luego procedes a cargar el paquete `rtweet` que te permitirá extraer datos de Twitter. Te mostraremos esta rutina y extraeremos datos de diferentes usuarios y hashtags.
 
 
@@ -442,21 +432,21 @@ Un aspecto importante que tenemos que aclarar con respecto a las consultas que l
 
 
 ```r
-# Look for 500 tweets with the hashtag #piñera
+# Buscar 500 tweets con el hashtag #piñera
 pinera_tweets <- search_tweets(q = "#piñera",
                                n = 1000)
-# We see the first 3 columns
+# Veamos las tres primeras observaciones
 head(pinera_tweets, n = 3)
 ## # A tibble: 3 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 601103… 13017326… 2020-09-04 04:03:40 Guillerios… "Car… Twitt…
-## 2 399242… 13017302… 2020-09-04 03:54:14 maaggenta   "Des… Twitt…
-## 3 100148… 13017300… 2020-09-04 03:53:32 2018_enriq… "@se… Twitt…
-## # … with 84 more variables
+## 1 119113~ 13864069~ 2021-04-25 19:49:14 elmentalis~ @elm~ Twitt~
+## 2 121023~ 13864061~ 2021-04-25 19:45:56 Maran39     #lar~ Twitt~
+## 3 183273~ 13864058~ 2021-04-25 19:44:57 niviaoltra  #lar~ Twitt~
+## # ... with 84 more variables
 ```
 
-Para obtener información de los usuarios que están emitiendo tweets sobre #piñera en el momento que estamos escribiendo este capitulo  
+Para obtener información de los usuarios que están emitiendo tweets sobre #piñera en el momento que estamos escribiendo este capitulo.
 
 
 ```r
@@ -464,10 +454,10 @@ lookup_users(pinera_tweets$user_id)
 ## # A tibble: 814 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 601103… 13017326… 2020-09-04 04:03:40 Guillerios… "Car… Twitt…
-## 2 399242… 13017302… 2020-09-04 03:54:14 maaggenta   "Des… Twitt…
-## 3 100148… 13017300… 2020-09-04 03:53:32 2018_enriq… "@se… Twitt…
-## # … with 811 more rows, and 84 more variables
+## 1 119113~ 13864069~ 2021-04-25 19:49:14 elmentalis~ "@el~ Twitt~
+## 2 121023~ 13864061~ 2021-04-25 19:45:56 Maran39     "#la~ Twitt~
+## 3 183273~ 13864065~ 2021-04-25 19:47:34 niviaoltra  "#Cu~ Twitt~
+## # ... with 811 more rows, and 84 more variables
 ```
 
 
@@ -535,9 +525,9 @@ head(pinera_tweets, n = 2)
 ## # A tibble: 2 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 399242… 13017302… 2020-09-04 03:54:14 maaggenta   "Des… Twitt…
-## 2 100148… 13017300… 2020-09-04 03:53:32 2018_enriq… "@se… Twitt…
-## # … with 84 more variables
+## 1 136622~ 13864054~ 2021-04-25 19:43:03 DiputadoMo~ "Cua~ Twitt~
+## 2 137688~ 13864044~ 2021-04-25 19:39:17 mamele8601~ "Vot~ Twitt~
+## # ... with 84 more variables
 ```
 
 Ahora veamos quién está twiteando sobre el hashtag "#piñera"
@@ -546,18 +536,18 @@ Ahora veamos quién está twiteando sobre el hashtag "#piñera"
 ```r
 # Look at the column with the names - top 6
 head(pinera_tweets$screen_name)
-## [1] "maaggenta"    "2018_enrique" "2018_enrique" "2018_enrique"
-## [5] "2018_enrique" "2018_enrique"
+## [1] "DiputadoMoraga" "mamele86019606" "mamele86019606" "mamele86019606"
+## [5] "mamele86019606" "mamele86019606"
 
 unique(pinera_tweets$screen_name)
-##  [1] "maaggenta"       "2018_enrique"    "CristbalBarrie2"
-##  [4] "YorechazoN"      "tvalenzuelavt"   "AlejandroSig"   
-##  [7] "CarlosFaras"     "ZurdoKrlo"       "malaespinacheck"
-## [10] "asotomargas"     "RNahuel_XXI"     "cubanosypunto"  
-## [13] "melanocetus"     "yuryquiroz"      "AmericaElige"   
-## [16] "volandoraso1"    "hackpunk73"      "FundadrHumberto"
-## [19] "Eliana1Maipu"    "celularadio"    
-##  [ reached getOption("max.print") -- omitted 362 entries ]
+##  [1] "DiputadoMoraga"  "mamele86019606"  "luisriverosg"   
+##  [4] "PolyTuteleers"   "ocho_gatos"      "ciudadanovidela"
+##  [7] "ivanazarapa"     "ClaudiaTejias"   "AAlyedi"        
+## [10] "cacolinux_"      "El_Machuca_ckai" "Rodolfo_Lopez_E"
+## [13] "ivan1671"        "AlejandroSig"    "CondorGolf"     
+## [16] "Yomimiyo1"       "210_pau"         "rodrigorrpp"    
+## [19] "pollipesenti"    "alesiskalpo"    
+##  [ reached getOption("max.print") -- omitted 294 entries ]
 ```
 
 También podemos usar la función `search_users()` para explorar qué usuarios están twiteando usando un hashtag particular. Esta función extrae un data.frame de los usuarios e información sobre sus cuentas.
@@ -572,9 +562,9 @@ head(users, n = 2)
 ## # A tibble: 2 x 90
 ##   user_id status_id created_at          screen_name text  source
 ##   <chr>   <chr>     <dttm>              <chr>       <chr> <chr> 
-## 1 201853… 11916828… 2019-11-05 11:45:16 Plaid_Pine… Of c… Twitt…
-## 2 947001… 11362572… 2019-06-05 13:03:23 robbiepine… @PLD… Twitt…
-## # … with 84 more variables
+## 1 201853~ 11916828~ 2019-11-05 11:45:16 Plaid_Pine~ "Of ~ Twitt~
+## 2 947001~ 11362572~ 2019-06-05 13:03:23 robbiepine~ "@PL~ Twitt~
+## # ... with 84 more variables
 ```
 
 Aprendamos más sobre estas personas. ¿De dónde son? Como vemos, hay 304 lugares únicos por lo que el gráfico que usamos para trazar la información no es addecuado para visualizarlo.
@@ -583,7 +573,7 @@ Aprendamos más sobre estas personas. ¿De dónde son? Como vemos, hay 304 lugar
 ```r
 # How many places are represented?
 length(unique(users$location))
-## [1] 218
+## [1] 219
 ## [1] 304
 
 users %>%

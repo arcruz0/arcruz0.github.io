@@ -60,12 +60,12 @@ model_2 <- lm(gini ~ 1 + gasto_educ + inversion_extranjera + gasto_salud + gasto
 model_aug <- broom::augment(model_2, data = bienestar_sinna)
 model_aug
 ## # A tibble: 167 x 21
-##   pais  codigo_pais  anio poblacion  gini dualismo_sector…   pib
+##   pais  codigo_pais  anio poblacion  gini dualismo_sector~   pib
 ##   <chr> <chr>       <dbl>     <dbl> <dbl>            <dbl> <dbl>
-## 1 Arge… ARG          1982      30.8  40.2             9.50 7711.
-## 2 Arge… ARG          1983      30.9  40.4             8.36 7907.
-## 3 Arge… ARG          1990      30.7  43.1             7.72 6823.
-## # … with 164 more rows, and 14 more variables
+## 1 Arge~ ARG          1982      30.8  40.2             9.50 7711.
+## 2 Arge~ ARG          1983      30.9  40.4             8.36 7907.
+## 3 Arge~ ARG          1990      30.7  43.1             7.72 6823.
+## # ... with 164 more rows, and 14 more variables
 ```
 
 ## ¿Qué estudio de caso debería seleccionar para la investigación cualitativa?
@@ -136,12 +136,12 @@ model_aug %>%
   slice(1:3) %>%
   dplyr::select(pais, dfb_cseduc)
 ## Warning: Problem with `mutate()` input `dfb_cseduc`.
-## ℹ `as.tibble()` is deprecated as of tibble 2.0.0.
+## i `as.tibble()` is deprecated as of tibble 2.0.0.
 ## Please use `as_tibble()` instead.
 ## The signature and semantics have changed, see `?as_tibble`.
 ## This warning is displayed once every 8 hours.
 ## Call `lifecycle::last_warnings()` to see where this warning was generated.
-## ℹ Input `dfb_cseduc` is `as.tibble(dfbetas(model_2))$gasto_educ`.
+## i Input `dfb_cseduc` is `as.tibble(dfbetas(model_2))$gasto_educ`.
 ## Warning: `as.tibble()` is deprecated as of tibble 2.0.0.
 ## Please use `as_tibble()` instead.
 ## The signature and semantics have changed, see `?as_tibble`.
@@ -373,7 +373,7 @@ El procedimiento para seleccionar los casos más diferentes implica una lógica 
 
 Cabe señalar que este tipo de selección de casos es útil cuando se supone una "causa única" [@gerringCaseStudyResearch2006, pág. 143]. Es decir, cuando la variación de la variable dependiente es causada por una sola variable (o cuando nos interesa explicar el efecto de un solo factor). Si lo que interesa es indagar sobre la combinación de diferentes factores causales, este procedimiento de selección de casos no es el más adecuado. Para seleccionar los casos "más diferentes", también utilizaremos las puntuaciones de propensión, pero ahora estamos interesados en seleccionar pares con resultados iguales en la variable dependiente, así como en la variable independiente, y con puntuaciones de propensión muy diferentes.
 
-Veamos, entonces, cuáles son estos casos. Primero, creamos una variable ficticia para un Gini por encima o por debajo de la media. Luego, identificamos los casos tratados con bajas puntuaciones de propensión (baja probabilidad de tener un gasto por encima de la media) que tienen valores de Gini mayores que la media de la muestra y valores de gasto en educación también mayores que la media de la muestra:
+Veamos, entonces, cuáles son estos casos. Primero, creamos una variable ficticia para un Gini por encima o por debajo de la media. Luego, identificamos los casos tratados con bajas puntuaciones de propensión (baja probabilidad de tener un gasto por encima de la media) que tienen valores de Gini mayores que la media de la muestra (`gini == 1`) y valores de gasto en educación menores que la media de la muestra (`treatment == 0`):
 
 
 ```r
@@ -381,7 +381,7 @@ propensity_scores <- propensity_scores %>%
   mutate(gini = if_else(gini > mean(gini, na.rm = T), 1, 0))
 
 propensity_scores %>%
-  filter(gini == 1 & treatment==0) %>%
+  filter(gini == 1 & treatment == 0) %>%
   arrange(propensity_scores) %>%
   dplyr::select(pais, anio, propensity_scores) %>%
   slice(1:2)
@@ -392,7 +392,8 @@ propensity_scores %>%
 ## 2 Paraguay  1997           0.0221
 ```
 
-A continuación, repetimos el mismo proceso para las puntuaciones de propensión más altas (es decir, cuando la probabilidad de recibir tratamiento - tener un gasto en educación mayor que la media - es muy alta). En otras palabras, identificamos los casos con la puntuación de propensión más alta para valores de Gini mayores que la media de la muestra y gastos en educación mayores que la media de la muestra:
+A continuación, repetimos el mismo proceso para las puntuaciones de propensión más altas (es decir, cuando la probabilidad de recibir tratamiento - tener un gasto en educación mayor que la media - es muy alta). En otras palabras, identificamos los casos con la puntuación de propensión más alta para valores de Gini mayores que la media de la muestra (`gini == 1`) y gastos en educación menores que la media de la muestra (`treatment == 0`):
+
 
 ```r
 propensity_scores %>%

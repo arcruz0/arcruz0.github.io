@@ -124,7 +124,7 @@ poltweets_hashtags %>%
 ## 1 #aborto3causales                 98
 ## 2 #interpelacionaborto3causales    64
 ## 3 #leydeidentidaddegeneroahora     61
-## # … with 60 more rows
+## # ... with 60 more rows
 ```
 
 ### Diagnóstico visual
@@ -162,7 +162,7 @@ poltweets_hashtags %>%
 ## 1 #cuentapublica 0             381
 ## 2 #valdiviacl    0             323
 ## 3 #losrios       0             232
-## # … with 17 more rows
+## # ... with 17 more rows
 ```
 
 ### Wordclouds (Nubes de palabras)
@@ -340,7 +340,7 @@ Volvemos a cargar la base de datos `poltweets` y notamos que ahora contiene una 
 ```r
 library(quanteda) # dfm and corpus
 library(quanteda.textmodels) # wordfish
-library(qdapRegex) # remove non ascii characters
+library(qdapRegex) # eliminar caracteres no-ASCII
 ```
 
 Empecemos siempre haciendo un escaneo rápido a los datos, como hicimos en la sección previa. El análisis descriptivo nos permite resumir características básicas de la base de datos, como el tipo de las variables y el número de caracteres por observación, la cantidad de datos perdidos (NA) y el rango de unidades de texto contenidas en cada variable. Exploramos la variable de caracteres que contiene los tweets. Al usar el comando `glimpse()` tenemos una previsualización de cada variable, específicamente del tipo y una vista previa de las primeras observaciones.
@@ -350,14 +350,14 @@ Empecemos siempre haciendo un escaneo rápido a los datos, como hicimos en la se
 glimpse(poltweets)
 ## Rows: 18,658
 ## Columns: 8
-## $ id             <chr> "1", "2", "3", "4", "5", "6", "7", "8", "9", "1…
-## $ nombre_usuario <chr> "vladomirosevic", "vladomirosevic", "vladomiros…
-## $ nombres        <chr> "VLADO", "VLADO", "VLADO", "VLADO", "VLADO", "V…
-## $ apellido       <chr> "MIROSEVIC", "MIROSEVIC", "MIROSEVIC", "MIROSEV…
-## $ creado_en      <dttm> 2018-04-11 16:19:43, 2018-04-11 16:17:56, 2018…
-## $ texto          <chr> "@MarioEyza1 @bcnchile @IntendenciaXV @Insulza …
-## $ coalicion      <chr> "FA", "FA", "FA", "FA", "FA", "FA", "FA", "FA",…
-## $ genero         <chr> "Masculino", "Masculino", "Masculino", "Masculi…
+## $ id             <chr> "1", "2", "3", "4", "5", "6", "7", "8", "9", "10~
+## $ nombre_usuario <chr> "vladomirosevic", "vladomirosevic", "vladomirose~
+## $ nombres        <chr> "VLADO", "VLADO", "VLADO", "VLADO", "VLADO", "VL~
+## $ apellido       <chr> "MIROSEVIC", "MIROSEVIC", "MIROSEVIC", "MIROSEVI~
+## $ creado_en      <dttm> 2018-04-11 16:19:43, 2018-04-11 16:17:56, 2018-~
+## $ texto          <chr> "@MarioEyza1 @bcnchile @IntendenciaXV @Insulza @~
+## $ coalicion      <chr> "FA", "FA", "FA", "FA", "FA", "FA", "FA", "FA", ~
+## $ genero         <chr> "Masculino", "Masculino", "Masculino", "Masculin~
 ```
 
 ### Pre-procesamiento
@@ -417,6 +417,10 @@ poltweets_corpus <- corpus(by_coalition, text_field = "texto")
 poltweets_dfm <- dfm(poltweets_corpus,
                      remove_numbers = T, remove_punct = T, 
                      remove_symbols = T, remove = stopwords("spa"))
+## Warning: 'dfm.corpus()' is deprecated. Use 'tokens()' first.
+## Warning: '...' should not be used for tokens() arguments; use 'tokens()'
+## first.
+## Warning: 'remove' is deprecated; use dfm_remove() instead
 ```
 
 Utilizando `dfm_trim()`, eliminamos aquellas palabras con una frecuencia igual o menor que el quinto percentil y aquellas con una frecuencia igual o mayor que el percentil 95. De esta manera, eliminamos palabras inusuales que están ubicadas en los extremos de la distribución de frecuencias, ya que pueden sesgar los resultados del algoritmo.

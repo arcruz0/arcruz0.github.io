@@ -312,7 +312,7 @@ screenreg(model_1,
 Y podemos exportar la tabla en formato .doc para añadirla a nuestro manuscrito. El archivo se guardará en nuestra carpeta de trabajo.
 
 ```r
-htmlreg(list(model_1), file = "modelo_1.doc", 
+htmlreg(model_1, file = "modelo_1.doc", 
         custom.model.names = "Modelo 1",  
         custom.coef.names = c("Constante", "Gasto en educación"),
         inline.css = FALSE, doctype = T, html.tag = T, 
@@ -701,8 +701,8 @@ regresión nivel-log & $y$ & $ln(x)$ & $\Delta y = (\beta_1/100)\%\Delta x$\newl
 \addlinespace
 regresión log-log & $ln(y)$ & $ln(x)$ & $\%\Delta y = \beta_1\%\Delta x$\newline  Si incrementamos $x$ en una unidad $\%$, esperamos que $y$ cambie en $\beta_1\%$ porciento\\
 \bottomrule
-\multicolumn{4}{l}{\textit{Note: }}\\
-\multicolumn{4}{l}{ Tengan cuidado con las observaciones con un valor de 0 ya que se omitirán, creando un sesgo.}\\
+\multicolumn{4}{l}{\rule{0pt}{1em}\textit{Note: }}\\
+\multicolumn{4}{l}{\rule{0pt}{1em} Tengan cuidado con las observaciones con un valor de 0 ya que se omitirán, creando un sesgo.}\\
 \end{tabular}
 \end{table}
 

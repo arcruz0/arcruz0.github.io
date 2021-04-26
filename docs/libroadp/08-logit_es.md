@@ -99,7 +99,7 @@ quiebre_democracia %>% filter(quiebre_democracia == 1) %>% count(pais_nombre)
 ## 1 Argentina       5
 ## 2 Bolivia         2
 ## 3 Brasil          1
-## # … with 15 more rows
+## # ... with 15 more rows
 ```
 
 El primer modelo que vamos a probar tiene la variable dependiente de el quiebre democrático (`quiebre_democracia`) siendo predicha por el índice de @shugartPresidentsAssembliesConstitutional1992 de los poderes ejecutivos (`poder_presid`). La función `glm` requiere que definamos nuestros datos y el modelo, porque con la misma función para los Modelos Lineales Generalizados se puede usar Probit, Poisson y otras [funciones menos comunes](https://www.rdocumentation.org/packages/stats /versions/3.5.1/topics/family) en Ciencia Política.
@@ -163,7 +163,7 @@ quiebre_democracia %>%
 ## # A tibble: 1 x 3
 ##   pais_nombre  anio poder_presid
 ##   <chr>       <dbl>        <dbl>
-## 1 Haití        1987            5
+## 1 "Hait\xed"   1987            5
 ```
 
 >Consejo: Si ponemos un (-) antes de la variable dentro de la función `arrange()`, ordena de mayor a menor.
@@ -215,7 +215,7 @@ La utilidad de los *odds* es que permiten calcular los odds ratios (cuya traducc
 
 Cuando calculamos la probabilidad de un cambio en el índice de Shugart y Carey de 23 a 24, la magnitud de esta probabilidad será diferente a un cambio en la probabilidad dado que el índice va de, supongamos, 12 a 13. Esto se debe a que los efectos de la variable independiente sobre la probabilidad de que la variable dependiente sea `=1` no son lineales (recordemos la función "S" de la Figura \@ref(fig:bin-invlogit)). Sin embargo, las razones de probabilidad tienen la propiedad útil de poder reflejar los cambios independientemente de la curvatura de la función, es decir, son cambios "constantes". Así, podemos expresar el efecto de la variable sin tener que especificar un valor determinado para ella. Por lo tanto, en muchos artículos se verán resultados expresados como *odds ratios* así como en cambios de probabilidad. Ambos se complementan bien, de hecho. 
 
-Veamos cómo se vería el cálculo de *odds ratios* al seguir el ejemplo usando la base de datos de Mainwaring y Pérez-Liñan. Dijimos que las chances *odds* vienen dadas por $\frac{p}{1-p}$. Por lo tanto, una razón de chances *odds ratio* se expresa como $\frac {p_1}{1-p_1}}{\frac {p_2}{1-p_2}$.
+Veamos cómo se vería el cálculo de *odds ratios* al seguir el ejemplo usando la base de datos de Mainwaring y Pérez-Liñan. Dijimos que las chances *odds* vienen dadas por $\frac{p}{1-p}$. Por lo tanto, una razón de chances *odds ratio* se expresa como $\frac{\frac {p_1}{1-p_1}}{\frac{p_2}{1-p_2}}$.
 
 
 Supongamos que en 1992 un país tenía un índice Shugart de 15, y que en 1993 ese índice pasó a 16. ¿Cuánto cambiará la probabilidad de un quiebre democrático si se asume que todo lo demás permaneció constante?
@@ -520,7 +520,7 @@ summary(predict_model_2)
 ## 1                  5      0.227 0.117   1.95 0.0512  -0.00119 0.456
 ## 2                  8      0.143 0.0587  2.43 0.0149   0.0279  0.258
 ## 3                  9      0.121 0.0449  2.71 0.00681  0.0335  0.209
-## # … with 12 more rows
+## # ... with 12 more rows
 ```
 
 El resumen nos ofrece un *tibble* donde tenemos la probabilidad prevista de nuestra variable dependiente para cada valor observado de `poder_presid` y su significado estadístico. Esto se convierte fácilmente en una cifra, y para ello hay dos alternativas que recomendamos.
@@ -551,13 +551,6 @@ figure_op_1
 #option 2
 cdat <- cplot(model_2, "poder_presid", what = "prediction",
               main = "Pr(quiebre democrático)", draw = F)
-##   xvals yvals upper   lower
-## 1   5.0  0.23  0.46 -0.0017
-## 2   5.7  0.20  0.40  0.0066
-## 3   6.4  0.18  0.35  0.0141
-## 4   7.1  0.16  0.31  0.0207
-## 5   7.8  0.15  0.27  0.0263
-##  [ reached 'max' / getOption("max.print") -- omitted 15 rows ]
 
 ggplot(cdat, aes(x = xvals)) +
   geom_line(aes(y = yvals)) +
@@ -647,13 +640,6 @@ Veamos las probabilidades predichas para la puntuación de democracia según Fre
 
 ```r
 cdat <- cplot(model_3, "calidad_democracia", what = "prediction", main = "Pr(Quiebre)")
-##   xvals yvals upper lower
-## 1   2.0  1.00   1.0  0.99
-## 2   2.4  1.00   1.0  0.97
-## 3   2.8  0.98   1.1  0.89
-## 4   3.2  0.90   1.2  0.64
-## 5   3.7  0.65   1.1  0.19
-##  [ reached 'max' / getOption("max.print") -- omitted 15 rows ]
 
 ggplot(cdat, aes(x = xvals)) +
   geom_line(aes(y = yvals)) +
@@ -819,13 +805,13 @@ Aunque el $R^2$ siempre aumenta cuando se añaden covariables al modelo, si util
 library(DescTools)
 PseudoR2(model_1, c("McFadden"))
 ## McFadden 
-##     0.43
+##    0.038
 PseudoR2(model_2, c("McFadden"))
 ## McFadden 
-##     0.43
+##    0.038
 PseudoR2(model_3, c("McFadden"))
 ## McFadden 
-##     0.97
+##     0.83
 ```
 
 #### AIC
@@ -887,12 +873,12 @@ library(broom)
 pred_model_3 <- augment(model_3, type.predict = "response")
 pred_model_3
 ## # A tibble: 422 x 11
-##   .rownames quiebre_democra… poder_presid edad_regimen calidad_democra…
+##   .rownames quiebre_democra~ poder_presid edad_regimen calidad_democra~
 ##   <chr>                <dbl>        <dbl>        <dbl>            <dbl>
 ## 1 75                       0           19            1                8
 ## 2 76                       0           19            2                8
 ## 3 77                       1           19            3                3
-## # … with 419 more rows, and 6 more variables
+## # ... with 419 more rows, and 6 more variables
 ```
 
 La función `dplyr` nos permite transformar nuestra nueva base obtenida a través de `broom`.  Una de las funciones básicas de `dplyr` es `select`, que nos permite elegir las variables por sus nombres. Necesitamos identificar los valores predichos y la variable dependiente (en este caso `quiebre_democracia`) para comparar la probabilidad asignada por el modelo con el valor real de la variable. La función `mutate` de `dplyr` nos permitirá crear una variable binaria para saber si el modelo ha predicho correctamente cada observación.  El punto de corte es 0,5, es decir, si la probabilidad estimada es igual o superior a 0,5, se considera que el modelo ha predicho la ocurrencia del evento, y si es inferior a ese valor, se considera que ha predicho la no ocurrencia del evento. Trabajar con valores de corte arbitrarios tiene desventajas, que como veremos a continuación se resuelven con los ROC. Finalmente, creamos una variable que llamamos `pcp`  (*p*orcentaje de *c*orrectamente *p*redicho) que muestra la proporción de verdaderos positivos y verdaderos negativos estimados por el modelo 3. El resultado muestra que de las 422 observaciones del modelo 3, el 99,5% se han predicho correctamente.

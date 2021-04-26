@@ -192,7 +192,7 @@ shp_brasil %>%
 ## # A tibble: 1 x 2
 ##   estado                                                         geometry
 ## * <chr>                                                <MULTIPOLYGON [m]>
-## 1 São Paulo (((719692 -2716734, 719500 -2717678, 719210 -2716889, 719362…
+## 1 São Paulo (((719692 -2716734, 719500 -2717678, 719210 -2716889, 719362~
 ```
 
 Un desafío común que a menudo enfrentamos cuando trabajamos con shapefiles de países enteros es la existencia de regiones o zonas insulares que forman parte del territorio administrativo pero que están aisladas geográficamente, por ejemplo, la Isla de Pascua en Chile o las Islas Galápagos en Ecuador.  Por diversas razones, el acceso a los datos de esas regiones es limitado y a menudo se dejan fuera del análisis. Por lo tanto, estamos interesados en sacar estas regiones de nuestro shapefile. En Brasil, el Distrito Estatal de Fernando de Noronha, un archipiélago de 21 islas situado en el Océano Atlántico es uno de este tipo de casos (es posible identificarlo como un pequeño punto en la parte superior derecha del mapa anterior). Podemos eliminar fácilmente este tipo de datos de nuestro shapefile, de nuevo, con la función `filter()`.
@@ -332,10 +332,10 @@ head(shp_brasil_data)
 ## # A tibble: 6 x 8
 ##   estado                  geometry region estado_cod  anio
 ##   <chr>         <MULTIPOLYGON [m]> <chr>       <dbl> <dbl>
-## 1 Rondô… (((-977421 -892385, -975… Norte          11  1990
-## 2 Rondô… (((-977421 -892385, -975… Norte          11  1991
-## 3 Rondô… (((-977421 -892385, -975… Norte          11  1992
-## # … with 3 more rows, and 3 more variables
+## 1 Rondô~ (((-977421 -892385, -975~ Norte          11  1990
+## 2 Rondô~ (((-977421 -892385, -975~ Norte          11  1991
+## 3 Rondô~ (((-977421 -892385, -975~ Norte          11  1992
+## # ... with 3 more rows, and 3 more variables
 ```
 
 Una vez que la información de Freire se incorpore a nuestro shapefile, estos datos serán útiles cuando empecemos a mapear las variables.
@@ -347,7 +347,7 @@ Una vez que la información de Freire se incorpore a nuestro shapefile, estos da
 >    + Región Andina, correspondiente a Bolivia, Ecuador, Perú y Colombia.
 >    + Región Oriental, correspondiente a Brasil y a Paraguay.
 >    + Cono Sur, correspondiente a Chile, Argentina y Uruguay.
-> 3. Descarga la base de datos ampliada ('Country-Year: V-Dem Full+Others') de [V-Dem](https://www.v-dem.net/en/data/data-version-9/) y selecciona sólo las siguientes variables: 'country_name', 'country_text_id', 'year’, 'v2x_polyarchy’,' e_migdppc'. Fíltralas para considerar sólo el período entre 1996 y 2016 (los últimos 20 años, para los que hay datos disponibles para todas las variables).
+> 3. Descarga la base de datos ampliada ('Country-Year: V-Dem Full+Others') de [V-Dem](https://www.v-dem.net/en/data/archive/previous-data/data-version-9/) y selecciona sólo las siguientes variables: 'country_name', 'country_text_id', 'year’, 'v2x_polyarchy’,' e_migdppc'. Fíltralas para considerar sólo el período entre 1996 y 2016 (los últimos 20 años, para los que hay datos disponibles para todas las variables).
 > 4. Usando `left_join()`, añade el shapefile original a la base de datos cargada del ejercicio anterior. Consejo: utiliza los argumentos `by.x="ISO_3DIGIT"` y `by.y="country_text_id"")`. Revisa la base de datos. Notarás que falta un país. ¿Cuál es?
 
 ## Mapeo 
@@ -373,10 +373,10 @@ head(shp_brasil)
 ## # A tibble: 6 x 7
 ##   estado                  geometry region centroid coords coords_x
 ##   <chr>         <MULTIPOLYGON [m]> <chr>  <list>   <list>    <dbl>
-## 1 Rondô… (((-977421 -892385, -975… Norte  <XY [2]> <dbl[…  -9.68e5
-## 2 Acre   (((-2179954 -836549, -20… Norte  <XY [2]> <dbl[…  -1.81e6
-## 3 Amazo… (((-1482456 230568, -147… Norte  <XY [2]> <dbl[…  -1.19e6
-## # … with 3 more rows, and 1 more variable
+## 1 Rondô~ (((-977421 -892385, -975~ Norte  <XY [2]> <dbl[~  -9.68e5
+## 2 Acre   (((-2179954 -836549, -20~ Norte  <XY [2]> <dbl[~  -1.81e6
+## 3 Amazo~ (((-1482456 230568, -147~ Norte  <XY [2]> <dbl[~  -1.19e6
+## # ... with 3 more rows, and 1 more variable
 ```
 
 Una vez generadas, podemos graficar estas variables con `ggplot()` y el paquete `ggrepel` para generar el texto:
