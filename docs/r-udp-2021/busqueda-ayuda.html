@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-04-18" />
+<meta name="date" content="2021-05-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="visualizacion-personalizacion.html"/>
-
+<link rel="next" href="manejo-av.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -202,6 +202,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#solucionar-problemas"><i class="fa fa-check"></i>Solucionar problemas</a></li>
 <li class="chapter" data-level="" data-path="busqueda-ayuda.html"><a href="busqueda-ayuda.html#pedir-ayuda-con-ejemplos-reproducibles-reprex"><i class="fa fa-check"></i>Pedir ayuda con ejemplos reproducibles (reprex)</a></li>
 </ul></li>
+<li class="part"><span><b>V Manejo avanzado de datos</b></span></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html"><i class="fa fa-check"></i>05A - Manejo avanzado de datos (intro)</a>
+<ul>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#inicio-cargar-paquetes-base-de-datos-2"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#pivotear-bases-de-datos-wide---long"><i class="fa fa-check"></i>Pivotear bases de datos (wide &lt;-&gt; long)</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#recodificar-variables"><i class="fa fa-check"></i>Recodificar variables</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#valores-perdidosmissingna"><i class="fa fa-check"></i>Valores perdidos/missing/NA</a></li>
+<li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#unir-bases-de-datos"><i class="fa fa-check"></i>Unir bases de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manejo-av-ej.html"><a href="manejo-av-ej.html"><i class="fa fa-check"></i>05B - Visualización de datos (extensiones)</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -227,11 +237,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="leer-archivos-de-ayuda-de-r" class="section level2">
 <h2>Leer archivos de ayuda de R</h2>
 <p>Todas las funciones en R tienen un archivo de ayuda asociado. Podemos acceder a estos simplemente antecediendo el nombre de la función con un signo de interrogación:</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="busqueda-ayuda.html#cb246-1" aria-hidden="true" tabindex="-1"></a>?mean</span>
-<span id="cb246-2"><a href="busqueda-ayuda.html#cb246-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb246-3"><a href="busqueda-ayuda.html#cb246-3" aria-hidden="true" tabindex="-1"></a>?<span class="st">`</span><span class="at">%&gt;%</span><span class="st">`</span> <span class="co"># con estos tildes invertidos podemos ingresar funciones que tengan caracteres especiales</span></span>
-<span id="cb246-4"><a href="busqueda-ayuda.html#cb246-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb246-5"><a href="busqueda-ayuda.html#cb246-5" aria-hidden="true" tabindex="-1"></a>?<span class="st">`</span><span class="at">%in%</span><span class="st">`</span></span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="busqueda-ayuda.html#cb234-1" aria-hidden="true" tabindex="-1"></a>?mean</span>
+<span id="cb234-2"><a href="busqueda-ayuda.html#cb234-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb234-3"><a href="busqueda-ayuda.html#cb234-3" aria-hidden="true" tabindex="-1"></a>?<span class="st">`</span><span class="at">%&gt;%</span><span class="st">`</span> <span class="co"># con estos tildes invertidos podemos ingresar funciones que tengan caracteres especiales</span></span>
+<span id="cb234-4"><a href="busqueda-ayuda.html#cb234-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb234-5"><a href="busqueda-ayuda.html#cb234-5" aria-hidden="true" tabindex="-1"></a>?<span class="st">`</span><span class="at">%in%</span><span class="st">`</span></span></code></pre></div>
 <p>Podemos leer un archivo de ayuda de R de la siguiente forma:</p>
 <div class="figure"><span id="fig:unnamed-chunk-143"></span>
 <img src="imgs/trad-help-files.png" alt="Traducido de [Healy (2018)](https://socviz.co/appendix.html)." width="1418" />
@@ -261,36 +271,39 @@ Figure 1: Traducido de <a href="https://socviz.co/appendix.html">Healy (2018)</a
 <div id="problemas-con-paréntesis-y-comas" class="section level3">
 <h3>Problemas con paréntesis y comas</h3>
 <p>Vamos a usar una base de ejemplo de <code>ggplot2</code>, llamada <code>midwest</code>. Contiene información demográfica sobre distintos condados en Estados Unidos, parte de la zona geográfica llamada “Midwest”.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="busqueda-ayuda.html#cb247-1" aria-hidden="true" tabindex="-1"></a>midwest</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="busqueda-ayuda.html#cb235-1" aria-hidden="true" tabindex="-1"></a>midwest</span></code></pre></div>
 <pre><code>## # A tibble: 437 x 28
-##      PID county state  area poptotal popdensity popwhite popblack
-##    &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt;    &lt;int&gt;    &lt;int&gt;
-##  1   561 ADAMS  IL    0.052    66090      1271.    63917     1702
-##  2   562 ALEXA~ IL    0.014    10626       759      7054     3496
-##  3   563 BOND   IL    0.022    14991       681.    14477      429
-##  4   564 BOONE  IL    0.017    30806      1812.    29344      127
-##  5   565 BROWN  IL    0.018     5836       324.     5264      547
-##  6   566 BUREAU IL    0.05     35688       714.    35157       50
-##  7   567 CALHO~ IL    0.017     5322       313.     5298        1
-##  8   568 CARRO~ IL    0.027    16805       622.    16519      111
-##  9   569 CASS   IL    0.024    13437       560.    13384       16
-## 10   570 CHAMP~ IL    0.058   173025      2983.   146506    16559
-## # ... with 427 more rows, and 20 more variables:
-## #   popamerindian &lt;int&gt;, popasian &lt;int&gt;, popother &lt;int&gt;,
-## #   percwhite &lt;dbl&gt;, percblack &lt;dbl&gt;, percamerindan &lt;dbl&gt;,
-## #   percasian &lt;dbl&gt;, percother &lt;dbl&gt;, popadults &lt;int&gt;,
-## #   perchsd &lt;dbl&gt;, percollege &lt;dbl&gt;, percprof &lt;dbl&gt;,
+##      PID county    state  area poptotal popdensity
+##    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt;
+##  1   561 ADAMS     IL    0.052    66090      1271.
+##  2   562 ALEXANDER IL    0.014    10626       759 
+##  3   563 BOND      IL    0.022    14991       681.
+##  4   564 BOONE     IL    0.017    30806      1812.
+##  5   565 BROWN     IL    0.018     5836       324.
+##  6   566 BUREAU    IL    0.05     35688       714.
+##  7   567 CALHOUN   IL    0.017     5322       313.
+##  8   568 CARROLL   IL    0.027    16805       622.
+##  9   569 CASS      IL    0.024    13437       560.
+## 10   570 CHAMPAIGN IL    0.058   173025      2983.
+## # ... with 427 more rows, and 22 more variables:
+## #   popwhite &lt;int&gt;, popblack &lt;int&gt;,
+## #   popamerindian &lt;int&gt;, popasian &lt;int&gt;,
+## #   popother &lt;int&gt;, percwhite &lt;dbl&gt;, percblack &lt;dbl&gt;,
+## #   percamerindan &lt;dbl&gt;, percasian &lt;dbl&gt;,
+## #   percother &lt;dbl&gt;, popadults &lt;int&gt;, perchsd &lt;dbl&gt;,
+## #   percollege &lt;dbl&gt;, percprof &lt;dbl&gt;,
 ## #   poppovertyknown &lt;int&gt;, percpovertyknown &lt;dbl&gt;,
-## #   percbelowpoverty &lt;dbl&gt;, percchildbelowpovert &lt;dbl&gt;,
-## #   percadultpoverty &lt;dbl&gt;, percelderlypoverty &lt;dbl&gt;, inmetro &lt;int&gt;,
-## #   category &lt;chr&gt;</code></pre>
+## #   percbelowpoverty &lt;dbl&gt;,
+## #   percchildbelowpovert &lt;dbl&gt;,
+## #   percadultpoverty &lt;dbl&gt;, percelderlypoverty &lt;dbl&gt;,
+## #   inmetro &lt;int&gt;, category &lt;chr&gt;</code></pre>
 <p>Generemos un gráfico con ella:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="busqueda-ayuda.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> midwest, </span>
-<span id="cb249-2"><a href="busqueda-ayuda.html#cb249-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(inmetro), <span class="at">y =</span> percbelowpoverty)) <span class="sc">+</span></span>
-<span id="cb249-3"><a href="busqueda-ayuda.html#cb249-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb249-4"><a href="busqueda-ayuda.html#cb249-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Relación entre carácter metropolitano y pobreza en los condados del Midwest&quot;</span>,</span>
-<span id="cb249-5"><a href="busqueda-ayuda.html#cb249-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Fuente: Wickham (2018)&quot;</span>,</span>
-<span id="cb249-6"><a href="busqueda-ayuda.html#cb249-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Carácter metropolitano&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Porcentaje de pobreza&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="busqueda-ayuda.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> midwest, </span>
+<span id="cb237-2"><a href="busqueda-ayuda.html#cb237-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(inmetro), <span class="at">y =</span> percbelowpoverty)) <span class="sc">+</span></span>
+<span id="cb237-3"><a href="busqueda-ayuda.html#cb237-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb237-4"><a href="busqueda-ayuda.html#cb237-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Relación entre carácter metropolitano y pobreza en los condados del Midwest&quot;</span>,</span>
+<span id="cb237-5"><a href="busqueda-ayuda.html#cb237-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Fuente: Wickham (2018)&quot;</span>,</span>
+<span id="cb237-6"><a href="busqueda-ayuda.html#cb237-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Carácter metropolitano&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Porcentaje de pobreza&quot;</span>)</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <p>La gran mayoría de los errores que se cometen en R tienen que ver con sintaxis. Como hemos visto, R (como cualquier lenguaje de programación) espera instrucciones muy precisas de nuestra parte. Aquí algunos tips para detectar problemas de este tipo:</p>
 <ul>
@@ -307,9 +320,9 @@ Figure 1: Traducido de <a href="https://socviz.co/appendix.html">Healy (2018)</a
 <div id="leer-los-mensajes-de-error-de-r" class="section level3">
 <h3>Leer los mensajes de error de R</h3>
 <p>Veamos el siguiente error, cuando intentamos multiplicar una variable categórica:</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="busqueda-ayuda.html#cb250-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span> </span>
-<span id="cb250-2"><a href="busqueda-ayuda.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">&quot;IL&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb250-3"><a href="busqueda-ayuda.html#cb250-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county5 =</span> county <span class="sc">*</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="busqueda-ayuda.html#cb238-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span> </span>
+<span id="cb238-2"><a href="busqueda-ayuda.html#cb238-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">&quot;IL&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb238-3"><a href="busqueda-ayuda.html#cb238-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county5 =</span> county <span class="sc">*</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## Error: Problem with `mutate()` input `county5`.
 ## x non-numeric argument to binary operator
 ## i Input `county5` is `county * 5`.</code></pre>
@@ -341,54 +354,58 @@ Figure 1: Traducido de <a href="https://socviz.co/appendix.html">Healy (2018)</a
 <li><p>Por último, queremos que esa otra persona pueda correr rápidamente nuestro código, sin tener que preocuparse de nada más aparte de nuestro problema.</p></li>
 </ul>
 <p>Nuestro problema de antes:</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="busqueda-ayuda.html#cb252-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span> </span>
-<span id="cb252-2"><a href="busqueda-ayuda.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">&quot;IL&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb252-3"><a href="busqueda-ayuda.html#cb252-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county5 =</span> county <span class="sc">*</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="busqueda-ayuda.html#cb240-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span> </span>
+<span id="cb240-2"><a href="busqueda-ayuda.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">&quot;IL&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-3"><a href="busqueda-ayuda.html#cb240-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county5 =</span> county <span class="sc">*</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## Error: Problem with `mutate()` input `county5`.
 ## x non-numeric argument to binary operator
 ## i Input `county5` is `county * 5`.</code></pre>
 <p>Utilizar la base “midwest” está bien, pero vamos a generar nuestro reprex con otra de ejemplo en el paquete <code>ggplot2</code>, llamada <code>mpg</code>. Esta base se ve de la siguiente forma. No importa mucho su contenido, pero sí que tenemos una variable categórica para usar. En este caso, “model” nos servirá.</p>
 <pre><code>## # A tibble: 234 x 11
-##    manufacturer model displ  year   cyl trans drv     cty   hwy fl   
-##    &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;
-##  1 audi         a4      1.8  1999     4 auto~ f        18    29 p    
-##  2 audi         a4      1.8  1999     4 manu~ f        21    29 p    
-##  3 audi         a4      2    2008     4 manu~ f        20    31 p    
-##  4 audi         a4      2    2008     4 auto~ f        21    30 p    
-##  5 audi         a4      2.8  1999     6 auto~ f        16    26 p    
-##  6 audi         a4      2.8  1999     6 manu~ f        18    26 p    
-##  7 audi         a4      3.1  2008     6 auto~ f        18    27 p    
-##  8 audi         a4 q~   1.8  1999     4 manu~ 4        18    26 p    
-##  9 audi         a4 q~   1.8  1999     4 auto~ 4        16    25 p    
-## 10 audi         a4 q~   2    2008     4 manu~ 4        20    28 p    
-## # ... with 224 more rows, and 1 more variable: class &lt;chr&gt;</code></pre>
+##    manufacturer model   displ  year   cyl trans   drv  
+##    &lt;chr&gt;        &lt;chr&gt;   &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;
+##  1 audi         a4        1.8  1999     4 auto(l~ f    
+##  2 audi         a4        1.8  1999     4 manual~ f    
+##  3 audi         a4        2    2008     4 manual~ f    
+##  4 audi         a4        2    2008     4 auto(a~ f    
+##  5 audi         a4        2.8  1999     6 auto(l~ f    
+##  6 audi         a4        2.8  1999     6 manual~ f    
+##  7 audi         a4        3.1  2008     6 auto(a~ f    
+##  8 audi         a4 qua~   1.8  1999     4 manual~ 4    
+##  9 audi         a4 qua~   1.8  1999     4 auto(l~ 4    
+## 10 audi         a4 qua~   2    2008     4 manual~ 4    
+## # ... with 224 more rows, and 4 more variables:
+## #   cty &lt;int&gt;, hwy &lt;int&gt;, fl &lt;chr&gt;, class &lt;chr&gt;</code></pre>
 <p>Debemos pensar hacer la misma operación con la nueva base, y que nos dé el mismo error. Además, el reprex debe incluir la carga de todos los paquetes necesarios:</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="busqueda-ayuda.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># carga filter(), mutate() y mpg</span></span>
-<span id="cb255-2"><a href="busqueda-ayuda.html#cb255-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb255-3"><a href="busqueda-ayuda.html#cb255-3" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> </span>
-<span id="cb255-4"><a href="busqueda-ayuda.html#cb255-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(model <span class="sc">==</span> <span class="st">&quot;a4&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb255-5"><a href="busqueda-ayuda.html#cb255-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> model <span class="sc">*</span> <span class="dv">5</span>)</span>
-<span id="cb255-6"><a href="busqueda-ayuda.html#cb255-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Error: Problem with `mutate()` input `model`.</span></span>
-<span id="cb255-7"><a href="busqueda-ayuda.html#cb255-7" aria-hidden="true" tabindex="-1"></a><span class="co"># x non-numeric argument to binary operator</span></span>
-<span id="cb255-8"><a href="busqueda-ayuda.html#cb255-8" aria-hidden="true" tabindex="-1"></a><span class="co"># i Input `model` is `model * 5`.</span></span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="busqueda-ayuda.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># carga filter(), mutate() y mpg</span></span>
+<span id="cb243-2"><a href="busqueda-ayuda.html#cb243-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb243-3"><a href="busqueda-ayuda.html#cb243-3" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> </span>
+<span id="cb243-4"><a href="busqueda-ayuda.html#cb243-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(model <span class="sc">==</span> <span class="st">&quot;a4&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb243-5"><a href="busqueda-ayuda.html#cb243-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> model <span class="sc">*</span> <span class="dv">5</span>)</span>
+<span id="cb243-6"><a href="busqueda-ayuda.html#cb243-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Error: Problem with `mutate()` input `model`.</span></span>
+<span id="cb243-7"><a href="busqueda-ayuda.html#cb243-7" aria-hidden="true" tabindex="-1"></a><span class="co"># x non-numeric argument to binary operator</span></span>
+<span id="cb243-8"><a href="busqueda-ayuda.html#cb243-8" aria-hidden="true" tabindex="-1"></a><span class="co"># i Input `model` is `model * 5`.</span></span></code></pre></div>
 <p>Una ventaja de los reprex es que a menudo en el proceso de hacerlos, encontramos la raíz de los problemas. Por ejemplo, es posible que en la reducción anterior nos demos cuenta que <code>filter()</code> no tiene nada que ver con nuestro problema, por lo que el reprex podría quedar así:</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="busqueda-ayuda.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># carga filter(), mutate() y mpg</span></span>
-<span id="cb256-2"><a href="busqueda-ayuda.html#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb256-3"><a href="busqueda-ayuda.html#cb256-3" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> </span>
-<span id="cb256-4"><a href="busqueda-ayuda.html#cb256-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> model <span class="sc">*</span> <span class="dv">5</span>)</span>
-<span id="cb256-5"><a href="busqueda-ayuda.html#cb256-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Error: Problem with `mutate()` input `model`.</span></span>
-<span id="cb256-6"><a href="busqueda-ayuda.html#cb256-6" aria-hidden="true" tabindex="-1"></a><span class="co"># x non-numeric argument to binary operator</span></span>
-<span id="cb256-7"><a href="busqueda-ayuda.html#cb256-7" aria-hidden="true" tabindex="-1"></a><span class="co"># i Input `model` is `model * 5`.</span></span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="busqueda-ayuda.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># carga filter(), mutate() y mpg</span></span>
+<span id="cb244-2"><a href="busqueda-ayuda.html#cb244-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb244-3"><a href="busqueda-ayuda.html#cb244-3" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> </span>
+<span id="cb244-4"><a href="busqueda-ayuda.html#cb244-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> model <span class="sc">*</span> <span class="dv">5</span>)</span>
+<span id="cb244-5"><a href="busqueda-ayuda.html#cb244-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Error: Problem with `mutate()` input `model`.</span></span>
+<span id="cb244-6"><a href="busqueda-ayuda.html#cb244-6" aria-hidden="true" tabindex="-1"></a><span class="co"># x non-numeric argument to binary operator</span></span>
+<span id="cb244-7"><a href="busqueda-ayuda.html#cb244-7" aria-hidden="true" tabindex="-1"></a><span class="co"># i Input `model` is `model * 5`.</span></span></code></pre></div>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="visualizacion-personalizacion.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="visualizacion-personalizacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manejo-av.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
