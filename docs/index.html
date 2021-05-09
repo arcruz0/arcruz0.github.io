@@ -87,7 +87,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
   <title>Andrés Cruz</title>
 
-  <meta property="description" itemprop="description" content="I hold a BA and MA in Political Science from Pontificia Universidad Católica de Chile. My research interests are in political economy and quantitative methods."/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="imgs/favicon.ico"/>
 
@@ -95,20 +94,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Andrés Cruz"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="I hold a BA and MA in Political Science from Pontificia Universidad Católica de Chile. My research interests are in political economy and quantitative methods."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Andrés Cruz"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Andrés Cruz"/>
-  <meta property="twitter:description" content="I hold a BA and MA in Political Science from Pontificia Universidad Católica de Chile. My research interests are in political economy and quantitative methods."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","site"]}},"value":[{"type":"character","attributes":{},"value":["Andrés Cruz"]},{"type":"character","attributes":{},"value":["I hold a BA and MA in Political Science from Pontificia Universidad Católica de Chile. My research interests are in political economy and quantitative methods.\n"]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site"]}},"value":[{"type":"character","attributes":{},"value":["Andrés Cruz"]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -1867,29 +1864,28 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   /* Optional: embed custom fonts here with `@import`          */
   /* This must remain at the top of this file.                 */
 
-  @import url('https://fonts.googleapis.com/css2?family=Work+Sans');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@600;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono');
   @import url('https://fonts.googleapis.com/css2?family=Asap');
-  @import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
-
 
   html {
     /*-- Main font sizes --*/
     --title-size:      44px; /* Modified */
-    --body-size:       1.1rem; /* Modified */
-    --code-size:       14px;
+    --body-size:       1.2rem; /* Modified */
+    --code-size:       12px;
     --aside-size:      12px;
     --fig-cap-size:    13px;
     /*-- Main font colors --*/
-    --title-color:     rgba(0, 0, 0, 0.9); /* Modified */
+    --title-color:     rgba(0, 0, 0, 0.75); /* Modified */
     --header-color:    rgba(0, 0, 0, 0.75); /* Modified */
-    --body-color:      rgba(0, 0, 0, 0.75);
+    --body-color:      rgba(0, 0, 0, 0.8);  /* Modifeid */
     --aside-color:     rgba(0, 0, 0, 0.6);
     --fig-cap-color:   rgba(0, 0, 0, 0.6);
     /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    Work Sans, sans-serif;
-    --mono-font:       Fira Mono, monospace;
+    --heading-font:    Roboto, sans-serif;
+    --mono-font:       Roboto Mono, monoRoboto;
     --body-font:       Asap, sans-serif;
-    --navbar-font:     Work Sans, sans-serif;  /* websites + blogs only */
+    --navbar-font:     Roboto, sans-serif;  /* websites + blogs only */
   }
 
   /*-- ARTICLE METADATA --*/
@@ -1933,10 +1929,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   }
 
   /*-- Additional custom styles --*/
-  /* Add any additional CSS rules below                      */
+  /* Add any additional CSS rules below */
 
-  h1 a, h2 a, h3 a, h4 a, h5 a { 
+  h1 a, h2 a, h3 a, h3 a code, h4 a, h5 a { 
     color: #85144b;
+  }
+
+  h3:first-of-type {
+    margin-top: 0rem !important;
+  }
+
+  h3 {
+    margin-top: 1rem !important;
+  }
+
+  hr {
+    margin-top: 25px !important;
+    margin-bottom: 25px !important;
+  }
+
+  code {
+    font-family: Roboto Mono;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  p > code {
+    font-size: 1.1rem;
   }</style>
   <style type="text/css">
   /* base style */
@@ -2113,7 +2131,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Andrés Cruz","description":"I hold a BA and MA in Political Science from Pontificia Universidad Católica de Chile. My research interests are in political economy and quantitative methods.","authors":[]}
+{"title":"Andrés Cruz","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2125,7 +2143,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <div class="nav-right">
 <a href="index.html">Home</a>
-<a href="r_resources.html">R Resources</a>
+<a href="r_projects.html">R Projects</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2138,11 +2156,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Andrés Cruz</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>I hold a BA and MA in Political Science from Pontificia Universidad Católica de Chile. My research interests are in political economy and quantitative methods.</p></p>
+
 </div>
 
 
 <div class="d-article">
+<p>I am a research assistant on a household finance <a href="https://www.thinkforwardinitiative.com/stories/the-impact-of-price-comparison-tools-in-consumer-credit-markets-on-financial-decision-making">project</a> led by <a href="https://www.linkedin.com/in/erik-berwart-1a877a22/?originalSubdomain=cl">Erik Berwart</a> (CMF), <a href="https://seankhiggins.com/">Sean Higgins</a> (Northwestern), <a href="https://www.sheishakulkarni.com/">Sheisha Kulkarni</a> (UVa), and <a href="https://santiagotruffa.cl/">Santiago Truffa</a> (UAndes). I also teach a computational social science <a href="./r_projects.html#programming-for-the-social-sciences-undergraduate-class">class</a> at Universidad Diego Portales.</p>
+<p>My research interests are in political economy and quantitative methods. I received a BA and MA in Political Science from Pontificia Universidad Católica de Chile.</p>
+<hr>
 <p><a href="https://twitter.com/arcruz0/"><i class="fab fa-twitter-square fa-2x"></i></a>  <a href="https://github.com/arcruz0/"><i class="fab fa-github-square fa-2x"></i></a></p>
 <p><small>Website built with <a href="https://rstudio.github.io/distill/"><code>distill</code></a>.</small></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>

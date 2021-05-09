@@ -11,29 +11,28 @@
 /* Optional: embed custom fonts here with `@import`          */
 /* This must remain at the top of this file.                 */
 
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono');
 @import url('https://fonts.googleapis.com/css2?family=Asap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
-
 
 html {
   /*-- Main font sizes --*/
   --title-size:      44px; /* Modified */
-  --body-size:       1.1rem; /* Modified */
-  --code-size:       14px;
+  --body-size:       1.2rem; /* Modified */
+  --code-size:       12px;
   --aside-size:      12px;
   --fig-cap-size:    13px;
   /*-- Main font colors --*/
-  --title-color:     rgba(0, 0, 0, 0.9); /* Modified */
+  --title-color:     rgba(0, 0, 0, 0.75); /* Modified */
   --header-color:    rgba(0, 0, 0, 0.75); /* Modified */
-  --body-color:      rgba(0, 0, 0, 0.75);
+  --body-color:      rgba(0, 0, 0, 0.8);  /* Modifeid */
   --aside-color:     rgba(0, 0, 0, 0.6);
   --fig-cap-color:   rgba(0, 0, 0, 0.6);
   /*-- Specify custom fonts ~~~ must be imported above   --*/
-  --heading-font:    Work Sans, sans-serif;
-  --mono-font:       Fira Mono, monospace;
+  --heading-font:    Roboto, sans-serif;
+  --mono-font:       Roboto Mono, monoRoboto;
   --body-font:       Asap, sans-serif;
-  --navbar-font:     Work Sans, sans-serif;  /* websites + blogs only */
+  --navbar-font:     Roboto, sans-serif;  /* websites + blogs only */
 }
 
 /*-- ARTICLE METADATA --*/
@@ -77,8 +76,30 @@ d-appendix {
 }
 
 /*-- Additional custom styles --*/
-/* Add any additional CSS rules below                      */
+/* Add any additional CSS rules below */
 
-h1 a, h2 a, h3 a, h4 a, h5 a { 
+h1 a, h2 a, h3 a, h3 a code, h4 a, h5 a { 
   color: #85144b;
+}
+
+h3:first-of-type {
+  margin-top: 0rem !important;
+}
+
+h3 {
+  margin-top: 1rem !important;
+}
+
+hr {
+  margin-top: 25px !important;
+  margin-bottom: 25px !important;
+}
+
+code {
+  font-family: Roboto Mono;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+p > code {
+  font-size: 1.1rem;
 }

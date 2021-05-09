@@ -9,8 +9,8 @@ navbar:
   right:
     - text: "Home"
       href: index.html
-    - text: "R Resources"
-      href: r_resources.html
+    - text: "R Projects"
+      href: r_projects.html
     # - text: "Blog"
     #   href: blog.html
 output:
