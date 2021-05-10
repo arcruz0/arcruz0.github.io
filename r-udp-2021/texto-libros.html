@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>02D - Manejo de datos (ejercicio int.) | Programación en Ciencias Sociales</title>
+  <title>06C - Descarga de libros | Programación en Ciencias Sociales</title>
   <meta name="description" content="Sitio web CPO3523 (2021)" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="02D - Manejo de datos (ejercicio int.) | Programación en Ciencias Sociales" />
+  <meta property="og:title" content="06C - Descarga de libros | Programación en Ciencias Sociales" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="02D - Manejo de datos (ejercicio int.) | Programación en Ciencias Sociales" />
+  <meta name="twitter:title" content="06C - Descarga de libros | Programación en Ciencias Sociales" />
   
   <meta name="twitter:description" content="Sitio web CPO3523 (2021)" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="manejo-02c.html"/>
-<link rel="next" href="visualizacion.html"/>
+<link rel="prev" href="texto-cadenas.html"/>
+
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -250,23 +250,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="manejo-02d" class="section level1 unnumbered">
-<h1>02D - Manejo de datos (ejercicio int.)</h1>
-<blockquote>
-<p>Este ejercicio interactivo solo se puede ejecutar en RStudio Cloud. Si quieres correrlo localmente, debe haber descargado el proyecto, como se explica en el script 02A.</p>
-</blockquote>
+<div id="texto-libros" class="section level1 unnumbered">
+<h1>06C - Descarga de libros</h1>
+<p>Como al principio de todo script, recomiendo reiniciar R. Esto lo conseguimos en RStudio Cloud con Session &gt; Restart R y clickeando en la escoba del panel de “Environment” (superior derecho).</p>
+<p>El siguiente código se utilizó para descargar los libros del script 06A:</p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="texto-libros.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar paquetes ----</span></span>
+<span id="cb389-2"><a href="texto-libros.html#cb389-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-3"><a href="texto-libros.html#cb389-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb389-4"><a href="texto-libros.html#cb389-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-5"><a href="texto-libros.html#cb389-5" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;tidytext&quot;)</span></span>
+<span id="cb389-6"><a href="texto-libros.html#cb389-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb389-7"><a href="texto-libros.html#cb389-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stopwords)</span>
+<span id="cb389-8"><a href="texto-libros.html#cb389-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-9"><a href="texto-libros.html#cb389-9" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;gutenbergr&quot;)</span></span>
+<span id="cb389-10"><a href="texto-libros.html#cb389-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gutenbergr) <span class="co"># descargar libros de dominio público desde Project Gutenberg </span></span>
+<span id="cb389-11"><a href="texto-libros.html#cb389-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-12"><a href="texto-libros.html#cb389-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-13"><a href="texto-libros.html#cb389-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-14"><a href="texto-libros.html#cb389-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Leviathan ----</span></span>
+<span id="cb389-15"><a href="texto-libros.html#cb389-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-16"><a href="texto-libros.html#cb389-16" aria-hidden="true" tabindex="-1"></a>leviathan <span class="ot">&lt;-</span> <span class="fu">gutenberg_download</span>(<span class="dv">3207</span>, <span class="at">strip =</span> T) </span>
+<span id="cb389-17"><a href="texto-libros.html#cb389-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-18"><a href="texto-libros.html#cb389-18" aria-hidden="true" tabindex="-1"></a>leviathan2 <span class="ot">&lt;-</span> leviathan <span class="sc">%&gt;%</span> </span>
+<span id="cb389-19"><a href="texto-libros.html#cb389-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># eliminar las lineas sin info (espacios o separadores)</span></span>
+<span id="cb389-20"><a href="texto-libros.html#cb389-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(text, <span class="st">&quot;^[</span><span class="sc">\\</span><span class="st">s[:punct:]]*$&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-21"><a href="texto-libros.html#cb389-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generar variable con capítulos</span></span>
+<span id="cb389-22"><a href="texto-libros.html#cb389-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">chapter =</span> <span class="fu">cumsum</span>(<span class="fu">str_detect</span>(text, <span class="st">&quot;(CHAPTER )&quot;</span>)),</span>
+<span id="cb389-23"><a href="texto-libros.html#cb389-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">line    =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.)) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-24"><a href="texto-libros.html#cb389-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># incluir información sobre el libro</span></span>
+<span id="cb389-25"><a href="texto-libros.html#cb389-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">author =</span> <span class="st">&quot;Thomas Hobbes&quot;</span>,</span>
+<span id="cb389-26"><a href="texto-libros.html#cb389-26" aria-hidden="true" tabindex="-1"></a>         <span class="at">book   =</span> <span class="st">&quot;Leviathan&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-27"><a href="texto-libros.html#cb389-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reordenar columnas</span></span>
+<span id="cb389-28"><a href="texto-libros.html#cb389-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(author, book, gutenberg_id, chapter, line, text)</span>
+<span id="cb389-29"><a href="texto-libros.html#cb389-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-30"><a href="texto-libros.html#cb389-30" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(leviathan2, <span class="st">&quot;datos/leviathan.csv&quot;</span>)</span>
+<span id="cb389-31"><a href="texto-libros.html#cb389-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-32"><a href="texto-libros.html#cb389-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-33"><a href="texto-libros.html#cb389-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-34"><a href="texto-libros.html#cb389-34" aria-hidden="true" tabindex="-1"></a><span class="co"># On Liberty ----</span></span>
+<span id="cb389-35"><a href="texto-libros.html#cb389-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-36"><a href="texto-libros.html#cb389-36" aria-hidden="true" tabindex="-1"></a>on_liberty <span class="ot">&lt;-</span> <span class="fu">gutenberg_download</span>(<span class="dv">34901</span>, <span class="at">strip =</span> T)</span>
+<span id="cb389-37"><a href="texto-libros.html#cb389-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-38"><a href="texto-libros.html#cb389-38" aria-hidden="true" tabindex="-1"></a>on_liberty2 <span class="ot">&lt;-</span> on_liberty <span class="sc">%&gt;%</span> </span>
+<span id="cb389-39"><a href="texto-libros.html#cb389-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># eliminar las lineas sin info (espacios o separadores)</span></span>
+<span id="cb389-40"><a href="texto-libros.html#cb389-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(text, <span class="st">&quot;^[</span><span class="sc">\\</span><span class="st">s[:punct:]]*$&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-41"><a href="texto-libros.html#cb389-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generar variable con caps. (es imposible no contar las del índice usando expr. regulares, por eso las arreglo ex post)</span></span>
+<span id="cb389-42"><a href="texto-libros.html#cb389-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">text =</span> <span class="fu">str_remove_all</span>(text, <span class="st">&quot;(&lt;i&gt;)|(&lt;/i&gt;)&quot;</span>),</span>
+<span id="cb389-43"><a href="texto-libros.html#cb389-43" aria-hidden="true" tabindex="-1"></a>         <span class="at">chapter =</span> <span class="fu">cumsum</span>(<span class="fu">str_detect</span>(text, <span class="st">&quot;(CHAPTER )&quot;</span>)),</span>
+<span id="cb389-44"><a href="texto-libros.html#cb389-44" aria-hidden="true" tabindex="-1"></a>         <span class="at">line    =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.)) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-45"><a href="texto-libros.html#cb389-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">chapter =</span> chapter <span class="sc">-</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-46"><a href="texto-libros.html#cb389-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">chapter =</span> <span class="fu">if_else</span>(chapter <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, chapter)) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-47"><a href="texto-libros.html#cb389-47" aria-hidden="true" tabindex="-1"></a>  <span class="co"># incluir información sobre el libro</span></span>
+<span id="cb389-48"><a href="texto-libros.html#cb389-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">author =</span> <span class="st">&quot;John Stuart Mill&quot;</span>,</span>
+<span id="cb389-49"><a href="texto-libros.html#cb389-49" aria-hidden="true" tabindex="-1"></a>         <span class="at">book   =</span> <span class="st">&quot;On Liberty&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-50"><a href="texto-libros.html#cb389-50" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reordenar columnas</span></span>
+<span id="cb389-51"><a href="texto-libros.html#cb389-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(author, book, gutenberg_id, chapter, line, text)</span>
+<span id="cb389-52"><a href="texto-libros.html#cb389-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-53"><a href="texto-libros.html#cb389-53" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(on_liberty2, <span class="st">&quot;datos/on_liberty.csv&quot;</span>)</span>
+<span id="cb389-54"><a href="texto-libros.html#cb389-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-55"><a href="texto-libros.html#cb389-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-56"><a href="texto-libros.html#cb389-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-57"><a href="texto-libros.html#cb389-57" aria-hidden="true" tabindex="-1"></a><span class="co"># A Vindication of the Rights of Women ----</span></span>
+<span id="cb389-58"><a href="texto-libros.html#cb389-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-59"><a href="texto-libros.html#cb389-59" aria-hidden="true" tabindex="-1"></a>rights_of_women <span class="ot">&lt;-</span> <span class="fu">gutenberg_download</span>(<span class="dv">3420</span>, <span class="at">strip =</span> T)</span>
+<span id="cb389-60"><a href="texto-libros.html#cb389-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-61"><a href="texto-libros.html#cb389-61" aria-hidden="true" tabindex="-1"></a>rights_of_women2 <span class="ot">&lt;-</span> rights_of_women <span class="sc">%&gt;%</span> </span>
+<span id="cb389-62"><a href="texto-libros.html#cb389-62" aria-hidden="true" tabindex="-1"></a>  <span class="co"># eliminar las lineas sin info (espacios o separadores)</span></span>
+<span id="cb389-63"><a href="texto-libros.html#cb389-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(text, <span class="st">&quot;^[</span><span class="sc">\\</span><span class="st">s[:punct:]]*$&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-64"><a href="texto-libros.html#cb389-64" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generar variable con caps. (es muy difícil no contar las del índice usando expr. regulares, por eso las arreglo ex post)</span></span>
+<span id="cb389-65"><a href="texto-libros.html#cb389-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">text =</span> <span class="fu">str_remove_all</span>(text, <span class="st">&quot;(&lt;i&gt;)|(&lt;/i&gt;)&quot;</span>),</span>
+<span id="cb389-66"><a href="texto-libros.html#cb389-66" aria-hidden="true" tabindex="-1"></a>         <span class="at">chapter =</span> <span class="fu">cumsum</span>(<span class="fu">str_detect</span>(text, <span class="st">&quot;(CHAPTER )&quot;</span>)),</span>
+<span id="cb389-67"><a href="texto-libros.html#cb389-67" aria-hidden="true" tabindex="-1"></a>         <span class="at">line    =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.)) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-68"><a href="texto-libros.html#cb389-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">chapter =</span> chapter <span class="sc">-</span> <span class="dv">13</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-69"><a href="texto-libros.html#cb389-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">chapter =</span> <span class="fu">if_else</span>(chapter <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, chapter)) <span class="sc">%&gt;%</span></span>
+<span id="cb389-70"><a href="texto-libros.html#cb389-70" aria-hidden="true" tabindex="-1"></a>  <span class="co"># incluir información sobre el libro</span></span>
+<span id="cb389-71"><a href="texto-libros.html#cb389-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">author =</span> <span class="st">&quot;Mary Wollstonecraft&quot;</span>,</span>
+<span id="cb389-72"><a href="texto-libros.html#cb389-72" aria-hidden="true" tabindex="-1"></a>         <span class="at">book   =</span> <span class="st">&quot;A Vindication of the Rights of Woman&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-73"><a href="texto-libros.html#cb389-73" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reordenar columnas</span></span>
+<span id="cb389-74"><a href="texto-libros.html#cb389-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(author, book, gutenberg_id, chapter, line, text)</span>
+<span id="cb389-75"><a href="texto-libros.html#cb389-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-76"><a href="texto-libros.html#cb389-76" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(rights_of_women2, <span class="st">&quot;datos/rights_of_women.csv&quot;</span>)</span></code></pre></div>
 
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="manejo-02c.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="visualizacion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="texto-cadenas.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-05-03" />
+<meta name="date" content="2021-05-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="manejo-av.html"/>
-
+<link rel="next" href="part-análisis-de-texto.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -212,6 +212,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#unir-bases-de-datos"><i class="fa fa-check"></i>Unir bases de datos</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="manejo-av-ej.html"><a href="manejo-av-ej.html"><i class="fa fa-check"></i>05B - Visualización de datos (extensiones)</a></li>
+<li class="part"><span><b>VI Análisis de texto</b></span></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html"><i class="fa fa-check"></i>06A - Análisis de texto</a>
+<ul>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#inicio-cargar-paquetes-base-de-datos-3"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#tokens-y-frecuencias"><i class="fa fa-check"></i>Tokens y frecuencias</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#separar-el-análisis-de-frecuencias-por-secciones"><i class="fa fa-check"></i>Separar el análisis de frecuencias por secciones</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#comparar-frecuencias-de-palabras-entre-documentos"><i class="fa fa-check"></i>Comparar frecuencias de palabras entre documentos</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#obtener-las-palabras-más-distintivas-entre-documentos"><i class="fa fa-check"></i>Obtener las palabras más distintivas entre documentos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html"><i class="fa fa-check"></i>06B - Cadenas de texto</a>
+<ul>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#inicio-cargar-paquetes-base-de-datos-4"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#cadenas-de-texto"><i class="fa fa-check"></i>Cadenas de texto</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#algunas-operaciones-simples-con-texto"><i class="fa fa-check"></i>Algunas operaciones simples con texto</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#funciones-para-trabajar-con-patrones"><i class="fa fa-check"></i>Funciones para trabajar con patrones</a></li>
+<li><a href="texto-cadenas.html#patrones-más-complejos-con-expresiones-regulares-regex">Patrones más complejos con expresiones regulares (<em>regex</em>)</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -237,36 +256,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Si quieres correr este script localmente, debe haber descargado el proyecto, como se explica al comienzo del script 05A.</p>
 </blockquote>
 <p>Como al principio de todo script, recomiendo reiniciar R. Esto lo conseguimos con Session &gt; Restart R y clickeando en la escoba del panel de “Environment” (superior derecho).</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="manejo-av-ej.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="manejo-av-ej.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>En el ejercicio trabajaremos con un panel de datos de países latinoamericanos en este milenio. Tenemos información sobre gasto en burocracia y pobreza; buscaremos responder a las preguntas (c) y (d).</p>
 <p>Los siguientes son los datos de gasto en burocracia, 2000-2017, que tienen por fuente el Banco Mundial (2017), <a href="https://ourworldindata.org/government-spending">compilados por Our World in Data</a>:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="manejo-av-ej.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="do">## (este no es el formato original de OWID, aunque se parece bastante)</span></span>
-<span id="cb290-2"><a href="manejo-av-ej.html#cb290-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb290-3"><a href="manejo-av-ej.html#cb290-3" aria-hidden="true" tabindex="-1"></a>df_gasto_burocracia <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/gasto_burocracia.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="manejo-av-ej.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="do">## (este no es el formato original de OWID, aunque se parece bastante)</span></span>
+<span id="cb287-2"><a href="manejo-av-ej.html#cb287-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-3"><a href="manejo-av-ej.html#cb287-3" aria-hidden="true" tabindex="-1"></a>df_gasto_burocracia <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/gasto_burocracia.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   PAÍS = col_character(),
 ##   AÑO = col_double(),
 ##   `% DE BUROCRACIA EN GASTO FISCAL` = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="manejo-av-ej.html#cb292-1" aria-hidden="true" tabindex="-1"></a>df_gasto_burocracia</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="manejo-av-ej.html#cb289-1" aria-hidden="true" tabindex="-1"></a>df_gasto_burocracia</span></code></pre></div>
 <pre><code>## # A tibble: 216 x 3
-##    PAÍS        AÑO `% DE BUROCRACIA EN GASTO FISCAL`
-##    &lt;chr&gt;     &lt;dbl&gt;                             &lt;dbl&gt;
-##  1 Argentina  2000                              14.7
-##  2 Argentina  2001                              14.2
-##  3 Argentina  2002                              11.3
-##  4 Argentina  2003                              11.7
-##  5 Argentina  2004                              11.5
-##  6 Argentina  2005                              NA  
-##  7 Argentina  2006                              NA  
-##  8 Argentina  2007                              NA  
-##  9 Argentina  2008                              NA  
-## 10 Argentina  2009                              NA  
+##    PAÍS       AÑO `% DE BUROCRACIA EN GAST~
+##    &lt;chr&gt;    &lt;dbl&gt;                     &lt;dbl&gt;
+##  1 Argenti~  2000                      14.7
+##  2 Argenti~  2001                      14.2
+##  3 Argenti~  2002                      11.3
+##  4 Argenti~  2003                      11.7
+##  5 Argenti~  2004                      11.5
+##  6 Argenti~  2005                      NA  
+##  7 Argenti~  2006                      NA  
+##  8 Argenti~  2007                      NA  
+##  9 Argenti~  2008                      NA  
+## 10 Argenti~  2009                      NA  
 ## # ... with 206 more rows</code></pre>
 <p>Estos son los datos de (extrema) pobreza, 2001-2017, medida como el porcentaje de la población que vive con menos de USD 1.90 al día <a href="https://data.worldbank.org/indicator/SI.POV.DDAY">(Banco Mundial, 2019)</a>:</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="manejo-av-ej.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="do">## (este no es el formato original del Banco Mundial, aunque se parece bastante)</span></span>
-<span id="cb294-2"><a href="manejo-av-ej.html#cb294-2" aria-hidden="true" tabindex="-1"></a>df_pobreza <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/pobreza.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="manejo-av-ej.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="do">## (este no es el formato original del Banco Mundial, aunque se parece bastante)</span></span>
+<span id="cb291-2"><a href="manejo-av-ej.html#cb291-2" aria-hidden="true" tabindex="-1"></a>df_pobreza <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/pobreza.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   country = col_character(),
@@ -288,26 +307,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   `2016` = col_double(),
 ##   `2017` = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="manejo-av-ej.html#cb296-1" aria-hidden="true" tabindex="-1"></a>df_pobreza</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="manejo-av-ej.html#cb293-1" aria-hidden="true" tabindex="-1"></a>df_pobreza</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 18
-##    country   `2001` `2002` `2003` `2004` `2005` `2006`
-##    &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1 Argentina    9.4   14      7      5.4    3.9    3.3
-##  2 Bolivia     22.8   24.7   NA     13.7   19.3   16.4
-##  3 Brazil      11.6   10.3   11.1    9.7    8.6    7.2
-##  4 Chile       NA     NA      4.2   NA     NA      2.4
-##  5 Colombia    19.7   14.3   12     10.9    9.7   NA  
-##  6 Ecuador     NA     NA     14.5   15     12.1    8.1
-##  7 Guyana      NA     NA     NA     NA     NA     NA  
-##  8 Peru        17.2   15     11.7   13.5   15.3   13.3
-##  9 Paraguay     8.9   13.2    8.3    5.7    6.1    7.9
-## 10 Suriname    NA     NA     NA     NA     NA     NA  
-## 11 Uruguay     NA     NA     NA     NA     NA      0.5
-## 12 Venezuela   11     18.2   22.7   19.8   18.9   10.2
-## # ... with 11 more variables: 2007 &lt;dbl&gt;, 2008 &lt;dbl&gt;,
-## #   2009 &lt;dbl&gt;, 2010 &lt;dbl&gt;, 2011 &lt;dbl&gt;, 2012 &lt;dbl&gt;,
-## #   2013 &lt;dbl&gt;, 2014 &lt;dbl&gt;, 2015 &lt;dbl&gt;, 2016 &lt;dbl&gt;,
-## #   2017 &lt;dbl&gt;</code></pre>
+##    country   `2001` `2002` `2003` `2004`
+##    &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Argentina    9.4   14      7      5.4
+##  2 Bolivia     22.8   24.7   NA     13.7
+##  3 Brazil      11.6   10.3   11.1    9.7
+##  4 Chile       NA     NA      4.2   NA  
+##  5 Colombia    19.7   14.3   12     10.9
+##  6 Ecuador     NA     NA     14.5   15  
+##  7 Guyana      NA     NA     NA     NA  
+##  8 Peru        17.2   15     11.7   13.5
+##  9 Paraguay     8.9   13.2    8.3    5.7
+## 10 Suriname    NA     NA     NA     NA  
+## 11 Uruguay     NA     NA     NA     NA  
+## 12 Venezuela   11     18.2   22.7   19.8
+## # ... with 13 more variables: 2005 &lt;dbl&gt;,
+## #   2006 &lt;dbl&gt;, 2007 &lt;dbl&gt;, 2008 &lt;dbl&gt;,
+## #   2009 &lt;dbl&gt;, 2010 &lt;dbl&gt;, 2011 &lt;dbl&gt;,
+## #   2012 &lt;dbl&gt;, 2013 &lt;dbl&gt;, 2014 &lt;dbl&gt;,
+## #   2015 &lt;dbl&gt;, 2016 &lt;dbl&gt;, 2017 &lt;dbl&gt;</code></pre>
 <ul>
 <li><ol style="list-style-type: upper-alpha">
 <li>¿Qué necesitamos hacer con nuestros datos para poder contestar las preguntas C) y D)? A continuación, enumera las distintas modificaciones que debemos hacer para limpiar los datos, tomando en cuenta los contenidos de esta unidad.</li>
@@ -334,8 +354,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="manejo-av.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="manejo-av.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="part-análisis-de-texto.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

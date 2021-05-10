@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-05-03" />
+<meta name="date" content="2021-05-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -212,6 +212,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="manejo-av.html"><a href="manejo-av.html#unir-bases-de-datos"><i class="fa fa-check"></i>Unir bases de datos</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="manejo-av-ej.html"><a href="manejo-av-ej.html"><i class="fa fa-check"></i>05B - Visualización de datos (extensiones)</a></li>
+<li class="part"><span><b>VI Análisis de texto</b></span></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html"><i class="fa fa-check"></i>06A - Análisis de texto</a>
+<ul>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#inicio-cargar-paquetes-base-de-datos-3"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#tokens-y-frecuencias"><i class="fa fa-check"></i>Tokens y frecuencias</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#separar-el-análisis-de-frecuencias-por-secciones"><i class="fa fa-check"></i>Separar el análisis de frecuencias por secciones</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#comparar-frecuencias-de-palabras-entre-documentos"><i class="fa fa-check"></i>Comparar frecuencias de palabras entre documentos</a></li>
+<li class="chapter" data-level="" data-path="texto-analisis.html"><a href="texto-analisis.html#obtener-las-palabras-más-distintivas-entre-documentos"><i class="fa fa-check"></i>Obtener las palabras más distintivas entre documentos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html"><i class="fa fa-check"></i>06B - Cadenas de texto</a>
+<ul>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#inicio-cargar-paquetes-base-de-datos-4"><i class="fa fa-check"></i>Inicio: cargar paquetes, base de datos</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#cadenas-de-texto"><i class="fa fa-check"></i>Cadenas de texto</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#algunas-operaciones-simples-con-texto"><i class="fa fa-check"></i>Algunas operaciones simples con texto</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#funciones-para-trabajar-con-patrones"><i class="fa fa-check"></i>Funciones para trabajar con patrones</a></li>
+<li><a href="texto-cadenas.html#patrones-más-complejos-con-expresiones-regulares-regex">Patrones más complejos con expresiones regulares (<em>regex</em>)</a></li>
+<li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -238,8 +257,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <div id="inicio-cargar-paquetes-base-de-datos-2" class="section level2">
 <h2>Inicio: cargar paquetes, base de datos</h2>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="manejo-av.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="manejo-av.html#cb246-1" aria-hidden="true" tabindex="-1"></a>df_tasa_robos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/tasa_robos_wide.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="manejo-av.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="manejo-av.html#cb243-1" aria-hidden="true" tabindex="-1"></a>df_tasa_robos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/tasa_robos_wide.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   comuna = col_character(),
@@ -256,10 +275,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Pivotear bases de datos (wide &lt;-&gt; long)</h2>
 <p>¿Qué pasa si queremos graficar estos datos, por ejemplo viendo la evolución temporal de la variable en una comuna? El formato de los datos no es el ideal. Aquí los valores de una variable (año) se expandieron hacia las columnas, generando una base en formato <em>wide</em>.</p>
 <p>Podemos “alargar” esta base usando la función <code>pivot_longer()</code>, de la siguiente manera:</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="manejo-av.html#cb248-1" aria-hidden="true" tabindex="-1"></a>df_tasa_robos_long <span class="ot">&lt;-</span> df_tasa_robos <span class="sc">%&gt;%</span> </span>
-<span id="cb248-2"><a href="manejo-av.html#cb248-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(comuna, comuna_id), <span class="co"># descartamos vars. que no queremos transformar</span></span>
-<span id="cb248-3"><a href="manejo-av.html#cb248-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;anio&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;tasa_robos&quot;</span>)</span>
-<span id="cb248-4"><a href="manejo-av.html#cb248-4" aria-hidden="true" tabindex="-1"></a>df_tasa_robos_long</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="manejo-av.html#cb245-1" aria-hidden="true" tabindex="-1"></a>df_tasa_robos_long <span class="ot">&lt;-</span> df_tasa_robos <span class="sc">%&gt;%</span> </span>
+<span id="cb245-2"><a href="manejo-av.html#cb245-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(comuna, comuna_id), <span class="co"># descartamos vars. que no queremos transformar</span></span>
+<span id="cb245-3"><a href="manejo-av.html#cb245-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;anio&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;tasa_robos&quot;</span>)</span>
+<span id="cb245-4"><a href="manejo-av.html#cb245-4" aria-hidden="true" tabindex="-1"></a>df_tasa_robos_long</span></code></pre></div>
 <pre><code>## # A tibble: 1,700 x 4
 ##    comuna    comuna_id anio  tasa_robos
 ##    &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -275,88 +294,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Alhué         13502 2016        956.
 ## # ... with 1,690 more rows</code></pre>
 <p>Esta estructura de datos es mucho más amigable para <code>ggplot2</code>:</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="manejo-av.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_tasa_robos_long <span class="sc">%&gt;%</span> <span class="fu">filter</span>(comuna <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;San-Joaquín&quot;</span>, <span class="st">&quot;Macul&quot;</span>)),</span>
-<span id="cb250-2"><a href="manejo-av.html#cb250-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(anio), <span class="at">y =</span> tasa_robos, </span>
-<span id="cb250-3"><a href="manejo-av.html#cb250-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> comuna, <span class="at">group =</span> comuna)) <span class="sc">+</span></span>
-<span id="cb250-4"><a href="manejo-av.html#cb250-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="co"># podríamos seguir añadiendo escalas, labs, etc...</span></span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="manejo-av.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_tasa_robos_long <span class="sc">%&gt;%</span> <span class="fu">filter</span>(comuna <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;San-Joaquín&quot;</span>, <span class="st">&quot;Macul&quot;</span>)),</span>
+<span id="cb247-2"><a href="manejo-av.html#cb247-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(anio), <span class="at">y =</span> tasa_robos, </span>
+<span id="cb247-3"><a href="manejo-av.html#cb247-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> comuna, <span class="at">group =</span> comuna)) <span class="sc">+</span></span>
+<span id="cb247-4"><a href="manejo-av.html#cb247-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="co"># podríamos seguir añadiendo escalas, labs, etc...</span></span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
 <p>Noten que <code>pivot_longer()</code> tiene una función recíproca, <code>pivot_wider()</code>:</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="manejo-av.html#cb251-1" aria-hidden="true" tabindex="-1"></a>df_tasa_robos_long <span class="sc">%&gt;%</span> </span>
-<span id="cb251-2"><a href="manejo-av.html#cb251-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">&quot;anio&quot;</span>, <span class="at">values_from =</span> <span class="st">&quot;tasa_robos&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="manejo-av.html#cb248-1" aria-hidden="true" tabindex="-1"></a>df_tasa_robos_long <span class="sc">%&gt;%</span> </span>
+<span id="cb248-2"><a href="manejo-av.html#cb248-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">&quot;anio&quot;</span>, <span class="at">values_from =</span> <span class="st">&quot;tasa_robos&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 340 x 7
-##    comuna  comuna_id `2012` `2013` `2014` `2015` `2016`
-##    &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1 Algarr~      5602  4031.  3612.  3734.  4231.  3665.
-##  2 Alhué       13502   796.   950.  1167.   606.   956.
-##  3 Alto-B~      8314   225.   305.   245.   139.   103.
-##  4 Alto-d~      3302   208.   209.   397.   293.   315.
-##  5 Alto-H~      1107  2589.  2218.  1930.  1962.  1847.
-##  6 Ancud       10202   579.   763.   697.   755.   732.
-##  7 Andaco~      4103   759.   640.   892.   911.  1075.
-##  8 Angol        9201  1400.  1515.  1822.  1939.  1468.
-##  9 Antárt~     12202     0      0      0      0      0 
-## 10 Antofa~      2101  2178.  1892.  1938.  1671.  1391.
-## # ... with 330 more rows</code></pre>
+##    comuna    comuna_id `2012` `2013` `2014`
+##    &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Algarrobo      5602  4031.  3612.  3734.
+##  2 Alhué         13502   796.   950.  1167.
+##  3 Alto-Bio~      8314   225.   305.   245.
+##  4 Alto-del~      3302   208.   209.   397.
+##  5 Alto-Hos~      1107  2589.  2218.  1930.
+##  6 Ancud         10202   579.   763.   697.
+##  7 Andacollo      4103   759.   640.   892.
+##  8 Angol          9201  1400.  1515.  1822.
+##  9 Antártica     12202     0      0      0 
+## 10 Antofaga~      2101  2178.  1892.  1938.
+## # ... with 330 more rows, and 2 more
+## #   variables: 2015 &lt;dbl&gt;, 2016 &lt;dbl&gt;</code></pre>
 </div>
 <div id="recodificar-variables" class="section level2">
 <h2>Recodificar variables</h2>
 <p>Supongamos que, usando nuestra nueva base <em>long</em>, queremos crear una variable binaria/dummy que indique si la observación es para el gobierno de Piñera I o Bachelet II. Podemos usar <code>if_else()</code> dentro de <code>mutate()</code>:</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="manejo-av.html#cb253-1" aria-hidden="true" tabindex="-1"></a>df_tasa_robos_long <span class="sc">%&gt;%</span> </span>
-<span id="cb253-2"><a href="manejo-av.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d_gob_bachelet =</span> <span class="fu">if_else</span>(<span class="at">condition =</span> anio <span class="sc">&gt;=</span> <span class="dv">2014</span>, </span>
-<span id="cb253-3"><a href="manejo-av.html#cb253-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">true      =</span> <span class="dv">1</span>,</span>
-<span id="cb253-4"><a href="manejo-av.html#cb253-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">false     =</span> <span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="manejo-av.html#cb250-1" aria-hidden="true" tabindex="-1"></a>df_tasa_robos_long <span class="sc">%&gt;%</span> </span>
+<span id="cb250-2"><a href="manejo-av.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d_gob_bachelet =</span> <span class="fu">if_else</span>(<span class="at">condition =</span> anio <span class="sc">&gt;=</span> <span class="dv">2014</span>, </span>
+<span id="cb250-3"><a href="manejo-av.html#cb250-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">true      =</span> <span class="dv">1</span>,</span>
+<span id="cb250-4"><a href="manejo-av.html#cb250-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">false     =</span> <span class="dv">0</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1,700 x 5
-##    comuna    comuna_id anio  tasa_robos d_gob_bachelet
-##    &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;          &lt;dbl&gt;
-##  1 Algarrobo      5602 2012       4031.              0
-##  2 Algarrobo      5602 2013       3612.              0
-##  3 Algarrobo      5602 2014       3734.              1
-##  4 Algarrobo      5602 2015       4231.              1
-##  5 Algarrobo      5602 2016       3665.              1
-##  6 Alhué         13502 2012        796.              0
-##  7 Alhué         13502 2013        950.              0
-##  8 Alhué         13502 2014       1167.              1
-##  9 Alhué         13502 2015        606.              1
-## 10 Alhué         13502 2016        956.              1
-## # ... with 1,690 more rows</code></pre>
+##    comuna    comuna_id anio  tasa_robos
+##    &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+##  1 Algarrobo      5602 2012       4031.
+##  2 Algarrobo      5602 2013       3612.
+##  3 Algarrobo      5602 2014       3734.
+##  4 Algarrobo      5602 2015       4231.
+##  5 Algarrobo      5602 2016       3665.
+##  6 Alhué         13502 2012        796.
+##  7 Alhué         13502 2013        950.
+##  8 Alhué         13502 2014       1167.
+##  9 Alhué         13502 2015        606.
+## 10 Alhué         13502 2016        956.
+## # ... with 1,690 more rows, and 1 more
+## #   variable: d_gob_bachelet &lt;dbl&gt;</code></pre>
 <p><code>if_else()</code> nos sirve si es que queremos crear variables binarias (numéricas o no). Pero a menudo queremos asignar más categorías. En esos casos podemos usar <code>case_when()</code>:</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="manejo-av.html#cb255-1" aria-hidden="true" tabindex="-1"></a>df_tasa_robos_long <span class="sc">%&gt;%</span> </span>
-<span id="cb255-2"><a href="manejo-av.html#cb255-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gobierno =</span> <span class="fu">case_when</span>(anio <span class="sc">&lt;</span> <span class="dv">2014</span>  <span class="sc">~</span> <span class="st">&quot;Piñera I&quot;</span>, <span class="co"># condición ~ valor</span></span>
-<span id="cb255-3"><a href="manejo-av.html#cb255-3" aria-hidden="true" tabindex="-1"></a>                              anio <span class="sc">==</span> <span class="dv">2014</span> <span class="sc">~</span> <span class="st">&quot;Cambio de mando&quot;</span>,</span>
-<span id="cb255-4"><a href="manejo-av.html#cb255-4" aria-hidden="true" tabindex="-1"></a>                              anio <span class="sc">&gt;</span> <span class="dv">2014</span>  <span class="sc">~</span> <span class="st">&quot;Bachelet II&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="manejo-av.html#cb252-1" aria-hidden="true" tabindex="-1"></a>df_tasa_robos_long <span class="sc">%&gt;%</span> </span>
+<span id="cb252-2"><a href="manejo-av.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gobierno =</span> <span class="fu">case_when</span>(anio <span class="sc">&lt;</span> <span class="dv">2014</span>  <span class="sc">~</span> <span class="st">&quot;Piñera I&quot;</span>, <span class="co"># condición ~ valor</span></span>
+<span id="cb252-3"><a href="manejo-av.html#cb252-3" aria-hidden="true" tabindex="-1"></a>                              anio <span class="sc">==</span> <span class="dv">2014</span> <span class="sc">~</span> <span class="st">&quot;Cambio de mando&quot;</span>,</span>
+<span id="cb252-4"><a href="manejo-av.html#cb252-4" aria-hidden="true" tabindex="-1"></a>                              anio <span class="sc">&gt;</span> <span class="dv">2014</span>  <span class="sc">~</span> <span class="st">&quot;Bachelet II&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1,700 x 5
-##    comuna    comuna_id anio  tasa_robos gobierno       
-##    &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;          
-##  1 Algarrobo      5602 2012       4031. Piñera I       
-##  2 Algarrobo      5602 2013       3612. Piñera I       
-##  3 Algarrobo      5602 2014       3734. Cambio de mando
-##  4 Algarrobo      5602 2015       4231. Bachelet II    
-##  5 Algarrobo      5602 2016       3665. Bachelet II    
-##  6 Alhué         13502 2012        796. Piñera I       
-##  7 Alhué         13502 2013        950. Piñera I       
-##  8 Alhué         13502 2014       1167. Cambio de mando
-##  9 Alhué         13502 2015        606. Bachelet II    
-## 10 Alhué         13502 2016        956. Bachelet II    
-## # ... with 1,690 more rows</code></pre>
+##    comuna    comuna_id anio  tasa_robos
+##    &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+##  1 Algarrobo      5602 2012       4031.
+##  2 Algarrobo      5602 2013       3612.
+##  3 Algarrobo      5602 2014       3734.
+##  4 Algarrobo      5602 2015       4231.
+##  5 Algarrobo      5602 2016       3665.
+##  6 Alhué         13502 2012        796.
+##  7 Alhué         13502 2013        950.
+##  8 Alhué         13502 2014       1167.
+##  9 Alhué         13502 2015        606.
+## 10 Alhué         13502 2016        956.
+## # ... with 1,690 more rows, and 1 more
+## #   variable: gobierno &lt;chr&gt;</code></pre>
 <p>Una opción válida al usar <code>case_when()</code> es asignar un valor para “cualquier otro caso”:</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="manejo-av.html#cb257-1" aria-hidden="true" tabindex="-1"></a>df_tasa_robos_long <span class="sc">%&gt;%</span> </span>
-<span id="cb257-2"><a href="manejo-av.html#cb257-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gobierno =</span> <span class="fu">case_when</span>(anio <span class="sc">&lt;</span> <span class="dv">2014</span>  <span class="sc">~</span> <span class="st">&quot;Piñera I&quot;</span>, </span>
-<span id="cb257-3"><a href="manejo-av.html#cb257-3" aria-hidden="true" tabindex="-1"></a>                              anio <span class="sc">==</span> <span class="dv">2014</span> <span class="sc">~</span> <span class="st">&quot;Cambio de mando&quot;</span>,</span>
-<span id="cb257-4"><a href="manejo-av.html#cb257-4" aria-hidden="true" tabindex="-1"></a>                              <span class="cn">TRUE</span>         <span class="sc">~</span> <span class="st">&quot;Bachelet II&quot;</span>)) <span class="co"># en cualquier otro caso</span></span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="manejo-av.html#cb254-1" aria-hidden="true" tabindex="-1"></a>df_tasa_robos_long <span class="sc">%&gt;%</span> </span>
+<span id="cb254-2"><a href="manejo-av.html#cb254-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gobierno =</span> <span class="fu">case_when</span>(anio <span class="sc">&lt;</span> <span class="dv">2014</span>  <span class="sc">~</span> <span class="st">&quot;Piñera I&quot;</span>, </span>
+<span id="cb254-3"><a href="manejo-av.html#cb254-3" aria-hidden="true" tabindex="-1"></a>                              anio <span class="sc">==</span> <span class="dv">2014</span> <span class="sc">~</span> <span class="st">&quot;Cambio de mando&quot;</span>,</span>
+<span id="cb254-4"><a href="manejo-av.html#cb254-4" aria-hidden="true" tabindex="-1"></a>                              <span class="cn">TRUE</span>         <span class="sc">~</span> <span class="st">&quot;Bachelet II&quot;</span>)) <span class="co"># en cualquier otro caso</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,700 x 5
-##    comuna    comuna_id anio  tasa_robos gobierno       
-##    &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;          
-##  1 Algarrobo      5602 2012       4031. Piñera I       
-##  2 Algarrobo      5602 2013       3612. Piñera I       
-##  3 Algarrobo      5602 2014       3734. Cambio de mando
-##  4 Algarrobo      5602 2015       4231. Bachelet II    
-##  5 Algarrobo      5602 2016       3665. Bachelet II    
-##  6 Alhué         13502 2012        796. Piñera I       
-##  7 Alhué         13502 2013        950. Piñera I       
-##  8 Alhué         13502 2014       1167. Cambio de mando
-##  9 Alhué         13502 2015        606. Bachelet II    
-## 10 Alhué         13502 2016        956. Bachelet II    
-## # ... with 1,690 more rows</code></pre>
+##    comuna    comuna_id anio  tasa_robos
+##    &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+##  1 Algarrobo      5602 2012       4031.
+##  2 Algarrobo      5602 2013       3612.
+##  3 Algarrobo      5602 2014       3734.
+##  4 Algarrobo      5602 2015       4231.
+##  5 Algarrobo      5602 2016       3665.
+##  6 Alhué         13502 2012        796.
+##  7 Alhué         13502 2013        950.
+##  8 Alhué         13502 2014       1167.
+##  9 Alhué         13502 2015        606.
+## 10 Alhué         13502 2016        956.
+## # ... with 1,690 more rows, and 1 more
+## #   variable: gobierno &lt;chr&gt;</code></pre>
 <div id="mini-ejercicio" class="section level4">
 <h4>Mini-ejercicio</h4>
 <p>Crea la variable <code>d_gob_bachelet</code> de antes, pero esta vez usando <code>case_when()</code>. Tu código:</p>
@@ -365,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="valores-perdidosmissingna" class="section level2">
 <h2>Valores perdidos/missing/NA</h2>
 <p>Para el resto de la clase trabajaremos también con datos de robos, esta vez para los países del Cono Sur (2006-2016). <a href="https://dataunodc.un.org/crime/theft">La fuente es la Oficina de las Naciones Unidas contra la Droga y el Delito (UNODC)</a>.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="manejo-av.html#cb259-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/robos_cono_sur.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="manejo-av.html#cb256-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/robos_cono_sur.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   pais = col_character(),
@@ -373,7 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   anio = col_double(),
 ##   robos_c100k = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="manejo-av.html#cb261-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="manejo-av.html#cb258-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur</span></code></pre></div>
 <pre><code>## # A tibble: 33 x 4
 ##    pais      pais_codigo  anio robos_c100k
 ##    &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -393,9 +416,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="realizar-operaciones-básicas-en-vectores-con-na" class="section level4">
 <h4>Realizar operaciones básicas en vectores con NA</h4>
 <p>Intentemos calcular la media por país para la variable “robos_c100k”:</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="manejo-av.html#cb263-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
-<span id="cb263-2"><a href="manejo-av.html#cb263-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pais) <span class="sc">%&gt;%</span> </span>
-<span id="cb263-3"><a href="manejo-av.html#cb263-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_robos_c100k =</span> <span class="fu">mean</span>(robos_c100k))</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="manejo-av.html#cb260-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
+<span id="cb260-2"><a href="manejo-av.html#cb260-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pais) <span class="sc">%&gt;%</span> </span>
+<span id="cb260-3"><a href="manejo-av.html#cb260-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_robos_c100k =</span> <span class="fu">mean</span>(robos_c100k))</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   pais      media_robos_c100k
 ##   &lt;chr&gt;                 &lt;dbl&gt;
@@ -403,9 +426,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 Chile                 1070.
 ## 3 Uruguay               2984.</code></pre>
 <p>La mayoría de las operaciones básicas en R (<code>median()</code>, <code>sd()</code>, <code>sum()</code>, etc.) fallarán cuando alguno de los valores en el cálculo sea un NA. Si es que de todas formas queremos utilizar la función, tomando en cuenta solo los valores existentes, prácticamente todas estas operaciones incluyen un argumento <code>na.rm =</code> (NA remove):</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="manejo-av.html#cb265-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
-<span id="cb265-2"><a href="manejo-av.html#cb265-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pais) <span class="sc">%&gt;%</span> </span>
-<span id="cb265-3"><a href="manejo-av.html#cb265-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_robos_c100k =</span> <span class="fu">mean</span>(robos_c100k, <span class="at">na.rm =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="manejo-av.html#cb262-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
+<span id="cb262-2"><a href="manejo-av.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pais) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-3"><a href="manejo-av.html#cb262-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_robos_c100k =</span> <span class="fu">mean</span>(robos_c100k, <span class="at">na.rm =</span> T))</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   pais      media_robos_c100k
 ##   &lt;chr&gt;                 &lt;dbl&gt;
@@ -413,16 +436,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 Chile                 1070.
 ## 3 Uruguay               2984.</code></pre>
 <p>Por defecto, los modelos de regresión hacen algo como esto, omiten las observaciones que tengan NA en alguna de las variables del modelo. Siempre que estemos en la duda sobre cómo se comporta alguna función ante NAs, deberíamos revisar su archivo de ayuda y buscar algún argumento que incluya “na”:</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="manejo-av.html#cb267-1" aria-hidden="true" tabindex="-1"></a>?lm</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="manejo-av.html#cb264-1" aria-hidden="true" tabindex="-1"></a>?lm</span></code></pre></div>
 </div>
 <div id="filtrar-nas-de-una-base" class="section level4">
 <h4>Filtrar NAs de una base</h4>
 <p>Lo siguiente no funcionará:</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="manejo-av.html#cb268-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
-<span id="cb268-2"><a href="manejo-av.html#cb268-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(robos_c100k <span class="sc">==</span> <span class="cn">NA</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="manejo-av.html#cb265-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
+<span id="cb265-2"><a href="manejo-av.html#cb265-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(robos_c100k <span class="sc">==</span> <span class="cn">NA</span>)</span></code></pre></div>
 <p>Lo que debemos utilizar en operaciones lógicas para testear la presencia de NAs es la función <code>is.na()</code>:</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="manejo-av.html#cb269-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
-<span id="cb269-2"><a href="manejo-av.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(robos_c100k))</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="manejo-av.html#cb266-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
+<span id="cb266-2"><a href="manejo-av.html#cb266-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(robos_c100k))</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##   pais      pais_codigo  anio robos_c100k
 ##   &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -432,8 +455,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Argentina ARG          2012          NA
 ## 5 Argentina ARG          2013          NA</code></pre>
 <p>Podemos realizar una negación en una operación lógica antecediéndola de un signo de exclamación. En este caso, obtendremos solo las observaciones que no tienen NA en “robos_c100k”:</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="manejo-av.html#cb271-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
-<span id="cb271-2"><a href="manejo-av.html#cb271-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(robos_c100k))</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="manejo-av.html#cb268-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
+<span id="cb268-2"><a href="manejo-av.html#cb268-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(robos_c100k))</span></code></pre></div>
 <pre><code>## # A tibble: 28 x 4
 ##    pais      pais_codigo  anio robos_c100k
 ##    &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -451,7 +474,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="crear-valores-perdidos" class="section level4">
 <h4>Crear valores perdidos</h4>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="manejo-av.html#cb273-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="manejo-av.html#cb270-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur</span></code></pre></div>
 <pre><code>## # A tibble: 33 x 4
 ##    pais      pais_codigo  anio robos_c100k
 ##    &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -468,17 +491,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ... with 23 more rows</code></pre>
 <p>Supongamos que no confiamos en los datos más antiguos para Argentina (2006-2008) y también queremos asignarlos como valores perdidos. Una opción podría ser eliminar dichas observaciones con <code>filter()</code>, pero tal vez tenemos información útil en otras variables.</p>
 <p>Podríamos asignarle el valor de NA a dichas observaciones con <code>if_else()</code> o <code>case_when()</code>:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="manejo-av.html#cb275-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
-<span id="cb275-2"><a href="manejo-av.html#cb275-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">robos_c100k =</span> <span class="fu">case_when</span>(</span>
-<span id="cb275-3"><a href="manejo-av.html#cb275-3" aria-hidden="true" tabindex="-1"></a>    pais <span class="sc">==</span> <span class="st">&quot;Argentina&quot;</span> <span class="sc">&amp;</span> anio <span class="sc">&lt;=</span> <span class="dv">2008</span> <span class="sc">~</span> <span class="cn">NA</span>,</span>
-<span id="cb275-4"><a href="manejo-av.html#cb275-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>                               <span class="sc">~</span> robos_c100k</span>
-<span id="cb275-5"><a href="manejo-av.html#cb275-5" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="manejo-av.html#cb272-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
+<span id="cb272-2"><a href="manejo-av.html#cb272-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">robos_c100k =</span> <span class="fu">case_when</span>(</span>
+<span id="cb272-3"><a href="manejo-av.html#cb272-3" aria-hidden="true" tabindex="-1"></a>    pais <span class="sc">==</span> <span class="st">&quot;Argentina&quot;</span> <span class="sc">&amp;</span> anio <span class="sc">&lt;=</span> <span class="dv">2008</span> <span class="sc">~</span> <span class="cn">NA</span>,</span>
+<span id="cb272-4"><a href="manejo-av.html#cb272-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>                               <span class="sc">~</span> robos_c100k</span>
+<span id="cb272-5"><a href="manejo-av.html#cb272-5" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
 <p>Lo anterior falla, pese a que la sintaxis de <code>case_when()</code> es correcta! El problema es que cuando creamos valores perdidos debemos decirle explícitamente a R qué tipo de NAs utilizaremos, según el tipo de vector. Los tipos más comunes son <code>NA_character_</code> (para vectores de caracteres, chr) o <code>NA_real_</code> (para vectores de números reales, dbl). Veamos cómo ahora funcionará:</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="manejo-av.html#cb276-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
-<span id="cb276-2"><a href="manejo-av.html#cb276-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">robos_c100k =</span> <span class="fu">case_when</span>(</span>
-<span id="cb276-3"><a href="manejo-av.html#cb276-3" aria-hidden="true" tabindex="-1"></a>    pais <span class="sc">==</span> <span class="st">&quot;Argentina&quot;</span> <span class="sc">&amp;</span> anio <span class="sc">&lt;=</span> <span class="dv">2008</span> <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb276-4"><a href="manejo-av.html#cb276-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>                               <span class="sc">~</span> robos_c100k</span>
-<span id="cb276-5"><a href="manejo-av.html#cb276-5" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="manejo-av.html#cb273-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur <span class="sc">%&gt;%</span> </span>
+<span id="cb273-2"><a href="manejo-av.html#cb273-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">robos_c100k =</span> <span class="fu">case_when</span>(</span>
+<span id="cb273-3"><a href="manejo-av.html#cb273-3" aria-hidden="true" tabindex="-1"></a>    pais <span class="sc">==</span> <span class="st">&quot;Argentina&quot;</span> <span class="sc">&amp;</span> anio <span class="sc">&lt;=</span> <span class="dv">2008</span> <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb273-4"><a href="manejo-av.html#cb273-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>                               <span class="sc">~</span> robos_c100k</span>
+<span id="cb273-5"><a href="manejo-av.html#cb273-5" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
 <pre><code>## # A tibble: 33 x 4
 ##    pais      pais_codigo  anio robos_c100k
 ##    &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -498,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="unir-bases-de-datos" class="section level2">
 <h2>Unir bases de datos</h2>
 <p>Aquí tenemos una base con muchos datos de los <a href="https://databank.worldbank.org/table/source/2">World Development Indicators del Banco Mundial</a>. Están para los tres países del Cono Sur, pero desde 2007 a 2016 (falta 2006, en comparación a los datos anteriores).</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="manejo-av.html#cb278-1" aria-hidden="true" tabindex="-1"></a>df_wdi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/wdi_cono_sur.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="manejo-av.html#cb275-1" aria-hidden="true" tabindex="-1"></a>df_wdi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/wdi_cono_sur.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   .default = col_double(),
@@ -507,21 +530,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   total_debt_service_percent_of_exports_of_goods_services_and_primary_income = col_logical()
 ## )</code></pre>
 <pre><code>## See spec(...) for full column specifications.</code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="manejo-av.html#cb281-1" aria-hidden="true" tabindex="-1"></a>df_wdi</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="manejo-av.html#cb278-1" aria-hidden="true" tabindex="-1"></a>df_wdi</span></code></pre></div>
 <pre><code>## # A tibble: 30 x 57
-##    pais_codigo  anio population_total population_growt~
-##    &lt;chr&gt;       &lt;dbl&gt;            &lt;dbl&gt;             &lt;dbl&gt;
-##  1 ARG          2007         39684295             0.999
-##  2 CHL          2007         16530195             1.07 
-##  3 URY          2007          3331749             0.191
-##  4 ARG          2008         40080160             0.993
-##  5 CHL          2008         16708258             1.07 
-##  6 URY          2008          3340221             0.254
-##  7 ARG          2009         40482788             1.00 
-##  8 CHL          2009         16886186             1.06 
-##  9 URY          2009          3349676             0.283
-## 10 ARG          2010         40788453             0.752
-## # ... with 20 more rows, and 53 more variables:
+##    pais_codigo  anio population_total
+##    &lt;chr&gt;       &lt;dbl&gt;            &lt;dbl&gt;
+##  1 ARG          2007         39684295
+##  2 CHL          2007         16530195
+##  3 URY          2007          3331749
+##  4 ARG          2008         40080160
+##  5 CHL          2008         16708258
+##  6 URY          2008          3340221
+##  7 ARG          2009         40482788
+##  8 CHL          2009         16886186
+##  9 URY          2009          3349676
+## 10 ARG          2010         40788453
+## # ... with 20 more rows, and 54 more
+## #   variables:
+## #   population_growth_annual_percent &lt;dbl&gt;,
 ## #   surface_area_sq_km &lt;dbl&gt;,
 ## #   population_density_people_per_sq_km_of_land_area &lt;dbl&gt;,
 ## #   poverty_headcount_ratio_at_national_poverty_lines_percent_of_population &lt;dbl&gt;,
@@ -576,37 +601,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   foreign_direct_investment_net_inflows_bo_p_current_us &lt;dbl&gt;,
 ## #   net_official_development_assistance_and_official_aid_received_current_us &lt;dbl&gt;</code></pre>
 <p>¿Cómo podemos añadir toda esta nueva información a nuestra base original? No podemos simplemente pegar las columnas unas al lado de otras con <code>bind_cols()</code> (los números de filas son distintos, lo mismo con el orden de las observaciones). Como ejemplos:</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="manejo-av.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span>), <span class="fu">tibble</span>(<span class="at">y =</span> <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="manejo-av.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span>), <span class="fu">tibble</span>(<span class="at">y =</span> <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##       x     y
 ##   &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1     2</code></pre>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="manejo-av.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span>), <span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="manejo-av.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span>), <span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 1
 ##       x
 ##   &lt;dbl&gt;
 ## 1     1
 ## 2     2</code></pre>
 <p>Lo mejor es realizar una unión de bases (merge/join). Lejos la más común de estas operaciones es la unión izquierda, en la que queremos añadir información a una base (la izquierda) a partir de otra (la derecha). <code>left_join()</code> nos permitirá hacer esto, mirando las observaciones de ambas bases donde las columnas de identificación toman los mismos valores:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="manejo-av.html#cb287-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur_con_wdi <span class="ot">&lt;-</span> <span class="fu">left_join</span>(</span>
-<span id="cb287-2"><a href="manejo-av.html#cb287-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> df_robos_cono_sur, <span class="at">y =</span> df_wdi,</span>
-<span id="cb287-3"><a href="manejo-av.html#cb287-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;pais_codigo&quot;</span>, <span class="st">&quot;anio&quot;</span>) <span class="co"># by dice cuáles son las variables de id.</span></span>
-<span id="cb287-4"><a href="manejo-av.html#cb287-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb287-5"><a href="manejo-av.html#cb287-5" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur_con_wdi</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="manejo-av.html#cb284-1" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur_con_wdi <span class="ot">&lt;-</span> <span class="fu">left_join</span>(</span>
+<span id="cb284-2"><a href="manejo-av.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> df_robos_cono_sur, <span class="at">y =</span> df_wdi,</span>
+<span id="cb284-3"><a href="manejo-av.html#cb284-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;pais_codigo&quot;</span>, <span class="st">&quot;anio&quot;</span>) <span class="co"># by dice cuáles son las variables de id.</span></span>
+<span id="cb284-4"><a href="manejo-av.html#cb284-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb284-5"><a href="manejo-av.html#cb284-5" aria-hidden="true" tabindex="-1"></a>df_robos_cono_sur_con_wdi</span></code></pre></div>
 <pre><code>## # A tibble: 33 x 59
-##    pais  pais_codigo  anio robos_c100k population_total
-##    &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;
-##  1 Arge~ ARG          2006        738.               NA
-##  2 Arge~ ARG          2007        662.         39684295
-##  3 Arge~ ARG          2008        704.         40080160
-##  4 Arge~ ARG          2009         NA          40482788
-##  5 Arge~ ARG          2010         NA          40788453
-##  6 Arge~ ARG          2011         NA          41261490
-##  7 Arge~ ARG          2012         NA          41733271
-##  8 Arge~ ARG          2013         NA          42202935
-##  9 Arge~ ARG          2014        668.         42669500
-## 10 Arge~ ARG          2015        626.         43131966
-## # ... with 23 more rows, and 54 more variables:
+##    pais      pais_codigo  anio robos_c100k
+##    &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Argentina ARG          2006        738.
+##  2 Argentina ARG          2007        662.
+##  3 Argentina ARG          2008        704.
+##  4 Argentina ARG          2009         NA 
+##  5 Argentina ARG          2010         NA 
+##  6 Argentina ARG          2011         NA 
+##  7 Argentina ARG          2012         NA 
+##  8 Argentina ARG          2013         NA 
+##  9 Argentina ARG          2014        668.
+## 10 Argentina ARG          2015        626.
+## # ... with 23 more rows, and 55 more
+## #   variables: population_total &lt;dbl&gt;,
 ## #   population_growth_annual_percent &lt;dbl&gt;,
 ## #   surface_area_sq_km &lt;dbl&gt;,
 ## #   population_density_people_per_sq_km_of_land_area &lt;dbl&gt;,
