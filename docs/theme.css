@@ -65,7 +65,7 @@ d-appendix {
   --text-color:       rgba(255, 255, 255, 0.9);
   --text-size:        19px;
   --hover-color:      white;
-  --bkgd-color:       #85144b; /* modified, from clrs.cc */
+  --bkgd-color:       #004156; /* modified, from https://tilda.cc/colors/ */
 }
 
 .distill-site-footer {
@@ -102,4 +102,12 @@ code {
 
 p > code {
   font-size: 1.1rem;
+}
+
+p > a {
+  color: #004156;
+}
+
+.distill-site-nav {
+  font-weight: 500;
 }
