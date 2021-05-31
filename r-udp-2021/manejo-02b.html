@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>02B - Manejo de datos (ejercicio) | Programación en Ciencias Sociales</title>
   <meta name="description" content="Sitio web CPO3523 (2021)" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="02B - Manejo de datos (ejercicio) | Programación en Ciencias Sociales" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-05-10" />
+<meta name="date" content="2021-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="manejo-02a.html"/>
 <link rel="next" href="manejo-02c.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -59,6 +61,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -118,6 +121,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -231,6 +235,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
+<li class="part"><span><b>VII Minería de datos y R avanzado</b></span></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html"><i class="fa fa-check"></i>07A - Herramientas de programación</a>
+<ul>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#funciones-personalizadas-y-control-de-flujo"><i class="fa fa-check"></i>Funciones personalizadas y control de flujo</a></li>
+<li><a href="herr-prog.html#iteraciones-con-purrr">Iteraciones con <code>purrr</code></a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-1-programas-de-candidaturas"><i class="fa fa-check"></i>Aplicación 1: programas de candidaturas</a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-2-varios-archivos-excel"><i class="fa fa-check"></i>Aplicación 2: varios archivos Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i>07B - Web scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#inicio-cargar-paquetes"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#web-scraping-1"><i class="fa fa-check"></i>Web scraping</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#descargar-múltiples-páginas-con-una-iteración"><i class="fa fa-check"></i>Descargar múltiples páginas con una iteración</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#generalizar-el-proceso-de-limpieza-de-los-datos-con-una-función"><i class="fa fa-check"></i>Generalizar el proceso de limpieza de los datos con una función</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -317,6 +336,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": {}
 },
 "fontsettings": {

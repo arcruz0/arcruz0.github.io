@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>04 - Guía búsqueda de ayuda | Programación en Ciencias Sociales</title>
   <meta name="description" content="Sitio web CPO3523 (2021)" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="04 - Guía búsqueda de ayuda | Programación en Ciencias Sociales" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-05-10" />
+<meta name="date" content="2021-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="visualizacion-personalizacion.html"/>
 <link rel="next" href="manejo-av.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -59,6 +61,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -118,6 +121,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -231,6 +235,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
+<li class="part"><span><b>VII Minería de datos y R avanzado</b></span></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html"><i class="fa fa-check"></i>07A - Herramientas de programación</a>
+<ul>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#funciones-personalizadas-y-control-de-flujo"><i class="fa fa-check"></i>Funciones personalizadas y control de flujo</a></li>
+<li><a href="herr-prog.html#iteraciones-con-purrr">Iteraciones con <code>purrr</code></a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-1-programas-de-candidaturas"><i class="fa fa-check"></i>Aplicación 1: programas de candidaturas</a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-2-varios-archivos-excel"><i class="fa fa-check"></i>Aplicación 2: varios archivos Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i>07B - Web scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#inicio-cargar-paquetes"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#web-scraping-1"><i class="fa fa-check"></i>Web scraping</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#descargar-múltiples-páginas-con-una-iteración"><i class="fa fa-check"></i>Descargar múltiples páginas con una iteración</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#generalizar-el-proceso-de-limpieza-de-los-datos-con-una-función"><i class="fa fa-check"></i>Generalizar el proceso de limpieza de los datos con una función</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -292,27 +311,31 @@ Figure 1: Traducido de <a href="https://socviz.co/appendix.html">Healy (2018)</a
 <p>Vamos a usar una base de ejemplo de <code>ggplot2</code>, llamada <code>midwest</code>. Contiene información demográfica sobre distintos condados en Estados Unidos, parte de la zona geográfica llamada “Midwest”.</p>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="busqueda-ayuda.html#cb232-1" aria-hidden="true" tabindex="-1"></a>midwest</span></code></pre></div>
 <pre><code>## # A tibble: 437 x 28
-##      PID county    state  area poptotal
-##    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;    &lt;int&gt;
-##  1   561 ADAMS     IL    0.052    66090
-##  2   562 ALEXANDER IL    0.014    10626
-##  3   563 BOND      IL    0.022    14991
-##  4   564 BOONE     IL    0.017    30806
-##  5   565 BROWN     IL    0.018     5836
-##  6   566 BUREAU    IL    0.05     35688
-##  7   567 CALHOUN   IL    0.017     5322
-##  8   568 CARROLL   IL    0.027    16805
-##  9   569 CASS      IL    0.024    13437
-## 10   570 CHAMPAIGN IL    0.058   173025
-## # ... with 427 more rows, and 23 more
+##      PID county  state  area poptotal
+##    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;    &lt;int&gt;
+##  1   561 ADAMS   IL    0.052    66090
+##  2   562 ALEXAN… IL    0.014    10626
+##  3   563 BOND    IL    0.022    14991
+##  4   564 BOONE   IL    0.017    30806
+##  5   565 BROWN   IL    0.018     5836
+##  6   566 BUREAU  IL    0.05     35688
+##  7   567 CALHOUN IL    0.017     5322
+##  8   568 CARROLL IL    0.027    16805
+##  9   569 CASS    IL    0.024    13437
+## 10   570 CHAMPA… IL    0.058   173025
+## # … with 427 more rows, and 23 more
 ## #   variables: popdensity &lt;dbl&gt;,
 ## #   popwhite &lt;int&gt;, popblack &lt;int&gt;,
-## #   popamerindian &lt;int&gt;, popasian &lt;int&gt;,
-## #   popother &lt;int&gt;, percwhite &lt;dbl&gt;,
-## #   percblack &lt;dbl&gt;, percamerindan &lt;dbl&gt;,
-## #   percasian &lt;dbl&gt;, percother &lt;dbl&gt;,
+## #   popamerindian &lt;int&gt;,
+## #   popasian &lt;int&gt;, popother &lt;int&gt;,
+## #   percwhite &lt;dbl&gt;,
+## #   percblack &lt;dbl&gt;,
+## #   percamerindan &lt;dbl&gt;,
+## #   percasian &lt;dbl&gt;,
+## #   percother &lt;dbl&gt;,
 ## #   popadults &lt;int&gt;, perchsd &lt;dbl&gt;,
-## #   percollege &lt;dbl&gt;, percprof &lt;dbl&gt;,
+## #   percollege &lt;dbl&gt;,
+## #   percprof &lt;dbl&gt;,
 ## #   poppovertyknown &lt;int&gt;,
 ## #   percpovertyknown &lt;dbl&gt;,
 ## #   percbelowpoverty &lt;dbl&gt;,
@@ -346,9 +369,9 @@ Figure 1: Traducido de <a href="https://socviz.co/appendix.html">Healy (2018)</a
 <div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="busqueda-ayuda.html#cb235-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span> </span>
 <span id="cb235-2"><a href="busqueda-ayuda.html#cb235-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">&quot;IL&quot;</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb235-3"><a href="busqueda-ayuda.html#cb235-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county5 =</span> county <span class="sc">*</span> <span class="dv">5</span>)</span></code></pre></div>
-<pre><code>## Error: Problem with `mutate()` input `county5`.
-## x non-numeric argument to binary operator
-## i Input `county5` is `county * 5`.</code></pre>
+<pre><code>## Error: Problem with `mutate()` column `county5`.
+## ℹ `county5 = county * 5`.
+## x non-numeric argument to binary operator</code></pre>
 <p>El mensaje nos menciona que el error sucedió en <code>mutate()</code>, lo que ya es útil. Luego, el concepto de “non-numeric” nos da una idea de lo que puede estar pasando.</p>
 </div>
 <div id="buscar-en-internet" class="section level3">
@@ -380,25 +403,26 @@ Figure 1: Traducido de <a href="https://socviz.co/appendix.html">Healy (2018)</a
 <div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="busqueda-ayuda.html#cb237-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span> </span>
 <span id="cb237-2"><a href="busqueda-ayuda.html#cb237-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">&quot;IL&quot;</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb237-3"><a href="busqueda-ayuda.html#cb237-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county5 =</span> county <span class="sc">*</span> <span class="dv">5</span>)</span></code></pre></div>
-<pre><code>## Error: Problem with `mutate()` input `county5`.
-## x non-numeric argument to binary operator
-## i Input `county5` is `county * 5`.</code></pre>
+<pre><code>## Error: Problem with `mutate()` column `county5`.
+## ℹ `county5 = county * 5`.
+## x non-numeric argument to binary operator</code></pre>
 <p>Utilizar la base “midwest” está bien, pero vamos a generar nuestro reprex con otra de ejemplo en el paquete <code>ggplot2</code>, llamada <code>mpg</code>. Esta base se ve de la siguiente forma. No importa mucho su contenido, pero sí que tenemos una variable categórica para usar. En este caso, “model” nos servirá.</p>
 <pre><code>## # A tibble: 234 x 11
-##    manufacturer model     displ  year   cyl
-##    &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
-##  1 audi         a4          1.8  1999     4
-##  2 audi         a4          1.8  1999     4
-##  3 audi         a4          2    2008     4
-##  4 audi         a4          2    2008     4
-##  5 audi         a4          2.8  1999     6
-##  6 audi         a4          2.8  1999     6
-##  7 audi         a4          3.1  2008     6
-##  8 audi         a4 quatt~   1.8  1999     4
-##  9 audi         a4 quatt~   1.8  1999     4
-## 10 audi         a4 quatt~   2    2008     4
-## # ... with 224 more rows, and 6 more
-## #   variables: trans &lt;chr&gt;, drv &lt;chr&gt;,
+##    manufacturer model     displ  year
+##    &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;int&gt;
+##  1 audi         a4          1.8  1999
+##  2 audi         a4          1.8  1999
+##  3 audi         a4          2    2008
+##  4 audi         a4          2    2008
+##  5 audi         a4          2.8  1999
+##  6 audi         a4          2.8  1999
+##  7 audi         a4          3.1  2008
+##  8 audi         a4 quatt…   1.8  1999
+##  9 audi         a4 quatt…   1.8  1999
+## 10 audi         a4 quatt…   2    2008
+## # … with 224 more rows, and 7 more
+## #   variables: cyl &lt;int&gt;,
+## #   trans &lt;chr&gt;, drv &lt;chr&gt;,
 ## #   cty &lt;int&gt;, hwy &lt;int&gt;, fl &lt;chr&gt;,
 ## #   class &lt;chr&gt;</code></pre>
 <p>Debemos pensar hacer la misma operación con la nueva base, y que nos dé el mismo error. Además, el reprex debe incluir la carga de todos los paquetes necesarios:</p>
@@ -453,6 +477,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": {}
 },
 "fontsettings": {

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>03C - Visualización de datos (personalización) | Programación en Ciencias Sociales</title>
   <meta name="description" content="Sitio web CPO3523 (2021)" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="03C - Visualización de datos (personalización) | Programación en Ciencias Sociales" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-05-10" />
+<meta name="date" content="2021-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="visualizacion-ext.html"/>
 <link rel="next" href="busqueda-ayuda.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -59,6 +61,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -118,6 +121,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -231,6 +235,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
+<li class="part"><span><b>VII Minería de datos y R avanzado</b></span></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html"><i class="fa fa-check"></i>07A - Herramientas de programación</a>
+<ul>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#funciones-personalizadas-y-control-de-flujo"><i class="fa fa-check"></i>Funciones personalizadas y control de flujo</a></li>
+<li><a href="herr-prog.html#iteraciones-con-purrr">Iteraciones con <code>purrr</code></a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-1-programas-de-candidaturas"><i class="fa fa-check"></i>Aplicación 1: programas de candidaturas</a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-2-varios-archivos-excel"><i class="fa fa-check"></i>Aplicación 2: varios archivos Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i>07B - Web scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#inicio-cargar-paquetes"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#web-scraping-1"><i class="fa fa-check"></i>Web scraping</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#descargar-múltiples-páginas-con-una-iteración"><i class="fa fa-check"></i>Descargar múltiples páginas con una iteración</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#generalizar-el-proceso-de-limpieza-de-los-datos-con-una-función"><i class="fa fa-check"></i>Generalizar el proceso de limpieza de los datos con una función</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -349,7 +368,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>(Nueva base de datos)</h4>
 <p>Ahora trabajaremos con una base de datos con información de carreras universitarias en Estados Unidos. Su fuente es <a href="https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-carrera/">FiveThirtyEight (2018)</a>, aunque estos datos específicos fueron editados para <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-10-16">Tidy Tuesday</a>.</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="visualizacion-personalizacion.html#cb216-1" aria-hidden="true" tabindex="-1"></a>carreras_eeuu <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/carreras_eeuu.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## ── Column specification ─────────────
 ## cols(
 ##   carrera_codigo = col_double(),
 ##   carrera = col_character(),
@@ -370,21 +390,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="visualizacion-personalizacion.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(carreras_eeuu)</span></code></pre></div>
 <pre><code>## Rows: 171
 ## Columns: 15
-## $ carrera_codigo             &lt;dbl&gt; 1100, ~
-## $ carrera                    &lt;chr&gt; &quot;Agric~
-## $ carrera_tipo1              &lt;chr&gt; &quot;STEM&quot;~
-## $ carrera_tipo2              &lt;chr&gt; &quot;Agric~
-## $ estudiantes_total          &lt;dbl&gt; 10399,~
-## $ estudiantes_muj            &lt;dbl&gt; 6053, ~
-## $ estudiantes_hom            &lt;dbl&gt; 4346, ~
-## $ salario_mediana            &lt;dbl&gt; 40000,~
-## $ salario_q1                 &lt;dbl&gt; 30000,~
-## $ salario_q3                 &lt;dbl&gt; 50000,~
-## $ en_part_time               &lt;dbl&gt; 2031, ~
-## $ en_trabajos_calificados    &lt;dbl&gt; 2418, ~
-## $ en_trabajos_no_calificados &lt;dbl&gt; 4717, ~
-## $ en_trabajos_sueldo_min     &lt;dbl&gt; 839, 1~
-## $ desempleados               &lt;dbl&gt; 178, 6~</code></pre>
+## $ carrera_codigo             &lt;dbl&gt; …
+## $ carrera                    &lt;chr&gt; …
+## $ carrera_tipo1              &lt;chr&gt; …
+## $ carrera_tipo2              &lt;chr&gt; …
+## $ estudiantes_total          &lt;dbl&gt; …
+## $ estudiantes_muj            &lt;dbl&gt; …
+## $ estudiantes_hom            &lt;dbl&gt; …
+## $ salario_mediana            &lt;dbl&gt; …
+## $ salario_q1                 &lt;dbl&gt; …
+## $ salario_q3                 &lt;dbl&gt; …
+## $ en_part_time               &lt;dbl&gt; …
+## $ en_trabajos_calificados    &lt;dbl&gt; …
+## $ en_trabajos_no_calificados &lt;dbl&gt; …
+## $ en_trabajos_sueldo_min     &lt;dbl&gt; …
+## $ desempleados               &lt;dbl&gt; …</code></pre>
 <div id="ejercicio-a-4" class="section level6">
 <h6>(Ejercicio A)</h6>
 <p>Antes de comenzar a trabajar con los datos, crea una nueva base de datos llamada “carreras_eeuu2” que tenga tres nuevas variables: porc_mujeres, porc_desempleo, porc_en_trabajos_calificados (todas calculadas con respecto al total de cada carrera). Tu código:</p>
@@ -534,6 +554,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": {}
 },
 "fontsettings": {

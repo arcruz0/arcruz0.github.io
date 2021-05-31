@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>02C - Manejo de datos (extras) | Programación en Ciencias Sociales</title>
   <meta name="description" content="Sitio web CPO3523 (2021)" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="02C - Manejo de datos (extras) | Programación en Ciencias Sociales" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-05-10" />
+<meta name="date" content="2021-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="manejo-02b.html"/>
 <link rel="next" href="manejo-02d.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -59,6 +61,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -118,6 +121,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -231,6 +235,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
+<li class="part"><span><b>VII Minería de datos y R avanzado</b></span></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html"><i class="fa fa-check"></i>07A - Herramientas de programación</a>
+<ul>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#funciones-personalizadas-y-control-de-flujo"><i class="fa fa-check"></i>Funciones personalizadas y control de flujo</a></li>
+<li><a href="herr-prog.html#iteraciones-con-purrr">Iteraciones con <code>purrr</code></a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-1-programas-de-candidaturas"><i class="fa fa-check"></i>Aplicación 1: programas de candidaturas</a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-2-varios-archivos-excel"><i class="fa fa-check"></i>Aplicación 2: varios archivos Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i>07B - Web scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#inicio-cargar-paquetes"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#web-scraping-1"><i class="fa fa-check"></i>Web scraping</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#descargar-múltiples-páginas-con-una-iteración"><i class="fa fa-check"></i>Descargar múltiples páginas con una iteración</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#generalizar-el-proceso-de-limpieza-de-los-datos-con-una-función"><i class="fa fa-check"></i>Generalizar el proceso de limpieza de los datos con una función</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -318,23 +337,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="manejo-02c.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_casos_policiales)</span></code></pre></div>
 <pre><code>## Rows: 340
 ## Columns: 17
-## $ Comuna                                       &lt;chr&gt; ~
-## $ `Comuna ID`                                  &lt;dbl&gt; ~
-## $ `Región ID`                                  &lt;dbl&gt; ~
-## $ `Población (INE 2017)`                       &lt;dbl&gt; ~
-## $ `Robos con violencia o intimidación`         &lt;dbl&gt; ~
-## $ `Robos por sorpresa`                         &lt;dbl&gt; ~
-## $ `Robos de vehículo motorizado`               &lt;dbl&gt; ~
-## $ `Robos de objeto de o desde vehículo`        &lt;dbl&gt; ~
-## $ `Robos en lugar habitado`                    &lt;dbl&gt; ~
-## $ `Robos en lugar no habitado`                 &lt;dbl&gt; ~
-## $ `Otros robos con fuerza`                     &lt;dbl&gt; ~
-## $ Hurtos                                       &lt;dbl&gt; ~
-## $ `Lesiones menos graves, graves o gravísimas` &lt;dbl&gt; ~
-## $ `Lesiones leves`                             &lt;dbl&gt; ~
-## $ Homicidios                                   &lt;dbl&gt; ~
-## $ Violaciones                                  &lt;dbl&gt; ~
-## $ VIF                                          &lt;dbl&gt; ~</code></pre>
+## $ Comuna                                       &lt;chr&gt; …
+## $ `Comuna ID`                                  &lt;dbl&gt; …
+## $ `Región ID`                                  &lt;dbl&gt; …
+## $ `Población (INE 2017)`                       &lt;dbl&gt; …
+## $ `Robos con violencia o intimidación`         &lt;dbl&gt; …
+## $ `Robos por sorpresa`                         &lt;dbl&gt; …
+## $ `Robos de vehículo motorizado`               &lt;dbl&gt; …
+## $ `Robos de objeto de o desde vehículo`        &lt;dbl&gt; …
+## $ `Robos en lugar habitado`                    &lt;dbl&gt; …
+## $ `Robos en lugar no habitado`                 &lt;dbl&gt; …
+## $ `Otros robos con fuerza`                     &lt;dbl&gt; …
+## $ Hurtos                                       &lt;dbl&gt; …
+## $ `Lesiones menos graves, graves o gravísimas` &lt;dbl&gt; …
+## $ `Lesiones leves`                             &lt;dbl&gt; …
+## $ Homicidios                                   &lt;dbl&gt; …
+## $ Violaciones                                  &lt;dbl&gt; …
+## $ VIF                                          &lt;dbl&gt; …</code></pre>
 <p>Los nombres de las columnas en la base tienen mayúsculas, espacios y tildes, lo que nos puede generar problemas en el análisis. La <a href="https://style.tidyverse.org/">convención en el <code>tidyverse</code></a> es nombrar utilizando snake_case (nombre_de_mi_objeto), sin mayúsculas, espacios ni tildes. Esto nos ahorrará muchos problemas.</p>
 <p>Si ya tenemos una base de datos y queremos estandarizar sus variables, el paquete <code>janitor</code> provee la función <code>clean_names()</code> para esto:</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="manejo-02c.html#cb150-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="ot">&lt;-</span> df_casos_policiales <span class="sc">%&gt;%</span> </span>
@@ -342,23 +361,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="manejo-02c.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_casos_policiales_l)</span></code></pre></div>
 <pre><code>## Rows: 340
 ## Columns: 17
-## $ comuna                                    &lt;chr&gt; ~
-## $ comuna_id                                 &lt;dbl&gt; ~
-## $ region_id                                 &lt;dbl&gt; ~
-## $ poblacion_ine_2017                        &lt;dbl&gt; ~
-## $ robos_con_violencia_o_intimidacion        &lt;dbl&gt; ~
-## $ robos_por_sorpresa                        &lt;dbl&gt; ~
-## $ robos_de_vehiculo_motorizado              &lt;dbl&gt; ~
-## $ robos_de_objeto_de_o_desde_vehiculo       &lt;dbl&gt; ~
-## $ robos_en_lugar_habitado                   &lt;dbl&gt; ~
-## $ robos_en_lugar_no_habitado                &lt;dbl&gt; ~
-## $ otros_robos_con_fuerza                    &lt;dbl&gt; ~
-## $ hurtos                                    &lt;dbl&gt; ~
-## $ lesiones_menos_graves_graves_o_gravisimas &lt;dbl&gt; ~
-## $ lesiones_leves                            &lt;dbl&gt; ~
-## $ homicidios                                &lt;dbl&gt; ~
-## $ violaciones                               &lt;dbl&gt; ~
-## $ vif                                       &lt;dbl&gt; ~</code></pre>
+## $ comuna                                    &lt;chr&gt; …
+## $ comuna_id                                 &lt;dbl&gt; …
+## $ region_id                                 &lt;dbl&gt; …
+## $ poblacion_ine_2017                        &lt;dbl&gt; …
+## $ robos_con_violencia_o_intimidacion        &lt;dbl&gt; …
+## $ robos_por_sorpresa                        &lt;dbl&gt; …
+## $ robos_de_vehiculo_motorizado              &lt;dbl&gt; …
+## $ robos_de_objeto_de_o_desde_vehiculo       &lt;dbl&gt; …
+## $ robos_en_lugar_habitado                   &lt;dbl&gt; …
+## $ robos_en_lugar_no_habitado                &lt;dbl&gt; …
+## $ otros_robos_con_fuerza                    &lt;dbl&gt; …
+## $ hurtos                                    &lt;dbl&gt; …
+## $ lesiones_menos_graves_graves_o_gravisimas &lt;dbl&gt; …
+## $ lesiones_leves                            &lt;dbl&gt; …
+## $ homicidios                                &lt;dbl&gt; …
+## $ violaciones                               &lt;dbl&gt; …
+## $ vif                                       &lt;dbl&gt; …</code></pre>
 <div id="ejercicios-a-b" class="section level6">
 <h6>(Ejercicios A-B)</h6>
 <p>A. ¿Cuál fue la comuna con más homicidios en Chile en el año 2016? Tu código:</p>
@@ -425,49 +444,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb159-3"><a href="manejo-02c.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">lesiones_leves_total =</span> <span class="fu">sum</span>(lesiones_leves),</span>
 <span id="cb159-4"><a href="manejo-02c.html#cb159-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">hurtos_total =</span> <span class="fu">sum</span>(hurtos))</span></code></pre></div>
 <pre><code>## # A tibble: 16 x 3
-##    region_id lesiones_leves_t~ hurtos_total
-##        &lt;dbl&gt;             &lt;dbl&gt;        &lt;dbl&gt;
-##  1         1              1523         3935
-##  2         2              3014         8257
-##  3         3              1253         2953
-##  4         4              2830         6613
-##  5         5              6955        19537
-##  6         6              3347         8553
-##  7         7              2368         7371
-##  8         8              4549        13698
-##  9         9              3227         9808
-## 10        10              2824         9575
-## 11        11               486         1169
-## 12        12               525         1568
-## 13        13             22796        65621
-## 14        14              1269         3783
-## 15        15               733         1762
-## 16        16              1250         3644</code></pre>
+##    region_id lesiones_leves_total
+##        &lt;dbl&gt;                &lt;dbl&gt;
+##  1         1                 1523
+##  2         2                 3014
+##  3         3                 1253
+##  4         4                 2830
+##  5         5                 6955
+##  6         6                 3347
+##  7         7                 2368
+##  8         8                 4549
+##  9         9                 3227
+## 10        10                 2824
+## 11        11                  486
+## 12        12                  525
+## 13        13                22796
+## 14        14                 1269
+## 15        15                  733
+## 16        16                 1250
+## # … with 1 more variable:
+## #   hurtos_total &lt;dbl&gt;</code></pre>
 <p>Sin embargo, hacer este código para los 13 tipos de delito es una pérdida de tiempo: generaría código particularmente difícil de leer. Podemos aplicar la función <code>summarize_at()</code> para usar la función de suma en múltiples variables. Noten cómo en el código siguiente “.” reemplazará a la variable en la definición de la operación (gracias al operador “~”).</p>
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="manejo-02c.html#cb161-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
 <span id="cb161-2"><a href="manejo-02c.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
 <span id="cb161-3"><a href="manejo-02c.html#cb161-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
 <span id="cb161-4"><a href="manejo-02c.html#cb161-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="sc">~</span><span class="fu">sum</span>(.))</span></code></pre></div>
 <pre><code>## # A tibble: 16 x 14
-##    region_id robos_con_violencia_o_intimid~
-##        &lt;dbl&gt;                          &lt;dbl&gt;
-##  1         1                           1554
-##  2         2                           1930
-##  3         3                            832
-##  4         4                           1667
-##  5         5                           5777
-##  6         6                           1629
-##  7         7                           1108
-##  8         8                           4646
-##  9         9                           1547
-## 10        10                           1025
-## 11        11                             71
-## 12        12                            112
-## 13        13                          41541
-## 14        14                            424
-## 15        15                            618
-## 16        16                            605
-## # ... with 12 more variables:
+##    region_id robos_con_violencia_o_i…
+##        &lt;dbl&gt;                    &lt;dbl&gt;
+##  1         1                     1554
+##  2         2                     1930
+##  3         3                      832
+##  4         4                     1667
+##  5         5                     5777
+##  6         6                     1629
+##  7         7                     1108
+##  8         8                     4646
+##  9         9                     1547
+## 10        10                     1025
+## 11        11                       71
+## 12        12                      112
+## 13        13                    41541
+## 14        14                      424
+## 15        15                      618
+## 16        16                      605
+## # … with 12 more variables:
 ## #   robos_por_sorpresa &lt;dbl&gt;,
 ## #   robos_de_vehiculo_motorizado &lt;dbl&gt;,
 ## #   robos_de_objeto_de_o_desde_vehiculo &lt;dbl&gt;,
@@ -477,33 +498,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   hurtos &lt;dbl&gt;,
 ## #   lesiones_menos_graves_graves_o_gravisimas &lt;dbl&gt;,
 ## #   lesiones_leves &lt;dbl&gt;,
-## #   homicidios &lt;dbl&gt;, violaciones &lt;dbl&gt;,
-## #   vif &lt;dbl&gt;</code></pre>
+## #   homicidios &lt;dbl&gt;,
+## #   violaciones &lt;dbl&gt;, vif &lt;dbl&gt;</code></pre>
 <p>Incluso podemos editar un poco los nombres de los resúmenes, asignándolos como elementos en una lista. Noten cómo van a cambiar dichos nombres, terminando ahora en "_total":</p>
 <div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="manejo-02c.html#cb163-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
 <span id="cb163-2"><a href="manejo-02c.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region_id) <span class="sc">%&gt;%</span> </span>
 <span id="cb163-3"><a href="manejo-02c.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
 <span id="cb163-4"><a href="manejo-02c.html#cb163-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">total =</span> <span class="sc">~</span><span class="fu">sum</span>(.)))</span></code></pre></div>
 <pre><code>## # A tibble: 16 x 14
-##    region_id robos_con_violencia_o_intimid~
-##        &lt;dbl&gt;                          &lt;dbl&gt;
-##  1         1                           1554
-##  2         2                           1930
-##  3         3                            832
-##  4         4                           1667
-##  5         5                           5777
-##  6         6                           1629
-##  7         7                           1108
-##  8         8                           4646
-##  9         9                           1547
-## 10        10                           1025
-## 11        11                             71
-## 12        12                            112
-## 13        13                          41541
-## 14        14                            424
-## 15        15                            618
-## 16        16                            605
-## # ... with 12 more variables:
+##    region_id robos_con_violencia_o_i…
+##        &lt;dbl&gt;                    &lt;dbl&gt;
+##  1         1                     1554
+##  2         2                     1930
+##  3         3                      832
+##  4         4                     1667
+##  5         5                     5777
+##  6         6                     1629
+##  7         7                     1108
+##  8         8                     4646
+##  9         9                     1547
+## 10        10                     1025
+## 11        11                       71
+## 12        12                      112
+## 13        13                    41541
+## 14        14                      424
+## 15        15                      618
+## 16        16                      605
+## # … with 12 more variables:
 ## #   robos_por_sorpresa_total &lt;dbl&gt;,
 ## #   robos_de_vehiculo_motorizado_total &lt;dbl&gt;,
 ## #   robos_de_objeto_de_o_desde_vehiculo_total &lt;dbl&gt;,
@@ -522,25 +543,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb165-3"><a href="manejo-02c.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
 <span id="cb165-4"><a href="manejo-02c.html#cb165-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">total =</span> <span class="sc">~</span><span class="fu">sum</span>(.), <span class="at">max =</span> <span class="sc">~</span><span class="fu">max</span>(.)))</span></code></pre></div>
 <pre><code>## # A tibble: 16 x 27
-##    region_id robos_con_violencia_o_intimid~
-##        &lt;dbl&gt;                          &lt;dbl&gt;
-##  1         1                           1554
-##  2         2                           1930
-##  3         3                            832
-##  4         4                           1667
-##  5         5                           5777
-##  6         6                           1629
-##  7         7                           1108
-##  8         8                           4646
-##  9         9                           1547
-## 10        10                           1025
-## 11        11                             71
-## 12        12                            112
-## 13        13                          41541
-## 14        14                            424
-## 15        15                            618
-## 16        16                            605
-## # ... with 25 more variables:
+##    region_id robos_con_violencia_o_i…
+##        &lt;dbl&gt;                    &lt;dbl&gt;
+##  1         1                     1554
+##  2         2                     1930
+##  3         3                      832
+##  4         4                     1667
+##  5         5                     5777
+##  6         6                     1629
+##  7         7                     1108
+##  8         8                     4646
+##  9         9                     1547
+## 10        10                     1025
+## 11        11                       71
+## 12        12                      112
+## 13        13                    41541
+## 14        14                      424
+## 15        15                      618
+## 16        16                      605
+## # … with 25 more variables:
 ## #   robos_por_sorpresa_total &lt;dbl&gt;,
 ## #   robos_de_vehiculo_motorizado_total &lt;dbl&gt;,
 ## #   robos_de_objeto_de_o_desde_vehiculo_total &lt;dbl&gt;,
@@ -564,46 +585,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   lesiones_menos_graves_graves_o_gravisimas_max &lt;dbl&gt;,
 ## #   lesiones_leves_max &lt;dbl&gt;,
 ## #   homicidios_max &lt;dbl&gt;,
-## #   violaciones_max &lt;dbl&gt;, vif_max &lt;dbl&gt;</code></pre>
+## #   violaciones_max &lt;dbl&gt;,
+## #   vif_max &lt;dbl&gt;</code></pre>
 <p>Aparte de hacer resúmenes, crear múltiples variables según una misma operación es bastante común.</p>
 <p>Supongamos que queremos las cifras relativas (tasas) para cada tipo de delito, como en el siguiente ejemplo:</p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="manejo-02c.html#cb167-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
 <span id="cb167-2"><a href="manejo-02c.html#cb167-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lesiones_leves_c1000 =</span> lesiones_leves <span class="sc">*</span> <span class="dv">1000</span> <span class="sc">/</span> poblacion_ine_2017) <span class="sc">%&gt;%</span> </span>
 <span id="cb167-3"><a href="manejo-02c.html#cb167-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(comuna, poblacion_ine_2017, lesiones_leves, lesiones_leves_c1000) <span class="co"># solo para legibilidad</span></span></code></pre></div>
 <pre><code>## # A tibble: 340 x 4
-##    comuna   poblacion_ine_2~ lesiones_leves
-##    &lt;chr&gt;               &lt;dbl&gt;          &lt;dbl&gt;
-##  1 Algarro~            10700             52
-##  2 Alhué                5916             26
-##  3 Alto-Bi~             5957             24
-##  4 Alto-de~             6519              8
-##  5 Alto-Ho~           124872            523
-##  6 Ancud               44249            132
-##  7 Andacol~            11555             77
-##  8 Angol               55845            244
-##  9 Antárti~              202              0
-## 10 Antofag~           389812           1528
-## # ... with 330 more rows, and 1 more
-## #   variable: lesiones_leves_c1000 &lt;dbl&gt;</code></pre>
+##    comuna          poblacion_ine_2017
+##    &lt;chr&gt;                        &lt;dbl&gt;
+##  1 Algarrobo                    10700
+##  2 Alhué                         5916
+##  3 Alto-Biobío                   5957
+##  4 Alto-del-Carmen               6519
+##  5 Alto-Hospicio               124872
+##  6 Ancud                        44249
+##  7 Andacollo                    11555
+##  8 Angol                        55845
+##  9 Antártica                      202
+## 10 Antofagasta                 389812
+## # … with 330 more rows, and 2 more
+## #   variables: lesiones_leves &lt;dbl&gt;,
+## #   lesiones_leves_c1000 &lt;dbl&gt;</code></pre>
 <p>Podemos utilizar <code>mutate_at()</code> para repetir esta operación en todas nuestras variables de interés.</p>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="manejo-02c.html#cb169-1" aria-hidden="true" tabindex="-1"></a>df_casos_policiales_l <span class="sc">%&gt;%</span> </span>
 <span id="cb169-2"><a href="manejo-02c.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(robos_con_violencia_o_intimidacion<span class="sc">:</span>vif),</span>
 <span id="cb169-3"><a href="manejo-02c.html#cb169-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">c1000 =</span> <span class="sc">~</span> . <span class="sc">*</span> <span class="dv">1000</span> <span class="sc">/</span> poblacion_ine_2017))</span></code></pre></div>
 <pre><code>## # A tibble: 340 x 30
-##    comuna          comuna_id region_id
-##    &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Algarrobo            5602         5
-##  2 Alhué               13502        13
-##  3 Alto-Biobío          8314         8
-##  4 Alto-del-Carmen      3302         3
-##  5 Alto-Hospicio        1107         1
-##  6 Ancud               10202        10
-##  7 Andacollo            4103         4
-##  8 Angol                9201         9
-##  9 Antártica           12202        12
-## 10 Antofagasta          2101         2
-## # ... with 330 more rows, and 27 more
-## #   variables: poblacion_ine_2017 &lt;dbl&gt;,
+##    comuna         comuna_id region_id
+##    &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Algarrobo           5602         5
+##  2 Alhué              13502        13
+##  3 Alto-Biobío         8314         8
+##  4 Alto-del-Carm…      3302         3
+##  5 Alto-Hospicio       1107         1
+##  6 Ancud              10202        10
+##  7 Andacollo           4103         4
+##  8 Angol               9201         9
+##  9 Antártica          12202        12
+## 10 Antofagasta         2101         2
+## # … with 330 more rows, and 27 more
+## #   variables:
+## #   poblacion_ine_2017 &lt;dbl&gt;,
 ## #   robos_con_violencia_o_intimidacion &lt;dbl&gt;,
 ## #   robos_por_sorpresa &lt;dbl&gt;,
 ## #   robos_de_vehiculo_motorizado &lt;dbl&gt;,
@@ -614,8 +638,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   hurtos &lt;dbl&gt;,
 ## #   lesiones_menos_graves_graves_o_gravisimas &lt;dbl&gt;,
 ## #   lesiones_leves &lt;dbl&gt;,
-## #   homicidios &lt;dbl&gt;, violaciones &lt;dbl&gt;,
-## #   vif &lt;dbl&gt;,
+## #   homicidios &lt;dbl&gt;,
+## #   violaciones &lt;dbl&gt;, vif &lt;dbl&gt;,
 ## #   robos_con_violencia_o_intimidacion_c1000 &lt;dbl&gt;,
 ## #   robos_por_sorpresa_c1000 &lt;dbl&gt;,
 ## #   robos_de_vehiculo_motorizado_c1000 &lt;dbl&gt;,
@@ -688,6 +712,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": {}
 },
 "fontsettings": {

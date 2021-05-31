@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>05B - Visualización de datos (extensiones) | Programación en Ciencias Sociales</title>
   <meta name="description" content="Sitio web CPO3523 (2021)" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="05B - Visualización de datos (extensiones) | Programación en Ciencias Sociales" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-05-10" />
+<meta name="date" content="2021-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="manejo-av.html"/>
 <link rel="next" href="part-análisis-de-texto.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -59,6 +61,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -118,6 +121,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -231,6 +235,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
+<li class="part"><span><b>VII Minería de datos y R avanzado</b></span></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html"><i class="fa fa-check"></i>07A - Herramientas de programación</a>
+<ul>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#funciones-personalizadas-y-control-de-flujo"><i class="fa fa-check"></i>Funciones personalizadas y control de flujo</a></li>
+<li><a href="herr-prog.html#iteraciones-con-purrr">Iteraciones con <code>purrr</code></a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-1-programas-de-candidaturas"><i class="fa fa-check"></i>Aplicación 1: programas de candidaturas</a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-2-varios-archivos-excel"><i class="fa fa-check"></i>Aplicación 2: varios archivos Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i>07B - Web scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#inicio-cargar-paquetes"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#web-scraping-1"><i class="fa fa-check"></i>Web scraping</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#descargar-múltiples-páginas-con-una-iteración"><i class="fa fa-check"></i>Descargar múltiples páginas con una iteración</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#generalizar-el-proceso-de-limpieza-de-los-datos-con-una-función"><i class="fa fa-check"></i>Generalizar el proceso de limpieza de los datos con una función</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -256,37 +275,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Si quieres correr este script localmente, debe haber descargado el proyecto, como se explica al comienzo del script 05A.</p>
 </blockquote>
 <p>Como al principio de todo script, recomiendo reiniciar R. Esto lo conseguimos con Session &gt; Restart R y clickeando en la escoba del panel de “Environment” (superior derecho).</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="manejo-av-ej.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="manejo-av-ej.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>En el ejercicio trabajaremos con un panel de datos de países latinoamericanos en este milenio. Tenemos información sobre gasto en burocracia y pobreza; buscaremos responder a las preguntas (c) y (d).</p>
 <p>Los siguientes son los datos de gasto en burocracia, 2000-2017, que tienen por fuente el Banco Mundial (2017), <a href="https://ourworldindata.org/government-spending">compilados por Our World in Data</a>:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="manejo-av-ej.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="do">## (este no es el formato original de OWID, aunque se parece bastante)</span></span>
-<span id="cb287-2"><a href="manejo-av-ej.html#cb287-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb287-3"><a href="manejo-av-ej.html#cb287-3" aria-hidden="true" tabindex="-1"></a>df_gasto_burocracia <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/gasto_burocracia.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="manejo-av-ej.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="do">## (este no es el formato original de OWID, aunque se parece bastante)</span></span>
+<span id="cb286-2"><a href="manejo-av-ej.html#cb286-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb286-3"><a href="manejo-av-ej.html#cb286-3" aria-hidden="true" tabindex="-1"></a>df_gasto_burocracia <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/gasto_burocracia.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ─────────────
 ## cols(
 ##   PAÍS = col_character(),
 ##   AÑO = col_double(),
 ##   `% DE BUROCRACIA EN GASTO FISCAL` = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="manejo-av-ej.html#cb289-1" aria-hidden="true" tabindex="-1"></a>df_gasto_burocracia</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="manejo-av-ej.html#cb288-1" aria-hidden="true" tabindex="-1"></a>df_gasto_burocracia</span></code></pre></div>
 <pre><code>## # A tibble: 216 x 3
-##    PAÍS       AÑO `% DE BUROCRACIA EN GAST~
-##    &lt;chr&gt;    &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Argenti~  2000                      14.7
-##  2 Argenti~  2001                      14.2
-##  3 Argenti~  2002                      11.3
-##  4 Argenti~  2003                      11.7
-##  5 Argenti~  2004                      11.5
-##  6 Argenti~  2005                      NA  
-##  7 Argenti~  2006                      NA  
-##  8 Argenti~  2007                      NA  
-##  9 Argenti~  2008                      NA  
-## 10 Argenti~  2009                      NA  
-## # ... with 206 more rows</code></pre>
+##    PAÍS      AÑO `% DE BUROCRACIA EN…
+##    &lt;chr&gt;   &lt;dbl&gt;                &lt;dbl&gt;
+##  1 Argent…  2000                 14.7
+##  2 Argent…  2001                 14.2
+##  3 Argent…  2002                 11.3
+##  4 Argent…  2003                 11.7
+##  5 Argent…  2004                 11.5
+##  6 Argent…  2005                 NA  
+##  7 Argent…  2006                 NA  
+##  8 Argent…  2007                 NA  
+##  9 Argent…  2008                 NA  
+## 10 Argent…  2009                 NA  
+## # … with 206 more rows</code></pre>
 <p>Estos son los datos de (extrema) pobreza, 2001-2017, medida como el porcentaje de la población que vive con menos de USD 1.90 al día <a href="https://data.worldbank.org/indicator/SI.POV.DDAY">(Banco Mundial, 2019)</a>:</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="manejo-av-ej.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="do">## (este no es el formato original del Banco Mundial, aunque se parece bastante)</span></span>
-<span id="cb291-2"><a href="manejo-av-ej.html#cb291-2" aria-hidden="true" tabindex="-1"></a>df_pobreza <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/pobreza.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="manejo-av-ej.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="do">## (este no es el formato original del Banco Mundial, aunque se parece bastante)</span></span>
+<span id="cb290-2"><a href="manejo-av-ej.html#cb290-2" aria-hidden="true" tabindex="-1"></a>df_pobreza <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/pobreza.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ─────────────
 ## cols(
 ##   country = col_character(),
 ##   `2001` = col_double(),
@@ -307,27 +328,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   `2016` = col_double(),
 ##   `2017` = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="manejo-av-ej.html#cb293-1" aria-hidden="true" tabindex="-1"></a>df_pobreza</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="manejo-av-ej.html#cb292-1" aria-hidden="true" tabindex="-1"></a>df_pobreza</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 18
-##    country   `2001` `2002` `2003` `2004`
-##    &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1 Argentina    9.4   14      7      5.4
-##  2 Bolivia     22.8   24.7   NA     13.7
-##  3 Brazil      11.6   10.3   11.1    9.7
-##  4 Chile       NA     NA      4.2   NA  
-##  5 Colombia    19.7   14.3   12     10.9
-##  6 Ecuador     NA     NA     14.5   15  
-##  7 Guyana      NA     NA     NA     NA  
-##  8 Peru        17.2   15     11.7   13.5
-##  9 Paraguay     8.9   13.2    8.3    5.7
-## 10 Suriname    NA     NA     NA     NA  
-## 11 Uruguay     NA     NA     NA     NA  
-## 12 Venezuela   11     18.2   22.7   19.8
-## # ... with 13 more variables: 2005 &lt;dbl&gt;,
-## #   2006 &lt;dbl&gt;, 2007 &lt;dbl&gt;, 2008 &lt;dbl&gt;,
-## #   2009 &lt;dbl&gt;, 2010 &lt;dbl&gt;, 2011 &lt;dbl&gt;,
-## #   2012 &lt;dbl&gt;, 2013 &lt;dbl&gt;, 2014 &lt;dbl&gt;,
-## #   2015 &lt;dbl&gt;, 2016 &lt;dbl&gt;, 2017 &lt;dbl&gt;</code></pre>
+##    country   `2001` `2002` `2003`
+##    &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Argentina    9.4   14      7  
+##  2 Bolivia     22.8   24.7   NA  
+##  3 Brazil      11.6   10.3   11.1
+##  4 Chile       NA     NA      4.2
+##  5 Colombia    19.7   14.3   12  
+##  6 Ecuador     NA     NA     14.5
+##  7 Guyana      NA     NA     NA  
+##  8 Peru        17.2   15     11.7
+##  9 Paraguay     8.9   13.2    8.3
+## 10 Suriname    NA     NA     NA  
+## 11 Uruguay     NA     NA     NA  
+## 12 Venezuela   11     18.2   22.7
+## # … with 14 more variables:
+## #   2004 &lt;dbl&gt;, 2005 &lt;dbl&gt;,
+## #   2006 &lt;dbl&gt;, 2007 &lt;dbl&gt;,
+## #   2008 &lt;dbl&gt;, 2009 &lt;dbl&gt;,
+## #   2010 &lt;dbl&gt;, 2011 &lt;dbl&gt;,
+## #   2012 &lt;dbl&gt;, 2013 &lt;dbl&gt;,
+## #   2014 &lt;dbl&gt;, 2015 &lt;dbl&gt;,
+## #   2016 &lt;dbl&gt;, 2017 &lt;dbl&gt;</code></pre>
 <ul>
 <li><ol style="list-style-type: upper-alpha">
 <li>¿Qué necesitamos hacer con nuestros datos para poder contestar las preguntas C) y D)? A continuación, enumera las distintas modificaciones que debemos hacer para limpiar los datos, tomando en cuenta los contenidos de esta unidad.</li>
@@ -378,6 +402,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": {}
 },
 "fontsettings": {

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>06A - Análisis de texto | Programación en Ciencias Sociales</title>
   <meta name="description" content="Sitio web CPO3523 (2021)" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="06A - Análisis de texto | Programación en Ciencias Sociales" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-05-10" />
+<meta name="date" content="2021-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="part-análisis-de-texto.html"/>
 <link rel="next" href="texto-cadenas.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -59,6 +61,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -118,6 +121,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -231,6 +235,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
+<li class="part"><span><b>VII Minería de datos y R avanzado</b></span></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html"><i class="fa fa-check"></i>07A - Herramientas de programación</a>
+<ul>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#funciones-personalizadas-y-control-de-flujo"><i class="fa fa-check"></i>Funciones personalizadas y control de flujo</a></li>
+<li><a href="herr-prog.html#iteraciones-con-purrr">Iteraciones con <code>purrr</code></a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-1-programas-de-candidaturas"><i class="fa fa-check"></i>Aplicación 1: programas de candidaturas</a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-2-varios-archivos-excel"><i class="fa fa-check"></i>Aplicación 2: varios archivos Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i>07B - Web scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#inicio-cargar-paquetes"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#web-scraping-1"><i class="fa fa-check"></i>Web scraping</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#descargar-múltiples-páginas-con-una-iteración"><i class="fa fa-check"></i>Descargar múltiples páginas con una iteración</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#generalizar-el-proceso-de-limpieza-de-los-datos-con-una-función"><i class="fa fa-check"></i>Generalizar el proceso de limpieza de los datos con una función</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -257,17 +276,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <div id="inicio-cargar-paquetes-base-de-datos-3" class="section level2">
 <h2>Inicio: cargar paquetes, base de datos</h2>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="texto-analisis.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb295-2"><a href="texto-analisis.html#cb295-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb295-3"><a href="texto-analisis.html#cb295-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;tidytext&quot;)</span></span>
-<span id="cb295-4"><a href="texto-analisis.html#cb295-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;stopwords&quot;)</span></span>
-<span id="cb295-5"><a href="texto-analisis.html#cb295-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb295-6"><a href="texto-analisis.html#cb295-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb295-7"><a href="texto-analisis.html#cb295-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SnowballC)  <span class="co"># se instala solo con tidytext</span></span>
-<span id="cb295-8"><a href="texto-analisis.html#cb295-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stopwords)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="texto-analisis.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb294-2"><a href="texto-analisis.html#cb294-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb294-3"><a href="texto-analisis.html#cb294-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;tidytext&quot;)</span></span>
+<span id="cb294-4"><a href="texto-analisis.html#cb294-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;stopwords&quot;)</span></span>
+<span id="cb294-5"><a href="texto-analisis.html#cb294-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb294-6"><a href="texto-analisis.html#cb294-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb294-7"><a href="texto-analisis.html#cb294-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SnowballC)  <span class="co"># se instala solo con tidytext</span></span>
+<span id="cb294-8"><a href="texto-analisis.html#cb294-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stopwords)</span></code></pre></div>
 <p>Hoy trabajaremos con el texto de tres libros clásicos de teoría política: “Leviathan” de Hobbes (1651), “A Vindication of the Rights of Woman” de Mary Wollstonecraft (1792) y “On Liberty” de John Stuart Mill (1859). Como son libros antiguos, ya son parte del dominio público y se pueden descargar desde <a href="https://www.gutenberg.org/">Project Gutenberg</a>. Hay un paquete de R que ayuda a hacer esto automáticamente: pueden ver cómo descargué los libros y edité ligeramente las bases en el script 06c de este proyecto. Carguemos las bases:</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="texto-analisis.html#cb296-1" aria-hidden="true" tabindex="-1"></a>leviathan <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/leviathan.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="texto-analisis.html#cb295-1" aria-hidden="true" tabindex="-1"></a>leviathan <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/leviathan.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ─────────────
 ## cols(
 ##   author = col_character(),
 ##   book = col_character(),
@@ -276,8 +296,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   line = col_double(),
 ##   text = col_character()
 ## )</code></pre>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="texto-analisis.html#cb298-1" aria-hidden="true" tabindex="-1"></a>rights <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/rights_of_women.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="texto-analisis.html#cb297-1" aria-hidden="true" tabindex="-1"></a>rights <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/rights_of_women.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ─────────────
 ## cols(
 ##   author = col_character(),
 ##   book = col_character(),
@@ -286,8 +307,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   line = col_double(),
 ##   text = col_character()
 ## )</code></pre>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="texto-analisis.html#cb300-1" aria-hidden="true" tabindex="-1"></a>on_liberty <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/on_liberty.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="texto-analisis.html#cb299-1" aria-hidden="true" tabindex="-1"></a>on_liberty <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/on_liberty.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ─────────────
 ## cols(
 ##   author = col_character(),
 ##   book = col_character(),
@@ -303,11 +325,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>La unidad de análisis de estas bases de datos es la línea de texto. Esto es bastante común en los cuerpos de texto que provienen de libros / recursos impresos (la mayoría). Es probable que sea igual en, por ejemplo, programas de candidaturas políticas.</p>
 <p>Lo más común en análisis de texto, sin embargo, es analizar palabras o n-gramas (conjuntos de palabras). Esto no quita que a veces otras unidades de análisis sean interesantes (líneas, párrafos, capítulos, etc.), dependiendo de nuestras preguntas de investigación.</p>
 <p>Estas diferentes unidades de análisis de texto se llaman “tokens” en <code>tidytext</code>, y es posible pasar una base a una unidad de análisis más pequeña con la función <code>unnest_tokens()</code>. Obtengamos las palabras en “Leviathan”:</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="texto-analisis.html#cb302-1" aria-hidden="true" tabindex="-1"></a>palabras_leviathan <span class="ot">&lt;-</span> leviathan <span class="sc">%&gt;%</span> </span>
-<span id="cb302-2"><a href="texto-analisis.html#cb302-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">output =</span> word, <span class="at">input =</span> text, <span class="at">token =</span> <span class="st">&quot;words&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="texto-analisis.html#cb301-1" aria-hidden="true" tabindex="-1"></a>palabras_leviathan <span class="ot">&lt;-</span> leviathan <span class="sc">%&gt;%</span> </span>
+<span id="cb301-2"><a href="texto-analisis.html#cb301-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">output =</span> word, <span class="at">input =</span> text, <span class="at">token =</span> <span class="st">&quot;words&quot;</span>)</span></code></pre></div>
 <p>¿Cuáles son las palabras más usadas en el libro?</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="texto-analisis.html#cb303-1" aria-hidden="true" tabindex="-1"></a>palabras_leviathan <span class="sc">%&gt;%</span> </span>
-<span id="cb303-2"><a href="texto-analisis.html#cb303-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="texto-analisis.html#cb302-1" aria-hidden="true" tabindex="-1"></a>palabras_leviathan <span class="sc">%&gt;%</span> </span>
+<span id="cb302-2"><a href="texto-analisis.html#cb302-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 9,965 x 2
 ##    word      n
 ##    &lt;chr&gt; &lt;int&gt;
@@ -321,15 +343,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 a      3145
 ##  9 by     2635
 ## 10 for    2523
-## # ... with 9,955 more rows</code></pre>
+## # … with 9,955 more rows</code></pre>
 <div id="eliminar-palabras-vacías-stop-words-y-enraizar-stem" class="section level3">
 <h3>Eliminar palabras vacías (<em>stop words</em>) y enraizar (<em>stem</em>)</h3>
 <p>Que este tipo de palabras sean las más comunes es lógico. Sin embargo, no suelen darnos mucha información sobre los textos. Por suerte existen diccionarios de palabras vacías (<em>stop words</em>), que nos permitirán eliminarlas de nuestra base:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="texto-analisis.html#cb305-1" aria-hidden="true" tabindex="-1"></a>stop_words_en <span class="ot">&lt;-</span> <span class="fu">stopwords</span>(<span class="at">language =</span> <span class="st">&quot;en&quot;</span>, <span class="at">source =</span> <span class="st">&quot;smart&quot;</span>)</span>
-<span id="cb305-2"><a href="texto-analisis.html#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="co"># si es que fuera en español...</span></span>
-<span id="cb305-3"><a href="texto-analisis.html#cb305-3" aria-hidden="true" tabindex="-1"></a><span class="co"># stop_words_es &lt;- stopwords(language = &quot;es&quot;, source = &quot;snowball&quot;)</span></span>
-<span id="cb305-4"><a href="texto-analisis.html#cb305-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb305-5"><a href="texto-analisis.html#cb305-5" aria-hidden="true" tabindex="-1"></a>stop_words_en</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="texto-analisis.html#cb304-1" aria-hidden="true" tabindex="-1"></a>stop_words_en <span class="ot">&lt;-</span> <span class="fu">stopwords</span>(<span class="at">language =</span> <span class="st">&quot;en&quot;</span>, <span class="at">source =</span> <span class="st">&quot;smart&quot;</span>)</span>
+<span id="cb304-2"><a href="texto-analisis.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="co"># si es que fuera en español...</span></span>
+<span id="cb304-3"><a href="texto-analisis.html#cb304-3" aria-hidden="true" tabindex="-1"></a><span class="co"># stop_words_es &lt;- stopwords(language = &quot;es&quot;, source = &quot;snowball&quot;)</span></span>
+<span id="cb304-4"><a href="texto-analisis.html#cb304-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb304-5"><a href="texto-analisis.html#cb304-5" aria-hidden="true" tabindex="-1"></a>stop_words_en</span></code></pre></div>
 <pre><code>##   [1] &quot;a&quot;             &quot;a&#39;s&quot;          
 ##   [3] &quot;able&quot;          &quot;about&quot;        
 ##   [5] &quot;above&quot;         &quot;according&quot;    
@@ -616,29 +638,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [567] &quot;yours&quot;         &quot;yourself&quot;     
 ## [569] &quot;yourselves&quot;    &quot;z&quot;            
 ## [571] &quot;zero&quot;</code></pre>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="texto-analisis.html#cb307-1" aria-hidden="true" tabindex="-1"></a>palabras_leviathan_limpio <span class="ot">&lt;-</span> leviathan <span class="sc">%&gt;%</span> </span>
-<span id="cb307-2"><a href="texto-analisis.html#cb307-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">output =</span> word, <span class="at">input =</span> text, <span class="at">token =</span> <span class="st">&quot;words&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb307-3"><a href="texto-analisis.html#cb307-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filtrar stop words!</span></span>
-<span id="cb307-4"><a href="texto-analisis.html#cb307-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(word <span class="sc">%in%</span> stop_words_en))</span></code></pre></div>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="texto-analisis.html#cb308-1" aria-hidden="true" tabindex="-1"></a>palabras_leviathan_limpio</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="texto-analisis.html#cb306-1" aria-hidden="true" tabindex="-1"></a>palabras_leviathan_limpio <span class="ot">&lt;-</span> leviathan <span class="sc">%&gt;%</span> </span>
+<span id="cb306-2"><a href="texto-analisis.html#cb306-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">output =</span> word, <span class="at">input =</span> text, <span class="at">token =</span> <span class="st">&quot;words&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb306-3"><a href="texto-analisis.html#cb306-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filtrar stop words!</span></span>
+<span id="cb306-4"><a href="texto-analisis.html#cb306-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(word <span class="sc">%in%</span> stop_words_en))</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="texto-analisis.html#cb307-1" aria-hidden="true" tabindex="-1"></a>palabras_leviathan_limpio</span></code></pre></div>
 <pre><code>## # A tibble: 79,118 x 6
-##    author  book  gutenberg_id chapter  line
-##    &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-##  1 Thomas~ Levi~         3207       0     1
-##  2 Thomas~ Levi~         3207       0     2
-##  3 Thomas~ Levi~         3207       0     2
-##  4 Thomas~ Levi~         3207       0     3
-##  5 Thomas~ Levi~         3207       0     4
-##  6 Thomas~ Levi~         3207       0     4
-##  7 Thomas~ Levi~         3207       0     4
-##  8 Thomas~ Levi~         3207       0     4
-##  9 Thomas~ Levi~         3207       0     4
-## 10 Thomas~ Levi~         3207       0     4
-## # ... with 79,108 more rows, and 1 more
-## #   variable: word &lt;chr&gt;</code></pre>
+##    author  book  gutenberg_id chapter
+##    &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Thomas… Levi…         3207       0
+##  2 Thomas… Levi…         3207       0
+##  3 Thomas… Levi…         3207       0
+##  4 Thomas… Levi…         3207       0
+##  5 Thomas… Levi…         3207       0
+##  6 Thomas… Levi…         3207       0
+##  7 Thomas… Levi…         3207       0
+##  8 Thomas… Levi…         3207       0
+##  9 Thomas… Levi…         3207       0
+## 10 Thomas… Levi…         3207       0
+## # … with 79,108 more rows, and 2
+## #   more variables: line &lt;dbl&gt;,
+## #   word &lt;chr&gt;</code></pre>
 <p>Ahora calculemos las frecuencias:</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="texto-analisis.html#cb310-1" aria-hidden="true" tabindex="-1"></a>palabras_leviathan_limpio <span class="sc">%&gt;%</span> </span>
-<span id="cb310-2"><a href="texto-analisis.html#cb310-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="texto-analisis.html#cb309-1" aria-hidden="true" tabindex="-1"></a>palabras_leviathan_limpio <span class="sc">%&gt;%</span> </span>
+<span id="cb309-2"><a href="texto-analisis.html#cb309-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> T)</span></code></pre></div>
 <pre><code>## # A tibble: 9,559 x 2
 ##    word          n
 ##    &lt;chr&gt;     &lt;int&gt;
@@ -652,40 +675,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 hath        446
 ##  9 wealth      438
 ## 10 nature      420
-## # ... with 9,549 more rows</code></pre>
+## # … with 9,549 more rows</code></pre>
 <p>Por cierto, otra herramienta útil para limpiar el análisis posterior es el <em>stemming</em>, el ejercicio de llevar las palabras a su raíz. Por ejemplo:</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="texto-analisis.html#cb312-1" aria-hidden="true" tabindex="-1"></a>SnowballC<span class="sc">::</span><span class="fu">wordStem</span>(<span class="fu">c</span>(<span class="st">&quot;caminaba&quot;</span>, <span class="st">&quot;caminó&quot;</span>), <span class="at">language =</span> <span class="st">&quot;es&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="texto-analisis.html#cb311-1" aria-hidden="true" tabindex="-1"></a>SnowballC<span class="sc">::</span><span class="fu">wordStem</span>(<span class="fu">c</span>(<span class="st">&quot;caminaba&quot;</span>, <span class="st">&quot;caminó&quot;</span>), <span class="at">language =</span> <span class="st">&quot;es&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;camin&quot; &quot;camin&quot;</code></pre>
 <p>Podríamos realizar esto para las palabras de nuestra base:</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="texto-analisis.html#cb314-1" aria-hidden="true" tabindex="-1"></a>palabras_leviathan_limpio_ej_stemming <span class="ot">&lt;-</span> palabras_leviathan_limpio <span class="sc">%&gt;%</span> </span>
-<span id="cb314-2"><a href="texto-analisis.html#cb314-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> SnowballC<span class="sc">::</span><span class="fu">wordStem</span>(word, <span class="at">language =</span> <span class="st">&quot;en&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="texto-analisis.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(palabras_leviathan_limpio<span class="sc">$</span>word))</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="texto-analisis.html#cb313-1" aria-hidden="true" tabindex="-1"></a>palabras_leviathan_limpio_ej_stemming <span class="ot">&lt;-</span> palabras_leviathan_limpio <span class="sc">%&gt;%</span> </span>
+<span id="cb313-2"><a href="texto-analisis.html#cb313-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> SnowballC<span class="sc">::</span><span class="fu">wordStem</span>(word, <span class="at">language =</span> <span class="st">&quot;en&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="texto-analisis.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(palabras_leviathan_limpio<span class="sc">$</span>word))</span></code></pre></div>
 <pre><code>## [1] 9559</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="texto-analisis.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(palabras_leviathan_limpio_ej_stemming<span class="sc">$</span>word))</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="texto-analisis.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(palabras_leviathan_limpio_ej_stemming<span class="sc">$</span>word))</span></code></pre></div>
 <pre><code>## [1] 6351</code></pre>
 </div>
 <div id="ejercicio-a-5" class="section level3">
 <h3>(Ejercicio a)</h3>
 <p>¿Cuáles son las palabras más comunes en “A Vindication of the Rights of Woman” de Mary Wollstonecraft, eliminando <em>stop words</em>? Incluye una columna con la proporción de aparición de cada palabra en el libro. Crea una base “palabras_rights_limpio”, similar a la que hicimos antes, en el proceso. Tu código:</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="texto-analisis.html#cb319-1" aria-hidden="true" tabindex="-1"></a>palabras_rights_limpio <span class="ot">&lt;-</span> rights <span class="sc">%&gt;%</span> </span>
-<span id="cb319-2"><a href="texto-analisis.html#cb319-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">output =</span> word, <span class="at">input =</span> text, <span class="at">token =</span> <span class="st">&quot;words&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb319-3"><a href="texto-analisis.html#cb319-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filtrar stop words!</span></span>
-<span id="cb319-4"><a href="texto-analisis.html#cb319-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(word <span class="sc">%in%</span> stop_words_en))</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="texto-analisis.html#cb318-1" aria-hidden="true" tabindex="-1"></a>palabras_rights_limpio <span class="ot">&lt;-</span> rights <span class="sc">%&gt;%</span> </span>
+<span id="cb318-2"><a href="texto-analisis.html#cb318-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">output =</span> word, <span class="at">input =</span> text, <span class="at">token =</span> <span class="st">&quot;words&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb318-3"><a href="texto-analisis.html#cb318-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filtrar stop words!</span></span>
+<span id="cb318-4"><a href="texto-analisis.html#cb318-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(word <span class="sc">%in%</span> stop_words_en))</span></code></pre></div>
 </div>
 <div id="hacer-un-ránking-de-las-palabras-más-comunes" class="section level3">
 <h3>Hacer un ránking de las palabras más comunes</h3>
 <p>Hagamos un gráfico de “ránking” para las diez palabras más comunes en el libro de Wollstonecraft:</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="texto-analisis.html#cb320-1" aria-hidden="true" tabindex="-1"></a>rank_rights <span class="ot">&lt;-</span> palabras_rights_limpio <span class="sc">%&gt;%</span> </span>
-<span id="cb320-2"><a href="texto-analisis.html#cb320-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> T) <span class="sc">%&gt;%</span> </span>
-<span id="cb320-3"><a href="texto-analisis.html#cb320-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="texto-analisis.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> rank_rights,</span>
-<span id="cb321-2"><a href="texto-analisis.html#cb321-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> <span class="fu">fct_reorder</span>(<span class="fu">as.factor</span>(word), n), <span class="at">label =</span> n)) <span class="sc">+</span></span>
-<span id="cb321-3"><a href="texto-analisis.html#cb321-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb321-4"><a href="texto-analisis.html#cb321-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>() <span class="sc">+</span></span>
-<span id="cb321-5"><a href="texto-analisis.html#cb321-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title    =</span> <span class="st">&quot;Palabras más comunes en el libro&quot;</span>,</span>
-<span id="cb321-6"><a href="texto-analisis.html#cb321-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;&#39;A Vindication of the Rights of Woman&#39; (1792)&quot;</span>,</span>
-<span id="cb321-7"><a href="texto-analisis.html#cb321-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x        =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb321-8"><a href="texto-analisis.html#cb321-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption  =</span> <span class="st">&quot;Fuente: Elaboración propia en base a Wollstonecraft (1792)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="texto-analisis.html#cb319-1" aria-hidden="true" tabindex="-1"></a>rank_rights <span class="ot">&lt;-</span> palabras_rights_limpio <span class="sc">%&gt;%</span> </span>
+<span id="cb319-2"><a href="texto-analisis.html#cb319-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> T) <span class="sc">%&gt;%</span> </span>
+<span id="cb319-3"><a href="texto-analisis.html#cb319-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="texto-analisis.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> rank_rights,</span>
+<span id="cb320-2"><a href="texto-analisis.html#cb320-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> <span class="fu">fct_reorder</span>(<span class="fu">as.factor</span>(word), n), <span class="at">label =</span> n)) <span class="sc">+</span></span>
+<span id="cb320-3"><a href="texto-analisis.html#cb320-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb320-4"><a href="texto-analisis.html#cb320-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>() <span class="sc">+</span></span>
+<span id="cb320-5"><a href="texto-analisis.html#cb320-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title    =</span> <span class="st">&quot;Palabras más comunes en el libro&quot;</span>,</span>
+<span id="cb320-6"><a href="texto-analisis.html#cb320-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;&#39;A Vindication of the Rights of Woman&#39; (1792)&quot;</span>,</span>
+<span id="cb320-7"><a href="texto-analisis.html#cb320-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x        =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb320-8"><a href="texto-analisis.html#cb320-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption  =</span> <span class="st">&quot;Fuente: Elaboración propia en base a Wollstonecraft (1792)&quot;</span>)</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
 </div>
 <div id="ejercicio-b-4" class="section level3">
@@ -696,24 +719,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="separar-el-análisis-de-frecuencias-por-secciones" class="section level2">
 <h2>Separar el análisis de frecuencias por secciones</h2>
 <p>Obtengamos las diez palabras más comunes de cada capítulo, con un combo de <code>count()</code>, <code>group_by()</code> y <code>slice()</code>:</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="texto-analisis.html#cb322-1" aria-hidden="true" tabindex="-1"></a>rank_rights_caps <span class="ot">&lt;-</span> palabras_rights_limpio <span class="sc">%&gt;%</span> </span>
-<span id="cb322-2"><a href="texto-analisis.html#cb322-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, chapter, <span class="at">sort =</span> T) <span class="sc">%&gt;%</span> </span>
-<span id="cb322-3"><a href="texto-analisis.html#cb322-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chapter) <span class="sc">%&gt;%</span> </span>
-<span id="cb322-4"><a href="texto-analisis.html#cb322-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb322-5"><a href="texto-analisis.html#cb322-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="texto-analisis.html#cb321-1" aria-hidden="true" tabindex="-1"></a>rank_rights_caps <span class="ot">&lt;-</span> palabras_rights_limpio <span class="sc">%&gt;%</span> </span>
+<span id="cb321-2"><a href="texto-analisis.html#cb321-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, chapter, <span class="at">sort =</span> T) <span class="sc">%&gt;%</span> </span>
+<span id="cb321-3"><a href="texto-analisis.html#cb321-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chapter) <span class="sc">%&gt;%</span> </span>
+<span id="cb321-4"><a href="texto-analisis.html#cb321-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb321-5"><a href="texto-analisis.html#cb321-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
 <p>Ahora podemos graficarlas con las “facetas” de <code>ggplot2</code>:</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="texto-analisis.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> rank_rights_caps <span class="sc">%&gt;%</span> <span class="fu">filter</span>(chapter <span class="sc">!=</span> <span class="dv">0</span>),</span>
-<span id="cb323-2"><a href="texto-analisis.html#cb323-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> n, </span>
-<span id="cb323-3"><a href="texto-analisis.html#cb323-3" aria-hidden="true" tabindex="-1"></a>                     <span class="co"># permite ordenar las barras dentro de cada faceta:</span></span>
-<span id="cb323-4"><a href="texto-analisis.html#cb323-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> <span class="fu">reorder_within</span>(<span class="fu">as.factor</span>(word), n, chapter))) <span class="sc">+</span></span>
-<span id="cb323-5"><a href="texto-analisis.html#cb323-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb323-6"><a href="texto-analisis.html#cb323-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>chapter, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb323-7"><a href="texto-analisis.html#cb323-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># permite ordenar las barras dentro de cada faceta:</span></span>
-<span id="cb323-8"><a href="texto-analisis.html#cb323-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reordered</span>() <span class="sc">+</span></span>
-<span id="cb323-9"><a href="texto-analisis.html#cb323-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb323-10"><a href="texto-analisis.html#cb323-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title    =</span> <span class="st">&quot;Palabras más comunes en cada capítulo&quot;</span>,</span>
-<span id="cb323-11"><a href="texto-analisis.html#cb323-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;&#39;A Vindication of the Rights of Woman&#39; (1792)&quot;</span>,</span>
-<span id="cb323-12"><a href="texto-analisis.html#cb323-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption  =</span> <span class="st">&quot;Elaboración propia en base a Wollstonecraft (1792)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="texto-analisis.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> rank_rights_caps <span class="sc">%&gt;%</span> <span class="fu">filter</span>(chapter <span class="sc">!=</span> <span class="dv">0</span>),</span>
+<span id="cb322-2"><a href="texto-analisis.html#cb322-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> n, </span>
+<span id="cb322-3"><a href="texto-analisis.html#cb322-3" aria-hidden="true" tabindex="-1"></a>                     <span class="co"># permite ordenar las barras dentro de cada faceta:</span></span>
+<span id="cb322-4"><a href="texto-analisis.html#cb322-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> <span class="fu">reorder_within</span>(<span class="fu">as.factor</span>(word), n, chapter))) <span class="sc">+</span></span>
+<span id="cb322-5"><a href="texto-analisis.html#cb322-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb322-6"><a href="texto-analisis.html#cb322-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>chapter, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb322-7"><a href="texto-analisis.html#cb322-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># permite ordenar las barras dentro de cada faceta:</span></span>
+<span id="cb322-8"><a href="texto-analisis.html#cb322-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reordered</span>() <span class="sc">+</span></span>
+<span id="cb322-9"><a href="texto-analisis.html#cb322-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb322-10"><a href="texto-analisis.html#cb322-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title    =</span> <span class="st">&quot;Palabras más comunes en cada capítulo&quot;</span>,</span>
+<span id="cb322-11"><a href="texto-analisis.html#cb322-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;&#39;A Vindication of the Rights of Woman&#39; (1792)&quot;</span>,</span>
+<span id="cb322-12"><a href="texto-analisis.html#cb322-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption  =</span> <span class="st">&quot;Elaboración propia en base a Wollstonecraft (1792)&quot;</span>)</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 <p>Por cierto, cuando se separa el análisis decimos que este se realiza por “documentos”. Estos documentos pueden ser capítulos/secciones, como vimos ahora, o simplemente distintos textos/libros.</p>
 </div>
@@ -721,12 +744,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Comparar frecuencias de palabras entre documentos</h2>
 <p>Es claro que los dos libros (documentos) ocupan un vocabulario marcadamente distinto. Podemos graficar esta diferencia.</p>
 <p>Primero vamos a crear bases de datos para ambos libros, que contengan la proporción de cada palabra en el texto:</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="texto-analisis.html#cb324-1" aria-hidden="true" tabindex="-1"></a>prop_palabras_leviathan <span class="ot">&lt;-</span> palabras_leviathan_limpio <span class="sc">%&gt;%</span> </span>
-<span id="cb324-2"><a href="texto-analisis.html#cb324-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> T) <span class="sc">%&gt;%</span> </span>
-<span id="cb324-3"><a href="texto-analisis.html#cb324-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_leviathan =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span> </span>
-<span id="cb324-4"><a href="texto-analisis.html#cb324-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n)</span>
-<span id="cb324-5"><a href="texto-analisis.html#cb324-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb324-6"><a href="texto-analisis.html#cb324-6" aria-hidden="true" tabindex="-1"></a>prop_palabras_leviathan</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="texto-analisis.html#cb323-1" aria-hidden="true" tabindex="-1"></a>prop_palabras_leviathan <span class="ot">&lt;-</span> palabras_leviathan_limpio <span class="sc">%&gt;%</span> </span>
+<span id="cb323-2"><a href="texto-analisis.html#cb323-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> T) <span class="sc">%&gt;%</span> </span>
+<span id="cb323-3"><a href="texto-analisis.html#cb323-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_leviathan =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb323-4"><a href="texto-analisis.html#cb323-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n)</span>
+<span id="cb323-5"><a href="texto-analisis.html#cb323-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb323-6"><a href="texto-analisis.html#cb323-6" aria-hidden="true" tabindex="-1"></a>prop_palabras_leviathan</span></code></pre></div>
 <pre><code>## # A tibble: 9,559 x 2
 ##    word      prop_leviathan
 ##    &lt;chr&gt;              &lt;dbl&gt;
@@ -740,13 +763,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 hath             0.00564
 ##  9 wealth           0.00554
 ## 10 nature           0.00531
-## # ... with 9,549 more rows</code></pre>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="texto-analisis.html#cb326-1" aria-hidden="true" tabindex="-1"></a>prop_palabras_rights <span class="ot">&lt;-</span> palabras_rights_limpio <span class="sc">%&gt;%</span> </span>
-<span id="cb326-2"><a href="texto-analisis.html#cb326-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> T) <span class="sc">%&gt;%</span> </span>
-<span id="cb326-3"><a href="texto-analisis.html#cb326-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_rights =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span> </span>
-<span id="cb326-4"><a href="texto-analisis.html#cb326-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n)</span>
-<span id="cb326-5"><a href="texto-analisis.html#cb326-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb326-6"><a href="texto-analisis.html#cb326-6" aria-hidden="true" tabindex="-1"></a>prop_palabras_rights</span></code></pre></div>
+## # … with 9,549 more rows</code></pre>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="texto-analisis.html#cb325-1" aria-hidden="true" tabindex="-1"></a>prop_palabras_rights <span class="ot">&lt;-</span> palabras_rights_limpio <span class="sc">%&gt;%</span> </span>
+<span id="cb325-2"><a href="texto-analisis.html#cb325-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> T) <span class="sc">%&gt;%</span> </span>
+<span id="cb325-3"><a href="texto-analisis.html#cb325-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_rights =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb325-4"><a href="texto-analisis.html#cb325-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n)</span>
+<span id="cb325-5"><a href="texto-analisis.html#cb325-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb325-6"><a href="texto-analisis.html#cb325-6" aria-hidden="true" tabindex="-1"></a>prop_palabras_rights</span></code></pre></div>
 <pre><code>## # A tibble: 7,386 x 2
 ##    word   prop_rights
 ##    &lt;chr&gt;        &lt;dbl&gt;
@@ -760,39 +783,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 love       0.00481
 ##  9 life       0.00473
 ## 10 nature     0.00409
-## # ... with 7,376 more rows</code></pre>
+## # … with 7,376 more rows</code></pre>
 <p>Ahora vamos a unir las bases de datos, utilizando un <code>full_join()</code>, que básicamente conservará todas las filas y columnas de ambas. Cuando no encuentre un match para llenar una celda, <code>full_join</code> dejará un NA, por lo que en el segundo comando reemplazaremos esos NA por 0, utilizando <code>replace_na()</code>:</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="texto-analisis.html#cb328-1" aria-hidden="true" tabindex="-1"></a>props_lev_women <span class="ot">&lt;-</span> <span class="fu">full_join</span>(prop_palabras_leviathan, </span>
-<span id="cb328-2"><a href="texto-analisis.html#cb328-2" aria-hidden="true" tabindex="-1"></a>                             prop_palabras_rights, </span>
-<span id="cb328-3"><a href="texto-analisis.html#cb328-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">by =</span> <span class="st">&quot;word&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb328-4"><a href="texto-analisis.html#cb328-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_na</span>(<span class="at">replace =</span> <span class="fu">list</span>(<span class="at">prop_leviathan =</span> <span class="dv">0</span>, <span class="at">prop_rights =</span> <span class="dv">0</span>))</span>
-<span id="cb328-5"><a href="texto-analisis.html#cb328-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb328-6"><a href="texto-analisis.html#cb328-6" aria-hidden="true" tabindex="-1"></a>props_lev_women</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="texto-analisis.html#cb327-1" aria-hidden="true" tabindex="-1"></a>props_lev_women <span class="ot">&lt;-</span> <span class="fu">full_join</span>(prop_palabras_leviathan, </span>
+<span id="cb327-2"><a href="texto-analisis.html#cb327-2" aria-hidden="true" tabindex="-1"></a>                             prop_palabras_rights, </span>
+<span id="cb327-3"><a href="texto-analisis.html#cb327-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">by =</span> <span class="st">&quot;word&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb327-4"><a href="texto-analisis.html#cb327-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_na</span>(<span class="at">replace =</span> <span class="fu">list</span>(<span class="at">prop_leviathan =</span> <span class="dv">0</span>, <span class="at">prop_rights =</span> <span class="dv">0</span>))</span>
+<span id="cb327-5"><a href="texto-analisis.html#cb327-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb327-6"><a href="texto-analisis.html#cb327-6" aria-hidden="true" tabindex="-1"></a>props_lev_women</span></code></pre></div>
 <pre><code>## # A tibble: 13,731 x 3
-##    word      prop_leviathan prop_rights
-##    &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt;
-##  1 man              0.0135     0.00857 
-##  2 god              0.0135     0.00153 
-##  3 men              0.0126     0.00832 
-##  4 power            0.00942    0.00267 
-##  5 law              0.00837    0.000445
-##  6 common           0.00799    0.00198 
-##  7 soveraign        0.00628    0       
-##  8 hath             0.00564    0.000223
-##  9 wealth           0.00554    0.000390
-## 10 nature           0.00531    0.00409 
-## # ... with 13,721 more rows</code></pre>
+##    word    prop_leviathan prop_rights
+##    &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;
+##  1 man            0.0135     0.00857 
+##  2 god            0.0135     0.00153 
+##  3 men            0.0126     0.00832 
+##  4 power          0.00942    0.00267 
+##  5 law            0.00837    0.000445
+##  6 common         0.00799    0.00198 
+##  7 sovera…        0.00628    0       
+##  8 hath           0.00564    0.000223
+##  9 wealth         0.00554    0.000390
+## 10 nature         0.00531    0.00409 
+## # … with 13,721 more rows</code></pre>
 <p>Ya podemos graficar la relación entre los dos libros:</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="texto-analisis.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> props_lev_women,</span>
-<span id="cb330-2"><a href="texto-analisis.html#cb330-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> prop_leviathan, <span class="at">y =</span> prop_rights, <span class="at">label =</span> word)) <span class="sc">+</span></span>
-<span id="cb330-3"><a href="texto-analisis.html#cb330-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>() <span class="sc">+</span></span>
-<span id="cb330-4"><a href="texto-analisis.html#cb330-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>() <span class="sc">+</span></span>
-<span id="cb330-5"><a href="texto-analisis.html#cb330-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.015</span>)) <span class="sc">+</span></span>
-<span id="cb330-6"><a href="texto-analisis.html#cb330-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.015</span>)) <span class="sc">+</span></span>
-<span id="cb330-7"><a href="texto-analisis.html#cb330-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Comparación de palabras en los libros&quot;</span>,</span>
-<span id="cb330-8"><a href="texto-analisis.html#cb330-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Frecuencia proporcial de la palabra en Hobbes (1651)&quot;</span>,</span>
-<span id="cb330-9"><a href="texto-analisis.html#cb330-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frecuencia proporcial de la palabra en Wollstonecraft (1792)&quot;</span>,</span>
-<span id="cb330-10"><a href="texto-analisis.html#cb330-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Elaboración propia en base a Hobbes (1651) y Wollstonecraft (1792)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="texto-analisis.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> props_lev_women,</span>
+<span id="cb329-2"><a href="texto-analisis.html#cb329-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> prop_leviathan, <span class="at">y =</span> prop_rights, <span class="at">label =</span> word)) <span class="sc">+</span></span>
+<span id="cb329-3"><a href="texto-analisis.html#cb329-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>() <span class="sc">+</span></span>
+<span id="cb329-4"><a href="texto-analisis.html#cb329-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>() <span class="sc">+</span></span>
+<span id="cb329-5"><a href="texto-analisis.html#cb329-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.015</span>)) <span class="sc">+</span></span>
+<span id="cb329-6"><a href="texto-analisis.html#cb329-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.015</span>)) <span class="sc">+</span></span>
+<span id="cb329-7"><a href="texto-analisis.html#cb329-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Comparación de palabras en los libros&quot;</span>,</span>
+<span id="cb329-8"><a href="texto-analisis.html#cb329-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Frecuencia proporcial de la palabra en Hobbes (1651)&quot;</span>,</span>
+<span id="cb329-9"><a href="texto-analisis.html#cb329-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frecuencia proporcial de la palabra en Wollstonecraft (1792)&quot;</span>,</span>
+<span id="cb329-10"><a href="texto-analisis.html#cb329-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Elaboración propia en base a Hobbes (1651) y Wollstonecraft (1792)&quot;</span>)</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
 <p>La mayoría de las palabras se repite con proporciones similares en ambos documentos, por eso poblan el sector inferior izquierdo del gráfico. Esta distribución es muy común. En la próxima sección veremos cómo obtener la palabras más distintivas de cada documento.</p>
 <div id="ejercicio-c-2" class="section level3">
@@ -817,75 +840,75 @@ idf_i = ln(\frac{n_{\ docs}}{n_{\ docs\ que\ contienen\ i}})
 \textit{tf-idf}_{i,d} = \textit{tf}_{i,d} \cdot \textit{idf}_i
 \]</span></p>
 <p>Por ejemplo:</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="texto-analisis.html#cb331-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span> <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">*</span> <span class="co"># término que aparece en un 10% de los términos del doc.</span></span>
-<span id="cb331-2"><a href="texto-analisis.html#cb331-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(<span class="dv">8</span> <span class="sc">/</span> <span class="dv">8</span>) <span class="co"># está presente en todos los documentos</span></span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="texto-analisis.html#cb330-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span> <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">*</span> <span class="co"># término que aparece en un 10% de los términos del doc.</span></span>
+<span id="cb330-2"><a href="texto-analisis.html#cb330-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(<span class="dv">8</span> <span class="sc">/</span> <span class="dv">8</span>) <span class="co"># está presente en todos los documentos</span></span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="texto-analisis.html#cb333-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span> <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">*</span> <span class="co"># término que aparece en un 10% de los términos del doc.</span></span>
-<span id="cb333-2"><a href="texto-analisis.html#cb333-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(<span class="dv">8</span> <span class="sc">/</span> <span class="dv">4</span>) <span class="co"># está presente en la mitad de los documentos</span></span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="texto-analisis.html#cb332-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span> <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">*</span> <span class="co"># término que aparece en un 10% de los términos del doc.</span></span>
+<span id="cb332-2"><a href="texto-analisis.html#cb332-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(<span class="dv">8</span> <span class="sc">/</span> <span class="dv">4</span>) <span class="co"># está presente en la mitad de los documentos</span></span></code></pre></div>
 <pre><code>## [1] 0.06931472</code></pre>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="texto-analisis.html#cb335-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span> <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">*</span> <span class="co"># término que aparece en un 10% de los términos del doc.</span></span>
-<span id="cb335-2"><a href="texto-analisis.html#cb335-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(<span class="dv">8</span> <span class="sc">/</span> <span class="dv">1</span>) <span class="co"># está presente en un solo documento</span></span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="texto-analisis.html#cb334-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span> <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">*</span> <span class="co"># término que aparece en un 10% de los términos del doc.</span></span>
+<span id="cb334-2"><a href="texto-analisis.html#cb334-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(<span class="dv">8</span> <span class="sc">/</span> <span class="dv">1</span>) <span class="co"># está presente en un solo documento</span></span></code></pre></div>
 <pre><code>## [1] 0.2079442</code></pre>
 <p>La función <code>bind_tf_idf()</code> nos permite calcular rápidamente el tf_idf para un conteo de palabras. Obtengamos las diez palabras más distintivas de cada capítulo del libro de Wollstonecraft:</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="texto-analisis.html#cb337-1" aria-hidden="true" tabindex="-1"></a>tf_idf_rights <span class="ot">&lt;-</span> palabras_rights_limpio <span class="sc">%&gt;%</span> </span>
-<span id="cb337-2"><a href="texto-analisis.html#cb337-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(chapter <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb337-3"><a href="texto-analisis.html#cb337-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, chapter, <span class="at">sort =</span> T) <span class="sc">%&gt;%</span> </span>
-<span id="cb337-4"><a href="texto-analisis.html#cb337-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fíjense en los argumentos:</span></span>
-<span id="cb337-5"><a href="texto-analisis.html#cb337-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_tf_idf</span>(<span class="at">term =</span> word, <span class="at">document =</span> chapter, <span class="at">n =</span> n)</span>
-<span id="cb337-6"><a href="texto-analisis.html#cb337-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb337-7"><a href="texto-analisis.html#cb337-7" aria-hidden="true" tabindex="-1"></a>tf_idf_rights</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="texto-analisis.html#cb336-1" aria-hidden="true" tabindex="-1"></a>tf_idf_rights <span class="ot">&lt;-</span> palabras_rights_limpio <span class="sc">%&gt;%</span> </span>
+<span id="cb336-2"><a href="texto-analisis.html#cb336-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(chapter <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb336-3"><a href="texto-analisis.html#cb336-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, chapter, <span class="at">sort =</span> T) <span class="sc">%&gt;%</span> </span>
+<span id="cb336-4"><a href="texto-analisis.html#cb336-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fíjense en los argumentos:</span></span>
+<span id="cb336-5"><a href="texto-analisis.html#cb336-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_tf_idf</span>(<span class="at">term =</span> word, <span class="at">document =</span> chapter, <span class="at">n =</span> n)</span>
+<span id="cb336-6"><a href="texto-analisis.html#cb336-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb336-7"><a href="texto-analisis.html#cb336-7" aria-hidden="true" tabindex="-1"></a>tf_idf_rights</span></code></pre></div>
 <pre><code>## # A tibble: 18,020 x 6
-##    word   chapter     n      tf    idf
-##    &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-##  1 women        4    86 0.0183  0     
-##  2 reason       5    68 0.0104  0     
-##  3 man          5    61 0.00934 0     
-##  4 women       12    51 0.0124  0     
-##  5 women       13    51 0.0171  0     
-##  6 women        2    48 0.0140  0     
-##  7 men          4    47 0.0100  0.0800
-##  8 woman        5    45 0.00689 0.167 
-##  9 man          2    43 0.0126  0     
-## 10 man          4    43 0.00917 0     
-## # ... with 18,010 more rows, and 1 more
-## #   variable: tf_idf &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="texto-analisis.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ahora vamos a quedarnos solo con los diez tf-idf más altos por documento (capítulo): </span></span>
-<span id="cb339-2"><a href="texto-analisis.html#cb339-2" aria-hidden="true" tabindex="-1"></a>rank_tf_idf_rights <span class="ot">&lt;-</span> tf_idf_rights <span class="sc">%&gt;%</span> </span>
-<span id="cb339-3"><a href="texto-analisis.html#cb339-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chapter) <span class="sc">%&gt;%</span> </span>
-<span id="cb339-4"><a href="texto-analisis.html#cb339-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>tf_idf) <span class="sc">%&gt;%</span> </span>
-<span id="cb339-5"><a href="texto-analisis.html#cb339-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb339-6"><a href="texto-analisis.html#cb339-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb339-7"><a href="texto-analisis.html#cb339-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb339-8"><a href="texto-analisis.html#cb339-8" aria-hidden="true" tabindex="-1"></a>rank_tf_idf_rights</span></code></pre></div>
+##    word  chapter     n      tf    idf
+##    &lt;chr&gt;   &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1 women       4    86 0.0183  0     
+##  2 reas…       5    68 0.0104  0     
+##  3 man         5    61 0.00934 0     
+##  4 women      12    51 0.0124  0     
+##  5 women      13    51 0.0171  0     
+##  6 women       2    48 0.0140  0     
+##  7 men         4    47 0.0100  0.0800
+##  8 woman       5    45 0.00689 0.167 
+##  9 man         2    43 0.0126  0     
+## 10 man         4    43 0.00917 0     
+## # … with 18,010 more rows, and 1
+## #   more variable: tf_idf &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="texto-analisis.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ahora vamos a quedarnos solo con los diez tf-idf más altos por documento (capítulo): </span></span>
+<span id="cb338-2"><a href="texto-analisis.html#cb338-2" aria-hidden="true" tabindex="-1"></a>rank_tf_idf_rights <span class="ot">&lt;-</span> tf_idf_rights <span class="sc">%&gt;%</span> </span>
+<span id="cb338-3"><a href="texto-analisis.html#cb338-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chapter) <span class="sc">%&gt;%</span> </span>
+<span id="cb338-4"><a href="texto-analisis.html#cb338-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>tf_idf) <span class="sc">%&gt;%</span> </span>
+<span id="cb338-5"><a href="texto-analisis.html#cb338-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb338-6"><a href="texto-analisis.html#cb338-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb338-7"><a href="texto-analisis.html#cb338-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb338-8"><a href="texto-analisis.html#cb338-8" aria-hidden="true" tabindex="-1"></a>rank_tf_idf_rights</span></code></pre></div>
 <pre><code>## # A tibble: 130 x 6
-##    word         chapter     n      tf   idf
-##    &lt;chr&gt;          &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;
-##  1 profession         1     5 0.00382 1.47 
-##  2 barbarism          1     3 0.00229 1.87 
-##  3 thousands          1     3 0.00229 1.87 
-##  4 curate             1     2 0.00153 2.56 
-##  5 deformity          1     2 0.00153 2.56 
-##  6 monarchy           1     2 0.00153 2.56 
-##  7 pushes             1     2 0.00153 2.56 
-##  8 unsound            1     2 0.00153 2.56 
-##  9 perfection         1     5 0.00382 0.956
-## 10 civilization       1     6 0.00458 0.773
-## # ... with 120 more rows, and 1 more
+##    word   chapter     n      tf   idf
+##    &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;
+##  1 profe…       1     5 0.00382 1.47 
+##  2 barba…       1     3 0.00229 1.87 
+##  3 thous…       1     3 0.00229 1.87 
+##  4 curate       1     2 0.00153 2.56 
+##  5 defor…       1     2 0.00153 2.56 
+##  6 monar…       1     2 0.00153 2.56 
+##  7 pushes       1     2 0.00153 2.56 
+##  8 unsou…       1     2 0.00153 2.56 
+##  9 perfe…       1     5 0.00382 0.956
+## 10 civil…       1     6 0.00458 0.773
+## # … with 120 more rows, and 1 more
 ## #   variable: tf_idf &lt;dbl&gt;</code></pre>
 <p>Ahora podemos graficarlas:</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="texto-analisis.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> rank_tf_idf_rights,</span>
-<span id="cb341-2"><a href="texto-analisis.html#cb341-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> tf_idf, </span>
-<span id="cb341-3"><a href="texto-analisis.html#cb341-3" aria-hidden="true" tabindex="-1"></a>                     <span class="co"># permite ordenar las barras dentro de cada faceta:</span></span>
-<span id="cb341-4"><a href="texto-analisis.html#cb341-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> <span class="fu">reorder_within</span>(<span class="fu">as.factor</span>(word), tf_idf, chapter))) <span class="sc">+</span></span>
-<span id="cb341-5"><a href="texto-analisis.html#cb341-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb341-6"><a href="texto-analisis.html#cb341-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># permite ordenar las barras dentro de cada faceta:</span></span>
-<span id="cb341-7"><a href="texto-analisis.html#cb341-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reordered</span>() <span class="sc">+</span></span>
-<span id="cb341-8"><a href="texto-analisis.html#cb341-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb341-9"><a href="texto-analisis.html#cb341-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>chapter, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb341-10"><a href="texto-analisis.html#cb341-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;tf-idf&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb341-11"><a href="texto-analisis.html#cb341-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">title    =</span> <span class="st">&quot;Palabras más distintivas de cada capítulo&quot;</span>,</span>
-<span id="cb341-12"><a href="texto-analisis.html#cb341-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;&#39;A Vindication of the Rights of Woman&#39; (1792)&quot;</span>,</span>
-<span id="cb341-13"><a href="texto-analisis.html#cb341-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption  =</span> <span class="st">&quot;Elaboración propia en base a Wollstonecraft (1792)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="texto-analisis.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data    =</span> rank_tf_idf_rights,</span>
+<span id="cb340-2"><a href="texto-analisis.html#cb340-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> tf_idf, </span>
+<span id="cb340-3"><a href="texto-analisis.html#cb340-3" aria-hidden="true" tabindex="-1"></a>                     <span class="co"># permite ordenar las barras dentro de cada faceta:</span></span>
+<span id="cb340-4"><a href="texto-analisis.html#cb340-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> <span class="fu">reorder_within</span>(<span class="fu">as.factor</span>(word), tf_idf, chapter))) <span class="sc">+</span></span>
+<span id="cb340-5"><a href="texto-analisis.html#cb340-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb340-6"><a href="texto-analisis.html#cb340-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># permite ordenar las barras dentro de cada faceta:</span></span>
+<span id="cb340-7"><a href="texto-analisis.html#cb340-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reordered</span>() <span class="sc">+</span></span>
+<span id="cb340-8"><a href="texto-analisis.html#cb340-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb340-9"><a href="texto-analisis.html#cb340-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>chapter, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb340-10"><a href="texto-analisis.html#cb340-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;tf-idf&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb340-11"><a href="texto-analisis.html#cb340-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">title    =</span> <span class="st">&quot;Palabras más distintivas de cada capítulo&quot;</span>,</span>
+<span id="cb340-12"><a href="texto-analisis.html#cb340-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;&#39;A Vindication of the Rights of Woman&#39; (1792)&quot;</span>,</span>
+<span id="cb340-13"><a href="texto-analisis.html#cb340-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption  =</span> <span class="st">&quot;Elaboración propia en base a Wollstonecraft (1792)&quot;</span>)</span></code></pre></div>
 <p><img src="udp_2021_bookdown_files/figure-html/unnamed-chunk-203-1.png" width="768" /></p>
 <div id="ejercicio-d-3" class="section level3">
 <h3>(Ejercicio d)</h3>
@@ -923,6 +946,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": {}
 },
 "fontsettings": {

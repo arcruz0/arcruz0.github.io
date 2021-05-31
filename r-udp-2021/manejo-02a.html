@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>02A - Manejo de datos | Programación en Ciencias Sociales</title>
   <meta name="description" content="Sitio web CPO3523 (2021)" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="02A - Manejo de datos | Programación en Ciencias Sociales" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-05-10" />
+<meta name="date" content="2021-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="rbasico.html"/>
 <link rel="next" href="manejo-02b.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -59,6 +61,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -118,6 +121,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -231,6 +235,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
+<li class="part"><span><b>VII Minería de datos y R avanzado</b></span></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html"><i class="fa fa-check"></i>07A - Herramientas de programación</a>
+<ul>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#funciones-personalizadas-y-control-de-flujo"><i class="fa fa-check"></i>Funciones personalizadas y control de flujo</a></li>
+<li><a href="herr-prog.html#iteraciones-con-purrr">Iteraciones con <code>purrr</code></a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-1-programas-de-candidaturas"><i class="fa fa-check"></i>Aplicación 1: programas de candidaturas</a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-2-varios-archivos-excel"><i class="fa fa-check"></i>Aplicación 2: varios archivos Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i>07B - Web scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#inicio-cargar-paquetes"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#web-scraping-1"><i class="fa fa-check"></i>Web scraping</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#descargar-múltiples-páginas-con-una-iteración"><i class="fa fa-check"></i>Descargar múltiples páginas con una iteración</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#generalizar-el-proceso-de-limpieza-de-los-datos-con-una-función"><i class="fa fa-check"></i>Generalizar el proceso de limpieza de los datos con una función</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -355,7 +374,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="carga-de-base-en-formato-csv" class="section level4">
 <h4>Carga de base en formato csv</h4>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="manejo-02a.html#cb79-1" aria-hidden="true" tabindex="-1"></a>df_aprob <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/base_aprob_reyes-housholder.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## ── Column specification ─────────────
 ## cols(
 ##   country = col_character(),
 ##   year = col_double(),
@@ -376,42 +396,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>El resumen más simple de un objeto en R suele poder obtenerse con su nombre comando. Nota cómo debajo de cada nombre, algunas variables tienen <code>&lt;dbl&gt;</code> y otras <code>&lt;chr&gt;</code>. ¿Qué significa esto?</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="manejo-02a.html#cb81-1" aria-hidden="true" tabindex="-1"></a>df_aprob</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2000       4 Fernando de la ~
-##  5 Argentina  2001       1 Fernando de la ~
-##  6 Argentina  2001       2 Fernando de la ~
-##  7 Argentina  2001       3 Fernando de la ~
-##  8 Argentina  2001       4 Fernando de la ~
-##  9 Argentina  2002       1 Eduardo Alberto~
-## 10 Argentina  2002       2 Eduardo Alberto~
-## # ... with 1,010 more rows, and 8 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2000       4 Fernando d…
+##  5 Argenti…  2001       1 Fernando d…
+##  6 Argenti…  2001       2 Fernando d…
+##  7 Argenti…  2001       3 Fernando d…
+##  8 Argenti…  2001       4 Fernando d…
+##  9 Argenti…  2002       1 Eduardo Al…
+## 10 Argenti…  2002       2 Eduardo Al…
+## # … with 1,010 more rows, and 8 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Por cierto, podemos obtener un resumen similar clickeando nuestro objeto en el panel “Environment” (superior derecho) de RStudio. Esto es lo mismo que ocupar el comando <code>View()</code>:</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="manejo-02a.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(df_aprob)</span></code></pre></div>
 <p>Otro resumen útil es la función <code>glimpse()</code> del <code>tidyverse</code>, que nos da otra perspectiva:</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="manejo-02a.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_aprob)</span></code></pre></div>
 <pre><code>## Rows: 1,020
 ## Columns: 12
-## $ country      &lt;chr&gt; &quot;Argentina&quot;, &quot;Argent~
-## $ year         &lt;dbl&gt; 2000, 2000, 2000, 20~
-## $ quarter      &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3,~
-## $ president    &lt;chr&gt; &quot;Fernando de la Rúa&quot;~
-## $ net_approval &lt;dbl&gt; 40.126, 16.390, 23.9~
-## $ pres_sex     &lt;chr&gt; &quot;male&quot;, &quot;male&quot;, &quot;mal~
-## $ pres_sex_d   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0,~
-## $ exec_corr    &lt;dbl&gt; 14.01525, 14.01525, ~
-## $ gdp_growth   &lt;dbl&gt; -0.8, -0.8, -0.8, -0~
-## $ unemp        &lt;dbl&gt; 15.00, 15.00, 15.00,~
-## $ wdi_gdp      &lt;dbl&gt; 552151219031, 552151~
-## $ wdi_pop      &lt;dbl&gt; 37057452, 37057452, ~</code></pre>
+## $ country      &lt;chr&gt; &quot;Argentina&quot;, &quot;…
+## $ year         &lt;dbl&gt; 2000, 2000, 20…
+## $ quarter      &lt;dbl&gt; 1, 2, 3, 4, 1,…
+## $ president    &lt;chr&gt; &quot;Fernando de l…
+## $ net_approval &lt;dbl&gt; 40.126, 16.390…
+## $ pres_sex     &lt;chr&gt; &quot;male&quot;, &quot;male&quot;…
+## $ pres_sex_d   &lt;dbl&gt; 0, 0, 0, 0, 0,…
+## $ exec_corr    &lt;dbl&gt; 14.01525, 14.0…
+## $ gdp_growth   &lt;dbl&gt; -0.8, -0.8, -0…
+## $ unemp        &lt;dbl&gt; 15.0, 15.0, 15…
+## $ wdi_gdp      &lt;dbl&gt; 552151219031, …
+## $ wdi_pop      &lt;dbl&gt; 37057452, 3705…</code></pre>
 <p>¿Qué significan las variables de esta base de datos? Completa la siguiente tabla:</p>
 <table>
 <colgroup>
@@ -497,7 +518,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina
 ##  9 Argentina
 ## 10 Argentina
-## # ... with 1,010 more rows</code></pre>
+## # … with 1,010 more rows</code></pre>
 <p>Recuerda que esto no creó ningún objeto nuevo, es solo un comando que estamos ejecutando en la consola. Si quisiéramos crear un objeto nuevo, tendríamos que asignarlo:</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="manejo-02a.html#cb88-1" aria-hidden="true" tabindex="-1"></a>df_aprob_reducida <span class="ot">&lt;-</span> <span class="fu">select</span>(df_aprob, country)</span>
 <span id="cb88-2"><a href="manejo-02a.html#cb88-2" aria-hidden="true" tabindex="-1"></a>df_aprob_reducida</span></code></pre></div>
@@ -514,7 +535,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina
 ##  9 Argentina
 ## 10 Argentina
-## # ... with 1,010 more rows</code></pre>
+## # … with 1,010 more rows</code></pre>
 <p>Podemos seleccionar múltiples columnas a la vez, separadas por comas:</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="manejo-02a.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, country, year, unemp)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 3
@@ -530,114 +551,118 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Argentina  2001  18.3
 ##  9 Argentina  2002  17.9
 ## 10 Argentina  2002  17.9
-## # ... with 1,010 more rows</code></pre>
+## # … with 1,010 more rows</code></pre>
 <p>Supongamos que queremos las primeras cinco variables de la base de datos. Las siguientes tres formas nos permitirán obtenerlas:</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="manejo-02a.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, country, year, quarter, president, net_approval)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 5
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2000       4 Fernando de la ~
-##  5 Argentina  2001       1 Fernando de la ~
-##  6 Argentina  2001       2 Fernando de la ~
-##  7 Argentina  2001       3 Fernando de la ~
-##  8 Argentina  2001       4 Fernando de la ~
-##  9 Argentina  2002       1 Eduardo Alberto~
-## 10 Argentina  2002       2 Eduardo Alberto~
-## # ... with 1,010 more rows, and 1 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2000       4 Fernando d…
+##  5 Argenti…  2001       1 Fernando d…
+##  6 Argenti…  2001       2 Fernando d…
+##  7 Argenti…  2001       3 Fernando d…
+##  8 Argenti…  2001       4 Fernando d…
+##  9 Argenti…  2002       1 Eduardo Al…
+## 10 Argenti…  2002       2 Eduardo Al…
+## # … with 1,010 more rows, and 1 more
 ## #   variable: net_approval &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="manejo-02a.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, country<span class="sc">:</span>net_approval) <span class="co"># esta es la forma recomendada para la mayoría de los casos</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 5
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2000       4 Fernando de la ~
-##  5 Argentina  2001       1 Fernando de la ~
-##  6 Argentina  2001       2 Fernando de la ~
-##  7 Argentina  2001       3 Fernando de la ~
-##  8 Argentina  2001       4 Fernando de la ~
-##  9 Argentina  2002       1 Eduardo Alberto~
-## 10 Argentina  2002       2 Eduardo Alberto~
-## # ... with 1,010 more rows, and 1 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2000       4 Fernando d…
+##  5 Argenti…  2001       1 Fernando d…
+##  6 Argenti…  2001       2 Fernando d…
+##  7 Argenti…  2001       3 Fernando d…
+##  8 Argenti…  2001       4 Fernando d…
+##  9 Argenti…  2002       1 Eduardo Al…
+## 10 Argenti…  2002       2 Eduardo Al…
+## # … with 1,010 more rows, and 1 more
 ## #   variable: net_approval &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="manejo-02a.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 5
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2000       4 Fernando de la ~
-##  5 Argentina  2001       1 Fernando de la ~
-##  6 Argentina  2001       2 Fernando de la ~
-##  7 Argentina  2001       3 Fernando de la ~
-##  8 Argentina  2001       4 Fernando de la ~
-##  9 Argentina  2002       1 Eduardo Alberto~
-## 10 Argentina  2002       2 Eduardo Alberto~
-## # ... with 1,010 more rows, and 1 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2000       4 Fernando d…
+##  5 Argenti…  2001       1 Fernando d…
+##  6 Argenti…  2001       2 Fernando d…
+##  7 Argenti…  2001       3 Fernando d…
+##  8 Argenti…  2001       4 Fernando d…
+##  9 Argenti…  2002       1 Eduardo Al…
+## 10 Argenti…  2002       2 Eduardo Al…
+## # … with 1,010 more rows, and 1 more
 ## #   variable: net_approval &lt;dbl&gt;</code></pre>
 <p>El comando <code>select()</code> también nos sirve para reordenar las columnas. Supongamos que queremos que la variable <code>president</code> sea la primera. Podemos hacer algo como esto:</p>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="manejo-02a.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, president, country<span class="sc">:</span>year, net_approval<span class="sc">:</span>unemp)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 9
-##    president     country  year net_approval
-##    &lt;chr&gt;         &lt;chr&gt;   &lt;dbl&gt;        &lt;dbl&gt;
-##  1 Fernando de ~ Argent~  2000        40.1 
-##  2 Fernando de ~ Argent~  2000        16.4 
-##  3 Fernando de ~ Argent~  2000        24.0 
-##  4 Fernando de ~ Argent~  2000       -18.3 
-##  5 Fernando de ~ Argent~  2001        -6.97
-##  6 Fernando de ~ Argent~  2001       -20.1 
-##  7 Fernando de ~ Argent~  2001       -19.4 
-##  8 Fernando de ~ Argent~  2001       -23.2 
-##  9 Eduardo Albe~ Argent~  2002        -2.01
-## 10 Eduardo Albe~ Argent~  2002       -20.1 
-## # ... with 1,010 more rows, and 5 more
-## #   variables: pres_sex &lt;chr&gt;,
-## #   pres_sex_d &lt;dbl&gt;, exec_corr &lt;dbl&gt;,
+##    president           country   year
+##    &lt;chr&gt;               &lt;chr&gt;    &lt;dbl&gt;
+##  1 Fernando de la Rúa  Argenti…  2000
+##  2 Fernando de la Rúa  Argenti…  2000
+##  3 Fernando de la Rúa  Argenti…  2000
+##  4 Fernando de la Rúa  Argenti…  2000
+##  5 Fernando de la Rúa  Argenti…  2001
+##  6 Fernando de la Rúa  Argenti…  2001
+##  7 Fernando de la Rúa  Argenti…  2001
+##  8 Fernando de la Rúa  Argenti…  2001
+##  9 Eduardo Alberto Du… Argenti…  2002
+## 10 Eduardo Alberto Du… Argenti…  2002
+## # … with 1,010 more rows, and 6 more
+## #   variables: net_approval &lt;dbl&gt;,
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
 ## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;</code></pre>
 <p>Esta forma es un poco tediosa. Hay una función de ayuda que nos será útil en este caso, se llama <code>everything()</code></p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="manejo-02a.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, president, <span class="fu">everything</span>()) <span class="co"># selecciona &quot;president&quot; y todo lo demás</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
-##    president         country   year quarter
-##    &lt;chr&gt;             &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-##  1 Fernando de la R~ Argenti~  2000       1
-##  2 Fernando de la R~ Argenti~  2000       2
-##  3 Fernando de la R~ Argenti~  2000       3
-##  4 Fernando de la R~ Argenti~  2000       4
-##  5 Fernando de la R~ Argenti~  2001       1
-##  6 Fernando de la R~ Argenti~  2001       2
-##  7 Fernando de la R~ Argenti~  2001       3
-##  8 Fernando de la R~ Argenti~  2001       4
-##  9 Eduardo Alberto ~ Argenti~  2002       1
-## 10 Eduardo Alberto ~ Argenti~  2002       2
-## # ... with 1,010 more rows, and 8 more
+##    president    country  year quarter
+##    &lt;chr&gt;        &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Fernando de… Argent…  2000       1
+##  2 Fernando de… Argent…  2000       2
+##  3 Fernando de… Argent…  2000       3
+##  4 Fernando de… Argent…  2000       4
+##  5 Fernando de… Argent…  2001       1
+##  6 Fernando de… Argent…  2001       2
+##  7 Fernando de… Argent…  2001       3
+##  8 Fernando de… Argent…  2001       4
+##  9 Eduardo Alb… Argent…  2002       1
+## 10 Eduardo Alb… Argent…  2002       2
+## # … with 1,010 more rows, and 8 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Finalmente, también podemos excluir variables con un signo <code>-</code>:</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="manejo-02a.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_aprob, <span class="sc">-</span>president)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 11
-##    country    year quarter net_approval
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt;
-##  1 Argentina  2000       1        40.1 
-##  2 Argentina  2000       2        16.4 
-##  3 Argentina  2000       3        24.0 
-##  4 Argentina  2000       4       -18.3 
-##  5 Argentina  2001       1        -6.97
-##  6 Argentina  2001       2       -20.1 
-##  7 Argentina  2001       3       -19.4 
-##  8 Argentina  2001       4       -23.2 
-##  9 Argentina  2002       1        -2.01
-## 10 Argentina  2002       2       -20.1 
-## # ... with 1,010 more rows, and 7 more
+##    country  year quarter net_approval
+##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Argent…  2000       1        40.1 
+##  2 Argent…  2000       2        16.4 
+##  3 Argent…  2000       3        24.0 
+##  4 Argent…  2000       4       -18.3 
+##  5 Argent…  2001       1        -6.97
+##  6 Argent…  2001       2       -20.1 
+##  7 Argent…  2001       3       -19.4 
+##  8 Argent…  2001       4       -23.2 
+##  9 Argent…  2002       1        -2.01
+## 10 Argent…  2002       2       -20.1 
+## # … with 1,010 more rows, and 7 more
 ## #   variables: pres_sex &lt;chr&gt;,
-## #   pres_sex_d &lt;dbl&gt;, exec_corr &lt;dbl&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
 ## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
 ## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 </div>
@@ -646,48 +671,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Podemos cambiar el nombre de una columna con el comando <code>rename()</code>. Por ejemplo:</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="manejo-02a.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(df_aprob, <span class="at">trimeste =</span> quarter) <span class="co"># noten que no estoy modificando la base, solo imprimiéndola!</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
-##    country   year trimeste president       
-##    &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argenti~  2000        1 Fernando de la ~
-##  2 Argenti~  2000        2 Fernando de la ~
-##  3 Argenti~  2000        3 Fernando de la ~
-##  4 Argenti~  2000        4 Fernando de la ~
-##  5 Argenti~  2001        1 Fernando de la ~
-##  6 Argenti~  2001        2 Fernando de la ~
-##  7 Argenti~  2001        3 Fernando de la ~
-##  8 Argenti~  2001        4 Fernando de la ~
-##  9 Argenti~  2002        1 Eduardo Alberto~
-## 10 Argenti~  2002        2 Eduardo Alberto~
-## # ... with 1,010 more rows, and 8 more
+##    country   year trimeste president 
+##    &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;     
+##  1 Argenti…  2000        1 Fernando …
+##  2 Argenti…  2000        2 Fernando …
+##  3 Argenti…  2000        3 Fernando …
+##  4 Argenti…  2000        4 Fernando …
+##  5 Argenti…  2001        1 Fernando …
+##  6 Argenti…  2001        2 Fernando …
+##  7 Argenti…  2001        3 Fernando …
+##  8 Argenti…  2001        4 Fernando …
+##  9 Argenti…  2002        1 Eduardo A…
+## 10 Argenti…  2002        2 Eduardo A…
+## # … with 1,010 more rows, and 8 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 </div>
 <div id="filtrar-observaciones-con-filter" class="section level4">
 <h4>Filtrar observaciones con <code>filter()</code></h4>
 <p>A menudo queremos quedarnos solo con algunas observaciones de nuestra base de datos, filtrando de acuerdo a características específicas. Podemos hacer esto gracias a la función <code>filter()</code> y algo llamado “operadores lógicos”. Para comenzar, quedémonos solo con las observaciones de Chile:</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="manejo-02a.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, country <span class="sc">==</span> <span class="st">&quot;Chile&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 60 x 12
-##    country  year quarter president         
-##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;             
-##  1 Chile    2000       1 Eduardo Frei Ruiz~
-##  2 Chile    2000       2 Ricardo Lagos Esc~
-##  3 Chile    2000       3 Ricardo Lagos Esc~
-##  4 Chile    2000       4 Ricardo Lagos Esc~
-##  5 Chile    2001       1 Ricardo Lagos Esc~
-##  6 Chile    2001       2 Ricardo Lagos Esc~
-##  7 Chile    2001       3 Ricardo Lagos Esc~
-##  8 Chile    2001       4 Ricardo Lagos Esc~
-##  9 Chile    2002       1 Ricardo Lagos Esc~
-## 10 Chile    2002       2 Ricardo Lagos Esc~
-## # ... with 50 more rows, and 8 more
+##    country  year quarter president   
+##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       
+##  1 Chile    2000       1 Eduardo Fre…
+##  2 Chile    2000       2 Ricardo Lag…
+##  3 Chile    2000       3 Ricardo Lag…
+##  4 Chile    2000       4 Ricardo Lag…
+##  5 Chile    2001       1 Ricardo Lag…
+##  6 Chile    2001       2 Ricardo Lag…
+##  7 Chile    2001       3 Ricardo Lag…
+##  8 Chile    2001       4 Ricardo Lag…
+##  9 Chile    2002       1 Ricardo Lag…
+## 10 Chile    2002       2 Ricardo Lag…
+## # … with 50 more rows, and 8 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Le estamos diciendo a <code>filter()</code>, por medio del segundo argumento, que solo se quede con observaciones en las que la variable country <em>es igual a </em> Chile. Este “es igual a” es un operador lógico, que se escribe como “==” en R. Aquí hay una lista de operadores lógicos comunes:</p>
 <table>
 <thead>
@@ -738,86 +765,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Por ejemplo, podemos obtener todas las observaciones (país-año-trimestre) en las que la aprobación presidencial neta es positiva:</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="manejo-02a.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, net_approval <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 709 x 12
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2003       2 Eduardo Alberto~
-##  5 Argentina  2003       3 Néstor Carlos K~
-##  6 Argentina  2003       4 Néstor Carlos K~
-##  7 Argentina  2004       1 Néstor Carlos K~
-##  8 Argentina  2004       2 Néstor Carlos K~
-##  9 Argentina  2004       3 Néstor Carlos K~
-## 10 Argentina  2004       4 Néstor Carlos K~
-## # ... with 699 more rows, and 8 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2003       2 Eduardo Al…
+##  5 Argenti…  2003       3 Néstor Car…
+##  6 Argenti…  2003       4 Néstor Car…
+##  7 Argenti…  2004       1 Néstor Car…
+##  8 Argenti…  2004       2 Néstor Car…
+##  9 Argenti…  2004       3 Néstor Car…
+## 10 Argenti…  2004       4 Néstor Car…
+## # … with 699 more rows, and 8 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Podemos también realizar filtros más complejos. Obtengamos solo las observaciones del Cono Sur:</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="manejo-02a.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, country <span class="sc">==</span> <span class="st">&quot;Argentina&quot;</span> <span class="sc">|</span> country <span class="sc">==</span> <span class="st">&quot;Chile&quot;</span> <span class="sc">|</span> country <span class="sc">==</span> <span class="st">&quot;Uruguay&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 180 x 12
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2000       4 Fernando de la ~
-##  5 Argentina  2001       1 Fernando de la ~
-##  6 Argentina  2001       2 Fernando de la ~
-##  7 Argentina  2001       3 Fernando de la ~
-##  8 Argentina  2001       4 Fernando de la ~
-##  9 Argentina  2002       1 Eduardo Alberto~
-## 10 Argentina  2002       2 Eduardo Alberto~
-## # ... with 170 more rows, and 8 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2000       4 Fernando d…
+##  5 Argenti…  2001       1 Fernando d…
+##  6 Argenti…  2001       2 Fernando d…
+##  7 Argenti…  2001       3 Fernando d…
+##  8 Argenti…  2001       4 Fernando d…
+##  9 Argenti…  2002       1 Eduardo Al…
+## 10 Argenti…  2002       2 Eduardo Al…
+## # … with 170 more rows, and 8 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="manejo-02a.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Argentina&quot;</span>, <span class="st">&quot;Chile&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) <span class="co"># lo mismo, con otro op. lógico</span></span></code></pre></div>
 <pre><code>## # A tibble: 180 x 12
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2000       4 Fernando de la ~
-##  5 Argentina  2001       1 Fernando de la ~
-##  6 Argentina  2001       2 Fernando de la ~
-##  7 Argentina  2001       3 Fernando de la ~
-##  8 Argentina  2001       4 Fernando de la ~
-##  9 Argentina  2002       1 Eduardo Alberto~
-## 10 Argentina  2002       2 Eduardo Alberto~
-## # ... with 170 more rows, and 8 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2000       4 Fernando d…
+##  5 Argenti…  2001       1 Fernando d…
+##  6 Argenti…  2001       2 Fernando d…
+##  7 Argenti…  2001       3 Fernando d…
+##  8 Argenti…  2001       4 Fernando d…
+##  9 Argenti…  2002       1 Eduardo Al…
+## 10 Argenti…  2002       2 Eduardo Al…
+## # … with 170 more rows, and 8 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Podemos también incluir pequeñas operaciones en nuestros filtros. Obtengamos todas las observaciones en las que la corrupción ejecutiva es mayor a la del promedio de toda la base:</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="manejo-02a.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob, exec_corr <span class="sc">&gt;</span> <span class="fu">mean</span>(exec_corr))</span></code></pre></div>
 <pre><code>## # A tibble: 456 x 12
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2003       1 Eduardo Alberto~
-##  2 Argentina  2003       2 Eduardo Alberto~
-##  3 Argentina  2003       3 Néstor Carlos K~
-##  4 Argentina  2003       4 Néstor Carlos K~
-##  5 Argentina  2004       1 Néstor Carlos K~
-##  6 Argentina  2004       2 Néstor Carlos K~
-##  7 Argentina  2004       3 Néstor Carlos K~
-##  8 Argentina  2004       4 Néstor Carlos K~
-##  9 Argentina  2005       1 Néstor Carlos K~
-## 10 Argentina  2005       2 Néstor Carlos K~
-## # ... with 446 more rows, and 8 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2003       1 Eduardo Al…
+##  2 Argenti…  2003       2 Eduardo Al…
+##  3 Argenti…  2003       3 Néstor Car…
+##  4 Argenti…  2003       4 Néstor Car…
+##  5 Argenti…  2004       1 Néstor Car…
+##  6 Argenti…  2004       2 Néstor Car…
+##  7 Argenti…  2004       3 Néstor Car…
+##  8 Argenti…  2004       4 Néstor Car…
+##  9 Argenti…  2005       1 Néstor Car…
+## 10 Argenti…  2005       2 Néstor Car…
+## # … with 446 more rows, and 8 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 </div>
 <div id="ejercicios-c" class="section level4">
 <h4>(Ejercicios C)</h4>
@@ -830,87 +861,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Podemos cambiar el orden de las observaciones con el comando <code>arrange()</code>. Por ejemplo, ordenémoslas desde el país-año-trimestre menos corrupto al más corrupto:</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="manejo-02a.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df_aprob, exec_corr)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
-##    country  year quarter president       
-##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Uruguay  2000       1 Julio Sanguietti
-##  2 Uruguay  2000       2 Jorge Battle    
-##  3 Uruguay  2000       3 Jorge Battle    
-##  4 Uruguay  2000       4 Jorge Battle    
-##  5 Uruguay  2001       1 Jorge Battle    
-##  6 Uruguay  2001       2 Jorge Battle    
-##  7 Uruguay  2001       3 Jorge Battle    
-##  8 Uruguay  2001       4 Jorge Battle    
-##  9 Uruguay  2002       1 Jorge Battle    
-## 10 Uruguay  2002       2 Jorge Battle    
-## # ... with 1,010 more rows, and 8 more
+##    country  year quarter president   
+##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       
+##  1 Uruguay  2000       1 Julio Sangu…
+##  2 Uruguay  2000       2 Jorge Battle
+##  3 Uruguay  2000       3 Jorge Battle
+##  4 Uruguay  2000       4 Jorge Battle
+##  5 Uruguay  2001       1 Jorge Battle
+##  6 Uruguay  2001       2 Jorge Battle
+##  7 Uruguay  2001       3 Jorge Battle
+##  8 Uruguay  2001       4 Jorge Battle
+##  9 Uruguay  2002       1 Jorge Battle
+## 10 Uruguay  2002       2 Jorge Battle
+## # … with 1,010 more rows, and 8 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Si quisiéramos ordenarlo inversamente, tendríamos que añadir un - (signo menos) antes de la variable:</p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="manejo-02a.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df_aprob, <span class="sc">-</span>exec_corr)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
-##    country    year quarter president     
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;         
-##  1 Venezuela  2013       1 Hugo Chávez   
-##  2 Venezuela  2013       2 Nicolás Maduro
-##  3 Venezuela  2013       3 Nicolás Maduro
-##  4 Venezuela  2013       4 Nicolás Maduro
-##  5 Venezuela  2014       1 Nicolás Maduro
-##  6 Venezuela  2014       2 Nicolás Maduro
-##  7 Venezuela  2014       3 Nicolás Maduro
-##  8 Venezuela  2014       4 Nicolás Maduro
-##  9 Venezuela  2007       1 Hugo Chávez   
-## 10 Venezuela  2007       2 Hugo Chávez   
-## # ... with 1,010 more rows, and 8 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Venezue…  2013       1 Hugo Chávez
+##  2 Venezue…  2013       2 Nicolás Ma…
+##  3 Venezue…  2013       3 Nicolás Ma…
+##  4 Venezue…  2013       4 Nicolás Ma…
+##  5 Venezue…  2014       1 Nicolás Ma…
+##  6 Venezue…  2014       2 Nicolás Ma…
+##  7 Venezue…  2014       3 Nicolás Ma…
+##  8 Venezue…  2014       4 Nicolás Ma…
+##  9 Venezue…  2007       1 Hugo Chávez
+## 10 Venezue…  2007       2 Hugo Chávez
+## # … with 1,010 more rows, and 8 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Atención, lo anterior solo sirve en columnas numéricas. Para ordenar una categórica inversamente, debemos usar el comando <code>desc()</code>:</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="manejo-02a.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df_aprob, <span class="fu">desc</span>(country))</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
-##    country    year quarter president  
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
-##  1 Venezuela  2000       1 Hugo Chávez
-##  2 Venezuela  2000       2 Hugo Chávez
-##  3 Venezuela  2000       3 Hugo Chávez
-##  4 Venezuela  2000       4 Hugo Chávez
-##  5 Venezuela  2001       1 Hugo Chávez
-##  6 Venezuela  2001       2 Hugo Chávez
-##  7 Venezuela  2001       3 Hugo Chávez
-##  8 Venezuela  2001       4 Hugo Chávez
-##  9 Venezuela  2002       1 Hugo Chávez
-## 10 Venezuela  2002       2 Hugo Chávez
-## # ... with 1,010 more rows, and 8 more
+##    country    year quarter president 
+##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     
+##  1 Venezuela  2000       1 Hugo Cháv…
+##  2 Venezuela  2000       2 Hugo Cháv…
+##  3 Venezuela  2000       3 Hugo Cháv…
+##  4 Venezuela  2000       4 Hugo Cháv…
+##  5 Venezuela  2001       1 Hugo Cháv…
+##  6 Venezuela  2001       2 Hugo Cháv…
+##  7 Venezuela  2001       3 Hugo Cháv…
+##  8 Venezuela  2001       4 Hugo Cháv…
+##  9 Venezuela  2002       1 Hugo Cháv…
+## 10 Venezuela  2002       2 Hugo Cháv…
+## # … with 1,010 more rows, and 8 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 <p>Podemos ordenar por más de una variable. Esto es, ordenar a partir de una primera variable y luego ordenar los empates a partir de otra segunda variable. Veamos el siguiente ejemplo:</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="manejo-02a.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df_aprob, pres_sex, <span class="sc">-</span>net_approval)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 12
-##    country   year quarter president        
-##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            
-##  1 Brazil    2013       1 Dilma Vana Rouss~
-##  2 Brazil    2012       4 Dilma Vana Rouss~
-##  3 Brazil    2012       2 Dilma Vana Rouss~
-##  4 Brazil    2012       3 Dilma Vana Rouss~
-##  5 Brazil    2012       1 Dilma Vana Rouss~
-##  6 Brazil    2011       4 Dilma Vana Rouss~
-##  7 Brazil    2011       1 Dilma Vana Rouss~
-##  8 Brazil    2011       3 Dilma Vana Rouss~
-##  9 Brazil    2013       2 Dilma Vana Rouss~
-## 10 Argenti~  2011       4 Cristina Fernánd~
-## # ... with 1,010 more rows, and 8 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Brazil    2013       1 Dilma Vana…
+##  2 Brazil    2012       4 Dilma Vana…
+##  3 Brazil    2012       2 Dilma Vana…
+##  4 Brazil    2012       3 Dilma Vana…
+##  5 Brazil    2012       1 Dilma Vana…
+##  6 Brazil    2011       4 Dilma Vana…
+##  7 Brazil    2011       1 Dilma Vana…
+##  8 Brazil    2011       3 Dilma Vana…
+##  9 Brazil    2013       2 Dilma Vana…
+## 10 Argenti…  2011       4 Cristina F…
+## # … with 1,010 more rows, and 8 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;</code></pre>
 </div>
 <div id="transformar-variables-con-mutate" class="section level4">
 <h4>Transformar variables con <code>mutate()</code></h4>
@@ -919,69 +954,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Supongamos que queremos crear una variable con el PIB en versión logarítmica:</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="manejo-02a.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_aprob, <span class="at">wdi_gdp_log =</span> <span class="fu">log</span>(wdi_gdp))</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 13
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2000       4 Fernando de la ~
-##  5 Argentina  2001       1 Fernando de la ~
-##  6 Argentina  2001       2 Fernando de la ~
-##  7 Argentina  2001       3 Fernando de la ~
-##  8 Argentina  2001       4 Fernando de la ~
-##  9 Argentina  2002       1 Eduardo Alberto~
-## 10 Argentina  2002       2 Eduardo Alberto~
-## # ... with 1,010 more rows, and 9 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2000       4 Fernando d…
+##  5 Argenti…  2001       1 Fernando d…
+##  6 Argenti…  2001       2 Fernando d…
+##  7 Argenti…  2001       3 Fernando d…
+##  8 Argenti…  2001       4 Fernando d…
+##  9 Argenti…  2002       1 Eduardo Al…
+## 10 Argenti…  2002       2 Eduardo Al…
+## # … with 1,010 more rows, and 9 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;, wdi_gdp_log &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;,
+## #   wdi_gdp_log &lt;dbl&gt;</code></pre>
 <p>Podemos realizar cualquier tipo de operación en las variables. Por ejemplo, transformemos la escala de <code>wdi_pop</code> a millones:</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="manejo-02a.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_aprob, <span class="at">wdi_pop_mill =</span> wdi_pop <span class="sc">/</span> <span class="dv">1000000</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 13
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2000       4 Fernando de la ~
-##  5 Argentina  2001       1 Fernando de la ~
-##  6 Argentina  2001       2 Fernando de la ~
-##  7 Argentina  2001       3 Fernando de la ~
-##  8 Argentina  2001       4 Fernando de la ~
-##  9 Argentina  2002       1 Eduardo Alberto~
-## 10 Argentina  2002       2 Eduardo Alberto~
-## # ... with 1,010 more rows, and 9 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2000       4 Fernando d…
+##  5 Argenti…  2001       1 Fernando d…
+##  6 Argenti…  2001       2 Fernando d…
+##  7 Argenti…  2001       3 Fernando d…
+##  8 Argenti…  2001       4 Fernando d…
+##  9 Argenti…  2002       1 Eduardo Al…
+## 10 Argenti…  2002       2 Eduardo Al…
+## # … with 1,010 more rows, and 9 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;, wdi_pop_mill &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;,
+## #   wdi_pop_mill &lt;dbl&gt;</code></pre>
 </div>
 <div id="transformaciones-con-múltiples-variables" class="section level6">
 <h6>Transformaciones con múltiples variables</h6>
 <p>Crucialmente, podemos generar operaciones entre las variables. Por ejemplo, calculemos el GDP <em>per capita</em>:</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="manejo-02a.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_aprob, <span class="at">wdi_gdp_pc =</span> wdi_gdp <span class="sc">/</span> wdi_pop)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 13
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2000       4 Fernando de la ~
-##  5 Argentina  2001       1 Fernando de la ~
-##  6 Argentina  2001       2 Fernando de la ~
-##  7 Argentina  2001       3 Fernando de la ~
-##  8 Argentina  2001       4 Fernando de la ~
-##  9 Argentina  2002       1 Eduardo Alberto~
-## 10 Argentina  2002       2 Eduardo Alberto~
-## # ... with 1,010 more rows, and 9 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2000       4 Fernando d…
+##  5 Argenti…  2001       1 Fernando d…
+##  6 Argenti…  2001       2 Fernando d…
+##  7 Argenti…  2001       3 Fernando d…
+##  8 Argenti…  2001       4 Fernando d…
+##  9 Argenti…  2002       1 Eduardo Al…
+## 10 Argenti…  2002       2 Eduardo Al…
+## # … with 1,010 more rows, and 9 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;, wdi_gdp_pc &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;,
+## #   wdi_gdp_pc &lt;dbl&gt;</code></pre>
 </div>
 <div id="varias-transformaciones-a-la-vez" class="section level6">
 <h6>Varias transformaciones a la vez:</h6>
@@ -990,24 +1031,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb130-2"><a href="manejo-02a.html#cb130-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">wdi_pop_mill =</span> wdi_pop <span class="sc">/</span> <span class="dv">1000000</span>,</span>
 <span id="cb130-3"><a href="manejo-02a.html#cb130-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">wdi_gdp_pc   =</span> wdi_gdp <span class="sc">/</span> wdi_pop)</span></code></pre></div>
 <pre><code>## # A tibble: 1,020 x 14
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2000       4 Fernando de la ~
-##  5 Argentina  2001       1 Fernando de la ~
-##  6 Argentina  2001       2 Fernando de la ~
-##  7 Argentina  2001       3 Fernando de la ~
-##  8 Argentina  2001       4 Fernando de la ~
-##  9 Argentina  2002       1 Eduardo Alberto~
-## 10 Argentina  2002       2 Eduardo Alberto~
-## # ... with 1,010 more rows, and 10 more
-## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;, wdi_pop_mill &lt;dbl&gt;,
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2000       4 Fernando d…
+##  5 Argenti…  2001       1 Fernando d…
+##  6 Argenti…  2001       2 Fernando d…
+##  7 Argenti…  2001       3 Fernando d…
+##  8 Argenti…  2001       4 Fernando d…
+##  9 Argenti…  2002       1 Eduardo Al…
+## 10 Argenti…  2002       2 Eduardo Al…
+## # … with 1,010 more rows, and 10
+## #   more variables:
+## #   net_approval &lt;dbl&gt;,
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;,
+## #   wdi_pop_mill &lt;dbl&gt;,
 ## #   wdi_gdp_pc &lt;dbl&gt;</code></pre>
 </div>
 </div>
@@ -1043,43 +1087,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Rows: 1,020
 ## Columns: 12
 ## Groups: country [17]
-## $ country      &lt;chr&gt; &quot;Argentina&quot;, &quot;Argent~
-## $ year         &lt;dbl&gt; 2000, 2000, 2000, 20~
-## $ quarter      &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3,~
-## $ president    &lt;chr&gt; &quot;Fernando de la Rúa&quot;~
-## $ net_approval &lt;dbl&gt; 40.126, 16.390, 23.9~
-## $ pres_sex     &lt;chr&gt; &quot;male&quot;, &quot;male&quot;, &quot;mal~
-## $ pres_sex_d   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0,~
-## $ exec_corr    &lt;dbl&gt; 14.01525, 14.01525, ~
-## $ gdp_growth   &lt;dbl&gt; -0.8, -0.8, -0.8, -0~
-## $ unemp        &lt;dbl&gt; 15.00, 15.00, 15.00,~
-## $ wdi_gdp      &lt;dbl&gt; 552151219031, 552151~
-## $ wdi_pop      &lt;dbl&gt; 37057452, 37057452, ~</code></pre>
+## $ country      &lt;chr&gt; &quot;Argentina&quot;, &quot;…
+## $ year         &lt;dbl&gt; 2000, 2000, 20…
+## $ quarter      &lt;dbl&gt; 1, 2, 3, 4, 1,…
+## $ president    &lt;chr&gt; &quot;Fernando de l…
+## $ net_approval &lt;dbl&gt; 40.126, 16.390…
+## $ pres_sex     &lt;chr&gt; &quot;male&quot;, &quot;male&quot;…
+## $ pres_sex_d   &lt;dbl&gt; 0, 0, 0, 0, 0,…
+## $ exec_corr    &lt;dbl&gt; 14.01525, 14.0…
+## $ gdp_growth   &lt;dbl&gt; -0.8, -0.8, -0…
+## $ unemp        &lt;dbl&gt; 15.0, 15.0, 15…
+## $ wdi_gdp      &lt;dbl&gt; 552151219031, …
+## $ wdi_pop      &lt;dbl&gt; 37057452, 3705…</code></pre>
 <p>Hagamos una operación de resumen en esta nueva base:</p>
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="manejo-02a.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(df_aprob_por_pais, </span>
 <span id="cb138-2"><a href="manejo-02a.html#cb138-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_desemp   =</span> <span class="fu">mean</span>(unemp),</span>
 <span id="cb138-3"><a href="manejo-02a.html#cb138-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_crec     =</span> <span class="fu">mean</span>(gdp_growth),</span>
 <span id="cb138-4"><a href="manejo-02a.html#cb138-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">prom_aprob    =</span> <span class="fu">mean</span>(net_approval))</span></code></pre></div>
 <pre><code>## # A tibble: 17 x 4
-##    country prom_desemp prom_crec prom_aprob
-##    &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
-##  1 Argent~       11.0       2.72      16.7 
-##  2 Bolivia        3.70      4.24      11.3 
-##  3 Brazil         8.35      3.4       34.2 
-##  4 Chile          8.18      4.33       5.71
-##  5 Colomb~       12.5       4.35      27.1 
-##  6 Costa ~        6.73      4.15      14.5 
-##  7 Ecuador        6.76      4.31      37.1 
-##  8 El Sal~        5.75      1.87      39.1 
-##  9 Guatem~        2.80      3.47       5.44
-## 10 Hondur~        4.22      4.08      12.7 
-## 11 Mexico         3.99      2.10      28.9 
-## 12 Nicara~        6.78      3.73      16.2 
-## 13 Panama         8.45      6.31      14.2 
-## 14 Paragu~        5.69      3.66      10.9 
-## 15 Peru           4.32      5.30     -26.2 
-## 16 Uruguay       10.3       3.08      26.9 
-## 17 Venezu~       10.3       3.04     -14.8</code></pre>
+##    country     prom_desemp prom_crec
+##    &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Argentina         11.0       2.72
+##  2 Bolivia            3.70      4.24
+##  3 Brazil             8.35      3.4 
+##  4 Chile              8.18      4.33
+##  5 Colombia          12.5       4.35
+##  6 Costa Rica         6.73      4.15
+##  7 Ecuador            6.76      4.31
+##  8 El Salvador        5.75      1.87
+##  9 Guatemala          2.80      3.47
+## 10 Honduras           4.22      4.08
+## 11 Mexico             3.99      2.10
+## 12 Nicaragua          6.78      3.73
+## 13 Panama             8.45      6.31
+## 14 Paraguay           5.69      3.66
+## 15 Peru               4.32      5.30
+## 16 Uruguay           10.3       3.08
+## 17 Venezuela         10.3       3.04
+## # … with 1 more variable:
+## #   prom_aprob &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <div id="hacer-cadenas-de-operaciones-con-las-pipes" class="section level2">
@@ -1088,47 +1134,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="manejo-02a.html#cb140-1" aria-hidden="true" tabindex="-1"></a>df_aprob_con_pib_pc <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df_aprob, <span class="at">pib_pc =</span> wdi_gdp <span class="sc">/</span> wdi_pop)</span>
 <span id="cb140-2"><a href="manejo-02a.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_aprob_con_pib_pc, pib_pc <span class="sc">&gt;</span> <span class="fu">mean</span>(pib_pc))</span></code></pre></div>
 <pre><code>## # A tibble: 492 x 13
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2000       4 Fernando de la ~
-##  5 Argentina  2001       1 Fernando de la ~
-##  6 Argentina  2001       2 Fernando de la ~
-##  7 Argentina  2001       3 Fernando de la ~
-##  8 Argentina  2001       4 Fernando de la ~
-##  9 Argentina  2002       1 Eduardo Alberto~
-## 10 Argentina  2002       2 Eduardo Alberto~
-## # ... with 482 more rows, and 9 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2000       4 Fernando d…
+##  5 Argenti…  2001       1 Fernando d…
+##  6 Argenti…  2001       2 Fernando d…
+##  7 Argenti…  2001       3 Fernando d…
+##  8 Argenti…  2001       4 Fernando d…
+##  9 Argenti…  2002       1 Eduardo Al…
+## 10 Argenti…  2002       2 Eduardo Al…
+## # … with 482 more rows, and 9 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;, pib_pc &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;,
+## #   pib_pc &lt;dbl&gt;</code></pre>
 <p>Esta misma cadena de operaciones se puede escribir de la siguiente forma:</p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="manejo-02a.html#cb142-1" aria-hidden="true" tabindex="-1"></a>df_aprob <span class="sc">%&gt;%</span> </span>
 <span id="cb142-2"><a href="manejo-02a.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pib_pc =</span> wdi_gdp <span class="sc">/</span> wdi_pop) <span class="sc">%&gt;%</span> </span>
 <span id="cb142-3"><a href="manejo-02a.html#cb142-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pib_pc <span class="sc">&gt;</span> <span class="fu">mean</span>(pib_pc))</span></code></pre></div>
 <pre><code>## # A tibble: 492 x 13
-##    country    year quarter president       
-##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           
-##  1 Argentina  2000       1 Fernando de la ~
-##  2 Argentina  2000       2 Fernando de la ~
-##  3 Argentina  2000       3 Fernando de la ~
-##  4 Argentina  2000       4 Fernando de la ~
-##  5 Argentina  2001       1 Fernando de la ~
-##  6 Argentina  2001       2 Fernando de la ~
-##  7 Argentina  2001       3 Fernando de la ~
-##  8 Argentina  2001       4 Fernando de la ~
-##  9 Argentina  2002       1 Eduardo Alberto~
-## 10 Argentina  2002       2 Eduardo Alberto~
-## # ... with 482 more rows, and 9 more
+##    country   year quarter president  
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+##  1 Argenti…  2000       1 Fernando d…
+##  2 Argenti…  2000       2 Fernando d…
+##  3 Argenti…  2000       3 Fernando d…
+##  4 Argenti…  2000       4 Fernando d…
+##  5 Argenti…  2001       1 Fernando d…
+##  6 Argenti…  2001       2 Fernando d…
+##  7 Argenti…  2001       3 Fernando d…
+##  8 Argenti…  2001       4 Fernando d…
+##  9 Argenti…  2002       1 Eduardo Al…
+## 10 Argenti…  2002       2 Eduardo Al…
+## # … with 482 more rows, and 9 more
 ## #   variables: net_approval &lt;dbl&gt;,
-## #   pres_sex &lt;chr&gt;, pres_sex_d &lt;dbl&gt;,
-## #   exec_corr &lt;dbl&gt;, gdp_growth &lt;dbl&gt;,
-## #   unemp &lt;dbl&gt;, wdi_gdp &lt;dbl&gt;,
-## #   wdi_pop &lt;dbl&gt;, pib_pc &lt;dbl&gt;</code></pre>
+## #   pres_sex &lt;chr&gt;,
+## #   pres_sex_d &lt;dbl&gt;,
+## #   exec_corr &lt;dbl&gt;,
+## #   gdp_growth &lt;dbl&gt;, unemp &lt;dbl&gt;,
+## #   wdi_gdp &lt;dbl&gt;, wdi_pop &lt;dbl&gt;,
+## #   pib_pc &lt;dbl&gt;</code></pre>
 <p>¡Este código es sorprendemente legible! Las pipes (<code>%&gt;%</code>) se leen como “luego” (o “pero luego”) y se insertan con Ctrl/Cmd + Shift + M en RStudio. Pueden ver todos los atajos de teclado en Help &gt; Keyboard Shortcuts Help.</p>
 <p>Uno de los usos más comunes de las pipes es el combo <code>group_by()</code> + <code>summarize()</code>. Repitamos nuestras operaciones de antes para hacer un resumen agrupado:</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="manejo-02a.html#cb144-1" aria-hidden="true" tabindex="-1"></a>df_aprob <span class="sc">%&gt;%</span> </span>
@@ -1137,25 +1187,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb144-4"><a href="manejo-02a.html#cb144-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">prom_crec     =</span> <span class="fu">mean</span>(gdp_growth),</span>
 <span id="cb144-5"><a href="manejo-02a.html#cb144-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">prom_aprob    =</span> <span class="fu">mean</span>(net_approval))</span></code></pre></div>
 <pre><code>## # A tibble: 17 x 4
-##    country prom_desemp prom_crec prom_aprob
-##    &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
-##  1 Argent~       11.0       2.72      16.7 
-##  2 Bolivia        3.70      4.24      11.3 
-##  3 Brazil         8.35      3.4       34.2 
-##  4 Chile          8.18      4.33       5.71
-##  5 Colomb~       12.5       4.35      27.1 
-##  6 Costa ~        6.73      4.15      14.5 
-##  7 Ecuador        6.76      4.31      37.1 
-##  8 El Sal~        5.75      1.87      39.1 
-##  9 Guatem~        2.80      3.47       5.44
-## 10 Hondur~        4.22      4.08      12.7 
-## 11 Mexico         3.99      2.10      28.9 
-## 12 Nicara~        6.78      3.73      16.2 
-## 13 Panama         8.45      6.31      14.2 
-## 14 Paragu~        5.69      3.66      10.9 
-## 15 Peru           4.32      5.30     -26.2 
-## 16 Uruguay       10.3       3.08      26.9 
-## 17 Venezu~       10.3       3.04     -14.8</code></pre>
+##    country     prom_desemp prom_crec
+##    &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Argentina         11.0       2.72
+##  2 Bolivia            3.70      4.24
+##  3 Brazil             8.35      3.4 
+##  4 Chile              8.18      4.33
+##  5 Colombia          12.5       4.35
+##  6 Costa Rica         6.73      4.15
+##  7 Ecuador            6.76      4.31
+##  8 El Salvador        5.75      1.87
+##  9 Guatemala          2.80      3.47
+## 10 Honduras           4.22      4.08
+## 11 Mexico             3.99      2.10
+## 12 Nicaragua          6.78      3.73
+## 13 Panama             8.45      6.31
+## 14 Paraguay           5.69      3.66
+## 15 Peru               4.32      5.30
+## 16 Uruguay           10.3       3.08
+## 17 Venezuela         10.3       3.04
+## # … with 1 more variable:
+## #   prom_aprob &lt;dbl&gt;</code></pre>
 <div id="ejercicios-e-g" class="section level4">
 <h4>(Ejercicios E-G)</h4>
 <p>E. Calcula, ayudándote de las pipes, la mediana por país de corrupción ejecutiva y PIB. Recuerda que puedes insertar chunks con Ctrl/Cmd + Alt + i y pipes con Ctrl/Cmd + Shift + M. Tu código:</p>
@@ -1194,6 +1246,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": {}
 },
 "fontsettings": {

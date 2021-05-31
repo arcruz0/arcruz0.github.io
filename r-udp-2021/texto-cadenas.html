@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>06B - Cadenas de texto | Programación en Ciencias Sociales</title>
   <meta name="description" content="Sitio web CPO3523 (2021)" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="06B - Cadenas de texto | Programación en Ciencias Sociales" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Andrés Cruz" />
 
 
-<meta name="date" content="2021-05-10" />
+<meta name="date" content="2021-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="texto-analisis.html"/>
 <link rel="next" href="texto-libros.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -59,6 +61,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -118,6 +121,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -231,6 +235,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="texto-cadenas.html"><a href="texto-cadenas.html#ejercicio-f"><i class="fa fa-check"></i>(Ejercicio f)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="texto-libros.html"><a href="texto-libros.html"><i class="fa fa-check"></i>06C - Descarga de libros</a></li>
+<li class="part"><span><b>VII Minería de datos y R avanzado</b></span></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html"><i class="fa fa-check"></i>07A - Herramientas de programación</a>
+<ul>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#funciones-personalizadas-y-control-de-flujo"><i class="fa fa-check"></i>Funciones personalizadas y control de flujo</a></li>
+<li><a href="herr-prog.html#iteraciones-con-purrr">Iteraciones con <code>purrr</code></a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-1-programas-de-candidaturas"><i class="fa fa-check"></i>Aplicación 1: programas de candidaturas</a></li>
+<li class="chapter" data-level="" data-path="herr-prog.html"><a href="herr-prog.html#aplicación-2-varios-archivos-excel"><i class="fa fa-check"></i>Aplicación 2: varios archivos Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i>07B - Web scraping</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#inicio-cargar-paquetes"><i class="fa fa-check"></i>Inicio: cargar paquetes</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#web-scraping-1"><i class="fa fa-check"></i>Web scraping</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#descargar-múltiples-páginas-con-una-iteración"><i class="fa fa-check"></i>Descargar múltiples páginas con una iteración</a></li>
+<li class="chapter" data-level="" data-path="web-scraping.html"><a href="web-scraping.html#generalizar-el-proceso-de-limpieza-de-los-datos-con-una-función"><i class="fa fa-check"></i>Generalizar el proceso de limpieza de los datos con una función</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 </ul>
@@ -255,9 +274,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Como al principio de todo script, recomiendo reiniciar R. Esto lo conseguimos en RStudio Cloud con Session &gt; Restart R y clickeando en la escoba del panel de “Environment” (superior derecho).</p>
 <div id="inicio-cargar-paquetes-base-de-datos-4" class="section level2">
 <h2>Inicio: cargar paquetes, base de datos</h2>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="texto-cadenas.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="texto-cadenas.html#cb343-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/df_legisladores_cargos.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="texto-cadenas.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="texto-cadenas.html#cb342-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/df_legisladores_cargos.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ─────────────
 ## cols(
 ##   nombre_comp = col_character(),
 ##   id = col_double(),
@@ -268,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="cadenas-de-texto" class="section level2">
 <h2>Cadenas de texto</h2>
 <p>Los elementos en un vector de caracteres se pueden denominar “strings” o cadenas de texto. Veamos los primeros elementos del vector “caja_trayectoria”:</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="texto-cadenas.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_legisladores_cargos<span class="sc">$</span>caja_trayectoria)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="texto-cadenas.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_legisladores_cargos<span class="sc">$</span>caja_trayectoria)</span></code></pre></div>
 <pre><code>## [1] &quot;\nSenador institucional \n1998- 2006\n&quot;                                                                            
 ## [2] &quot;\nDiputado \n2010- 2014\nDistrito N° 24Partido por la DemocraciaSucedido por: Jaime Hernán Gonzalo Pilowsky Greene&quot;
 ## [3] &quot;\nDiputado \n2006- 2010\nDistrito N° 24Partido por la Democracia&quot;                                                  
@@ -282,23 +302,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Algunas operaciones simples con texto</h2>
 <div id="cambiar-mayúsculas" class="section level3">
 <h3>Cambiar mayúsculas</h3>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="texto-cadenas.html#cb347-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb347-2"><a href="texto-cadenas.html#cb347-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_to_lower</span>(caja_trayectoria)) <span class="sc">%&gt;%</span> </span>
-<span id="cb347-3"><a href="texto-cadenas.html#cb347-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="texto-cadenas.html#cb346-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb346-2"><a href="texto-cadenas.html#cb346-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_to_lower</span>(caja_trayectoria)) <span class="sc">%&gt;%</span> </span>
+<span id="cb346-3"><a href="texto-cadenas.html#cb346-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 2
-##    caja_trayectoria     caja_trayectoria_e~
-##    &lt;chr&gt;                &lt;chr&gt;              
-##  1 &quot;\nSenador instituc~ &quot;\nsenador institu~
-##  2 &quot;\nDiputado \n2010-~ &quot;\ndiputado \n2010~
-##  3 &quot;\nDiputado \n2006-~ &quot;\ndiputado \n2006~
-##  4 &quot;\nDiputado \n2002-~ &quot;\ndiputado \n2002~
-##  5 &quot;\nDiputado \n1998-~ &quot;\ndiputado \n1998~
-##  6 &quot;\nDiputado \n1994-~ &quot;\ndiputado \n1994~
-##  7 &quot;\nDiputado \n1990-~ &quot;\ndiputado \n1990~
-##  8 &quot;\nDiputado \n2006-~ &quot;\ndiputado \n2006~
-##  9 &quot;\nDiputado \n2014-~ &quot;\ndiputado \n2014~
-## 10 &quot;\nDiputado \n2010-~ &quot;\ndiputado \n2010~
-## # ... with 1,181 more rows</code></pre>
+##    caja_trayectoria  caja_trayectori…
+##    &lt;chr&gt;             &lt;chr&gt;           
+##  1 &quot;\nSenador insti… &quot;\nsenador inst…
+##  2 &quot;\nDiputado \n20… &quot;\ndiputado \n2…
+##  3 &quot;\nDiputado \n20… &quot;\ndiputado \n2…
+##  4 &quot;\nDiputado \n20… &quot;\ndiputado \n2…
+##  5 &quot;\nDiputado \n19… &quot;\ndiputado \n1…
+##  6 &quot;\nDiputado \n19… &quot;\ndiputado \n1…
+##  7 &quot;\nDiputado \n19… &quot;\ndiputado \n1…
+##  8 &quot;\nDiputado \n20… &quot;\ndiputado \n2…
+##  9 &quot;\nDiputado \n20… &quot;\ndiputado \n2…
+## 10 &quot;\nDiputado \n20… &quot;\ndiputado \n2…
+## # … with 1,181 more rows</code></pre>
 <div id="ejercicio-a-6" class="section level4">
 <h4>(Ejercicio a)</h4>
 <p>Mira el archivo de ayuda de <code>str_to_lower()</code>. ¿Qué otras operaciones podemos hacer con las mayúsculas? Pruébalas con el ejemplo anterior. Tu código:</p>
@@ -306,161 +326,161 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="eliminar-espacios-innecesarios" class="section level3">
 <h3>Eliminar espacios innecesarios</h3>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="texto-cadenas.html#cb349-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb349-2"><a href="texto-cadenas.html#cb349-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_squish</span>(caja_trayectoria)) <span class="sc">%&gt;%</span> </span>
-<span id="cb349-3"><a href="texto-cadenas.html#cb349-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="texto-cadenas.html#cb348-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb348-2"><a href="texto-cadenas.html#cb348-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_squish</span>(caja_trayectoria)) <span class="sc">%&gt;%</span> </span>
+<span id="cb348-3"><a href="texto-cadenas.html#cb348-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 2
-##    caja_trayectoria     caja_trayectoria_e~
-##    &lt;chr&gt;                &lt;chr&gt;              
-##  1 &quot;\nSenador instituc~ Senador institucio~
-##  2 &quot;\nDiputado \n2010-~ Diputado 2010- 201~
-##  3 &quot;\nDiputado \n2006-~ Diputado 2006- 201~
-##  4 &quot;\nDiputado \n2002-~ Diputado 2002- 200~
-##  5 &quot;\nDiputado \n1998-~ Diputado 1998- 200~
-##  6 &quot;\nDiputado \n1994-~ Diputado 1994- 199~
-##  7 &quot;\nDiputado \n1990-~ Diputado 1990- 199~
-##  8 &quot;\nDiputado \n2006-~ Diputado 2006- 201~
-##  9 &quot;\nDiputado \n2014-~ Diputado 2014- 201~
-## 10 &quot;\nDiputado \n2010-~ Diputado 2010- 201~
-## # ... with 1,181 more rows</code></pre>
+##    caja_trayectoria  caja_trayectori…
+##    &lt;chr&gt;             &lt;chr&gt;           
+##  1 &quot;\nSenador insti… Senador institu…
+##  2 &quot;\nDiputado \n20… Diputado 2010- …
+##  3 &quot;\nDiputado \n20… Diputado 2006- …
+##  4 &quot;\nDiputado \n20… Diputado 2002- …
+##  5 &quot;\nDiputado \n19… Diputado 1998- …
+##  6 &quot;\nDiputado \n19… Diputado 1994- …
+##  7 &quot;\nDiputado \n19… Diputado 1990- …
+##  8 &quot;\nDiputado \n20… Diputado 2006- …
+##  9 &quot;\nDiputado \n20… Diputado 2014- …
+## 10 &quot;\nDiputado \n20… Diputado 2010- …
+## # … with 1,181 more rows</code></pre>
 </div>
 <div id="obtener-número-de-caracteres" class="section level3">
 <h3>Obtener número de caracteres</h3>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="texto-cadenas.html#cb351-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb351-2"><a href="texto-cadenas.html#cb351-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_length</span>(caja_trayectoria)) <span class="sc">%&gt;%</span> </span>
-<span id="cb351-3"><a href="texto-cadenas.html#cb351-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="texto-cadenas.html#cb350-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb350-2"><a href="texto-cadenas.html#cb350-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_length</span>(caja_trayectoria)) <span class="sc">%&gt;%</span> </span>
+<span id="cb350-3"><a href="texto-cadenas.html#cb350-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 2
-##    caja_trayectoria       caja_trayectoria~
-##    &lt;chr&gt;                              &lt;int&gt;
-##  1 &quot;\nSenador institucio~                35
-##  2 &quot;\nDiputado \n2010- 2~               111
-##  3 &quot;\nDiputado \n2006- 2~                61
-##  4 &quot;\nDiputado \n2002- 2~               103
-##  5 &quot;\nDiputado \n1998- 2~                98
-##  6 &quot;\nDiputado \n1994- 1~                63
-##  7 &quot;\nDiputado \n1990- 1~                63
-##  8 &quot;\nDiputado \n2006- 2~               133
-##  9 &quot;\nDiputado \n2014- 2~                50
-## 10 &quot;\nDiputado \n2010- 2~                56
-## # ... with 1,181 more rows</code></pre>
+##    caja_trayectoria  caja_trayectori…
+##    &lt;chr&gt;                        &lt;int&gt;
+##  1 &quot;\nSenador insti…               35
+##  2 &quot;\nDiputado \n20…              111
+##  3 &quot;\nDiputado \n20…               61
+##  4 &quot;\nDiputado \n20…              103
+##  5 &quot;\nDiputado \n19…               98
+##  6 &quot;\nDiputado \n19…               63
+##  7 &quot;\nDiputado \n19…               63
+##  8 &quot;\nDiputado \n20…              133
+##  9 &quot;\nDiputado \n20…               50
+## 10 &quot;\nDiputado \n20…               56
+## # … with 1,181 more rows</code></pre>
 </div>
 </div>
 <div id="funciones-para-trabajar-con-patrones" class="section level2">
 <h2>Funciones para trabajar con patrones</h2>
 <p>En general, podemos encontrar patrones en las cadenas que nos permitirán interpretar la información que contienen. Como los datos de texto suelen ser desestructurados, tendremos que idear estos patrones <em>ad hoc</em>, caso a caso.</p>
 <p>El patrón más sencillo es simplemente una serie textual de caracteres. Por ejemplo, podemos ocupar la función lógica <code>str_detect()</code> para marcar todas las observaciones que incluyen la serie de caracteres “Diputad” en la variable “caja_trayectoria”:</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="texto-cadenas.html#cb353-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb353-2"><a href="texto-cadenas.html#cb353-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_detect</span>(caja_trayectoria,</span>
-<span id="cb353-3"><a href="texto-cadenas.html#cb353-3" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">pattern =</span> <span class="st">&quot;Diputad&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb353-4"><a href="texto-cadenas.html#cb353-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="texto-cadenas.html#cb352-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb352-2"><a href="texto-cadenas.html#cb352-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_detect</span>(caja_trayectoria,</span>
+<span id="cb352-3"><a href="texto-cadenas.html#cb352-3" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">pattern =</span> <span class="st">&quot;Diputad&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb352-4"><a href="texto-cadenas.html#cb352-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 2
-##    caja_trayectoria       caja_trayectoria~
-##    &lt;chr&gt;                  &lt;lgl&gt;            
-##  1 &quot;\nSenador institucio~ FALSE            
-##  2 &quot;\nDiputado \n2010- 2~ TRUE             
-##  3 &quot;\nDiputado \n2006- 2~ TRUE             
-##  4 &quot;\nDiputado \n2002- 2~ TRUE             
-##  5 &quot;\nDiputado \n1998- 2~ TRUE             
-##  6 &quot;\nDiputado \n1994- 1~ TRUE             
-##  7 &quot;\nDiputado \n1990- 1~ TRUE             
-##  8 &quot;\nDiputado \n2006- 2~ TRUE             
-##  9 &quot;\nDiputado \n2014- 2~ TRUE             
-## 10 &quot;\nDiputado \n2010- 2~ TRUE             
-## # ... with 1,181 more rows</code></pre>
+##    caja_trayectoria  caja_trayectori…
+##    &lt;chr&gt;             &lt;lgl&gt;           
+##  1 &quot;\nSenador insti… FALSE           
+##  2 &quot;\nDiputado \n20… TRUE            
+##  3 &quot;\nDiputado \n20… TRUE            
+##  4 &quot;\nDiputado \n20… TRUE            
+##  5 &quot;\nDiputado \n19… TRUE            
+##  6 &quot;\nDiputado \n19… TRUE            
+##  7 &quot;\nDiputado \n19… TRUE            
+##  8 &quot;\nDiputado \n20… TRUE            
+##  9 &quot;\nDiputado \n20… TRUE            
+## 10 &quot;\nDiputado \n20… TRUE            
+## # … with 1,181 more rows</code></pre>
 <p>Como sabemos, las funciones lógicas nos permiten filtrar bases:</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="texto-cadenas.html#cb355-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb355-2"><a href="texto-cadenas.html#cb355-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(caja_trayectoria, <span class="at">pattern =</span> <span class="st">&quot;Diputad&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb355-3"><a href="texto-cadenas.html#cb355-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="texto-cadenas.html#cb354-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb354-2"><a href="texto-cadenas.html#cb354-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(caja_trayectoria, <span class="at">pattern =</span> <span class="st">&quot;Diputad&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb354-3"><a href="texto-cadenas.html#cb354-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 985 x 1
-##    caja_trayectoria                        
-##    &lt;chr&gt;                                   
-##  1 &quot;\nDiputado \n2010- 2014\nDistrito N° 2~
-##  2 &quot;\nDiputado \n2006- 2010\nDistrito N° 2~
-##  3 &quot;\nDiputado \n2002- 2006\nDistrito N° 2~
-##  4 &quot;\nDiputado \n1998- 2002\nDistrito N° 5~
-##  5 &quot;\nDiputado \n1994- 1998\nDistrito N° 5~
-##  6 &quot;\nDiputado \n1990- 1994\nDistrito N° 5~
-##  7 &quot;\nDiputado \n2006- 2010\nDistrito N° 5~
-##  8 &quot;\nDiputado \n2014- 2018\nDistrito N° 3~
-##  9 &quot;\nDiputado \n2010- 2014\nDistrito N° 3~
-## 10 &quot;\nDiputado \n2006- 2010\nDistrito N° 3~
-## # ... with 975 more rows</code></pre>
+##    caja_trayectoria                  
+##    &lt;chr&gt;                             
+##  1 &quot;\nDiputado \n2010- 2014\nDistrit…
+##  2 &quot;\nDiputado \n2006- 2010\nDistrit…
+##  3 &quot;\nDiputado \n2002- 2006\nDistrit…
+##  4 &quot;\nDiputado \n1998- 2002\nDistrit…
+##  5 &quot;\nDiputado \n1994- 1998\nDistrit…
+##  6 &quot;\nDiputado \n1990- 1994\nDistrit…
+##  7 &quot;\nDiputado \n2006- 2010\nDistrit…
+##  8 &quot;\nDiputado \n2014- 2018\nDistrit…
+##  9 &quot;\nDiputado \n2010- 2014\nDistrit…
+## 10 &quot;\nDiputado \n2006- 2010\nDistrit…
+## # … with 975 more rows</code></pre>
 <p>También podemos ocupar una negación para obtener las observaciones de senadores:</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="texto-cadenas.html#cb357-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb357-2"><a href="texto-cadenas.html#cb357-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(caja_trayectoria, <span class="at">pattern =</span> <span class="st">&quot;Diputad&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb357-3"><a href="texto-cadenas.html#cb357-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="texto-cadenas.html#cb356-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb356-2"><a href="texto-cadenas.html#cb356-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(caja_trayectoria, <span class="at">pattern =</span> <span class="st">&quot;Diputad&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb356-3"><a href="texto-cadenas.html#cb356-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 206 x 1
-##    caja_trayectoria                        
-##    &lt;chr&gt;                                   
-##  1 &quot;\nSenador institucional \n1998- 2006\n&quot;
-##  2 &quot;\nSenador \n2014- 2022\n7ª Circunscrip~
-##  3 &quot;\nSenador \n2014- 2022\n8ª Circunscrip~
-##  4 &quot;\nSenador \n2006- 2014\nTérmino de per~
-##  5 &quot;\nSenadora \n2018- 2026\n6ª Circunscri~
-##  6 &quot;\nSenadora \n2010- 2018\n3ª Circunscri~
-##  7 &quot;\nSenadora \n2006- 2014\n8ª Circunscri~
-##  8 &quot;\nSenador \n2002- 2010\n6ª Circunscrip~
-##  9 &quot;\nSenadora \n2018- 2026\n11ª Circunscr~
-## 10 &quot;\nSenador \n2014- 2022\nCircunscripció~
-## # ... with 196 more rows</code></pre>
+##    caja_trayectoria                  
+##    &lt;chr&gt;                             
+##  1 &quot;\nSenador institucional \n1998- …
+##  2 &quot;\nSenador \n2014- 2022\n7ª Circu…
+##  3 &quot;\nSenador \n2014- 2022\n8ª Circu…
+##  4 &quot;\nSenador \n2006- 2014\nTérmino …
+##  5 &quot;\nSenadora \n2018- 2026\n6ª Circ…
+##  6 &quot;\nSenadora \n2010- 2018\n3ª Circ…
+##  7 &quot;\nSenadora \n2006- 2014\n8ª Circ…
+##  8 &quot;\nSenador \n2002- 2010\n6ª Circu…
+##  9 &quot;\nSenadora \n2018- 2026\n11ª Cir…
+## 10 &quot;\nSenador \n2014- 2022\nCircunsc…
+## # … with 196 more rows</code></pre>
 <p>Ahora introduciremos tres funciones que utilizan patrones, <code>str_extract()</code>, <code>str_replace()</code> y <code>str_remove()</code>. ¿Qué hace cada una?</p>
 <p>Tus notas:</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="texto-cadenas.html#cb359-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb359-2"><a href="texto-cadenas.html#cb359-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_extract</span>(caja_trayectoria, </span>
-<span id="cb359-3"><a href="texto-cadenas.html#cb359-3" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">pattern =</span> <span class="st">&quot;Diputad&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb359-4"><a href="texto-cadenas.html#cb359-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="texto-cadenas.html#cb358-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb358-2"><a href="texto-cadenas.html#cb358-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_extract</span>(caja_trayectoria, </span>
+<span id="cb358-3"><a href="texto-cadenas.html#cb358-3" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">pattern =</span> <span class="st">&quot;Diputad&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb358-4"><a href="texto-cadenas.html#cb358-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 2
-##    caja_trayectoria       caja_trayectoria~
-##    &lt;chr&gt;                  &lt;chr&gt;            
-##  1 &quot;\nSenador institucio~ &lt;NA&gt;             
-##  2 &quot;\nDiputado \n2010- 2~ Diputad          
-##  3 &quot;\nDiputado \n2006- 2~ Diputad          
-##  4 &quot;\nDiputado \n2002- 2~ Diputad          
-##  5 &quot;\nDiputado \n1998- 2~ Diputad          
-##  6 &quot;\nDiputado \n1994- 1~ Diputad          
-##  7 &quot;\nDiputado \n1990- 1~ Diputad          
-##  8 &quot;\nDiputado \n2006- 2~ Diputad          
-##  9 &quot;\nDiputado \n2014- 2~ Diputad          
-## 10 &quot;\nDiputado \n2010- 2~ Diputad          
-## # ... with 1,181 more rows</code></pre>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="texto-cadenas.html#cb361-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb361-2"><a href="texto-cadenas.html#cb361-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_replace</span>(caja_trayectoria, </span>
-<span id="cb361-3"><a href="texto-cadenas.html#cb361-3" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">pattern =</span> <span class="st">&quot;institucional&quot;</span>, </span>
-<span id="cb361-4"><a href="texto-cadenas.html#cb361-4" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">replacement =</span> <span class="st">&quot;designado&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb361-5"><a href="texto-cadenas.html#cb361-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+##    caja_trayectoria  caja_trayectori…
+##    &lt;chr&gt;             &lt;chr&gt;           
+##  1 &quot;\nSenador insti… &lt;NA&gt;            
+##  2 &quot;\nDiputado \n20… Diputad         
+##  3 &quot;\nDiputado \n20… Diputad         
+##  4 &quot;\nDiputado \n20… Diputad         
+##  5 &quot;\nDiputado \n19… Diputad         
+##  6 &quot;\nDiputado \n19… Diputad         
+##  7 &quot;\nDiputado \n19… Diputad         
+##  8 &quot;\nDiputado \n20… Diputad         
+##  9 &quot;\nDiputado \n20… Diputad         
+## 10 &quot;\nDiputado \n20… Diputad         
+## # … with 1,181 more rows</code></pre>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="texto-cadenas.html#cb360-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb360-2"><a href="texto-cadenas.html#cb360-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_replace</span>(caja_trayectoria, </span>
+<span id="cb360-3"><a href="texto-cadenas.html#cb360-3" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">pattern =</span> <span class="st">&quot;institucional&quot;</span>, </span>
+<span id="cb360-4"><a href="texto-cadenas.html#cb360-4" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">replacement =</span> <span class="st">&quot;designado&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb360-5"><a href="texto-cadenas.html#cb360-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 2
-##    caja_trayectoria     caja_trayectoria_e~
-##    &lt;chr&gt;                &lt;chr&gt;              
-##  1 &quot;\nSenador instituc~ &quot;\nSenador designa~
-##  2 &quot;\nDiputado \n2010-~ &quot;\nDiputado \n2010~
-##  3 &quot;\nDiputado \n2006-~ &quot;\nDiputado \n2006~
-##  4 &quot;\nDiputado \n2002-~ &quot;\nDiputado \n2002~
-##  5 &quot;\nDiputado \n1998-~ &quot;\nDiputado \n1998~
-##  6 &quot;\nDiputado \n1994-~ &quot;\nDiputado \n1994~
-##  7 &quot;\nDiputado \n1990-~ &quot;\nDiputado \n1990~
-##  8 &quot;\nDiputado \n2006-~ &quot;\nDiputado \n2006~
-##  9 &quot;\nDiputado \n2014-~ &quot;\nDiputado \n2014~
-## 10 &quot;\nDiputado \n2010-~ &quot;\nDiputado \n2010~
-## # ... with 1,181 more rows</code></pre>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="texto-cadenas.html#cb363-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb363-2"><a href="texto-cadenas.html#cb363-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_remove</span>(caja_trayectoria, </span>
-<span id="cb363-3"><a href="texto-cadenas.html#cb363-3" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">pattern =</span> <span class="st">&quot;N° &quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb363-4"><a href="texto-cadenas.html#cb363-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="sc">%&gt;%</span> </span>
-<span id="cb363-5"><a href="texto-cadenas.html#cb363-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+##    caja_trayectoria  caja_trayectori…
+##    &lt;chr&gt;             &lt;chr&gt;           
+##  1 &quot;\nSenador insti… &quot;\nSenador desi…
+##  2 &quot;\nDiputado \n20… &quot;\nDiputado \n2…
+##  3 &quot;\nDiputado \n20… &quot;\nDiputado \n2…
+##  4 &quot;\nDiputado \n20… &quot;\nDiputado \n2…
+##  5 &quot;\nDiputado \n19… &quot;\nDiputado \n1…
+##  6 &quot;\nDiputado \n19… &quot;\nDiputado \n1…
+##  7 &quot;\nDiputado \n19… &quot;\nDiputado \n1…
+##  8 &quot;\nDiputado \n20… &quot;\nDiputado \n2…
+##  9 &quot;\nDiputado \n20… &quot;\nDiputado \n2…
+## 10 &quot;\nDiputado \n20… &quot;\nDiputado \n2…
+## # … with 1,181 more rows</code></pre>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="texto-cadenas.html#cb362-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb362-2"><a href="texto-cadenas.html#cb362-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">caja_trayectoria_edit =</span> <span class="fu">str_remove</span>(caja_trayectoria, </span>
+<span id="cb362-3"><a href="texto-cadenas.html#cb362-3" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">pattern =</span> <span class="st">&quot;N° &quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-4"><a href="texto-cadenas.html#cb362-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="sc">%&gt;%</span> </span>
+<span id="cb362-5"><a href="texto-cadenas.html#cb362-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, caja_trayectoria_edit) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 2
-##    caja_trayectoria     caja_trayectoria_e~
-##    &lt;chr&gt;                &lt;chr&gt;              
-##  1 &quot;\nSenador instituc~ &quot;\nSenador institu~
-##  2 &quot;\nDiputado \n2010-~ &quot;\nDiputado \n2010~
-##  3 &quot;\nDiputado \n2006-~ &quot;\nDiputado \n2006~
-##  4 &quot;\nDiputado \n2002-~ &quot;\nDiputado \n2002~
-##  5 &quot;\nDiputado \n1998-~ &quot;\nDiputado \n1998~
-##  6 &quot;\nDiputado \n1994-~ &quot;\nDiputado \n1994~
-##  7 &quot;\nDiputado \n1990-~ &quot;\nDiputado \n1990~
-##  8 &quot;\nDiputado \n2006-~ &quot;\nDiputado \n2006~
-##  9 &quot;\nDiputado \n2014-~ &quot;\nDiputado \n2014~
-## 10 &quot;\nDiputado \n2010-~ &quot;\nDiputado \n2010~
-## # ... with 1,181 more rows</code></pre>
+##    caja_trayectoria  caja_trayectori…
+##    &lt;chr&gt;             &lt;chr&gt;           
+##  1 &quot;\nSenador insti… &quot;\nSenador inst…
+##  2 &quot;\nDiputado \n20… &quot;\nDiputado \n2…
+##  3 &quot;\nDiputado \n20… &quot;\nDiputado \n2…
+##  4 &quot;\nDiputado \n20… &quot;\nDiputado \n2…
+##  5 &quot;\nDiputado \n19… &quot;\nDiputado \n1…
+##  6 &quot;\nDiputado \n19… &quot;\nDiputado \n1…
+##  7 &quot;\nDiputado \n19… &quot;\nDiputado \n1…
+##  8 &quot;\nDiputado \n20… &quot;\nDiputado \n2…
+##  9 &quot;\nDiputado \n20… &quot;\nDiputado \n2…
+## 10 &quot;\nDiputado \n20… &quot;\nDiputado \n2…
+## # … with 1,181 more rows</code></pre>
 </div>
 <div id="patrones-más-complejos-con-expresiones-regulares-regex" class="section level2">
 <h2>Patrones más complejos con expresiones regulares (<em>regex</em>)</h2>
@@ -469,56 +489,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="imgs/regex_so.png" /></p>
 <p>Fuentes: <a href="https://twitter.com/kvlly/status/1178665724576964614">Kelly Vaughn</a>, <a href="https://programmerhumour.tumblr.com/post/182797650525/nobody-will-believe-that-you-did-it">Programmer Humor</a> y <a href="https://towardsdatascience.com/programmatically-build-regex-regular-expression-in-python-for-pattern-matching-3fee104fe42a">Towards Data Science</a>.</p>
 <p>Hasta aquí hemos utilizado patrones muy simples y específicos, por medio de series textuales de caracteres. Pero a menudo la información de nuestras cadenas de texto sigue patrones más generales. Por ejemplo, ¿cómo podemos obtener el año de inicio de cada período? Sabemos que todos tienen cuatro dígitos, y siempre son los primeros cuatro dígitos que aparecen. Conociendo esto, podemos extraerlos de nuestras cadenas:</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="texto-cadenas.html#cb365-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb365-2"><a href="texto-cadenas.html#cb365-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">inicio_per =</span> <span class="fu">str_extract</span>(caja_trayectoria, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d{4}&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb365-3"><a href="texto-cadenas.html#cb365-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, inicio_per) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="texto-cadenas.html#cb364-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb364-2"><a href="texto-cadenas.html#cb364-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">inicio_per =</span> <span class="fu">str_extract</span>(caja_trayectoria, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d{4}&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb364-3"><a href="texto-cadenas.html#cb364-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, inicio_per) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 2
-##    caja_trayectoria              inicio_per
-##    &lt;chr&gt;                         &lt;chr&gt;     
-##  1 &quot;\nSenador institucional \n1~ 1998      
-##  2 &quot;\nDiputado \n2010- 2014\nDi~ 2010      
-##  3 &quot;\nDiputado \n2006- 2010\nDi~ 2006      
-##  4 &quot;\nDiputado \n2002- 2006\nDi~ 2002      
-##  5 &quot;\nDiputado \n1998- 2002\nDi~ 1998      
-##  6 &quot;\nDiputado \n1994- 1998\nDi~ 1994      
-##  7 &quot;\nDiputado \n1990- 1994\nDi~ 1990      
-##  8 &quot;\nDiputado \n2006- 2010\nDi~ 2006      
-##  9 &quot;\nDiputado \n2014- 2018\nDi~ 2014      
-## 10 &quot;\nDiputado \n2010- 2014\nDi~ 2010      
-## # ... with 1,181 more rows</code></pre>
+##    caja_trayectoria        inicio_per
+##    &lt;chr&gt;                   &lt;chr&gt;     
+##  1 &quot;\nSenador institucion… 1998      
+##  2 &quot;\nDiputado \n2010- 20… 2010      
+##  3 &quot;\nDiputado \n2006- 20… 2006      
+##  4 &quot;\nDiputado \n2002- 20… 2002      
+##  5 &quot;\nDiputado \n1998- 20… 1998      
+##  6 &quot;\nDiputado \n1994- 19… 1994      
+##  7 &quot;\nDiputado \n1990- 19… 1990      
+##  8 &quot;\nDiputado \n2006- 20… 2006      
+##  9 &quot;\nDiputado \n2014- 20… 2014      
+## 10 &quot;\nDiputado \n2010- 20… 2010      
+## # … with 1,181 more rows</code></pre>
 <p>Nuestro patrón esta escrito en el lenguaje de las expresiones regulares, que permite crear <strong>patrones generales en vez de específicos</strong>. Así, <code>\\d</code> significa “un dígito” y <code>{4}</code> significa cuatro veces. Puedes consultar una guía sobre las expresiones regulares en la segunda página del <a href="https://docs.google.com/viewer?url=https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/strings_Spanish.pdf">“torpedo” de esta unidad</a>.</p>
 <p>Por cierto, podemos obtener el año de fin del período haciendo un combo de extracción + remoción. A continuación tenemos una cadena de pipes dentro de otra! Tomamos “caja_trayectoria”, extraemos “- cuatro dígitos”, removemos “-” y pasamos a número, todo en una operación.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="texto-cadenas.html#cb367-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb367-2"><a href="texto-cadenas.html#cb367-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fin_per =</span> caja_trayectoria <span class="sc">%&gt;%</span> </span>
-<span id="cb367-3"><a href="texto-cadenas.html#cb367-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">str_extract</span>(<span class="at">pattern =</span> <span class="st">&quot;- </span><span class="sc">\\</span><span class="st">d{4}&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb367-4"><a href="texto-cadenas.html#cb367-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">str_remove</span>(<span class="st">&quot;- &quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb367-5"><a href="texto-cadenas.html#cb367-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">as.numeric</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb367-6"><a href="texto-cadenas.html#cb367-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, fin_per) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="texto-cadenas.html#cb366-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb366-2"><a href="texto-cadenas.html#cb366-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fin_per =</span> caja_trayectoria <span class="sc">%&gt;%</span> </span>
+<span id="cb366-3"><a href="texto-cadenas.html#cb366-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">str_extract</span>(<span class="at">pattern =</span> <span class="st">&quot;- </span><span class="sc">\\</span><span class="st">d{4}&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb366-4"><a href="texto-cadenas.html#cb366-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">str_remove</span>(<span class="st">&quot;- &quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb366-5"><a href="texto-cadenas.html#cb366-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">as.numeric</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb366-6"><a href="texto-cadenas.html#cb366-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, fin_per) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 2
-##    caja_trayectoria                 fin_per
-##    &lt;chr&gt;                              &lt;dbl&gt;
-##  1 &quot;\nSenador institucional \n1998~    2006
-##  2 &quot;\nDiputado \n2010- 2014\nDistr~    2014
-##  3 &quot;\nDiputado \n2006- 2010\nDistr~    2010
-##  4 &quot;\nDiputado \n2002- 2006\nDistr~    2006
-##  5 &quot;\nDiputado \n1998- 2002\nDistr~    2002
-##  6 &quot;\nDiputado \n1994- 1998\nDistr~    1998
-##  7 &quot;\nDiputado \n1990- 1994\nDistr~    1994
-##  8 &quot;\nDiputado \n2006- 2010\nDistr~    2010
-##  9 &quot;\nDiputado \n2014- 2018\nDistr~    2018
-## 10 &quot;\nDiputado \n2010- 2014\nDistr~    2014
-## # ... with 1,181 more rows</code></pre>
+##    caja_trayectoria           fin_per
+##    &lt;chr&gt;                        &lt;dbl&gt;
+##  1 &quot;\nSenador institucional …    2006
+##  2 &quot;\nDiputado \n2010- 2014\…    2014
+##  3 &quot;\nDiputado \n2006- 2010\…    2010
+##  4 &quot;\nDiputado \n2002- 2006\…    2006
+##  5 &quot;\nDiputado \n1998- 2002\…    2002
+##  6 &quot;\nDiputado \n1994- 1998\…    1998
+##  7 &quot;\nDiputado \n1990- 1994\…    1994
+##  8 &quot;\nDiputado \n2006- 2010\…    2010
+##  9 &quot;\nDiputado \n2014- 2018\…    2018
+## 10 &quot;\nDiputado \n2010- 2014\…    2014
+## # … with 1,181 more rows</code></pre>
 <p>Hay tres tipos de constructos básicos en las expresiones regulares: pronombres o clases de caracteres (como <code>\\d</code>), cuantificadores (como <code>{4}</code>) y anclas.</p>
 <div id="pronombres-o-clases-de-caracteres" class="section level3">
 <h3>Pronombres o clases de caracteres</h3>
 <p>Ya vimos <code>\\d</code>, que es equivalente a “un dígito”. Otros pronombres comunes son: <code>[:alpha:]</code> (una letra), <code>\\w</code> (un caracter de “palabra”: letra o dígito), <code>\\s</code> (un caracter de espacio) y <code>.</code> (cualquier cosa).</p>
 <p>Por cierto, ¿qué pasa si queremos buscar por algún caracter especial en expresiones regulares, como “.”?</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="texto-cadenas.html#cb369-1" aria-hidden="true" tabindex="-1"></a>vector_prueba <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Ley 20.000.&quot;</span>, <span class="st">&quot;Reglamento 201&quot;</span>)</span>
-<span id="cb369-2"><a href="texto-cadenas.html#cb369-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-3"><a href="texto-cadenas.html#cb369-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(vector_prueba, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d{2}.&quot;</span>) <span class="co"># esto no es lo que queremos!</span></span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="texto-cadenas.html#cb368-1" aria-hidden="true" tabindex="-1"></a>vector_prueba <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Ley 20.000.&quot;</span>, <span class="st">&quot;Reglamento 201&quot;</span>)</span>
+<span id="cb368-2"><a href="texto-cadenas.html#cb368-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb368-3"><a href="texto-cadenas.html#cb368-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(vector_prueba, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d{2}.&quot;</span>) <span class="co"># esto no es lo que queremos!</span></span></code></pre></div>
 <pre><code>## [1] &quot;20.&quot; &quot;201&quot;</code></pre>
 <p>Debemos “escapar” el caracter, antecediéndolo de “\”:</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="texto-cadenas.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(vector_prueba, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d{2}</span><span class="sc">\\</span><span class="st">.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="texto-cadenas.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(vector_prueba, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d{2}</span><span class="sc">\\</span><span class="st">.&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;20.&quot; NA</code></pre>
 <div id="ejercicio-b-5" class="section level4">
 <h4>(Ejercicio b)</h4>
@@ -530,24 +550,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Vimos que <code>{4}</code> busca exactamente cuatro repeticiones de un caracter en específico. También podemos pedir rangos: <code>{2, 4}</code> (entre dos y cuatro), <code>{2, }</code> (dos o más).</p>
 <p>Muy utilizados son los cuantificadores <code>*</code> (cero o más) y <code>+</code> (uno o más), que pueden pensarse como abreviaciones para los rangos anteriores.</p>
 <p>Por ejemplo, obtengamos la primera palabra de “caja_trayectoria”, utilizando el patrón “una o más letras”:</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="texto-cadenas.html#cb373-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb373-2"><a href="texto-cadenas.html#cb373-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">primera_pal_trayectoria =</span> <span class="fu">str_extract</span>(caja_trayectoria,</span>
-<span id="cb373-3"><a href="texto-cadenas.html#cb373-3" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">pattern =</span> <span class="st">&quot;[:alpha:]+&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb373-4"><a href="texto-cadenas.html#cb373-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, primera_pal_trayectoria) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="texto-cadenas.html#cb372-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb372-2"><a href="texto-cadenas.html#cb372-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">primera_pal_trayectoria =</span> <span class="fu">str_extract</span>(caja_trayectoria,</span>
+<span id="cb372-3"><a href="texto-cadenas.html#cb372-3" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">pattern =</span> <span class="st">&quot;[:alpha:]+&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb372-4"><a href="texto-cadenas.html#cb372-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(caja_trayectoria, primera_pal_trayectoria) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 2
-##    caja_trayectoria       primera_pal_tray~
-##    &lt;chr&gt;                  &lt;chr&gt;            
-##  1 &quot;\nSenador institucio~ Senador          
-##  2 &quot;\nDiputado \n2010- 2~ Diputado         
-##  3 &quot;\nDiputado \n2006- 2~ Diputado         
-##  4 &quot;\nDiputado \n2002- 2~ Diputado         
-##  5 &quot;\nDiputado \n1998- 2~ Diputado         
-##  6 &quot;\nDiputado \n1994- 1~ Diputado         
-##  7 &quot;\nDiputado \n1990- 1~ Diputado         
-##  8 &quot;\nDiputado \n2006- 2~ Diputado         
-##  9 &quot;\nDiputado \n2014- 2~ Diputado         
-## 10 &quot;\nDiputado \n2010- 2~ Diputado         
-## # ... with 1,181 more rows</code></pre>
+##    caja_trayectoria  primera_pal_tra…
+##    &lt;chr&gt;             &lt;chr&gt;           
+##  1 &quot;\nSenador insti… Senador         
+##  2 &quot;\nDiputado \n20… Diputado        
+##  3 &quot;\nDiputado \n20… Diputado        
+##  4 &quot;\nDiputado \n20… Diputado        
+##  5 &quot;\nDiputado \n19… Diputado        
+##  6 &quot;\nDiputado \n19… Diputado        
+##  7 &quot;\nDiputado \n19… Diputado        
+##  8 &quot;\nDiputado \n20… Diputado        
+##  9 &quot;\nDiputado \n20… Diputado        
+## 10 &quot;\nDiputado \n20… Diputado        
+## # … with 1,181 more rows</code></pre>
 <div id="ejercicio-c-3" class="section level4">
 <h4>(Ejercicio c)</h4>
 <p>Genera una nueva variable en la base, que tenga el distrito que aparece en “caja_trayectoria”. Aparte de cuantificadores, aquí vale la pena utilizar un combo de extracción + remoción. Tu código:</p>
@@ -557,43 +577,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Anclas</h3>
 <p>Podemos utilizar anclas para solo capturar las partes iniciales o finales de la cadena.</p>
 <p>Ancla final (<code>$</code>):</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="texto-cadenas.html#cb375-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb375-2"><a href="texto-cadenas.html#cb375-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ult_apellido =</span> <span class="fu">str_extract</span>(nombre_comp, </span>
-<span id="cb375-3"><a href="texto-cadenas.html#cb375-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">w+$&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb375-4"><a href="texto-cadenas.html#cb375-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(nombre_comp, ult_apellido) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="texto-cadenas.html#cb374-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb374-2"><a href="texto-cadenas.html#cb374-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ult_apellido =</span> <span class="fu">str_extract</span>(nombre_comp, </span>
+<span id="cb374-3"><a href="texto-cadenas.html#cb374-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">w+$&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb374-4"><a href="texto-cadenas.html#cb374-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(nombre_comp, ult_apellido) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 2
-##    nombre_comp                 ult_apellido
-##    &lt;chr&gt;                       &lt;chr&gt;       
-##  1 Marcos Aurelio Aburto Ochoa Ochoa       
-##  2 Enrique Accorsi Opazo       Opazo       
-##  3 Enrique Accorsi Opazo       Opazo       
-##  4 Enrique Accorsi Opazo       Opazo       
-##  5 Mario Alberto Acuña Cister~ Cisternas   
-##  6 Mario Alberto Acuña Cister~ Cisternas   
-##  7 Mario Alberto Acuña Cister~ Cisternas   
-##  8 René Aedo Ormeño            Ormeño      
-##  9 Sergio Aguiló Melo          Melo        
-## 10 Sergio Aguiló Melo          Melo        
-## # ... with 1,181 more rows</code></pre>
+##    nombre_comp           ult_apellido
+##    &lt;chr&gt;                 &lt;chr&gt;       
+##  1 Marcos Aurelio Aburt… Ochoa       
+##  2 Enrique Accorsi Opazo Opazo       
+##  3 Enrique Accorsi Opazo Opazo       
+##  4 Enrique Accorsi Opazo Opazo       
+##  5 Mario Alberto Acuña … Cisternas   
+##  6 Mario Alberto Acuña … Cisternas   
+##  7 Mario Alberto Acuña … Cisternas   
+##  8 René Aedo Ormeño      Ormeño      
+##  9 Sergio Aguiló Melo    Melo        
+## 10 Sergio Aguiló Melo    Melo        
+## # … with 1,181 more rows</code></pre>
 <p>Ancla inicial (<code>^</code>):</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="texto-cadenas.html#cb377-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb377-2"><a href="texto-cadenas.html#cb377-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">primer_nombre =</span> <span class="fu">str_extract</span>(nombre_comp, </span>
-<span id="cb377-3"><a href="texto-cadenas.html#cb377-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">pattern =</span> <span class="st">&quot;^</span><span class="sc">\\</span><span class="st">w+&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb377-4"><a href="texto-cadenas.html#cb377-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(nombre_comp, primer_nombre) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="texto-cadenas.html#cb376-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb376-2"><a href="texto-cadenas.html#cb376-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">primer_nombre =</span> <span class="fu">str_extract</span>(nombre_comp, </span>
+<span id="cb376-3"><a href="texto-cadenas.html#cb376-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">pattern =</span> <span class="st">&quot;^</span><span class="sc">\\</span><span class="st">w+&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb376-4"><a href="texto-cadenas.html#cb376-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(nombre_comp, primer_nombre) <span class="co"># solo para ver mejor el resultado</span></span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 2
-##    nombre_comp                primer_nombre
-##    &lt;chr&gt;                      &lt;chr&gt;        
-##  1 Marcos Aurelio Aburto Och~ Marcos       
-##  2 Enrique Accorsi Opazo      Enrique      
-##  3 Enrique Accorsi Opazo      Enrique      
-##  4 Enrique Accorsi Opazo      Enrique      
-##  5 Mario Alberto Acuña Ciste~ Mario        
-##  6 Mario Alberto Acuña Ciste~ Mario        
-##  7 Mario Alberto Acuña Ciste~ Mario        
-##  8 René Aedo Ormeño           René         
-##  9 Sergio Aguiló Melo         Sergio       
-## 10 Sergio Aguiló Melo         Sergio       
-## # ... with 1,181 more rows</code></pre>
+##    nombre_comp          primer_nombre
+##    &lt;chr&gt;                &lt;chr&gt;        
+##  1 Marcos Aurelio Abur… Marcos       
+##  2 Enrique Accorsi Opa… Enrique      
+##  3 Enrique Accorsi Opa… Enrique      
+##  4 Enrique Accorsi Opa… Enrique      
+##  5 Mario Alberto Acuña… Mario        
+##  6 Mario Alberto Acuña… Mario        
+##  7 Mario Alberto Acuña… Mario        
+##  8 René Aedo Ormeño     René         
+##  9 Sergio Aguiló Melo   Sergio       
+## 10 Sergio Aguiló Melo   Sergio       
+## # … with 1,181 more rows</code></pre>
 <p>En este caso, el ancla inicial no es necesaria, pero a veces es útil para tomar en cuenta ambigüedades.</p>
 </div>
 <div id="ejercicio-d-4" class="section level3">
@@ -603,9 +623,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="combinar-pronombres-en-expresiones-regulares" class="section level3">
 <h3>Combinar pronombres en expresiones regulares</h3>
 <p>¿Qué pasa si queremos extraer la cadena “Diputado” o “Diputada”, según corresponda? Podríamos hacer algo como esto, por ejemplo:</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="texto-cadenas.html#cb379-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb379-2"><a href="texto-cadenas.html#cb379-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cadena =</span> <span class="fu">str_extract</span>(caja_trayectoria, <span class="st">&quot;Diputad</span><span class="sc">\\</span><span class="st">w&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb379-3"><a href="texto-cadenas.html#cb379-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cadena)</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="texto-cadenas.html#cb378-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb378-2"><a href="texto-cadenas.html#cb378-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cadena =</span> <span class="fu">str_extract</span>(caja_trayectoria, <span class="st">&quot;Diputad</span><span class="sc">\\</span><span class="st">w&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb378-3"><a href="texto-cadenas.html#cb378-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cadena)</span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 1
 ##    cadena  
 ##    &lt;chr&gt;   
@@ -619,11 +639,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Diputado
 ##  9 Diputado
 ## 10 Diputado
-## # ... with 1,181 more rows</code></pre>
+## # … with 1,181 more rows</code></pre>
 <p>Funciona bien, pero tal vez es demasiado general. A veces queremos ser más específicos/as y decir, con expresiones regulares, la cadena que comience con “Diputad” y siga con “a” u “o”. Podemos hacer esto de la siguiente forma:</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="texto-cadenas.html#cb381-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
-<span id="cb381-2"><a href="texto-cadenas.html#cb381-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cadena =</span> <span class="fu">str_extract</span>(caja_trayectoria, <span class="st">&quot;Diputad[ao]&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># caracteres permitidos</span></span>
-<span id="cb381-3"><a href="texto-cadenas.html#cb381-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cadena)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="texto-cadenas.html#cb380-1" aria-hidden="true" tabindex="-1"></a>df_legisladores_cargos <span class="sc">%&gt;%</span> </span>
+<span id="cb380-2"><a href="texto-cadenas.html#cb380-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cadena =</span> <span class="fu">str_extract</span>(caja_trayectoria, <span class="st">&quot;Diputad[ao]&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># caracteres permitidos</span></span>
+<span id="cb380-3"><a href="texto-cadenas.html#cb380-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cadena)</span></code></pre></div>
 <pre><code>## # A tibble: 1,191 x 1
 ##    cadena  
 ##    &lt;chr&gt;   
@@ -637,9 +657,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Diputado
 ##  9 Diputado
 ## 10 Diputado
-## # ... with 1,181 more rows</code></pre>
+## # … with 1,181 more rows</code></pre>
 <p>Fíjate en el siguiente ejemplo. Estaríamos capturando solo los elementos número 2 y 3.</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="texto-cadenas.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;Diputación&quot;</span>, <span class="st">&quot;Diputado&quot;</span>, <span class="st">&quot;Diputada&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">str_detect</span>(<span class="st">&quot;Diputad[ao]&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="texto-cadenas.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;Diputación&quot;</span>, <span class="st">&quot;Diputado&quot;</span>, <span class="st">&quot;Diputada&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">str_detect</span>(<span class="st">&quot;Diputad[ao]&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE  TRUE</code></pre>
 </div>
 <div id="ejercicio-e" class="section level3">
@@ -650,14 +670,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ejercicio-f" class="section level2">
 <h2>(Ejercicio f)</h2>
 <p>Carguemos esta nueva base, que tiene la caja de antecedentes para cada legislador (noten cómo cambia la unidad de análisis de la base).</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="texto-cadenas.html#cb385-1" aria-hidden="true" tabindex="-1"></a>df_legisladores <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/df_legisladores.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="texto-cadenas.html#cb384-1" aria-hidden="true" tabindex="-1"></a>df_legisladores <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;datos/df_legisladores.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ─────────────
 ## cols(
 ##   nombre_comp = col_character(),
 ##   id = col_double(),
 ##   caja_antecedentes = col_character()
 ## )</code></pre>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="texto-cadenas.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_legisladores<span class="sc">$</span>caja_antecedentes)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="texto-cadenas.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_legisladores<span class="sc">$</span>caja_antecedentes)</span></code></pre></div>
 <pre><code>## [1] &quot;\n Nombre: Marcos Aurelio Aburto Ochoa\n Nacimiento: \n25 de Mayo de 1916\n\nValdivia\n Profesión: Abogado&quot;                
 ## [2] &quot;\n Nombre: Enrique Accorsi Opazo\n Nacimiento: \n17 de Agosto de 1948\n\nSantiago\n Profesión: Médico&quot;                     
 ## [3] &quot;\n Nombre: Mario Alberto Acuña Cisternas\n Nacimiento: \n26 de Septiembre de 1951\n\n\n Profesión: Ingeniero Agrónomo&quot;     
@@ -702,6 +723,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": {}
 },
 "fontsettings": {
