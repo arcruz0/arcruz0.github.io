@@ -3,9 +3,9 @@ title: "Andrés Cruz"
 site: distill::distill_website
 ---
 
-I am a research assistant on a household finance [project](https://www.thinkforwardinitiative.com/stories/the-impact-of-price-comparison-tools-in-consumer-credit-markets-on-financial-decision-making) led by [Erik Berwart](https://www.linkedin.com/in/erik-berwart-1a877a22/?originalSubdomain=cl) (CMF), [Sean Higgins](https://seankhiggins.com/) (Northwestern), [Sheisha Kulkarni](https://www.sheishakulkarni.com/) (UVa), and [Santiago Truffa](https://santiagotruffa.cl/) (UAndes). I also teach a computational social science [class](./r_projects.html#programming-for-the-social-sciences-undergraduate-class) at Universidad Diego Portales.
+Hi! I am a first-year PhD Student in Government at UT Austin. My interests are in causal inference and computational social science, with applications to political economy.
 
-My research interests are in political economy and quantitative methods. I received a BA and MA in Political Science from Pontificia Universidad Católica de Chile.
+Previously, I was a full-time RA on a household finance [project](https://www.thinkforwardinitiative.com/stories/the-impact-of-price-comparison-tools-in-consumer-credit-markets-on-financial-decision-making) led by [Erik Berwart](https://www.linkedin.com/in/erik-berwart-1a877a22/?originalSubdomain=cl) (CMF), [Sean Higgins](https://seankhiggins.com/) (Northwestern), [Sheisha Kulkarni](https://www.sheishakulkarni.com/) (UVa), and [Santiago Truffa](https://santiagotruffa.cl/) (UAndes). I received a BA and MA in Political Science from Pontificia Universidad Católica de Chile.
 
 <hr>
 
