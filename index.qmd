@@ -1,0 +1,18 @@
+---
+title: "Andrés Cruz"
+# image: profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/arcruz0
+    - icon: github
+      text: Github
+      href: https://github.com/arcruz0
+
+---
+
+Hi! I am a graduate student at UT Austin, where I am pursuing a PhD in Government and an MS in Statistics. I am broadly interested in computational social science and applications in comparative politics.
+
+Previously, I was a full-time RA on a household finance project led by Erik Berwart (CMF), Sean Higgins (Northwestern), Sheisha Kulkarni (UVa), and Santiago Truffa (UAndes). I received a BA and MA in Political Science from Pontificia Universidad Católica de Chile.

@@ -1,0 +1,31 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+  resources: 
+    - "extra/**"
+    - "libroadp/**"
+    - "politicalds/**"
+    - "r-uc-2020/**"
+    - "imgs/**"
+    - "tesseractgt/**"
+
+website:
+  title: "Andrés Cruz"
+  navbar:
+    right:
+      - text: "Home"
+        href: index.qmd
+      - blog.qmd
+      - r_resources.qmd
+  search: false
+  favicon: imgs/favicon.ico
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: styles.css
+    toc: true
+
+

@@ -1,0 +1,38 @@
+---
+title: "R Resources"
+toc: false
+---
+
+### Textbook: [R for Political Data Science](https://www.routledge.com/R-for-Political-Data-Science-A-Practical-Guide/Urdinez-Cruz/p/book/9780367818890) / [AnalizaR Datos Políticos](/libroadp/index.html)
+
+*Co-edited with [Francisco Urdinez](https://www.furdinez.com)* 
+
+A textbook that introduces R and the `tidyverse` from scratch using examples from Latin American political science.
+
+<hr>
+
+### Course: [Programming for the Social Sciences](https://arcruz0.github.io/r-uc-2020/)
+
+From 2019 to 2021 I taught a computational social science class for undergraduate students at [UDP](https://socialesehistoria.udp.cl/carreras/ciencia-politica/) and [PUC](http://cienciapolitica.uc.cl/). The link above has class materials for the 2020 edition at PUC (in Spanish).
+
+<hr>
+
+### R package: [`inexact`](https://www.github.com/arcruz0/inexact)
+
+```{r, echo=F, out.width="65%", fig.align="center"}
+knitr::include_graphics("imgs/inexact.gif")
+```
+
+A package to supervise fuzzy joins, i.e. a tool for dealing with non-standardized ID variables when joining data sets. See my [slides](/extra/toronto2021/inexact_slides.html) for the Toronto Workshop on Reproducibility.
+
+<hr>
+
+### R package: [`tesseractgt`](https://github.com/arcruz0/tesseractgt)
+
+```{r, echo=F, out.width="65%", fig.align="center"}
+knitr::include_graphics("imgs/tesseractgt.gif")
+```
+
+A package to generate "ground truth" data for retraining or fine-tuning Tesseract's optical character recognition (OCR) neural network. See the [blog post](/posts/finetuning-tess/index.html).
+
+<hr>
