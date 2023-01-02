@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Andrés Cruz">
+<meta name="dcterms.date" content="2023-01-02">
+
+<title>Andrés Cruz - Fine-tuning Tesseract’s OCR (with some help from R)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../../imgs/favicon.ico" rel="icon">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Andrés Cruz</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../r_resources.html">
+ <span class="menu-text">R Resources</span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Fine-tuning Tesseract’s OCR (with some help from R)</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">tesseract</div>
+                <div class="quarto-category">tesseractgt</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Andrés Cruz </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 2, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  <div>
+    <div class="abstract">
+      <div class="abstract-title">Abstract</div>
+      Fine-tuning Tesseract’s optical character recognition (OCR) to process a document with special characters, with the help of my new <code>tesseractgt</code> package.
+    </div>
+  </div>
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ocr-with-tesseract" id="toc-ocr-with-tesseract" class="nav-link active" data-scroll-target="#ocr-with-tesseract">OCR with Tesseract</a></li>
+  <li><a href="#fine-tuning" id="toc-fine-tuning" class="nav-link" data-scroll-target="#fine-tuning">Fine-tuning</a>
+  <ul class="collapse">
+  <li><a href="#creating-ground-truth-data" id="toc-creating-ground-truth-data" class="nav-link" data-scroll-target="#creating-ground-truth-data">Creating “ground truth” data</a></li>
+  <li><a href="#running-the-fine-tuning" id="toc-running-the-fine-tuning" class="nav-link" data-scroll-target="#running-the-fine-tuning">Running the fine-tuning</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+<section id="ocr-with-tesseract" class="level2">
+<h2 class="anchored" data-anchor-id="ocr-with-tesseract">OCR with Tesseract</h2>
+<p>Let’s say that we need to OCR some non-standard text. For example, look at this extract from a 1893 book on algae:<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-example" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="algae_sample.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Example image for OCR.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can use the <a href="https://github.com/tesseract-ocr/tesseract">Tesseract library</a>, the premier open source OCR solution. Tesseract is conveniently wrapped in the <code>tesseract</code> R package:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ocr</span>(<span class="st">"algae_sample.png"</span>, <span class="at">engine =</span> <span class="fu">tesseract</span>(<span class="at">language =</span> <span class="st">"eng"</span>)) <span class="sc">|&gt;</span> <span class="fu">cat</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>72. ZYGNEMA,
+
+§. Color soon becoming dark purple; filaments 20-25 in diam.,
+
+purpureum, 224
+§ Color green, or when in fruit yellowish or brownish (a).
+a. Filaments with gelatinous sheath; cells 25 wide, anomalum, 224
+a, “ 7 “ C cells 40-444 wide, crassum, 224
+a. “ without sheath (4).
+&amp;, Spore membrane smooth (¢).
+bf “ punctate or granulate (2).</code></pre>
+</div>
+</div>
+<p>Pretty good! Fiddling with <a href="https://docs.ropensci.org/tesseract/articles/intro.html#preprocessing-with-magick">image preprocessing</a> should get us even better results. But there’s a bigger challenge here: the micron (µ) is not part of Tesseract’s English character set. No matter how clean the input image is, off-the-self Tesseract will never detect those characters. This particular book is full of microns… what can we do?</p>
+</section>
+<section id="fine-tuning" class="level2">
+<h2 class="anchored" data-anchor-id="fine-tuning">Fine-tuning</h2>
+<p>Starting in version 4, Tesseract uses a neural network for text detection. This means that we can re-train the model for our particular task! There are many ways to do so, from training a new language from scratch to fine-tuning an existing one.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Here we’ll do the latter (which is easier to do and should yield better results in simple-ish cases like this one), using the English language (<code>eng</code>) as our base. I’ll name my new “language” <code>alg</code> (this will be relevant for some later steps).</p>
+<section id="creating-ground-truth-data" class="level3">
+<h3 class="anchored" data-anchor-id="creating-ground-truth-data">Creating “ground truth” data</h3>
+<p>First, we need some “ground truth” data for training. These should be image snippets from our document(s), with the corresponding text attached. There are <a href="https://github.com/tesseract-ocr/tesstrain/issues/7">scripts</a> to generate all possible image snippets in a page. But here we are mostly interested in the microns and other special symbols, so I decided to simply take screenshots of possibly-important text. I took 52 screenshots from a couple of the other pages in the book (you can experiment with more), and threw them into a folder. This folder must be named <code>{language}-ground-truth/</code>, so I named it <code>alg-ground-truth/</code> (download it <a href="alg-ground-truth.zip">here</a> to follow along). Here are a some of the screenshots:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-screenshots" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="imgs/screenshot_of_screenshots.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: A few of the 52 screenshots in the <code>alg-ground-truth/</code> folder. File names do not really matter (so you can just throw your raw screenshots in there if you want to).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now to the most time-consuming part. We need to make the text transcripts for these images. Tesseract expects files with the <code>gt.txt</code> extension, and the same name as the image. For the example above, we should have a <code>screenshot-001.gt.txt</code> file, containing the following text: “less than 25µ (d).” And a <code>screenshot-002.gt.txt</code> file, containing “14-22µ”. And so on…</p>
+<p>Making these files by hand gets old quickly, so I’ve made a little R package, <a href="https://github.com/arcruz0/tesseractgt"><code>tesseractgt</code></a>, to speed things up. We first install it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>) <span class="co"># only if `remotes` is not installed</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"arcruz0/tesseractgt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A first step to save us time is to create boilerplate <code>.gt.txt</code> files automatically:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseractgt)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create_gt_txt</span>(<span class="at">folder =</span> <span class="st">"alg-ground-truth"</span>, <span class="co"># folder with images </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">extension =</span> <span class="st">"png"</span>,           <span class="co"># extension of image files</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">engine =</span> tesseract<span class="sc">::</span><span class="fu">tesseract</span>(<span class="at">language =</span> <span class="st">"eng"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This creates all the needed <code>gt.txt</code> files:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-screenshots-w-gt-txt" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="imgs/screenshots_with_text.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: <code>alg-ground-truth/</code> folder with <code>gt.txt</code> files made by <code>create_gt_txt()</code>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that the text files are already pre-filled with OCR text from <code>tesseract</code>, via the <code>engine =</code> argument. These pre-fills will have problems (otherwise we wouldn’t be fine-tuning!), but it is usually quicker to correct them than to write all text from scratch. You can also specify <code>engine = NULL</code> to generate empty <code>gt.txt</code> files.</p>
+<p>Now we need to correct these <code>gt.txt</code> files by hand. We can use a text editor, or the addin provided by <code>tesseractgt</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">correct_gt_txt</span>() <span class="co"># or "Addins &gt; Correct ground truth files" in RStudio</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-addin" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="imgs/addin.gif" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Manually correcting the ground-truth files with <code>correct_gt_txt()</code>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>And that’s it! We can now use the <code>alg-ground-truth/</code> folder to fine-tune the neural network.</p>
+</section>
+<section id="running-the-fine-tuning" class="level3">
+<h3 class="anchored" data-anchor-id="running-the-fine-tuning">Running the fine-tuning</h3>
+<p>Here we will use the <a href="https://github.com/tesseract-ocr/tesstrain"><code>tesstrain</code> GitHub repository</a>, by the Tesseract developers. The procedure should work on Unix systems.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> On Ubuntu 22.04 (LTS), I did not have to install anything on top of Tesseract (but check the previous link if you have any issues with dependencies). We start by cloning the repository from our console (you can also download the zipped folder from GitHub):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/tesseract-ocr/tesstrain.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We first go to our new <code>tesstrain/</code> folder and set up some configuration files:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> tesstrain <span class="co"># wherever you saved this folder </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> tesseract-langdata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We now move our previously-created <code>alg-ground-truth/</code> folder to <code>tesstrain/data/</code>. If we want to, we can use the command line from the <code>tesstrain/</code> folder:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ~/location/alg-ground-truth data <span class="co"># should replace ~/location</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we need to obtain the base language for training, which would be English in our case. We start by downloading the <code>eng.traineddata</code> file from the <a href="https://github.com/tesseract-ocr/tessdata_best"><code>tessdata_best</code> GitHub repository</a>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> We need to place this file in the <code>tesstrain</code> folder, in a <code>usr/share/tessdata/</code> subfolder. If we want to, we can use the command line to create the subfolder and download the file from GitHub (change <code>eng</code> with your base language if needed):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> usr/share/tessdata</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-P</span> usr/share/tessdata https://github.com/tesseract-ocr/tessdata_best/raw/main/eng.traineddata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>At this point, our <code>tesstrain/</code> folder should look like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>├── generate_gt_from_box.py; generate_line_box.py; generate_line_syllable_box.py; 
+├── generate_wordstr_box.py; normalize.py; shuffle.py
+├── README.md; LICENSE; Makefile; requirements.txt; ocrd-testset.zip
+├── data/
+│&nbsp;&nbsp; ├── alg-ground-truth/
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── screenshot-001.gt.txt
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── screenshot-001.png
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── screenshot-002.gt.txt
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── screenshot-002.png
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── (etc)
+│&nbsp;&nbsp; └── langdata/
+│&nbsp;&nbsp;     ├── Arabic.unicharset
+│&nbsp;&nbsp;     ├── Armenian.unicharset
+│&nbsp;&nbsp;     ├── (etc)
+├── plot/
+│&nbsp;&nbsp; ├── plot_cer.py
+│&nbsp;&nbsp; └── plot_cer_validation.py
+├── src/
+│&nbsp;&nbsp; └── training/
+│&nbsp;&nbsp;     ├── language_specific.py
+│&nbsp;&nbsp;     ├── tesstrain.py
+│&nbsp;&nbsp;     └── tesstrain_utils.py
+└── usr/
+    └── share/
+        └── tessdata/
+            └── eng.traineddata</code></pre>
+</div>
+</div>
+<p>Finally, we can fine-tune! The command below will provide sensible defaults for us, fine-tuning in the “Impact” mode.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> In order to modify the fine-tuning hyperparameters (for example, setting a different learning rate or data splitting ratio), consult the <a href="https://github.com/tesseract-ocr/tesstrain"><code>tesstrain</code> documentation</a> and modify the command below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> training MODEL_NAME=alg START_MODEL=eng FINETUNE_TYPE=Impact</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For our example with 52 “ground truth” images, the fine-tuning only took a couple of minutes to run on my laptop.</p>
+<p>The command should have created a file named <code>data/alg.traineddata</code>, with our new fine-tuned model. We now need to get this to our system-wide folder of installed Tesseract languages. We can use R to find out where this folder is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tesseract<span class="sc">::</span><span class="fu">tesseract_info</span>()<span class="sc">$</span>datapath <span class="co"># my output is specific to Linux</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/usr/share/tesseract-ocr/5/tessdata/"</code></pre>
+</div>
+</div>
+<p>And we simply copy-paste our <code>.traineddata</code> file to this folder. Using the command line:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> cp data/alg.traineddata /usr/share/tesseract-ocr/5/tessdata/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That’s it, we’re done with fine-tuning! We can now use Tesseract as usual for whatever task we are interested in, with our new “alg” language already available. You can check the available languages from R, with <code>tesseract::tesseract_info()$available</code>.</p>
+</section>
+</section>
+<section id="results" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>Below we have the original image, and then our initial and refined OCR results side by side.</p>
+<p><img src="algae_sample.png" class="img-fluid"></p>
+<div class="column-screen-inset">
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ocr</span>(<span class="st">"algae_sample.png"</span>, <span class="at">engine =</span> <span class="fu">tesseract</span>(<span class="at">language =</span> <span class="st">"eng"</span>)) <span class="sc">|&gt;</span> <span class="fu">cat</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>72. ZYGNEMA,
+
+§. Color soon becoming dark purple; filaments 20-25 in diam.,
+
+purpureum, 224
+§ Color green, or when in fruit yellowish or brownish (a).
+a. Filaments with gelatinous sheath; cells 25 wide, anomalum, 224
+a, “ 7 “ C cells 40-444 wide, crassum, 224
+a. “ without sheath (4).
+&amp;, Spore membrane smooth (¢).
+bf “ punctate or granulate (2).</code></pre>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ocr</span>(<span class="st">"algae_sample.png"</span>, <span class="at">engine =</span> <span class="fu">tesseract</span>(<span class="at">language =</span> <span class="st">"alg"</span>)) <span class="sc">|&gt;</span> <span class="fu">cat</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>72. ZYGNEMA.
+
+§. Color soon becoming dark purple; filaments 20-25µ in diam.,
+
+purpureum, 224
+§ Color green, or when in fruit yellowish or brownish (a).
+a. Filaments with gelatinous sheath; cells 25µ wide, anomalum, 224
+a. " &amp; " L cells 40-44µ wide, crassum, 224
+a. " without sheath (b).
+b. Spore membrane smooth (c).
+bL " " punctate or granulate (d).</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>We got the microns! We also had some other minor improvements in the last couple of lines, possibly due to supplying the model with more examples of the specific typography. There are still some errors, that we might be able to solve with more aggressive fine-tuning, or with ex-post corrections. In any case, I hope that this blog post and <code>tesseractgt</code> are useful!</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Stokes, A. (1893). <em>Analytical keys to the genera and species of the fresh water Algae and the Desmidieae of the United States.</em> Portland, Conn.: Edward F. Bigelow. <a href="https://archive.org/details/cu31924089431997">Public domain, scanned by the Cornell University Library</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>See the package’s <a href="https://github.com/ropensci/tesseract">GitHub page</a> for installation instructions.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>See Tesseract’s <a href="https://tesseract-ocr.github.io/tessdoc/tess5/TrainingTesseract-5.html">training documentation</a> for more information.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>On Windows, the safest choice is probably to use the <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux (WSL)</a>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>The procedure will only work with these “best” <code>{language}.traineddata</code> files, so don’t try to use any of the lighter ones.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>There are other modes, but in my limited testing, this one provides good results quickly. Check out the <a href="https://github.com/tesseract-ocr/tesstrain"><code>tesstrain</code> documentation</a> for more options.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
