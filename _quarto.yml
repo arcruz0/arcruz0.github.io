@@ -2,6 +2,7 @@ project:
   type: website
   render:
     - "*.qmd"
+    - "workshops/*.qmd"
   resources: 
     - "extra/**"
     - "libroadp/**"
@@ -9,6 +10,7 @@ project:
     - "r-uc-2020/**"
     - "imgs/**"
     - "tesseractgt/**"
+    - "workshops/*"
 
 website:
   title: "Andrés Cruz"
