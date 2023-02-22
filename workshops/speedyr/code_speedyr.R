@@ -1,6 +1,6 @@
 # Code from the "Speedy R: loops, parallelization, and the cloud" workshop
 # Andrés Cruz - <andres.cruz@utexas.edu>
-# Slides: https://tiny.cc/speedyr
+# Materials: https://bit.ly/speedyr
 
 
 ## For loops (I) ----
