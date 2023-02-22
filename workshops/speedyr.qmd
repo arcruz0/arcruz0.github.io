@@ -1,0 +1,10 @@
+---
+title: "Speedy R: loops, parallelization, and the cloud"
+toc: false
+---
+
+<iframe class="stretch" style="width: 100%; height: 500px" src="speedyr/slides_speedyr.html"></iframe> 
+
+[[Slides]](speedyr/slides_speedyr.html){.external target="_blank"}
+
+<a href="speedyr/code_speedyr.R" download>[.R script]</a>

@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://arcruz0.github.io/blog.html</loc>
-    <lastmod>2023-02-20T05:11:04.275Z</lastmod>
+    <lastmod>2023-02-22T15:36:11.042Z</lastmod>
   </url>
   <url>
     <loc>https://arcruz0.github.io/index.html</loc>
-    <lastmod>2023-02-20T05:11:04.675Z</lastmod>
+    <lastmod>2023-02-22T15:36:11.242Z</lastmod>
   </url>
   <url>
     <loc>https://arcruz0.github.io/posts/finetuning-tess/index.html</loc>
-    <lastmod>2023-02-20T05:11:05.575Z</lastmod>
+    <lastmod>2023-02-22T15:36:11.650Z</lastmod>
   </url>
   <url>
     <loc>https://arcruz0.github.io/r_resources.html</loc>
-    <lastmod>2023-02-20T05:11:06.895Z</lastmod>
+    <lastmod>2023-02-22T15:36:12.258Z</lastmod>
+  </url>
+  <url>
+    <loc>https://arcruz0.github.io/workshops/speedyr.html</loc>
+    <lastmod>2023-02-22T15:36:12.418Z</lastmod>
   </url>
 </urlset>
