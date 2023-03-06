@@ -96,10 +96,9 @@ system.time(
 )
 
 library(future.apply); plan(multisession, workers = 8)
-set.seed(512)
 system.time(
   l_bootstrapped_means <- future_lapply(1:1000000, function(x){
       m <- mtcars[sample(1:nrow(mtcars), size = nrow(mtcars), replace = T),]
       return(mean(m$mpg))
-  })
+  }, future.seed = 512)
 )
