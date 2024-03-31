@@ -9,12 +9,12 @@
     products, including random samples. Partial wrapper of the
     `lazy-cartesian-product` C++ library 
     (&lt;https://github.com/tylerburdsall/lazy-cartesian-product&gt;).">
-<title>Interface for Lazy Cartesian Products • rlazycartesian</title>
+<title>R Interface for Lazy Cartesian Products • rlazycartesian</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Interface for Lazy Cartesian Products">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="R Interface for Lazy Cartesian Products">
 <meta property="og:description" content="Functions to lazily obtain elements from cartesian
     products, including random samples. Partial wrapper of the
     `lazy-cartesian-product` C++ library 
@@ -68,7 +68,7 @@
 <code>rlazycartesian</code><a class="anchor" aria-label="anchor" href="#rlazycartesian"></a>
 </h1></div>
 <p><a href="https://arcruz0.github.io/extra/rlazycartesian/" class="external-link">[<strong>Documentation</strong>]</a></p>
-<p>An R interface for Lazy Cartesian Products. Provides memory-efficient ways to obtain elements (including random samples) from Cartesian Products. Partial wrapper of the <a href="https://github.com/tylerburdsall/lazy-cartesian-product" class="external-link"><code>lazy-cartesian-product</code></a> C++ library.</p>
+<p>An R interface for Lazy Cartesian Products. Provides memory-efficient ways to obtain elements (including random samples) from Cartesian Products. Partial wrapper of the <a href="https://github.com/tylerburdsall/lazy-cartesian-product" class="external-link"><code>lazy-cartesian-product</code></a> C++ library (Burdsall, 2018).</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -79,25 +79,13 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>In R, <code><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid()</a></code> gives the Cartesian Product of multiple elements:</p>
+<p>Suppose you need a random sample of 1,000 elements from a Cartesian Product of 125M elements. <code>rlazycartesian</code> can do this without generating all elements in advance (as <code><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid()</a></code> would do). This makes it so that the operation is fast and consumes very little RAM—see <a href="#benchmarks">Benchmarks</a> below.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">500</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span>,</span>
 <span>          y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"y"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">500</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span>,</span>
 <span>          z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"z"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">500</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span><span class="va">l</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">eg</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    x  y  z</span></span>
-<span><span class="co">#&gt; 1 x1 y1 z1</span></span>
-<span><span class="co">#&gt; 2 x2 y1 z1</span></span>
-<span><span class="co">#&gt; 3 x3 y1 z1</span></span>
-<span><span class="co">#&gt; 4 x4 y1 z1</span></span>
-<span><span class="co">#&gt; 5 x5 y1 z1</span></span>
-<span><span class="co">#&gt; 6 x6 y1 z1</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">eg</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 125000000</span></span></code></pre></div>
-<p>Suppose you need a random sample of 1,000 elements from this Cartesian Product. <code>rlazycartesian</code> can do this without generating all elements in advance, which is fast and consumes very little RAM (see <a href="#benchmarks">Benchmarks</a> below):</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">rlazycartesian</span><span class="fu">::</span><span class="fu"><a href="reference/get_random_sample.html">get_random_sample</a></span><span class="op">(</span><span class="va">l</span>, <span class="fl">1000</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   .element    x    y    z</span></span>
 <span><span class="co">#&gt; 1 66608964 x267 y218 z464</span></span>
@@ -108,40 +96,44 @@
 <span><span class="co">#&gt; 6 79310131 x318 y121 z131</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="a-note-on-element-indices">A note on element indices<a class="anchor" aria-label="anchor" href="#a-note-on-element-indices"></a>
+<h2 id="a-note-on-element-indices-and-expandgrid">A note on element indices and <code>expand.grid()</code>
+<a class="anchor" aria-label="anchor" href="#a-note-on-element-indices-and-expandgrid"></a>
 </h2>
 <p>Element indices from <code>rlazycartesian</code> are equivalent to indices from a sorted <code><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid()</a></code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">eg</span> <span class="op">&lt;-</span> <span class="va">eg</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">eg</span><span class="op">$</span><span class="va">x</span>, <span class="va">eg</span><span class="op">$</span><span class="va">y</span>, <span class="va">eg</span><span class="op">$</span><span class="va">z</span><span class="op">)</span>,<span class="op">]</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">rlazycartesian</span><span class="fu">::</span><span class="fu"><a href="reference/get_elements.html">get_elements</a></span><span class="op">(</span><span class="va">l</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12345</span>, <span class="fl">98765</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   .element  x    y    z</span></span>
+<span><span class="co">#&gt; 1    12345 x1  y25 z345</span></span>
+<span><span class="co">#&gt; 2    98765 x1 y198 z265</span></span>
+<span></span>
+<span><span class="va">eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span><span class="va">l</span><span class="op">)</span></span>
+<span><span class="va">eg</span> <span class="op">&lt;-</span> <span class="va">eg</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">eg</span><span class="op">$</span><span class="va">x</span>, <span class="va">eg</span><span class="op">$</span><span class="va">y</span>, <span class="va">eg</span><span class="op">$</span><span class="va">z</span><span class="op">)</span>,<span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">eg</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
 <span><span class="va">eg</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12345</span>, <span class="fl">98765</span><span class="op">)</span>,<span class="op">]</span></span>
 <span><span class="co">#&gt;        x    y    z</span></span>
 <span><span class="co">#&gt; 12345 x1  y25 z345</span></span>
-<span><span class="co">#&gt; 98765 x1 y198 z265</span></span>
-<span></span>
-<span><span class="fu">rlazycartesian</span><span class="fu">::</span><span class="fu"><a href="reference/get_elements.html">get_elements</a></span><span class="op">(</span><span class="va">l</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12345</span>, <span class="fl">98765</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   .element  x    y    z</span></span>
-<span><span class="co">#&gt; 1    12345 x1  y25 z345</span></span>
-<span><span class="co">#&gt; 2    98765 x1 y198 z265</span></span></code></pre></div>
+<span><span class="co">#&gt; 98765 x1 y198 z265</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="benchmarks">Benchmarks<a class="anchor" aria-label="anchor" href="#benchmarks"></a>
 </h2>
 <p>For the random sample example above, compare performance (<code>Elapsed_Time_sec</code>) and peak RAM usage (<code>Peak_RAM_Used_MiB</code>):</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">peakRAM</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/peakRAM/man/peakRAM.html" class="external-link">peakRAM</a></span><span class="op">(</span></span>
-<span>  <span class="op">{</span></span>
-<span>    <span class="va">eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span><span class="va">l</span><span class="op">)</span></span>
-<span>    <span class="va">eg</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">eg</span><span class="op">)</span>, <span class="fl">1000</span><span class="op">)</span>,<span class="op">]</span></span>
-<span>  <span class="op">}</span>, </span>
-<span>  <span class="fu">rlazycartesian</span><span class="fu">::</span><span class="fu"><a href="reference/get_random_sample.html">get_random_sample</a></span><span class="op">(</span><span class="va">l</span>, <span class="fl">1000</span><span class="op">)</span></span>
+<span>  <span class="fu">rlazycartesian</span><span class="fu">::</span><span class="fu"><a href="reference/get_random_sample.html">get_random_sample</a></span><span class="op">(</span><span class="va">l</span>, <span class="fl">1000</span><span class="op">)</span>,</span>
+<span>  <span class="op">{</span><span class="va">eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span><span class="va">l</span><span class="op">)</span>; <span class="va">eg</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">eg</span><span class="op">)</span>, <span class="fl">1000</span><span class="op">)</span>,<span class="op">]</span><span class="op">}</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;                                      Function_Call Elapsed_Time_sec</span></span>
-<span><span class="co">#&gt; 1 {eg&lt;-expand.grid(l)eg[sample(1:nrow(eg),1000),]}            4.414</span></span>
-<span><span class="co">#&gt; 2        rlazycartesian::get_random_sample(l,1000)            0.001</span></span>
+<span><span class="co">#&gt; 1        rlazycartesian::get_random_sample(l,1000)            0.095</span></span>
+<span><span class="co">#&gt; 2 {eg&lt;-expand.grid(l)eg[sample(1:nrow(eg),1000),]}            4.538</span></span>
 <span><span class="co">#&gt;   Total_RAM_Used_MiB Peak_RAM_Used_MiB</span></span>
-<span><span class="co">#&gt; 1                0.1            2862.2</span></span>
-<span><span class="co">#&gt; 2                0.1               0.2</span></span></code></pre></div>
+<span><span class="co">#&gt; 1                0.9               6.8</span></span>
+<span><span class="co">#&gt; 2             1430.6            1907.4</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<p>Burdsall, T. (2018). <code>lazy-cartesian-product</code>: .hpp library to efficiently generate combinations using the Lazy Cartesian Product algorithm. <a href="https://github.com/tylerburdsall/lazy-cartesian-product" class="external-link uri">https://github.com/tylerburdsall/lazy-cartesian-product</a></p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
