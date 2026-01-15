@@ -3,16 +3,6 @@ title: "Andrés Cruz"
 # image: profile.jpg
 about:
   template: jolla
-  links:
-    - icon: github
-      text: Github
-      href: https://github.com/arcruz0
-      target: _blank
-    - icon: google
-      text: Google Scholar
-      href: https://scholar.google.com/citations?user=cdI1MZkAAAAJ&hl=en&oi=ao
-      target: _blank
-
 ---
 
 Hi! I am a PhD candidate in the Department of Government at the University of Texas at Austin, where I also obtained an MS in Statistics. 
