@@ -22,6 +22,13 @@ jobs:
         with:
           r-version: '4.2.0'
 
+      - name: Set up packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages:
+            any::knitr
+            any::rmarkdown
+
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
