@@ -2,7 +2,7 @@
 title: "Research"
 ---
 
-### Working papers
+## Working papers
 
 **Cruz, A.**, Gerring, J., & C.H. Knutsen. *Synthesizing Research through Total Model Space: The Case of Democracy and Growth.* Under review.
 
@@ -48,7 +48,7 @@ Abstract
 </blockquote>
 </details>
 
-### Peer-reviewed publications
+## Peer-reviewed publications
 
 **Cruz, A.**, Bouyamourn, A., & Ornstein, J.T. (2026). [Survey Quality and Acquiescence Bias: A Cautionary Tale.](https://doi.org/10.1017/pan.2025.10030) *Political Analysis*, First View.
 

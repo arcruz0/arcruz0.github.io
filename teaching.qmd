@@ -2,7 +2,7 @@
 title: "Teaching"
 ---
 
-### Lab Instructor: Statistical Analysis in Political Science I/II (G)
+## Lab Instructor: Statistical Analysis in Political Science I/II (G)
 
 <!-- [Materials]() -->
 
@@ -10,7 +10,7 @@ UT Austin: AY 2023/4
 
 Taught by Connor Jerzak and JB Duck-Mayr
 
-### Instructor: Methods Camp (G)
+## Instructor: Methods Camp (G)
 
 [Materials](https://methodscamp.github.io/previous-editions/2024/)
 
@@ -18,13 +18,13 @@ UT Austin: Summer 2023, Summer 2024
 
 Co-taught with Matt Martin, Meiying Xu
 
-### Instructor: Programming for the Social Sciences (UG)
+## Instructor: Programming for the Social Sciences (UG)
 
 [Materials (Spanish)](https://andrescruz.org/r-uc-2020/) 
 
-[UDP](https://cienciapolitica.udp.cl/) and [PUC](https://cienciapolitica.uc.cl/): 2019--2021
+PUC and UDP: 2019--2021
 
-### Textbook: R for Political Data Science / AnalizaR Datos Políticos
+## Textbook: R for Political Data Science / AnalizaR Datos Políticos
 
 [Book (CRC Press)](https://www.routledge.com/R-for-Political-Data-Science-A-Practical-Guide/Urdinez-Cruz/p/book/9780367818890) / [Book (Open-source Spanish version)](https://andrescruz.org/libroadp/)
 
@@ -36,7 +36,7 @@ Co-edited with Francisco Urdinez
 knitr::include_graphics("imgs/book_covers.png")
 ```
 
-### Workshop Presentations
+## Workshop Presentations
 
 - [Power analysis: bridging theory and practice (Fall 2024)](workshops/power_analysis.html)
 
