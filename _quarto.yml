@@ -4,6 +4,7 @@ project:
     - "*.qmd"
     - "workshops/*.qmd"
   resources: 
+    - "assets/**"
     - "extra/**"
     - "libroadp/**"
     - "politicalds/**"
@@ -11,17 +12,19 @@ project:
     - "imgs/**"
     - "tesseractgt/**"
     - "workshops/*"
-
 website:
   title: "Andrés Cruz"
   navbar:
     right:
       - text: "Home"
         href: index.qmd
-      - blog.qmd
-      - r_resources.qmd
+      - research.qmd
+      - teaching.qmd
+      - software.qmd
+      - cv.qmd
   search: false
   favicon: imgs/favicon.ico
+  twitter-card: true
 format:
   html:
     theme:
@@ -29,5 +32,6 @@ format:
       dark: darkly
     css: styles.css
     toc: true
-
-
+    link-external-newwindow: true
+execute:
+  freeze: false

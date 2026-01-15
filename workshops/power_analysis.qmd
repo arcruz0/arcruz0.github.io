@@ -1,0 +1,8 @@
+---
+title: "Power analysis: bridging theory and practice"
+toc: false
+---
+
+<iframe class="stretch" style="width: 100%; height: 500px" src="power_analysis/slides_power_analysis.html"></iframe> 
+
+[[Slides]](power_analysis/slides_power_analysis.html){.external target="_blank"}

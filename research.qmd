@@ -1,0 +1,95 @@
+---
+title: "Research"
+---
+
+### Working papers
+
+**Cruz, A.**, Gerring, J., & C.H. Knutsen. *Synthesizing Research through Total Model Space: The Case of Democracy and Growth.* Under review.
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>Combining features associated with conventional literature reviews, meta-analyses, and robustness tests, we propose a more expansive method of synthesizing the literature on a topic. This total model space (TMS) is intended to encompass all conceivable tests of a specific research question, as indicated by its literature’s most common variations in design choices. Using the example of democracy’s impact on growth, we show that the TMS provides a rich picture of how a literature’s results follow from its design choices, identifying the features that most strongly drive results in one direction or another. In this way, the TMS approach promises to contribute to the cumulation of knowledge, enabling researchers to narrow the range of potential disagreements and thereby focus discussion on the design choices that are most consequential.</p>
+</blockquote>
+</details>
+
+**Cruz, A.**. *Detecting and Understanding Influential Sets.*
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>An influential set is a small group of observations that overturns a statistical result once removed. Empirical claims that hinge on just a handful of observations can be narrow in scope or flat-out fragile---a distinction that is often hard to make using existing methods for retrieving influential sets. In this paper, I present a suite of automatic techniques for this task, including a novel contribution: the Probabilistic Algorithm for Influential Sets (PAIS). PAIS outperforms current approaches and retrieves not just one but a series of influential sets, increasing interpretability. In a series of replications of political science research, I demonstrate how to detect and make sense of influential sets. In particular, I show how examining the observations appearing in influential sets yields valuable insights: while in some cases small influential sets do unveil the fragility of a result, in others they simply reveal the variation being exploited to construct an estimate. This approach encourages researchers to *look at their data* and connect their empirics with theoretical exemplars.</p>
+</blockquote>
+</details>
+
+Gerring, J., **Cruz, A.**, de Castro Quaglia, L., Miao, K., Öncel, E., & Saijo, H. *Leader Tenure and Leader Power.*
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>Despite its empirical ambiguity, the concept of leader power remains central to our understanding of politics. We argue that this recalcitrant concept may be successfully operationalized by time in office---a proxy that is directly observable across time and settings. First, we lay out a theoretical rationale. Second, we test the proposition empirically by associating tenure with existing measures. Subjective assessments of leader power are drawn from experts, LLM queries, and Google searches. Institutional limits on leader power are inferred from regime type, executive constraints, personalism, and forced departures. In certain settings, we are able to estimate the impact of an as-if random elongation of tenure. The tests corroborate the thesis: leader tenure is a generalizable metric of leader power.</p>
+</blockquote>
+</details>
+
+Gardner, R., Martin, M., Moran, A., Elkins, Z., **Cruz, A.**, & Pérez, G. *Expanding Your Vocabulary: Topic Integration Using the Segments-as-Topics (SAT) Approach.* Under review.
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>Topic discovery and integration are vital for maintaining vocabularies that categorize textual corpora. Automated approaches are often computationally expensive and lack domain-specific conceptual nuance; manual approaches are costly in terms of time and potential bias. To address this dilemma, we introduce the segments-as-topic (SAT) methodology, a four-stage process that combines automation and human expertise to assess candidate topics for vocabulary inclusion. In the SAT generation stage, a topic is formulated and refined through collaboration with domain experts, then a sentence-level semantic similarity model retrieves corpus segments semantically aligned with the topic. The SAT expansion stage uses this seed set to find additional semantically similar segments, which are iteratively accepted or rejected to build a final segment set. During the review stage, a panel of scholars evaluates the topic for inclusion. In the integration stage, all segments in the final segment set are automatically tagged with the new topic. We apply this methodology to the Comparative Constitutions Project vocabulary that tracks over 330 topics in national constitutions, and demonstrate the addition of three new topics to the vocabulary. The SAT approach balances computational efficiency with expert judgment, offering a systematic, user-friendly, and replicable framework for social scientists to expand domain-specific vocabularies.</p>
+</blockquote>
+</details>
+
+### Peer-reviewed publications
+
+**Cruz, A.**, Bouyamourn, A., & Ornstein, J.T. (2026). [Survey Quality and Acquiescence Bias: A Cautionary Tale.](https://doi.org/10.1017/pan.2025.10030) *Political Analysis*, First View.
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>In this note, we offer a cautionary tale on the dangers of drawing inferences from low-quality online survey datasets. We reanalyze and replicate a survey experiment studying the effect of acquiescence bias on estimates of conspiratorial beliefs and political misinformation. Correcting a minor data coding error yields a puzzling result: respondents with a postgraduate education appear to be the most prone to acquiescence bias. We conduct two preregistered replication studies to better understand this finding. In our first replication, conducted using the same survey platform as the original study, we find a nearly identical set of results. But in our second replication, conducted with a larger and higher-quality survey panel, this apparent effect disappears. We conclude that the observed relationship was an artifact of inattentive and fraudulent responses in the original survey panel, and that attention checks alone do not fully resolve the problem. This demonstrates how “survey trolls” and inattentive respondents on low-quality survey platforms can generate spurious and theoretically confusing results.</p>
+</blockquote>
+</details>
+
+**Cruz, A.**, Elkins, Z., Gardner, R., Martin, M., & Moran, A. (2023). [Measuring Constitutional Preferences:](https://doi.org/10.1371/journal.pone.0295396) [A New Method for Analyzing Public Consultation Data.](https://doi.org/10.1371/journal.pone.0295396) *PLOS ONE, 18*(12).
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>Public consultation has become an indispensable part of constitutional design, yet the voluminous, narrative data produced are often impractical to analyze. There are also few, if any, standards for such analysis. Using a comprehensive reference ontology from the Comparative Constitutions Project (CCP), we develop a new methodology to identify constitutional topics of most concern to citizens and compare these to topics in constitutions globally. We analyze data from Chile’s 2016 public consultations—an ambitious process that produced nearly 265,000 narrative responses and launched the constitutional reform process that remains underway today. We leverage advances in natural language processing, in particular sentence-level semantic similarity technology, to classify consultation responses with respect to constitutional topics. Our methodology has potential for advocates, drafters, and researchers seeking to analyze public consultation data that too often go unexamined.</p>
+</blockquote>
+</details>
+
+Luna, J.P., Pérez, C., Toro, S., Rosenblatt, F., Poblete, B., Valenzuela, S., **Cruz, A.**, Bro, N., Alcatruz, D., & Escobar, A. (2022) [Much Ado About Facebook? Evidence from Eighty Congressional Campaigns in Chile.](https://doi.org/10.1080/19331681.2021.1936334) *Journal of Information Technology & Politics, 19*(2).
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>How do political candidates combine social media campaign tools with on-the-ground political campaigns to pursue segmented electoral strategies? We argue that online campaigns can reproduce and reinforce segmented electoral appeals. Furthermore, our study suggests that electoral segmentation remains a broader phenomenon that includes social media as but one of many instruments by which to appeal to voters. To test our argument, we analyze the case of the 2017 legislative elections in Chile. We combine an analysis of Facebook and online electoral campaign data from 80 congressional campaigns that competed in three districts with ethnographic sources (i.e., campaigns observed on the ground and in-depth interviews with candidates). The results of this novel study suggest that intensive online campaigning mirrors offline segmentation.</p>
+</blockquote>
+</details>
+
+Huneeus, S., Toro, S., Luna, J.P., Sazo, D., **Cruz, A.**, Alcatruz, D., Castillo, B., Bertranou, C., & Cisterna, J. (2021) [Delayed and Approved: A Quantitative Study of Conflicts and the Environmental Impact Assessments of Energy Projects in Chile 2012--2017.](https://doi.org/10.3390/su13136986) *Sustainability, 13*(13).
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>The Sistema de Evaluación de Impacto Ambiental (Environmental Impact Assessment System—SEIA) evaluates all projects potentially harmful to human health and the environment in Chile. Since its establishment, many projects approved by the SEIA have been contested by organized communities, especially in the energy sector. The question guiding our research is whether socio-environmental conflicts affect the evaluation times and the approval rates of projects under assessment. Using a novel database comprising all energy projects assessed by the SEIA, we analyzed 380 energy projects that entered the SEIA review process between 2012 and 2017 and matched these projects with protest events. Using linear and logit regression, we find no association between the occurrence of protests aimed at specific projects and the probability of project approval. We do, however, find that projects associated with the occurrence of protest events experience significantly longer review times. To assess the robustness of this finding, we compare two run-of-river plants proposed in Mapuche territory in Chile’s La Araucanía region. We discuss the broader implications of these findings for sustainable environmental decision making.</p>
+</blockquote>
+</details>

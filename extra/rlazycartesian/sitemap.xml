@@ -24,4 +24,13 @@
   <url>
     <loc>/reference/index.html</loc>
   </url>
+  <url>
+    <loc>/reference/lazy_cartesian.html</loc>
+  </url>
+  <url>
+    <loc>/reference/restrict.html</loc>
+  </url>
+  <url>
+    <loc>/reference/restrict_multi.html</loc>
+  </url>
 </urlset>
