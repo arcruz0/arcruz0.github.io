@@ -1,8 +1,0 @@
----
-title: "CV"
-toc: false
----
-
-[[Download PDF]](assets/cruz_cv.pdf)
-
-<iframe src="assets/cruz_cv.pdf" style="width: 100%; height: 100%;"></iframe>
