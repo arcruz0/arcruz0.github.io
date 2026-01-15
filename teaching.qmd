@@ -32,6 +32,10 @@ Co-taught with Matt Martin, Meiying Xu
 
 Co-edited with Francisco Urdinez
 
+```{r, echo=F, out.width="45%", fig.align="center"}
+knitr::include_graphics("imgs/book_covers.png")
+```
+
 ### Workshop Presentations
 
 - [Power analysis: bridging theory and practice (Fall 2024)](workshops/power_analysis.html)
