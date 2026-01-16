@@ -32,7 +32,7 @@ PUC and UDP: 2019--2021
 
 Co-edited with Francisco Urdinez
 
-```{r, echo=F, out.width="45%", fig.align="center"}
+```{r, echo=F, out.width="350px", fig.align="center"}
 knitr::include_graphics("imgs/book_covers.png")
 ```
 
