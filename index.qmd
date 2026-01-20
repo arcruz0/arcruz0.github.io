@@ -4,13 +4,14 @@ title: "Andrés Cruz"
 about:
   template: jolla
   links:
-    - icon: github
-      text: Github
+    - text: '{{< fa brands github >}} Github'
       href: https://github.com/arcruz0
       target: _blank
-    - icon: google
-      text: Google Scholar
-      href: https://scholar.google.com/citations?user=cdI1MZkAAAAJ&hl=en&oi=ao
+    - text: '{{< fa brands google-scholar >}} Google Scholar'
+      href: https://scholar.google.com/citations?user=cdI1MZkAAAAJ&hl=en
+      target: _blank
+    - text: '{{< fa brands orcid >}} ORCID'
+      href: https://orcid.org/0000-0003-3819-9433
       target: _blank
 ---
 
