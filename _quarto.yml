@@ -33,5 +33,6 @@ format:
     css: styles.css
     toc: true
     link-external-newwindow: true
+    respect-user-color-scheme: true
 execute:
   freeze: false
