@@ -4,18 +4,7 @@ title: "Research"
 
 ## Working papers
 
-**Cruz, A.**, Gerring, J., & C.H. Knutsen. *Synthesizing Research through Total Model Space: The Case of Democracy and Growth.* Under review.
-
-<details>
-<summary>
-Abstract
-</summary>
-<blockquote class="blockquote">
-<p>Combining features associated with conventional literature reviews, meta-analyses, and robustness tests, we propose a more expansive method of synthesizing the literature on a topic. This total model space (TMS) is intended to encompass all conceivable tests of a specific research question, as indicated by its literature’s most common variations in design choices. Using the example of democracy’s impact on growth, we show that the TMS provides a rich picture of how a literature’s results follow from its design choices, identifying the features that most strongly drive results in one direction or another. In this way, the TMS approach promises to contribute to the cumulation of knowledge, enabling researchers to narrow the range of potential disagreements and thereby focus discussion on the design choices that are most consequential.</p>
-</blockquote>
-</details>
-
-**Cruz, A.**. *Detecting and Understanding Influential Sets.*
+**Cruz, A.** "Detecting and Understanding Influential Sets."
 
 <details>
 <summary>
@@ -26,7 +15,18 @@ Abstract
 </blockquote>
 </details>
 
-Gerring, J., **Cruz, A.**, de Castro Quaglia, L., Miao, K., Öncel, E., & Saijo, H. *Leader Tenure and Leader Power.*
+**Cruz, A.**, Gerring, J., & Knutsen, C.H. "Synthesizing Research through Total Model Space: The Case of Democracy and Growth." Under review.
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>Combining features associated with conventional literature reviews, meta-analyses, and robustness tests, we propose a more expansive method of synthesizing the literature on a topic. This total model space (TMS) is intended to encompass all conceivable tests of a specific research question, as indicated by its literature’s most common variations in design choices. Using the example of democracy’s impact on growth, we show that the TMS provides a rich picture of how a literature’s results follow from its design choices, identifying the features that most strongly drive results in one direction or another. In this way, the TMS approach promises to contribute to the cumulation of knowledge, enabling researchers to narrow the range of potential disagreements and thereby focus discussion on the design choices that are most consequential.</p>
+</blockquote>
+</details>
+
+Gerring, J., **Cruz, A.**, de Castro Quaglia, L., Miao, K., Öncel, E., & Saijo, H. "Leader Tenure and Leader Power." Submitted.
 
 <details>
 <summary>
@@ -37,7 +37,7 @@ Abstract
 </blockquote>
 </details>
 
-Gardner, R., Martin, M., Moran, A., Elkins, Z., **Cruz, A.**, & Pérez, G. *Expanding Your Vocabulary: Topic Integration Using the Segments-as-Topics (SAT) Approach.* Under review.
+Gardner, R., Martin, M., Moran, A., Elkins, Z., **Cruz, A.**, & Pérez, G. "Expanding Your Vocabulary: Topic Integration Using the Segments-as-Topics (SAT) Approach." R&R, *Social Science Computer Review*.
 
 <details>
 <summary>
@@ -50,7 +50,7 @@ Abstract
 
 ## Peer-reviewed publications
 
-**Cruz, A.**, Bouyamourn, A., & Ornstein, J.T. (2026). [Survey Quality and Acquiescence Bias: A Cautionary Tale.](https://doi.org/10.1017/pan.2025.10030) *Political Analysis*, First View.
+**Cruz, A.**, Bouyamourn, A., & Ornstein, J.T. 2026. ["Survey Quality and Acquiescence Bias: A Cautionary Tale."](https://doi.org/10.1017/pan.2025.10030) *Political Analysis*, First View.
 
 <details>
 <summary>
@@ -61,7 +61,7 @@ Abstract
 </blockquote>
 </details>
 
-**Cruz, A.**, Elkins, Z., Gardner, R., Martin, M., & Moran, A. (2023). [Measuring Constitutional Preferences:](https://doi.org/10.1371/journal.pone.0295396) [A New Method for Analyzing Public Consultation Data.](https://doi.org/10.1371/journal.pone.0295396) *PLOS ONE, 18*(12).
+**Cruz, A.**, Elkins, Z., Gardner, R., Martin, M., & Moran, A. 2023. ["Measuring Constitutional Preferences:](https://doi.org/10.1371/journal.pone.0295396) [A New Method for Analyzing Public Consultation Data."](https://doi.org/10.1371/journal.pone.0295396) *PLOS ONE, 18*(12).
 
 <details>
 <summary>
@@ -72,7 +72,7 @@ Abstract
 </blockquote>
 </details>
 
-Luna, J.P., Pérez, C., Toro, S., Rosenblatt, F., Poblete, B., Valenzuela, S., **Cruz, A.**, Bro, N., Alcatruz, D., & Escobar, A. (2022) [Much Ado About Facebook? Evidence from Eighty Congressional Campaigns in Chile.](https://doi.org/10.1080/19331681.2021.1936334) *Journal of Information Technology & Politics, 19*(2).
+Luna, J.P., Pérez, C., Toro, S., Rosenblatt, F., Poblete, B., Valenzuela, S., **Cruz, A.**, Bro, N., Alcatruz, D., & Escobar, A. 2022. ["Much Ado About Facebook? Evidence from Eighty Congressional Campaigns in Chile."](https://doi.org/10.1080/19331681.2021.1936334) *Journal of Information Technology & Politics, 19*(2).
 
 <details>
 <summary>
@@ -83,7 +83,7 @@ Abstract
 </blockquote>
 </details>
 
-Huneeus, S., Toro, S., Luna, J.P., Sazo, D., **Cruz, A.**, Alcatruz, D., Castillo, B., Bertranou, C., & Cisterna, J. (2021) [Delayed and Approved: A Quantitative Study of Conflicts and the Environmental Impact Assessments of Energy Projects in Chile 2012--2017.](https://doi.org/10.3390/su13136986) *Sustainability, 13*(13).
+Huneeus, S., Toro, S., Luna, J.P., Sazo, D., **Cruz, A.**, Alcatruz, D., Castillo, B., Bertranou, C., & Cisterna, J. 2021. ["Delayed and Approved: A Quantitative Study of Conflicts and the Environmental Impact Assessments of Energy Projects in Chile 2012--2017."](https://doi.org/10.3390/su13136986) *Sustainability, 13*(13).
 
 <details>
 <summary>
