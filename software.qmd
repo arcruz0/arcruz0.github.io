@@ -4,7 +4,7 @@ title: "Software"
 
 - [`marginaleffectsjax`](https://github.com/arcruz0/marginaleffectsJAX): replace [`marginaleffects`](https://marginaleffects.com/) derivatives with automatic differentiation, via JAX.
 
-- [`tesseractgt`](https://github.com/arcruz0/tesseractgt): generate "ground truth" data for retraining or fine-tuning Tesseract's optical character recognition (OCR) neural network.
+- [`tesseractgt`](https://andrescruz.org/tesseractgt/index.html): generate "ground truth" data for retraining or fine-tuning Tesseract's optical character recognition (OCR) neural network.
 
 - [`rlazycartesian`](https://arcruz0.github.io/extra/rlazycartesian/): extract elements from Cartesian Products. Partial wrapper of the [`lazy-cartesian-product`](https://github.com/tylerburdsall/lazy-cartesian-product) C++ library.
 
