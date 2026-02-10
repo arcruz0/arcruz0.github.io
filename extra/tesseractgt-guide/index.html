@@ -124,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div>
     <div class="abstract">
       <div class="block-title"><i>Abstract</i></div>
-      Fine-tuning Tesseract’s optical character recognition (OCR) to process a document with special characters, with the help of my new <code>tesseractgt</code> package.
+      Fine-tuning Tesseract’s optical character recognition (OCR) to process a document with special characters, with the help of my new <a href="https://andrescruz.org/tesseractgt/"><code>tesseractgt</code></a> package.
     </div>
   </div>
   
@@ -211,7 +211,7 @@ Figure&nbsp;2: A few of the 52 screenshots in the <code>alg-ground-truth/</code>
 </div>
 </div>
 <p>Now to the most time-consuming part. We need to make the text transcripts for these images. Tesseract expects files with the <code>gt.txt</code> extension, and the same name as the image. For the example above, we should have a <code>screenshot-001.gt.txt</code> file, containing the following text: “less than 25µ (d).” And a <code>screenshot-002.gt.txt</code> file, containing “14-22µ”. And so on…</p>
-<p>Making these files by hand gets old quickly, so I’ve made a little R package, <a href="https://github.com/arcruz0/tesseractgt"><code>tesseractgt</code></a>, to speed things up. We first install it:</p>
+<p>Making these files by hand gets old quickly, so I’ve made a little R package, <a href="https://andrescruz.org/tesseractgt/"><code>tesseractgt</code></a>, to speed things up. We first install it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>) <span class="co"># only if `remotes` is not installed</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"arcruz0/tesseractgt"</span>)</span></code></pre></div>
@@ -239,7 +239,7 @@ Figure&nbsp;3: <code>alg-ground-truth/</code> folder with <code>gt.txt</code> fi
 </div>
 </div>
 <p>Note that the text files are already pre-filled with OCR text from <code>tesseract</code>, via the <code>engine =</code> argument. These pre-fills will have problems (otherwise we wouldn’t be fine-tuning!), but it is usually quicker to correct them than to write all text from scratch. You can also specify <code>engine = NULL</code> to generate empty <code>gt.txt</code> files.</p>
-<p>Now we need to correct these <code>gt.txt</code> files by hand. We can use a text editor, or the addin provided by <code>tesseractgt</code>:</p>
+<p>Now we need to correct these <code>gt.txt</code> files by hand. We can use a text editor, or the addin provided by <a href="https://andrescruz.org/tesseractgt/"><code>tesseractgt</code></a>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">correct_gt_txt</span>() <span class="co"># or "Addins &gt; Correct ground truth files" in RStudio</span></span></code></pre></div>
 </div>
@@ -371,7 +371,7 @@ bL " " punctate or granulate (d).</code></pre>
 </div>
 </div>
 </div>
-<p>We got the microns! We also had some other minor improvements in the last couple of lines, possibly due to supplying the model with more examples of the specific typography. There are still some errors, that we might be able to solve with more aggressive fine-tuning, or with ex-post corrections. In any case, I hope that this blog post and <code>tesseractgt</code> are useful!</p>
+<p>We got the microns! We also had some other minor improvements in the last couple of lines, possibly due to supplying the model with more examples of the specific typography. There are still some errors, that we might be able to solve with more aggressive fine-tuning, or with ex-post corrections. In any case, I hope that this blog post and <a href="https://andrescruz.org/tesseractgt/"><code>tesseractgt</code></a> are useful!</p>
 
 
 </section>
