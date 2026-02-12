@@ -7,3 +7,8 @@ details {
 h2 {
   font-size: 1.55rem;
 }
+
+.about-image {
+  height: 12.5em !important;
+  width: 12.5em !important;
+}
