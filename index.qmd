@@ -1,6 +1,6 @@
 ---
 title: "Andrés Cruz"
-image: assets/profile.jpg
+image: assets/profile.webp
 about:
   template: jolla
   links:
