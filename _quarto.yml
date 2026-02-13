@@ -16,12 +16,15 @@ website:
   title: "Andrés Cruz"
   navbar:
     right:
-      - text: "Home"
+      - text: Home
         href: index.qmd
       - research.qmd
       - teaching.qmd
       - software.qmd
-      - cv.qmd
+      - text: CV
+        icon: file-text
+        href: assets/cruz_cv.pdf
+        target: _blank
   search: false
   favicon: imgs/favicon.ico
   twitter-card: true
