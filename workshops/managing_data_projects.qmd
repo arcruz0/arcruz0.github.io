@@ -1,0 +1,8 @@
+---
+title: "Managing Data Projects"
+toc: false
+---
+
+<iframe class="stretch" style="width: 100%; height: 500px" src="/extra/workshop_data_projects.html"></iframe> 
+
+[[Slides]](/extra/workshop_data_projects.html){.external target="_blank"}
