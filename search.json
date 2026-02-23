@@ -7,6 +7,13 @@
     "text": "[Slides]\n[.R script]"
   },
   {
+    "objectID": "workshops/managing_data_projects.html",
+    "href": "workshops/managing_data_projects.html",
+    "title": "Managing Data Projects",
+    "section": "",
+    "text": "[Slides]"
+  },
+  {
     "objectID": "teaching.html",
     "href": "teaching.html",
     "title": "Teaching",
@@ -46,7 +53,7 @@
     "href": "teaching.html#workshop-presentations",
     "title": "Teaching",
     "section": "Workshop Presentations",
-    "text": "Workshop Presentations\n\nPower analysis: bridging theory and practice (Fall 2024)\nSpeedy R: loops, parallelization, and the cloud (Spring 2023)\nManaging data projects (Fall 2022)"
+    "text": "Workshop Presentations\n\nUT Austin GOV Methods Workshop:\n\nPower analysis: bridging theory and practice (2024)\nSpeedy R: loops, parallelization, and the cloud (2023)\nManaging data projects (2022)\n\nToronto Data Workshop on Reproducibility:\n\ninexact: an RStudio addin to supervise fuzzy joins (2021)"
   },
   {
     "objectID": "research.html",
@@ -96,6 +103,13 @@
     "title": "Software",
     "section": "",
     "text": "marginaleffectsjax: replace marginaleffects derivatives with automatic differentiation, via JAX.\ntesseractgt: generate “ground truth” data for retraining or fine-tuning Tesseract’s optical character recognition (OCR) neural network.\nrlazycartesian: extract elements from Cartesian Products. Partial wrapper of the lazy-cartesian-product C++ library.\ninexact: supervise fuzzy joins, i.e., joins where the ID variables are not fully standardized. See my slides for the Toronto Workshop on Reproducibility."
+  },
+  {
+    "objectID": "workshops/inexact.html",
+    "href": "workshops/inexact.html",
+    "title": "inexact: an RStudio addin to supervise fuzzy joins",
+    "section": "",
+    "text": "[Slides]"
   },
   {
     "objectID": "workshops/power_analysis.html",

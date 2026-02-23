@@ -1,0 +1,8 @@
+---
+title: "`inexact`: an RStudio addin to supervise fuzzy joins"
+toc: false
+---
+
+<iframe class="stretch" style="width: 100%; height: 500px" src="/extra/toronto2021/inexact_slides.html"></iframe> 
+
+[[Slides]](/extra/toronto2021/inexact_slides.html){.external target="_blank"}
