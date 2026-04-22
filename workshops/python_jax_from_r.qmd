@@ -1,0 +1,8 @@
+---
+title: "Leveraging Python and JAX in R workflows"
+toc: false
+---
+
+<iframe class="stretch" style="width: 100%; height: 500px" src="python_jax_from_r/slides_python_jax_from_r.html"></iframe> 
+
+[[Materials]](python_jax_from_r/python_jax_from_r.zip)
