@@ -38,6 +38,10 @@ knitr::include_graphics("imgs/book_covers.png")
 
 ## Workshop Presentations
 
+- Northwestern Statistical Computing Workshop:
+
+  + [Leveraging Python and JAX in R workflows (2026)](workshops/python_jax_from_r.html)
+
 - UT Austin GOV Methods Workshop:
 
   + [Power analysis: bridging theory and practice (2024)](workshops/power_analysis.html)
