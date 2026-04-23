@@ -109,7 +109,7 @@
     "href": "teaching.html#workshop-presentations",
     "title": "Teaching",
     "section": "Workshop Presentations",
-    "text": "Workshop Presentations\n\nUT Austin GOV Methods Workshop:\n\nPower analysis: bridging theory and practice (2024)\nSpeedy R: loops, parallelization, and the cloud (2023)\nManaging data projects (2022)\n\nToronto Data Workshop on Reproducibility:\n\ninexact: an RStudio addin to supervise fuzzy joins (2021)"
+    "text": "Workshop Presentations\n\nNorthwestern Statistical Computing Workshop:\n\nLeveraging Python and JAX in R workflows (2026)\n\nUT Austin GOV Methods Workshop:\n\nPower analysis: bridging theory and practice (2024)\nSpeedy R: loops, parallelization, and the cloud (2023)\nManaging data projects (2022)\n\nToronto Data Workshop on Reproducibility:\n\ninexact: an RStudio addin to supervise fuzzy joins (2021)"
   },
   {
     "objectID": "workshops/managing_data_projects.html",
