@@ -4,7 +4,18 @@ title: "Research"
 
 ## Peer-reviewed publications
 
-**Cruz, A.**, Bouyamourn, A., & Ornstein, J.T. 2026. ["Survey Quality and Acquiescence Bias: A Cautionary Tale."](https://doi.org/10.1017/pan.2025.10030) *Political Analysis*, First View.
+Gardner, R., Martin, M., Moran, A., Elkins, Z., **Cruz, A.**, & Pérez, G. 2026. ["Expanding Your Vocabulary: A Framework for Topic Integration in Texts."](https://doi.org/10.1177/08944393261443513) *Social Science Computer Review*, OnlineFirst.
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>Topic discovery and integration are vital for maintaining vocabularies that categorize textual corpora. Automated approaches are often computationally expensive and lack domain-specific conceptual nuance; manual approaches are costly in terms of time and potential bias. To address this dilemma, we introduce the segments-as-topic (SAT) methodology, a four-stage process that combines automation and human expertise to assess candidate topics for vocabulary inclusion. In the SAT generation stage, a topic is formulated and refined through collaboration with domain experts, and then a sentence-level semantic similarity model retrieves corpus segments semantically aligned with the topic. The SAT expansion stage uses this seed set to find additional semantically similar segments, which are iteratively accepted or rejected to build a final segment set. During the review stage, a panel of scholars evaluates the topic for inclusion. In the integration stage, all segments in the final segment set are automatically tagged with the new topic. We apply this methodology to the Comparative Constitutions Project vocabulary that tracks over 330 topics in national constitutions, and demonstrate the addition of three new topics to the vocabulary. The SAT approach balances computational efficiency with expert judgment, offering a systematic, user-friendly, and replicable framework for social scientists to expand domain-specific vocabularies.</p>
+</blockquote>
+</details>
+
+**Cruz, A.**, Bouyamourn, A., & Ornstein, J.T. 2026. ["Survey Quality and Acquiescence Bias: A Cautionary Tale."](https://doi.org/10.1017/pan.2025.10030) *Political Analysis*, FirstView.
 
 <details>
 <summary>
@@ -50,6 +61,19 @@ Abstract
 
 ## Working papers
 
+**Cruz, A.** "A Sensitivity Approach to Measurement Error Propagation."
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>
+What is the effect of measurement error on downstream estimates? Answers to this question usually rely on strong assumptions, expensive simulations, or heavily-parameterized joint models, and the issue is often ignored in practice. In this paper, I propose a sensitivity approach that quickly bounds the maximum possible impact of measurement error on a downstream estimate, given only pointwise uncertainty estimates. The latter are available for a variety of social science variables, including those estimated from measurement models. I introduce a new sensitivity value, the m-value, that quantifies the amount of measurement error needed to invalidate a downstream estimate in an adversarial, worst-case scenario. Interpreting this quantity requires the judicious use of domain knowledge, which I illustrate with two empirical applications drawn from V-Dem scores and congressional ideal points. In line with other sensitivity tools, the m-value gives researchers a way to benchmark the plausibility of an inference threat, in this case stemming from measurement error. An open-source package will provide accessible R and Python interfaces to the proposed method.
+</p>
+</blockquote>
+</details>
+
 **Cruz, A.** "Detecting and Understanding Influential Sets."
 
 <details>
@@ -61,7 +85,7 @@ Abstract
 </blockquote>
 </details>
 
-**Cruz, A.**, Gerring, J., & Knutsen, C.H. "Synthesizing Research through Total Model Space: The Case of Democracy and Growth." Under review.
+**Cruz, A.**, Gerring, J., & Knutsen, C.H. "Synthesizing Research through Total Model Space: The Case of Democracy and Growth."
 
 <details>
 <summary>
@@ -72,7 +96,7 @@ Abstract
 </blockquote>
 </details>
 
-Gerring, J., **Cruz, A.**, de Castro Quaglia, L., Miao, K., Öncel, E., & Saijo, H. "Leader Tenure and Leader Power." Submitted.
+Gerring, J., **Cruz, A.**, de Castro Quaglia, L., Miao, K., Öncel, E., & Saijo, H. "Leader Tenure and Leader Power." Under review.
 
 <details>
 <summary>
@@ -83,13 +107,3 @@ Abstract
 </blockquote>
 </details>
 
-Gardner, R., Martin, M., Moran, A., Elkins, Z., **Cruz, A.**, & Pérez, G. "Expanding Your Vocabulary: Topic Integration Using the Segments-as-Topics (SAT) Approach." R&R, *Social Science Computer Review*.
-
-<details>
-<summary>
-Abstract
-</summary>
-<blockquote class="blockquote">
-<p>Topic discovery and integration are vital for maintaining vocabularies that categorize textual corpora. Automated approaches are often computationally expensive and lack domain-specific conceptual nuance; manual approaches are costly in terms of time and potential bias. To address this dilemma, we introduce the segments-as-topic (SAT) methodology, a four-stage process that combines automation and human expertise to assess candidate topics for vocabulary inclusion. In the SAT generation stage, a topic is formulated and refined through collaboration with domain experts, then a sentence-level semantic similarity model retrieves corpus segments semantically aligned with the topic. The SAT expansion stage uses this seed set to find additional semantically similar segments, which are iteratively accepted or rejected to build a final segment set. During the review stage, a panel of scholars evaluates the topic for inclusion. In the integration stage, all segments in the final segment set are automatically tagged with the new topic. We apply this methodology to the Comparative Constitutions Project vocabulary that tracks over 330 topics in national constitutions, and demonstrate the addition of three new topics to the vocabulary. The SAT approach balances computational efficiency with expert judgment, offering a systematic, user-friendly, and replicable framework for social scientists to expand domain-specific vocabularies.</p>
-</blockquote>
-</details>
