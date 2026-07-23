@@ -1,6 +1,5 @@
 # `rlazycartesian`
 
-v0.3 \|
 [\[**Documentation**\]](https://arcruz0.github.io/extra/rlazycartesian/)
 
 An R interface for Lazy Cartesian Products. Provides memory-efficient
