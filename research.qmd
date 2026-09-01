@@ -59,9 +59,9 @@ Abstract
 </blockquote>
 </details>
 
-## Working papers
+## Working Papers
 
-**Cruz, A.** "A Sensitivity Approach to Measurement Error Propagation."
+**Cruz, A.** "A Sensitivity Approach to Measurement Error Propagation." <a href="./papers/sens_merror.html" target="_blank">[Draft]</a>
 
 <details>
 <summary>
@@ -69,10 +69,34 @@ Abstract
 </summary>
 <blockquote class="blockquote">
 <p>
-What is the effect of measurement error on downstream estimates? Answers to this question usually rely on strong assumptions, expensive simulations, or heavily-parameterized joint models, and the issue is often ignored in practice. In this paper, I propose a sensitivity approach that quickly bounds the maximum possible impact of measurement error on a downstream estimate, given only pointwise uncertainty estimates. The latter are available for a variety of social science variables, including those estimated from measurement models. I introduce a new sensitivity value, the m-value, that quantifies the amount of measurement error needed to invalidate a downstream estimate in an adversarial, worst-case scenario. Interpreting this quantity requires the judicious use of domain knowledge, which I illustrate with two empirical applications drawn from V-Dem scores and congressional ideal points. In line with other sensitivity tools, the m-value gives researchers a way to benchmark the plausibility of an inference threat, in this case stemming from measurement error. An open-source package will provide accessible R and Python interfaces to the proposed method.
+What is the effect of measurement error on downstream estimates? This question is most often ignored, or else tackled with onerous simulations or structural models. In this paper, I propose a sensitivity approach to measurement error propagation. The *m-value* quantifies the amount of measurement error needed to invalidate a downstream estimate in an adversarial, worst-case scenario. In this scenario, errors are arbitrarily assigned so as to depress the estimate, capturing problematic nonclassical errors without having to explicitly model them. To scale the propagated errors, the procedure makes use of pointwise uncertainty estimates, which are readily available for various model-generated variables in political science. The framework allows analysts to impose further assumptions on the errors, such as restricting them to some observations or to one direction. Interpreting the m-value requires the judicious use of domain knowledge, which I illustrate with two applications, using congressional ideal points and democracy scores. In line with sensitivity techniques for omitted variable bias and causal inference assumptions, the proposed approach gives researchers a systematic way to assess the plausibility of an inferential threat. An open-source R package, `msense`, implements the procedure.
 </p>
 </blockquote>
 </details>
+
+**Cruz, A.**, Gerring, J., & Knutsen, C.H. "Model Spaces in Crossnational Research: The Case of Democracy and Growth." [[Draft]](https://doi.org/10.31222/osf.io/r5h3j_v1).
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>Knowledge cumulation is notoriously hard in crossnational research. Despite mostly sharing observational units and data sources, studies differ in myriad details that hinder comparability. Attempts to learn directly from published estimates---as in meta-analysis---must grapple with publication bias, p-hacking, disparate methodologies, and overlapping samples. We propose to construct and analyze <i>model spaces</i>: combinations of design choices appearing in published baseline or robustness-check models. Analyzing a literature's model space identifies the design choices that most strongly drive results, narrowing the range of potential disagreements and focusing discussions on what is most consequential. As an illustration, we present and analyze model spaces for the democracy-growth literature, showcasing the importance of (some) design choices and suggesting new research avenues.</p>
+</blockquote>
+</details>
+
+Gerring, J., **Cruz, A.**, de Castro Quaglia, L., Miao, K., Öncel, E., & Saijo, H. "Leader Tenure and Leader Power."</a> [[Draft]](https://osf.io/xzeyt/files/wvycg).
+
+<details>
+<summary>
+Abstract
+</summary>
+<blockquote class="blockquote">
+<p>Despite its empirical ambiguity, the concept of leader power remains central to our understanding of politics. We argue that this recalcitrant concept may be successfully operationalized by time in office---a proxy that is directly observable across time and settings. First, we lay out a theoretical rationale. Second, we test the proposition empirically by associating tenure with existing measures. Subjective assessments of leader power are drawn from experts, LLM queries, and Google searches. Institutional limits on leader power are inferred from regime type, executive constraints, personalism, and forced departures. In certain settings, we are able to estimate the impact of an as-if random elongation of tenure. The tests corroborate the thesis: leader tenure is a generalizable metric of leader power.</p>
+</blockquote>
+</details>
+
+## Work in Progress
 
 **Cruz, A.** "Detecting and Understanding Influential Sets."
 
@@ -85,25 +109,5 @@ Abstract
 </blockquote>
 </details>
 
-**Cruz, A.**, Gerring, J., & Knutsen, C.H. "Synthesizing Research through Total Model Space: The Case of Democracy and Growth."
-
-<details>
-<summary>
-Abstract
-</summary>
-<blockquote class="blockquote">
-<p>Combining features associated with conventional literature reviews, meta-analyses, and robustness tests, we propose a more expansive method of synthesizing the literature on a topic. This total model space (TMS) is intended to encompass all conceivable tests of a specific research question, as indicated by its literature’s most common variations in design choices. Using the example of democracy’s impact on growth, we show that the TMS provides a rich picture of how a literature’s results follow from its design choices, identifying the features that most strongly drive results in one direction or another. In this way, the TMS approach promises to contribute to the cumulation of knowledge, enabling researchers to narrow the range of potential disagreements and thereby focus discussion on the design choices that are most consequential.</p>
-</blockquote>
-</details>
-
-Gerring, J., **Cruz, A.**, de Castro Quaglia, L., Miao, K., Öncel, E., & Saijo, H. "Leader Tenure and Leader Power." Under review.
-
-<details>
-<summary>
-Abstract
-</summary>
-<blockquote class="blockquote">
-<p>Despite its empirical ambiguity, the concept of leader power remains central to our understanding of politics. We argue that this recalcitrant concept may be successfully operationalized by time in office---a proxy that is directly observable across time and settings. First, we lay out a theoretical rationale. Second, we test the proposition empirically by associating tenure with existing measures. Subjective assessments of leader power are drawn from experts, LLM queries, and Google searches. Institutional limits on leader power are inferred from regime type, executive constraints, personalism, and forced departures. In certain settings, we are able to estimate the impact of an as-if random elongation of tenure. The tests corroborate the thesis: leader tenure is a generalizable metric of leader power.</p>
-</blockquote>
-</details>
+**Cruz, A.** "Against Robustness Checks."
 

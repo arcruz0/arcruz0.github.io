@@ -12,6 +12,7 @@ project:
     - "imgs/**"
     - "tesseractgt/**"
     - "workshops/*"
+    - "papers/*"
 website:
   title: "Andrés Cruz"
   navbar:
